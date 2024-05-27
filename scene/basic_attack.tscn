@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://q0kkcu5eap20"]
+
+[ext_resource type="Script" path="res://script/basic_attack.gd" id="1_b2q80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m14ut"]
+radius = 315.057
+
+[node name="basic_attack" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_b2q80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m14ut")
+
+[node name="shootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="kickTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="kickTimer" to="." method="_on_kick_timer_timeout"]
