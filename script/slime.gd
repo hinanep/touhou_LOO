@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var player
-const max_hp = 100
+const max_hp = 200
 var hp = max_hp
 const speed = 40
 @onready var progress_bar = $ProgressBar
