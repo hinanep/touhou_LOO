@@ -24,8 +24,8 @@ func _physics_process(delta):
 	
 func take_damage(damage):
 	hp -= damage
-	print(hp)
-	print(progress_bar.value)
+	#print(hp)
+	#print(progress_bar.value)
 	progress_bar.value = hp/max_hp * 100
 
 	if hp <= 0:
