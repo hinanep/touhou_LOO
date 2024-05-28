@@ -1,5 +1,4 @@
 extends Area2D
-var damage = 10
 @onready var shoot_timer = $shootTimer
 @onready var kick_timer = $kickTimer
 
@@ -10,7 +9,6 @@ const kick_range = 10
 var shoot_ready = true
 var kick_ready = true
 func _ready():
-	damage *= player_var.damageRatio
 	shoot_timer.wait_time = basic_colddown * (1 - player_var.colddown_reduce)
 	kick_timer.wait_time = basic_colddown * (1 - player_var.colddown_reduce)
 	

@@ -17,5 +17,5 @@ func _on_body_entered(body):
 	#print("hit")
 	
 	if body.has_method("take_damage"):
-		body.take_damage(basic_damage * player_var.damageRatio)
+		body.take_damage(player_var.player_make_damage(basic_damage))
 
