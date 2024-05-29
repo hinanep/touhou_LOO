@@ -3,10 +3,17 @@ class_name enemy_base extends CharacterBody2D
 var max_hp = 200
 var hp = max_hp
 var speed = 40
-var basic_damage = 10
+var basic_melee_damage = 10
+var basic_bullet_damage = 10
+
 @onready var progress_bar = $ProgressBar
-@onready var damage_area = $damage_area
-@onready var attack_cd = $damage_area/attack_cd
+
+@onready var melee_damage_area = $melee_damage_area
+@onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
+
+
+@onready var bullet_damage_area = $bullet_damage_area
+@onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
 
 func _ready():
 	pass
@@ -39,30 +46,48 @@ func get_distance_to_player():
 #受伤
 func take_damage(damage):
 	hp -= damage
-	
 	progress_bar.value = hp/max_hp * 100
-
 	if hp <= 0:
 		died()
 #似了
 func died():
 	print("died")
 	queue_free()
-
-
-func damage_area_body_entered(body):
-	print("attack")
-	attack_cd.start()
 	
-	player.take_damage(player_var.enemy_make_damage(basic_damage))
-	pass # Replace with function body.
-
-
-func attack_cd_timeout():
-	print("attack")
-	var playerinrange = damage_area.get_overlapping_bodies()
+#弹幕攻击方法，待实例实现
+func bullet_attack():
+	pass
+#体术攻击方法，可覆盖
+func melee_attack(playernode):
+	player_var.player_take_melee_damage(player_var.enemy_make_damage(basic_melee_damage))
+	
+	
+#体术攻击准备就绪，体术攻击敌人ready中调用
+func melee_battle_ready():
+	$melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
+	$melee_damage_area/melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
+#弹幕攻击准备就绪，弹幕攻击敌人ready中调用
+func bullet_battle_ready():
+	$bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
+	$bullet_damage_area/bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
+	
+func melee_damage_area_body_entered(body):
+	melee_attack_cd.start()
+	
+func bullet_damage_area_body_entered(body):	
+	bullet_attack_cd.start()
+	
+func melee_attack_cd_timeout():
+	var playerinrange = melee_damage_area.get_overlapping_bodies()
 	if playerinrange:
-		player.take_damage(player_var.enemy_make_damage(basic_damage))
+		melee_attack(player)
 	else:
-		attack_cd.stop()
-	pass # Replace with function body.
+		melee_attack_cd.stop()
+
+func bullet_attack_cd_timeout():	
+	var playerinrange = bullet_damage_area.get_overlapping_bodies()
+	if playerinrange:
+		bullet_attack()
+	else:
+		bullet_attack_cd.stop()
+

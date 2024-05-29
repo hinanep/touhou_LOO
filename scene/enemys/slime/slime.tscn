@@ -42,7 +42,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 3.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8lbc0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 16.0
 
 [node name="slime" type="CharacterBody2D"]
@@ -71,12 +71,16 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="damage_area" type="Area2D" parent="."]
+[node name="melee_damage_area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-shape = SubResource("CircleShape2D_8lbc0")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
 
-[node name="attack_cd" type="Timer" parent="damage_area"]
+[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
 
-[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
-[connection signal="timeout" from="damage_area/attack_cd" to="." method="_on_attack_cd_timeout"]
+[node name="bullet_damage_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]

@@ -19,6 +19,7 @@ func _physics_process(delta):
 		pass
 
 func take_damage(damage):
+
 	health -= damage
 	print("health=")
 	print(health)
