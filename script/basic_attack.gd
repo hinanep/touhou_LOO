@@ -37,7 +37,6 @@ func _physics_process(delta):
 			
 		if kick_ready and global_position.distance_to(target_enemy.global_position) < kick_range * player_var.range_add_ratio:
 			kick()
-			print("kick")
 			kick_ready = false
 			kick_timer.start()
 	pass
@@ -51,12 +50,12 @@ func shoot():
 
 func kick():
 	var enemy_in_kick_range = kickarea.get_overlapping_bodies()
-	#todo:体术动画
+	
 	$kickarea/kick_anime.play("kick")
 	for enemy in enemy_in_kick_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(player_var.player_make_damage(kick_basic_damage))
-	print("kick")
+	#print("kick")
 	
 
 

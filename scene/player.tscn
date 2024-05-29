@@ -246,3 +246,5 @@ script = ExtResource("3_xsxft")
 
 [node name="player_var" type="Node" parent="."]
 script = ExtResource("4_oedp3")
+
+[node name="level" type="Node" parent="."]

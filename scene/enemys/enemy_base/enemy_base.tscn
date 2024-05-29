@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddjn4u735g7im"]
+[gd_scene load_steps=10 format=3 uid="uid://bqqre42sbdbua"]
 
-[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="1_a8ost"]
-[ext_resource type="Script" path="res://script/slime.gd" id="1_o0wae"]
+[ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
+[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="2_p2xrr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
-atlas = ExtResource("1_a8ost")
+atlas = ExtResource("2_p2xrr")
 region = Rect2(0, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxkib"]
-atlas = ExtResource("1_a8ost")
+atlas = ExtResource("2_p2xrr")
 region = Rect2(24, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcn67"]
-atlas = ExtResource("1_a8ost")
+atlas = ExtResource("2_p2xrr")
 region = Rect2(48, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyehq"]
-atlas = ExtResource("1_a8ost")
+atlas = ExtResource("2_p2xrr")
 region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
@@ -40,12 +40,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
-radius = 3.0
+radius = 8.06226
 
-[node name="slime" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8ilp"]
+radius = 16.0
+
+[node name="enemy_base" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_o0wae")
+script = ExtResource("1_mcymg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
@@ -67,3 +70,13 @@ tooltip_text = "
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="damage_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_v8ilp")
+
+[node name="attack_cd" type="Timer" parent="damage_area"]
+
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="timeout" from="damage_area/attack_cd" to="." method="_on_attack_cd_timeout"]

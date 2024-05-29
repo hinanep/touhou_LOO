@@ -5,15 +5,16 @@ extends Node2D
 
 
 
-func spawn_mob():
-	var SLIME = preload("res://scene/slime.tscn").instantiate()
+func spawn_mob(path):
+	var SLIME = load(path).instantiate()
 	path_follow_2d.progress_ratio = randf()
 	SLIME.global_position = path_follow_2d.global_position
 	$".".add_child(SLIME)
 
 func _ready():
-	spawn_mob()
+	spawn_mob("res://scene/enemys/slime/slime.tscn")
 
 
 func _on_timer_timeout():
-	spawn_mob()
+	#spawn_mob("res://scene/enemys/slime/slime.tscn")
+	pass

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
+var health = player_var.player_hp
 
 func _physics_process(delta):
 	#移动
@@ -17,3 +17,13 @@ func _physics_process(delta):
 	else:
 		animated_sprite_2d.play("stay")
 		pass
+
+func take_damage(damage):
+	health -= damage
+	print("health=")
+	print(health)
+	if health < 0:
+		died()
+		
+func died():
+	get_tree().reload_current_scene()
