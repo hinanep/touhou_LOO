@@ -79,6 +79,7 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
 
 [node name="bullet_damage_area" type="Area2D" parent="."]
+collision_priority = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
 shape = SubResource("CircleShape2D_shwxr")

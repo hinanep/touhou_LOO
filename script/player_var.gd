@@ -1,11 +1,11 @@
 extends Node
 
 var player_melee_damage_ratio = 1.0#- 体术伤害倍率：影响体术类技能的伤害
-var player_ranged_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技能的伤害
+var player_bullet_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技能的伤害
 var bullet_speed_ratio = 1.0 #子弹速度比率
 var keep_time = 1.0 #持续时间#
 var range_add_ratio = 1.0 #攻击范围
-var bullet_times = 1 #弹幕发射数量
+var bullet_times = 100 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
@@ -28,28 +28,33 @@ var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 100#- 符力上限：可存储的最大符力
 
 #待移除？
-var damageRatio = 1.0	#玩家造成伤害比率，全局增加
-var critical_rate = 0.25 #暴击率
-var critical_damage = 2 #暴击伤害比率
+#var damageRatio = 1.0	#玩家造成伤害比率，全局增加
+#var critical_rate = 0.25 #暴击率
+#var critical_damage = 2 #暴击伤害比率
 
 
 #玩家造成伤害公式
-func player_make_damage(basic_damage):
+func player_make_melee_damage(basic_damage):
 	#if randf() < critical_rate:
 	#	return basic_damage * damageRatio * critical_damage
 	#else:
-		return basic_damage * damageRatio 
-
+		return basic_damage * player_melee_damage_ratio
+func player_make_bullet_damage(basic_damage):
+	#if randf() < critical_rate:
+	#	return basic_damage * damageRatio * critical_damage
+	#else:
+		return basic_damage * player_bullet_damage_ratio
+		
 #敌人造成伤害公式
 func enemy_make_damage(basic_damage):
 	return basic_damage
 
-@onready var player= get_tree().get_first_node_in_group("player")
+
 #玩家受到伤害公式
-func player_take_melee_damage(damage):
-	player.take_damage(damage * defence_melee / (10 + defence_melee))
+func player_take_melee_damage(player,damage):
+	player.take_damage(damage * 10 / (10 + defence_melee))
 	
 
-func player_take_bullet_damage(damage):
-	player.take_damage(damage * defence_bullet / (10 + defence_bullet))
+func player_take_bullet_damage(player,damage):
+	player.take_damage(damage * 10 / (10 + defence_bullet))
 	

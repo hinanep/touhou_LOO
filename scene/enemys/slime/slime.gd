@@ -1,7 +1,7 @@
 extends "res://scene/enemys/enemy_base/enemy_base.gd"
 
 func _ready():
-	max_hp = 100
+	max_hp =1500
 	hp = max_hp
 	speed = 40
 	basic_melee_damage = 10

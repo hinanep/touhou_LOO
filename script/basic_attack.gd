@@ -31,7 +31,7 @@ func _physics_process(delta):
 		
 		look_at(target_enemy.global_position)
 		if shoot_ready:
-			shoot()
+			shoot(target_enemy)
 			shoot_ready = false
 			shoot_timer.start()
 			
@@ -41,12 +41,13 @@ func _physics_process(delta):
 			kick_timer.start()
 	pass
 	
-func shoot():
+func shoot(enemy):
 	const bullet_pre = preload("res://scene/bullet.tscn")
-	var new_bullet = bullet_pre.instantiate()
-	new_bullet.global_position = $".".global_position
-	new_bullet.global_rotation = $".".global_rotation
-	$".".add_child(new_bullet)
+	for i in range(player_var.bullet_times):
+		var new_bullet = bullet_pre.instantiate()
+		new_bullet.global_position = $".".global_position +  2* global_position.direction_to(enemy.global_position) * (i-0.5*player_var.bullet_times) + 15 *Vector2(randf(),randf())
+		new_bullet.global_rotation = $".".global_rotation
+		$".".add_child(new_bullet)
 
 func kick():
 	var enemy_in_kick_range = kickarea.get_overlapping_bodies()
@@ -54,7 +55,7 @@ func kick():
 	$kickarea/kick_anime.play("kick")
 	for enemy in enemy_in_kick_range:
 		if enemy.has_method("take_damage"):
-			enemy.take_damage(player_var.player_make_damage(kick_basic_damage))
+			enemy.take_damage(player_var.player_make_melee_damage(kick_basic_damage))
 	#print("kick")
 	
 

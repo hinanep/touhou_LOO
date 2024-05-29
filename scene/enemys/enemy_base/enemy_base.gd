@@ -33,16 +33,7 @@ func move_to_player():
 		velocity *=  (get_distance_to_player() - 10)/20
 	
 	move_and_slide()
-#到玩家方向单位向量
-func get_diretion_to_player():
-	if player:
-		return(player.global_position - global_position).normalized()
-	return Vector2.ZERO
-#到玩家距离
-func get_distance_to_player():
-	if player:
-		return global_position.distance_to(player.global_position)
-	return Vector2.ZERO
+
 #受伤
 func take_damage(damage):
 	hp -= damage
@@ -59,7 +50,7 @@ func bullet_attack():
 	pass
 #体术攻击方法，可覆盖
 func melee_attack(playernode):
-	player_var.player_take_melee_damage(player_var.enemy_make_damage(basic_melee_damage))
+	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(basic_melee_damage))
 	
 	
 #体术攻击准备就绪，体术攻击敌人ready中调用
@@ -91,3 +82,13 @@ func bullet_attack_cd_timeout():
 	else:
 		bullet_attack_cd.stop()
 
+#到玩家方向单位向量
+func get_diretion_to_player():
+	if player:
+		return(player.global_position - global_position).normalized()
+	return Vector2.ZERO
+#到玩家距离
+func get_distance_to_player():
+	if player:
+		return global_position.distance_to(player.global_position)
+	return Vector2.ZERO
