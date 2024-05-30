@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var Exp = 0
 var Score = 0

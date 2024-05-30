@@ -1,4 +1,4 @@
-extends "res://scene/enemys/enemy_base/enemy_base.gd"
+extends enemy_base
 
 func _ready():
 	max_hp *= 50
@@ -6,6 +6,7 @@ func _ready():
 	speed = 40
 	basic_melee_damage *= 10
 	basic_bullet_damage *= 10
+	drops_path = "res://scene/drops/exp_1.tscn"
 	
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()

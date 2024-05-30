@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dj2qdfhyqped3"]
+
+[ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="1_e3gax"]
+[ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="1_ubgy0"]
+[ext_resource type="Texture2D" uid="uid://crsbqgqf1srup" path="res://asset/brackeys_platformer_assets/sprites/platforms.png" id="2_gvo7e"]
+[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/ui/time.tscn" id="4_20lwv"]
+[ext_resource type="Script" path="res://scene/ui/hud.gd" id="5_mh7ek"]
+[ext_resource type="Script" path="res://script/game_manager.gd" id="5_y3p48"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48y81"]
+texture = ExtResource("2_gvo7e")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1u074"]
+sources/0 = SubResource("TileSetAtlasSource_48y81")
+
+[sub_resource type="Curve2D" id="Curve2D_qy5ds"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -334, -178, 0, 0, 0, 0, 315, -180, 0, 0, 0, 0, 325, 175, 0, 0, 0, 0, -338, 180, 0, 0, 0, 0, -334, -178)
+}
+point_count = 5
+
+[node name="level01" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_1u074")
+format = 2
+layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -327686, 0, 0, -327685, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -196597, 0, 0, -196596, 0, 0, 65529, 0, 0, 131066, 0, 0, 196602, 0, 0, 196603, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0)
+
+[node name="player" parent="." groups=["player"] instance=ExtResource("1_e3gax")]
+unique_name_in_owner = true
+safe_margin = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(2, 2)
+limit_smoothed = true
+
+[node name="Path2D" type="Path2D" parent="player"]
+curve = SubResource("Curve2D_qy5ds")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="player/Path2D"]
+position = Vector2(-334, -178)
+rotation = -0.00308165
+
+[node name="spawner" type="Node2D" parent="."]
+script = ExtResource("1_ubgy0")
+
+[node name="Timer" type="Timer" parent="spawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="UI_manager" type="CanvasLayer" parent="."]
+
+[node name="time" parent="UI_manager" instance=ExtResource("4_20lwv")]
+
+[node name="pause_ui" type="CanvasLayer" parent="UI_manager"]
+
+[node name="levelup_ui" type="CanvasLayer" parent="UI_manager"]
+
+[node name="hud" type="CanvasLayer" parent="UI_manager"]
+script = ExtResource("5_mh7ek")
+
+[node name="hp" type="ProgressBar" parent="UI_manager/hud"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 53.0
+value = 100.0
+show_percentage = false
+
+[node name="hp_text" type="Label" parent="UI_manager/hud/hp"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 47.0
+
+[node name="game_manager" type="Node" parent="." groups=["GameManager"]]
+script = ExtResource("5_y3p48")
+
+[connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]

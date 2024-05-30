@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3g0fohfbptk8"]
+
+[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/ui/time.tscn" id="1_b7a1v"]
+[ext_resource type="Script" path="res://scene/ui/hud.gd" id="2_yuo70"]
+
+[node name="UI_manager" type="CanvasLayer"]
+
+[node name="time" parent="." instance=ExtResource("1_b7a1v")]
+
+[node name="pause_ui" type="CanvasLayer" parent="."]
+
+[node name="levelup_ui" type="CanvasLayer" parent="."]
+
+[node name="hud" type="CanvasLayer" parent="."]
+script = ExtResource("2_yuo70")
+
+[node name="hp" type="ProgressBar" parent="hud"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 53.0
+value = 100.0
+show_percentage = false
+
+[node name="hp_text" type="Label" parent="hud/hp"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 47.0
+scale = Vector2(2, 2)
