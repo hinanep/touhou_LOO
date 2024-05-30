@@ -4,11 +4,11 @@ var basic_speed = 500
 var basic_damage = 10
 func _ready():
 	timer.start()
-	
+
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	position += direction * player_var.bullet_speed_ratio * basic_speed * delta
-
+	
 func _on_timer_timeout():
 	queue_free()
 

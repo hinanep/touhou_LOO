@@ -1,11 +1,11 @@
 extends Node
 
 @onready var player = $".."
-
+#"res://scene/weapons/weapon_base/ranged_base/ranged_weapon_base.tscn"
 func _ready():
-	addWeapon("res://scene/weapons/basic_attack/basic_attack.tscn")
+	var weapon_path = "res://scene/weapons/reimu/reimu_weapon.tscn"
+	addWeapon(weapon_path)
 	pass # Replace with function body.
-
 
 
 func _process(delta):
@@ -15,7 +15,8 @@ func _process(delta):
 func addWeapon(path):
 	var weapon = load(path)
 	weapon = weapon.instantiate()
-	weapon.position = player.global_position
+	weapon.global_position = player.global_position
+	
 	$".".add_child(weapon)
 	
 func updateWeapon():
