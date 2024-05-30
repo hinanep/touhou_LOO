@@ -1,10 +1,11 @@
 class_name enemy_base extends CharacterBody2D
 @onready var player= get_tree().get_first_node_in_group("player")
-var max_hp = 200
+var curse = player_var.curse
+var max_hp = curse
 var hp = max_hp
 var speed = 40
-var basic_melee_damage = 10
-var basic_bullet_damage = 10
+var basic_melee_damage = curse
+var basic_bullet_damage = curse
 
 @onready var progress_bar = $ProgressBar
 
