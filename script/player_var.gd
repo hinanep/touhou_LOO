@@ -5,7 +5,7 @@ var player_bullet_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技�
 var bullet_speed_ratio = 1.0 #子弹速度比率
 var keep_time = 1.0 #持续时间#
 var range_add_ratio = 1.0 #攻击范围
-var bullet_times = 10 #弹幕发射数量
+var bullet_times = 4 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
@@ -31,7 +31,7 @@ var power_max = 100#- 符力上限：可存储的最大符力
 #var damageRatio = 1.0	#玩家造成伤害比率，全局增加
 #var critical_rate = 0.25 #暴击率
 #var critical_damage = 2 #暴击伤害比率
-
+var nearest_enemy
 
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
