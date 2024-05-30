@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj2qdfhyqped3"]
+[gd_scene load_steps=10 format=3 uid="uid://dj2qdfhyqped3"]
 
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="1_e3gax"]
 [ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="1_ubgy0"]
 [ext_resource type="Texture2D" uid="uid://crsbqgqf1srup" path="res://asset/brackeys_platformer_assets/sprites/platforms.png" id="2_gvo7e"]
-[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/time.tscn" id="4_20lwv"]
+[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/ui/time.tscn" id="4_20lwv"]
+[ext_resource type="Script" path="res://scene/ui/hud.gd" id="5_mh7ek"]
+[ext_resource type="Script" path="res://script/game_manager.gd" id="5_y3p48"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48y81"]
 texture = ExtResource("2_gvo7e")
@@ -61,5 +63,30 @@ autostart = true
 [node name="UI_manager" type="CanvasLayer" parent="."]
 
 [node name="time" parent="UI_manager" instance=ExtResource("4_20lwv")]
+
+[node name="pause_ui" type="CanvasLayer" parent="UI_manager"]
+
+[node name="levelup_ui" type="CanvasLayer" parent="UI_manager"]
+
+[node name="hud" type="CanvasLayer" parent="UI_manager"]
+script = ExtResource("5_mh7ek")
+
+[node name="hp" type="ProgressBar" parent="UI_manager/hud"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 53.0
+value = 100.0
+show_percentage = false
+
+[node name="hp_text" type="Label" parent="UI_manager/hud/hp"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 47.0
+scale = Vector2(2, 2)
+
+[node name="game_manager" type="Node" parent="." groups=["GameManager"]]
+script = ExtResource("5_y3p48")
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]

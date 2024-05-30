@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-var health = player_var.player_hp
+var health = player_var.player_hp_max
 
 func _physics_process(delta):
 	#移动

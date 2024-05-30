@@ -9,7 +9,7 @@ var bullet_times = 4 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
-var player_hp = 20000.0 #生命上限
+var player_hp_max = 20000.0 #生命上限
 var player_hp_regen = 0.0 #每秒生命回复
 var lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 var player_speed = 150.0 #移动速度
@@ -32,7 +32,7 @@ var power_max = 100#- 符力上限：可存储的最大符力
 #var critical_rate = 0.25 #暴击率
 #var critical_damage = 2 #暴击伤害比率
 var nearest_enemy
-
+var player_hp = player_hp_max
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
 	#if randf() < critical_rate:
