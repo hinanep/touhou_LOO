@@ -55,12 +55,16 @@ func melee_attack(playernode):
 	
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready():
-	$melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
-	$melee_damage_area/melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
+	melee_damage_area.monitoring = true
+	melee_damage_area.monitorable = true
+	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
+	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
 func bullet_battle_ready():
-	$bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
-	$bullet_damage_area/bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
+	bullet_damage_area.monitoring = true
+	bullet_damage_area.monitorable = true
+	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
+	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
 	
 func melee_damage_area_body_entered(body):
 	melee_attack_cd.start()

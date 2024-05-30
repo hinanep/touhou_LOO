@@ -72,6 +72,8 @@ value = 100.0
 show_percentage = false
 
 [node name="melee_damage_area" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
 shape = SubResource("CircleShape2D_v8ilp")
@@ -79,6 +81,8 @@ shape = SubResource("CircleShape2D_v8ilp")
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
 
 [node name="bullet_damage_area" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
 shape = SubResource("CircleShape2D_v8ilp")

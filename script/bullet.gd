@@ -1,7 +1,7 @@
 extends Area2D
 @onready var timer = $Timer
-const basic_speed = 500
-const basic_damage = 10
+var basic_speed = 500
+var basic_damage = 10
 func _ready():
 	timer.start()
 	
