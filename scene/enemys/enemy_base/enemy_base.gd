@@ -6,6 +6,7 @@ var hp = max_hp
 var speed = 40
 var basic_melee_damage = curse
 var basic_bullet_damage = curse
+var drops_path = ""
 
 @onready var progress_bar = $ProgressBar
 
@@ -24,6 +25,10 @@ func _physics_process(delta):
 	move_to_player()
 	pass
 
+func _process(delta):
+	if hp <= 0:
+		died()
+	pass
 
 #移动方式：走向玩家
 func move_to_player():
@@ -39,12 +44,16 @@ func move_to_player():
 func take_damage(damage):
 	hp -= damage
 	progress_bar.value = hp/max_hp * 100
-	if hp <= 0:
-		died()
 #似了
 func died():
-
+	drop()
 	queue_free()
+	
+func drop():
+	var drops = load(drops_path).instantiate()
+	drops.position = global_position
+	get_parent().add_child(drops)
+	pass
 	
 #弹幕攻击方法，待实例实现
 func bullet_attack():

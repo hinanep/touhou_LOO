@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="1_e3gax"]
 [ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="1_ubgy0"]
 [ext_resource type="Texture2D" uid="uid://crsbqgqf1srup" path="res://asset/brackeys_platformer_assets/sprites/platforms.png" id="2_gvo7e"]
-[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/time.tscn" id="4_20lwv"]
+[ext_resource type="PackedScene" path="res://scene/time.tscn" id="4_20lwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48y81"]
 texture = ExtResource("2_gvo7e")
