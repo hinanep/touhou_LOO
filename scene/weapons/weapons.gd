@@ -3,7 +3,7 @@ extends Node
 @onready var player = $".."
 
 func _ready():
-	addWeapon("res://scene/basic_attack.tscn")
+	addWeapon("res://scene/weapons/basic_attack/basic_attack.tscn")
 	pass # Replace with function body.
 
 

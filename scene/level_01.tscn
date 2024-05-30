@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj2qdfhyqped3"]
+[gd_scene load_steps=8 format=3 uid="uid://dj2qdfhyqped3"]
 
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="1_e3gax"]
-[ext_resource type="Script" path="res://script/spawner.gd" id="1_ubgy0"]
+[ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="1_ubgy0"]
 [ext_resource type="Texture2D" uid="uid://crsbqgqf1srup" path="res://asset/brackeys_platformer_assets/sprites/platforms.png" id="2_gvo7e"]
+[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/time.tscn" id="4_20lwv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48y81"]
 texture = ExtResource("2_gvo7e")
@@ -37,9 +38,11 @@ layer_0/tile_data = PackedInt32Array(131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 6
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_e3gax")]
 unique_name_in_owner = true
+safe_margin = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2, 2)
+limit_smoothed = true
 
 [node name="Path2D" type="Path2D" parent="player"]
 curve = SubResource("Curve2D_qy5ds")
@@ -56,5 +59,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="UI_manager" type="CanvasLayer" parent="."]
+
+[node name="time" parent="UI_manager" instance=ExtResource("4_20lwv")]
 
 [connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]

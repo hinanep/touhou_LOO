@@ -17,4 +17,7 @@ func _ready():
 
 func _on_timer_timeout():
 	spawn_mob("res://scene/enemys/slime/slime.tscn")
+	spawn_mob("res://scene/enemys/slime/slime.tscn")
+	spawn_mob("res://scene/enemys/slime/slime.tscn")
+	spawn_mob("res://scene/enemys/slime/slime.tscn")
 	pass

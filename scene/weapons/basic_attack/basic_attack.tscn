@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://q0kkcu5eap20"]
 
-[ext_resource type="Script" path="res://script/basic_attack.gd" id="1_b2q80"]
-[ext_resource type="Texture2D" uid="uid://dys6yv11qo1hk" path="res://asset/brackeys_platformer_assets/sprites/world_tileset.png" id="2_v8m7l"]
+[ext_resource type="Script" path="res://scene/weapons/basic_attack/basic_attack.gd" id="1_7lnll"]
+[ext_resource type="Texture2D" uid="uid://dys6yv11qo1hk" path="res://asset/brackeys_platformer_assets/sprites/world_tileset.png" id="2_j1omt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m14ut"]
 radius = 315.057
@@ -10,7 +10,7 @@ radius = 315.057
 radius = 50.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdluy"]
-atlas = ExtResource("2_v8m7l")
+atlas = ExtResource("2_j1omt")
 region = Rect2(64, 160, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vfr40"]
@@ -35,7 +35,7 @@ animations = [{
 [node name="basic_attack" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_b2q80")
+script = ExtResource("1_7lnll")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m14ut")
@@ -61,6 +61,6 @@ sprite_frames = SubResource("SpriteFrames_vfr40")
 animation = &"none"
 autoplay = "none"
 
-[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="kickTimer" to="." method="_on_kick_timer_timeout"]
