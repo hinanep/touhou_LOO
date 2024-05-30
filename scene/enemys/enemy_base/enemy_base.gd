@@ -30,8 +30,8 @@ func move_to_player():
 	velocity = get_diretion_to_player() * speed
 	
 	#近身减速防止模型重叠的神秘bug（，过近远离
-	if get_distance_to_player() < 20:
-		velocity *=  (get_distance_to_player() - 10)/20
+	#if get_distance_squared_to_player() < pow(10,2):
+		#velocity *=  (get_distance_squared_to_player() - 100)/10
 	
 	move_and_slide()
 
@@ -43,7 +43,7 @@ func take_damage(damage):
 		died()
 #似了
 func died():
-	print("died")
+
 	queue_free()
 	
 #弹幕攻击方法，待实例实现
@@ -52,22 +52,23 @@ func bullet_attack():
 #体术攻击方法，可覆盖
 func melee_attack(playernode):
 	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(basic_melee_damage))
-	
+	print("attack damage")
 	
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready():
 	melee_damage_area.monitoring = true
-	melee_damage_area.monitorable = true
+	#melee_damage_area.monitorable = true
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
 func bullet_battle_ready():
 	bullet_damage_area.monitoring = true
-	bullet_damage_area.monitorable = true
+	#bullet_damage_area.monitorable = true
 	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
 	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
 	
 func melee_damage_area_body_entered(body):
+	melee_attack(player)
 	melee_attack_cd.start()
 	
 func bullet_damage_area_body_entered(body):	
@@ -96,4 +97,8 @@ func get_diretion_to_player():
 func get_distance_to_player():
 	if player:
 		return global_position.distance_to(player.global_position)
+	return Vector2.ZERO
+func get_distance_squared_to_player():
+	if player:
+		return global_position.distance_squared_to(player.global_position)
 	return Vector2.ZERO

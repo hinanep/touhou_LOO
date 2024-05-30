@@ -20,7 +20,7 @@ func _on_kick_timer_timeout():
 	kick_ready = true
 
 func enemy_near(a,b):
-	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
 func _physics_process(delta):
 	
 	$kickarea/kick_anime.play("none")
@@ -42,7 +42,7 @@ func _physics_process(delta):
 	pass
 	
 func shoot(enemy):
-	const bullet_pre = preload("res://scene/bullet.tscn")
+	const bullet_pre = preload("res://scene/weapons/bullets/bullet_base/diretion_bullet/bullet.tscn")
 	for i in range(player_var.bullet_times):
 		var new_bullet = bullet_pre.instantiate()
 		new_bullet.global_position = $".".global_position +  2* global_position.direction_to(enemy.global_position) * (i-0.5*player_var.bullet_times) + 15 *Vector2(randf(),randf())

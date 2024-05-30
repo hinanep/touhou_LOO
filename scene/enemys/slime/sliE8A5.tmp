@@ -1,22 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=10 format=3 uid="uid://ddjn4u735g7im"]
 
-[ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
-[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="2_p2xrr"]
+[ext_resource type="Script" path="res://scene/enemys/slime/slime.gd" id="1_mucw3"]
+[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="2_yhde2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
-atlas = ExtResource("2_p2xrr")
+atlas = ExtResource("2_yhde2")
 region = Rect2(0, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxkib"]
-atlas = ExtResource("2_p2xrr")
+atlas = ExtResource("2_yhde2")
 region = Rect2(24, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcn67"]
-atlas = ExtResource("2_p2xrr")
+atlas = ExtResource("2_yhde2")
 region = Rect2(48, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyehq"]
-atlas = ExtResource("2_p2xrr")
+atlas = ExtResource("2_yhde2")
 region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
@@ -40,16 +40,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
-radius = 8.06226
+radius = 3.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v8ilp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 16.0
 
-[node name="enemy_base" type="CharacterBody2D"]
+[node name="slime" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_mcymg")
+script = ExtResource("1_mucw3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
@@ -73,20 +73,20 @@ value = 100.0
 show_percentage = false
 
 [node name="melee_damage_area" type="Area2D" parent="."]
-collision_layer = 0
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
-shape = SubResource("CircleShape2D_v8ilp")
+shape = SubResource("CircleShape2D_shwxr")
 
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
 
 [node name="bullet_damage_area" type="Area2D" parent="."]
+collision_priority = 0.0
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
-shape = SubResource("CircleShape2D_v8ilp")
+shape = SubResource("CircleShape2D_shwxr")
 
 [node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]

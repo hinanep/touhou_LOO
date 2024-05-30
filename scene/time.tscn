@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlwk4q8jl4cbx"]
+
+[ext_resource type="Script" path="res://script/time_manager.gd" id="1_8hjqq"]
+
+[node name="time" type="Node"]
+script = ExtResource("1_8hjqq")
+
+[node name="time_ui" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="time_ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="time_ui/MarginContainer"]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 600.0
+autostart = true
