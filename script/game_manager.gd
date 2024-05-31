@@ -3,16 +3,20 @@ extends Node
 
 var Exp = 0
 var Score = 0
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var exp_pick_sound = $exp_pick_sound
+@onready var music = $music
+
 
 var kill_num = 0
 
 #signal level_up()
 
-
+func _ready():
+	
+	pass
 func add_exp(value):
 	
-	audio_stream_player_2d.play()
+	exp_pick_sound.play()
 	player_var.exp += value
 	if(player_var.exp >= player_var.exp_need[player_var.level]):
 		level_up()
@@ -35,3 +39,8 @@ func level_up():
 	player_var.exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	#todo
+
+
+func _on_audio_stream_player_finished():
+	music.play()
+
