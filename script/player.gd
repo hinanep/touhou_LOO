@@ -41,3 +41,16 @@ func died():
 func _on_invincible_time_timeout():
 	is_invincible = false
 
+
+
+func _on_pickup_area_body_entered(body):
+	if body.has_method("fly_to_player"):
+		body.fly_to_player()
+	pass # Replace with function body.
+
+
+func _on_pickup_area_area_entered(area):
+
+	if area.has_method("fly_to_player"):
+		area.fly_to_player()
+	pass # Replace with function body.

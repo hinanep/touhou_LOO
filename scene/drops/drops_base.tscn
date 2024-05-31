@@ -43,6 +43,8 @@ animations = [{
 radius = 8.0
 
 [node name="DropsBase" type="Area2D"]
+collision_layer = 16
+monitoring = false
 script = ExtResource("1_7oqge")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

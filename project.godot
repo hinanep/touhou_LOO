@@ -59,6 +59,7 @@ use_card={
 [layer_names]
 
 2d_physics/layer_2="monster"
+2d_physics/layer_5="pickup_items"
 
 [rendering]
 
