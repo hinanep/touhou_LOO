@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://vondksdagxjf" path="res://asset/music/pvz.mp3" id="3_gc1xm"]
 
 [node name="game_manager" type="Node" groups=["GameManager"]]
+process_mode = 3
 script = ExtResource("1_nytwg")
 
 [node name="exp_pick_sound" type="AudioStreamPlayer2D" parent="."]

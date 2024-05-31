@@ -5,7 +5,7 @@ var Exp = 0
 var Score = 0
 @onready var exp_pick_sound = $exp_pick_sound
 @onready var music = $music
-
+@onready var UiManager = get_tree().get_first_node_in_group("UiManager")
 
 var kill_num = 0
 
@@ -39,6 +39,8 @@ func level_up():
 	player_var.exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	#todo
+	get_tree().paused = true
+	UiManager.get_node("select_weapon").visible = true
 
 
 func _on_audio_stream_player_finished():

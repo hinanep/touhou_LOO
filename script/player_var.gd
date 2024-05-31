@@ -27,6 +27,7 @@ var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前
 var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 100#- 符力上限：可存储的最大符力
 
+@onready var ui_manager = get_tree().get_first_node_in_group("UiManager")
 #待移除？
 #var damageRatio = 1.0	#玩家造成伤害比率，全局增加
 #var critical_rate = 0.25 #暴击率
@@ -40,6 +41,14 @@ var exp = 0
 var level = 0
 
 var exp_need = [1,2,3,4,5,6,7,8,100000]
+var random_weapons_selected = [0,0,0,0,0]
+var weapon_random_list = { "灵梦": 0,
+					"早苗" :0,
+					"爱丽丝" : 0,
+					}
+var weapon_name_path_pair ={
+	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn"
+}
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
 	#if randf() < critical_rate:
@@ -64,4 +73,23 @@ func player_take_melee_damage(player,damage):
 
 func player_take_bullet_damage(player,damage):
 	player.take_damage(damage * 10 / (10 + defence_bullet))
+
+
+func select_weapon_path(weapon_numbers):
+	return weapon_name_path_pair[weapon_random_list.keys()[weapon_numbers]]
+
+func random3_weapons_number_select():
+	for i in range(3):
+
+		random_weapons_selected[i]=randi_range(0,0)
+	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
+	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
+	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]
 	
+
+
+func delete_weapon_from_list(name):
+	weapon_random_list.erase(name)
+	
+func _ready():
+	random3_weapons_number_select()
