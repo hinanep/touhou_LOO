@@ -3,6 +3,7 @@ extends Node
 
 var Exp = 0
 var Score = 0
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 var kill_num = 0
 
@@ -10,16 +11,17 @@ var kill_num = 0
 
 
 func add_exp(value):
-	print("Exp+3, good bye!")
+	
+	audio_stream_player_2d.play()
 	player_var.exp += value
 	if(player_var.exp >= player_var.exp_need[player_var.level]):
 		level_up()
 		
 func add_score(value):
-	print("Score+3, good bye!")
+	
 	player_var.point += value * player_var.point_ratio
 func add_power(power):
-	print("power+3, good bye!")
+	
 	player_var.power += power
 	if(player_var.power > player_var.power_max):
 		player_var.power = player_var.power_max

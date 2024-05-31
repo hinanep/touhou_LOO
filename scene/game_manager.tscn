@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cya7a6wij0hfp"]
+[gd_scene load_steps=3 format=3 uid="uid://cya7a6wij0hfp"]
 
 [ext_resource type="Script" path="res://script/game_manager.gd" id="1_nytwg"]
+[ext_resource type="AudioStream" uid="uid://fve27nbhwt6k" path="res://asset/brackeys_platformer_assets/sounds/coin.wav" id="2_jbhc7"]
 
 [node name="game_manager" type="Node" groups=["GameManager"]]
 script = ExtResource("1_nytwg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jbhc7")

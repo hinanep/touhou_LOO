@@ -1,6 +1,7 @@
 class_name drops_base extends Area2D
 @onready var player= get_tree().get_first_node_in_group("player")
 @onready var game_manager = get_tree().get_first_node_in_group("GameManager")
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 var exp = 1
 var score = 1
@@ -11,5 +12,6 @@ func _on_body_entered(body):
 	game_manager.add_exp(exp)
 	game_manager.add_score(score)
 	game_manager.add_power(power)
+
 	queue_free()
 	pass

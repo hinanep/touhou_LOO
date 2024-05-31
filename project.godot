@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 player_var="*res://script/player_var.gd"
 GameManager="*res://scene/game_manager.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 move_left={

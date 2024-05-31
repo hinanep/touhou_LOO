@@ -1,6 +1,8 @@
 class_name ranged_weapon_base extends Node2D
 @onready var shoot_timer = $shootTimer
 @onready var attack_range = $attack_range
+@onready var sound_shoot = $sound_shoot
+
 
 var shoot_range = 200
 var basic_colddown = 1
@@ -47,6 +49,8 @@ func get_nearest_enemy_inarea():
 	return null
 	
 func shoot(bullet_pre,generate_position,direction):	
+	if sound_shoot:
+		sound_shoot.play()
 	var new_bullet = bullet_pre.instantiate()
 	new_bullet.global_position = generate_position
 	new_bullet.global_rotation = direction

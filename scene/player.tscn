@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=33 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Texture2D" uid="uid://bh8qbl8bwqasv" path="res://asset/brackeys_platformer_assets/sprites/knight.png" id="1_6epby"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_eqxiv"]
@@ -6,21 +6,9 @@
 [ext_resource type="Script" path="res://script/player_var.gd" id="4_oedp3"]
 [ext_resource type="Script" path="res://script/cards.gd" id="5_vxjps"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_andby"]
-atlas = ExtResource("1_6epby")
-region = Rect2(0, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5lv2h"]
-atlas = ExtResource("1_6epby")
-region = Rect2(32, 192, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_67g0n"]
 atlas = ExtResource("1_6epby")
 region = Rect2(64, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5jopy"]
-atlas = ExtResource("1_6epby")
-region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtlcs"]
 atlas = ExtResource("1_6epby")
@@ -122,20 +110,11 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_andby")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5lv2h")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_67g0n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5jopy")
 }],
-"loop": true,
+"loop": false,
 "name": &"be_hit",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,

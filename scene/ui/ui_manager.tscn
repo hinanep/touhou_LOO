@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_1213l"]
 
 [node name="UI_manager" type="CanvasLayer"]
+follow_viewport_enabled = true
 
 [node name="time" parent="." instance=ExtResource("1_b7a1v")]
 
@@ -54,6 +55,7 @@ theme_override_fonts/normal_font = ExtResource("3_1213l")
 text = "100/100"
 
 [node name="point_ratio" type="RichTextLabel" parent="hud"]
+modulate = Color(0, 0, 1, 1)
 offset_left = 900.0
 offset_top = 12.0
 offset_right = 1150.0
@@ -64,11 +66,14 @@ text = "得点倍率："
 [node name="text" type="RichTextLabel" parent="hud/point_ratio"]
 layout_mode = 0
 offset_left = 90.0
+offset_top = 4.0
 offset_right = 213.0
-offset_bottom = 40.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("3_1213l")
 text = "0"
 
 [node name="point" type="RichTextLabel" parent="hud"]
+modulate = Color(0, 0, 1, 1)
 offset_left = 900.0
 offset_top = 54.0
 offset_right = 1150.0
@@ -79,8 +84,10 @@ text = "分数："
 [node name="text" type="RichTextLabel" parent="hud/point"]
 layout_mode = 0
 offset_left = 90.0
+offset_top = 4.0
 offset_right = 235.0
-offset_bottom = 40.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("3_1213l")
 text = "0"
 
 [node name="exp_bar" type="ProgressBar" parent="hud"]
