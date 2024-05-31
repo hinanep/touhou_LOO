@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://m1cue7k05cqo"]
 
-[ext_resource type="Script" path="res://scene/weapons/bullets/bullet_base/diretion_bullet/bullet.gd" id="1_f3t4u"]
+[ext_resource type="Script" path="res://scene/weapons/bullets/bullet_base/direction_bullet/direction_bullet.gd" id="1_f3t4u"]
 [ext_resource type="Texture2D" uid="uid://c1g3nux55yi8k" path="res://asset/brackeys_platformer_assets/sprites/coin.png" id="2_lahdl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ujfc"]

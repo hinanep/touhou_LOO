@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-var health = player_var.player_hp_max
-
+var hp = player_var.player_hp_max
+var is_invincible = false
+func _ready():
+	$invincible_time.wait_time = player_var.invincible_time
 func _physics_process(delta):
 	#移动
 	
@@ -19,12 +21,23 @@ func _physics_process(delta):
 		pass
 
 func take_damage(damage):
-
-	health -= damage
-	print("health=")
-	print(health)
-	if health < 0:
+	if is_invincible:
+		print("invincible active")
+		return
+		
+	hp -= damage
+	player_var.player_hp = hp
+	
+	if hp < 0:
 		died()
+		
+	is_invincible = true
+	$invincible_time.start()
 		
 func died():
 	get_tree().reload_current_scene()
+
+
+func _on_invincible_time_timeout():
+	is_invincible = false
+

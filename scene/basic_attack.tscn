@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0k0q65mmpubb"]
+[gd_scene load_steps=7 format=3 uid="uid://dc6d40holsj4x"]
 
 [ext_resource type="Script" path="res://script/basic_attack.gd" id="1_b2q80"]
 [ext_resource type="Texture2D" uid="uid://dys6yv11qo1hk" path="res://asset/brackeys_platformer_assets/sprites/world_tileset.png" id="2_v8m7l"]
@@ -61,6 +61,6 @@ sprite_frames = SubResource("SpriteFrames_vfr40")
 animation = &"none"
 autoplay = "none"
 
-[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="kickTimer" to="." method="_on_kick_timer_timeout"]

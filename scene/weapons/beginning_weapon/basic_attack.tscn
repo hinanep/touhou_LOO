@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://q0kkcu5eap20"]
 
-[ext_resource type="Script" path="res://scene/weapons/basic_attack/basic_attack.gd" id="1_7lnll"]
+[ext_resource type="Script" path="res://scene/weapons/beginning_weapon/basic_attack.gd" id="1_7lnll"]
 [ext_resource type="Texture2D" uid="uid://dys6yv11qo1hk" path="res://asset/brackeys_platformer_assets/sprites/world_tileset.png" id="2_j1omt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m14ut"]

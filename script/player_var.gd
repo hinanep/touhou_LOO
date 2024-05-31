@@ -16,7 +16,7 @@ var player_speed = 150.0 #移动速度
 var player_life_addi = 0 #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
 var defence_melee = 100.0 #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
 var defence_bullet = 0.0 #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
-var invincible_time = 0.5 #- 受伤后无敌时间：受到伤害后的无敌时间
+var invincible_time = 1 #- 受伤后无敌时间：受到伤害后的无敌时间
 
 var range_pick = 30#- 拾取范围：拾取记忆碎片的最大距离
 var luck = 1.0 #- 幸运：影响各种与概率相关的东西
@@ -31,8 +31,15 @@ var power_max = 100#- 符力上限：可存储的最大符力
 #var damageRatio = 1.0	#玩家造成伤害比率，全局增加
 #var critical_rate = 0.25 #暴击率
 #var critical_damage = 2 #暴击伤害比率
+#运行时使用
 var nearest_enemy
 var player_hp = player_hp_max
+var power = power_max 
+var point = 0
+var exp = 0
+var level = 0
+
+var exp_need = [1,2,3,4,5,6,7,8,100000]
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
 	#if randf() < critical_rate:

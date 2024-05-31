@@ -4,11 +4,12 @@ class_name drops_base extends Area2D
 
 var exp = 1
 var score = 1
-
+var power = 1
 
 func _on_body_entered(body):
-	print("Exp+3, good bye!")
-	# game_manager.add_exp(exp)
-	# game_manager.add_score(score)
+
+	game_manager.add_exp(exp)
+	game_manager.add_score(score)
+	game_manager.add_power(power)
 	queue_free()
 	pass

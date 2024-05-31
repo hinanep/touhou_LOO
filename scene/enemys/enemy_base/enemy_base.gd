@@ -61,7 +61,7 @@ func bullet_attack():
 #体术攻击方法，可覆盖
 func melee_attack(playernode):
 	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(basic_melee_damage))
-	print("attack damage")
+	#print("attack damage")
 	
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready():
