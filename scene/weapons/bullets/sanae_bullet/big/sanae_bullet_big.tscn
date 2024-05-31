@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/weapons/bullets/sanae_bullet/big/sanae_bullet_big.gd" id="2_xncdo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ujfc"]
-radius = 48.0104
+radius = 46.0109
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pf76b"]
 atlas = ExtResource("2_rhqp7")

@@ -7,7 +7,7 @@ class_name ranged_weapon_base extends Node2D
 var shoot_range = 200
 var basic_colddown = 1
 var shoot_ready = true
-
+var level = 1
 var bullet_pre = preload("res://scene/weapons/bullets/bullet_base/direction_bullet/direction_bullet.tscn")
 func _ready():
 	set_range_and_colddown()

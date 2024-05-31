@@ -1,6 +1,6 @@
 extends direction_bullet
 func _ready():
-	basic_speed = 500
+	basic_speed = 200
 	basic_damage = 20
 	timer.start()
 

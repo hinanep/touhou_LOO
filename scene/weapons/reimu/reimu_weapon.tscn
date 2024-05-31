@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfucx"]
 radius = 1.0
 
-[node name="ReimuWeapon" type="Node2D"]
+[node name="ReimuWeapon" type="Node2D" groups=["reimu"]]
 script = ExtResource("1_uf8qp")
 
 [node name="attack_range" type="Area2D" parent="."]

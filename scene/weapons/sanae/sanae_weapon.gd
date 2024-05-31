@@ -4,6 +4,7 @@ var bullet_small_pre
 var bullet_mid_pre
 var bullet_big_pre
 # Called when the node enters the scene tree for the first time.
+@export var bulletnum = 0
 func _ready():
 	basic_colddown = 1.2
 	shoot_range = 180
@@ -25,13 +26,15 @@ func _physics_process(delta):
 	
 		look_at(nearest_enemy.global_position)		
 		auto_attack()
-
+	if player_var.weapon_random_list["早苗"] > level:
+		updateWeapon()
+		level += 1
 func auto_attack():
 
 	var generate_position 
 	var direction
 	if shoot_ready:
-		for i in range(player_var.bullet_times):
+		for i in range(player_var.bullet_times + bulletnum):
 			generate_position = $".".global_position +   $".".global_position.direction_to(get_nearest_enemy_inarea().global_position) * randi_range(-player_var.bullet_times,player_var.bullet_times)
 			#direction = global_position.angle_to_point(get_nearest_enemy_inarea().global_position)
 			direction = global_rotation
@@ -47,4 +50,7 @@ func auto_attack():
 			
 		shoot_ready = false
 		shoot_timer.start()
-
+func updateWeapon():
+	print("updated")
+	bulletnum += 1
+	pass

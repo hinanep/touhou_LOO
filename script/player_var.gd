@@ -41,10 +41,11 @@ var exp = 0
 var level = 0
 
 var exp_need = [1,2,3,4,5,6,7,8,100000]
+
 var random_weapons_selected = [0,0,0,0,0]
+
 var weapon_random_list = { "灵梦": 0,
-					"早苗" :0,
-					"爱丽丝" : 0,
+					"早苗" :0
 					}
 var weapon_name_path_pair ={
 	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn",
@@ -75,6 +76,8 @@ func player_take_melee_damage(player,damage):
 func player_take_bullet_damage(player,damage):
 	player.take_damage(damage * 10 / (10 + defence_bullet))
 
+func get_name_from_numbers(numbers):
+	return weapon_random_list.keys()[numbers]
 
 func select_weapon_path(weapon_numbers):
 	return weapon_name_path_pair[weapon_random_list.keys()[weapon_numbers]]
@@ -82,7 +85,7 @@ func select_weapon_path(weapon_numbers):
 func random3_weapons_number_select():
 	for i in range(3):
 
-		random_weapons_selected[i]=randi_range(0,1)
+		random_weapons_selected[i]=randi_range(0,weapon_random_list.size()-1)
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]
