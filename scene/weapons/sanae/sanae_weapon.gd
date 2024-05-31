@@ -1,13 +1,19 @@
 extends ranged_weapon_base
 
-
-
+var bullet_small_pre
+var bullet_mid_pre
+var bullet_big_pre
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_colddown = 0.5
-	print("reimu_ready")
-	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
+	basic_colddown = 1.2
+	shoot_range = 180
+
+	print("sanae_ready")
+	bullet_small_pre = preload("res://scene/weapons/bullets/sanae_bullet/small/sanae_bullet_small.tscn")
+	bullet_mid_pre = preload("res://scene/weapons/bullets/sanae_bullet/mid/sanae_bullet_mid.tscn")
+	bullet_big_pre = preload("res://scene/weapons/bullets/sanae_bullet/big/sanae_bullet_big.tscn")
 	set_range_and_colddown()
+
 	pass # Replace with function body.
 
 
@@ -28,8 +34,15 @@ func auto_attack():
 		for i in range(player_var.bullet_times):
 			generate_position = $".".global_position +   $".".global_position.direction_to(get_nearest_enemy_inarea().global_position) * randi_range(-player_var.bullet_times,player_var.bullet_times)
 			#direction = global_position.angle_to_point(get_nearest_enemy_inarea().global_position)
-			direction = randf_range(-PI,PI)
-			shoot(bullet_pre,generate_position,direction)
+			direction = global_rotation
+			var random_bullet = randi_range(0,100) + player_var.luck
+			if random_bullet > 95:
+				shoot(bullet_big_pre,generate_position,direction)
+			elif random_bullet > 70:
+				shoot(bullet_mid_pre,generate_position,direction)
+			else :
+				shoot(bullet_small_pre,generate_position,direction)
+			
 			
 			
 		shoot_ready = false

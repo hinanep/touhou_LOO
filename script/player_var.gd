@@ -5,7 +5,7 @@ var player_bullet_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技�
 var bullet_speed_ratio = 1.0 #子弹速度比率
 var keep_time = 1.0 #持续时间#
 var range_add_ratio = 1.0 #攻击范围
-var bullet_times = 4 #弹幕发射数量
+var bullet_times = 1 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
@@ -47,7 +47,8 @@ var weapon_random_list = { "灵梦": 0,
 					"爱丽丝" : 0,
 					}
 var weapon_name_path_pair ={
-	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn"
+	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn",
+	"早苗": "res://scene/weapons/sanae/sanae_weapon.tscn"
 }
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
@@ -81,7 +82,7 @@ func select_weapon_path(weapon_numbers):
 func random3_weapons_number_select():
 	for i in range(3):
 
-		random_weapons_selected[i]=randi_range(0,0)
+		random_weapons_selected[i]=randi_range(0,1)
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
 	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]

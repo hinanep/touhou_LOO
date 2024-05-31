@@ -14,6 +14,7 @@ func _process(delta):
 
 
 func _on_select_1_button_up():
+	print(player_var.random_weapons_selected[0])
 	addWeapon(player_var.select_weapon_path(player_var.random_weapons_selected[0]))
 	visible = false
 	get_tree().paused = false

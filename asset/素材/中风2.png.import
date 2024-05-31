@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0osbguvj3gxq"
-path="res://.godot/imported/中风2.jpg-03e9622ba821a6a95e0b1b816f008c5d.ctex"
+uid="uid://c4vi0pbvdkdn7"
+path="res://.godot/imported/中风2.png-8683be501e9468848f34e0061c7c1b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/素材/中风2.jpg"
-dest_files=["res://.godot/imported/中风2.jpg-03e9622ba821a6a95e0b1b816f008c5d.ctex"]
+source_file="res://asset/素材/中风2.png"
+dest_files=["res://.godot/imported/中风2.png-8683be501e9468848f34e0061c7c1b02.ctex"]
 
 [params]
 

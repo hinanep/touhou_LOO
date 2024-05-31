@@ -36,12 +36,13 @@ func add_power(power):
 #	level_up.emit()
 
 func level_up():
+	player_var.random3_weapons_number_select()
 	player_var.exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	#todo
 	get_tree().paused = true
 	UiManager.get_node("select_weapon").visible = true
-
+	UiManager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").NOTIFICATION_WM_WINDOW_FOCUS_IN
 
 func _on_audio_stream_player_finished():
 	music.play()
