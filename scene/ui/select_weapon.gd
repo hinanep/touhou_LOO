@@ -8,7 +8,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	pass
 
@@ -35,12 +35,12 @@ func _on_select_3_button_up():
 	pass # Replace with function body.
 	
 func addWeapon(numbers):
-	var name = player_var.get_name_from_numbers(numbers)
-	if player_var.weapon_random_list[name] > 0:
-		player_var.weapon_random_list[name] += 1
+	var weapon_name = player_var.get_name_from_numbers(numbers)
+	if player_var.weapon_random_list[weapon_name] > 0:
+		player_var.weapon_random_list[weapon_name] += 1
 		return
-	var path = player_var.weapon_name_path_pair[name]
-	player_var.weapon_random_list[name] += 1
+	var path = player_var.weapon_name_path_pair[weapon_name]
+	player_var.weapon_random_list[weapon_name] += 1
 	var weapon = load(path)
 	weapon = weapon.instantiate()
 	#weapon.global_position = player.global_position

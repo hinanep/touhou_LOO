@@ -4,7 +4,7 @@ func _ready():
 	direction = 0.0
 	set_range_and_colddown()
 	bullet_pre = preload("res://scene/weapons/bullets/beginning_bullet/beginning_bullet.tscn")
-func _physics_process(delta):
+func _physics_process(_delta):
 	var nearest_enemy = get_nearest_enemy_inarea()
 	if nearest_enemy:
 		

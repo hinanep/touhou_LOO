@@ -19,7 +19,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	hp_display()
 	card_power_display()
 	point_and_ratio_display()
@@ -41,6 +41,6 @@ func point_and_ratio_display():
 
 func exp_display():
 	exp_bar.max_value = player_var.exp_need[player_var.level]
-	exp_bar.value = player_var.exp
+	exp_bar.value = player_var.player_exp
 	level_number.text = ("%d" % player_var.level)
 	pass

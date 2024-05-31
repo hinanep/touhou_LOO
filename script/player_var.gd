@@ -37,7 +37,7 @@ var nearest_enemy
 var player_hp = player_hp_max
 var power = power_max 
 var point = 0
-var exp = 0
+var player_exp = 0
 var level = 0
 
 var exp_need = [1,2,3,4,5,6,7,8,100000]
@@ -94,8 +94,8 @@ func random3_weapons_number_select():
 	
 
 
-func delete_weapon_from_list(name):
-	weapon_random_list.erase(name)
+func delete_weapon_from_list(weapon_name):
+	weapon_random_list.erase(weapon_name)
 	
 func _ready():
 	random3_weapons_number_select()

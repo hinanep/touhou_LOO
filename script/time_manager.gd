@@ -2,7 +2,7 @@ extends Node
 @onready var rich_text_label = $time_ui/MarginContainer/RichTextLabel
 @onready var timer = $Timer
 
-func _process(delta):
+func _process(_delta):
 	format_display(get_time_passed())
 func get_time_passed():
 	

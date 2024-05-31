@@ -21,11 +21,11 @@ func _ready():
 	pass
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_to_player()
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if hp <= 0:
 		died()
 	pass
@@ -76,11 +76,11 @@ func bullet_battle_ready():
 	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
 	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
 	
-func melee_damage_area_body_entered(body):
+func melee_damage_area_body_entered(_body):
 	melee_attack(player)
 	melee_attack_cd.start()
 	
-func bullet_damage_area_body_entered(body):	
+func bullet_damage_area_body_entered(_body):	
 	bullet_attack_cd.start()
 	
 func melee_attack_cd_timeout():

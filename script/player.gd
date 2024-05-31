@@ -5,7 +5,7 @@ var hp = player_var.player_hp_max
 var is_invincible = false
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
-func _physics_process(delta):
+func _physics_process(_delta):
 	#移动
 	
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")

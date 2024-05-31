@@ -3,8 +3,8 @@ extends Node
 
 var Exp = 0
 var Score = 0
-@onready var exp_pick_sound = $exp_pick_sound
-@onready var music = $music
+@onready var exp_pick_sound = GameManager.get_node("exp_pick_sound")
+@onready var music = GameManager.get_node("music")
 @onready var UiManager = get_tree().get_first_node_in_group("UiManager")
 
 var kill_num = 0
@@ -17,8 +17,8 @@ func _ready():
 func add_exp(value):
 	
 	exp_pick_sound.play()
-	player_var.exp += value
-	if(player_var.exp >= player_var.exp_need[player_var.level]):
+	player_var.player_exp += value
+	if(player_var.player_exp >= player_var.exp_need[player_var.level]):
 		level_up()
 		
 func add_score(value):
@@ -37,12 +37,11 @@ func add_power(power):
 
 func level_up():
 	player_var.random3_weapons_number_select()
-	player_var.exp -= player_var.exp_need[player_var.level]
+	player_var.player_exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	#todo
 	get_tree().paused = true
 	UiManager.get_node("select_weapon").visible = true
-	UiManager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").NOTIFICATION_WM_WINDOW_FOCUS_IN
 
 func _on_audio_stream_player_finished():
 	music.play()

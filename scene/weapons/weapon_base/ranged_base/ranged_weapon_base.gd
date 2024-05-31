@@ -12,7 +12,7 @@ var bullet_pre = preload("res://scene/weapons/bullets/bullet_base/direction_bull
 func _ready():
 	set_range_and_colddown()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	var nearest_enemy = get_nearest_enemy_inarea()
 	if nearest_enemy:
 		#print(nearest_enemy.global_position)
@@ -45,13 +45,13 @@ func enemy_near(a,b):
 func get_nearest_enemy_inarea():
 	var enemy_in_range = attack_range.get_overlapping_bodies() #area范围内的物体
 	if !enemy_in_range.is_empty():	
-		return enemy_in_range.reduce(func(min,val):return val if enemy_near(val,min) else min)
+		return enemy_in_range.reduce(func(min_e,val):return val if enemy_near(val,min_e) else min_e)
 	return null
 	
-func shoot(bullet_pre,generate_position,direction):	
+func shoot(bullet_pree,generate_position,direction):	
 	if sound_shoot:
 		sound_shoot.play()
-	var new_bullet = bullet_pre.instantiate()
+	var new_bullet = bullet_pree.instantiate()
 	new_bullet.global_position = generate_position
 	new_bullet.global_rotation = direction
 		

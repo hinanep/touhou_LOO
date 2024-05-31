@@ -14,7 +14,7 @@ func _ready():
 	#启用弹幕攻击，需设置弹幕攻击方式
 	#bullet_battle_ready()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_to_player()
 	pass
 #弹幕攻击方法，待实例实现
