@@ -4,9 +4,9 @@ extends ranged_weapon_base
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_colddown = 1.5
-	print("reimu_ready")
-	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
+	basic_colddown = 0.5
+	print("alice_ready")
+	bullet_pre = preload("res://scene/weapons/bullets/alice_bullet/alice_bullet.tscn")
 	set_range_and_colddown()
 	pass # Replace with function body.
 
@@ -20,7 +20,7 @@ func _physics_process(delta):
 		look_at(nearest_enemy.global_position)		
 		auto_attack()
 		
-	if player_var.weapon_random_list["灵梦"] > level:
+	if player_var.weapon_random_list["爱丽丝"] > level:
 		updateWeapon()
 		level += 1
 func auto_attack():

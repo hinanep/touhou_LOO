@@ -1,6 +1,6 @@
 class_name direction_bullet extends Area2D
 @onready var timer = $Timer
-var basic_speed = 500
+var basic_speed = 200
 var basic_damage = 10
 func _ready():
 	timer.start()

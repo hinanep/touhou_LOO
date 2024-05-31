@@ -45,11 +45,13 @@ var exp_need = [1,2,3,4,5,6,7,8,100000]
 var random_weapons_selected = [0,0,0,0,0]
 
 var weapon_random_list = { "灵梦": 0,
-					"早苗" :0
+					"早苗" :0,
+					"爱丽丝":0
 					}
 var weapon_name_path_pair ={
 	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn",
-	"早苗": "res://scene/weapons/sanae/sanae_weapon.tscn"
+	"早苗": "res://scene/weapons/sanae/sanae_weapon.tscn",
+	"爱丽丝": "res://scene/weapons/alice_weapon/alice_weapon.tscn"
 }
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
