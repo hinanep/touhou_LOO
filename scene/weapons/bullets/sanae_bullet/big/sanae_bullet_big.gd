@@ -1,8 +1,9 @@
 extends direction_bullet
 func _ready():
+	destroy_timer = $Timer
 	basic_speed = 100
 	basic_damage = 100
-	timer.start()
+	destroy_timer.start()
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	

@@ -1,11 +1,10 @@
 extends direction_bullet
 @onready var attack_timer = $attack_timer
-@onready var destroy_timer = $destroy_timer
-
 @onready var attack = $attack
 var move = true
 var attackable = true
 func _ready():
+	destroy_timer = $destroy_timer
 	basic_speed = 500
 	basic_damage = 8
 	destroy_timer.start()

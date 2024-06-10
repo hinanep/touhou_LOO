@@ -8,7 +8,7 @@ func _ready():
 	$select_buttons/select_1/weapon1.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[0]]
 	$select_buttons/select_2/weapon2.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[1]]
 	$select_buttons/select_3/weapon3.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[2]]
-	pass # Replace with function body.
+	$select_buttons/select_1.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

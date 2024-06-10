@@ -1,8 +1,9 @@
 extends direction_bullet
 func _ready():
+	destroy_timer = $Timer
 	basic_speed = 200
 	basic_damage = 20
-	timer.start()
+	destroy_timer.start()
 
 func _on_body_entered(body):
 	#queue_free()

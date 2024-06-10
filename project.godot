@@ -35,7 +35,8 @@ folder_colors={
 "res://scene/drops/": "red",
 "res://scene/enemys/": "orange",
 "res://scene/ui/": "yellow",
-"res://scene/weapons/": "green"
+"res://scene/weapons/": "green",
+"res://scene/weapons/bullets/": "purple"
 }
 
 [input]

@@ -1,7 +1,7 @@
 extends BaseGUIView
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		print("ESC")
 		_on_esc_button_pressed()

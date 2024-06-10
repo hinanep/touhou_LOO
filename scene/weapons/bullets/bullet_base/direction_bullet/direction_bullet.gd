@@ -1,9 +1,10 @@
 class_name direction_bullet extends Area2D
-@onready var timer = $Timer
 var basic_speed = 200
 var basic_damage = 10
+var destroy_timer
 func _ready():
-	timer.start()
+	destroy_timer = $Timer
+	destroy_timer.start()
 
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
