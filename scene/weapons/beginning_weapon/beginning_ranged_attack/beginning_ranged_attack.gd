@@ -23,6 +23,9 @@ func auto_attack():
 		shoot_ready = false
 		shoot_timer.start()
 
-func _input(event):
-	if event.is_action_pressed("move_left") or event.is_action_pressed("move_right") or event.is_action_pressed("move_up") or event.is_action_pressed("move_down"):
-		direction = Input.get_vector("move_left","move_right","move_up","move_down").angle()
+func _unhandled_key_input(event):
+	var imputangle = Input.get_vector("move_left","move_right","move_up","move_down").angle()
+	if event.is_released() and imputangle == 0:
+		return
+
+	direction = imputangle

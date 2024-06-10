@@ -26,7 +26,16 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/midi/plugin.cfg")
+enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://scene/drops/": "red",
+"res://scene/enemys/": "orange",
+"res://scene/ui/": "yellow",
+"res://scene/weapons/": "green"
+}
 
 [input]
 
