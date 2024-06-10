@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="touhouSurvivors"
-run/main_scene="res://scene/level_01.tscn"
+run/main_scene="res://scene/ui/Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 player_var="*res://script/player_var.gd"
 GameManager="*res://scene/game_manager.tscn"
+G="*res://scene/ui/Scripts/G.gd"
 
 [display]
 

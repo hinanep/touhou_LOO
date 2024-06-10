@@ -98,4 +98,5 @@ func delete_weapon_from_list(weapon_name):
 	weapon_random_list.erase(weapon_name)
 	
 func _ready():
-	random3_weapons_number_select()
+	#random3_weapons_number_select()
+	pass
