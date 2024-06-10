@@ -88,10 +88,12 @@ func random3_weapons_number_select():
 	for i in range(3):
 
 		random_weapons_selected[i]=randi_range(0,weapon_random_list.size()-1)
-	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
-	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
-	ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]
-	
+	#ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
+	#ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
+	#ui_manager.get_node("select_weapon").get_node("select_buttons").get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]
+	#$%select_buttons.get_node("select_1").get_node("weapon1").text = weapon_random_list.keys()[random_weapons_selected[0]]
+	#$%select_buttons.get_node("select_2").get_node("weapon2").text = weapon_random_list.keys()[random_weapons_selected[1]]
+	#$%select_buttons.get_node("select_3").get_node("weapon3").text = weapon_random_list.keys()[random_weapons_selected[2]]
 
 
 func delete_weapon_from_list(weapon_name):

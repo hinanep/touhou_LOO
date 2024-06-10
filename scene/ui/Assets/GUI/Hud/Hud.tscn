@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfbx4h1lccqnn"]
+
+[ext_resource type="Script" path="res://scene/ui/Assets/GUI/Hud/Hud.gd" id="1_fpogy"]
+[ext_resource type="Script" path="res://scene/ui/hud.gd" id="2_1igan"]
+[ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_o5w7m"]
+[ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://scene/ui/time.tscn" id="4_jpst3"]
+
+[node name="Hud" type="Control"]
+process_mode = 3
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpogy")
+
+[node name="hud" type="CanvasLayer" parent="."]
+script = ExtResource("2_1igan")
+
+[node name="hp" type="ProgressBar" parent="hud"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 53.0
+value = 100.0
+show_percentage = false
+
+[node name="hp_text" type="RichTextLabel" parent="hud/hp"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 9.0
+offset_right = 211.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "100/100"
+
+[node name="card_power" type="ProgressBar" parent="hud"]
+modulate = Color(0.110454, 0.646845, 0, 1)
+offset_left = 19.0
+offset_top = 67.0
+offset_right = 228.0
+offset_bottom = 114.0
+value = 100.0
+show_percentage = false
+
+[node name="card_power_text" type="RichTextLabel" parent="hud/card_power"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 9.0
+offset_right = 208.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "100/100"
+
+[node name="point_ratio" type="RichTextLabel" parent="hud"]
+modulate = Color(0, 0, 1, 1)
+offset_left = 900.0
+offset_top = 12.0
+offset_right = 1150.0
+offset_bottom = 52.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "得点倍率："
+
+[node name="text" type="RichTextLabel" parent="hud/point_ratio"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 4.0
+offset_right = 213.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "0"
+
+[node name="point" type="RichTextLabel" parent="hud"]
+modulate = Color(0, 0, 1, 1)
+offset_left = 900.0
+offset_top = 54.0
+offset_right = 1150.0
+offset_bottom = 94.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "分数："
+
+[node name="text" type="RichTextLabel" parent="hud/point"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 4.0
+offset_right = 235.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+text = "0"
+
+[node name="exp_bar" type="ProgressBar" parent="hud"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 8.0
+offset_top = 638.0
+offset_right = 285.0
+offset_bottom = 652.0
+rotation = 4.71239
+value = 80.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="hud/exp_bar"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 49.0
+offset_bottom = 67.0
+rotation = 1.5708
+text = "lev."
+
+[node name="level_number" type="RichTextLabel" parent="hud/exp_bar"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 45.0
+offset_right = 49.0
+offset_bottom = 94.0
+rotation = 1.5708
+text = "lev."
+
+[node name="time" parent="." instance=ExtResource("4_jpst3")]
+process_mode = 1

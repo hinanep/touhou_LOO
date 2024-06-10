@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://pgotpk8ugeqs"]
+[gd_scene load_steps=20 format=3 uid="uid://pgotpk8ugeqs"]
 
 [ext_resource type="Script" path="res://scene/ui/Scripts/Core/GUI/GUIViewManager.gd" id="1_bdfyu"]
 [ext_resource type="PackedScene" uid="uid://q1xbyvts1yk4" path="res://scene/ui/Assets/GUI/StartMenu/StartMenu.tscn" id="2_88ed3"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cnniu3dbjynwk" path="res://scene/ui/Assets/GUI/StoryModeMenu/StoryModeMenu.tscn" id="6_523ik"]
 [ext_resource type="PackedScene" uid="uid://bmdsmpxllgl75" path="res://scene/ui/Assets/GUI/WikiMenu/WikiMenu.tscn" id="7_0hkgo"]
 [ext_resource type="PackedScene" uid="uid://duui0qg20kcrv" path="res://scene/ui/Assets/GUI/InGame/InGame.tscn" id="8_bflyi"]
+[ext_resource type="PackedScene" uid="uid://buapai5om3oao" path="res://scene/ui/Assets/GUI/LevelUp/LevelUp.tscn" id="9_yb6j6"]
+[ext_resource type="PackedScene" uid="uid://bfbx4h1lccqnn" path="res://scene/ui/Assets/GUI/Hud/Hud.tscn" id="10_mryv8"]
 
 [sub_resource type="Resource" id="Resource_67yjm"]
 script = ExtResource("2_a61eg")
@@ -40,12 +42,22 @@ script = ExtResource("2_a61eg")
 id = &"InGame"
 prefab = ExtResource("8_bflyi")
 
+[sub_resource type="Resource" id="Resource_0lsog"]
+script = ExtResource("2_a61eg")
+id = &"LevelUp"
+prefab = ExtResource("9_yb6j6")
+
+[sub_resource type="Resource" id="Resource_qempm"]
+script = ExtResource("2_a61eg")
+id = &"Hud"
+prefab = ExtResource("10_mryv8")
+
 [node name="Game" type="Node"]
 
 [node name="GUIViewManager" type="Node" parent="." node_paths=PackedStringArray("guiRoot")]
 unique_name_in_owner = true
 script = ExtResource("1_bdfyu")
-viewConfigList = Array[ExtResource("2_a61eg")]([SubResource("Resource_67yjm"), SubResource("Resource_4b63o"), SubResource("Resource_bthkb"), SubResource("Resource_brtjf"), SubResource("Resource_rhlkv"), SubResource("Resource_cwwhc")])
+viewConfigList = Array[ExtResource("2_a61eg")]([SubResource("Resource_67yjm"), SubResource("Resource_4b63o"), SubResource("Resource_bthkb"), SubResource("Resource_brtjf"), SubResource("Resource_rhlkv"), SubResource("Resource_cwwhc"), SubResource("Resource_0lsog"), SubResource("Resource_qempm")])
 guiRoot = NodePath("../GUIRoot")
 
 [node name="GUIRoot" type="Control" parent="."]

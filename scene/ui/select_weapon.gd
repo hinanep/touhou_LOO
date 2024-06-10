@@ -4,6 +4,10 @@ var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
+	player_var.random3_weapons_number_select()
+	$select_buttons/select_1/weapon1.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[0]]
+	$select_buttons/select_2/weapon2.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[1]]
+	$select_buttons/select_3/weapon3.text = player_var.weapon_random_list.keys()[player_var.random_weapons_selected[2]]
 	pass # Replace with function body.
 
 
@@ -14,7 +18,6 @@ func _process(_delta):
 
 
 func _on_select_1_button_up():
-	print(player_var.random_weapons_selected[0])
 	addWeapon(player_var.random_weapons_selected[0])
 	visible = false
 	get_tree().paused = false

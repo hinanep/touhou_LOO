@@ -36,12 +36,13 @@ func add_power(power):
 #	level_up.emit()
 
 func level_up():
-	player_var.random3_weapons_number_select()
+	#player_var.random3_weapons_number_select()
 	player_var.player_exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
-	#todo
+	G.get_gui_view_manager().open_view("LevelUp")
 	get_tree().paused = true
-	UiManager.get_node("select_weapon").visible = true
+
+	#UiManager.get_node("select_weapon").visible = true
 
 func _on_audio_stream_player_finished():
 	music.play()

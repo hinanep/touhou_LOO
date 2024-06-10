@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=9 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://scene/ui/Assets/GUI/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="2_34uwu"]
 [ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="3_tbsgn"]
 [ext_resource type="Script" path="res://script/game_manager.gd" id="4_rsv32"]
-[ext_resource type="PackedScene" uid="uid://c3g0fohfbptk8" path="res://scene/ui/ui_manager.tscn" id="5_gywpi"]
 [ext_resource type="Texture2D" uid="uid://dmd5auu2mg1i0" path="res://asset/tilemap_packed.png" id="6_0inor"]
 
 [sub_resource type="Curve2D" id="Curve2D_mnrvx"]
@@ -184,8 +183,6 @@ autostart = true
 
 [node name="game_manager" type="Node" parent="." groups=["GameManager"]]
 script = ExtResource("4_rsv32")
-
-[node name="UI_manager" parent="." instance=ExtResource("5_gywpi")]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5
