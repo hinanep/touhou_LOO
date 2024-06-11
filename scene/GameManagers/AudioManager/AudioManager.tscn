@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://3q4ih442ckan"]
+
+[ext_resource type="Script" path="res://scene/GameManagers/AudioManager/AudioManager.gd" id="1_h3dxr"]
+
+[node name="AudioManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_h3dxr")
+bgm = {
+"Ruins": "res://asset/music/Ruins.mp3"
+}
+sfx = {
+"sfx_bulletshoot": "res://asset/brackeys_platformer_assets/sounds/tap.wav",
+"sfx_levelup": "res://asset/brackeys_platformer_assets/sounds/power_up.wav",
+"sfx_pick_crystal": "res://asset/brackeys_platformer_assets/sounds/coin.wav"
+}
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]

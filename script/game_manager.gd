@@ -3,21 +3,19 @@ extends Node
 
 var Exp = 0
 var Score = 0
-@onready var exp_pick_sound = GameManager.get_node("exp_pick_sound")
-@onready var music = GameManager.get_node("music")
+
 @onready var UiManager = get_tree().get_first_node_in_group("UiManager")
 
 var kill_num = 0
 
-#signal level_up()
 
 func _ready():
 	
 	pass
 func add_exp(value):
 	
-	exp_pick_sound.play()
 	player_var.player_exp += value
+	AudioManager.play_sfx("sfx_pick_crystal")
 	if(player_var.player_exp >= player_var.exp_need[player_var.level]):
 		level_up()
 		
@@ -37,6 +35,7 @@ func add_power(power):
 
 func level_up():
 	#player_var.random3_weapons_number_select()
+	AudioManager.play_sfx("sfx_levelup")
 	player_var.player_exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
@@ -44,6 +43,5 @@ func level_up():
 
 	#UiManager.get_node("select_weapon").visible = true
 
-func _on_audio_stream_player_finished():
-	music.play()
+
 

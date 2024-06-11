@@ -18,7 +18,6 @@ func _build_view_config_map():
 		if config == null or config.id.is_empty():
 			continue
 		viewConfigMap[config.id] = config
-		print("build_config")
 
 func _get_view_config(viewId:StringName) -> GUIViewConfig:
 	return viewConfigMap[viewId]
