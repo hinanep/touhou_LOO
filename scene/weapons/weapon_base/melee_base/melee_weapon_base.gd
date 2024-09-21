@@ -9,10 +9,18 @@ const kick_range = 50
 const kick_basic_damage = 10
 
 var kick_ready = true
-
+var nearest_enemy
 func _ready():
 	set_range_and_colddown()
 	
+func _physics_process(delta):
+	
+
+	nearest_enemy = get_nearest_enemy_inarea()
+	if nearest_enemy:
+		
+		look_at(nearest_enemy.global_position)
+		auto_attack()
 
 func set_range_and_colddown():
 	melee_timer.wait_time = basic_colddown * (1 - player_var.colddown_reduce)
@@ -30,18 +38,9 @@ func get_nearest_enemy_inarea():
 		return enemy_in_range.reduce(func(min,val):return val if enemy_near(val,min) else min)
 	return null
 	
-func _physics_process(delta):
-	
-	$kickarea/kick_anime.play("none")
-		
-	var nearest_enemy = get_nearest_enemy_inarea()
-		
-	look_at(nearest_enemy.global_position)
-
-	auto_attack()
 
 func auto_attack():
-	if kick_ready and nearest_enemy:
+	if kick_ready:
 		kick()
 		kick_ready = false
 		melee_timer.start()
@@ -49,7 +48,7 @@ func auto_attack():
 func kick():
 	var enemy_in_kick_range = attack_range.get_overlapping_bodies()
 	
-	$kickarea/kick_anime.play("kick")
+
 	for enemy in enemy_in_kick_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(player_var.player_make_melee_damage(kick_basic_damage))

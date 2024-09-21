@@ -48,11 +48,11 @@ func get_nearest_enemy_inarea():
 		return enemy_in_range.reduce(func(min_e,val):return val if enemy_near(val,min_e) else min_e)
 	return null
 	
-func shoot(bullet_pree,generate_position,direction):	
+func shoot(bullet_pree,generate_position,generate_rotation):	
 	AudioManager.play_sfx("sfx_bulletshoot")
 	var new_bullet = bullet_pree.instantiate()
 	new_bullet.global_position = generate_position
-	new_bullet.global_rotation = direction
+	new_bullet.global_rotation = generate_rotation
 		
 	$".".add_child(new_bullet)
 

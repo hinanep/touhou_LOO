@@ -11,6 +11,7 @@ bgm = {
 sfx = {
 "sfx_bulletshoot": "res://asset/brackeys_platformer_assets/sounds/tap.wav",
 "sfx_levelup": "res://asset/brackeys_platformer_assets/sounds/power_up.wav",
+"sfx_masterspark": "res://asset/music/sfx/masterspark.mp3",
 "sfx_pick_crystal": "res://asset/brackeys_platformer_assets/sounds/coin.wav"
 }
 

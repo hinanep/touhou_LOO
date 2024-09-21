@@ -15,3 +15,4 @@ func play_bgm(bgm_name:String) -> void:
 func play_sfx(sfx_name:String) -> void:
 	sfx_player.stream = load(sfx[sfx_name])
 	sfx_player.play()
+

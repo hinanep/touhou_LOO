@@ -39,6 +39,8 @@ var power = power_max
 var point = 0
 var player_exp = 0
 var level = 0
+var is_invincible = false
+var card_full = false
 
 var exp_need = [1,2,3,4,5,6,7,8,100000]
 
