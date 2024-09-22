@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg68pow0bfebw"]
+
+[ext_resource type="Script" path="res://scene/cards/card_base/card_base.gd" id="1_6vy60"]
+
+[node name="CardBase" type="Node2D"]
+script = ExtResource("1_6vy60")
+
+[node name="endtime" type="Timer" parent="."]
+one_shot = true
+
+[node name="invincible_time" type="Timer" parent="."]
+
+[connection signal="timeout" from="endtime" to="." method="_on_endtime_timeout"]
+[connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]

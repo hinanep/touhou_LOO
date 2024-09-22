@@ -13,6 +13,7 @@ config_version=5
 config/name="touhouSurvivors"
 run/main_scene="res://scene/ui/Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/flush_stdout_on_print.debug=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,6 +22,10 @@ player_var="*res://script/global/player_var.gd"
 GameManager="*res://scene/game_manager.tscn"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://scene/GameManagers/AudioManager/AudioManager.tscn"
+
+[debug]
+
+file_logging/enable_file_logging.pc=false
 
 [display]
 

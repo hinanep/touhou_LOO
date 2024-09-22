@@ -27,7 +27,7 @@ func use_card():
 	$".".add_child(cardpre)
 	
 func _ready():
-	add_card("res://scene/cards/masterspark.tscn")
+	add_card("res://scene/cards/masterapark/masterspark.tscn")
 	
 func add_card(cardpath):
 	cardnum_have += 1
