@@ -2,8 +2,13 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var hp = player_var.player_hp_max
+func _init():
+	player_var.player_node = $"."
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
+	
+	WazaManager.addWeapon("base")
+
 func _physics_process(_delta):
 	#移动
 	

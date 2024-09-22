@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bh8qbl8bwqasv" path="res://asset/brackeys_platformer_assets/sprites/knight.png" id="1_6epby"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_eqxiv"]
-[ext_resource type="Script" path="res://scene/weapons/weapons.gd" id="3_xsxft"]
+[ext_resource type="Script" path="res://scene/weapons/wazaManager.gd" id="3_xsxft"]
 [ext_resource type="Texture2D" uid="uid://iny3sg54p3mb" path="res://asset/素材/bigyaojing.png" id="4_bcbvo"]
 [ext_resource type="Script" path="res://script/global/player_var.gd" id="5_kw8vc"]
 [ext_resource type="PackedScene" uid="uid://c4vy5e3etmf8h" path="res://scene/cards/CardManager.tscn" id="6_v54x3"]
@@ -69,7 +69,7 @@ script = ExtResource("1_eqxiv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kq405")
 
-[node name="weapons" type="Node2D" parent="."]
+[node name="WazaManager" type="Node2D" parent="."]
 script = ExtResource("3_xsxft")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

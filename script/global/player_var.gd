@@ -41,8 +41,9 @@ var player_exp = 0
 var level = 0
 var is_invincible = false
 var card_full = false
+var waza_full = false
 var is_card_casting = false
-
+var player_node
 var exp_need = [1,2,3,4,5,6,7,8,100000]
 
 var random_weapons_selected = [0,0,0,0,0]

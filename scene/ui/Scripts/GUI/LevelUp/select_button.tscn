@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwppujyrfed45"]
+
+[ext_resource type="Texture2D" uid="uid://c05dken1dd5e3" path="res://scene/ui/1. Free Hologram Interface Wenrexa/Button 1/Button Normal.png" id="1_jpthm"]
+[ext_resource type="Texture2D" uid="uid://dqhhdvordcvkt" path="res://scene/ui/1. Free Hologram Interface Wenrexa/Button 1/Button Active.png" id="2_jnsgu"]
+[ext_resource type="Texture2D" uid="uid://dinkbpvbafbip" path="res://scene/ui/1. Free Hologram Interface Wenrexa/Button 1/Button Hover.png" id="3_6jain"]
+[ext_resource type="Texture2D" uid="uid://bm7y2ws7pg1sd" path="res://scene/ui/1. Free Hologram Interface Wenrexa/Button 1/Button Disable.png" id="4_otewb"]
+[ext_resource type="Script" path="res://scene/ui/Scripts/GUI/LevelUp/select_button.gd" id="5_qy0wc"]
+
+[sub_resource type="Shortcut" id="Shortcut_siojg"]
+events = [null]
+
+[node name="select" type="TextureButton"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../select_3")
+focus_neighbor_bottom = NodePath("../select_2")
+shortcut = SubResource("Shortcut_siojg")
+texture_normal = ExtResource("1_jpthm")
+texture_pressed = ExtResource("2_jnsgu")
+texture_hover = ExtResource("3_6jain")
+texture_disabled = ExtResource("4_otewb")
+texture_focused = ExtResource("3_6jain")
+stretch_mode = 0
+script = ExtResource("5_qy0wc")
+
+[node name="weapon" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 50.0
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+text = "灵梦"
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/cards/card_base/card_base.gd" id="1_6vy60"]
 
-[node name="CardBase" type="Node2D"]
+[node name="CardBase" type="Node2D" groups=["card"]]
 script = ExtResource("1_6vy60")
 
 [node name="endtime" type="Timer" parent="."]

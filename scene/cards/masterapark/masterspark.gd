@@ -4,6 +4,7 @@ extends card
 func _ready():	
 	mana_cost = 40
 	duration_time = 5
+	card_name = "marisa"
 	super._ready()
 func _process(_delta):
 	pass

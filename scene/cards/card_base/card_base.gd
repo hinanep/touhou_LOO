@@ -9,7 +9,7 @@ var duration_time = 6
 var invincible_time = 6
 var locking_type = 0
 var locking_target = null
-	
+var card_name = ""
 func _ready():
 	if player_var.power < mana_cost or player_var.is_card_casting:
 		print("cant cast card")
@@ -29,9 +29,13 @@ func card_init():
 	
 func card_upgrade():
 	level += 1
+
 	if(level == maxlevel):
 		#从随机池移除
+		RandomPool.card_pool.erase(card_name)
 		#查询可能出现的羁绊并加入羁绊池
+	else:
+
 		pass
 	
 
