@@ -4,7 +4,8 @@ extends Node
 @export var sfx = {}
 
 @onready var bgm_player = $BGMPlayer
-@onready var sfx_player = $SFXPlayer
+
+@onready var sfx_player_playing_pair = {}
 func _ready():
 	pass
 
@@ -13,6 +14,12 @@ func play_bgm(bgm_name:String) -> void:
 	bgm_player.play()
 	
 func play_sfx(sfx_name:String) -> void:
-	sfx_player.stream = load(sfx[sfx_name])
-	sfx_player.play()
+	if(!sfx_player_playing_pair.has(sfx_name)):
+		var new_player = AudioStreamPlayer.new()
+		$SFXPlayerPool.add_child(new_player)
+		sfx_player_playing_pair[sfx_name] = new_player
+		
+	sfx_player_playing_pair[sfx_name].stream = load(sfx[sfx_name])
+	sfx_player_playing_pair[sfx_name].play()
 
+		

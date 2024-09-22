@@ -27,6 +27,10 @@ AudioManager="*res://scene/GameManagers/AudioManager/AudioManager.tscn"
 window/size/viewport_height=576
 window/stretch/mode="viewport"
 
+[editor]
+
+run/main_run_args="--no-log"
+
 [editor_plugins]
 
 enabled=PackedStringArray()

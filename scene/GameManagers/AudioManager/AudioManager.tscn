@@ -17,4 +17,4 @@ sfx = {
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SFXPlayerPool" type="Node" parent="."]
