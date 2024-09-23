@@ -51,8 +51,8 @@ func died():
 	
 func drop():
 	var drops = load(drops_path).instantiate()
-	drops.position = global_position
 	get_parent().add_child(drops)
+	drops.global_position = global_position
 	pass
 	
 #弹幕攻击方法，待实例实现

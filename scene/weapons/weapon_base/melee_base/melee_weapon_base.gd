@@ -12,13 +12,12 @@ var kick_ready = true
 var nearest_enemy
 func _ready():
 	set_range_and_colddown()
-	
+	$meleeTimer.timeout.connect(_on_kick_timer_timeout)
 func _physics_process(delta):
 	
 
 	nearest_enemy = get_nearest_enemy_inarea()
 	if nearest_enemy:
-		
 		look_at(nearest_enemy.global_position)
 		auto_attack()
 
@@ -47,8 +46,7 @@ func auto_attack():
 
 func kick():
 	var enemy_in_kick_range = attack_range.get_overlapping_bodies()
-	
-
+	$Sprite2D/AnimationPlayer.play("attack")
 	for enemy in enemy_in_kick_range:
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(player_var.player_make_melee_damage(kick_basic_damage))
