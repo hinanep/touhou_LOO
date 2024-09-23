@@ -12,8 +12,6 @@ events = [null]
 [node name="select" type="TextureButton"]
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../select_3")
-focus_neighbor_bottom = NodePath("../select_2")
 shortcut = SubResource("Shortcut_siojg")
 texture_normal = ExtResource("1_jpthm")
 texture_pressed = ExtResource("2_jnsgu")

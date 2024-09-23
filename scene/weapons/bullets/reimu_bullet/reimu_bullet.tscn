@@ -36,3 +36,5 @@ scale = Vector2(0.0217391, 0.0217391)
 sprite_frames = SubResource("SpriteFrames_be0q3")
 animation = &"reimu"
 autoplay = "reimu"
+
+[node name="on_hit" type="Node2D" parent="." index="3"]

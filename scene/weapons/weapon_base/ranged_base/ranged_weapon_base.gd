@@ -2,8 +2,11 @@ class_name ranged_weapon_base extends Node2D
 @onready var shoot_timer = $shootTimer
 @onready var attack_range = $attack_range
 
-
-
+var attack_modifier = {
+	"on_hit":[],
+	"on_flying":[],
+	"on_emit":[]
+}
 var shoot_range = 200
 var basic_colddown = 1
 var shoot_ready = true
@@ -51,6 +54,13 @@ func get_nearest_enemy_inarea():
 func shoot(bullet_pree,generate_position,generate_rotation):	
 	AudioManager.play_sfx("sfx_bulletshoot")
 	var new_bullet = bullet_pree.instantiate()
+	if !attack_modifier["on_hit"].is_empty():
+		for modi in attack_modifier["on_hit"]:
+			var new_modifier = load(modi).instantiate()
+			new_bullet.get_node("on_hit").add_child(new_modifier)
+	#if !attack_modifier["on_flying"].is_empty():
+	#if !attack_modifier["on_emit"].is_empty():
+	#te.is_empty()
 	new_bullet.global_position = generate_position
 	new_bullet.global_rotation = generate_rotation
 		

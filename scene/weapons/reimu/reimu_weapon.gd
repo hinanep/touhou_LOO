@@ -2,12 +2,14 @@ extends ranged_weapon_base
 
 @export var bulletnum = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	basic_colddown = 0.5
 	print("reimu_ready")
 	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
 	set_range_and_colddown()
+	attack_modifier["on_hit"].append("res://scene/weapons/modifier/on_hit/on_hit.tscn")
 	pass # Replace with function body.
 
 

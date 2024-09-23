@@ -34,6 +34,7 @@ func card_upgrade():
 		#从随机池移除
 		RandomPool.card_pool.erase(card_name)
 		#查询可能出现的羁绊并加入羁绊池
+		
 	else:
 
 		pass
