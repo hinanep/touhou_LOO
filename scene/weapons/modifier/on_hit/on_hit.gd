@@ -9,6 +9,6 @@ func hit():
 	print(global_position)
 	laser.global_transform= global_transform
 
-	player_var.player_node.add_child(laser)
+	player_var.player_node.call_deferred("add_child",laser)
 
 	pass

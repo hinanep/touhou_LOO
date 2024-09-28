@@ -19,8 +19,8 @@ func _ready():
 
 
 
-func addWeapon(name):
-	var path = waza_name_path_pair[name]
+func addWeapon(weapon_name):
+	var path = waza_name_path_pair[weapon_name]
 	var weapon = load(path)
 	weapon = weapon.instantiate()
 	

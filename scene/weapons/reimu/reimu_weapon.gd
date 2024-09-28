@@ -5,7 +5,7 @@ extends ranged_weapon_base
 var laser
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_colddown = 0.5
+	basic_colddown = 0.25
 	print("reimu_ready")
 	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
 	laser = preload("res://scene/weapons/bullets/laser_bullet/laser.tscn")

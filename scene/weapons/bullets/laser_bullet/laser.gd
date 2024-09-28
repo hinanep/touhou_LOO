@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var basic_damage = 0
+var basic_damage = 1
 
 var destroy_timer
 
@@ -17,7 +17,7 @@ func _ready():
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
 					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
-func _physics_process(delta):
+func _physics_process(_delta):
 	var enemy_in_range = get_overlapping_bodies()
 	if enemy_in_range:
 			for enemy in enemy_in_range:

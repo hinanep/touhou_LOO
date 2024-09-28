@@ -75,4 +75,3 @@ func random_select_from_card():
 	print(cardname)
 	print("rr")
 	return cardname
-	pass
