@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://m1cue7k05cqo"]
+[gd_scene load_steps=17 format=3 uid="uid://m1cue7k05cqo"]
 
 [ext_resource type="Script" path="res://scene/weapons/bullets/bullet_base/direction_bullet/direction_bullet.gd" id="1_jdpgt"]
 [ext_resource type="Texture2D" uid="uid://c1g3nux55yi8k" path="res://asset/brackeys_platformer_assets/sprites/coin.png" id="2_06o6o"]
-[ext_resource type="Script" path="res://scene/weapons/modifier/on_hit/on_hit.gd" id="3_y3jr7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ujfc"]
 radius = 5.38516
@@ -117,9 +116,6 @@ wait_time = 1.5
 one_shot = true
 
 [node name="on_hit" type="Node2D" parent="."]
-
-[node name="on_hit" type="Node2D" parent="on_hit"]
-script = ExtResource("3_y3jr7")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

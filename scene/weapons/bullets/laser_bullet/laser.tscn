@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4krcqws5d8uc"]
+
+[ext_resource type="Script" path="res://scene/weapons/bullets/laser_bullet/laser.gd" id="1_fkk8d"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="2_3rebx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnvre"]
+atlas = ExtResource("2_3rebx")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pi68"]
+atlas = ExtResource("2_3rebx")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeeab"]
+atlas = ExtResource("2_3rebx")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5j07"]
+atlas = ExtResource("2_3rebx")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwlbn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnvre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pi68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeeab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5j07")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m647g"]
+size = Vector2(30, 96)
+
+[node name="Laser" type="Area2D"]
+top_level = true
+collision_mask = 2
+script = ExtResource("1_fkk8d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.342
+one_shot = true
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 20.0
+default_color = Color(0.211765, 1, 1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.878431, 0.886275, 0.129412, 0.545098)
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-1, 48)
+scale = Vector2(1.9375, 6.0625)
+sprite_frames = SubResource("SpriteFrames_xwlbn")
+autoplay = "default"
+frame_progress = 0.06857
+
+[node name="on_hit" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 48)
+shape = SubResource("RectangleShape2D_m647g")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

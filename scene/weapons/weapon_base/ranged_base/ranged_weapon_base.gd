@@ -58,6 +58,7 @@ func shoot(bullet_pree,generate_position,generate_rotation):
 		for modi in attack_modifier["on_hit"]:
 			var new_modifier = load(modi).instantiate()
 			new_bullet.get_node("on_hit").add_child(new_modifier)
+			
 	#if !attack_modifier["on_flying"].is_empty():
 	#if !attack_modifier["on_emit"].is_empty():
 	#te.is_empty()

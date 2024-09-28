@@ -2,12 +2,13 @@ extends ranged_weapon_base
 
 @export var bulletnum = 0
 
-
+var laser
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	basic_colddown = 0.5
 	print("reimu_ready")
 	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
+	laser = preload("res://scene/weapons/bullets/laser_bullet/laser.tscn")
 	set_range_and_colddown()
 	attack_modifier["on_hit"].append("res://scene/weapons/modifier/on_hit/on_hit.tscn")
 	pass # Replace with function body.
@@ -35,7 +36,7 @@ func auto_attack():
 			#direction = global_position.angle_to_point(get_nearest_enemy_inarea().global_position)
 			direction = randf_range(-PI,PI)
 			shoot(bullet_pre,generate_position,direction)
-			
+			#shoot(laser,generate_position,direction)
 			
 		shoot_ready = false
 		shoot_timer.start()

@@ -4,6 +4,11 @@ func _ready():
 	$"../..".on_hit.connect(hit)
 
 func hit():
-	print("hit!")
-	print("---")
+	var laser=load("res://scene/weapons/bullets/laser_bullet/laser.tscn").instantiate()
+	
+	print(global_position)
+	laser.global_transform= global_transform
+
+	player_var.player_node.add_child(laser)
+
 	pass
