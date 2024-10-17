@@ -1,30 +1,68 @@
 extends Node2D
-@onready var path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
+var path_follow_2d
 
-@onready var timer = $Timer
-
-
-
-func spawn_mob(path):
-	print("spawning")
+var spawnTimer 
+var startTimer 
+var endTimer
+var spawn_list = {
+	#"pre":preload("res://scene/enemys/slime/slime.tscn"),
+	#"spawn_mode":"duration",
+	#"start_time":5,
+	#"end_time":30,
+	#"tick_time":2,
+	#"number":2,
+	#"param_buff":0.9
+}
+func spawner_init(spawner_init):
+	spawn_list=spawner_init
+	spawnTimer = $spawnTimer
+	startTimer = $startTimer
+	endTimer   = $endTimer
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
-	var SLIME = load(path).instantiate()
-	#$".".get_child()
-	path_follow_2d.progress_ratio = randf()
-	print(path_follow_2d.progress_ratio)
-	print(path_follow_2d.global_position)
-	print(player_var.player_node.global_position)
-	SLIME.global_position = path_follow_2d.global_position
-	$".".add_child(SLIME)
+	spawnTimer.wait_time = spawn_list["tick_time"]
+	match spawn_list["spawn_mode"]:
+		"duration":
+			startTimer.wait_time =  spawn_list["start_time"] - player_var.time_secs
+			startTimer.start()
+			
+			endTimer.wait_time = spawn_list["end_time"] - player_var.time_secs
+			endTimer.start()
+		"once":
+			spawn_mob()
 
-func _ready():
-	timer.start()
-	print("spawner on")
-	pass
+
+func spawn_mob():
+	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
+	var mob = spawn_list["pre"].instantiate()
+	path_follow_2d.progress_ratio = randf()
+	mob.global_position = path_follow_2d.global_position
+	mob.setbuff(spawn_list["param_buff"])
+	$".".add_child(mob)
+
+
 
 
 func _on_timer_timeout():
-	for i in range(4):
-		spawn_mob("res://scene/enemys/slime/slime.tscn")
+	for i in range(spawn_list["number"]):
+		spawn_mob()
 
+
+func add_spawn_event(spawn_list):
+	match spawn_list["spawn_mode"]:
+		"duration":
+			var start_timer = Timer.new()
+					
+		"once":
+			pass
 	pass
+
+
+func _on_start_timer_timeout():
+	spawnTimer.start()
+	_on_timer_timeout()
+	pass # Replace with function body.
+
+
+func _on_end_timer_timeout():
+	spawnTimer.stop()
+	pass # Replace with function body.

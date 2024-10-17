@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bh8qbl8bwqasv" path="res://asset/brackeys_platformer_assets/sprites/knight.png" id="1_6epby"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_eqxiv"]
-[ext_resource type="PackedScene" uid="uid://cll6dnd0urysq" path="res://scene/GameManagers/wazaManager.tscn" id="2_dq2yr"]
+[ext_resource type="PackedScene" uid="uid://cll6dnd0urysq" path="res://scene/GameManagers/WazaManager/wazaManager.tscn" id="2_s07gh"]
 [ext_resource type="Texture2D" uid="uid://iny3sg54p3mb" path="res://asset/素材/bigyaojing.png" id="4_bcbvo"]
 [ext_resource type="Script" path="res://script/global/player_var.gd" id="5_kw8vc"]
-[ext_resource type="PackedScene" uid="uid://c4vy5e3etmf8h" path="res://scene/GameManagers/CardManager.tscn" id="6_v54x3"]
+[ext_resource type="PackedScene" uid="uid://c4vy5e3etmf8h" path="res://scene/GameManagers/CardManager/CardManager.tscn" id="6_00exy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
 radius = 5.0
@@ -72,7 +72,7 @@ collision_mask = 19
 motion_mode = 1
 script = ExtResource("1_eqxiv")
 
-[node name="WazaManager" parent="." instance=ExtResource("2_dq2yr")]
+[node name="WazaManager" parent="." instance=ExtResource("2_s07gh")]
 script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -102,7 +102,7 @@ monitorable = false
 [node name="pickup_shape" type="CollisionShape2D" parent="pickup_area"]
 shape = SubResource("CircleShape2D_2lo10")
 
-[node name="CardManager" parent="." instance=ExtResource("6_v54x3")]
+[node name="CardManager" parent="." instance=ExtResource("6_00exy")]
 script = null
 
 [node name="monster_spawn_line" type="Path2D" parent="."]

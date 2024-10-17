@@ -114,3 +114,9 @@ func get_distance_squared_to_player():
 	if player:
 		return global_position.distance_squared_to(player.global_position)
 	return Vector2.ZERO
+func setbuff(multi):
+	max_hp *= multi
+	hp *= multi
+	basic_bullet_damage *= multi
+	basic_melee_damage *= multi
+	pass
