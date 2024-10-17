@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ubcyl6b1fje7"]
+
+[ext_resource type="PackedScene" uid="uid://ddjn4u735g7im" path="res://scene/enemys/slime/slime.tscn" id="1_kw1kv"]
+[ext_resource type="Script" path="res://scene/enemys/elite_slime/elite_slime.gd" id="2_m6vql"]
+
+[node name="elite_slime" instance=ExtResource("1_kw1kv")]
+script = ExtResource("2_m6vql")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+modulate = Color(0.592284, 0, 0.0114338, 1)
+scale = Vector2(2, 2)

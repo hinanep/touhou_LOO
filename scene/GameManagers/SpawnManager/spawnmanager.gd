@@ -9,12 +9,22 @@ var event_list = {
 	"tick_time":2,
 	"number":2,
 	"param_buff":0.9
+},
+"elite_slime":{
+	"pre":preload("res://scene/enemys/elite_slime/elite_slime.tscn"),
+	"spawn_mode":"once",
+	"start_time":30,
+	"end_time":40,
+	"tick_time":0,
+	"number":1,
+	"param_buff":0.9
 }
 }
 
 var spawner_pre = preload("res://scene/enemys/spawner.tscn")
 
 var spawnmanager_node
+
 func add_spawn_event(spawner_init):
 	var new_spawner = spawner_pre.instantiate()
 	spawnmanager_node.add_child(new_spawner)

@@ -40,7 +40,7 @@ func level_up():
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
 	get_tree().paused = true
-
+	
 	#UiManager.get_node("select_weapon").visible = true
 
 

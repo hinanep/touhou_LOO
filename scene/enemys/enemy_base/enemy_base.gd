@@ -19,7 +19,7 @@ var drops_path = ""
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
 
 func _ready():
-	set_modulate(Color(1, 1, 1, 1)-Color(0, 1, 1, 0)*modi*90)
+	set_modulate(modulate-Color(0, 1, 1, 0)*modi*18)
 
 	pass
 	

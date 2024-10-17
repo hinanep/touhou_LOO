@@ -28,7 +28,9 @@ func spawner_init(spawner_init):
 			endTimer.wait_time = spawn_list["end_time"] - player_var.time_secs
 			endTimer.start()
 		"once":
-			spawn_mob()
+			startTimer.wait_time =  spawn_list["start_time"] - player_var.time_secs
+			startTimer.start()
+			spawnTimer.set_one_shot(true)
 
 
 func spawn_mob():
@@ -59,7 +61,6 @@ func add_spawn_event(spawn_list):
 
 func _on_start_timer_timeout():
 	spawnTimer.start()
-	_on_timer_timeout()
 	pass # Replace with function body.
 
 

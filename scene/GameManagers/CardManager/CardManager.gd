@@ -58,7 +58,7 @@ func use_card():
 	
 	
 func _ready():
-	add_card("marisa")
+	pass
 	
 func add_card(cardname):
 	if(card_pool["choosed"].has(cardname)):

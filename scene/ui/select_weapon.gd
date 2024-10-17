@@ -26,8 +26,8 @@ func _ready():
 			waza_button.set_upgrade_text(w)
 			waza_button.upgrade_selected.connect(on_button_selected.bind(w))
 
-
-	$select_buttons.get_child(0).grab_focus()
+	if $select_buttons.get_child(0):
+		$select_buttons.get_child(0).grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +44,9 @@ func on_button_selected(upgrade):
 			CardManager.add_card(upgrade)
 	visible = false
 	get_tree().paused = false
+	if player_var.player_exp >= player_var.exp_need[player_var.level]:
+		GameManager.level_up()
+	queue_free()
 	pass # Replace with function body.
 	
 	
