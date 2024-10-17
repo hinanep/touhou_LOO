@@ -1,5 +1,6 @@
 extends Node
 
+
 var waza_pool = ["reimu","sanae","alice"]
 var card_pool = ["marisa"]
 var waza_full = player_var.waza_full

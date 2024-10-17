@@ -8,12 +8,12 @@ var bullet_big_pre
 func _ready():
 	basic_colddown = 1.2
 	shoot_range = 180
-
+	waza_name = "sanae"
 	print("sanae_ready")
 	bullet_small_pre = preload("res://scene/weapons/bullets/sanae_bullet/small/sanae_bullet_small.tscn")
 	bullet_mid_pre = preload("res://scene/weapons/bullets/sanae_bullet/mid/sanae_bullet_mid.tscn")
 	bullet_big_pre = preload("res://scene/weapons/bullets/sanae_bullet/big/sanae_bullet_big.tscn")
-	set_range_and_colddown()
+	super._ready()
 
 	pass # Replace with function body.
 
@@ -26,9 +26,7 @@ func _physics_process(_delta):
 	
 		look_at(nearest_enemy.global_position)		
 		auto_attack()
-	if player_var.weapon_random_list["早苗"] > level:
-		updateWeapon()
-		level += 1
+
 func auto_attack():
 
 	var generate_position 
@@ -50,7 +48,7 @@ func auto_attack():
 			
 		shoot_ready = false
 		shoot_timer.start()
-func updateWeapon():
+func upgrade_waza():
 	print("updated")
 	bulletnum += 1
 	pass

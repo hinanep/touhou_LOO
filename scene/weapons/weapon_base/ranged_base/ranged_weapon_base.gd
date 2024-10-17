@@ -7,6 +7,7 @@ var attack_modifier = {
 	"on_flying":[],
 	"on_emit":[]
 }
+var waza_name = ""
 var shoot_range = 200
 var basic_colddown = 1
 var shoot_ready = true
@@ -14,7 +15,7 @@ var level = 1
 var bullet_pre = preload("res://scene/weapons/bullets/bullet_base/direction_bullet/direction_bullet.tscn")
 func _ready():
 	set_range_and_colddown()
-	
+	add_to_group(waza_name)
 func _physics_process(_delta):
 	var nearest_enemy = get_nearest_enemy_inarea()
 	if nearest_enemy:

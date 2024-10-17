@@ -7,8 +7,8 @@ func _init():
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
 	
-	WazaManager.addWeapon("base_range")
-	#WazaManager.addWeapon("base_melee")
+	WazaManager.add_waza("base_range")
+	WazaManager.add_waza("base_melee")
 
 func _physics_process(_delta):
 	#移动

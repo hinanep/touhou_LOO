@@ -7,7 +7,8 @@ func _ready():
 	basic_colddown = 1.5
 	print("alice_ready")
 	bullet_pre = preload("res://scene/weapons/bullets/alice_bullet/alice_bullet.tscn")
-	set_range_and_colddown()
+	waza_name = "alice"
+	super._ready()
 	pass # Replace with function body.
 
 
@@ -20,9 +21,7 @@ func _physics_process(_delta):
 		look_at(nearest_enemy.global_position)		
 		auto_attack()
 		
-	if player_var.weapon_random_list["爱丽丝"] > level:
-		updateWeapon()
-		level += 1
+
 func auto_attack():
 
 	var generate_position 
@@ -38,7 +37,7 @@ func auto_attack():
 		shoot_ready = false
 		shoot_timer.start()
 
-func updateWeapon():
+func upgrade_waza():
 	print("updated")
 	bulletnum += 1
 	pass

@@ -23,8 +23,8 @@ GameManager="*res://scene/GameManagers/game_manager.tscn"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://scene/GameManagers/AudioManager/AudioManager.tscn"
 RandomPool="*res://scene/GameManagers/RandomPool/RandomPool.gd"
-WazaManager="*res://scene/weapons/wazaManager.gd"
-CardManager="*res://scene/cards/CardManager.gd"
+WazaManager="*res://scene/GameManagers/wazaManager.gd"
+CardManager="*res://scene/GameManagers/CardManager.gd"
 
 [debug]
 

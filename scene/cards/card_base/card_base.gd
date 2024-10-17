@@ -11,6 +11,7 @@ var locking_type = 0
 var locking_target = null
 var card_name = ""
 func _ready():
+	add_to_group(card_name)
 	if player_var.power < mana_cost or player_var.is_card_casting:
 		print("cant cast card")
 		queue_free()
@@ -36,7 +37,7 @@ func card_upgrade():
 		#查询可能出现的羁绊并加入羁绊池
 		
 	else:
-
+		
 		pass
 	
 

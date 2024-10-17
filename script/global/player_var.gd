@@ -28,10 +28,7 @@ var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 100#- 符力上限：可存储的最大符力
 
 @onready var ui_manager = get_tree().get_first_node_in_group("UiManager")
-#待移除？
-#var damageRatio = 1.0	#玩家造成伤害比率，全局增加
-#var critical_rate = 0.25 #暴击率
-#var critical_damage = 2 #暴击伤害比率
+
 #运行时使用
 var nearest_enemy
 var player_hp = player_hp_max
@@ -40,23 +37,25 @@ var point = 0
 var player_exp = 0
 var level = 0
 var is_invincible = false
+
 var card_full = false
+var card_num_full = false
+
+var waza_num_full = false
 var waza_full = false
+
+var passive_num_full = false
+var passive_full = false
+
 var is_card_casting = false
 var player_node
 var exp_need = [1,2,3,4,5,6,7,8,100000]
 
-var random_weapons_selected = [0,0,0,0,0]
-
-var weapon_random_list = { "灵梦": 0,
-					"早苗" :0,
-					"爱丽丝":0
+var weapon_list = { 
 					}
-var weapon_name_path_pair ={
-	"灵梦" : "res://scene/weapons/reimu/reimu_weapon.tscn",
-	"早苗": "res://scene/weapons/sanae/sanae_weapon.tscn",
-	"爱丽丝": "res://scene/weapons/alice_weapon/alice_weapon.tscn"
+var card_list = {	
 }
+
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
 	#if randf() < critical_rate:
@@ -82,22 +81,13 @@ func player_take_melee_damage(player,damage):
 func player_take_bullet_damage(player,damage):
 	player.take_damage(damage * 10 / (10 + defence_bullet))
 
-func get_name_from_numbers(numbers):
-	return weapon_random_list.keys()[numbers]
 
-func select_weapon_path(weapon_numbers):
-	return weapon_name_path_pair[weapon_random_list.keys()[weapon_numbers]]
-
-func random3_weapons_number_select():
-	for i in range(3):
-
-		random_weapons_selected[i]=randi_range(0,weapon_random_list.size()-1)
 
 
 
 func delete_weapon_from_list(weapon_name):
-	weapon_random_list.erase(weapon_name)
+	weapon_list.erase(weapon_name)
 	
 func _ready():
-	#random3_weapons_number_select()
+
 	pass

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cll6dnd0urysq"]
+
+[ext_resource type="Script" path="res://scene/GameManagers/wazaManager.gd" id="1_ers3c"]
+
+[node name="WazaManager" type="Node2D"]
+script = ExtResource("1_ers3c")
