@@ -61,6 +61,7 @@ func random_nselect_from_allpool(n:int):
 	return{"cards":cards,"wazas":wazas}
 	
 func random_select_from_waza():
+	#WazaManager.waza
 	if waza_pool.is_empty():
 		return null
 	var num = randi_range(0,waza_pool.size()-1)
