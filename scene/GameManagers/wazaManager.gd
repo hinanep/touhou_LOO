@@ -1,6 +1,6 @@
 extends Node
 var wazanum_have = 0
-var wazanum_max = 3
+var wazanum_max = 3+2
 var waza_maxlevel = 8
 
 var waza_pool = {
@@ -16,24 +16,27 @@ var waza_list = {
 
 func _init():
 	waza_pool["unchoosed"]["base_range"] = {
-		"level":0,
+		"level":waza_maxlevel-1,
 		"path":"res://scene/weapons/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn"
 	}
 	waza_pool["unchoosed"]["base_melee"] = {
-		"level":0,
+		"level":waza_maxlevel-1,
 		"path":"res://scene/weapons/weapon_base/melee_base/melee_weapon_base.tscn"
 	}
 	waza_pool["unchoosed"]["reimu"] = {
 		"level":0,
-		"path":"res://scene/weapons/reimu/reimu_weapon.tscn"
+		"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
+		"weight":1
 	}
 	waza_pool["unchoosed"]["sanae"] = {
 		"level":0,
-		"path":"res://scene/weapons/sanae/sanae_weapon.tscn"
+		"path":"res://scene/weapons/sanae/sanae_weapon.tscn",
+		"weight":1
 	}
 	waza_pool["unchoosed"]["alice"] = {
 		"level":0,
-		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn"
+		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
+		"weight":1
 	}
 
 
@@ -51,10 +54,10 @@ func add_waza(wazaname):
 		player_var.waza_num_full = true
 	player_var.waza_full = false
 	
-	waza_list[wazaname] = 1
 	waza_pool["choosed"][wazaname]=waza_pool["unchoosed"][wazaname]
 	waza_pool["unchoosed"].erase(wazaname)
-	
+	waza_list[wazaname] = waza_pool["choosed"][wazaname]["level"]
+	upgrade_waza(wazaname)
 	
 	
 	var weapon = load(path)

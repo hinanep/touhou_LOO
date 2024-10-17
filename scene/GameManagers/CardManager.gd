@@ -23,7 +23,8 @@ func _init():
 		"level":0,
 		"power_cost":40,
 		"path":"res://scene/cards/masterapark/masterspark.tscn",
-		"pre":null
+		"pre":null,
+		"weight":1
 	}
 
 func _input(event):

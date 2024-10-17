@@ -12,60 +12,64 @@ var name_path_pair ={
 	"marisa": "res://scene/cards/masterapark/masterspark.tscn"
 }
 func _ready():
+	var pool =[
+		["namie1",1],
+		["namie2",2],
+		["namie3",3],
+		["namie4",4],
+		["namie5",5],
+		["namie0",0]
+	]
+	var ans = selectm_from_samples(pool,3)
+	for a in ans:
+		print(a)
 	pass
 
 func random_nselect_from_allpool(n:int):
 	var cards = []
 	var wazas = []
-	if waza_full:
-		if card_full:
-			return null
-		else:
-			#card
-			for i in n:
-				cards.append(random_select_from_card())
-
-	else:
-		if card_full:
-			#waza
-			for i in n:
-				wazas.append(random_select_from_waza())
-
-		else:
-			for i in n:			
-				if(randi()%2 == 0):
-					#waza
-					var rdwaza = random_select_from_waza()
-					if rdwaza == null:
-						cards.append(random_select_from_card())
-					else:
-						#print(rdwaza)
-						wazas.append(rdwaza)
-
-				else:
-					#card
-					var rdcard = random_select_from_card()
-					if rdcard == null:
-						
-						wazas.append(random_select_from_waza())
-					else:
-						#print(rdcard)
-						cards.append(rdcard)
-
-	for c in cards:
-		card_pool.append(c)
-
-	for w in wazas:
-		waza_pool.append(w)
+	if !player_var.waza_num_full:
+		for wazaname in WazaManager.waza_pool["unchoosed"]:
+			wazas.append([wazaname,WazaManager.waza_pool["unchoosed"][wazaname]["weight"]])
+	for wazaname in WazaManager.waza_pool["choosed"]:
+		wazas.append([wazaname,WazaManager.waza_pool["choosed"][wazaname]["weight"]])
 		
-	return{"cards":cards,"wazas":wazas}
+	if !player_var.card_num_full:
+		for cardname in CardManager.card_pool["unchoosed"]:
+			cards.append([cardname,CardManager.card_pool["unchoosed"][cardname]["weight"]])
+	for cardname in CardManager.card_pool["choosed"]:
+		cards.append([cardname,CardManager.card_pool["choosed"][cardname]["weight"]])
+	var pool = []
+	pool.append_array(cards)
+	pool.append_array(wazas)
 	
+	var nselect = selectm_from_samples(pool,n)
+	var wazas_ans = []
+	var cards_ans = []
+	
+	for x in nselect:
+		if x in wazas:
+			wazas_ans.append(x[0])
+		if x in cards:
+			cards_ans.append(x[0])
+		
+	return{"cards":cards_ans,"wazas":wazas_ans}
+
+
 func random_select_from_waza():
-	#WazaManager.waza
-	if waza_pool.is_empty():
+	var pool = [
+		#name:weight
+	]
+	
+	for wazaname in WazaManager.waza_pool["unchoosed"]:
+		pool.append([wazaname,WazaManager.waza_pool["unchoosed"][wazaname]["weight"]])
+	for wazaname in WazaManager.waza_pool["choosed"]:
+		pool.append([wazaname,WazaManager.waza_pool["choosed"][wazaname]["weight"]])
+	#a_expj(pool,1)
+	if pool.is_empty():
 		return null
-	var num = randi_range(0,waza_pool.size()-1)
-	return waza_pool.pop_at(num)
+
+	return selectm_from_samples(pool,1)[0][0]
 
 func random_select_from_card():
 	if card_pool.is_empty():
@@ -73,7 +77,48 @@ func random_select_from_card():
 	var num = randi_range(0,card_pool.size()-1)
 	
 	var cardname = card_pool.pop_at(num)
-	print("rr")
-	print(cardname)
-	print("rr")
+	
 	return cardname
+
+func selectm_from_samples(samples, m):
+	#
+	#:samples: [(item, weight), ...]
+	#:k: number of selected items
+	#:returns: [(item, weight), ...]
+	#
+ 
+	var heap = [] # [(new_weight, item), ...]
+	var wi
+	var ui
+	var ki
+	for sample in samples:
+		if sample[1]==0:
+			continue
+		
+		wi = sample[1]			
+		ui = randf_range(0,1)
+		ki = ui ** (1.0/wi)
+		print("--")
+		print(wi)
+		print(ui)
+		print(ki)
+		if len(heap) < m:
+			
+			heap.append([sample,ki])
+			continue
+		heap.sort_custom(sort_ascending)
+		
+		if ki>heap[m-1][1]:
+			
+			heap.pop_back()
+			heap.append([sample,ki])
+	var ans = []
+	for h in heap:
+		ans.append(h[0])
+	return ans
+
+
+func sort_ascending(a, b):
+	if a[1] > b[1]:
+		return true
+	return false
