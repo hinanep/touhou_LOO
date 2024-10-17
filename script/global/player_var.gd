@@ -37,6 +37,7 @@ var point = 0
 var player_exp = 0
 var level = 0
 var is_invincible = false
+var time_secs = 0
 
 var card_full = false
 var card_num_full = false

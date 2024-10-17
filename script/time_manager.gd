@@ -2,13 +2,22 @@ extends Node
 @onready var rich_text_label = $time_ui/MarginContainer/RichTextLabel
 @onready var timer = $Timer
 
-func _process(_delta):
-	format_display(get_time_passed())
-func get_time_passed():
+var seconds = 0
+var minutes = 0
+#func _process(_delta):
 	
-	return timer.wait_time - timer.time_left
+#func get_time_passed():
 	
-func format_display(seconds):
-		var minutes = floor(seconds/60)
+#	return timer.wait_time - timer.time_left
+	
+func format_display():
 		var sec = floor(seconds - 60 * minutes)
 		rich_text_label.text = str(minutes) + ":" + ("%02d" % sec)
+
+
+func _on_timer_timeout():
+	seconds += 1
+	player_var.time_secs = seconds
+	minutes = floor(seconds/60)
+	format_display()
+	pass # Replace with function body.

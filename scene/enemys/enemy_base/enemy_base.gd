@@ -1,7 +1,8 @@
 class_name enemy_base extends CharacterBody2D
 @onready var player= get_tree().get_first_node_in_group("player")
 var curse = player_var.curse
-var max_hp = curse
+var modi = player_var.time_secs /1800.0
+var max_hp = curse * (1+modi)
 var hp = max_hp
 var speed = 40
 var basic_melee_damage = curse
@@ -18,6 +19,8 @@ var drops_path = ""
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
 
 func _ready():
+	set_modulate(Color(1, 1, 1, 1)-Color(0, 1, 1, 0)*modi*90)
+
 	pass
 	
 

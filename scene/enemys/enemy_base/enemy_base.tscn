@@ -60,7 +60,6 @@ autoplay = "default"
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
 offset_left = -13.0
 offset_top = -11.0
 offset_right = 94.0

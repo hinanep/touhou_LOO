@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=14 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Texture2D" uid="uid://bh8qbl8bwqasv" path="res://asset/brackeys_platformer_assets/sprites/knight.png" id="1_6epby"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_eqxiv"]
@@ -60,6 +60,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lo10"]
 radius = 40.0125
 
+[sub_resource type="Curve2D" id="Curve2D_l3lgj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 216, 139, 0, 0, 0, 0, -195, 137, 0, 0, 0, 0, -200, -124, 0, 0, 0, 0, 220, -124, 0, 0, 0, 0, 219, 139)
+}
+point_count = 5
+
 [node name="player" type="CharacterBody2D"]
 z_index = 5
 collision_mask = 19
@@ -98,6 +104,13 @@ shape = SubResource("CircleShape2D_2lo10")
 
 [node name="CardManager" parent="." instance=ExtResource("6_v54x3")]
 script = null
+
+[node name="monster_spawn_line" type="Path2D" parent="."]
+curve = SubResource("Curve2D_l3lgj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="monster_spawn_line"]
+position = Vector2(216, 139)
+rotation = -3.13673
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]
