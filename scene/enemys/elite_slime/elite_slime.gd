@@ -7,7 +7,7 @@ func _ready():
 	basic_melee_damage *= 30
 	basic_bullet_damage *= 10
 	drops_path = "res://scene/drops/plate_1.tscn"
-	
+	AudioManager.play_bgm("Ruins")
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()
 	super._ready()
@@ -21,3 +21,7 @@ func _physics_process(_delta):
 func bullet_attack():
 	pass
 	
+func died():
+	AudioManager.bgm_over()
+	
+	super.died()

@@ -13,8 +13,8 @@ var spawn_list = {
 	#"number":2,
 	#"param_buff":0.9
 }
-func spawner_init(spawner_init):
-	spawn_list=spawner_init
+func spawner_init(spawner_initlist):
+	spawn_list=spawner_initlist
 	spawnTimer = $spawnTimer
 	startTimer = $startTimer
 	endTimer   = $endTimer
@@ -43,20 +43,9 @@ func spawn_mob():
 
 
 
-
 func _on_timer_timeout():
 	for i in range(spawn_list["number"]):
 		spawn_mob()
-
-
-func add_spawn_event(spawn_list):
-	match spawn_list["spawn_mode"]:
-		"duration":
-			var start_timer = Timer.new()
-					
-		"once":
-			pass
-	pass
 
 
 func _on_start_timer_timeout():

@@ -1,28 +1,12 @@
 extends Node
 
 
-var waza_pool = ["reimu","sanae","alice"]
-var card_pool = ["marisa"]
+
 var waza_full = player_var.waza_full
 var card_full = player_var.card_full
-var name_path_pair ={
-	"reimu" : "res://scene/weapons/reimu/reimu_weapon.tscn",
-	"sanae": "res://scene/weapons/sanae/sanae_weapon.tscn",
-	"alice": "res://scene/weapons/alice_weapon/alice_weapon.tscn",
-	"marisa": "res://scene/cards/masterapark/masterspark.tscn"
-}
+
 func _ready():
-	var pool =[
-		["namie1",1],
-		["namie2",2],
-		["namie3",3],
-		["namie4",4],
-		["namie5",5],
-		["namie0",0]
-	]
-	var ans = selectm_from_samples(pool,3)
-	for a in ans:
-		print(a)
+
 	pass
 
 func random_nselect_from_allpool(n:int):
@@ -72,13 +56,8 @@ func random_select_from_waza():
 	return selectm_from_samples(pool,1)[0][0]
 
 func random_select_from_card():
-	if card_pool.is_empty():
-		return null
-	var num = randi_range(0,card_pool.size()-1)
-	
-	var cardname = card_pool.pop_at(num)
-	
-	return cardname
+	pass
+
 
 func selectm_from_samples(samples, m):
 	#
