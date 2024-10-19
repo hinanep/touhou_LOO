@@ -19,16 +19,16 @@ func spawner_init(spawner_initlist):
 	startTimer = $startTimer
 	endTimer   = $endTimer
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
-	spawnTimer.wait_time = spawn_list["tick_time"]
+	spawnTimer.wait_time = maxf(spawn_list["tick_time"],0.1)
 	match spawn_list["spawn_mode"]:
 		"duration":
-			startTimer.wait_time =  spawn_list["start_time"] - player_var.time_secs
+			startTimer.wait_time =  maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
 			
 			endTimer.wait_time = spawn_list["end_time"] - player_var.time_secs
 			endTimer.start()
 		"once":
-			startTimer.wait_time =  spawn_list["start_time"] - player_var.time_secs
+			startTimer.wait_time =   maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
 			spawnTimer.set_one_shot(true)
 

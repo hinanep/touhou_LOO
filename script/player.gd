@@ -10,7 +10,7 @@ func _ready():
 	WazaManager.add_waza("base_range")
 	WazaManager.add_waza("base_melee")
 	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
-	
+
 func _physics_process(_delta):
 	#移动
 	

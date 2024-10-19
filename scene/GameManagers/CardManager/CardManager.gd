@@ -24,7 +24,8 @@ func _init():
 		"power_cost":40,
 		"path":"res://scene/cards/masterapark/masterspark.tscn",
 		"pre":null,
-		"weight":1
+		"weight":1,
+		"card_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
 	}
 
 func _input(event):
@@ -67,7 +68,7 @@ func add_card(cardname):
 	if(card_pool["max"].has(cardname)):
 		return	
 	var cardpath = card_pool["unchoosed"][cardname]["path"]
-	
+	get_tree().call_group("hud","add_card",card_pool["unchoosed"][cardname])
 	cardnum_have += 1
 	if cardnum_have >= cardnum_max:
 		player_var.card_num_full = true
@@ -95,3 +96,10 @@ func is_card_allmaxlevel():
 				return false		
 		return true
 	pass
+
+func get_active_card_by_name(cardname):
+	if(!card_pool["choosed"][cardname].is_empty()):
+		return card_pool["choosed"][cardname]
+	if(!card_pool["max"][cardname].is_empty()):
+		return card_pool["max"][cardname]
+	return null
