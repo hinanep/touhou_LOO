@@ -5,7 +5,7 @@ var event_list = {
 	"pre":preload("res://scene/enemys/slime/slime.tscn"),
 	"spawn_mode":"duration",
 	"start_time":0,
-	"end_time":30,
+	"end_time":300,
 	"tick_time":2,
 	"number":2,
 	"param_buff":0.9

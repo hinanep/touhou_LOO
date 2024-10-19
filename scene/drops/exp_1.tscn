@@ -42,7 +42,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjjcq"]
 radius = 7.07107
 
-[node name="exp_1" type="Area2D"]
+[node name="exp_1" type="Area2D" groups=["crystal"]]
 collision_layer = 16
 script = ExtResource("1_cpuj4")
 
