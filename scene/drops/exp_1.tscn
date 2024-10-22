@@ -1,38 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfvl58xcl0rms"]
+[gd_scene load_steps=6 format=3 uid="uid://cfvl58xcl0rms"]
 
 [ext_resource type="Script" path="res://scene/drops/exp_1.gd" id="1_cpuj4"]
-[ext_resource type="Texture2D" uid="uid://chjre7l05uru1" path="res://asset/brackeys_platformer_assets/sprites/fruit.png" id="2_mvbes"]
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/素材/p.png" id="2_xbr8h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ctkcu"]
-atlas = ExtResource("2_mvbes")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oh4ql"]
-atlas = ExtResource("2_mvbes")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aucy5"]
-atlas = ExtResource("2_mvbes")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nlnv1"]
-atlas = ExtResource("2_mvbes")
-region = Rect2(0, 48, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnkcy"]
+atlas = ExtResource("2_xbr8h")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cdvnr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ctkcu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oh4ql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aucy5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nlnv1")
+"texture": SubResource("AtlasTexture_hnkcy")
 }],
 "loop": true,
 "name": &"default",
