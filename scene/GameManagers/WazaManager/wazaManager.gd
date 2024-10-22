@@ -38,7 +38,11 @@ func _init():
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
 		"weight":1
 	}
-
+	waza_pool["unchoosed"]["sekibanki"] = {
+		"level":0,
+		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
+		"weight":5
+	}
 
 func add_waza(wazaname):
 	if(waza_pool["choosed"].has(wazaname)):

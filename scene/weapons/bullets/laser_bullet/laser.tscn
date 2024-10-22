@@ -44,11 +44,12 @@ size = Vector2(30, 96)
 
 [node name="Laser" type="Area2D"]
 top_level = true
+collision_layer = 0
 collision_mask = 2
+monitorable = false
 script = ExtResource("1_fkk8d")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.342
 one_shot = true
 
 [node name="Line2D" type="Line2D" parent="."]
