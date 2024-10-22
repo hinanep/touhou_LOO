@@ -73,6 +73,7 @@ func upgrade_waza(wazaname):
 	if(waza_pool["choosed"][wazaname]["level"]== waza_maxlevel):
 		waza_pool["max"][wazaname] = waza_pool["choosed"][wazaname]
 		waza_pool["choosed"].erase(wazaname)
+		CpManager.add_to_maxlist(wazaname)
 		if is_waza_allmaxlevel():
 			player_var.waza_full = true
 	get_tree().call_group(wazaname,"upgrade_waza")

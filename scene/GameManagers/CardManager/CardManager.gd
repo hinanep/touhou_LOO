@@ -25,9 +25,27 @@ func _init():
 		"path":"res://scene/cards/masterapark/masterspark.tscn",
 		"pre":null,
 		"weight":1,
-		"card_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
+		"card_image":"res://asset/记忆结晶羁绊图标/魔理沙.png",
+		"node":null
 	}
-
+	card_pool["unchoosed"]["fairy"] = {
+		"level": card_maxlevel-1,
+		"power_cost":40,
+		"path":"res://scene/cards/beginning_card/beginning_card.tscn",
+		"pre":null,
+		"weight":1,
+		"card_image":"res://asset/记忆结晶羁绊图标/早苗.png",
+		"node":null
+	}
+	card_pool["unchoosed"]["test"] = {
+		"level": card_maxlevel-1,
+		"power_cost":40,
+		"path":"res://scene/cards/beginning_card/beginning_card.tscn",
+		"pre":null,
+		"weight":1,
+		"card_image":"res://asset/记忆结晶羁绊图标/灵梦.png",
+		"node":null
+	}
 func _input(event):
 	
 	if cardnum_have:
@@ -49,13 +67,11 @@ func use_card():
 		c = card_pool["choosed"][cardname]
 	else:
 		c = card_pool["max"][cardname]
+		
 	if(player_var.power<c["power_cost"]):
 		return
 	player_var.power -= c["power_cost"]
-	var cardpre = c["pre"].instantiate()
-	cardpre.card_init(c)
-	player_var.player_node.get_node("CardManager").add_child(cardpre)
-	cardpre.position = Vector2(0,0)
+	c["node"].active()
 	
 	
 func _ready():
@@ -73,18 +89,27 @@ func add_card(cardname):
 	if cardnum_have >= cardnum_max:
 		player_var.card_num_full = true
 	player_var.card_full = false
-	card_list[cardname] = 1
+	
+	card_list[cardname] = 0
 	card_pool["choosed"][cardname]=card_pool["unchoosed"][cardname]
 	card_pool["unchoosed"].erase(cardname)
 	card_pool["choosed"][cardname]["pre"] = load(cardpath)
-	card_pool["choosed"][cardname]["level"] = 1
+	var node = card_pool["choosed"][cardname]["pre"].instantiate()
+	node.card_init(card_pool["choosed"][cardname])
+	player_var.player_node.get_node("CardManager").add_child(node)
+	
+	node.position = Vector2(0,0)
+	card_pool["choosed"][cardname]["node"] = node
+	upgrade_card(cardname)
 	
 func upgrade_card(cardname):
+	get_tree().call_group(cardname,"upgrade_card")
 	card_list[cardname] += 1
 	card_pool["choosed"][cardname]["level"] += 1
 	if(card_pool["choosed"][cardname]["level"]== card_maxlevel):
 		card_pool["max"][cardname] = card_pool["choosed"][cardname]
 		card_pool["choosed"].erase(cardname)
+		CpManager.add_to_maxlist(cardname)
 		if is_card_allmaxlevel():
 			player_var.card_full = true
 
@@ -98,8 +123,8 @@ func is_card_allmaxlevel():
 	pass
 
 func get_active_card_by_name(cardname):
-	if(!card_pool["choosed"][cardname].is_empty()):
+	if(card_pool["choosed"].has(cardname)):
 		return card_pool["choosed"][cardname]
-	if(!card_pool["max"][cardname].is_empty()):
+	if(card_pool["max"].has(cardname)):
 		return card_pool["max"][cardname]
 	return null

@@ -77,10 +77,7 @@ func selectm_from_samples(samples, m):
 		wi = sample[1]			
 		ui = randf_range(0,1)
 		ki = ui ** (1.0/wi)
-		print("--")
-		print(wi)
-		print(ui)
-		print(ki)
+
 		if len(heap) < m:
 			
 			heap.append([sample,ki])

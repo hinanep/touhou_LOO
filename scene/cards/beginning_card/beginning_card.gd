@@ -1,12 +1,11 @@
 extends card
-
-
+var recover = 40
 func _ready():	
 	mana_cost = 44
-	duration_time = 5
-	card_name = "marisa"
-	print(card_name)
-	print(level)
+	duration_time = 1
+	
+	card_name = "fairy"
+	
 	super._ready()
 func _process(_delta):
 	pass
@@ -15,21 +14,18 @@ func card_init(card_dic):
 	super.card_init(card_dic)
 	
 
-
 func active():
 	AudioManager.play_sfx("sfx_masterspark")
-	$CPUParticles2D.set_emitting(true)
+	player_var.player_get_heal(recover)
 
 	super.active()
 	
 	pass
-func upgrade_card():
-	super.upgrade_card()
+	
 
 func _on_invincible_time_timeout():
 	super._on_invincible_time_timeout()
 
 
 func _on_endtime_timeout():
-	$CPUParticles2D.set_emitting(false)
 	super._on_endtime_timeout()

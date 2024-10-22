@@ -17,6 +17,8 @@ extends BaseGUIView
 func _ready():
 	hp.max_value = player_var.player_hp_max
 	card_power.max_value = player_var.power_max
+	for cardname in CardManager.card_list.keys():
+		add_card(CardManager.get_active_card_by_name(cardname))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,22 +52,30 @@ func exp_display():
 var cardnum_before=0
 var cardnum=0
 var left=0
+var cardnum_now = 0
 var card_tex_pre = preload("res://scene/ui/Assets/GUI/Hud/card_texture.tscn")
 func card_display():
 	if(card_container.get_child_count()==0):
 		return
-	cardnum = CardManager.cardnum_have
-	card_container.get_child(cardnum/2).set_expand_mode(0)
+	#cardnum = CardManager.cardnum_have
+	cardnum_now = CardManager.cardnum_now
 	
-	cardnum = CardManager.card_list.size()
-	left = cardnum_before - CardManager.cardnum_now
-	for i in range(left):
-		
-		$card_container.move_child(get_child(0),-1)
-	card_container.get_child(cardnum/2).set_expand_mode(3)
-	cardnum_before = CardManager.cardnum_now
+	for child in card_container.get_children():
+		child.set_expand_mode(0)
+		child.set_stretch_mode(3)
+
+	#left = cardnum_before - CardManager.cardnum_now		
+	#if(left !=0):
+		#print("left")
+		#print(left)
+	#card_container.move_child(card_container.get_child(0),-left)
+	
+	card_container.get_child(CardManager.cardnum_now).set_expand_mode(2)
+	card_container.get_child(CardManager.cardnum_now).set_stretch_mode(4)
+	#cardnum_before = cardnum_now
 
 func add_card(card_list):
+	print("adding card")
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(load(card_list["card_image"]))
 	card_container.add_child(newcard)

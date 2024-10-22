@@ -123,9 +123,10 @@ text = "lev."
 [node name="cards" type="Node" parent="hud"]
 
 [node name="card_container" type="HBoxContainer" parent="hud"]
-offset_top = 132.0
-offset_right = 3130.0
-offset_bottom = 942.0
+offset_left = 27.0
+offset_top = 120.0
+offset_right = 2847.0
+offset_bottom = 1090.0
 scale = Vector2(0.1, 0.1)
 alignment = 1
 

@@ -7,6 +7,9 @@ var attack_modifier = {
 	"on_flying":[],
 	"on_emit":[]
 }
+var cp_list = {
+
+}
 var waza_name = ""
 var shoot_range = 200
 var basic_colddown = 1
@@ -59,14 +62,25 @@ func shoot(bullet_pree,generate_position,generate_rotation):
 		for modi in attack_modifier["on_hit"]:
 			var new_modifier = load(modi).instantiate()
 			new_bullet.get_node("on_hit").add_child(new_modifier)
-			
-	#if !attack_modifier["on_flying"].is_empty():
-	#if !attack_modifier["on_emit"].is_empty():
-	#te.is_empty()
+	if !attack_modifier["on_flying"].is_empty():
+		for modi in attack_modifier["on_flying"]:
+			var new_modifier = load(modi).instantiate()
+			new_bullet.get_node("on_flying").add_child(new_modifier)
+	if !attack_modifier["on_emit"].is_empty():
+		for modi in attack_modifier["on_emit"]:
+			var new_modifier = load(modi).instantiate()
+			new_bullet.get_node("on_emit").add_child(new_modifier)	
+
 	new_bullet.global_position = generate_position
 	new_bullet.global_rotation = generate_rotation
 		
 	$".".add_child(new_bullet)
 
-
+func cp_active(name):
+	for onhit in cp_list[name]["on_hit"]:		
+		attack_modifier["on_hit"].append(cp_list[name]["on_hit"][onhit])
+	for on_flying in cp_list[name]["on_flying"]:		
+		attack_modifier["on_flying"].append(cp_list[name]["on_flying"][on_flying])
+	for on_emit in cp_list[name]["on_emit"]:		
+		attack_modifier["on_emit"].append(cp_list[name]["on_emit"][on_emit])
 

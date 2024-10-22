@@ -9,7 +9,7 @@ var bullet_times = 1 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
-var player_hp_max = 20000.0 #生命上限
+var player_hp_max = 200.0 #生命上限
 var player_hp_regen = 0.0 #每秒生命回复
 var lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 var player_speed = 150.0 #移动速度
@@ -25,7 +25,7 @@ var point_ratio = 1.0#- 得点倍率：影响每一记忆碎片增加多少分�
 var power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
-var power_max = 100#- 符力上限：可存储的最大符力
+var power_max = 10000#- 符力上限：可存储的最大符力
 
 @onready var ui_manager = get_tree().get_first_node_in_group("UiManager")
 
@@ -52,10 +52,6 @@ var is_card_casting = false
 var player_node
 var exp_need = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,1000000]
 
-var weapon_list = { 
-					}
-var card_list = {	
-}
 
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage):
@@ -82,12 +78,13 @@ func player_take_melee_damage(player,damage):
 func player_take_bullet_damage(player,damage):
 	player.take_damage(damage * 10 / (10 + defence_bullet))
 
+func player_get_heal(heal):
+	player_hp += heal
+	player_hp = min(player_hp,player_hp_max)
 
 
 
 
-func delete_weapon_from_list(weapon_name):
-	weapon_list.erase(weapon_name)
 	
 func _ready():
 

@@ -26,6 +26,7 @@ RandomPool="*res://scene/GameManagers/RandomPool/RandomPool.gd"
 WazaManager="*res://scene/GameManagers/WazaManager/wazaManager.gd"
 CardManager="*res://scene/GameManagers/CardManager/CardManager.gd"
 SpawnManager="*res://scene/GameManagers/SpawnManager/spawnmanager.gd"
+CpManager="*res://scene/GameManagers/CpManager/CpManager.gd"
 
 [debug]
 

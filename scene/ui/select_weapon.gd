@@ -14,7 +14,7 @@ func _ready():
 			var card_button = card_button_pre.instantiate()
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
-			print(c)
+	
 			card_button.set_upgrade_text(c)
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 	for w in cards_wazas_selected["wazas"]:
@@ -22,7 +22,7 @@ func _ready():
 			var waza_button = card_button_pre.instantiate()
 			$select_buttons.add_child(waza_button)
 			#多语言支持尚未
-			print(w)
+
 			waza_button.set_upgrade_text(w)
 			waza_button.upgrade_selected.connect(on_button_selected.bind(w))
 

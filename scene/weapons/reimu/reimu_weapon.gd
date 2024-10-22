@@ -8,9 +8,16 @@ func _ready():
 	basic_colddown = 0.25
 	print("reimu_ready")
 	waza_name = "reimu"
+	cp_list = {
+	"reima":{
+	"on_hit":["res://scene/weapons/modifier/on_hit/on_hit.tscn"],
+	"on_flying":[],
+	"on_emit":[]
+	}
+}
 	bullet_pre = preload("res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn")
 	laser = preload("res://scene/weapons/bullets/laser_bullet/laser.tscn")
-	attack_modifier["on_hit"].append("res://scene/weapons/modifier/on_hit/on_hit.tscn")
+	
 	super._ready()
 	pass # Replace with function body.
 
@@ -43,3 +50,6 @@ func upgrade_waza():
 	print("updated")
 	bulletnum += 1
 	pass
+
+func cp_active(name):
+	super.cp_active(name)

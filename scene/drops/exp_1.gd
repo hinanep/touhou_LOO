@@ -2,7 +2,7 @@ extends drops_base
 
 
 func _ready():
-	experience = 1
+	experience = 10
 	score = 1
 
 	
