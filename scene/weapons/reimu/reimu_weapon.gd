@@ -5,7 +5,7 @@ extends ranged_weapon_base
 var laser
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	basic_colddown = 0.25
+	basic_colddown = 0.7
 	print("reimu_ready")
 	waza_name = "reimu"
 	cp_list = {
@@ -48,7 +48,7 @@ func auto_attack():
 
 func upgrade_waza():
 	print("updated")
-	bulletnum += 1
+	basic_colddown *= 0.9
 	pass
 
 func cp_active(name):

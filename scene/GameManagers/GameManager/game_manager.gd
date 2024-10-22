@@ -16,8 +16,10 @@ func add_exp(value):
 	
 	player_var.player_exp += value
 	AudioManager.play_sfx("sfx_pick_crystal")
+
 	if(player_var.player_exp >= player_var.exp_need[player_var.level]):
 		level_up()
+
 		
 func add_score(value):
 	

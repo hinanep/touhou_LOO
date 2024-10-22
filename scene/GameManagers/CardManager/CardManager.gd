@@ -106,7 +106,7 @@ func upgrade_card(cardname):
 	get_tree().call_group(cardname,"upgrade_card")
 	card_list[cardname] += 1
 	card_pool["choosed"][cardname]["level"] += 1
-	if(card_pool["choosed"][cardname]["level"]== card_maxlevel):
+	if(card_pool["choosed"][cardname]["level"]>= card_maxlevel):
 		card_pool["max"][cardname] = card_pool["choosed"][cardname]
 		card_pool["choosed"].erase(cardname)
 		CpManager.add_to_maxlist(cardname)

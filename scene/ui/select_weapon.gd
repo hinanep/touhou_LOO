@@ -32,7 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+	#get_tree().paused = true
 	pass
 
 func on_button_selected(upgrade):
@@ -44,9 +44,8 @@ func on_button_selected(upgrade):
 			CardManager.add_card(upgrade)
 	visible = false
 	get_tree().paused = false
-	if player_var.player_exp >= player_var.exp_need[player_var.level]:
-		GameManager.level_up()
-	queue_free()
+	GameManager.add_exp(0)
+	$"..".queue_free()
 	pass # Replace with function body.
 	
 	

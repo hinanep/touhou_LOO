@@ -77,10 +77,12 @@ func shoot(bullet_pree,generate_position,generate_rotation):
 	$".".add_child(new_bullet)
 
 func cp_active(name):
-	for onhit in cp_list[name]["on_hit"]:		
-		attack_modifier["on_hit"].append(cp_list[name]["on_hit"][onhit])
+	for onhit in cp_list[name]["on_hit"]:	
+		attack_modifier["on_hit"].append(onhit)
+		print(onhit)
+		print("active")
 	for on_flying in cp_list[name]["on_flying"]:		
-		attack_modifier["on_flying"].append(cp_list[name]["on_flying"][on_flying])
+		attack_modifier["on_flying"].append(on_flying)
 	for on_emit in cp_list[name]["on_emit"]:		
-		attack_modifier["on_emit"].append(cp_list[name]["on_emit"][on_emit])
+		attack_modifier["on_emit"].append(on_emit)
 

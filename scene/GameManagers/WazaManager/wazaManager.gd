@@ -70,7 +70,7 @@ func upgrade_waza(wazaname):
 	waza_list[wazaname] += 1
 
 	waza_pool["choosed"][wazaname]["level"] += 1
-	if(waza_pool["choosed"][wazaname]["level"]== waza_maxlevel):
+	if(waza_pool["choosed"][wazaname]["level"]>= waza_maxlevel):
 		waza_pool["max"][wazaname] = waza_pool["choosed"][wazaname]
 		waza_pool["choosed"].erase(wazaname)
 		CpManager.add_to_maxlist(wazaname)
