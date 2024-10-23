@@ -13,6 +13,10 @@ func play_background_bgm(bgm_name:String) -> void:
 	if(bgm.has(bgm_name)):
 		background_bgm_player.stream = load(bgm[bgm_name])
 		background_bgm_player.play()
+func stop_background_bgm() -> void:
+
+		background_bgm_player.stop()
+
 		
 func play_bgm(bgm_name:String) -> void:
 	if(bgm.has(bgm_name)):

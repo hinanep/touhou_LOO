@@ -3,9 +3,10 @@ var max_list = []
 var cp_pool = {
 	"unactive":{
 		#cp_name:{ ...}
+		#不满足条件：组件未满或不存在
 	},
-	"active":{},
-	"choosed":{}
+	"active":{},#满足条件但未启用
+	"choosed":{}#已启用
 }
 
 func _init():
@@ -20,8 +21,15 @@ func _init():
 func add_to_maxlist(name):
 	max_list.append(name)
 	activate_cp(get_cp_unactive(name))
-
-
+func raise_weight_to_cp(name):
+	for cp in cp_pool["unactive"]:
+		if cp_pool["unactive"][cp]["effect_group"].has(name):
+			for x_name in cp_pool["unactive"][cp]["effect_group"]:
+				if(WazaManager.waza_pool["unchoosed"].has(x_name)):
+					WazaManager.waza_pool["unchoosed"][x_name]["weight"] *=1.1
+				if(CardManager.card_pool["unchoosed"].has(x_name)):
+					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
+					
 func get_cp_unactive(name):
 	var find = false
 	var cp_array = []
@@ -58,3 +66,13 @@ func random_choose_cp():
 	cp_pool["active"].erase(cp_name)
 	get_tree().call_group(cp_name,"cp_active",cp_name)
 	return true
+func clear_all():
+	max_list = []
+	cp_pool = {
+	"unactive":{
+		#cp_name:{ ...}
+	},
+	"active":{},
+	"choosed":{}
+}
+	_init()

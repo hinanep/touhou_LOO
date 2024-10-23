@@ -84,6 +84,7 @@ func add_card(cardname):
 		return
 	if(card_pool["max"].has(cardname)):
 		return	
+	CpManager.raise_weight_to_cp(cardname)
 	var cardpath = card_pool["unchoosed"][cardname]["path"]
 	get_tree().call_group("hud","add_card",card_pool["unchoosed"][cardname])
 	cardnum_have += 1
@@ -136,3 +137,23 @@ func get_upable_card_by_name(cardname):
 	if(card_pool["unchoosed"].has(cardname)):
 		return card_pool["unchoosed"][cardname]
 	return null
+
+func clear_all():
+	print("card_clear")
+	cardnum_now = 0
+	cardnum_have = 0
+	cardnum_max = 3
+	card_maxlevel = 8
+	card_list = {
+	
+}
+	#card_name:level
+
+	card_pool = {
+	"unchoosed":{
+		#card_name:{"level":,"power?":, ...}
+	},
+	"choosed":{},
+	"max":{}
+}
+	_init()

@@ -4,15 +4,22 @@ extends CharacterBody2D
 var hp = player_var.player_hp_max
 func _init():
 	player_var.player_node = $"."
+	pass
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
+
 	
 	WazaManager.add_waza("base_range")
 	WazaManager.add_waza("base_melee")
 	CardManager.add_card("fairy")
 	CardManager.add_card("test")
-	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
 
+	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
+	request_ready()
+	pass
+func _enter_tree():
+	
+	pass
 func _physics_process(_delta):
 	#移动
 	

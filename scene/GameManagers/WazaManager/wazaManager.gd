@@ -14,6 +14,7 @@ var waza_list = {
 	#waza_name(string): level(int)
 }
 
+	
 func _init():
 	waza_pool["unchoosed"]["base_range"] = {
 		"level":waza_maxlevel-1,
@@ -54,7 +55,7 @@ func add_waza(wazaname):
 		return
 	if(waza_pool["max"].has(wazaname)):
 		return	
-		
+	CpManager.raise_weight_to_cp(wazaname)
 	var path = waza_pool["unchoosed"][wazaname]["path"]
 	
 	wazanum_have += 1
@@ -99,3 +100,20 @@ func get_upable_waza_by_name(wazaname):
 	if(waza_pool["unchoosed"].has(wazaname)):
 		return waza_pool["unchoosed"][wazaname]
 	return null
+
+func clear_all():
+	print("waza_clear")
+	wazanum_have = 0
+	wazanum_max = 3+2
+	waza_maxlevel = 8
+	waza_pool = {
+	"unchoosed":{
+		#waza_name(string):{ level(int)}
+	},
+	"choosed":{},
+	"max":{}
+}
+	waza_list = {
+	#waza_name(string): level(int)
+}
+	_init()

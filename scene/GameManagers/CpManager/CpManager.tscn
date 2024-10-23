@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scene/GameManagers/CpManager/CpManager.gd" id="1_48nrm"]
 
-[node name="CpManager" type="Node2D"]
+[node name="CpManager" type="Node2D" groups=["manager"]]
 script = ExtResource("1_48nrm")

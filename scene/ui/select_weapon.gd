@@ -43,9 +43,9 @@ func on_button_selected(upgrade):
 		if(cards_wazas_selected["cards"].has(upgrade)):
 			CardManager.add_card(upgrade)
 	visible = false
-	get_tree().paused = false
 
-	$"..".queue_free()
+
+	$"..".close_self()
 	GameManager.add_exp(0)
 	pass # Replace with function body.
 	

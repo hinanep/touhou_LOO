@@ -1,12 +1,10 @@
 extends Node
 
 
-var Exp = 0
-var Score = 0
+
+
 
 @onready var UiManager = get_tree().get_first_node_in_group("UiManager")
-
-var kill_num = 0
 
 
 func _ready():
@@ -32,18 +30,14 @@ func add_power(power):
 	if(player_var.power < 0):
 		player_var.power = 0
 
-#func emit_level_up():
-#	level_up.emit()
 
 func level_up():
-	#player_var.random3_weapons_number_select()
+
 	AudioManager.play_sfx("sfx_levelup")
 	player_var.player_exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
-	get_tree().paused = true
-	
-	#UiManager.get_node("select_weapon").visible = true
+
 
 
 

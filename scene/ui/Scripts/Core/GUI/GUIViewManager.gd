@@ -54,3 +54,10 @@ func close_view(viewInstanceId:int):
 	viewInstanceMap.erase(viewInstanceId)
 	v.queue_free()
 	
+func close_all_view():
+	for viewID in viewInstanceMap.keys():
+		
+		var v := _get_view_instance(viewID)
+		v.close()
+		viewInstanceMap.erase(viewID)
+		v.queue_free()
