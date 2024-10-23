@@ -7,7 +7,7 @@ var event_list = {
 	"start_time":0,
 	"end_time":300,
 	"tick_time":2,
-	"number":2,
+	"number":8,
 	"param_buff":0.9
 },
 "elite_slime":{

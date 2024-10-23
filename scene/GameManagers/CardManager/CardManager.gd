@@ -26,7 +26,8 @@ func _init():
 		"pre":null,
 		"weight":1,
 		"card_image":"res://asset/记忆结晶羁绊图标/魔理沙.png",
-		"node":null
+		"node":null,
+		"cn":"魔理沙"
 	}
 	card_pool["unchoosed"]["fairy"] = {
 		"level": card_maxlevel-1,
@@ -127,4 +128,11 @@ func get_active_card_by_name(cardname):
 		return card_pool["choosed"][cardname]
 	if(card_pool["max"].has(cardname)):
 		return card_pool["max"][cardname]
+	return null
+
+func get_upable_card_by_name(cardname):
+	if(card_pool["choosed"].has(cardname)):
+		return card_pool["choosed"][cardname]
+	if(card_pool["unchoosed"].has(cardname)):
+		return card_pool["unchoosed"][cardname]
 	return null

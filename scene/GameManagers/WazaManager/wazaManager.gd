@@ -26,22 +26,26 @@ func _init():
 	waza_pool["unchoosed"]["reimu"] = {
 		"level":0,
 		"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
-		"weight":1
+		"weight":1,
+		"cn":"灵梦"
 	}
 	waza_pool["unchoosed"]["sanae"] = {
 		"level":0,
 		"path":"res://scene/weapons/sanae/sanae_weapon.tscn",
-		"weight":1
+		"weight":1,
+		"cn":"早苗"
 	}
 	waza_pool["unchoosed"]["alice"] = {
 		"level":0,
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":1
+		"weight":1,
+		"cn":"爱丽丝"
 	}
 	waza_pool["unchoosed"]["sekibanki"] = {
 		"level":0,
 		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
-		"weight":5
+		"weight":5,
+		"cn":"赤蛮奇"
 	}
 
 func add_waza(wazaname):
@@ -88,3 +92,10 @@ func is_waza_allmaxlevel():
 			if(waza_list[wazaname]!=waza_maxlevel):
 				return false		
 		return true
+
+func get_upable_waza_by_name(wazaname):
+	if(waza_pool["choosed"].has(wazaname)):
+		return waza_pool["choosed"][wazaname]
+	if(waza_pool["unchoosed"].has(wazaname)):
+		return waza_pool["unchoosed"][wazaname]
+	return null

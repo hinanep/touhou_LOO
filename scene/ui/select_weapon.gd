@@ -14,16 +14,16 @@ func _ready():
 			var card_button = card_button_pre.instantiate()
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
-	
-			card_button.set_upgrade_text(c)
+			var cd = CardManager.get_upable_card_by_name(c)
+			card_button.set_upgrade_text(cd["cn"]+" Lv."+String.num(cd["level"]+1))
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 	for w in cards_wazas_selected["wazas"]:
 		if w != null:
 			var waza_button = card_button_pre.instantiate()
 			$select_buttons.add_child(waza_button)
 			#多语言支持尚未
-
-			waza_button.set_upgrade_text(w)
+			var wz = WazaManager.get_upable_waza_by_name(w)
+			waza_button.set_upgrade_text(wz["cn"]+" Lv."+String.num(wz["level"]+1))
 			waza_button.upgrade_selected.connect(on_button_selected.bind(w))
 
 	if $select_buttons.get_child(0):
@@ -44,8 +44,9 @@ func on_button_selected(upgrade):
 			CardManager.add_card(upgrade)
 	visible = false
 	get_tree().paused = false
-	GameManager.add_exp(0)
+
 	$"..".queue_free()
+	GameManager.add_exp(0)
 	pass # Replace with function body.
 	
 	
