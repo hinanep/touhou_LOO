@@ -1,7 +1,7 @@
 extends Node
 var buffnum_have = 0
 var buffnum_max = 5
-var buff_maxlevel = 8
+var buff_maxlevel = 2
 
 var buff_pool = {
 	"unchoosed":{

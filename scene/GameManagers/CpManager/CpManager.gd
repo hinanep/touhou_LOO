@@ -12,7 +12,7 @@ var cp_pool = {
 func _init():
 	cp_pool["unactive"]["reima"] = {
 		"name":"reima",
-		"effect_group":["reimu","marisa"],
+		"effect_group":["reimu","marisa","pachuli"],
 
 		"weight":1,
 		"cp_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
@@ -29,7 +29,8 @@ func raise_weight_to_cp(name):
 					WazaManager.waza_pool["unchoosed"][x_name]["weight"] *=1.1
 				if(CardManager.card_pool["unchoosed"].has(x_name)):
 					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
-					
+				if(BuffManager.buff_pool["unchoosed"].has(x_name)):
+					BuffManager.buff_pool["unchoosed"][x_name]["weight"] *=1.1
 func get_cp_unactive(name):
 	var find = false
 	var cp_array = []

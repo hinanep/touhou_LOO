@@ -1,7 +1,7 @@
 extends Node
 var wazanum_have = 0
 var wazanum_max = 3+2
-var waza_maxlevel = 8
+var waza_maxlevel = 2
 
 var waza_pool = {
 	"unchoosed":{

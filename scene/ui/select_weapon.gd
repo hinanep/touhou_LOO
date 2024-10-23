@@ -36,8 +36,13 @@ func _ready():
 			buff_button.set_upgrade_text(bf["cn"]+" Lv."+String.num(bf["level"]+1))
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
 			
-	if $select_buttons.get_child(0):
+	if $select_buttons.get_child_count()!=0:
 		$select_buttons.get_child(0).grab_focus()
+	else:
+		player_var.point_ratio *= 1.1
+
+		call_deferred("close_levelup")
+		GameManager.add_exp(0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,13 +59,13 @@ func on_button_selected(upgrade):
 		CardManager.add_card(upgrade)
 	if(cards_wazas_selected["buffs"].has(upgrade)):
 		BuffManager.add_buff(upgrade,false)
-	visible = false
 
 
-	$"..".close_self()
+	call_deferred("close_levelup")
 	GameManager.add_exp(0)
 	pass # Replace with function body.
 	
-	
+func close_levelup():
+	$"..".close_self()
 
 	

@@ -3,7 +3,7 @@ var power = player_var.power
 var cardnum_now = 0
 var cardnum_have = 0
 var cardnum_max = 3
-var card_maxlevel = 8
+var card_maxlevel = 2
 var card_list = {
 	
 }

@@ -33,7 +33,7 @@ var power_max = 10000#- 符力上限：可存储的最大符力
 var nearest_enemy
 var player_hp = player_hp_max
 var power = power_max 
-var point = 0
+var point:int = 0
 var player_exp = 0
 var level = 0
 var is_invincible = false
@@ -50,7 +50,7 @@ var passive_full = false
 
 var is_card_casting = false
 var player_node
-var exp_need = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,1000000]
+var exp_need = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,100000]
 
 
 #玩家造成伤害公式

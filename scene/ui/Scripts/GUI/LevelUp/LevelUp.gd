@@ -1,17 +1,15 @@
 extends BaseGUIView
 
-var is_pausing = false
+
 func _open():
-	if get_tree().paused:
-		is_pausing = true
-	else:
-		get_tree().paused = true
-	pass
+
+	get_tree().paused = true
+
 	
 
 func _close():
-	if !is_pausing:
-		get_tree().paused = false
+
+	get_tree().paused = false
 	pass
 	
 	
@@ -24,4 +22,8 @@ func close():
 	
 	
 func close_self():
+	
+	GameManager.upping = false
+	print("levelup closed")
 	G.get_gui_view_manager().close_view(viewInstanceId)
+	get_tree().paused = false
