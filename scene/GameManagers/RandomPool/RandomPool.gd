@@ -12,6 +12,7 @@ func _ready():
 func random_nselect_from_allpool(n:int):
 	var cards = []
 	var wazas = []
+	var buffs = []
 	if !player_var.waza_num_full:
 		for wazaname in WazaManager.waza_pool["unchoosed"]:
 			wazas.append([wazaname,WazaManager.waza_pool["unchoosed"][wazaname]["weight"]])
@@ -23,21 +24,29 @@ func random_nselect_from_allpool(n:int):
 			cards.append([cardname,CardManager.card_pool["unchoosed"][cardname]["weight"]])
 	for cardname in CardManager.card_pool["choosed"]:
 		cards.append([cardname,CardManager.card_pool["choosed"][cardname]["weight"]])
+		
+	if !player_var.passive_num_full:
+		for buffname in BuffManager.buff_pool["unchoosed"]:
+			buffs.append([buffname,BuffManager.buff_pool["unchoosed"][buffname]["weight"]])
+	for buffname in BuffManager.buff_pool["choosed"]:
+		buffs.append([buffname,BuffManager.buff_pool["choosed"][buffname]["weight"]])	
+		
 	var pool = []
 	pool.append_array(cards)
 	pool.append_array(wazas)
-	
+	pool.append_array(buffs)
 	var nselect = selectm_from_samples(pool,n)
 	var wazas_ans = []
 	var cards_ans = []
-	
+	var buffs_ans = []
 	for x in nselect:
 		if x in wazas:
 			wazas_ans.append(x[0])
 		if x in cards:
 			cards_ans.append(x[0])
-		
-	return{"cards":cards_ans,"wazas":wazas_ans}
+		if x in buffs:
+			buffs_ans.append(x[0])
+	return{"cards":cards_ans,"wazas":wazas_ans,"buffs":buffs_ans}
 
 
 func random_select_from_waza():

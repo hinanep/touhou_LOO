@@ -23,10 +23,11 @@ GameManager="*res://scene/GameManagers/GameManager/game_manager.tscn"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://scene/GameManagers/AudioManager/AudioManager.tscn"
 RandomPool="*res://scene/GameManagers/RandomPool/RandomPool.gd"
-WazaManager="*res://scene/GameManagers/WazaManager/wazaManager.gd"
 CardManager="*res://scene/GameManagers/CardManager/CardManager.gd"
 SpawnManager="*res://scene/GameManagers/SpawnManager/spawnmanager.gd"
 CpManager="*res://scene/GameManagers/CpManager/CpManager.gd"
+WazaManager="*res://scene/GameManagers/WazaManager/wazaManager.gd"
+BuffManager="*res://scene/GameManagers/BuffManager/BuffManager.gd"
 
 [debug]
 

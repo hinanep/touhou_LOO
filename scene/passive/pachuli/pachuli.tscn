@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dccux4bnx5va"]
+
+[ext_resource type="Script" path="res://scene/passive/pachuli/pachuli.gd" id="1_pdd1r"]
+
+[node name="Pachuli" type="Node2D"]
+script = ExtResource("1_pdd1r")
+
+[node name="endTimer" type="Timer" parent="."]

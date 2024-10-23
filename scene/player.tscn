@@ -112,6 +112,8 @@ curve = SubResource("Curve2D_l3lgj")
 position = Vector2(216, 139)
 rotation = -3.13673
 
+[node name="buffManager" type="Node2D" parent="."]
+
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]
 [connection signal="body_entered" from="pickup_area" to="." method="_on_pickup_area_body_entered"]
