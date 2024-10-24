@@ -5,19 +5,19 @@ var event_list = {
 	"pre":preload("res://scene/enemys/slime/slime.tscn"),
 	"spawn_mode":"duration",
 	"start_time":0,
-	"end_time":300,
+	"end_time":10,
 	"tick_time":2,
 	"number":8,
 	"param_buff":0.9
 },
 "elite_slime":{
 	"pre":preload("res://scene/enemys/elite_slime/elite_slime.tscn"),
-	"spawn_mode":"duration",
+	"spawn_mode":"once",
 	"start_time":15,
 	"end_time":60,
 	"tick_time":2,
 	"number":1,
-	"param_buff":0.9
+	"param_buff":100
 }
 }
 

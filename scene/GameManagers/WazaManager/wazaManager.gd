@@ -1,7 +1,7 @@
 extends Node
-var wazanum_have = 0
-var wazanum_max = 3+2
-var waza_maxlevel = 2
+var wazanum_have
+var wazanum_max
+var waza_maxlevel
 
 var waza_pool = {
 	"unchoosed":{
@@ -13,41 +13,6 @@ var waza_pool = {
 var waza_list = {
 	#waza_name(string): level(int)
 }
-
-	
-func _init():
-	waza_pool["unchoosed"]["base_range"] = {
-		"level":waza_maxlevel-1,
-		"path":"res://scene/weapons/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn"
-	}
-	waza_pool["unchoosed"]["base_melee"] = {
-		"level":waza_maxlevel-1,
-		"path":"res://scene/weapons/weapon_base/melee_base/melee_weapon_base.tscn"
-	}
-	waza_pool["unchoosed"]["reimu"] = {
-		"level":0,
-		"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
-		"weight":1,
-		"cn":"灵梦"
-	}
-	waza_pool["unchoosed"]["sanae"] = {
-		"level":0,
-		"path":"res://scene/weapons/sanae/sanae_weapon.tscn",
-		"weight":1,
-		"cn":"早苗"
-	}
-	waza_pool["unchoosed"]["alice"] = {
-		"level":0,
-		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":1,
-		"cn":"爱丽丝"
-	}
-	waza_pool["unchoosed"]["sekibanki"] = {
-		"level":0,
-		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
-		"weight":5,
-		"cn":"赤蛮奇"
-	}
 
 func add_waza(wazaname):
 	if(waza_pool["choosed"].has(wazaname)):
@@ -104,7 +69,7 @@ func get_upable_waza_by_name(wazaname):
 func clear_all():
 	print("waza_clear")
 	wazanum_have = 0
-	wazanum_max = 3+2
+	wazanum_max = 6
 	waza_maxlevel = 8
 	waza_pool = {
 	"unchoosed":{
@@ -117,3 +82,69 @@ func clear_all():
 	#waza_name(string): level(int)
 }
 	_init()
+
+func _init():
+	wazanum_have = 0
+	wazanum_max = 6
+	waza_maxlevel = 2
+	waza_pool["unchoosed"]["base_range"] = {
+		"level":waza_maxlevel-1,
+		"path":"res://scene/weapons/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn"
+	}
+	waza_pool["unchoosed"]["base_melee"] = {
+		"level":waza_maxlevel-1,
+		"path":"res://scene/weapons/weapon_base/melee_base/melee_weapon_base.tscn"
+	}
+	waza_pool["unchoosed"]["reimu"] = {
+		"level":0,
+		"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
+		"weight":5,
+		"cn":"灵梦",
+		"type":"skill",#技能、符卡、衍生
+		"locking_type":"nearest_enemy",#目标、定向、随机方向
+		"attack_pre":"res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn",#发射实体路径
+		"diretion":Vector2(0,0),#发射方向
+		"diretion_rotation":0,#发射方向旋转角（逆时针角度）
+		"creation_distance":0,#距离生成位置的距离
+		
+		"creating_position":"",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,
+		"creating_rule":"",#生成一组、一个个生成
+		"attack_gen_times":"",#基础生成次数
+		"basic_colddown":1.0,
+		"Physical_Addition_Efficiency":0.0,
+		"Magical_Addition_Efficiency":1.0,
+		"Speed_Efficiency":1.0,
+		"Duration_Efficiency":1.0,
+		"Range_Efficiency":1.0,
+		"Magical_Times_Efficiency":1.0,
+		"Physical_Times_Efficiency":1.0,
+		"Reduction_Efficiency":1.0,
+		"cp_map":{},
+		"upgrade_map":{
+			"Damage_Addition":[],
+			"Bullet_Speed_Addition":[],
+			"Duration_Addition":[],
+			"Range_Addition":[],
+			"Times_Addition":[],
+			"Debuff_Addition":[],
+			"Cd_Reduction":[]
+						}
+		}
+	waza_pool["unchoosed"]["sanae"] = {
+		"level":0,
+		"path":"res://scene/weapons/sanae/sanae_weapon.tscn",
+		"weight":1,
+		"cn":"早苗"
+	}
+	waza_pool["unchoosed"]["alice"] = {
+		"level":0,
+		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
+		"weight":1,
+		"cn":"爱丽丝"
+	}
+	waza_pool["unchoosed"]["sekibanki"] = {
+		"level":0,
+		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
+		"weight":5,
+		"cn":"赤蛮奇"
+	}

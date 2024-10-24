@@ -24,6 +24,6 @@ func close():
 func close_self():
 	
 	GameManager.upping = false
-	print("levelup closed")
+
 	G.get_gui_view_manager().close_view(viewInstanceId)
-	get_tree().paused = false
+

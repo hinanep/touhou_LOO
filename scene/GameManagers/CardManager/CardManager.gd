@@ -1,9 +1,9 @@
 extends Node2D
 var power = player_var.power
-var cardnum_now = 0
-var cardnum_have = 0
-var cardnum_max = 3
-var card_maxlevel = 2
+var cardnum_now
+var cardnum_have 
+var cardnum_max 
+var card_maxlevel
 var card_list = {
 	
 }
@@ -19,6 +19,10 @@ var card_pool = {
 
 
 func _init():
+	cardnum_now = 0
+	cardnum_have = 0
+	cardnum_max = 3
+	card_maxlevel = 2
 	card_pool["unchoosed"]["marisa"] = {
 		"level":0,
 		"power_cost":40,
@@ -140,10 +144,7 @@ func get_upable_card_by_name(cardname):
 
 func clear_all():
 	print("card_clear")
-	cardnum_now = 0
-	cardnum_have = 0
-	cardnum_max = 3
-	card_maxlevel = 8
+
 	card_list = {
 	
 }

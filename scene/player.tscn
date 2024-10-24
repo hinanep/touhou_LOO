@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c4vy5e3etmf8h" path="res://scene/GameManagers/CardManager/CardManager.tscn" id="6_00exy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
-radius = 5.0
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67g0n"]
 atlas = ExtResource("1_6epby")
@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lo10"]
-radius = 40.0125
+radius = 242.61
 
 [sub_resource type="Curve2D" id="Curve2D_l3lgj"]
 _data = {
@@ -113,6 +113,14 @@ position = Vector2(216, 139)
 rotation = -3.13673
 
 [node name="buffManager" type="Node2D" parent="."]
+
+[node name="enemy_detect_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="detect_shape" type="CollisionShape2D" parent="enemy_detect_area"]
+shape = SubResource("CircleShape2D_2lo10")
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]

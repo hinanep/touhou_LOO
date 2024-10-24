@@ -10,13 +10,13 @@ var upping = false
 func _ready():
 	
 	pass
+
 func add_exp(value):
 	
 	player_var.player_exp += value
 	AudioManager.play_sfx("sfx_pick_crystal")
 
-	if(player_var.player_exp >= player_var.exp_need[player_var.level]) and !upping:
-		print("add_exp_levelup")
+	if(player_var.player_exp >= player_var.exp_need[player_var.level]) and upping == false:
 		upping = true
 		level_up()
 

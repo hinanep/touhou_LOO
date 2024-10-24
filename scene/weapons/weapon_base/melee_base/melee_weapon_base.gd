@@ -13,7 +13,7 @@ var nearest_enemy
 func _ready():
 	set_range_and_colddown()
 	$meleeTimer.timeout.connect(_on_kick_timer_timeout)
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 
 	nearest_enemy = get_nearest_enemy_inarea()
@@ -34,7 +34,7 @@ func enemy_near(a,b):
 func get_nearest_enemy_inarea():
 	var enemy_in_range = attack_range.get_overlapping_bodies() #area范围内的物体
 	if !enemy_in_range.is_empty():	
-		return enemy_in_range.reduce(func(min,val):return val if enemy_near(val,min) else min)
+		return enemy_in_range.reduce(func(mine,val):return val if enemy_near(val,mine) else mine)
 	return null
 	
 

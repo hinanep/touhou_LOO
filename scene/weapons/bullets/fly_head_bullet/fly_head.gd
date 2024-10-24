@@ -1,14 +1,17 @@
-extends trace_bullet
+extends direction_bullet
 
 
+var velocity = Vector2(0.0,0.0)
 
 func _ready():
-	timer.start()
+	destroy_timer = $Timer
+	destroy_timer.start()
 	basic_speed = 300
-	velocity = global_position.direction_to(player_var.nearest_enemy.global_position) * player_var.bullet_speed_ratio * basic_speed
+	velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * basic_speed
 func _physics_process(delta):
 	#print(player_var.nearest_enemy.global_position)
-	velocity +=100 *  global_position.direction_to(player_var.player_node.global_position) *delta*sqrt(global_position.distance_to(player_var.player_node.global_position)) 
+	if(player_var.player_node != null):
+		velocity +=100 *  global_position.direction_to(player_var.player_node.global_position) *delta*sqrt(global_position.distance_to(player_var.player_node.global_position)) 
 	velocity +=  velocity.rotated(PI/2).normalized() * delta * 100
 	velocity = velocity.normalized() * basic_speed * player_var.bullet_speed_ratio
 	position += velocity * delta

@@ -14,11 +14,11 @@ func _ready():
 
 func _physics_process(_delta):
 	var nearest_enemy = get_nearest_enemy_inarea()
-	player_var.nearest_enemy = nearest_enemy
+
 	
 	if nearest_enemy:
 	
-		look_at(nearest_enemy.global_position)		
+		#look_at(nearest_enemy.global_position)		
 		auto_attack()
 		
 
@@ -27,15 +27,16 @@ func auto_attack():
 	var generate_position 
 	var direction
 	if shoot_ready:
+		shoot_ready = false
+		shoot_timer.start()
 		for i in range(player_var.bullet_times + bulletnum):
-			generate_position = $".".global_position +   $".".global_position.direction_to(get_nearest_enemy_inarea().global_position) * randi_range(-player_var.bullet_times,player_var.bullet_times)
+			generate_position = $".".global_position
 			#direction = global_position.angle_to_point(get_nearest_enemy_inarea().global_position)
 			direction = randf_range(-PI,PI)
+			await  get_tree().create_timer(0.1).timeout
 			shoot(bullet_pre,generate_position,direction)
 			
 			
-		shoot_ready = false
-		shoot_timer.start()
 
 func upgrade_waza():
 	print("updated")

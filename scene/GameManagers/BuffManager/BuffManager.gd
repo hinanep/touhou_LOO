@@ -1,7 +1,7 @@
 extends Node
-var buffnum_have = 0
-var buffnum_max = 5
-var buff_maxlevel = 2
+var buffnum_have
+var buffnum_max
+var buff_maxlevel
 
 var buff_pool = {
 	"unchoosed":{
@@ -17,6 +17,9 @@ var buff_list = {
 
 	
 func _init():
+	buffnum_have = 0
+	buffnum_max = 5
+	buff_maxlevel = 2
 	buff_pool["unchoosed"]["pachuli"] = {
 		"type":"stable",
 		"level":0,
@@ -56,11 +59,11 @@ func add_buff(buffname,force_buff):
 		
 	
 	
-	var buff = load(path)
-	buff = buff.instantiate()
+	var buff1 = load(path)
+	buff1 = buff1.instantiate()
 	
-	player_var.player_node.get_node("buffManager").add_child(buff)
-	buff.position = Vector2(0,0)
+	player_var.player_node.get_node("buffManager").add_child(buff1)
+	buff1.position = Vector2(0,0)
 	upgrade_buff(buffname)
 	
 func upgrade_buff(buffname):
@@ -91,9 +94,7 @@ func get_upable_buff_by_name(buffname):
 
 func clear_all():
 	print("buff_clear")
-	buffnum_have = 0
-	buffnum_max = 5
-	buff_maxlevel = 8
+
 	buff_pool = {
 	"unchoosed":{
 		#buff_name(string):{ level(int)}

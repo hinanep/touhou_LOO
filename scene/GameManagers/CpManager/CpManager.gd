@@ -18,12 +18,12 @@ func _init():
 		"cp_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
 	}
 
-func add_to_maxlist(name):
-	max_list.append(name)
-	activate_cp(get_cp_unactive(name))
-func raise_weight_to_cp(name):
+func add_to_maxlist(x_name):
+	max_list.append(x_name)
+	activate_cp(get_cp_unactive(x_name))
+func raise_weight_to_cp(xname):
 	for cp in cp_pool["unactive"]:
-		if cp_pool["unactive"][cp]["effect_group"].has(name):
+		if cp_pool["unactive"][cp]["effect_group"].has(xname):
 			for x_name in cp_pool["unactive"][cp]["effect_group"]:
 				if(WazaManager.waza_pool["unchoosed"].has(x_name)):
 					WazaManager.waza_pool["unchoosed"][x_name]["weight"] *=1.1
@@ -31,13 +31,13 @@ func raise_weight_to_cp(name):
 					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
 				if(BuffManager.buff_pool["unchoosed"].has(x_name)):
 					BuffManager.buff_pool["unchoosed"][x_name]["weight"] *=1.1
-func get_cp_unactive(name):
+func get_cp_unactive(x_name):
 	var find = false
 	var cp_array = []
 	print("get_cp_unactive")
-	print(name)
+	print(x_name)
 	for cp in cp_pool["unactive"]:
-		if cp_pool["unactive"][cp]["effect_group"].has(name):
+		if cp_pool["unactive"][cp]["effect_group"].has(x_name):
 			
 			find = true
 			for x in cp_pool["unactive"][cp]["effect_group"]:
