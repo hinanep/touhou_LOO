@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhtp2q0o4vsgc" path="res://asset/素材/符札弹.png" id="3_xuv1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iw3d1"]
-size = Vector2(10, 16)
+size = Vector2(4, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fhvm"]
 atlas = ExtResource("3_xuv1t")
@@ -32,7 +32,8 @@ shape = SubResource("RectangleShape2D_iw3d1")
 wait_time = 2.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
-scale = Vector2(0.0217391, 0.0217391)
+position = Vector2(-4.76837e-07, 9.53674e-07)
+scale = Vector2(0.00815216, 0.00943893)
 sprite_frames = SubResource("SpriteFrames_be0q3")
 animation = &"reimu"
 autoplay = "reimu"

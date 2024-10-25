@@ -2,17 +2,30 @@ class_name direction_bullet extends Area2D
 var basic_speed = 200
 var basic_damage = 10
 var destroy_timer
-
+var diretion:float
+var target
 signal on_hit
-
+var bullet_modi_map ={
+		"Damage_Addition":1,
+		"Bullet_Speed_Addition":1,
+		"Duration_Addition":1,
+		"Range_Addition":1,
+		"Debuff_Addition":1,
+	}
 
 func _ready():
-	destroy_timer = $Timer
+	destroy_timer = $destroy_timer
+	destroy_timer.wait_time *=  bullet_modi_map["Duration_Addition"]
 	destroy_timer.start()
+	basic_damage *= bullet_modi_map["Damage_Addition"]
+	basic_speed *= bullet_modi_map["Bullet_Speed_Addition"]
+	scale *= bullet_modi_map["Range_Addition"]
 
+	
 func _physics_process(delta):
-	var direction = Vector2.RIGHT.rotated(rotation)
-	position += direction * player_var.bullet_speed_ratio * basic_speed * delta
+	#var direction = Vector2.RIGHT.rotated(rotation)
+
+	position += Vector2.from_angle(diretion) * player_var.bullet_speed_ratio * basic_speed * delta
 	
 func _on_timer_timeout():
 	queue_free()

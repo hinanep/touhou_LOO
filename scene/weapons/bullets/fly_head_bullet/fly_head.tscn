@@ -29,8 +29,8 @@ script = ExtResource("2_dr78b")
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_iw3d1")
 
-[node name="Timer" parent="." index="1"]
-wait_time = 12.331
+[node name="destroy_timer" parent="." index="1"]
+wait_time = 4.506
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 scale = Vector2(0.0217391, 0.0217391)

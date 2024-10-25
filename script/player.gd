@@ -2,14 +2,13 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var hp = player_var.player_hp_max
-var enemy_detect_zone
-var enemy_in_zone
+
 func _init():
 	player_var.player_node = $"."
 	pass
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
-	enemy_detect_zone = $enemy_detect_area
+	
 	
 	WazaManager.add_waza("base_range")
 	WazaManager.add_waza("base_melee")
@@ -37,11 +36,7 @@ func _physics_process(_delta):
 	else:
 		animated_sprite_2d.play("stay")
 		pass
-	enemy_in_zone = enemy_detect_zone.get_overlapping_bodies()
-	if !enemy_in_zone.is_empty():	
-		player_var.nearest_enemy = enemy_in_zone.reduce(func(min_e,val):return val if enemy_near(val,min_e) else min_e)
-		if player_var.nearest_enemy!=null:
-			player_var.nearest_enemy_position = player_var.nearest_enemy.global_position
+
 			
 func take_damage(damage):
 	if player_var.is_invincible:
@@ -69,6 +64,7 @@ func _on_invincible_time_timeout():
 
 
 func _on_pickup_area_body_entered(body):
+
 	if body.has_method("fly_to_player"):
 		body.fly_to_player()
 	pass # Replace with function body.
@@ -79,5 +75,4 @@ func _on_pickup_area_area_entered(area):
 		area.fly_to_player()
 	pass # Replace with function body.
 	
-func enemy_near(a,b):
-	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
+

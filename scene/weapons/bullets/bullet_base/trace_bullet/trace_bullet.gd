@@ -1,17 +1,28 @@
 class_name trace_bullet extends Area2D
 
-@onready var timer = $Timer
+@onready var timer = $destroy_timer
 var basic_speed = 500
 var basic_damage = 10
-var trace_strenth = 0.1
+var trace_strenth = 0.15
 var velocity = Vector2(0.0,0.0)
 var target_velocity = Vector2(0.0,0.0)
 var target = null
-
+var diretion
 var target_lost = false
 var detect_next_target = true
+var bullet_modi_map ={
+		"Damage_Addition":1,
+		"Bullet_Speed_Addition":1,
+		"Duration_Addition":1,
+		"Range_Addition":1,
+		"Debuff_Addition":1,
+	}
 signal on_hit
 func _ready():
+	timer.wait_time *=  bullet_modi_map["Duration_Addition"]
+	basic_damage *= bullet_modi_map["Damage_Addition"]
+	basic_speed *= bullet_modi_map["Bullet_Speed_Addition"]
+	scale *= bullet_modi_map["Range_Addition"]
 	timer.start()
 	#if(target!=null):
 	#velocity = global_position.direction_to(target.global_position) * player_var.bullet_speed_ratio * basic_speed

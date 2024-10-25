@@ -4,15 +4,12 @@ extends direction_bullet
 var move = true
 var attackable = true
 func _ready():
-	destroy_timer = $destroy_timer
 	basic_speed = 500
 	basic_damage = 8
-	destroy_timer.start()
-
+	super._ready()
 func _physics_process(delta):
 	if move:
-		var direction = Vector2.RIGHT.rotated(rotation)
-		position += direction * player_var.bullet_speed_ratio * basic_speed * delta
+		position += Vector2.from_angle(diretion) * player_var.bullet_speed_ratio * basic_speed * delta
 	else:
 		var enemy_in_range = get_overlapping_bodies()
 		if enemy_in_range and attackable:

@@ -27,18 +27,17 @@ func add_waza(wazaname):
 	if wazanum_have >= wazanum_max:
 		player_var.waza_num_full = true
 	player_var.waza_full = false
+
+	var weapon = load(path)
+	weapon = weapon.instantiate()
+	weapon.waza_config = waza_pool["unchoosed"][wazaname]
+	player_var.player_node.get_node("WazaManager").add_child(weapon)
+	weapon.position = Vector2(0,0)
 	
 	waza_pool["choosed"][wazaname]=waza_pool["unchoosed"][wazaname]
 	waza_pool["unchoosed"].erase(wazaname)
 	waza_list[wazaname] = waza_pool["choosed"][wazaname]["level"]
 	upgrade_waza(wazaname)
-	
-	
-	var weapon = load(path)
-	weapon = weapon.instantiate()
-	
-	player_var.player_node.get_node("WazaManager").add_child(weapon)
-	weapon.position = Vector2(0,0)
 	
 func upgrade_waza(wazaname):
 	waza_list[wazaname] += 1
@@ -86,65 +85,214 @@ func clear_all():
 func _init():
 	wazanum_have = 0
 	wazanum_max = 6
-	waza_maxlevel = 2
+	waza_maxlevel = 8
 	waza_pool["unchoosed"]["base_range"] = {
-		"level":waza_maxlevel-1,
-		"path":"res://scene/weapons/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn"
-	}
+	"waza_name" : "base_range",
+	"level":waza_maxlevel-1,
+	"path":"res://scene/weapons/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn",
+	"weight":1,#随机权重
+	"cn":"",#中文名
+	"type":"skill",#技能、符卡、衍生0
+	
+	"locking_type":"diretion",#目标、定向、随机方向01
+	"attack_pre":"res://scene/weapons/bullets/beginning_bullet/beginning_bullet.tscn",#发射实体路径1
+	"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
+	"creation_distance":0,#距离生成位置的距离1
+	
+	"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
+	"creating_rule":"one",#生成一组、一个个生成1
+	"attack_gen_times":1,#生成次数1
+	"basic_colddown":1,#1
+	
+	
+	"Physical_Addition_Efficiency":0.0,#
+	"Magical_Addition_Efficiency":1.0,#
+	"Speed_Efficiency":1.0,#
+	"Duration_Efficiency":1.0,#
+	"Range_Efficiency":1.0,
+	
+	"Magical_Times_Efficiency":1,#1
+	"Physical_Times_Efficiency":1.0,#1	
+	"Reduction_Efficiency":1.0,#1
+	
+	"cp_map":{},#
+	"upgrade_map":{#
+		"Damage_Addition":[1,2,3,4,5,6,7,1],
+		"Bullet_Speed_Addition":[1,2,3,4,5,6,7,1],
+		"Duration_Addition":[1,1,1,1,1,1,1,1],
+		"Range_Addition":[1,2,3,5,6,6,6,1],
+		"Times":[1,2,3,4,4,4,4,1],
+		"Debuff_Addition":[1,1,1,1,1,1,1,1],
+		"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,1]
+					},	#
+	"shoot_sfx":"sfx_bulletshoot"
+		}
 	waza_pool["unchoosed"]["base_melee"] = {
 		"level":waza_maxlevel-1,
 		"path":"res://scene/weapons/weapon_base/melee_base/melee_weapon_base.tscn"
 	}
 	waza_pool["unchoosed"]["reimu"] = {
-		"level":0,
-		"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
-		"weight":5,
-		"cn":"灵梦",
-		"type":"skill",#技能、符卡、衍生
-		"locking_type":"nearest_enemy",#目标、定向、随机方向
-		"attack_pre":"res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn",#发射实体路径
-		"diretion":Vector2(0,0),#发射方向
-		"diretion_rotation":0,#发射方向旋转角（逆时针角度）
-		"creation_distance":0,#距离生成位置的距离
-		
-		"creating_position":"",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,
-		"creating_rule":"",#生成一组、一个个生成
-		"attack_gen_times":"",#基础生成次数
-		"basic_colddown":1.0,
-		"Physical_Addition_Efficiency":0.0,
-		"Magical_Addition_Efficiency":1.0,
-		"Speed_Efficiency":1.0,
-		"Duration_Efficiency":1.0,
-		"Range_Efficiency":1.0,
-		"Magical_Times_Efficiency":1.0,
-		"Physical_Times_Efficiency":1.0,
-		"Reduction_Efficiency":1.0,
-		"cp_map":{},
-		"upgrade_map":{
-			"Damage_Addition":[],
-			"Bullet_Speed_Addition":[],
-			"Duration_Addition":[],
-			"Range_Addition":[],
-			"Times_Addition":[],
-			"Debuff_Addition":[],
-			"Cd_Reduction":[]
-						}
+	"waza_name" : "reimu",
+	"level":0,
+	"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
+	"weight":5,#随机权重
+	"cn":"灵梦",#中文名
+	"type":"skill",#技能、符卡、衍生0
+	
+	"locking_type":"nearest_enemy",#目标、定向、随机方向01
+	"attack_pre":"res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn",#发射实体路径1
+	"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
+	"creation_distance":0,#距离生成位置的距离1
+	
+	"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
+	"creating_rule":"one",#生成一组、一个个生成1
+	"attack_gen_times":1,#生成次数1
+	"basic_colddown":1,#1
+	
+	
+	"Physical_Addition_Efficiency":0.0,#
+	"Magical_Addition_Efficiency":1.0,#
+	"Speed_Efficiency":1.0,#
+	"Duration_Efficiency":1.0,#
+	"Range_Efficiency":1.0,
+	
+	"Magical_Times_Efficiency":1,#1
+	"Physical_Times_Efficiency":1.0,#1	
+	"Reduction_Efficiency":1.0,#1
+	
+	"cp_map":{},#
+	"upgrade_map":{#
+		"Damage_Addition":[1,2,3,4,5,6,7,8],
+		"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
+		"Duration_Addition":[1,1,1,1,1,1,1,1],
+		"Range_Addition":[1,2,3,5,6,6,6,6],
+		"Times":[1,2,3,4,4,4,4,4],
+		"Debuff_Addition":[1,1,1,1,1,1,1,1],
+		"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+					},	#
+	"shoot_sfx":"sfx_bulletshoot"
 		}
 	waza_pool["unchoosed"]["sanae"] = {
+		"waza_name" : "sanae",
 		"level":0,
 		"path":"res://scene/weapons/sanae/sanae_weapon.tscn",
 		"weight":1,
-		"cn":"早苗"
+		"cn":"早苗",	#
+		"type":"skill",#技能、符卡、衍生0
+	
+		"locking_type":"nearest_enemy",#目标、定向、随机方向01
+		"attack_pre":"",#发射实体路径1
+		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
+		"creation_distance":0,#距离生成位置的距离1
+		
+		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
+		"creating_rule":"one",#生成一组、一个个生成1
+		"attack_gen_times":1,#生成次数1
+		"basic_colddown":1,#1
+		
+		
+		"Physical_Addition_Efficiency":0.0,#
+		"Magical_Addition_Efficiency":1.0,#
+		"Speed_Efficiency":1.0,#
+		"Duration_Efficiency":1.0,#
+		"Range_Efficiency":1.0,
+		
+		"Magical_Times_Efficiency":1,#1
+		"Physical_Times_Efficiency":1.0,#1	
+		"Reduction_Efficiency":1.0,#1
+		
+		"cp_map":{},#
+		"upgrade_map":{#
+			"Damage_Addition":[1,2,3,4,5,6,7,8],
+			"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
+			"Duration_Addition":[1,1,1,1,1,1,1,1],
+			"Range_Addition":[1,2,3,5,6,6,6,6],
+			"Times":[1,2,3,4,4,4,4,4],
+			"Debuff_Addition":[1,1,1,1,1,1,1,1],
+			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+						},
+		"shoot_sfx":"sfx_bulletshoot"
 	}
 	waza_pool["unchoosed"]["alice"] = {
+		"waza_name" : "alice",
 		"level":0,
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":1,
-		"cn":"爱丽丝"
+		"weight":5,
+		"cn":"爱丽丝",
+		"type":"skill",#技能、符卡、衍生0
+	
+		"locking_type":"random",#目标、定向、随机方向01
+		"attack_pre":"res://scene/weapons/bullets/alice_bullet/alice_bullet.tscn",#发射实体路径1
+		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
+		"creation_distance":0,#距离生成位置的距离1
+		
+		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
+		"creating_rule":"one",#生成一组、一个个生成1
+		"attack_gen_times":1,#生成次数1
+		"basic_colddown":1,#1
+		
+		
+		"Physical_Addition_Efficiency":0.0,#
+		"Magical_Addition_Efficiency":1.0,#
+		"Speed_Efficiency":1.0,#
+		"Duration_Efficiency":1.0,#
+		"Range_Efficiency":1.0,
+		
+		"Magical_Times_Efficiency":1,#1
+		"Physical_Times_Efficiency":1.0,#1	
+		"Reduction_Efficiency":1.0,#1
+		
+		"cp_map":{},#
+		"upgrade_map":{#
+			"Damage_Addition":[1,2,3,4,5,6,7,8],
+			"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
+			"Duration_Addition":[1,2,2,2,3,3,3,3],
+			"Range_Addition":[1,2,3,5,6,6,6,6],
+			"Times":[1,2,3,4,4,4,4,4],
+			"Debuff_Addition":[1,1,1,1,1,1,1,1],
+			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+						},
+		"shoot_sfx":"sfx_bulletshoot"
 	}
 	waza_pool["unchoosed"]["sekibanki"] = {
+		"waza_name" : "sekibanki",
 		"level":0,
 		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
-		"weight":5,
-		"cn":"赤蛮奇"
+		"weight":15,
+		"cn":"赤蛮奇",
+		"type":"skill",#技能、符卡、衍生0
+	
+		"locking_type":"random",#目标、定向、随机方向01
+		"attack_pre":"res://scene/weapons/bullets/fly_head_bullet/fly_head.tscn",#发射实体路径1
+		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
+		"creation_distance":0,#距离生成位置的距离1
+		
+		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
+		"creating_rule":"one",#生成一组、一个个生成1
+		"attack_gen_times":3,#生成次数1
+		"basic_colddown":3,#1
+		
+		
+		"Physical_Addition_Efficiency":0.0,#
+		"Magical_Addition_Efficiency":1.0,#
+		"Speed_Efficiency":1.0,#
+		"Duration_Efficiency":1.0,#
+		"Range_Efficiency":1.0,
+		
+		"Magical_Times_Efficiency":1,#1
+		"Physical_Times_Efficiency":1.0,#1	
+		"Reduction_Efficiency":1.0,#1
+		
+		"cp_map":{},#
+		"upgrade_map":{#
+			"Damage_Addition":[1,2,3,4,5,6,7,8],
+			"Bullet_Speed_Addition":[1,1.1,1.1,1.1,1.1,1.1,1.1,1.1],
+			"Duration_Addition":[1,2,2,2,3,3,3,3],
+			"Range_Addition":[1,1.1,1.2,1.3,1.4,1.5,1.6,1.7],
+			"Times":[3,4,5,6,6,6,6,6],
+			"Debuff_Addition":[1,1,1,1,1,1,1,1],
+			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+						},
+		"shoot_sfx":"sfx_bulletshoot"
+
 	}

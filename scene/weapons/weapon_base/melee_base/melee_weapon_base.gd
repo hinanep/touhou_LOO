@@ -10,6 +10,42 @@ const kick_basic_damage = 10
 
 var kick_ready = true
 var nearest_enemy
+var waza_config = {
+	"waza_name" : "",
+	"level":0,
+	"path":"",
+	"weight":0,#随机权重
+	"cn":"",#中文名
+	"type":"skill",#技能、符卡、衍生
+	"locking_type":"",#目标、定向、随机方向
+	"attack_pre":"",#发射实体路径
+	"diretion":Vector2(0,0),#发射方向
+	"diretion_rotation":0,#发射方向旋转角（逆时针角度）
+	"creation_distance":0,#距离生成位置的距离
+	
+	"creating_position":"",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,
+	"creating_rule":"",#生成一组、一个个生成
+	"attack_gen_times":"",#基础生成次数
+	"basic_colddown":1.0,
+	"Physical_Addition_Efficiency":0.0,
+	"Magical_Addition_Efficiency":1.0,
+	"Speed_Efficiency":1.0,
+	"Duration_Efficiency":1.0,
+	"Range_Efficiency":1.0,
+	"Magical_Times_Efficiency":1.0,
+	"Physical_Times_Efficiency":1.0,
+	"Reduction_Efficiency":1.0,
+	"cp_map":{},
+	"upgrade_map":{
+		"Damage_Addition":[],
+		"Bullet_Speed_Addition":[],
+		"Duration_Addition":[],
+		"Range_Addition":[],
+		"Times_Addition":[],
+		"Debuff_Addition":[],
+		"Cd_Reduction":[]
+					}	
+	}
 func _ready():
 	set_range_and_colddown()
 	$meleeTimer.timeout.connect(_on_kick_timer_timeout)
