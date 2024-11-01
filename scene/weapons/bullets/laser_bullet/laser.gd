@@ -24,7 +24,8 @@ func _physics_process(_delta):
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("set_debuff"):
-					enemy.set_debuff("speed",0.2,1)
+					enemy.set_debuff("speed",0.5,1)
+					enemy.set_debuff("target_rediretion",$".",1)
 	pass
 	
 func _on_timer_timeout():

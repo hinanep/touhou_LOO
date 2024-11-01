@@ -15,7 +15,7 @@ func _ready():
 	#bullet_battle_ready()
 	
 func _physics_process(_delta):
-	move_to_player()
+	move_to_target()
 	pass
 #弹幕攻击方法，待实例实现
 func bullet_attack():

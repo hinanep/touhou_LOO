@@ -8,8 +8,10 @@ var speed = 40
 var basic_melee_damage = curse
 var basic_bullet_damage = curse
 var drops_path = ""
+var target
 var debuff = {
-	"speed":1.0
+	"speed":1.0,
+	"target_rediretion":player
 }
 @onready var progress_bar = $ProgressBar
 
@@ -23,11 +25,12 @@ var debuff = {
 func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*18)
 
+	debuff["target_rediretion"] = player
 	pass
 	
 
 func _physics_process(_delta):
-	move_to_player()
+	move_to_target()
 	pass
 
 func _process(_delta):
@@ -36,8 +39,8 @@ func _process(_delta):
 	pass
 
 #移动方式：走向玩家
-func move_to_player():
-	velocity = get_diretion_to_player() * speed * debuff["speed"]
+func move_to_target():
+	velocity = get_diretion_to_target() * speed * debuff["speed"]
 	
 	#近身减速防止模型重叠的神秘bug（，过近远离
 	#if get_distance_squared_to_player() < pow(10,2):
@@ -103,9 +106,9 @@ func bullet_attack_cd_timeout():
 		bullet_attack_cd.stop()
 
 #到玩家方向单位向量
-func get_diretion_to_player():
-	if player:
-		return(player.global_position - global_position).normalized()
+func get_diretion_to_target():
+	if debuff["target_rediretion"]!=null:
+		return(debuff["target_rediretion"].global_position - global_position).normalized()
 	return Vector2.ZERO
 #到玩家距离
 func get_distance_to_player():
@@ -127,10 +130,12 @@ func set_debuff(param_name,multi,time):
 	$debuff_time.start()
 	if param_name == "speed":
 		debuff["speed"] = multi
-	
+	if param_name == "target_rediretion":
+		debuff["target_rediretion"] = multi
 
 
 
 func _on_debuff_time_timeout():
 	debuff["speed"] = 1.0
+	debuff["target_rediretion"] = player
 	pass # Replace with function body.
