@@ -89,3 +89,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_v8ilp")
 
 [node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
+
+[node name="debuff_time" type="Timer" parent="."]
+
+[connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]

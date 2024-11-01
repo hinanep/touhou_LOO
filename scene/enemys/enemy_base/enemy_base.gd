@@ -8,7 +8,9 @@ var speed = 40
 var basic_melee_damage = curse
 var basic_bullet_damage = curse
 var drops_path = ""
-
+var debuff = {
+	"speed":1.0
+}
 @onready var progress_bar = $ProgressBar
 
 @onready var melee_damage_area = $melee_damage_area
@@ -35,7 +37,7 @@ func _process(_delta):
 
 #移动方式：走向玩家
 func move_to_player():
-	velocity = get_diretion_to_player() * speed
+	velocity = get_diretion_to_player() * speed * debuff["speed"]
 	
 	#近身减速防止模型重叠的神秘bug（，过近远离
 	#if get_distance_squared_to_player() < pow(10,2):
@@ -120,3 +122,15 @@ func setbuff(multi):
 	basic_bullet_damage *= multi
 	basic_melee_damage *= multi
 	pass
+func set_debuff(param_name,multi,time):
+	$debuff_time.wait_time = time
+	$debuff_time.start()
+	if param_name == "speed":
+		debuff["speed"] = multi
+	
+
+
+
+func _on_debuff_time_timeout():
+	debuff["speed"] = 1.0
+	pass # Replace with function body.
