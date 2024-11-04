@@ -11,7 +11,7 @@ signal on_hit
 func _ready():
 	destroy_timer = $Timer
 	destroy_timer.start()
-	print("black")	
+
 	var enemy_in_range = get_overlapping_bodies()
 	if enemy_in_range:
 			for enemy in enemy_in_range:

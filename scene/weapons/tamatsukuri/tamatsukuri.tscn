@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw4a5oov7ksms"]
 
-[ext_resource type="Script" path="res://scene/weapons/reflection_test_01/reflection_test_01.gd" id="1_rxcg2"]
+[ext_resource type="Script" path="res://scene/weapons/tamatsukuri/tamatsukuri.gd" id="1_rxcg2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfucx"]
 radius = 1.0

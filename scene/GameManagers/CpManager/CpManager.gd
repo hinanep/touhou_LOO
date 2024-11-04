@@ -12,7 +12,14 @@ var cp_pool = {
 func _init():
 	cp_pool["unactive"]["reima"] = {
 		"name":"reima",
-		"effect_group":["reimu","marisa","pachuli"],
+		"effect_group":["reimu","marisa"],
+
+		"weight":1,
+		"cp_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
+	}
+	cp_pool["unactive"]["reitama"] = {
+		"name":"reitama",
+		"effect_group":["reimu","tamatsukuri"],
 
 		"weight":1,
 		"cp_image":"res://asset/记忆结晶羁绊图标/魔理沙.png"
@@ -65,7 +72,10 @@ func random_choose_cp():
 	var cp_name = cp_pool["active"].keys()[randi_range(0,cp_pool["active"].size()-1)]
 	cp_pool["choosed"][cp_name] = cp_pool["active"][cp_name]
 	cp_pool["active"].erase(cp_name)
+	
 	get_tree().call_group(cp_name,"cp_active",cp_name)
+	print("actice cp")
+	print(cp_name)
 	return true
 func clear_all():
 	max_list = []

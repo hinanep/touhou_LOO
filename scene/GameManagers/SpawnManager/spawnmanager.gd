@@ -7,15 +7,15 @@ var event_list = {
 	"start_time":0,
 	"end_time":300,
 	"tick_time":2,
-	"number":4,
+	"number":15,
 	"param_buff":0.9
 },
 "elite_slime":{
 	"pre":preload("res://scene/enemys/elite_slime/elite_slime.tscn"),
-	"spawn_mode":"once",
-	"start_time":15,
-	"end_time":60,
-	"tick_time":2,
+	"spawn_mode":"duration",
+	"start_time":5,
+	"end_time":300,
+	"tick_time":10,
 	"number":1,
 	"param_buff":10
 }

@@ -84,8 +84,8 @@ func clear_all():
 
 func _init():
 	wazanum_have = 0
-	wazanum_max = 6
-	waza_maxlevel = 8
+	wazanum_max = 5
+	waza_maxlevel = 3
 	waza_pool["unchoosed"]["base_range"] = {
 	"waza_name" : "base_range",
 	"level":waza_maxlevel-1,
@@ -160,7 +160,14 @@ func _init():
 	"Physical_Times_Efficiency":1.0,#1	
 	"Reduction_Efficiency":1.0,#1
 	
-	"cp_map":{},#
+	"cp_map":{
+		"reima":{
+	"on_hit":["res://scene/weapons/modifier/on_hit/on_hit.tscn"],
+	"on_flying":[],
+	"on_emit":[],
+	"on_destroy":[]
+	}
+	},#
 	"upgrade_map":{#
 		"Damage_Addition":[1,2,3,4,5,6,7,8],
 		"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
@@ -217,7 +224,7 @@ func _init():
 		"waza_name" : "alice",
 		"level":0,
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":5,
+		"weight":0,
 		"cn":"爱丽丝",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -258,7 +265,7 @@ func _init():
 		"waza_name" : "sekibanki",
 		"level":0,
 		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
-		"weight":15,
+		"weight":0,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -297,16 +304,16 @@ func _init():
 
 	}
 	
-	waza_pool["unchoosed"]["reflection_test_01"] = {
-		"waza_name" : "reflection_test_01",
+	waza_pool["unchoosed"]["tamatsukuri"] = {
+		"waza_name" : "tamatsukuri",
 		"level":0,
-		"path":"res://scene/weapons/reflection_test_01/reflection_test_01.tscn",
+		"path":"res://scene/weapons/tamatsukuri/tamatsukuri.tscn",
 		"weight":15,
-		"cn":"reflection_test_01",
+		"cn":"魅须丸",
 		"type":"skill",#技能、符卡、衍生0
 	
 		"locking_type":"random",#目标、定向、随机方向01
-		"attack_pre":"res://scene/weapons/bullets/reflection_test_01_bullet/reflection_test_01_bullet.tscn",#发射实体路径1
+		"attack_pre":"res://scene/weapons/bullets/tamatsukuri_bullet/tamatsukuri_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
 		"creation_distance":0,#距离生成位置的距离1
 		
@@ -326,7 +333,14 @@ func _init():
 		"Physical_Times_Efficiency":1.0,#1	
 		"Reduction_Efficiency":1.0,#1
 		
-		"cp_map":{},#
+		"cp_map":{
+			"reitama":{
+		"on_hit":[],
+		"on_flying":[],
+		"on_emit":[],
+		"on_destroy":["res://scene/weapons/modifier/on_destroy/on_destroy.tscn"]
+		}
+		},#
 		"upgrade_map":{#
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
 			"Bullet_Speed_Addition":[1,1.1,1.1,1.1,1.1,1.1,1.1,1.1],
@@ -344,7 +358,7 @@ func _init():
 		"waza_name" : "medicine",
 		"level":0,
 		"path":"res://scene/weapons/medicine/medicine_weapon.tscn",
-		"weight":150,
+		"weight":1,
 		"cn":"梅蒂欣",
 		"type":"skill",#技能、符卡、衍生0
 	

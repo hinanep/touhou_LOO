@@ -1,3 +1,4 @@
+
 extends Node2D
 
 func _ready():
@@ -6,7 +7,7 @@ func _ready():
 func hit():
 	var laser=load("res://scene/weapons/bullets/laser_bullet/laser.tscn").instantiate()
 	
-	print(global_position)
+
 	laser.global_transform= global_transform
 
 	player_var.player_node.call_deferred("add_child",laser)

@@ -18,3 +18,5 @@ func _unhandled_key_input(event):
 	if event.is_released() and imputangle == 0:
 		return
 	direction = imputangle
+func upgrade_waza():
+	pass

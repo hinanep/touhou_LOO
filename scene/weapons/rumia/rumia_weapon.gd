@@ -5,11 +5,8 @@ extends ranged_weapon_base
 
 func _ready():
 	print("rumia_ready")
-	attack_modifier = {
-	"on_hit":["res://scene/weapons/modifier/on_hit/rumia/rumia_on_hit.tscn"],
-	"on_flying":[],
-	"on_emit":[]
-}
+	attack_modifier["on_hit"].append("res://scene/weapons/modifier/on_hit/rumia/rumia_on_hit.tscn")
+
 	super._ready()
 
 	pass # Replace with function body.

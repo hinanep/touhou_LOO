@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq41wp44dvsuh"]
+
+[ext_resource type="Script" path="res://scene/weapons/bullets/tamatsukuri_bullet/bomb.gd" id="1_6ndl1"]
+[ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_0jth6"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="2_eg5in"]
+
+[node name="Bomb" type="Node2D"]
+top_level = true
+script = ExtResource("1_6ndl1")
+bombParticle = ExtResource("2_0jth6")
+
+[node name="子弹" type="Sprite2D" parent="."]
+modulate = Color(0.680204, 0.813943, 0.442351, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_eg5in")

@@ -109,6 +109,8 @@ func bullet_attack_cd_timeout():
 func get_diretion_to_target():
 	if debuff["target_rediretion"]!=null:
 		return(debuff["target_rediretion"].global_position - global_position).normalized()
+	else:
+		return(player.global_position - global_position).normalized()
 	return Vector2.ZERO
 #到玩家距离
 func get_distance_to_player():

@@ -21,7 +21,7 @@ var card_pool = {
 func _init():
 	cardnum_now = 0
 	cardnum_have = 0
-	cardnum_max = 3
+	cardnum_max = 2
 	card_maxlevel = 2
 	card_pool["unchoosed"]["marisa"] = {
 		"level":0,

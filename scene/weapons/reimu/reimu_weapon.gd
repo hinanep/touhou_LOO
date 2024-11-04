@@ -9,13 +9,7 @@ func _ready():
 
 
 
-	cp_list = {
-	"reima":{
-	"on_hit":["res://scene/weapons/modifier/on_hit/on_hit.tscn"],
-	"on_flying":[],
-	"on_emit":[]
-	}
-}
+
 
 
 	super._ready()

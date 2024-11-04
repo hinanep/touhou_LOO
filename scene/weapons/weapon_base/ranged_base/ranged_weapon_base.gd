@@ -5,7 +5,8 @@ class_name ranged_weapon_base extends Node2D
 var attack_modifier = {
 	"on_hit":[],
 	"on_flying":[],
-	"on_emit":[]
+	"on_emit":[],
+	"on_destroy":[]
 }
 var cp_list = {
 
@@ -62,6 +63,9 @@ var bullet_modi_map
 func _ready():
 	set_range_and_colddown()
 	add_to_group(waza_config["waza_name"])
+	cp_list = waza_config["cp_map"]
+	for cp_name in cp_list.keys():
+		add_to_group(cp_name)
 	bullet_pre = load(waza_config["attack_pre"])
 	bullet_modi_map ={
 		"Damage_Addition":1,
@@ -142,7 +146,11 @@ func shoot(bullet_pree,generate_position,generate_diretion,efficiency_map,target
 		for modi in attack_modifier["on_emit"]:
 			var new_modifier = load(modi).instantiate()
 			new_bullet.get_node("on_emit").add_child(new_modifier)	
-
+	if !attack_modifier["on_destroy"].is_empty():
+		for modi in attack_modifier["on_destroy"]:
+			var new_modifier = load(modi).instantiate()
+			new_bullet.get_node("on_destroy").add_child(new_modifier)	
+			
 	new_bullet.global_position = generate_position
 	
 	new_bullet.diretion = generate_diretion
@@ -153,6 +161,8 @@ func shoot(bullet_pree,generate_position,generate_diretion,efficiency_map,target
 	
 
 func cp_active(x_name):
+	print("waza_cp")
+	print(x_name)
 	for onhit in cp_list[x_name]["on_hit"]:	
 		attack_modifier["on_hit"].append(onhit)
 
@@ -161,7 +171,10 @@ func cp_active(x_name):
 		
 	for on_emit in cp_list[x_name]["on_emit"]:		
 		attack_modifier["on_emit"].append(on_emit)
-
+	
+	for on_destroy in cp_list[x_name]["on_destroy"]:		
+		attack_modifier["on_destroy"].append(on_destroy)
+		print(on_destroy)
 func upgrade_waza():
 	#waza_config["level"] += 1
 	bullet_modi_map["Damage_Addition"] = waza_config["upgrade_map"]["Damage_Addition"][waza_config["level"]-1] * waza_config["Magical_Addition_Efficiency"]

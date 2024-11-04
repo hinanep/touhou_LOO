@@ -5,6 +5,7 @@ var destroy_timer
 var diretion:float
 var target
 signal on_hit
+signal on_destroy
 var bullet_modi_map ={
 		"Damage_Addition":1,
 		"Bullet_Speed_Addition":1,
@@ -28,15 +29,22 @@ func _physics_process(delta):
 	position += Vector2.from_angle(diretion) * player_var.bullet_speed_ratio * basic_speed * delta
 	
 func _on_timer_timeout():
+	_on_destroy()
 	queue_free()
-
+#func _exit_tree():
+	#_on_destroy()
 func _on_body_entered(body):
 	queue_free()
 	#print("hit")
 	_on_hit()
+	
 	if body.has_method("take_damage"):
 		body.take_damage(player_var.player_make_bullet_damage(basic_damage))
 
 func _on_hit():
 	emit_signal("on_hit")
+	pass
+
+func _on_destroy():
+	emit_signal("on_destroy")
 	pass

@@ -51,6 +51,7 @@ enabled=PackedStringArray()
 folder_colors={
 "res://scene/drops/": "red",
 "res://scene/enemys/": "orange",
+"res://scene/particle/": "teal",
 "res://scene/ui/": "yellow",
 "res://scene/weapons/": "green",
 "res://scene/weapons/bullets/": "purple",
@@ -116,3 +117,4 @@ pause={
 textures/canvas_textures/default_texture_filter=0
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/texture_mipmap_bias=-0.345
+viewport/hdr_2d=true
