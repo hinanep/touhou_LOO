@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://myebb0n8nmac"]
+
+[ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
+[ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_hmoxy"]
+[ext_resource type="PackedScene" uid="uid://b3a0q4yv1cunf" path="res://scene/enemys/aq_boss/weapon/aq_weapon.tscn" id="3_3j4ay"]
+[ext_resource type="Texture2D" uid="uid://c178p1yu8e2v6" path="res://asset/素材/20241105-183247.png" id="3_rteu8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuh35"]
+atlas = ExtResource("3_rteu8")
+region = Rect2(0, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n35ow"]
+atlas = ExtResource("3_rteu8")
+region = Rect2(84, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t8b5"]
+atlas = ExtResource("3_rteu8")
+region = Rect2(168, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hh3a"]
+atlas = ExtResource("3_rteu8")
+region = Rect2(252, 0, 84, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuh35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n35ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t8b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hh3a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
+radius = 37.1214
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
+radius = 38.4708
+
+[node name="aq_boss" type="CharacterBody2D" groups=["boss"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+safe_margin = 10.0
+script = ExtResource("1_w6a4s")
+
+[node name="Explosion" parent="." instance=ExtResource("2_hmoxy")]
+top_level = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_4gakf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itioj")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -46.0
+offset_top = -63.0
+offset_right = 326.0
+offset_bottom = -36.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="melee_damage_area" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
+
+[node name="bullet_damage_area" type="Area2D" parent="."]
+collision_priority = 0.0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
+
+[node name="debuff_time" type="Timer" parent="."]
+
+[node name="danma" type="Node2D" parent="."]
+
+[node name="sekibankiWeapon" parent="danma" instance=ExtResource("3_3j4ay")]
