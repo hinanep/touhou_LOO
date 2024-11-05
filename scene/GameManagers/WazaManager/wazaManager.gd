@@ -135,7 +135,7 @@ func _init():
 	"waza_name" : "reimu",
 	"level":0,
 	"path":"res://scene/weapons/reimu/reimu_weapon.tscn",
-	"weight":5,#随机权重
+	"weight":1,#随机权重
 	"cn":"灵梦",#中文名
 	"type":"skill",#技能、符卡、衍生0
 	
@@ -224,7 +224,7 @@ func _init():
 		"waza_name" : "alice",
 		"level":0,
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":2,
+		"weight":1,
 		"cn":"爱丽丝",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -265,7 +265,7 @@ func _init():
 		"waza_name" : "sekibanki",
 		"level":0,
 		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
-		"weight":0,
+		"weight":1,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -308,7 +308,7 @@ func _init():
 		"waza_name" : "tamatsukuri",
 		"level":0,
 		"path":"res://scene/weapons/tamatsukuri/tamatsukuri.tscn",
-		"weight":15,
+		"weight":1,
 		"cn":"魅须丸",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -400,7 +400,7 @@ func _init():
 		"waza_name" : "rumia",
 		"level":0,
 		"path":"res://scene/weapons/rumia/rumia_weapon.tscn",
-		"weight":150,
+		"weight":1,
 		"cn":"露米娅",
 		"type":"skill",#技能、符卡、衍生0
 	
