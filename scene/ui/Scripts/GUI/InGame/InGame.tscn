@@ -1,9 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=12 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://scene/ui/Scripts/GUI/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="2_34uwu"]
 [ext_resource type="Script" path="res://scene/GameManagers/GameManager/game_manager.gd" id="3_ksuh1"]
+[ext_resource type="Texture2D" uid="uid://d0t0hcfyuu18n" path="res://asset/素材/map.png" id="5_kvw8b"]
 [ext_resource type="Texture2D" uid="uid://dmd5auu2mg1i0" path="res://asset/tilemap_packed.png" id="6_0inor"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
+a = Vector2(250, -114)
+b = Vector2(-327, -115)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3g015"]
+a = Vector2(290, 145)
+b = Vector2(288, -141)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iloie"]
+a = Vector2(-288, 143)
+b = Vector2(-288, -143)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_73h7f"]
+a = Vector2(289, 145)
+b = Vector2(-288, 144)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81cny"]
 texture = ExtResource("6_0inor")
@@ -166,9 +183,30 @@ safe_margin = 1.0
 zoom = Vector2(2, 2)
 limit_smoothed = true
 
+[node name="reflect" type="CharacterBody2D" parent="player"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/reflect"]
+position = Vector2(39, -28)
+shape = SubResource("SegmentShape2D_bfbrv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/reflect"]
+shape = SubResource("SegmentShape2D_3g015")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="player/reflect"]
+shape = SubResource("SegmentShape2D_iloie")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="player/reflect"]
+shape = SubResource("SegmentShape2D_73h7f")
+
 [node name="game_manager" type="Node" parent="." groups=["GameManager"]]
 process_mode = 3
 script = ExtResource("3_ksuh1")
+
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(53, 87)
+texture = ExtResource("5_kvw8b")
 
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 3

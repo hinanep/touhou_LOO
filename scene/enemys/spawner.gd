@@ -56,3 +56,9 @@ func _on_start_timer_timeout():
 func _on_end_timer_timeout():
 	spawnTimer.stop()
 	pass # Replace with function body.
+func change_pause():
+	
+	if spawnTimer.is_paused() == true:
+		spawnTimer.set_paused(false)
+	else:
+		spawnTimer.set_paused(true)

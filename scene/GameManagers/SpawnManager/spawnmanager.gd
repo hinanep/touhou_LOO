@@ -7,7 +7,79 @@ var event_list = {
 	"start_time":0,
 	"end_time":300,
 	"tick_time":2,
-	"number":15,
+	"number":2,
+	"param_buff":0.9
+},
+"bat_blue":{
+	"pre":preload("res://scene/enemys/bat_blue/bat_blue.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"bat_purple":{
+	"pre":preload("res://scene/enemys/bat_purple/bat_purple.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"bug_orange":{
+	"pre":preload("res://scene/enemys/bug_orange/bug_orange.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"bug_pink":{
+	"pre":preload("res://scene/enemys/bug_pink/bug_pink.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"slime_blue":{
+	"pre":preload("res://scene/enemys/slime_blue/slime_blue.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"slime_green":{
+	"pre":preload("res://scene/enemys/slime_green/slime_green.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"kedama":{
+	"pre":preload("res://scene/enemys/kedama/kedama.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
+	"param_buff":0.9
+},
+"ghost":{
+	"pre":preload("res://scene/enemys/ghost/ghost.tscn"),
+	"spawn_mode":"duration",
+	"start_time":0,
+	"end_time":300,
+	"tick_time":2,
+	"number":2,
 	"param_buff":0.9
 },
 "elite_slime":{
@@ -18,6 +90,15 @@ var event_list = {
 	"tick_time":10,
 	"number":1,
 	"param_buff":10
+},
+"aq":{
+	"pre":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
+	"spawn_mode":"once",
+	"start_time":30,
+	"end_time":300,
+	"tick_time":1,
+	"number":1,
+	"param_buff":1
 }
 }
 

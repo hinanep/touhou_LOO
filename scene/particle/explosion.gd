@@ -12,5 +12,6 @@ func _process(delta):
 
 
 func _on_finished():
+
 	queue_free()
 	pass # Replace with function body.

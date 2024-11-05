@@ -32,7 +32,7 @@ script = ExtResource("1_wpjdb")
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.545098)
+modulate = Color(0, 0, 0, 0.290196)
 light_mask = 3
 visibility_layer = 3
 position = Vector2(-2, 0.500001)

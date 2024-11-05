@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw30ek7b4ret7"]
+[gd_scene load_steps=20 format=3 uid="uid://dw30ek7b4ret7"]
 
 [ext_resource type="Script" path="res://scene/weapons/bullets/alice_bullet/alice_bullet.gd" id="1_oechn"]
 [ext_resource type="Texture2D" uid="uid://ct5fpqgultvns" path="res://asset/素材/人形.png" id="2_u13fl"]
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/素材/体术.png" id="2_vdx4p"]
+[ext_resource type="Texture2D" uid="uid://cu85o2uhx1ghh" path="res://asset/素材/人形(镜像.png" id="4_yyjr1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj5dn"]
 radius = 32.0624
@@ -39,6 +40,26 @@ region = Rect2(0, 160, 32, 32)
 atlas = ExtResource("2_u13fl")
 region = Rect2(0, 192, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfkke"]
+atlas = ExtResource("4_yyjr1")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aby2"]
+atlas = ExtResource("4_yyjr1")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhqjl"]
+atlas = ExtResource("4_yyjr1")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbl0f"]
+atlas = ExtResource("4_yyjr1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ore4"]
+atlas = ExtResource("4_yyjr1")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gfxiq"]
 animations = [{
 "frames": [{
@@ -70,6 +91,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_knyyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfkke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aby2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhqjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbl0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ore4")
 }],
 "loop": true,
 "name": &"ou",
