@@ -46,7 +46,7 @@ func take_damage(damage):
 	hp -= damage
 	player_var.player_hp = hp
 	
-	if hp < 0:
+	if hp < 0.1:
 		died()
 		
 	player_var.is_invincible = true

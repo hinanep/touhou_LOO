@@ -64,8 +64,8 @@ var event_list = {
 	"number":2,
 	"param_buff":0.9
 },
-"slime_orange":{
-	"pre":preload("res://scene/enemys/slime_orange/slime_orange.tscn"),
+"kedama":{
+	"pre":preload("res://scene/enemys/kedama/kedama.tscn"),
 	"spawn_mode":"duration",
 	"start_time":0,
 	"end_time":300,
@@ -73,8 +73,8 @@ var event_list = {
 	"number":2,
 	"param_buff":0.9
 },
-"slime_pink":{
-	"pre":preload("res://scene/enemys/slime_pink/slime_pink.tscn"),
+"ghost":{
+	"pre":preload("res://scene/enemys/ghost/ghost.tscn"),
 	"spawn_mode":"duration",
 	"start_time":0,
 	"end_time":300,
@@ -94,7 +94,7 @@ var event_list = {
 "aq":{
 	"pre":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
 	"spawn_mode":"once",
-	"start_time":5,
+	"start_time":30,
 	"end_time":300,
 	"tick_time":1,
 	"number":1,

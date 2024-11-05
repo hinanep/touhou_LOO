@@ -26,6 +26,7 @@ collision_layer = 16
 script = ExtResource("1_cpuj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_cdvnr")
 autoplay = "default"
 frame_progress = 0.0828607

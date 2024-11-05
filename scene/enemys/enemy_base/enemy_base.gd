@@ -23,7 +23,7 @@ var debuff = {
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
 
 func _ready():
-	set_modulate(modulate-Color(0, 1, 1, 0)*modi*18)
+	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 
 	debuff["target_rediretion"] = player
 	pass

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scene/weapons/bullets/tamatsukuri_bullet/tamatsukuri_bullet.gd" id="1_7xq3j"]
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/素材/体术.png" id="2_tqw1e"]
-[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="3_fnjui"]
+[ext_resource type="Texture2D" uid="uid://bob0u3cbl1qh6" path="res://asset/素材/yinyangorb.png" id="3_57f3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj5dn"]
 radius = 16.0
@@ -11,9 +11,9 @@ radius = 16.0
 atlas = ExtResource("2_tqw1e")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6fq0"]
-atlas = ExtResource("3_fnjui")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq75r"]
+atlas = ExtResource("3_57f3p")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gfxiq"]
 animations = [{
@@ -27,7 +27,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e6fq0")
+"texture": SubResource("AtlasTexture_iq75r")
 }],
 "loop": true,
 "name": &"ou",
@@ -48,9 +48,7 @@ script = ExtResource("1_7xq3j")
 shape = SubResource("CircleShape2D_qj5dn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.184314, 0, 1)
-position = Vector2(-0.5, 0.5)
-scale = Vector2(0.59375, 0.59375)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_gfxiq")
 animation = &"ou"
 autoplay = "ou"

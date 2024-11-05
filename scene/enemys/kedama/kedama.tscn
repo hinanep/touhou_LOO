@@ -1,38 +1,41 @@
-[gd_scene load_steps=10 format=3 uid="uid://8ncxsxbjl5dy"]
+[gd_scene load_steps=13 format=3 uid="uid://8ncxsxbjl5dy"]
 
-[ext_resource type="Script" path="res://scene/enemys/slime_orange/slime_orange.gd" id="1_02840"]
-[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/素材/enemies-spritesheet.png" id="2_s654r"]
+[ext_resource type="Script" path="res://scene/enemys/kedama/kedama.gd" id="1_uq7qr"]
+[ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/素材/kedamaD.png" id="2_fomu3"]
+[ext_resource type="Texture2D" uid="uid://csxuo6kjhraty" path="res://asset/素材/kedamaL.png" id="3_4iltg"]
+[ext_resource type="Texture2D" uid="uid://cdxlsrs4eqeau" path="res://asset/素材/kedamaR.png" id="4_ytwnf"]
+[ext_resource type="Texture2D" uid="uid://cgx3bwy3aimev" path="res://asset/素材/kedamaU.png" id="5_4ig7w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cwr0w"]
-atlas = ExtResource("2_s654r")
-region = Rect2(0, 60, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3l13"]
+atlas = ExtResource("2_fomu3")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gpc7"]
-atlas = ExtResource("2_s654r")
-region = Rect2(20, 60, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan6"]
+atlas = ExtResource("3_4iltg")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_imvvc"]
-atlas = ExtResource("2_s654r")
-region = Rect2(40, 60, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmqu6"]
+atlas = ExtResource("4_ytwnf")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v0rp"]
-atlas = ExtResource("2_s654r")
-region = Rect2(60, 60, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lde0n"]
+atlas = ExtResource("5_4ig7w")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cwr0w")
+"texture": SubResource("AtlasTexture_h3l13")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4gpc7")
+"texture": SubResource("AtlasTexture_anan6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_imvvc")
+"texture": SubResource("AtlasTexture_lmqu6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0v0rp")
+"texture": SubResource("AtlasTexture_lde0n")
 }],
 "loop": true,
 "name": &"default",
@@ -43,17 +46,17 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
-radius = 15.0
+radius = 12.0416
 
-[node name="slime_orange" type="CharacterBody2D" groups=["monster"]]
+[node name="kedama" type="CharacterBody2D" groups=["monster"]]
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 safe_margin = 10.0
-script = ExtResource("1_02840")
+script = ExtResource("1_uq7qr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
 
@@ -63,9 +66,9 @@ shape = SubResource("CircleShape2D_itioj")
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
 offset_left = -13.0
-offset_top = -11.0
+offset_top = -18.0
 offset_right = 94.0
-offset_bottom = 16.0
+offset_bottom = 9.0
 scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "

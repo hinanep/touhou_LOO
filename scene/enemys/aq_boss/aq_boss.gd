@@ -1,7 +1,7 @@
 extends enemy_base
 
 func _ready():
-	max_hp *= 1000
+	max_hp *= 10000
 	hp = max_hp
 	speed = 40
 	basic_melee_damage *= 10
