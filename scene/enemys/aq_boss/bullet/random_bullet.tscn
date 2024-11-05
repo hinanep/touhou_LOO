@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq1g4k52uh3i0"]
+
+[ext_resource type="PackedScene" uid="uid://dovhtqtl6ano4" path="res://scene/weapons/bullets/bullet_base/trace_bullet/trace_bullet.tscn" id="1_8mfg1"]
+[ext_resource type="Script" path="res://scene/enemys/aq_boss/bullet/random_bullet.gd" id="2_t2fmb"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="3_cndtb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1aukr"]
+radius = 0.375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dprf6"]
+atlas = ExtResource("3_cndtb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_be0q3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dprf6")
+}],
+"loop": true,
+"name": &"reimu",
+"speed": 5.0
+}]
+
+[node name="aq_random_bullet" instance=ExtResource("1_8mfg1")]
+scale = Vector2(16, 16)
+collision_mask = 1
+script = ExtResource("2_t2fmb")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_1aukr")
+
+[node name="destroy_timer" parent="." index="1"]
+wait_time = 4.506
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+modulate = Color(1, 0.0666667, 0, 1)
+scale = Vector2(0.0217391, 0.0217391)
+sprite_frames = SubResource("SpriteFrames_be0q3")
+animation = &"reimu"
+autoplay = "reimu"
+
+[node name="on_hit" type="Node2D" parent="." index="3"]

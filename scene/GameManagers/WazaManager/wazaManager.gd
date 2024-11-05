@@ -253,9 +253,9 @@ func _init():
 		"upgrade_map":{#
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
 			"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
-			"Duration_Addition":[1,2,2,2,3,3,3,3],
+			"Duration_Addition":[1,1,1,2,3,3,3,3],
 			"Range_Addition":[1,2,2,2,2,2,2,2],
-			"Times":[1,2,3,4,4,4,4,4],
+			"Times":[1,1,2,2,2,2,2,2],
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},

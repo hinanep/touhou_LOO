@@ -9,7 +9,7 @@ func hit():
 	
 
 	laser.global_transform= global_transform
-
-	player_var.player_node.call_deferred("add_child",laser)
+	if player_var.player_node!=null:
+		player_var.player_node.call_deferred("add_child",laser)
 
 	pass

@@ -90,6 +90,15 @@ var event_list = {
 	"tick_time":10,
 	"number":1,
 	"param_buff":10
+},
+"aq":{
+	"pre":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
+	"spawn_mode":"once",
+	"start_time":5,
+	"end_time":300,
+	"tick_time":1,
+	"number":1,
+	"param_buff":1
 }
 }
 
