@@ -21,7 +21,7 @@ var card_pool = {
 func _init():
 	cardnum_now = 0
 	cardnum_have = 0
-	cardnum_max = 2
+	cardnum_max = 3
 	card_maxlevel = 2
 	card_pool["unchoosed"]["marisa"] = {
 		"level":0,
@@ -42,15 +42,15 @@ func _init():
 		"card_image":"res://asset/记忆结晶羁绊图标/早苗.png",
 		"node":null
 	}
-	card_pool["unchoosed"]["test"] = {
-		"level": card_maxlevel-1,
-		"power_cost":40,
-		"path":"res://scene/cards/beginning_card/beginning_card.tscn",
-		"pre":null,
-		"weight":1,
-		"card_image":"res://asset/记忆结晶羁绊图标/灵梦.png",
-		"node":null
-	}
+	#card_pool["unchoosed"]["test"] = {
+		#"level": card_maxlevel-1,
+		#"power_cost":40,
+		#"path":"res://scene/cards/beginning_card/beginning_card.tscn",
+		#"pre":null,
+		#"weight":1,
+		#"card_image":"res://asset/记忆结晶羁绊图标/灵梦.png",
+		#"node":null
+	#}
 func _input(event):
 	
 	if cardnum_have:

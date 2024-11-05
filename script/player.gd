@@ -13,7 +13,7 @@ func _ready():
 	WazaManager.add_waza("base_range")
 	WazaManager.add_waza("base_melee")
 	CardManager.add_card("fairy")
-	CardManager.add_card("test")
+	#CardManager.add_card("test")
 
 	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
 	request_ready()
