@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bb4cfns75xyno"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MasterSpark" type="CPUParticles2D" parent="."]
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+radial_accel_min = 1.0
+radial_accel_max = 1.0
