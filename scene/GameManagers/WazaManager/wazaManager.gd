@@ -69,7 +69,7 @@ func clear_all():
 	print("waza_clear")
 	wazanum_have = 0
 	wazanum_max = 6
-	waza_maxlevel = 8
+	waza_maxlevel = 3
 	waza_pool = {
 	"unchoosed":{
 		#waza_name(string):{ level(int)}
@@ -84,7 +84,7 @@ func clear_all():
 
 func _init():
 	wazanum_have = 0
-	wazanum_max = 5
+	wazanum_max = 6
 	waza_maxlevel = 3
 	waza_pool["unchoosed"]["base_range"] = {
 	"waza_name" : "base_range",
@@ -224,7 +224,7 @@ func _init():
 		"waza_name" : "alice",
 		"level":0,
 		"path":"res://scene/weapons/alice_weapon/alice_weapon.tscn",
-		"weight":0,
+		"weight":2,
 		"cn":"爱丽丝",
 		"type":"skill",#技能、符卡、衍生0
 	
@@ -254,7 +254,7 @@ func _init():
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
 			"Bullet_Speed_Addition":[1,2,3,4,5,6,7,8],
 			"Duration_Addition":[1,2,2,2,3,3,3,3],
-			"Range_Addition":[1,2,3,5,6,6,6,6],
+			"Range_Addition":[1,2,2,2,2,2,2,2],
 			"Times":[1,2,3,4,4,4,4,4],
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
@@ -319,7 +319,7 @@ func _init():
 		
 		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
 		"creating_rule":"one",#生成一组、一个个生成1
-		"attack_gen_times":3,#生成次数1
+		"attack_gen_times":1,#生成次数1
 		"basic_colddown":1,#1
 		
 		
@@ -346,7 +346,7 @@ func _init():
 			"Bullet_Speed_Addition":[1,1.1,1.1,1.1,1.1,1.1,1.1,1.1],
 			"Duration_Addition":[1,2,2,2,3,3,3,3],
 			"Range_Addition":[1,1.1,1.2,1.3,1.4,1.5,1.6,1.7],
-			"Times":[3,4,5,6,6,6,6,6],
+			"Times":[1,2,2,2,2,2,2,2],
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},

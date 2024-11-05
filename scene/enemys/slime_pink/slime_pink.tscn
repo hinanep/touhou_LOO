@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl30vb4qgqfbq"]
+
+[ext_resource type="Script" path="res://scene/enemys/slime_pink/slime_pink.gd" id="1_u2v4r"]
+[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/素材/enemies-spritesheet.png" id="2_np0v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g1yb"]
+atlas = ExtResource("2_np0v5")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v44o"]
+atlas = ExtResource("2_np0v5")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxrd0"]
+atlas = ExtResource("2_np0v5")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hghn7"]
+atlas = ExtResource("2_np0v5")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g1yb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v44o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxrd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hghn7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
+radius = 15.0
+
+[node name="slime_pink" type="CharacterBody2D" groups=["monster"]]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+safe_margin = 10.0
+script = ExtResource("1_u2v4r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_4gakf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itioj")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 94.0
+offset_bottom = 16.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="melee_damage_area" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
+
+[node name="bullet_damage_area" type="Area2D" parent="."]
+collision_priority = 0.0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
+
+[node name="debuff_time" type="Timer" parent="."]

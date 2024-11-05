@@ -3,7 +3,7 @@ extends ranged_weapon_base
 
 func _ready():
 
-	print("reflection_test_01_ready")
+
 
 	super._ready()
 

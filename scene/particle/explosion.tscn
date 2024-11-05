@@ -7,6 +7,7 @@ _data = [Vector2(0.00772201, 1), 0.0, 0.0, 0, 0, Vector2(0.994208, 0.243214), 0.
 point_count = 2
 
 [node name="Explosion" type="CPUParticles2D"]
+top_level = true
 emitting = false
 amount = 60
 one_shot = true
