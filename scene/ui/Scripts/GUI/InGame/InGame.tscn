@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scene/ui/Scripts/GUI/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player.tscn" id="2_34uwu"]
 [ext_resource type="Script" path="res://scene/GameManagers/GameManager/game_manager.gd" id="3_ksuh1"]
+[ext_resource type="Texture2D" uid="uid://d0t0hcfyuu18n" path="res://asset/素材/map.png" id="5_kvw8b"]
 [ext_resource type="Texture2D" uid="uid://dmd5auu2mg1i0" path="res://asset/tilemap_packed.png" id="6_0inor"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
@@ -159,17 +160,6 @@ texture = ExtResource("6_0inor")
 [sub_resource type="TileSet" id="TileSet_wdnwf"]
 sources/0 = SubResource("TileSetAtlasSource_81cny")
 
-[sub_resource type="Environment" id="Environment_iq3dj"]
-background_mode = 3
-glow_enabled = true
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
-glow_levels/4 = 1.0
-glow_levels/6 = 1.0
-glow_levels/7 = 1.0
-glow_blend_mode = 1
-glow_hdr_threshold = 0.9
-
 [node name="InGame" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -214,6 +204,10 @@ shape = SubResource("SegmentShape2D_73h7f")
 process_mode = 3
 script = ExtResource("3_ksuh1")
 
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(53, 87)
+texture = ExtResource("5_kvw8b")
+
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 3
 z_index = -5
@@ -223,6 +217,3 @@ layer_0/tile_data = PackedInt32Array(-2686975, 0, 4, -2686974, 65536, 4, -262143
 
 [node name="SpawnManager" type="Node2D" parent="." groups=["SpawnManager"]]
 process_mode = 1
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_iq3dj")
