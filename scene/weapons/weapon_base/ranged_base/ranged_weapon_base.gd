@@ -174,7 +174,6 @@ func cp_active(x_name):
 	
 	for on_destroy in cp_list[x_name]["on_destroy"]:		
 		attack_modifier["on_destroy"].append(on_destroy)
-		print(on_destroy)
 func upgrade_waza():
 	#waza_config["level"] += 1
 	bullet_modi_map["Damage_Addition"] = waza_config["upgrade_map"]["Damage_Addition"][waza_config["level"]-1] * waza_config["Magical_Addition_Efficiency"]

@@ -4,9 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/素材/魔炮.png" id="2_pdsly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38jgd"]
-size = Vector2(1437, 170)
+size = Vector2(1419, 492)
 
 [node name="Masterspark" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 script = ExtResource("1_2ulvu")
 
 [node name="endtime" type="Timer" parent="."]
@@ -15,7 +18,6 @@ one_shot = true
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 visible = false
 rotation = -0.000958356
-scale = Vector2(1, 1)
 emitting = false
 amount = 32
 lifetime = 5.0
@@ -28,12 +30,16 @@ color = Color(1, 0.258824, 1, 1)
 [node name="invincible_time" type="Timer" parent="." groups=["card"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(718, 0)
-scale = Vector2(0.25, 0.25)
+visible = false
+position = Vector2(672, 0)
+scale = Vector2(0.232639, 0.657407)
 texture = ExtResource("2_pdsly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(718.5, 0)
+position = Vector2(667.5, 2)
 shape = SubResource("RectangleShape2D_38jgd")
 
+[node name="damage_tick" type="Timer" parent="."]
+
 [connection signal="timeout" from="endtime" to="." method="_on_endtime_timeout"]
+[connection signal="timeout" from="damage_tick" to="." method="_on_damage_tick_timeout"]

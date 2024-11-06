@@ -1,7 +1,9 @@
 extends card
 
-
-func _ready():	
+var basic_damage
+func _ready():
+	$damage_tick.wait_time = 0.5
+	basic_damage = 10
 	mana_cost = 44
 	duration_time = 5
 	card_name = "marisa"
@@ -18,7 +20,14 @@ func card_init(card_dic):
 
 func active():
 	AudioManager.play_sfx("sfx_masterspark")
-	$CPUParticles2D.set_emitting(true)
+	$Sprite2D.set_visible(true)
+	$damage_tick.start()
+	$".".set_monitoring(true)
+	var enemy_in_range = $".".get_overlapping_bodies()
+	if enemy_in_range:
+			for enemy in enemy_in_range:
+				if enemy.has_method("take_damage"):
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
 
 	super.active()
 	
@@ -31,5 +40,18 @@ func _on_invincible_time_timeout():
 
 
 func _on_endtime_timeout():
-	$CPUParticles2D.set_emitting(false)
+	$".".set_monitoring(false)
+	$Sprite2D.set_visible(false)
+	$damage_tick.stop()
+	#$CPUParticles2D.set_emitting(false)
+	
 	super._on_endtime_timeout()
+
+
+func _on_damage_tick_timeout():
+	var enemy_in_range = $".".get_overlapping_bodies()
+	if enemy_in_range:
+			for enemy in enemy_in_range:
+				if enemy.has_method("take_damage"):
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
+	pass # Replace with function body.

@@ -188,7 +188,7 @@ func _init():
 		"type":"skill",#技能、符卡、衍生0
 	
 		"locking_type":"nearest_enemy",#目标、定向、随机方向01
-		"attack_pre":"",#发射实体路径1
+		"attack_pre":"res://scene/weapons/bullets/sanae_bullet/big/sanae_bullet_big.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
 		"creation_distance":0,#距离生成位置的距离1
 		

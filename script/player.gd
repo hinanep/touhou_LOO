@@ -43,7 +43,7 @@ func take_damage(damage):
 	if player_var.is_invincible:
 		print("invincible active")
 		return
-	animated_sprite_2d.play("be_hit")
+
 	hp -= damage
 	player_var.player_hp = hp
 	
