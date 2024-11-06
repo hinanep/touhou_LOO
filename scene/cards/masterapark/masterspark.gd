@@ -2,6 +2,7 @@ extends card
 
 var basic_damage
 var diretion_angle = 0
+var activing = false
 func _ready():
 	$damage_tick.wait_time = 0.5
 	basic_damage = 10
@@ -13,8 +14,11 @@ func _ready():
 	super._ready()
 func _process(_delta):
 	
-	diretion_angle += 0.001 * (player_var.player_diretion_angle - diretion_angle)
-	$".".rotation = diretion_angle
+	
+	if activing:
+		diretion_angle += 0.001 * (player_var.player_diretion_angle - diretion_angle)
+		$".".rotation = diretion_angle
+		get_tree().call_group("enemy_bullet","queue_free")
 	pass
 
 func card_init(card_dic):
@@ -23,6 +27,8 @@ func card_init(card_dic):
 
 
 func active():
+	
+	activing = true
 	AudioManager.play_sfx("sfx_masterspark")
 	
 	$".".rotation =player_var.player_diretion_angle
@@ -48,6 +54,7 @@ func _on_invincible_time_timeout():
 
 
 func _on_endtime_timeout():
+	activing = false
 	$".".set_monitoring(false)
 	$Sprite2D.set_visible(false)
 	$damage_tick.stop()
@@ -57,6 +64,7 @@ func _on_endtime_timeout():
 
 
 func _on_damage_tick_timeout():
+	
 	var enemy_in_range = $".".get_overlapping_bodies()
 	if enemy_in_range:
 			for enemy in enemy_in_range:
