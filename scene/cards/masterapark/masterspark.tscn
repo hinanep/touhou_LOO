@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/素材/魔炮.png" id="2_pdsly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38jgd"]
-size = Vector2(1419, 492)
+size = Vector2(2126, 276)
 
 [node name="Masterspark" type="Area2D"]
 collision_layer = 0
@@ -30,13 +30,12 @@ color = Color(1, 0.258824, 1, 1)
 [node name="invincible_time" type="Timer" parent="." groups=["card"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(672, 0)
-scale = Vector2(0.232639, 0.657407)
+position = Vector2(1038, 0)
+scale = Vector2(0.36, 0.36)
 texture = ExtResource("2_pdsly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(667.5, 2)
+position = Vector2(1021, 0)
 shape = SubResource("RectangleShape2D_38jgd")
 
 [node name="damage_tick" type="Timer" parent="."]
