@@ -115,9 +115,11 @@ slow_mode={
 
 [layer_names]
 
+2d_physics/layer_1="player"
 2d_physics/layer_2="monster"
 2d_physics/layer_3="反射子弹层"
 2d_physics/layer_5="pickup_items"
+2d_physics/layer_6="空气墙"
 
 [rendering]
 
