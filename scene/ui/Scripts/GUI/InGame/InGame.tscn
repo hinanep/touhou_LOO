@@ -7,20 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://dmd5auu2mg1i0" path="res://asset/tilemap_packed.png" id="6_0inor"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
-a = Vector2(250, -114)
-b = Vector2(-327, -115)
+a = Vector2(174, -91)
+b = Vector2(-252, -91)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3g015"]
-a = Vector2(290, 145)
-b = Vector2(288, -141)
+a = Vector2(215, 121)
+b = Vector2(213, -117)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_iloie"]
-a = Vector2(-288, 143)
-b = Vector2(-288, -143)
+a = Vector2(-213, 121)
+b = Vector2(-213, -118)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_73h7f"]
-a = Vector2(289, 145)
-b = Vector2(-288, 144)
+a = Vector2(214, 121)
+b = Vector2(-213, 121)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81cny"]
 texture = ExtResource("6_0inor")
@@ -180,7 +180,7 @@ process_mode = 1
 safe_margin = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2, 2)
+zoom = Vector2(4.5, 4.5)
 limit_smoothed = true
 
 [node name="reflect" type="CharacterBody2D" parent="player"]
@@ -206,6 +206,7 @@ script = ExtResource("3_ksuh1")
 
 [node name="Map" type="Sprite2D" parent="."]
 position = Vector2(53, 87)
+scale = Vector2(2, 2)
 texture = ExtResource("5_kvw8b")
 
 [node name="TileMap" type="TileMap" parent="."]

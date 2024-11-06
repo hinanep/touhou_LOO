@@ -58,10 +58,11 @@ text = "100/100"
 
 [node name="point_ratio" type="RichTextLabel" parent="hud"]
 modulate = Color(0, 0, 1, 1)
-offset_left = 900.0
-offset_top = 12.0
-offset_right = 1150.0
-offset_bottom = 52.0
+offset_left = 1591.0
+offset_top = 14.0
+offset_right = 1841.0
+offset_bottom = 54.0
+scale = Vector2(2, 2)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "得点倍率："
 
@@ -76,10 +77,11 @@ text = "0"
 
 [node name="point" type="RichTextLabel" parent="hud"]
 modulate = Color(0, 0, 1, 1)
-offset_left = 900.0
-offset_top = 54.0
-offset_right = 1150.0
-offset_bottom = 94.0
+offset_left = 1594.0
+offset_top = 71.0
+offset_right = 1844.0
+offset_bottom = 111.0
+scale = Vector2(2, 2)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "分数："
 
@@ -95,29 +97,31 @@ text = "0"
 [node name="exp_bar" type="ProgressBar" parent="hud"]
 modulate = Color(1, 0, 0, 1)
 offset_left = 17.0
-offset_top = 528.0
-offset_right = 294.0
-offset_bottom = 542.0
+offset_top = 1048.0
+offset_right = 679.0
+offset_bottom = 1062.0
 rotation = 4.71239
 value = 80.0
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="hud/exp_bar"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 49.0
-offset_bottom = 67.0
+offset_left = 49.0
+offset_top = 24.0
+offset_right = 77.0
+offset_bottom = 73.0
 rotation = 1.5708
+scale = Vector2(2, 2)
 text = "lev."
 
 [node name="level_number" type="RichTextLabel" parent="hud/exp_bar"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 45.0
-offset_right = 49.0
-offset_bottom = 94.0
+offset_left = 49.0001
+offset_top = 78.0
+offset_right = 77.0001
+offset_bottom = 127.0
 rotation = 1.5708
+scale = Vector2(2, 2)
 text = "lev."
 
 [node name="cards" type="Node" parent="hud"]

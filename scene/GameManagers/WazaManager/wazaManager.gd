@@ -354,16 +354,16 @@ func _init():
 
 	}
 
-	waza_pool["unchoosed"]["medicine"] = {
-		"waza_name" : "medicine",
+	waza_pool["unchoosed"]["riggle"] = {
+		"waza_name" : "riggle",
 		"level":0,
-		"path":"res://scene/weapons/medicine/medicine_weapon.tscn",
+		"path":"res://scene/weapons/riggle/riggle_weapon.tscn",
 		"weight":1,
-		"cn":"梅蒂欣",
+		"cn":"莉格露",
 		"type":"skill",#技能、符卡、衍生0
 	
 		"locking_type":"random",#目标、定向、随机方向01
-		"attack_pre":"res://scene/weapons/bullets/medicine_bullet/medicine_bullet.tscn",#发射实体路径1
+		"attack_pre":"res://scene/weapons/bullets/riggle_bullet/riggle_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
 		"creation_distance":0,#距离生成位置的距离1
 		

@@ -3,7 +3,7 @@ extends ranged_weapon_base
 
 func _ready():
 
-	print("medicine_ready")
+	print("riggle_ready")
 
 	super._ready()
 

@@ -46,11 +46,23 @@ text = "设定"
 
 [node name="playButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 455.0
-offset_top = 226.0
-offset_right = 707.0
-offset_bottom = 367.0
-text = "开始游戏"
+offset_left = 827.0
+offset_top = 332.0
+offset_right = 1079.0
+offset_bottom = 473.0
+
+[node name="weapon" type="RichTextLabel" parent="playButton"]
+offset_left = 18.0
+offset_top = 35.0
+offset_right = 250.0
+offset_bottom = 105.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=white]开始游戏[/color]"
+scroll_active = false
 
 [connection signal="pressed" from="EscButton" to="." method="_on_esc_button_pressed"]
 [connection signal="button_up" from="playButton" to="." method="_on_play_button_button_up"]

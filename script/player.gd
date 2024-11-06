@@ -18,6 +18,10 @@ func _ready():
 	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
 	request_ready()
 	pass
+func _input(event):
+	if event.is_action_pressed("slow_mode"):
+		$CollisionShape2D/colli_point.set_visible(!$CollisionShape2D/colli_point.is_visible())
+
 func _enter_tree():
 	
 	pass
@@ -26,16 +30,13 @@ func _physics_process(_delta):
 	
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	velocity = direction * player_var.player_speed
-	
+	if direction.x <0:
+		animated_sprite_2d.play("left")
+	elif direction.x >0:
+		animated_sprite_2d.play("stay")
+
 	move_and_slide()
 	
-	#动画
-	if direction:
-		animated_sprite_2d.play("run")
-		pass
-	else:
-		animated_sprite_2d.play("stay")
-		pass
 
 			
 func take_damage(damage):
