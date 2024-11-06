@@ -45,11 +45,9 @@ frame_progress = 0.06857
 
 [node name="on_hit" type="Node2D" parent="."]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -72)
+scale = Vector2(1.3, 1)
 shape = SubResource("RectangleShape2D_m647g")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

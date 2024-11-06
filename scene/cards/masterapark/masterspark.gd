@@ -1,6 +1,7 @@
 extends card
 
 var basic_damage
+var diretion_angle = 0
 func _ready():
 	$damage_tick.wait_time = 0.5
 	basic_damage = 10
@@ -11,6 +12,9 @@ func _ready():
 	print(level)
 	super._ready()
 func _process(_delta):
+	
+	diretion_angle += 0.001 * (player_var.player_diretion_angle - diretion_angle)
+	$".".rotation = diretion_angle
 	pass
 
 func card_init(card_dic):
@@ -20,6 +24,10 @@ func card_init(card_dic):
 
 func active():
 	AudioManager.play_sfx("sfx_masterspark")
+	
+	$".".rotation =player_var.player_diretion_angle
+	diretion_angle = player_var.player_diretion_angle
+	
 	$Sprite2D.set_visible(true)
 	$damage_tick.start()
 	$".".set_monitoring(true)
