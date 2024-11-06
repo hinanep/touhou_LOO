@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scene/enemy_detect_area.gd" id="7_eb0a6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
-radius = 4.0
+radius = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdhb2"]
 atlas = ExtResource("3_bbt5x")
@@ -66,12 +66,12 @@ shape = SubResource("CircleShape2D_kq405")
 [node name="colli_point" type="Sprite2D" parent="CollisionShape2D"]
 visible = false
 z_index = 1
-scale = Vector2(0.01, 0.01)
+scale = Vector2(0.007, 0.007)
 texture = ExtResource("3_g1rlb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, 6.77626e-21)
-scale = Vector2(0.1, 0.1)
+position = Vector2(0, 6.77626e-21)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
 animation = &"left"
 autoplay = "stay"
