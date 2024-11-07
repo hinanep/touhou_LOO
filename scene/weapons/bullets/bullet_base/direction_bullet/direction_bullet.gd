@@ -1,6 +1,6 @@
 class_name direction_bullet extends Area2D
-var basic_speed = 200
-var basic_damage = 10
+var basic_speed = 500
+var basic_damage = 20
 var destroy_timer
 var diretion:float
 var target
