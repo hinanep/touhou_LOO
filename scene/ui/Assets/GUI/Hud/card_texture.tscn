@@ -8,6 +8,7 @@ texture = ExtResource("1_fomkx")
 stretch_mode = 3
 
 [node name="cn" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = -42.0
 offset_top = -194.0
 offset_right = 23.0
