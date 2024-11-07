@@ -11,12 +11,12 @@ func _ready():
 	velocity = Vector2.from_angle(diretion) * player_var.bullet_speed_ratio * basic_speed
 	super._ready()
 func _physics_process(delta):
-	
+	velocity *= 0.998
 	position += velocity * delta
 	collision_info = cbb.move_and_collide(velocity * delta,true)
 	if collision_info:
 		bounce_times -= 1
-		velocity *= 0.8
+
 		velocity = velocity.bounce(collision_info.get_normal())
 		if collision_info.get_collider().has_method("take_damage"):
 			collision_info.get_collider().take_damage(player_var.player_make_bullet_damage(basic_damage))

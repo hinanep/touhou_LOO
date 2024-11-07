@@ -177,7 +177,7 @@ var event_list = {
 "elite_slime_5":{
 	"pre":preload("res://scene/enemys/elite_slime/elite_slime.tscn"),
 	"spawn_mode":"once",
-	"start_time":150,
+	"start_time":30,
 	"end_time":150,
 	"tick_time":10,
 	"number":3,
