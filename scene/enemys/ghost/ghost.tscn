@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl30vb4qgqfbq"]
+[gd_scene load_steps=12 format=3 uid="uid://dl30vb4qgqfbq"]
 
 [ext_resource type="Script" path="res://scene/enemys/ghost/ghost.gd" id="1_u2v4r"]
 [ext_resource type="Texture2D" uid="uid://cji57mdrf4nao" path="res://asset/素材/jack-o-lanternL.png" id="2_6lklv"]
@@ -37,6 +37,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7wm4"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 26.0192
 
@@ -59,13 +62,14 @@ shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -13.0
-offset_top = -30.0
-offset_right = 94.0
-offset_bottom = -3.0
+offset_left = -42.0
+offset_top = -67.0
+offset_right = 298.0
+offset_bottom = 53.0
 scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "
+theme_override_styles/fill = SubResource("StyleBoxFlat_s7wm4")
 step = 1.0
 value = 100.0
 show_percentage = false
