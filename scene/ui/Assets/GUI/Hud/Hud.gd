@@ -13,7 +13,8 @@ extends BaseGUIView
 @onready var level_number = $hud/exp_bar/level_number
 
 @onready var card_container = $hud/card_container
-
+@onready var waza_container = $hud/waza_container
+@onready var cp_container = $hud/cp_container
 func _ready():
 	hp.max_value = player_var.player_hp_max
 	card_power.max_value = player_var.power_max
@@ -57,25 +58,35 @@ var card_tex_pre = preload("res://scene/ui/Assets/GUI/Hud/card_texture.tscn")
 func card_display():
 	if(card_container.get_child_count()==0):
 		return
-	#cardnum = CardManager.cardnum_have
+
 	cardnum_now = CardManager.cardnum_now
 	
 	for child in card_container.get_children():
 		child.set_expand_mode(0)
 		child.set_stretch_mode(3)
 
-	#left = cardnum_before - CardManager.cardnum_now		
-	#if(left !=0):
-		#print("left")
-		#print(left)
-	#card_container.move_child(card_container.get_child(0),-left)
-	
+
 	card_container.get_child(CardManager.cardnum_now).set_expand_mode(2)
 	card_container.get_child(CardManager.cardnum_now).set_stretch_mode(4)
-	#cardnum_before = cardnum_now
+
 
 func add_card(card_list):
 	print("adding card")
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(load(card_list["card_image"]))
 	card_container.add_child(newcard)
+
+func add_waza(waza_list):
+	print("adding waza")
+	if waza_list.has("waza_image"):
+		var newwaza = card_tex_pre.instantiate()
+		newwaza.set_texture(load(waza_list["waza_image"]))
+		waza_container.add_child(newwaza)
+
+func add_cp(cp_list):
+	print("adding cp")
+	if cp_list.has("cp_image"):
+		var newcp = card_tex_pre.instantiate()
+		newcp.set_texture(load(cp_list["cp_image"]))
+		cp_container.add_child(newcp)
+	

@@ -9,7 +9,7 @@ func _on_back_button_pressed():
 	pass # Replace with function body.
 
 func _open():
-
+	$CanvasLayer/RichTextLabel/RichTextLabel.text =String.num_int64(player_var.point) 
 	pass
 	
 

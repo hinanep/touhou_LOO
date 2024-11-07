@@ -9,7 +9,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_5wapa")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -31,12 +31,12 @@ one_shot = true
 modulate = Color(1, 1, 1, 0.74902)
 light_mask = 3
 visibility_layer = 3
-position = Vector2(-5.3646e-13, -72)
+position = Vector2(0, -72)
 rotation = 4.71239
-scale = Vector2(0.025, 0.01)
+scale = Vector2(0.0250344, 0.01)
 sprite_frames = SubResource("SpriteFrames_xwlbn")
 autoplay = "default"
-frame_progress = 0.06857
+frame_progress = 1.0
 
 [node name="on_hit" type="Node2D" parent="."]
 

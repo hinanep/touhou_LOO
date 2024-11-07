@@ -56,4 +56,19 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 text = "返回主菜单"
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 732.0
+offset_top = 322.0
+offset_right = 863.0
+offset_bottom = 362.0
+scale = Vector2(4, 4)
+text = "SCORE："
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RichTextLabel"]
+offset_left = 57.5
+offset_top = 0.25
+offset_right = 293.5
+offset_bottom = 40.25
+text = "10"
+
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

@@ -13,15 +13,13 @@ func _input(event):
 		pauseing = !pauseing
 		
 func _open():
+
 	pass
 	
 
 func _close():
 	AudioManager.stop_background_bgm()
-	WazaManager.clear_all()
-	CardManager.clear_all()
-	CpManager.clear_all()
-	player_var.clear_all()
+
 	pass
 	
 	

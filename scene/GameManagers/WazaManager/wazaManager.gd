@@ -37,6 +37,7 @@ func add_waza(wazaname):
 	waza_pool["choosed"][wazaname]=waza_pool["unchoosed"][wazaname]
 	waza_pool["unchoosed"].erase(wazaname)
 	waza_list[wazaname] = waza_pool["choosed"][wazaname]["level"]
+	get_tree().call_group("hud","add_waza",waza_pool["choosed"][wazaname])
 	upgrade_waza(wazaname)
 	
 func upgrade_waza(wazaname):
@@ -138,6 +139,7 @@ func _init():
 	"weight":1,#随机权重
 	"cn":"灵梦",#中文名
 	"type":"skill",#技能、符卡、衍生0
+	"waza_image":"res://asset/记忆结晶羁绊图标/灵梦.png",
 	
 	"locking_type":"nearest_enemy",#目标、定向、随机方向01
 	"attack_pre":"res://scene/weapons/bullets/reimu_bullet/reimu_bullet.tscn",#发射实体路径1
@@ -186,7 +188,8 @@ func _init():
 		"weight":1,
 		"cn":"早苗",	#
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"res://asset/记忆结晶羁绊图标/早苗.png",
+		
 		"locking_type":"nearest_enemy",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/sanae_bullet/big/sanae_bullet_big.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
@@ -227,7 +230,8 @@ func _init():
 		"weight":1,
 		"cn":"爱丽丝",
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"res://asset/记忆结晶羁绊图标/爱丽丝.png",
+		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/alice_bullet/alice_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
@@ -268,7 +272,8 @@ func _init():
 		"weight":1,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"",
+		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/fly_head_bullet/fly_head.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
@@ -276,7 +281,7 @@ func _init():
 		
 		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
 		"creating_rule":"one",#生成一组、一个个生成1
-		"attack_gen_times":3,#生成次数1
+		"attack_gen_times":2,#生成次数1
 		"basic_colddown":3,#1
 		
 		
@@ -294,11 +299,11 @@ func _init():
 		"upgrade_map":{#
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
 			"Bullet_Speed_Addition":[1,1.1,1.1,1.1,1.1,1.1,1.1,1.1],
-			"Duration_Addition":[1,2,2,2,3,3,3,3],
+			"Duration_Addition":[1,1,1,1,3,3,3,3],
 			"Range_Addition":[1,1.1,1.2,1.3,1.4,1.5,1.6,1.7],
-			"Times":[3,4,5,6,6,6,6,6],
+			"Times":[2,2,4,6,6,6,6,6],
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
-			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+			"colddown":[1,1,1,1,0.6,0.6,0.6,0.6]
 						},
 		"shoot_sfx":"sfx_bulletshoot"
 
@@ -311,7 +316,8 @@ func _init():
 		"weight":1,
 		"cn":"魅须丸",
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"",
+		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/tamatsukuri_bullet/tamatsukuri_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
@@ -344,11 +350,11 @@ func _init():
 		"upgrade_map":{#
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
 			"Bullet_Speed_Addition":[1,1.1,1.1,1.1,1.1,1.1,1.1,1.1],
-			"Duration_Addition":[1,2,2,2,3,3,3,3],
+			"Duration_Addition":[1,1.1,1.2,1.3,3,3,3,3],
 			"Range_Addition":[1,1.1,1.2,1.3,1.4,1.5,1.6,1.7],
 			"Times":[1,2,2,2,2,2,2,2],
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
-			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
+			"colddown":[1,0.9,0.9,0.9,0.6,0.6,0.6,0.6]
 						},
 		"shoot_sfx":"sfx_bulletshoot"
 
@@ -361,7 +367,8 @@ func _init():
 		"weight":1,
 		"cn":"莉格露",
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"",
+		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/riggle_bullet/riggle_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
@@ -403,7 +410,8 @@ func _init():
 		"weight":1,
 		"cn":"露米娅",
 		"type":"skill",#技能、符卡、衍生0
-	
+		"waza_image":"",
+		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/rumia_bullet/rumia_bullet.tscn",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
