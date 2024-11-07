@@ -120,7 +120,7 @@ func clear_all():
 
 	#运行时使用
 	nearest_enemy = null
-	nearest_enemy_position = null
+	nearest_enemy_position = Vector2(0,0)
 	player_hp = player_hp_max
 	power = power_max 
 	point = 0
