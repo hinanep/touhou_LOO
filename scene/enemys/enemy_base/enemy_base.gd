@@ -1,7 +1,8 @@
 class_name enemy_base extends CharacterBody2D
 @onready var player= get_tree().get_first_node_in_group("player")
 var curse = player_var.curse
-var modi = player_var.time_secs /1800.0
+#var modi = player_var.time_secs /1800.0
+var modi = 0
 var max_hp = curse * (1+modi)
 var hp = max_hp
 var speed = 40
