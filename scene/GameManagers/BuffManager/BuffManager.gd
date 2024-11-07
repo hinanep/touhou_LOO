@@ -26,6 +26,7 @@ func _init():
 		"path":"res://scene/passive/pachuli/pachuli.tscn",
 		"cn":"帕秋莉",
 		"weight":5,
+		"buff_image":"res://asset/记忆结晶羁绊图标/帕秋莉.png",
 		"describe_text":["增加符力","增加符力","增加符力","增加符力","增加符力","增加符力","增加符力","增加符力"]
 		
 	}

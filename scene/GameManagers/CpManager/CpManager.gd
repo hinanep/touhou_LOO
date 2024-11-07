@@ -13,16 +13,16 @@ func _init():
 	cp_pool["unactive"]["reima"] = {
 		"name":"reima",
 		"effect_group":["reimu","marisa"],
-
+		"cn":"灵魔",
 		"weight":1,
 		"cp_image":"res://asset/记忆结晶羁绊图标/灵梦×魔理沙.png"
 	}
 	cp_pool["unactive"]["reitama"] = {
 		"name":"reitama",
 		"effect_group":["reimu","tamatsukuri"],
-
+		"cn":"灵丸",
 		"weight":1,
-		"cp_image":"res://asset/记忆结晶羁绊图标/灵梦×魅须丸.png"
+		"cp_image":"res://asset/记忆结晶羁绊图标/灵丸.png"
 	}
 
 func add_to_maxlist(x_name):
