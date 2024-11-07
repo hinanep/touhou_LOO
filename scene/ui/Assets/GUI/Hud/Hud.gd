@@ -55,6 +55,7 @@ var cardnum=0
 var left=0
 var cardnum_now = 0
 var card_tex_pre = preload("res://scene/ui/Assets/GUI/Hud/card_texture.tscn")
+var cp_and_waza_texture = preload("res://scene/ui/Assets/GUI/Hud/cp_and_waza_texture.tscn")
 func card_display():
 	if(card_container.get_child_count()==0):
 		return
@@ -79,14 +80,14 @@ func add_card(card_list):
 func add_waza(waza_list):
 	print("adding waza")
 	if waza_list.has("waza_image"):
-		var newwaza = card_tex_pre.instantiate()
+		var newwaza = cp_and_waza_texture.instantiate()
 		newwaza.set_texture(load(waza_list["waza_image"]))
 		waza_container.add_child(newwaza)
 
 func add_cp(cp_list):
 	print("adding cp")
 	if cp_list.has("cp_image"):
-		var newcp = card_tex_pre.instantiate()
+		var newcp = cp_and_waza_texture.instantiate()
 		newcp.set_texture(load(cp_list["cp_image"]))
 		cp_container.add_child(newcp)
 	

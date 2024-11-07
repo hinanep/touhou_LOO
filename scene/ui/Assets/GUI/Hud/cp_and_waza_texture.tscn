@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dalot4hpwth2w"]
+
+[ext_resource type="Texture2D" uid="uid://bgwbvmlvrp21y" path="res://asset/记忆结晶羁绊图标/爱丽丝×魔理沙.png" id="1_1yqbe"]
+
+[node name="card_texture" type="TextureRect"]
+custom_minimum_size = Vector2(1, 0)
+texture = ExtResource("1_1yqbe")
+expand_mode = 2

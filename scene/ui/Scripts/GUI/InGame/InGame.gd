@@ -13,7 +13,7 @@ func _input(event):
 		pauseing = !pauseing
 		
 func _open():
-
+	GameManager.upping = false
 	pass
 	
 
