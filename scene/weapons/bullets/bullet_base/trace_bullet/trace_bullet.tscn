@@ -6,6 +6,8 @@
 
 [node name="TraceBullet" type="Area2D"]
 top_level = true
+z_index = 2
+z_as_relative = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_2evlm")

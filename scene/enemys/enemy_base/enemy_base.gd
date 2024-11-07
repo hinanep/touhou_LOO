@@ -26,6 +26,8 @@ var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 
 func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
+	set_z_index(1)
+	set_z_as_relative(false)
 
 	debuff["target_rediretion"] = player
 	pass

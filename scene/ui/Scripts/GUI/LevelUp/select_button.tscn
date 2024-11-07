@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwppujyrfed45"]
+[gd_scene load_steps=10 format=3 uid="uid://cwppujyrfed45"]
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/ui_tmp/battletalk_hr1.png" id="1_cyfps"]
 [ext_resource type="Script" path="res://scene/ui/Scripts/GUI/LevelUp/select_button.gd" id="5_qy0wc"]
@@ -18,12 +18,37 @@ region = Rect2(-1, 0, 256, 88)
 atlas = ExtResource("1_cyfps")
 region = Rect2(1, 99, 254, 85)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gax7"]
+atlas = ExtResource("1_cyfps")
+region = Rect2(0, 288, 256, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwg16"]
+atlas = ExtResource("1_cyfps")
+region = Rect2(0, 192, 256, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5p1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gax7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwg16")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="select" type="TextureButton"]
 offset_right = 256.0
 offset_bottom = 85.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "tooltip["
+mouse_filter = 2
+button_mask = 0
 shortcut = SubResource("Shortcut_siojg")
 texture_normal = SubResource("AtlasTexture_4g7qy")
 texture_pressed = SubResource("AtlasTexture_4g7qy")
@@ -32,6 +57,19 @@ texture_disabled = SubResource("AtlasTexture_4g7qy")
 texture_focused = SubResource("AtlasTexture_nkj25")
 stretch_mode = 0
 script = ExtResource("5_qy0wc")
+
+[node name="describe" type="RichTextLabel" parent="."]
+z_index = 1
+offset_left = 266.0
+offset_top = 22.0
+offset_right = 868.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=white]灵梦"
+scroll_active = false
 
 [node name="weapon" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -45,4 +83,11 @@ theme_override_font_sizes/normal_font_size = 28
 text = "灵梦"
 scroll_active = false
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(451, 50)
+scale = Vector2(1.58594, 1)
+sprite_frames = SubResource("SpriteFrames_w5p1s")
+
 [connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

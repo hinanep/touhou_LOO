@@ -185,6 +185,8 @@ animations = [{
 
 [node name="Bomb" type="Node2D"]
 top_level = true
+z_index = 2
+z_as_relative = false
 script = ExtResource("1_6ndl1")
 bombParticle = ExtResource("2_0jth6")
 

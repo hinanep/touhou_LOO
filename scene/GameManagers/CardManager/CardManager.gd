@@ -31,7 +31,8 @@ func _init():
 		"weight":1,
 		"card_image":"res://asset/记忆结晶羁绊图标/魔理沙.png",
 		"node":null,
-		"cn":"魔理沙"
+		"cn":"魔理沙",
+		"describe_text":["强大的魔炮，强大的卡牌伴随着代价","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"]
 	}
 	card_pool["unchoosed"]["fairy"] = {
 		"level": card_maxlevel-1,
@@ -43,15 +44,7 @@ func _init():
 		"node":null,
 		"cn":"大妖精"
 	}
-	#card_pool["unchoosed"]["test"] = {
-		#"level": card_maxlevel-1,
-		#"power_cost":40,
-		#"path":"res://scene/cards/beginning_card/beginning_card.tscn",
-		#"pre":null,
-		#"weight":1,
-		#"card_image":"res://asset/记忆结晶羁绊图标/灵梦.png",
-		#"node":null
-	#}
+
 func _input(event):
 	
 	if cardnum_have:

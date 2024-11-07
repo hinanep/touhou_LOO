@@ -7,7 +7,7 @@ font_size = 72
 
 [node name="PauseMenu" type="Control" groups=["pause_menu"]]
 process_mode = 2
-z_index = 500
+z_index = 902
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

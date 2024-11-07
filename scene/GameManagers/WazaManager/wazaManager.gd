@@ -185,6 +185,7 @@ func _init():
 		"Debuff_Addition":[1,1,1,1,1,1,1,1],
 		"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 					},	#
+	"describe_text":["锁定追踪最近敌人的速射炮","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 	"shoot_sfx":"sfx_bulletshoot"
 		}
 	waza_pool["unchoosed"]["sanae"] = {
@@ -227,6 +228,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},
+		"describe_text":["随机射出不同子弹","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 	}
 	waza_pool["unchoosed"]["alice"] = {
@@ -269,6 +271,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},
+						"describe_text":["发射人偶死亡区域","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 	}
 	waza_pool["unchoosed"]["sekibanki"] = {
@@ -311,6 +314,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,1,1,1,0.6,0.6,0.6,0.6]
 						},
+						"describe_text":["一些绕着你转的随机弹道头","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 
 	}
@@ -362,6 +366,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.9,0.9,0.6,0.6,0.6,0.6]
 						},
+						"describe_text":["会反弹的阴阳玉","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 
 	}
@@ -406,6 +411,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},
+						"describe_text":["追踪最强大敌人的集中弹","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 
 	}
@@ -449,6 +455,7 @@ func _init():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},
+						"describe_text":["发射黑洞（并没有很黑）","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"],
 		"shoot_sfx":"sfx_bulletshoot"
 
 	}
