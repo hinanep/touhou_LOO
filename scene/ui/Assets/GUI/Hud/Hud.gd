@@ -75,6 +75,7 @@ func add_card(card_list):
 	print("adding card")
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(load(card_list["card_image"]))
+	newcard.get_child(0).text = card_list["cn"]
 	card_container.add_child(newcard)
 
 func add_waza(waza_list):
@@ -82,6 +83,7 @@ func add_waza(waza_list):
 	if waza_list.has("waza_image"):
 		var newwaza = cp_and_waza_texture.instantiate()
 		newwaza.set_texture(load(waza_list["waza_image"]))
+		newwaza.get_child(0).text = waza_list["cn"]
 		waza_container.add_child(newwaza)
 
 func add_cp(cp_list):
@@ -89,5 +91,6 @@ func add_cp(cp_list):
 	if cp_list.has("cp_image"):
 		var newcp = cp_and_waza_texture.instantiate()
 		newcp.set_texture(load(cp_list["cp_image"]))
+		newcp.get_child(0).text = cp_list["cn"]
 		cp_container.add_child(newcp)
 	

@@ -40,7 +40,8 @@ func _init():
 		"pre":null,
 		"weight":1,
 		"card_image":"res://asset/记忆结晶羁绊图标/早苗.png",
-		"node":null
+		"node":null,
+		"cn":"大妖精"
 	}
 	#card_pool["unchoosed"]["test"] = {
 		#"level": card_maxlevel-1,

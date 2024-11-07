@@ -6,3 +6,12 @@
 custom_minimum_size = Vector2(1, 0)
 texture = ExtResource("1_fomkx")
 stretch_mode = 3
+
+[node name="cn" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = -322.0
+offset_right = 218.0
+offset_bottom = -299.0
+scale = Vector2(15, 15)
+text = "魔理沙"

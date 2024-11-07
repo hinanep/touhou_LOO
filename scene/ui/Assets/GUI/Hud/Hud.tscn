@@ -144,10 +144,10 @@ text = "lev."
 [node name="cards" type="Node" parent="hud"]
 
 [node name="card_container" type="HBoxContainer" parent="hud"]
-offset_left = 27.0
-offset_top = 120.0
-offset_right = 2847.0
-offset_bottom = 1090.0
+offset_left = 114.0
+offset_top = 153.0
+offset_right = 2934.0
+offset_bottom = 1123.0
 scale = Vector2(0.1, 0.1)
 alignment = 1
 
@@ -160,12 +160,36 @@ scale = Vector2(0.1, 0.1)
 alignment = 1
 
 [node name="cp_container" type="HBoxContainer" parent="hud"]
-offset_left = 27.0
-offset_top = 241.0
-offset_right = 2847.0
-offset_bottom = 1211.0
+offset_left = 114.0
+offset_top = 266.0
+offset_right = 2934.0
+offset_bottom = 1236.0
 scale = Vector2(0.1, 0.1)
 alignment = 1
+
+[node name="card" type="RichTextLabel" parent="hud"]
+offset_left = 39.0
+offset_top = 173.0
+offset_right = 90.0
+offset_bottom = 213.0
+scale = Vector2(2, 2)
+text = "符卡"
+
+[node name="waaza" type="RichTextLabel" parent="hud"]
+offset_left = 416.0
+offset_top = 974.0
+offset_right = 467.0
+offset_bottom = 1014.0
+scale = Vector2(2, 2)
+text = "招式"
+
+[node name="cp" type="RichTextLabel" parent="hud"]
+offset_left = 38.0
+offset_top = 287.0
+offset_right = 89.0
+offset_bottom = 327.0
+scale = Vector2(2, 2)
+text = "羁绊"
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1
