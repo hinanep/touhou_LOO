@@ -76,6 +76,7 @@ func add_card(card_list):
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(load(card_list["card_image"]))
 	newcard.get_child(0).text = card_list["cn"]
+	
 	card_container.add_child(newcard)
 
 func add_waza(waza_list):
