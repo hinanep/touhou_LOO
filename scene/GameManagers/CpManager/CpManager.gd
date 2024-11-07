@@ -22,7 +22,7 @@ func _init():
 		"effect_group":["reimu","tamatsukuri"],
 
 		"weight":1,
-		"cp_image":"res://asset/记忆结晶羁绊图标/爱丽丝×魔理沙.png"
+		"cp_image":"res://asset/记忆结晶羁绊图标/灵梦×魅须丸.png"
 	}
 
 func add_to_maxlist(x_name):

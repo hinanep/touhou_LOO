@@ -39,7 +39,7 @@ func _init():
 		"path":"res://scene/cards/beginning_card/beginning_card.tscn",
 		"pre":null,
 		"weight":1,
-		"card_image":"res://asset/记忆结晶羁绊图标/早苗.png",
+		"card_image":"res://asset/记忆结晶羁绊图标/大妖精.png",
 		"node":null
 	}
 	#card_pool["unchoosed"]["test"] = {

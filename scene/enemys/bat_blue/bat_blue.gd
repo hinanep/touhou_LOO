@@ -4,7 +4,7 @@ func _ready():
 	max_hp *= 20
 	hp = max_hp
 	speed = 40
-	basic_melee_damage *= 10
+	basic_melee_damage *= 50
 	basic_bullet_damage *= 10
 	drops_path = "res://scene/drops/exp_1.tscn"
 	
