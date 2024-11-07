@@ -18,7 +18,7 @@ var debuff = {
 
 @onready var melee_damage_area = $melee_damage_area
 @onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
-
+var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 
 @onready var bullet_damage_area = $bullet_damage_area
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
@@ -47,15 +47,22 @@ func move_to_target():
 		#velocity *=  (get_distance_squared_to_player() - 100)/10
 	
 	move_and_slide()
-
+func damage_num_display(num):
+	var d = damageNum.instantiate()
+	d.get_child(1).text = String.num_int64(num)
+	#d.global_position = global_position
+	d.position = Vector2(0,0)
+	#$".".call_deferred("add_child",d)
+	$".".add_child(d)
 #受伤
 func take_damage(damage):
 	if invinsible:
 		return
+	damage_num_display(damage)
 	hp -= damage
 	progress_bar.value = hp/max_hp * 100
 	if hp <= 0:
-		died()
+		call_deferred("died")
 #似了
 func died():
 	drop()

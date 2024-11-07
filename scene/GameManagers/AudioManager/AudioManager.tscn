@@ -30,4 +30,3 @@ volume_db = -6.752
 [node name="SFXPlayerPool" type="Node" parent="."]
 
 [node name="Background_bgm" type="AudioStreamPlayer" parent="."]
-volume_db = -33.373
