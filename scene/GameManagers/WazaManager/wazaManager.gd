@@ -272,7 +272,7 @@ func _init():
 		"weight":1,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
-		"waza_image":"",
+		"waza_image":"res://asset/素材/头.png",
 		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/fly_head_bullet/fly_head.tscn",#发射实体路径1
@@ -316,7 +316,7 @@ func _init():
 		"weight":1,
 		"cn":"魅须丸",
 		"type":"skill",#技能、符卡、衍生0
-		"waza_image":"",
+		"waza_image":"res://asset/素材/yinyangorb.png",
 		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/tamatsukuri_bullet/tamatsukuri_bullet.tscn",#发射实体路径1
@@ -367,7 +367,7 @@ func _init():
 		"weight":1,
 		"cn":"莉格露",
 		"type":"skill",#技能、符卡、衍生0
-		"waza_image":"",
+		"waza_image":"res://asset/素材/firefly.png",
 		
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"res://scene/weapons/bullets/riggle_bullet/riggle_bullet.tscn",#发射实体路径1
