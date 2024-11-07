@@ -28,7 +28,7 @@ func card_init(card_dic):
 	print("card init")
 	
 func upgrade_card():
-	CardManager.card_pool["choosed"][card_name]["power_cost"] -= 4
+	#CardManager.card_pool["choosed"][card_name]["power_cost"] -= 4
 	pass
 func _on_invincible_time_timeout():
 	player_var.is_invincible = false

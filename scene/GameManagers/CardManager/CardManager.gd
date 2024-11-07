@@ -25,7 +25,7 @@ func _init():
 	card_maxlevel = 2
 	card_pool["unchoosed"]["marisa"] = {
 		"level":0,
-		"power_cost":40,
+		"power_cost":2000,
 		"path":"res://scene/cards/masterapark/masterspark.tscn",
 		"pre":null,
 		"weight":1,
@@ -36,7 +36,7 @@ func _init():
 	}
 	card_pool["unchoosed"]["fairy"] = {
 		"level": card_maxlevel-1,
-		"power_cost":40,
+		"power_cost":500,
 		"path":"res://scene/cards/beginning_card/beginning_card.tscn",
 		"pre":null,
 		"weight":1,

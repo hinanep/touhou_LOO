@@ -28,6 +28,7 @@ func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
+	$ProgressBar._set_size(Vector2(144,20)) 
 
 	debuff["target_rediretion"] = player
 	pass

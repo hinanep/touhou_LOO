@@ -25,7 +25,7 @@ var point_ratio = 1.0#- 得点倍率：影响每一记忆碎片增加多少分�
 var power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
-var power_max = 10000#- 符力上限：可存储的最大符力
+var power_max = 2000#- 符力上限：可存储的最大符力
 
 @onready var ui_manager = get_tree().get_first_node_in_group("UiManager")
 
@@ -114,7 +114,7 @@ func clear_all():
 	power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符力
 	change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 	curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
-	power_max = 10000#- 符力上限：可存储的最大符力
+	power_max = 2000#- 符力上限：可存储的最大符力
 
 
 

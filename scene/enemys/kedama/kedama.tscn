@@ -45,11 +45,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmd7s"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 12.0416
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vh4o"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="kedama" type="CharacterBody2D" groups=["monster"]]
 scale = Vector2(0.5, 0.5)
@@ -65,20 +65,6 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_itioj")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.741176, 0, 0, 1)
-offset_left = -24.0
-offset_top = -20.0
-offset_right = 168.0
-offset_bottom = 23.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-theme_override_styles/fill = SubResource("StyleBoxFlat_dmd7s")
-step = 1.0
-value = 100.0
-show_percentage = false
 
 [node name="melee_damage_area" type="Area2D" parent="."]
 monitoring = false
@@ -100,3 +86,17 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
 
 [node name="debuff_time" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 126.0
+offset_bottom = 14.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+theme_override_styles/fill = SubResource("StyleBoxFlat_6vh4o")
+step = 1.0
+value = 100.0
+show_percentage = false

@@ -6,7 +6,7 @@ var activing = false
 func _ready():
 	$damage_tick.wait_time = 0.5
 	basic_damage = 500
-	mana_cost = 44
+
 	duration_time = 5
 	card_name = "marisa"
 	print(card_name)
@@ -47,6 +47,7 @@ func active():
 	
 	pass
 func upgrade_card():
+	basic_damage += 100
 	super.upgrade_card()
 
 func _on_invincible_time_timeout():

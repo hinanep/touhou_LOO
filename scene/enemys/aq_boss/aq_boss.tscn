@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=27 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
 [ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_hmoxy"]
@@ -144,6 +144,9 @@ radius = 37.1214
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 38.4708
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqpgj"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="aq_boss" type="CharacterBody2D" groups=["boss"]]
 z_index = 1
 z_as_relative = false
@@ -170,19 +173,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 15
 shape = SubResource("CircleShape2D_itioj")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -46.0
-offset_top = -63.0
-offset_right = 326.0
-offset_bottom = -36.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-step = 1.0
-value = 100.0
-show_percentage = false
 
 [node name="melee_damage_area" type="Area2D" parent="."]
 monitoring = false
@@ -213,6 +203,20 @@ shape = SubResource("CircleShape2D_shwxr")
 
 [node name="reincarnation" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -39.0
+offset_top = -46.0
+offset_right = 273.0
+offset_bottom = -14.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+theme_override_styles/fill = SubResource("StyleBoxFlat_nqpgj")
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="reincarnation" to="." method="_on_reincarnation_timeout"]

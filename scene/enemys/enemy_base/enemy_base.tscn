@@ -42,11 +42,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 8.06226
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hd47"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ilp"]
 radius = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yl7h"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="enemy_base" type="CharacterBody2D"]
 collision_layer = 2
@@ -61,20 +61,6 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_itioj")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.739789, 1.93726e-06, 9.62615e-07, 1)
-offset_left = -13.0
-offset_top = -10.0
-offset_right = 94.0
-offset_bottom = 9.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-theme_override_styles/fill = SubResource("StyleBoxFlat_3hd47")
-step = 1.0
-value = 100.0
-show_percentage = false
 
 [node name="melee_damage_area" type="Area2D" parent="."]
 collision_layer = 0
@@ -96,5 +82,19 @@ shape = SubResource("CircleShape2D_v8ilp")
 [node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
 
 [node name="debuff_time" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 126.0
+offset_bottom = 2.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+theme_override_styles/fill = SubResource("StyleBoxFlat_2yl7h")
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]

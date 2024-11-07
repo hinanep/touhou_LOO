@@ -228,7 +228,7 @@ var event_list = {
 "aq":{
 	"pre":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
 	"spawn_mode":"once",
-	"start_time":30,
+	"start_time":180,
 	"end_time":300,
 	"tick_time":1,
 	"number":1,
