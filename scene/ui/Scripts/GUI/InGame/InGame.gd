@@ -1,7 +1,7 @@
 extends BaseGUIView
 func _ready():
 	G.get_gui_view_manager().open_view("Hud")
-	AudioManager.play_background_bgm("ff")
+	AudioManager.play_background_bgm("oldworld")
 var pauseing = false
 var pause_id
 func _input(event):

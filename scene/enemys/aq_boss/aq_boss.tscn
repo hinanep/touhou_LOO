@@ -107,3 +107,8 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="danma" type="Node2D" parent="."]
 
 [node name="sekibankiWeapon" parent="danma" instance=ExtResource("3_3j4ay")]
+
+[node name="reincarnation" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="reincarnation" to="." method="_on_reincarnation_timeout"]

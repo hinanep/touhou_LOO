@@ -9,6 +9,7 @@ var basic_melee_damage = curse
 var basic_bullet_damage = curse
 var drops_path = ""
 var target
+var invinsible = false
 var debuff = {
 	"speed":1.0,
 	"target_rediretion":player
@@ -34,8 +35,7 @@ func _physics_process(_delta):
 	pass
 
 func _process(_delta):
-	if hp <= 0:
-		died()
+
 	pass
 
 #移动方式：走向玩家
@@ -50,8 +50,12 @@ func move_to_target():
 
 #受伤
 func take_damage(damage):
+	if invinsible:
+		return
 	hp -= damage
 	progress_bar.value = hp/max_hp * 100
+	if hp <= 0:
+		died()
 #似了
 func died():
 	drop()
@@ -59,7 +63,7 @@ func died():
 	
 func drop():
 	var drops = load(drops_path).instantiate()
-	get_parent().add_child(drops)
+	get_parent().call_deferred("add_child",drops) 
 	drops.global_position = global_position
 	pass
 	

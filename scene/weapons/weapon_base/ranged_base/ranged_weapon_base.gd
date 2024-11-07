@@ -1,7 +1,7 @@
 class_name ranged_weapon_base extends Node2D
 @onready var shoot_timer = $shootTimer
 @onready var attack_range = $attack_range
-
+var active = true
 var attack_modifier = {
 	"on_hit":[],
 	"on_flying":[],
@@ -79,7 +79,7 @@ func _ready():
 func _physics_process(_delta):
 	
 	var nearest_enemy = get_nearest_enemy_inarea()
-	if nearest_enemy:
+	if nearest_enemy and active:
 		#print(nearest_enemy.global_position)
 		#look_at(nearest_enemy.global_position)		
 		auto_attack(waza_config["diretion_rotation"],waza_config["creation_distance"])

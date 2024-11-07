@@ -1,4 +1,19 @@
-[gd_scene format=3 uid="uid://bb4cfns75xyno"]
+[gd_scene load_steps=7 format=3 uid="uid://bb4cfns75xyno"]
+
+[ext_resource type="Shader" uid="uid://babvhjgtduxwn" path="res://scene/particle/master_spark/master_spark.tres" id="1_se7es"]
+[ext_resource type="Texture2D" uid="uid://ddvokxqaone08" path="res://asset/素材/小风.png" id="2_ya12y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl8rh"]
+shader = ExtResource("1_se7es")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_buawp"]
+material = SubResource("ShaderMaterial_pl8rh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6djye"]
+shader = ExtResource("1_se7es")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6lf3m"]
+material = SubResource("ShaderMaterial_6djye")
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,3 +25,14 @@ radial_accel_min = 1.0
 radial_accel_max = 1.0
 tangential_accel_min = 2.0
 tangential_accel_max = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_buawp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(7.75, -4.25)
+scale = Vector2(16.5, 9.5)
+mesh = SubResource("BoxMesh_6lf3m")
+texture = ExtResource("2_ya12y")

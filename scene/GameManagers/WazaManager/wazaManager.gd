@@ -132,6 +132,12 @@ func _init():
 		"level":waza_maxlevel-1,
 		"path":"res://scene/weapons/weapon_base/melee_base/melee_weapon_base.tscn"
 	}
+	
+	
+	
+	
+	
+	
 	waza_pool["unchoosed"]["reimu"] = {
 	"waza_name" : "reimu",
 	"level":0,
