@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=11 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
 [ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="2_p2xrr"]
@@ -42,6 +42,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 8.06226
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hd47"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8ilp"]
 radius = 16.0
 
@@ -67,6 +70,7 @@ offset_bottom = 16.0
 scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "
+theme_override_styles/fill = SubResource("StyleBoxFlat_3hd47")
 step = 1.0
 value = 100.0
 show_percentage = false

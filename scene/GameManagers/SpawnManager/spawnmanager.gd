@@ -9,7 +9,7 @@ var event_list = {
 	"end_time":15,
 	"tick_time":2,
 	"number":10,
-	"param_buff":0.5
+	"param_buff":0.75
 },
 
 #第二波:蓝色蝙蝠 15~30s
@@ -20,7 +20,7 @@ var event_list = {
 	"end_time":30,
 	"tick_time":2,
 	"number":10,
-	"param_buff":0.75
+	"param_buff":1
 },
 
 #精英：精英史莱姆 30s
@@ -29,7 +29,7 @@ var event_list = {
 	"spawn_mode":"once",
 	"start_time":30,
 	"end_time":30,
-	"tick_time":10,
+	"tick_time":1,
 	"number":1,
 	"param_buff":10
 },
@@ -42,7 +42,7 @@ var event_list = {
 	"end_time":45,
 	"tick_time":2,
 	"number":15,
-	"param_buff":1
+	"param_buff":1.25
 },
 
 #第四波：毛玉 45~60s
@@ -53,7 +53,7 @@ var event_list = {
 	"end_time":60,
 	"tick_time":2,
 	"number":15,
-	"param_buff":1.25
+	"param_buff":1.5
 },
 
 #精英：精英史莱姆 60s
@@ -62,7 +62,7 @@ var event_list = {
 	"spawn_mode":"once",
 	"start_time":60,
 	"end_time":60,
-	"tick_time":10,
+	"tick_time":1,
 	"number":1,
 	"param_buff":15
 },
@@ -75,7 +75,7 @@ var event_list = {
 	"end_time":75,
 	"tick_time":2,
 	"number":20,
-	"param_buff":1.5
+	"param_buff":1.75
 },
 
 #第六波：紫色蝙蝠 75~90s
@@ -86,7 +86,7 @@ var event_list = {
 	"end_time":90,
 	"tick_time":2,
 	"number":20,
-	"param_buff":1.75
+	"param_buff":2
 },
 
 #精英：精英史莱姆 90s
@@ -95,7 +95,7 @@ var event_list = {
 	"spawn_mode":"once",
 	"start_time":90,
 	"end_time":90,
-	"tick_time":10,
+	"tick_time":1,
 	"number":1,
 	"param_buff":20
 },
@@ -128,7 +128,7 @@ var event_list = {
 	"spawn_mode":"once",
 	"start_time":120,
 	"end_time":120,
-	"tick_time":10,
+	"tick_time":1,
 	"number":2,
 	"param_buff":15
 },
@@ -179,7 +179,7 @@ var event_list = {
 	"spawn_mode":"once",
 	"start_time":30,
 	"end_time":150,
-	"tick_time":10,
+	"tick_time":1,
 	"number":3,
 	"param_buff":15
 },
