@@ -1,5 +1,6 @@
 extends enemy_base
-
+var stage = 2
+var reincarnation = false
 func _ready():
 	max_hp *= 10000
 	hp = max_hp
@@ -7,13 +8,13 @@ func _ready():
 	basic_melee_damage *= 10
 	basic_bullet_damage *= 10
 	drops_path = "res://scene/drops/plate_1.tscn"
-	
+	AudioManager.play_bgm("saga")
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()
 	super._ready()
 	#启用弹幕攻击，需设置弹幕攻击方式
 	bullet_battle_ready()
-	$Explosion.set_emitting(true)
+	
 	get_tree().call_group("monster","queue_free")
 	get_tree().call_group("spawner","change_pause")
 func _physics_process(_delta):
@@ -21,6 +22,11 @@ func _physics_process(_delta):
 	
 	pass
 func died():
+	stage -= 1
+	if stage > 0:
+		next_stage()
+		return
+	AudioManager.bgm_over()
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
 	drop()
@@ -33,7 +39,28 @@ func bullet_attack():
 	
 	pass
 	
+func next_stage():
+	invinsible = true
+	AudioManager.play_bgm("kami")
+	bullet_damage_area.monitoring = false
+	$danma/sekibankiWeapon.active = false
+	$reincarnation.start()
+	pass
+	
 #体术攻击方法，可重新实现
 #func melee_attack(playernode):
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
+func reincarnation_over():
+	invinsible = false
+	$danma/sekibankiWeapon.active = true
+	$reincarnation.stop()
+	bullet_damage_area.monitoring = true
+	pass
 
+
+func _on_reincarnation_timeout():
+	hp += max_hp * 0.04
+	progress_bar.value = hp/max_hp * 100
+	if(hp >= max_hp):
+		reincarnation_over()
+	pass # Replace with function body.

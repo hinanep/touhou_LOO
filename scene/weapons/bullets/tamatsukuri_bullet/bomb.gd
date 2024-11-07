@@ -8,6 +8,7 @@ func _ready():
 	Kill()
 
 func Kill():
+	AudioManager.play_sfx("explosion")
 	var _particle = bombParticle.instantiate()
 	
 	if player_var.player_node != null:
