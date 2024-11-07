@@ -59,6 +59,7 @@ stretch_mode = 0
 script = ExtResource("5_qy0wc")
 
 [node name="describe" type="RichTextLabel" parent="."]
+visible = false
 z_index = 1
 offset_left = 266.0
 offset_top = 22.0
@@ -84,6 +85,7 @@ text = "灵梦"
 scroll_active = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(451, 50)
 scale = Vector2(1.58594, 1)
 sprite_frames = SubResource("SpriteFrames_w5p1s")
