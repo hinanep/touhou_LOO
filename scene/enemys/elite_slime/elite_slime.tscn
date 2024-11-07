@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://ubcyl6b1fje7"]
+[gd_scene load_steps=4 format=3 uid="uid://ubcyl6b1fje7"]
 
 [ext_resource type="PackedScene" uid="uid://ddjn4u735g7im" path="res://scene/enemys/slime/slime.tscn" id="1_kw1kv"]
 [ext_resource type="Script" path="res://scene/enemys/elite_slime/elite_slime.gd" id="2_m6vql"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc2ti"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="elite_slime" groups=["elite"] instance=ExtResource("1_kw1kv")]
+collision_mask = 1
 script = ExtResource("2_m6vql")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 modulate = Color(0.592284, 0, 0.0114338, 1)
 scale = Vector2(2, 2)
+
+[node name="ProgressBar" parent="." index="2"]
+offset_top = -10.0
+offset_bottom = 9.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_pc2ti")
 
 [node name="debuff_time2" type="Timer" parent="." index="5"]

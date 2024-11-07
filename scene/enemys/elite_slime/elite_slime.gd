@@ -1,10 +1,10 @@
 extends enemy_base
 
 func _ready():
-	max_hp *= 2000
+	max_hp *= 200
 	hp = max_hp
 	speed = 40
-	basic_melee_damage *= 200
+	basic_melee_damage *= 30
 	basic_bullet_damage *= 10
 	drops_path = "res://scene/drops/plate_1.tscn"
 	#AudioManager.play_bgm("Ruins")

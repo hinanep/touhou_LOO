@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tqgo35ytg70m"
-path="res://.godot/imported/露米娅.png-5c23f340523cd8efe89568b3e84f73a2.ctex"
+uid="uid://ckyssj6pti6qf"
+path="res://.godot/imported/妖梦.png-ff2a989a2833c2f80e091c35d47d0d95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/记忆结晶羁绊图标/露米娅.png"
-dest_files=["res://.godot/imported/露米娅.png-5c23f340523cd8efe89568b3e84f73a2.ctex"]
+source_file="res://asset/记忆结晶羁绊图标/妖梦.png"
+dest_files=["res://.godot/imported/妖梦.png-ff2a989a2833c2f80e091c35d47d0d95.ctex"]
 
 [params]
 
