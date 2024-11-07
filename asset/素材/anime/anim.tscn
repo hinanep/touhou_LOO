@@ -3,21 +3,6 @@
 [ext_resource type="Shader" path="res://asset/素材/anime/setred.gdshader" id="1_r1jua"]
 [ext_resource type="Texture2D" uid="uid://iny3sg54p3mb" path="res://asset/素材/bigyaojing.png" id="2_tl74k"]
 
-[sub_resource type="Animation" id="Animation_xnyx3"]
-resource_name = "anim_red"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Bigyaojing:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.701, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_guswq"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,6 +16,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xnyx3"]
+resource_name = "anim_red"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Bigyaojing:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.701, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yucyd"]
