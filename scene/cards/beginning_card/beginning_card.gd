@@ -15,7 +15,7 @@ func card_init(card_dic):
 	
 
 func active():
-	AudioManager.play_sfx("sfx_masterspark")
+	AudioManager.play_sfx("sfx_spellcard")
 	player_var.player_get_heal(recover)
 
 	super.active()

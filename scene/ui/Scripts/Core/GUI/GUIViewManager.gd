@@ -9,13 +9,14 @@ var viewInstanceCount := 0
 var viewInstanceMap := {}
 
 
-func _ready() -> void:
+func _init() -> void:
 	_build_view_config_map()
 	
 
 func _build_view_config_map():
 	for config in viewConfigList:
 		if config == null or config.id.is_empty():
+			
 			continue
 		viewConfigMap[config.id] = config
 

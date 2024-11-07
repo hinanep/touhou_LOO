@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://pgotpk8ugeqs"]
+[gd_scene load_steps=24 format=3 uid="uid://pgotpk8ugeqs"]
 
-[ext_resource type="Script" path="res://scene/ui/Scripts/Core/GUI/GUIViewManager.gd" id="1_bdfyu"]
 [ext_resource type="PackedScene" uid="uid://q1xbyvts1yk4" path="res://scene/ui/Assets/GUI/StartMenu/StartMenu.tscn" id="2_88ed3"]
 [ext_resource type="Script" path="res://scene/ui/Scripts/Core/GUI/GUIViewConfig.gd" id="2_a61eg"]
+[ext_resource type="PackedScene" uid="uid://hstbyppinrro" path="res://scene/ui/Scripts/Core/GUI/GUIViewManager.tscn" id="2_w5xwa"]
 [ext_resource type="Script" path="res://scene/ui/Scripts/Core/LaunchGame.gd" id="3_yo4kj"]
 [ext_resource type="PackedScene" uid="uid://c1ccewwn1rfql" path="res://scene/ui/Assets/GUI/SettingsMenu/SettingsMenu.tscn" id="4_7xgb2"]
 [ext_resource type="PackedScene" uid="uid://daklkj46c774t" path="res://scene/ui/Assets/GUI/ShopMenu/ShopMenu.tscn" id="5_hcwf4"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://buapai5om3oao" path="res://scene/ui/Scripts/GUI/LevelUp/LevelUp.tscn" id="9_yb6j6"]
 [ext_resource type="PackedScene" uid="uid://bfbx4h1lccqnn" path="res://scene/ui/Assets/GUI/Hud/Hud.tscn" id="10_mryv8"]
 [ext_resource type="PackedScene" uid="uid://7oqb4rblvirf" path="res://scene/ui/Assets/GUI/PauseMenu/PauseMenu.tscn" id="11_tbtck"]
+[ext_resource type="PackedScene" uid="uid://bxhe0o8utfl7j" path="res://scene/ui/Assets/GUI/ClearMenu/ClearMenu.tscn" id="12_k00gd"]
 
 [sub_resource type="Resource" id="Resource_67yjm"]
 script = ExtResource("2_a61eg")
@@ -58,13 +59,12 @@ script = ExtResource("2_a61eg")
 id = &"PauseMenu"
 prefab = ExtResource("11_tbtck")
 
-[node name="Game" type="Node"]
+[sub_resource type="Resource" id="Resource_q4e2n"]
+script = ExtResource("2_a61eg")
+id = &"ClearMenu"
+prefab = ExtResource("12_k00gd")
 
-[node name="GUIViewManager" type="Node" parent="." node_paths=PackedStringArray("guiRoot")]
-unique_name_in_owner = true
-script = ExtResource("1_bdfyu")
-viewConfigList = Array[ExtResource("2_a61eg")]([SubResource("Resource_67yjm"), SubResource("Resource_4b63o"), SubResource("Resource_bthkb"), SubResource("Resource_brtjf"), SubResource("Resource_rhlkv"), SubResource("Resource_cwwhc"), SubResource("Resource_0lsog"), SubResource("Resource_qempm"), SubResource("Resource_64v6i")])
-guiRoot = NodePath("../GUIRoot")
+[node name="Game" type="Node"]
 
 [node name="GUIRoot" type="Control" parent="."]
 layout_mode = 3
@@ -73,6 +73,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GuiViewManager" parent="." node_paths=PackedStringArray("guiRoot") instance=ExtResource("2_w5xwa")]
+viewConfigList = Array[ExtResource("2_a61eg")]([SubResource("Resource_67yjm"), SubResource("Resource_4b63o"), SubResource("Resource_bthkb"), SubResource("Resource_brtjf"), SubResource("Resource_rhlkv"), SubResource("Resource_cwwhc"), SubResource("Resource_0lsog"), SubResource("Resource_qempm"), SubResource("Resource_64v6i"), SubResource("Resource_q4e2n")])
+guiRoot = NodePath("../GUIRoot")
 
 [node name="LaunchGame" type="Node" parent="."]
 script = ExtResource("3_yo4kj")

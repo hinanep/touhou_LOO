@@ -52,6 +52,7 @@ offset_right = 1079.0
 offset_bottom = 473.0
 
 [node name="weapon" type="RichTextLabel" parent="playButton"]
+layout_mode = 0
 offset_left = 18.0
 offset_top = 35.0
 offset_right = 250.0

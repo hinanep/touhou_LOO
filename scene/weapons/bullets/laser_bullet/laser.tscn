@@ -27,11 +27,6 @@ script = ExtResource("1_fkk8d")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-13, 32)
-width = 20.0
-default_color = Color(0.211765, 1, 1, 1)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.74902)
 light_mask = 3

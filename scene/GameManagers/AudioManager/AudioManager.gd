@@ -17,7 +17,6 @@ func stop_background_bgm() -> void:
 
 		background_bgm_player.stop()
 
-		
 func play_bgm(bgm_name:String) -> void:
 	if(bgm.has(bgm_name)):
 		background_bgm_player.set_stream_paused(true)
@@ -33,8 +32,8 @@ func play_sfx(sfx_name:String) -> void:
 		var new_player = AudioStreamPlayer.new()
 		$SFXPlayerPool.add_child(new_player)
 		sfx_player_playing_pair[sfx_name] = new_player
-		
-	sfx_player_playing_pair[sfx_name].stream = load(sfx[sfx_name])
-	sfx_player_playing_pair[sfx_name].play()
+	if(sfx.has(sfx_name)):	
+		sfx_player_playing_pair[sfx_name].stream = load(sfx[sfx_name])
+		sfx_player_playing_pair[sfx_name].play()
 
 

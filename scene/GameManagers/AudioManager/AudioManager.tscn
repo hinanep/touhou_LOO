@@ -11,9 +11,13 @@ bgm = {
 }
 sfx = {
 "sfx_bulletshoot": "res://asset/brackeys_platformer_assets/sounds/tap.wav",
+"sfx_cp_active": "res://asset/music/sfx/cp.wav",
+"sfx_hurt": "res://asset/music/sfx/hurt.mp3",
+"sfx_laser": "res://asset/music/sfx/laser.wav",
 "sfx_levelup": "res://asset/brackeys_platformer_assets/sounds/power_up.wav",
 "sfx_masterspark": "res://asset/music/sfx/masterspark.mp3",
-"sfx_pick_crystal": "res://asset/brackeys_platformer_assets/sounds/coin.wav"
+"sfx_pick_crystal": "res://asset/brackeys_platformer_assets/sounds/coin.wav",
+"sfx_spellcard": "res://asset/music/sfx/spellcard.mp3"
 }
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]

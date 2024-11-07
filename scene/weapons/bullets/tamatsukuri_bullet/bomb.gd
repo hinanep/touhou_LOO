@@ -21,4 +21,9 @@ func Kill():
 				if enemy.has_method("take_damage"):
 					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
 
+	
+
+
+func _on_animated_sprite_2d_animation_finished():
 	queue_free()
+	pass # Replace with function body.

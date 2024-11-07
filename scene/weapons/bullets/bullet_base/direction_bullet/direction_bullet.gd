@@ -27,7 +27,7 @@ func _physics_process(delta):
 	#var direction = Vector2.RIGHT.rotated(rotation)
 
 	position += Vector2.from_angle(diretion) * player_var.bullet_speed_ratio * basic_speed * delta
-	
+	rotation = diretion + PI/2
 func _on_timer_timeout():
 	_on_destroy()
 	queue_free()

@@ -8,7 +8,8 @@ func _open():
 	
 
 func _close():
-
+	if get_tree().has_group("pause_menu"):
+		return
 	get_tree().paused = false
 	pass
 	

@@ -1,23 +1,203 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq41wp44dvsuh"]
+[gd_scene load_steps=30 format=3 uid="uid://cq41wp44dvsuh"]
 
 [ext_resource type="Script" path="res://scene/weapons/bullets/tamatsukuri_bullet/bomb.gd" id="1_6ndl1"]
 [ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_0jth6"]
-[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="2_eg5in"]
+[ext_resource type="Texture2D" uid="uid://vkmevm8j786e" path="res://asset/素材/anime/explosion.png" id="3_xi7nx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0as6i"]
 radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxpga"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55sie"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji07d"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rli3a"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64mji"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uiml"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iarr"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhqps"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onirg"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3n4w"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xec0"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf8d1"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or6q7"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uty5"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy3m6"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjm3p"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcwkg"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s65m8"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmbgf"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgb61"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2evu"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgdtl"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(384, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxt8f"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(512, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4164"]
+atlas = ExtResource("3_xi7nx")
+region = Rect2(640, 384, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nvgwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxpga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55sie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji07d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rli3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64mji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uiml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iarr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhqps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onirg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3n4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xec0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf8d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or6q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uty5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy3m6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjm3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcwkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s65m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmbgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgb61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2evu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgdtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxt8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4164")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
 
 [node name="Bomb" type="Node2D"]
 top_level = true
 script = ExtResource("1_6ndl1")
 bombParticle = ExtResource("2_0jth6")
 
-[node name="子弹" type="Sprite2D" parent="."]
-modulate = Color(0.680204, 0.813943, 0.442351, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_eg5in")
-
 [node name="explo_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explo_area"]
 shape = SubResource("CircleShape2D_0as6i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_nvgwi")
+autoplay = "default"
+frame_progress = 0.586498
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

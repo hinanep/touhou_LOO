@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://nm6mravvx2cq"]
 
-[ext_resource type="Script" path="res://scene/weapons/bullets/laser_bullet/laser.gd" id="1_wpjdb"]
+[ext_resource type="Script" path="res://scene/weapons/bullets/rumia_bullet/black_hole.gd" id="1_vp6vv"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/素材/子弹.png" id="2_lncsb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dp52x"]
@@ -21,12 +21,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb87y"]
 radius = 33.0038
 
-[node name="Laser" type="Area2D"]
+[node name="black_hole" type="Area2D"]
 top_level = true
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("1_wpjdb")
+script = ExtResource("1_vp6vv")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

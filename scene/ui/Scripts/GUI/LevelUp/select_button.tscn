@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwppujyrfed45"]
+[gd_scene load_steps=7 format=3 uid="uid://cwppujyrfed45"]
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/ui_tmp/battletalk_hr1.png" id="1_cyfps"]
 [ext_resource type="Script" path="res://scene/ui/Scripts/GUI/LevelUp/select_button.gd" id="5_qy0wc"]
 
+[sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
+device = -1
+keycode = 4194309
+
 [sub_resource type="Shortcut" id="Shortcut_siojg"]
-events = [null]
+events = [SubResource("InputEventKey_1hpiu")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4g7qy"]
 atlas = ExtResource("1_cyfps")

@@ -1,12 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://7oqb4rblvirf"]
+[gd_scene load_steps=3 format=3 uid="uid://bxhe0o8utfl7j"]
 
-[ext_resource type="Script" path="res://scene/ui/Scripts/GUI/PauseMenu/PauseMenu.gd" id="1_1jagg"]
+[ext_resource type="Script" path="res://scene/ui/Scripts/GUI/ClearMenu/ClearMenu.gd" id="1_u1kcc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qqope"]
 font_size = 72
 
-[node name="PauseMenu" type="Control" groups=["pause_menu"]]
-process_mode = 2
+[node name="ClearMenu" type="Control"]
 z_index = 500
 layout_mode = 3
 anchors_preset = 15
@@ -14,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1jagg")
+script = ExtResource("1_u1kcc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
@@ -39,7 +38,7 @@ offset_top = 23.0
 offset_right = 120.0
 offset_bottom = 122.0
 grow_horizontal = 2
-text = "暂停界面"
+text = "YOU  WIN！！"
 label_settings = SubResource("LabelSettings_qqope")
 
 [node name="BackButton" type="Button" parent="CanvasLayer"]
@@ -48,10 +47,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = 292.0
-offset_right = -68.0
-offset_bottom = 323.0
+offset_left = -160.0
+offset_top = 277.0
+offset_right = -72.0
+offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)

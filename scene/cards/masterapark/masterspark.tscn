@@ -30,6 +30,7 @@ color = Color(1, 0.258824, 1, 1)
 [node name="invincible_time" type="Timer" parent="." groups=["card"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1038, 0)
 scale = Vector2(0.36, 0.36)
 texture = ExtResource("2_pdsly")

@@ -5,7 +5,7 @@ var diretion_angle = 0
 var activing = false
 func _ready():
 	$damage_tick.wait_time = 0.5
-	basic_damage = 10
+	basic_damage = 500
 	mana_cost = 44
 	duration_time = 5
 	card_name = "marisa"
@@ -29,7 +29,7 @@ func card_init(card_dic):
 func active():
 	
 	activing = true
-	AudioManager.play_sfx("sfx_masterspark")
+	AudioManager.play_sfx("sfx_spellcard")
 	
 	$".".rotation =player_var.player_diretion_angle
 	diretion_angle = player_var.player_diretion_angle

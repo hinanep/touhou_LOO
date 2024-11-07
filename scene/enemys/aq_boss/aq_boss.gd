@@ -25,6 +25,9 @@ func died():
 	print("aq sile")
 	drop()
 	queue_free()
+	G.get_gui_view_manager().close_all_view()
+	
+	G.get_gui_view_manager().open_view("ClearMenu")
 #弹幕攻击方法，待实例实现
 func bullet_attack():
 	

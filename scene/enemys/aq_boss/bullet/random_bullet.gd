@@ -8,6 +8,7 @@ func _ready():
 	basic_damage = 50
 	super._ready()
 	velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * basic_speed
+	rotation = velocity.angle() + PI/2
 func _physics_process(delta):
 	#print(player_var.nearest_enemy.global_position)
 	#if(player_var.player_node != null):

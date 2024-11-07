@@ -65,10 +65,11 @@ func activate_cp(cp_array):
 		cp_pool["active"][cp_name] = cp_pool["unactive"][cp_name]
 		cp_pool["unactive"].erase(cp_name)
 		
+#真正的cp开始起作用
 func random_choose_cp():
 	if cp_pool["active"].is_empty():
 		return false
-
+	AudioManager.play_sfx("sfx_cp_active")
 	var cp_name = cp_pool["active"].keys()[randi_range(0,cp_pool["active"].size()-1)]
 	cp_pool["choosed"][cp_name] = cp_pool["active"][cp_name]
 	cp_pool["active"].erase(cp_name)
