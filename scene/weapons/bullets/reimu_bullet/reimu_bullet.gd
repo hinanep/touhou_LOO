@@ -3,7 +3,8 @@ extends trace_bullet
 
 
 func _ready():
-	basic_speed = 100
+	basic_speed = 150
+	basic_damage = 20
 	super._ready()
 
 	
