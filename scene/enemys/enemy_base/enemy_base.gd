@@ -26,6 +26,8 @@ var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 
 func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
+	set_z_index(1)
+	set_z_as_relative(false)
 
 	debuff["target_rediretion"] = player
 	pass
@@ -41,6 +43,7 @@ func _process(_delta):
 
 #移动方式：走向玩家
 func move_to_target():
+	
 	velocity = get_diretion_to_target() * speed * debuff["speed"]
 	
 	#近身减速防止模型重叠的神秘bug（，过近远离

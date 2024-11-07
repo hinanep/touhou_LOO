@@ -16,6 +16,7 @@ func _ready():
 			#多语言支持尚未
 			var cd = CardManager.get_upable_card_by_name(c)
 			card_button.set_upgrade_text(cd["cn"]+" Lv."+String.num(cd["level"]+1))
+			card_button.set_describe_text(cd["describe_text"][cd["level"]+1])
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 			
 	for w in cards_wazas_selected["wazas"]:
@@ -25,6 +26,7 @@ func _ready():
 			#多语言支持尚未
 			var wz = WazaManager.get_upable_waza_by_name(w)
 			waza_button.set_upgrade_text(wz["cn"]+" Lv."+String.num(wz["level"]+1))
+			waza_button.set_describe_text(wz["describe_text"][wz["level"]])
 			waza_button.upgrade_selected.connect(on_button_selected.bind(w))
 	
 	for b in cards_wazas_selected["buffs"]:
@@ -34,6 +36,7 @@ func _ready():
 			#多语言支持尚未
 			var bf = BuffManager.get_upable_buff_by_name(b)
 			buff_button.set_upgrade_text(bf["cn"]+" Lv."+String.num(bf["level"]+1))
+			buff_button.set_describe_text(bf["describe_text"][bf["level"]+1])
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
 			
 	if $select_buttons.get_child_count()!=0:

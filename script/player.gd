@@ -46,6 +46,7 @@ func take_damage(damage):
 	if player_var.is_invincible:
 		print("invincible active")
 		return
+	$AnimationPlayer.play("hurt")
 	AudioManager.play_sfx("sfx_hurt")
 	hp -= damage
 	player_var.player_hp = hp

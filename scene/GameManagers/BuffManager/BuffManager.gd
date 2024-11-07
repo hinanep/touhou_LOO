@@ -25,7 +25,8 @@ func _init():
 		"level":0,
 		"path":"res://scene/passive/pachuli/pachuli.tscn",
 		"cn":"帕秋莉",
-		"weight":5
+		"weight":5,
+		"describe_text":["增加符力","增加符力","增加符力","增加符力","增加符力","增加符力","增加符力","增加符力"]
 		
 	}
 

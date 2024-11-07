@@ -114,6 +114,7 @@ animations = [{
 
 [node name="AliceBullet" type="Area2D"]
 top_level = true
+z_index = 2
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 2

@@ -6,3 +6,11 @@
 custom_minimum_size = Vector2(1, 0)
 texture = ExtResource("1_1yqbe")
 expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 153.0
+offset_top = -322.0
+offset_right = 218.0
+offset_bottom = -299.0
+scale = Vector2(15, 15)
+text = "魔理沙"

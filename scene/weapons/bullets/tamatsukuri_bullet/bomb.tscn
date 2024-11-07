@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vkmevm8j786e" path="res://asset/素材/anime/explosion.png" id="3_xi7nx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0as6i"]
-radius = 38.0526
+radius = 71.007
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fxpga"]
 atlas = ExtResource("3_xi7nx")
@@ -185,17 +185,22 @@ animations = [{
 
 [node name="Bomb" type="Node2D"]
 top_level = true
+z_index = 2
+z_as_relative = false
 script = ExtResource("1_6ndl1")
 bombParticle = ExtResource("2_0jth6")
 
 [node name="explo_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explo_area"]
 shape = SubResource("CircleShape2D_0as6i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_nvgwi")
 autoplay = "default"
 frame = 23
