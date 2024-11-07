@@ -1,10 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=26 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
 [ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_hmoxy"]
 [ext_resource type="PackedScene" uid="uid://b3a0q4yv1cunf" path="res://scene/enemys/aq_boss/weapon/aq_weapon.tscn" id="3_3j4ay"]
 [ext_resource type="Texture2D" uid="uid://c178p1yu8e2v6" path="res://asset/素材/20241105-183247.png" id="3_rteu8"]
 [ext_resource type="Texture2D" uid="uid://drqcre2ub8wa6" path="res://asset/素材/20241105-183128.png" id="4_3sqs2"]
+
+[sub_resource type="Gradient" id="Gradient_axrnf"]
+offsets = PackedFloat32Array(0, 0.0617761, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.512556, 0.225016, 0.131408, 1, 1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cuh35"]
 atlas = ExtResource("3_rteu8")
@@ -131,7 +135,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
@@ -151,6 +155,9 @@ script = ExtResource("1_w6a4s")
 
 [node name="Explosion" parent="." instance=ExtResource("2_hmoxy")]
 top_level = false
+z_index = 16
+amount = 250
+color_ramp = SubResource("Gradient_axrnf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 15
@@ -158,8 +165,6 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 animation = &"die"
 autoplay = "default"
-frame = 10
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 15
@@ -208,4 +213,5 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="reincarnation" type="Timer" parent="."]
 wait_time = 0.2
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="reincarnation" to="." method="_on_reincarnation_timeout"]

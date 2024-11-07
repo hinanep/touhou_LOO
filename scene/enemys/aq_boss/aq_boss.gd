@@ -20,7 +20,10 @@ func _ready():
 func _physics_process(_delta):
 	move_to_target()
 	
-	pass
+func move_to_target():
+	if !invinsible:
+		velocity = get_diretion_to_target() * speed * debuff["speed"]
+
 func died():
 	stage -= 1
 	if stage > 0:
@@ -31,7 +34,7 @@ func died():
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
 	drop()
-	
+	$danma/sekibankiWeapon.active = false
 	$AnimatedSprite2D.play("die")
 	await  get_tree().create_timer(3).timeout
 	AudioManager.bgm_over()
@@ -46,7 +49,7 @@ func bullet_attack():
 func next_stage():
 	invinsible = true
 	AudioManager.play_bgm("kami")
-	bullet_damage_area.monitoring = false
+	#bullet_damage_area.monitoring = false
 	$danma/sekibankiWeapon.active = false
 	$reincarnation.start()
 	pass
@@ -67,4 +70,9 @@ func _on_reincarnation_timeout():
 	progress_bar.value = hp/max_hp * 100
 	if(hp >= max_hp):
 		reincarnation_over()
+	pass # Replace with function body.
+
+
+func _on_animated_sprite_2d_animation_finished():
+	$Explosion.set_emitting(true)
 	pass # Replace with function body.
