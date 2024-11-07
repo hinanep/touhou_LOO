@@ -61,11 +61,11 @@ autoplay = "default"
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -42.0
-offset_top = -67.0
-offset_right = 298.0
-offset_bottom = 53.0
+modulate = Color(0.741176, 0, 0, 1)
+offset_left = -32.5
+offset_top = -45.0
+offset_right = 247.5
+offset_bottom = -7.0
 scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "

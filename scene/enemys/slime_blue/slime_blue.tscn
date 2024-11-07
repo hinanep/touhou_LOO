@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kudx5purpog8"]
+[gd_scene load_steps=11 format=3 uid="uid://kudx5purpog8"]
 
 [ext_resource type="Script" path="res://scene/enemys/slime_blue/slime_blue.gd" id="1_xtkoc"]
 [ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/素材/enemies-spritesheet.png" id="2_ovbsc"]
@@ -42,6 +42,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruxse"]
+bg_color = Color(0.99558, 0.99558, 0.99558, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 15.0
 
@@ -61,14 +64,15 @@ autoplay = "default"
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+modulate = Color(0.741176, 0, 0, 1)
 offset_left = -13.0
-offset_top = -11.0
+offset_top = -10.0
 offset_right = 94.0
-offset_bottom = 16.0
+offset_bottom = 9.0
 scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "
+theme_override_styles/fill = SubResource("StyleBoxFlat_ruxse")
 step = 1.0
 value = 100.0
 show_percentage = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=13 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
 [ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_hmoxy"]
@@ -44,6 +44,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 37.1214
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivu33"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 38.4708
 
@@ -69,14 +72,15 @@ z_index = 15
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -46.0
-offset_top = -63.0
-offset_right = 326.0
-offset_bottom = -36.0
-scale = Vector2(0.25, 0.125)
+modulate = Color(0.753427, 0, 0, 1)
+offset_left = -56.0
+offset_top = -50.0
+offset_right = 274.0
+offset_bottom = -23.0
+scale = Vector2(0.4, 0.2)
 tooltip_text = "
 "
+theme_override_styles/fill = SubResource("StyleBoxFlat_ivu33")
 step = 1.0
 value = 100.0
 show_percentage = false
