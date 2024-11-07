@@ -31,7 +31,7 @@ var event_list = {
 	"end_time":30,
 	"tick_time":1,
 	"number":1,
-	"param_buff":10
+	"param_buff":1
 },
 
 #第三波：橙色虫虫 30~45s
@@ -64,7 +64,7 @@ var event_list = {
 	"end_time":60,
 	"tick_time":1,
 	"number":1,
-	"param_buff":15
+	"param_buff":1.5
 },
 
 #第五波：蓝色史莱姆 60~75s
@@ -97,7 +97,7 @@ var event_list = {
 	"end_time":90,
 	"tick_time":1,
 	"number":1,
-	"param_buff":20
+	"param_buff":2
 },
 
 #第七波：粉色虫虫 90~105s
@@ -130,7 +130,7 @@ var event_list = {
 	"end_time":120,
 	"tick_time":1,
 	"number":2,
-	"param_buff":15
+	"param_buff":2
 },
 
 #第九波：绿色史莱姆和蓝色蝙蝠 120s~135s
@@ -181,7 +181,7 @@ var event_list = {
 	"end_time":150,
 	"tick_time":1,
 	"number":3,
-	"param_buff":15
+	"param_buff":2
 },
 
 #第十一波：紫色蝙蝠和粉色虫虫 150~165s

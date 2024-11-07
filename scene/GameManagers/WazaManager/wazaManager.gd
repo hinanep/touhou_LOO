@@ -103,7 +103,7 @@ func _init():
 	"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
 	"creating_rule":"one",#生成一组、一个个生成1
 	"attack_gen_times":1,#生成次数1
-	"basic_colddown":1,#1
+	"basic_colddown":0.5,#1
 	
 	
 	"Physical_Addition_Efficiency":0.0,#
