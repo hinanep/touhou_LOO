@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scene/enemys/elite_slime/elite_slime.gd" id="2_m6vql"]
 
 [node name="elite_slime" groups=["elite"] instance=ExtResource("1_kw1kv")]
+collision_mask = 1
 script = ExtResource("2_m6vql")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
