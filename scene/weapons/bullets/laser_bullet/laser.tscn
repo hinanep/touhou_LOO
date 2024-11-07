@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4krcqws5d8uc"]
+[gd_scene load_steps=7 format=3 uid="uid://b4krcqws5d8uc"]
 
 [ext_resource type="Script" path="res://scene/weapons/bullets/laser_bullet/laser.gd" id="1_fkk8d"]
 [ext_resource type="Texture2D" uid="uid://b4akvjdo07s81" path="res://asset/素材/激光.png" id="2_5wapa"]
+[ext_resource type="Shader" path="res://scene/weapons/bullets/laser_bullet/laser.gdshader" id="2_udoeq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5v4m"]
+shader = ExtResource("2_udoeq")
+shader_parameter/width = 1.0
+shader_parameter/radius = 0.5
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3
+shader_parameter/brightness = 0.331
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwlbn"]
 animations = [{
@@ -31,6 +40,7 @@ one_shot = true
 modulate = Color(1, 1, 1, 0.74902)
 light_mask = 3
 visibility_layer = 3
+material = SubResource("ShaderMaterial_x5v4m")
 position = Vector2(0, -72)
 rotation = 4.71239
 scale = Vector2(0.0250344, 0.01)

@@ -20,6 +20,7 @@ func Kill():
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
+					print("爆炸输出！！")
 					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
 
 	
