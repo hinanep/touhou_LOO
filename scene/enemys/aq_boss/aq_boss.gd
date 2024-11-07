@@ -26,14 +26,15 @@ func died():
 	if stage > 0:
 		next_stage()
 		return
-	AudioManager.bgm_over()
+	invinsible = true
+	
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
 	drop()
 	
 	$AnimatedSprite2D.play("die")
 	await  get_tree().create_timer(3).timeout
-
+	AudioManager.bgm_over()
 	queue_free()
 	G.get_gui_view_manager().close_all_view()
 	G.get_gui_view_manager().open_view("ClearMenu")

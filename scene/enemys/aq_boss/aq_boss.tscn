@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=25 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
 [ext_resource type="PackedScene" uid="uid://dfemna5foutgu" path="res://scene/particle/explosion.tscn" id="2_hmoxy"]
 [ext_resource type="PackedScene" uid="uid://b3a0q4yv1cunf" path="res://scene/enemys/aq_boss/weapon/aq_weapon.tscn" id="3_3j4ay"]
 [ext_resource type="Texture2D" uid="uid://c178p1yu8e2v6" path="res://asset/素材/20241105-183247.png" id="3_rteu8"]
+[ext_resource type="Texture2D" uid="uid://drqcre2ub8wa6" path="res://asset/素材/20241105-183128.png" id="4_3sqs2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cuh35"]
 atlas = ExtResource("3_rteu8")
@@ -20,6 +21,54 @@ region = Rect2(168, 0, 84, 84)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hh3a"]
 atlas = ExtResource("3_rteu8")
 region = Rect2(252, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blygh"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdayk"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 84, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehif4"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 252, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i6rd"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 168, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bbf1"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(168, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxv2o"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(168, 84, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njprq"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(168, 252, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n8k7"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(168, 168, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5kdq"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tpu5"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 84, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av2r0"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 252, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xrii"]
+atlas = ExtResource("4_3sqs2")
+region = Rect2(0, 168, 84, 84)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
@@ -39,13 +88,54 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blygh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdayk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehif4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i6rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bbf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxv2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njprq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n8k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5kdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tpu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av2r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xrii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blygh")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
 radius = 37.1214
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivu33"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
 radius = 38.4708
@@ -54,6 +144,7 @@ radius = 38.4708
 z_index = 15
 collision_layer = 2
 collision_mask = 3
+collision_priority = 10.0
 motion_mode = 1
 safe_margin = 10.0
 script = ExtResource("1_w6a4s")
@@ -65,22 +156,24 @@ top_level = false
 z_index = 15
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_4gakf")
+animation = &"die"
 autoplay = "default"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 15
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.753427, 0, 0, 1)
-offset_left = -57.0
-offset_top = -52.0
-offset_right = 280.0
-offset_bottom = -15.0
-scale = Vector2(0.4, 0.2)
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -46.0
+offset_top = -63.0
+offset_right = 326.0
+offset_bottom = -36.0
+scale = Vector2(0.25, 0.125)
 tooltip_text = "
 "
-theme_override_styles/fill = SubResource("StyleBoxFlat_ivu33")
 step = 1.0
 value = 100.0
 show_percentage = false

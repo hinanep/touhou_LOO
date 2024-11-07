@@ -97,7 +97,7 @@ func bullet_battle_ready():
 	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
 	
 func melee_damage_area_body_entered(_body):
-	#melee_attack(player)
+	melee_attack(player)
 	melee_attack_cd.start()
 	
 func bullet_damage_area_body_entered(_body):	
