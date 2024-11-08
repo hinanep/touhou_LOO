@@ -212,7 +212,7 @@ var event_list = {
 	"end_time":180,
 	"tick_time":2,
 	"number":30,
-	"param_buff":2
+	"param_buff":1.5
 },
 "ghost_2":{
 	"pre":preload("res://scene/enemys/ghost/ghost.tscn"),
@@ -221,7 +221,7 @@ var event_list = {
 	"end_time":180,
 	"tick_time":2,
 	"number":30,
-	"param_buff":2
+	"param_buff":1.5
 },
 
 #BOSS：阿求 180s
