@@ -68,6 +68,7 @@ func use_card():
 		c = card_pool["max"][cardname]
 		
 	if(player_var.power<c["power_cost"]):
+		AudioManager.play_sfx("error")
 		return
 	player_var.power -= c["power_cost"]
 	c["node"].active()
