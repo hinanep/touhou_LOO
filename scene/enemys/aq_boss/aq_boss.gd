@@ -23,20 +23,24 @@ func _physics_process(_delta):
 func move_to_target():
 	if !invinsible:
 		velocity = get_diretion_to_target() * speed * debuff["speed"]
-
+	move_and_slide()
 func died():
+	if reincarnation:
+		return
 	stage -= 1
 	if stage > 0:
+		reincarnation = true
 		next_stage()
 		return
 	invinsible = true
 	
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
+	player_var.is_invincible = true
 	drop()
 	$danma/sekibankiWeapon.active = false
 	$AnimatedSprite2D.play("die")
-	await  get_tree().create_timer(3).timeout
+	await  get_tree().create_timer(6).timeout
 	AudioManager.bgm_over()
 	queue_free()
 	G.get_gui_view_manager().close_all_view()
@@ -59,6 +63,7 @@ func next_stage():
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
 func reincarnation_over():
 	invinsible = false
+	reincarnation = false
 	$danma/sekibankiWeapon.active = true
 	$reincarnation.stop()
 	bullet_damage_area.monitoring = true
