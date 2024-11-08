@@ -47,7 +47,6 @@ scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "tooltip["
-mouse_filter = 2
 button_mask = 0
 shortcut = SubResource("Shortcut_siojg")
 texture_normal = SubResource("AtlasTexture_4g7qy")
@@ -90,6 +89,12 @@ visible = false
 position = Vector2(451, 50)
 scale = Vector2(1.58594, 1)
 sprite_frames = SubResource("SpriteFrames_w5p1s")
+
+[node name="Control" type="Control" parent="."]
+z_index = 1
+anchors_preset = 0
+offset_right = 268.0
+offset_bottom = 88.0
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
