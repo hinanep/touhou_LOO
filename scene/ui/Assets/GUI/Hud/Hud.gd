@@ -37,6 +37,7 @@ func hp_display():
 
 func card_power_display():
 	card_power.value = player_var.power
+	card_power.max_value = player_var.power_max
 	card_power_text.text = str(player_var.power) + "/" + str(player_var.power_max)
 
 func point_and_ratio_display():
