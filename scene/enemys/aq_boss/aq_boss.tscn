@@ -168,7 +168,7 @@ z_index = 15
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
-frame_progress = 0.282151
+frame_progress = 0.656076
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 15

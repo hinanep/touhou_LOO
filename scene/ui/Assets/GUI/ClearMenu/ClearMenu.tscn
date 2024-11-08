@@ -33,9 +33,9 @@ grow_vertical = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -168.0
+offset_left = -247.5
 offset_top = 23.0
-offset_right = 120.0
+offset_right = 233.5
 offset_bottom = 122.0
 grow_horizontal = 2
 text = "YOU  WIN！！"
@@ -57,18 +57,40 @@ scale = Vector2(3, 3)
 text = "返回主菜单"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 732.0
+offset_left = 773.0
 offset_top = 322.0
-offset_right = 863.0
+offset_right = 904.0
 offset_bottom = 362.0
 scale = Vector2(4, 4)
 text = "SCORE："
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RichTextLabel"]
-offset_left = 57.5
+layout_mode = 0
+offset_left = 60.5
 offset_top = 0.25
-offset_right = 293.5
+offset_right = 296.5
 offset_bottom = 40.25
 text = "10"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1303.0
+offset_top = 341.0
+offset_right = 1780.0
+offset_bottom = 949.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "插入一则STAFF表
+策划：
+BTO
+
+美术：
+com
+
+程序：
+涅普 the 屎山创造者
+天马
+
+专业顾问：
+LR"
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

@@ -67,7 +67,8 @@ func take_damage(damage):
 	hp -= damage
 	progress_bar.value = hp/max_hp * 100
 	if hp <= 0:
-		call_deferred("died")
+		died()
+		#call_deferred("died")
 #似了
 func died():
 	drop()

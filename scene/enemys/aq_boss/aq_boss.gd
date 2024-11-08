@@ -25,7 +25,7 @@ func move_to_target():
 		velocity = get_diretion_to_target() * speed * debuff["speed"]
 	move_and_slide()
 func died():
-	if reincarnation:
+	if reincarnation == true:
 		return
 	stage -= 1
 	if stage > 0:
