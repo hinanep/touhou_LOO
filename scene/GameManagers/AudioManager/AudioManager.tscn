@@ -13,6 +13,7 @@ bgm = {
 "saga": "res://asset/music/Japanese Saga.mp3"
 }
 sfx = {
+"error": "res://asset/music/sfx/error.mp3",
 "sfx_bulletshoot": "res://asset/brackeys_platformer_assets/sounds/tap.wav",
 "sfx_cp_active": "res://asset/music/sfx/cp.wav",
 "sfx_explosion": "res://asset/music/sfx/explosion.wav",
