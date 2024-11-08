@@ -14,9 +14,9 @@ script = ExtResource("2_m6vql")
 modulate = Color(0.592284, 0, 0.0114338, 1)
 scale = Vector2(2, 2)
 
-[node name="ProgressBar" parent="." index="2"]
+[node name="debuff_time2" type="Timer" parent="." index="5"]
+
+[node name="ProgressBar" parent="." index="6"]
 offset_top = -10.0
 offset_bottom = 9.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_pc2ti")
-
-[node name="debuff_time2" type="Timer" parent="." index="5"]
