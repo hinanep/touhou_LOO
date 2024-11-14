@@ -6,7 +6,7 @@ func _ready():
 	speed = 25
 	basic_melee_damage *= 50
 	basic_bullet_damage *= 10
-	drops_path = "res://scene/drops/exp_1.tscn"
+	drops_path = "drops_p"
 	
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()

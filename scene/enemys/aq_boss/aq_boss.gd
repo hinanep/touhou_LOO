@@ -7,8 +7,8 @@ func _ready():
 	speed = 40
 	basic_melee_damage *= 10
 	basic_bullet_damage *= 10
-	drops_path = "res://scene/drops/plate_1.tscn"
-	AudioManager.play_bgm("saga")
+	drops_path = "drops_plate"
+	AudioManager.play_bgm("music_bgm_saga")
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()
 	super._ready()
@@ -52,7 +52,7 @@ func bullet_attack():
 	
 func next_stage():
 	invinsible = true
-	AudioManager.play_bgm("kami")
+	AudioManager.play_bgm("music_bgm_ff")
 	#bullet_damage_area.monitoring = false
 	$danma/sekibankiWeapon.active = false
 	$reincarnation.start()

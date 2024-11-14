@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://5h5ta7svxdfb"]
+
+[ext_resource type="Script" path="res://scene/bullets/rumia_bullet/rumia_bullet.gd" id="1_5g1dy"]
+[ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="2_2g4tf"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="3_wwxtj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qj5dn"]
+radius = 32.0624
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmf8b"]
+atlas = ExtResource("2_2g4tf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6fq0"]
+atlas = ExtResource("3_wwxtj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfxiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmf8b")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6fq0")
+}],
+"loop": true,
+"name": &"ou",
+"speed": 5.0
+}]
+
+[node name="rumiaBullet" type="Area2D"]
+top_level = true
+z_index = 2
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_5g1dy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qj5dn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_gfxiq")
+animation = &"ou"
+autoplay = "ou"
+
+[node name="destroy_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="on_hit" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="destroy_timer" to="." method="_on_destroy_timer_timeout"]

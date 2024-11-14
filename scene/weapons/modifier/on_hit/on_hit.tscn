@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cld2hb3k65akp"]
-
-[ext_resource type="Script" path="res://scene/weapons/modifier/on_hit/on_hit.gd" id="1_508ob"]
-
-[node name="on_hit" type="Node2D"]
-script = ExtResource("1_508ob")

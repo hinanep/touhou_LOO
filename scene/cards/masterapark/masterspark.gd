@@ -29,7 +29,7 @@ func card_init(card_dic):
 func active():
 	
 	activing = true
-	AudioManager.play_sfx("sfx_spellcard")
+	AudioManager.play_sfx("music_sfx_spellcard")
 	
 	$".".rotation =player_var.player_diretion_angle
 	diretion_angle = player_var.player_diretion_angle

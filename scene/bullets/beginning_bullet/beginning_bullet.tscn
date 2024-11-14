@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciql1mh2y3lim"]
+
+[ext_resource type="PackedScene" uid="uid://m1cue7k05cqo" path="res://scene/bullets/bullet_base/direction_bullet/direction_bullet.tscn" id="1_vny6x"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="2_3o1vg"]
+
+[node name="bullet" instance=ExtResource("1_vny6x")]
+z_as_relative = false
+
+[node name="子弹" type="Sprite2D" parent="." index="3"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_3o1vg")

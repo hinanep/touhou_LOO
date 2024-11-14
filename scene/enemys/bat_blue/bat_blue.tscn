@@ -1,22 +1,22 @@
 [gd_scene load_steps=11 format=3 uid="uid://b5vvi7v11kpy1"]
 
 [ext_resource type="Script" path="res://scene/enemys/bat_blue/bat_blue.gd" id="1_s3crx"]
-[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/素材/enemies-spritesheet.png" id="2_ewf56"]
+[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/pic/enemy/enemies-spritesheet.png" id="2_qtdfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snvlt"]
-atlas = ExtResource("2_ewf56")
+atlas = ExtResource("2_qtdfl")
 region = Rect2(0, 100, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qjgc"]
-atlas = ExtResource("2_ewf56")
+atlas = ExtResource("2_qtdfl")
 region = Rect2(20, 100, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y00yv"]
-atlas = ExtResource("2_ewf56")
+atlas = ExtResource("2_qtdfl")
 region = Rect2(40, 100, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orcke"]
-atlas = ExtResource("2_ewf56")
+atlas = ExtResource("2_qtdfl")
 region = Rect2(60, 100, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://m1cue7k05cqo"]
+
+[ext_resource type="Script" path="res://scene/bullets/bullet_base/direction_bullet/direction_bullet.gd" id="1_jdpgt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ujfc"]
+radius = 5.38516
+
+[node name="bullet" type="Area2D"]
+top_level = true
+z_index = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_jdpgt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8ujfc")
+
+[node name="destroy_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="on_hit" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="destroy_timer" to="." method="_on_timer_timeout"]

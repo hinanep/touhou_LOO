@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://dl30vb4qgqfbq"]
 
 [ext_resource type="Script" path="res://scene/enemys/ghost/ghost.gd" id="1_u2v4r"]
-[ext_resource type="Texture2D" uid="uid://cji57mdrf4nao" path="res://asset/素材/jack-o-lanternL.png" id="2_6lklv"]
-[ext_resource type="Texture2D" uid="uid://da8dmt5gk07ny" path="res://asset/素材/jack-o-lanternR.png" id="3_kj63v"]
-[ext_resource type="Texture2D" uid="uid://b1l45tl63nkh2" path="res://asset/素材/jack-o-lanternUD.png" id="4_q4v5r"]
+[ext_resource type="Texture2D" uid="uid://cji57mdrf4nao" path="res://asset/pic/enemy/jack-o-lanternL.png" id="2_6lklv"]
+[ext_resource type="Texture2D" uid="uid://da8dmt5gk07ny" path="res://asset/pic/enemy/jack-o-lanternR.png" id="3_kj63v"]
+[ext_resource type="Texture2D" uid="uid://b1l45tl63nkh2" path="res://asset/pic/enemy/jack-o-lanternUD.png" id="4_q4v5r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nwp58"]
 atlas = ExtResource("2_6lklv")

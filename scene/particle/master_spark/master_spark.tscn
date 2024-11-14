@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bb4cfns75xyno"]
 
 [ext_resource type="Shader" uid="uid://babvhjgtduxwn" path="res://scene/particle/master_spark/master_spark.tres" id="1_se7es"]
-[ext_resource type="Texture2D" uid="uid://ddvokxqaone08" path="res://asset/素材/小风.png" id="2_ya12y"]
+[ext_resource type="Texture2D" uid="uid://ddvokxqaone08" path="res://asset/pic/bullet/小风.png" id="2_ya12y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pl8rh"]
 shader = ExtResource("1_se7es")

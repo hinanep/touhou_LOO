@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmxbnhmuqepe7"]
+
+[ext_resource type="Script" path="res://scene/waza/alice_weapon/alice_weapon.gd" id="1_c7ksh"]
+[ext_resource type="AudioStream" uid="uid://q8tm6ux36jdj" path="res://asset/music/sfx/tap.wav" id="2_2fd6r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfucx"]
+radius = 1.0
+
+[node name="aliceWeapon" type="Node2D"]
+script = ExtResource("1_c7ksh")
+
+[node name="attack_range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range"]
+shape = SubResource("CircleShape2D_mfucx")
+
+[node name="shootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sound_shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2fd6r")
+
+[connection signal="timeout" from="shootTimer" to="." method="_on_shoot_timer_timeout"]

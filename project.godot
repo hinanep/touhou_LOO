@@ -11,23 +11,24 @@ config_version=5
 [application]
 
 config/name="touhouSurvivors"
-run/main_scene="res://scene/ui/Scenes/game.tscn"
+run/main_scene="res://scene/ui/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/flush_stdout_on_print.debug=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-player_var="*res://script/global/player_var.gd"
-GameManager="*res://scene/GameManagers/GameManager/game_manager.tscn"
+player_var="*res://gamemanager/player_var.gd"
+GameManager="*res://gamemanager/GameManager/game_manager.tscn"
 G="*res://scene/ui/Scripts/G.gd"
-AudioManager="*res://scene/GameManagers/AudioManager/AudioManager.tscn"
-RandomPool="*res://scene/GameManagers/RandomPool/RandomPool.gd"
-CardManager="*res://scene/GameManagers/CardManager/CardManager.gd"
-SpawnManager="*res://scene/GameManagers/SpawnManager/spawnmanager.gd"
-CpManager="*res://scene/GameManagers/CpManager/CpManager.gd"
-WazaManager="*res://scene/GameManagers/WazaManager/wazaManager.gd"
-BuffManager="*res://scene/GameManagers/BuffManager/BuffManager.gd"
+AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
+RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
+CardManager="*res://gamemanager/CardManager/CardManager.gd"
+SpawnManager="*res://gamemanager/SpawnManager/spawnmanager.gd"
+CpManager="*res://gamemanager/CpManager/CpManager.gd"
+WazaManager="*res://gamemanager/WazaManager/wazaManager.gd"
+BuffManager="*res://gamemanager/BuffManager/BuffManager.gd"
+PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 
 [debug]
 
@@ -50,12 +51,11 @@ enabled=PackedStringArray()
 [file_customization]
 
 folder_colors={
+"res://scene/bullets/": "purple",
 "res://scene/drops/": "red",
 "res://scene/enemys/": "orange",
 "res://scene/particle/": "teal",
 "res://scene/ui/": "yellow",
-"res://scene/weapons/": "green",
-"res://scene/weapons/bullets/": "purple",
 "res://script/global/": "red"
 }
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
-[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/brackeys_platformer_assets/sprites/slime_green.png" id="2_p2xrr"]
+[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="2_p2xrr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
 atlas = ExtResource("2_p2xrr")

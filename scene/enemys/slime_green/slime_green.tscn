@@ -1,22 +1,22 @@
 [gd_scene load_steps=11 format=3 uid="uid://bt4quj8u1msf3"]
 
 [ext_resource type="Script" path="res://scene/enemys/slime_green/slime_green.gd" id="1_3rtxs"]
-[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/素材/enemies-spritesheet.png" id="2_my5un"]
+[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/pic/enemy/enemies-spritesheet.png" id="2_mvdwf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8lud3"]
-atlas = ExtResource("2_my5un")
+atlas = ExtResource("2_mvdwf")
 region = Rect2(0, 40, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aiogm"]
-atlas = ExtResource("2_my5un")
+atlas = ExtResource("2_mvdwf")
 region = Rect2(20, 40, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lobdb"]
-atlas = ExtResource("2_my5un")
+atlas = ExtResource("2_mvdwf")
 region = Rect2(40, 40, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylgvr"]
-atlas = ExtResource("2_my5un")
+atlas = ExtResource("2_mvdwf")
 region = Rect2(60, 40, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]

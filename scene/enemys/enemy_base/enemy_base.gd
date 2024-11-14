@@ -8,7 +8,7 @@ var hp = max_hp
 var speed = 40
 var basic_melee_damage = curse
 var basic_bullet_damage = curse
-var drops_path = ""
+var drops_path = "drops_p"
 var target
 var invinsible = false
 var debuff = {
@@ -75,8 +75,9 @@ func died():
 	queue_free()
 	
 func drop():
-	var drops = load(drops_path).instantiate()
+	var drops = PresetManager.getpre(drops_path).instantiate()
 	get_parent().call_deferred("add_child",drops) 
+	
 	drops.global_position = global_position
 	pass
 	
@@ -128,7 +129,7 @@ func get_diretion_to_target():
 		return(debuff["target_rediretion"].global_position - global_position).normalized()
 	else:
 		return(player.global_position - global_position).normalized()
-	return Vector2.ZERO
+	#return Vector2.ZERO
 #到玩家距离
 func get_distance_to_player():
 	if player:

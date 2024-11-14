@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6atikajbq4gu"]
 
 [ext_resource type="Script" path="res://scene/cards/masterapark/masterspark.gd" id="1_2ulvu"]
-[ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/素材/魔炮.png" id="2_pdsly"]
+[ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/pic/bullet/魔炮.png" id="2_pdsly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38jgd"]
 size = Vector2(2126, 276)

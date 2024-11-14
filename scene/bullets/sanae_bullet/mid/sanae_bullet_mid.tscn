@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://2duq08h51q5n"]
+
+[ext_resource type="Texture2D" uid="uid://kflrfw01ftj8" path="res://asset/pic/bullet/中风1.png" id="2_4cbfq"]
+[ext_resource type="Script" path="res://scene/bullets/sanae_bullet/mid/sanae_bullet_mid.gd" id="2_hdxsq"]
+[ext_resource type="Texture2D" uid="uid://c4vi0pbvdkdn7" path="res://asset/pic/bullet/中风2.png" id="3_k6bxy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ujfc"]
+radius = 23.0868
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n84xu"]
+atlas = ExtResource("2_4cbfq")
+region = Rect2(0, 0, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_laqu1"]
+atlas = ExtResource("3_k6bxy")
+region = Rect2(0, 0, 360, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hsm50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n84xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laqu1")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="bullet2" type="Area2D"]
+top_level = true
+z_index = 2
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_hdxsq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8ujfc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.133333, 0.133333)
+sprite_frames = SubResource("SpriteFrames_hsm50")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://drrjbkr3fe3ci"]
-
-[ext_resource type="Script" path="res://scene/weapons/modifier/on_destroy/on_destroy.gd" id="1_o2yk4"]
-
-[node name="on_destroy" type="Node2D"]
-script = ExtResource("1_o2yk4")

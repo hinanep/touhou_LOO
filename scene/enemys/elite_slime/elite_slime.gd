@@ -6,7 +6,7 @@ func _ready():
 	speed = 40
 	basic_melee_damage *= 200
 	basic_bullet_damage *= 10
-	drops_path = "res://scene/drops/plate_1.tscn"
+	drops_path = "drops_plate"
 	#AudioManager.play_bgm("Ruins")
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://de8yminkavjsp"]
+
+[ext_resource type="Script" path="res://gamemanager/PresetManager/presetManager.gd" id="1_ihprb"]
+[ext_resource type="PackedScene" uid="uid://dw30ek7b4ret7" path="res://scene/bullets/alice_bullet/alice_bullet.tscn" id="2_w6a1x"]
+
+[node name="PresetManager" type="Node"]
+script = ExtResource("1_ihprb")
+sasa = ExtResource("2_w6a1x")
