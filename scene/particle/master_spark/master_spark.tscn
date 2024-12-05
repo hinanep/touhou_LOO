@@ -1,38 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb4cfns75xyno"]
+[gd_scene load_steps=6 format=3 uid="uid://bb4cfns75xyno"]
 
-[ext_resource type="Shader" uid="uid://babvhjgtduxwn" path="res://scene/particle/master_spark/master_spark.tres" id="1_se7es"]
-[ext_resource type="Texture2D" uid="uid://ddvokxqaone08" path="res://asset/pic/bullet/小风.png" id="2_ya12y"]
+[ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="1_85b3i"]
+[ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/pic/bullet/魔炮.png" id="2_fpatt"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl8rh"]
-shader = ExtResource("1_se7es")
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xekbb"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_buawp"]
-material = SubResource("ShaderMaterial_pl8rh")
+[sub_resource type="Curve" id="Curve_gs2wo"]
+_data = [Vector2(0.0264901, 0.144282), 0.0, 0.0, 0, 0, Vector2(0.31457, 0.40359), 0.0, 0.0, 0, 0, Vector2(0.990066, 0.490027), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6djye"]
-shader = ExtResource("1_se7es")
-
-[sub_resource type="BoxMesh" id="BoxMesh_6lf3m"]
-material = SubResource("ShaderMaterial_6djye")
+[sub_resource type="Gradient" id="Gradient_m4yqf"]
+offsets = PackedFloat32Array(0.0364963, 0.288321, 1)
+colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800073, 1, 0.786916, 0.0004815, 0.78691, 1)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="MasterSpark" type="CPUParticles2D" parent="."]
+z_index = 10
+material = SubResource("CanvasItemMaterial_xekbb")
+amount = 4
+texture = ExtResource("1_85b3i")
+spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 60.0
-initial_velocity_max = 120.0
-radial_accel_min = 1.0
-radial_accel_max = 1.0
-tangential_accel_min = 2.0
-tangential_accel_max = 2.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_buawp")
+initial_velocity_max = 90.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+tangential_accel_max = 10.0
+scale_amount_curve = SubResource("Curve_gs2wo")
+color = Color(0.973634, 0.366833, 0.756764, 1)
+color_ramp = SubResource("Gradient_m4yqf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(7.75, -4.25)
-scale = Vector2(16.5, 9.5)
-mesh = SubResource("BoxMesh_6lf3m")
-texture = ExtResource("2_ya12y")
+[node name="MasterSpark2" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xekbb")
+position = Vector2(282, -1)
+scale = Vector2(0.1, 0.1)
+amount = 4
+texture = ExtResource("2_fpatt")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+radial_accel_max = 3.4
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_m4yqf")

@@ -2,21 +2,15 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var hp = player_var.player_hp_max
-
+signal player_ready
 func _init():
 	player_var.player_node = $"."
 	pass
 func _ready():
 	$invincible_time.wait_time = player_var.invincible_time
-	
-	
-	WazaManager.add_waza("base_range")
-	WazaManager.add_waza("base_melee")
-	CardManager.add_card("fairy")
-	#CardManager.add_card("test")
+	emit_signal("player_ready")
 
-	SpawnManager.prepare_all_spawn_event($"../SpawnManager")
-	request_ready()
+
 	pass
 func _input(event):
 	if event.is_action_pressed("slow_mode"):
