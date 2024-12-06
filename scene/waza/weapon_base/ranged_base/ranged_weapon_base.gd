@@ -64,8 +64,7 @@ func _ready():
 	set_range_and_colddown()
 	add_to_group(waza_config["waza_name"])
 	cp_list = waza_config["cp_map"]
-	for cp_name in cp_list.keys():
-		add_to_group(cp_name)
+
 
 	bullet_pre = PresetManager.getpre(waza_config["attack_pre"])
 	bullet_modi_map ={
@@ -164,17 +163,31 @@ func shoot(bullet_pree,generate_position,generate_diretion,efficiency_map,target
 func cp_active(x_name):
 	print("waza_cp")
 	print(x_name)
-	for onhit in cp_list[x_name]["on_hit"]:	
-		attack_modifier["on_hit"].append(onhit)
+	if cp_list.has(x_name):
+		for onhit in cp_list[x_name]["on_hit"]:	
+			attack_modifier["on_hit"].append(onhit)
 
-	for on_flying in cp_list[x_name]["on_flying"]:		
-		attack_modifier["on_flying"].append(on_flying)
+		for on_flying in cp_list[x_name]["on_flying"]:		
+			attack_modifier["on_flying"].append(on_flying)
+			
+		for on_emit in cp_list[x_name]["on_emit"]:		
+			attack_modifier["on_emit"].append(on_emit)
 		
-	for on_emit in cp_list[x_name]["on_emit"]:		
-		attack_modifier["on_emit"].append(on_emit)
-	
-	for on_destroy in cp_list[x_name]["on_destroy"]:		
-		attack_modifier["on_destroy"].append(on_destroy)
+		for on_destroy in cp_list[x_name]["on_destroy"]:		
+			attack_modifier["on_destroy"].append(on_destroy)
+func cp_deactive(x_name):
+	if cp_list.has(x_name):
+		for onhit in cp_list[x_name]["on_hit"]:	
+			attack_modifier["on_hit"].erase(onhit)
+			
+		for on_flying in cp_list[x_name]["on_flying"]:		
+			attack_modifier["on_flying"].erase(on_flying)
+			
+		for on_emit in cp_list[x_name]["on_emit"]:		
+			attack_modifier["on_emit"].erase(on_emit)
+		
+		for on_destroy in cp_list[x_name]["on_destroy"]:		
+			attack_modifier["on_destroy"].erase(on_destroy)
 func upgrade_waza():
 	if waza_config["level"] > WazaManager.waza_maxlevel:
 		return

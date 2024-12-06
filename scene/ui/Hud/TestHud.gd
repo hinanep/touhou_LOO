@@ -18,6 +18,13 @@ func _ready():
 		card_button.set_tooltip_text(cd.cn)
 		card_button.selected.connect(on_cardbutton_select.bind(cd.card_name))
 
+	for uccp in CpManager.cp_pool.unactive:
+		var cp = CpManager.cp_pool.unactive[uccp]
+		var cp_button = PresetManager.getpre("ui_test_wazabutton").instantiate()
+		$testhud/cp_container.add_child(cp_button)
+		cp_button.set_texture(cp.cp_image)
+		cp_button.set_tooltip_text(cp.cn)
+		cp_button.selected.connect(on_cpbutton_select.bind(cp.name))
 
 func on_wazabutton_select(wazaname):
 	$testhud/Button.grab_focus()
@@ -30,6 +37,10 @@ func on_cardbutton_select(cardname):
 	type = "card"
 	tname = cardname
 
+func on_cpbutton_select(cpname):
+	$testhud/Button.grab_focus()
+	type = "cp"
+	tname = cpname
 	
 
 
@@ -39,6 +50,7 @@ func _on_update_pressed():
 			WazaManager.add_waza(tname)
 			
 		"cp":
+			CpManager.add_cp(tname)
 			pass
 		"passive":
 			pass
@@ -57,6 +69,7 @@ func _on_delete_pressed():
 			WazaManager.del_waza(tname)
 			
 		"cp":
+			CpManager.del_cp(tname)
 			pass
 		"passive":
 			pass

@@ -255,5 +255,4 @@ texture = ExtResource("5_kue7b")
 position = Vector2(-44, 2)
 
 [node name="dummy" parent="." instance=ExtResource("7_8cjtp")]
-visible = true
 position = Vector2(143, 0)

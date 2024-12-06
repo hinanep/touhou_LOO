@@ -94,7 +94,7 @@ func add_cp(cp_list):
 	if cp_list.has("cp_image"):
 		var newcp = cp_and_waza_texture.instantiate()
 		newcp.set_texture(PresetManager.getpre(cp_list["cp_image"]))
-		newcp.add_to_group(cp_list["cp_name"])
+		newcp.add_to_group(cp_list["name"])
 		newcp.get_child(0).text = cp_list["cn"]
 		cp_container.add_child(newcp)
 	

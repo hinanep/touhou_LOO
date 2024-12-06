@@ -80,6 +80,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="cp" type="RichTextLabel" parent="testhud/update"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 88.0
 offset_right = 77.0
@@ -99,6 +100,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="cp" type="RichTextLabel" parent="testhud/delete"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 88.0
 offset_right = 77.0
@@ -118,6 +120,7 @@ stretch_mode = 0
 
 [node name="cp" type="RichTextLabel" parent="testhud/update3"]
 visible = false
+layout_mode = 0
 offset_left = 1.0
 offset_top = 88.0
 offset_right = 77.0
@@ -141,6 +144,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="cp" type="RichTextLabel" parent="testhud/levelup"]
+layout_mode = 0
 offset_left = 31.0
 offset_top = 88.0
 offset_right = 107.0
@@ -160,6 +164,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="cp" type="RichTextLabel" parent="testhud/moremana"]
+layout_mode = 0
 offset_left = 31.0
 offset_top = 88.0
 offset_right = 107.0

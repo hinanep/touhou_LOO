@@ -72,20 +72,37 @@ func activate_cp(cp_array):
 		cp_pool["active"][cp_name] = cp_pool["unactive"][cp_name]
 		cp_pool["unactive"].erase(cp_name)
 		
-#真正的cp开始起作用
+
 func random_choose_cp():
 	if cp_pool["active"].is_empty():
 		return false
 	AudioManager.play_sfx("music_sfx_cp")
 	var cp_name = cp_pool["active"].keys()[randi_range(0,cp_pool["active"].size()-1)]
-	cp_pool["choosed"][cp_name] = cp_pool["active"][cp_name]
-	cp_pool["active"].erase(cp_name)
-	
-	get_tree().call_group(cp_name,"cp_active",cp_name)
-	get_tree().call_group("hud","add_cp",cp_pool["choosed"][cp_name])
-	print("actice cp")
-	print(cp_name)
+	add_cp(cp_name)
 	return true
+	
+func add_cp(cp_name):
+	if cp_pool["choosed"].has(cp_name):
+		return
+	if cp_pool["active"].has(cp_name):
+		cp_pool["choosed"][cp_name] = cp_pool["active"][cp_name]
+		cp_pool["active"].erase(cp_name)
+	if cp_pool["unactive"].has(cp_name):
+		cp_pool["choosed"][cp_name] = cp_pool["unactive"][cp_name]
+		cp_pool["unactive"].erase(cp_name)
+	for part in cp_pool["choosed"][cp_name]["effect_group"]:
+		get_tree().call_group(part,"cp_active",cp_name)
+	get_tree().call_group("hud","add_cp",cp_pool["choosed"][cp_name])
+
+func del_cp(cp_name):
+	if cp_pool.choosed.has(cp_name):
+		cp_pool["unactive"][cp_name] = cp_pool["choosed"][cp_name]
+		cp_pool["choosed"].erase(cp_name)
+		for part in cp_pool["unactive"][cp_name]["effect_group"]:
+			get_tree().call_group(part,"cp_deactive",cp_name)
+		get_tree().call_group(cp_name,"queue_free")
+	#get_tree().call_group("hud","del_cp",cp_pool["choosed"][cp_name])
+
 func clear_all():
 	max_list = []
 	cp_pool = {
