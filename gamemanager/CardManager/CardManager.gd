@@ -24,6 +24,7 @@ func _init():
 	cardnum_max = 3
 	card_maxlevel = 2
 	card_pool["unchoosed"]["marisa"] = {
+		"card_name":"marisa",
 		"level":0,
 		"power_cost":2000,
 		"path":"card_masterspark",
@@ -35,11 +36,12 @@ func _init():
 		"describe_text":["强大的魔炮，强大的卡牌伴随着代价","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"]
 	}
 	card_pool["unchoosed"]["fairy"] = {
+		"card_name":"fairy",
 		"level": card_maxlevel-1,
 		"power_cost":500,
 		"path":"card_fairy",
 		"pre":null,
-		"weight":1,
+		"weight":0,
 		"card_image":"image_card_fairy",
 		"node":null,
 		"cn":"大妖精"
@@ -59,6 +61,8 @@ func _input(event):
 			cardnum_now %= cardnum_have
 		
 func use_card():
+	if cardnum_have<=0:
+		return
 	var cardname = card_list.keys()[cardnum_now]
 	print(cardname)#name
 	
@@ -96,6 +100,7 @@ func add_card(cardname):
 	card_pool["unchoosed"].erase(cardname)
 	card_pool["choosed"][cardname]["pre"] = PresetManager.getpre(cardpath)
 	var node = card_pool["choosed"][cardname]["pre"].instantiate()
+	node.add_to_group(card_pool["choosed"][cardname]["card_name"])
 	node.card_init(card_pool["choosed"][cardname])
 	player_var.player_node.get_node("CardManager").add_child(node)
 	
@@ -136,7 +141,24 @@ func get_upable_card_by_name(cardname):
 	if(card_pool["unchoosed"].has(cardname)):
 		return card_pool["unchoosed"][cardname]
 	return null
+	
+func del_card(cardname):
+	if(card_pool["choosed"].has(cardname)):
+		card_pool["unchoosed"][cardname]=card_pool["choosed"][cardname]
+		card_pool["choosed"].erase(cardname)
+	if(card_pool["max"].has(cardname)):
+		card_pool["unchoosed"][cardname]=card_pool["max"][cardname]
+		card_pool["max"].erase(cardname)	
+	CpManager.del_to_maxlist(cardname)
+	card_pool["unchoosed"][cardname]["level"] = 0
+	cardnum_have -= 1
+	player_var.card_num_full = false
+	player_var.card_full = false
+	card_list.erase(cardname)
+	get_tree().call_group(cardname,"queue_free")
+	
 
+	
 func clear_all():
 	print("card_clear")
 

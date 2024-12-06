@@ -118,7 +118,7 @@ func _init():
 	"waza_name" : "base_range",
 	"level":waza_maxlevel-1,
 	"path":"waza_beginning_range",
-	"weight":1,#随机权重
+	"weight":0,#随机权重
 	"cn":"",#中文名
 	"type":"skill",#技能、符卡、衍生0
 	"waza_image":"image_card_fairy",
@@ -160,7 +160,10 @@ func _init():
 		"waza_name" : "base_melee",
 		"level":waza_maxlevel-1,
 		"path":"waza_beginning_melee",
-		"waza_image":"image_card_fairy"
+		"waza_image":"image_card_fairy",
+		"weight":0,#随机权重
+		"cn":"",#中文名
+		"type":"skill",#技能、符卡、衍生0
 	}
 	
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxwsx0wpy3dir"]
 
 [ext_resource type="Script" path="res://scene/drops/drops_base.gd" id="1_7oqge"]
-[ext_resource type="Texture2D" uid="uid://chjre7l05uru1" path="res://asset/brackeys_platformer_assets/sprites/fruit.png" id="1_cfmt8"]
+[ext_resource type="Texture2D" uid="uid://cbpx03x7cyfp2" path="res://icon.svg" id="1_cfmt8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s58kv"]
 atlas = ExtResource("1_cfmt8")

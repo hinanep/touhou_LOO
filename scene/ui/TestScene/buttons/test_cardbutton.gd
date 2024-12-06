@@ -10,8 +10,7 @@ func set_texture(image):
 	
 func _on_button_up():
 	emit_signal("selected")
-	get_parent().get_parent().get_child(0).global_position = global_position
-	print("seee")
+	
 	
 
 #

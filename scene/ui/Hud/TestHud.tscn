@@ -1,22 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckywbpd3lrj8e"]
+[gd_scene load_steps=6 format=3 uid="uid://ckywbpd3lrj8e"]
 
 [ext_resource type="Script" path="res://scene/ui/Hud/TestHud.gd" id="1_vqm2k"]
 [ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_we724"]
 [ext_resource type="Texture2D" uid="uid://ctx4yov5h08nk" path="res://asset/pic/blue_plate.png" id="3_2gmep"]
 [ext_resource type="Texture2D" uid="uid://72xiojvlc8d6" path="res://asset/pic/green_plate.png" id="4_wkgob"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="5_voeij"]
 
 [node name="TestHud" type="Node"]
 script = ExtResource("1_vqm2k")
 
 [node name="testhud" type="CanvasLayer" parent="."]
 
-[node name="card_container" type="HBoxContainer" parent="testhud"]
-offset_left = 1490.0
-offset_top = 174.0
-offset_right = 5690.0
-offset_bottom = 1334.0
+[node name="point" type="TextureRect" parent="testhud"]
+z_index = 1
+offset_left = 1721.0
+offset_top = -157.0
+offset_right = 1785.0
+offset_bottom = -93.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_voeij")
+
+[node name="card_container" type="GridContainer" parent="testhud"]
+offset_left = 1503.0
+offset_top = 198.0
+offset_right = 5703.0
+offset_bottom = 1358.0
 scale = Vector2(0.1, 0.1)
-alignment = 1
+columns = 7
 
 [node name="waza_container" type="GridContainer" parent="testhud"]
 offset_left = 1507.0
@@ -26,13 +36,13 @@ offset_bottom = 1728.0
 scale = Vector2(0.1, 0.1)
 columns = 7
 
-[node name="cp_container" type="HBoxContainer" parent="testhud"]
+[node name="cp_container" type="GridContainer" parent="testhud"]
 offset_left = 1505.0
 offset_top = 431.0
 offset_right = 4325.0
 offset_bottom = 1401.0
 scale = Vector2(0.1, 0.1)
-alignment = 1
+columns = 7
 
 [node name="card" type="RichTextLabel" parent="testhud"]
 offset_left = 1409.0
@@ -63,6 +73,7 @@ offset_left = 1407.0
 offset_top = 543.0
 offset_right = 1537.0
 offset_bottom = 636.0
+focus_mode = 1
 texture_normal = ExtResource("2_we724")
 texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
@@ -81,6 +92,7 @@ offset_left = 1564.0
 offset_top = 545.0
 offset_right = 1694.0
 offset_bottom = 638.0
+focus_mode = 1
 texture_normal = ExtResource("4_wkgob")
 texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
@@ -113,5 +125,49 @@ offset_bottom = 128.0
 scale = Vector2(2, 2)
 text = "升级选定"
 
+[node name="Button" type="Button" parent="testhud"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="levelup" type="TextureButton" parent="testhud"]
+offset_left = 185.0
+offset_top = 456.0
+offset_right = 315.0
+offset_bottom = 549.0
+focus_mode = 1
+texture_normal = ExtResource("2_we724")
+texture_pressed = ExtResource("3_2gmep")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="cp" type="RichTextLabel" parent="testhud/levelup"]
+offset_left = 31.0
+offset_top = 88.0
+offset_right = 107.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+text = "升级"
+
+[node name="moremana" type="TextureButton" parent="testhud"]
+offset_left = 187.0
+offset_top = 603.0
+offset_right = 317.0
+offset_bottom = 696.0
+focus_mode = 1
+texture_normal = ExtResource("3_2gmep")
+texture_pressed = ExtResource("4_wkgob")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="cp" type="RichTextLabel" parent="testhud/moremana"]
+offset_left = 31.0
+offset_top = 88.0
+offset_right = 107.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+text = "回蓝"
+
 [connection signal="pressed" from="testhud/update" to="." method="_on_update_pressed"]
 [connection signal="pressed" from="testhud/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="testhud/levelup" to="." method="_on_levelup_pressed"]
+[connection signal="pressed" from="testhud/moremana" to="." method="_on_moremana_pressed"]
