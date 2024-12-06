@@ -50,6 +50,7 @@ func upgrade_waza(wazaname):
 		CpManager.add_to_maxlist(wazaname)
 		if is_waza_allmaxlevel():
 			player_var.waza_full = true
+
 	get_tree().call_group(wazaname,"upgrade_waza")
 
 func is_waza_allmaxlevel():
@@ -82,7 +83,33 @@ func clear_all():
 	#waza_name(string): level(int)
 }
 	_init()
+	
+func del_waza(wazaname):
+	
+	if(waza_pool["choosed"].has(wazaname)):
+		waza_pool["unchoosed"][wazaname]=waza_pool["choosed"][wazaname]
+		waza_pool["choosed"].erase(wazaname)
 
+	
+	elif(waza_pool["max"].has(wazaname)):
+		waza_pool["unchoosed"][wazaname]=waza_pool["max"][wazaname]
+		waza_pool["max"].erase(wazaname)
+	else:
+		return
+	waza_list.erase(wazaname)
+	wazanum_have -= 1
+
+	player_var.waza_num_full = false
+	player_var.waza_full = false
+
+	get_tree().call_group(wazaname,"queue_free")
+
+	waza_pool["unchoosed"][wazaname]["level"] = 0
+
+	CpManager.del_to_maxlist(wazaname)
+
+
+	
 func _init():
 	wazanum_have = 0
 	wazanum_max = 6
@@ -94,6 +121,7 @@ func _init():
 	"weight":1,#随机权重
 	"cn":"",#中文名
 	"type":"skill",#技能、符卡、衍生0
+	"waza_image":"image_card_fairy",
 	
 	"locking_type":"diretion",#目标、定向、随机方向01
 	"attack_pre":"bullet_beginning",#发射实体路径1
@@ -129,8 +157,10 @@ func _init():
 	"shoot_sfx":"music_sfx_shoot"
 		}
 	waza_pool["unchoosed"]["base_melee"] = {
+		"waza_name" : "base_melee",
 		"level":waza_maxlevel-1,
-		"path":"waza_beginning_melee"
+		"path":"waza_beginning_melee",
+		"waza_image":"image_card_fairy"
 	}
 	
 	

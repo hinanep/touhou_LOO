@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=19 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="PackedScene" uid="uid://cll6dnd0urysq" path="res://gamemanager/WazaManager/wazaManager.tscn" id="2_s07gh"]
@@ -15,12 +15,6 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_keelo"]
 radius = 43.0
-
-[sub_resource type="Curve2D" id="Curve2D_l3lgj"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 216, 139, 0, 0, 0, 0, -195, 137, 0, 0, 0, 0, -200, -124, 0, 0, 0, 0, 220, -124, 0, 0, 0, 0, 219, 139)
-}
-point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2lo10"]
 radius = 242.61
@@ -116,13 +110,6 @@ shape = SubResource("CircleShape2D_keelo")
 
 [node name="CardManager" parent="." instance=ExtResource("6_00exy")]
 script = null
-
-[node name="monster_spawn_line" type="Path2D" parent="."]
-curve = SubResource("Curve2D_l3lgj")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="monster_spawn_line"]
-position = Vector2(216, 139)
-rotation = -3.13673
 
 [node name="buffManager" type="Node2D" parent="."]
 

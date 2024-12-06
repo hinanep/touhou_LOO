@@ -5,13 +5,13 @@ var spawnTimer
 var startTimer 
 var endTimer
 var spawn_list = {
-	#"pre":preload("res://scene/enemys/slime/slime.tscn"),
-	#"spawn_mode":"duration",
-	#"start_time":5,
-	#"end_time":30,
-	#"tick_time":2,
-	#"number":2,
-	#"param_buff":0.9
+	"pre":"",
+	"spawn_mode":"once",
+	"start_time":0,
+	"end_time":0,
+	"tick_time":1,
+	"number":1,
+	"param_buff":1
 }
 func spawner_init(spawner_initlist):
 	spawn_list=spawner_initlist

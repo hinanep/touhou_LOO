@@ -71,8 +71,13 @@ text = "设置"
 layout_mode = 2
 text = "退出游戏"
 
+[node name="WikiButton2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "测试"
+
 [connection signal="pressed" from="VBoxContainer/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WikiButton" to="." method="_on_wiki_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/WikiButton2" to="." method="_on_test_pressed"]

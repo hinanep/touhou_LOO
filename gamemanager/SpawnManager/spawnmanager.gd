@@ -21,6 +21,13 @@ func prepare_all_spawn_event(spawnmanager,eventlist):
 
 	for event in event_list:
 		add_spawn_event(event_list[event])
-
-func event_list_init():
-	pass
+#event:
+#"slime_green_1":{
+	#"pre":PresetManager.getpre("enemy_zako_slime_green"),
+	#"spawn_mode":"duration",
+	#"start_time":0,
+	#"end_time":15,
+	#"tick_time":2,
+	#"number":10,
+	#"param_buff":0.75
+#}

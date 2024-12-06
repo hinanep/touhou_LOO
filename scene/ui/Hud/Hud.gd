@@ -51,9 +51,9 @@ func exp_display():
 	level_number.text = ("%d" % player_var.level)
 	pass
 
-var cardnum_before=0
-var cardnum=0
-var left=0
+
+
+
 var cardnum_now = 0
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_waza_texture = PresetManager.getpre("ui_cp_and_waza_texture")
@@ -68,8 +68,8 @@ func card_display():
 		child.set_stretch_mode(3)
 
 
-	card_container.get_child(CardManager.cardnum_now).set_expand_mode(2)
-	card_container.get_child(CardManager.cardnum_now).set_stretch_mode(4)
+	card_container.get_child(cardnum_now).set_expand_mode(2)
+	card_container.get_child(cardnum_now).set_stretch_mode(4)
 
 
 func add_card(card_list):
@@ -77,13 +77,14 @@ func add_card(card_list):
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(PresetManager.getpre(card_list["card_image"]))
 	newcard.get_child(0).text = card_list["cn"]
-	
+	newcard.add_to_group(card_list["card_name"])
 	card_container.add_child(newcard)
 
 func add_waza(waza_list):
 	print("adding waza")
 	if waza_list.has("waza_image"):
 		var newwaza = cp_and_waza_texture.instantiate()
+		newwaza.add_to_group(waza_list["waza_name"])
 		newwaza.set_texture(PresetManager.getpre(waza_list["waza_image"]))
 		newwaza.get_child(0).text = waza_list["cn"]
 		waza_container.add_child(newwaza)
@@ -93,6 +94,7 @@ func add_cp(cp_list):
 	if cp_list.has("cp_image"):
 		var newcp = cp_and_waza_texture.instantiate()
 		newcp.set_texture(PresetManager.getpre(cp_list["cp_image"]))
+		newcp.add_to_group(cp_list["cp_name"])
 		newcp.get_child(0).text = cp_list["cn"]
 		cp_container.add_child(newcp)
 	

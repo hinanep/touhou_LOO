@@ -71,6 +71,7 @@ var preset_map = {
 	"ui_select_button":preload("res://scene/ui/LevelUp/select_button.tscn"),
 	"ui_card_texture":preload("res://scene/ui/Hud/card_texture.tscn"),
 	"ui_cp_and_waza_texture":preload("res://scene/ui/Hud/cp_and_waza_texture.tscn"),
+	"ui_test_wazabutton":preload("res://scene/ui/TestScene/buttons/test_wazabutton.tscn"),
 	
 	"image_card_fairy":preload("res://asset/pic/crystal/大妖精.png"),
 	"image_card_marisa":preload("res://asset/pic/crystal/魔理沙.png"),

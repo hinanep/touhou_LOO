@@ -28,6 +28,13 @@ func _init():
 func add_to_maxlist(x_name):
 	max_list.append(x_name)
 	activate_cp(get_cp_unactive(x_name))
+func del_to_maxlist(x_name):
+	max_list.erase(x_name)
+	for cp in cp_pool["active"]:
+		if cp_pool["active"][cp]["effect_group"].has(x_name):		
+			cp_pool["unactive"][cp] = cp_pool["active"][cp]
+			cp_pool["active"].erase(cp)
+			
 func raise_weight_to_cp(xname):
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(xname):

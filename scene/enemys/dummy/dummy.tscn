@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwjf4brydbran"]
+
+[ext_resource type="Script" path="res://scene/enemys/dummy/dummy.gd" id="1_8axhr"]
+[ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_amfcj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpq08"]
+atlas = ExtResource("2_amfcj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpq08")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
+radius = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wblfw"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="dummy" type="CharacterBody2D" groups=["monster"]]
+collision_layer = 2
+motion_mode = 1
+safe_margin = 10.0
+script = ExtResource("1_8axhr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1875, 0.195313)
+sprite_frames = SubResource("SpriteFrames_4gakf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itioj")
+
+[node name="melee_damage_area" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
+
+[node name="bullet_damage_area" type="Area2D" parent="."]
+collision_priority = 0.0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
+shape = SubResource("CircleShape2D_shwxr")
+
+[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
+
+[node name="debuff_time" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 126.0
+offset_bottom = 14.0
+scale = Vector2(0.25, 0.125)
+tooltip_text = "
+"
+theme_override_styles/fill = SubResource("StyleBoxFlat_wblfw")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="dps" type="Timer" parent="."]
+autostart = true
+
+[node name="dps2" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = -38.0
+offset_right = 250.0
+offset_bottom = 142.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 64
+text = "0.00"
+
+[node name="dps3" type="RichTextLabel" parent="."]
+offset_left = -37.0
+offset_top = -38.0
+offset_right = 327.0
+offset_bottom = 82.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 64
+text = "DPS:"
+
+[node name="dps_reset" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="dps" to="." method="_on_dps_timeout"]
+[connection signal="timeout" from="dps_reset" to="." method="_on_dps_reset_timeout"]
