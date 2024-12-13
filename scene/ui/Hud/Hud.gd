@@ -83,6 +83,8 @@ func add_card(card_list):
 func add_waza(waza_list):
 	print("adding waza")
 	if waza_list.has("waza_image"):
+		if waza_list.waza_name == "base_range" or  waza_list.waza_name == "base_melee":
+			return
 		var newwaza = cp_and_waza_texture.instantiate()
 		newwaza.add_to_group(waza_list["waza_name"])
 		newwaza.set_texture(PresetManager.getpre(waza_list["waza_image"]))
