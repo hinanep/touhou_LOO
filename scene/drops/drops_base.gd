@@ -17,7 +17,7 @@ func _on_body_entered(_body):
 	game_manager.add_exp(experience)
 	game_manager.add_score(score)
 	game_manager.add_power(power)
-
+	
 	queue_free()
 
 func fly_to_player():
