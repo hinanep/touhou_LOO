@@ -90,6 +90,7 @@ func add_cp(cp_name):
 	if cp_pool["unactive"].has(cp_name):
 		cp_pool["choosed"][cp_name] = cp_pool["unactive"][cp_name]
 		cp_pool["unactive"].erase(cp_name)
+	player_var.damage_sum[cp_name] = 0
 	for part in cp_pool["choosed"][cp_name]["effect_group"]:
 		get_tree().call_group(part,"cp_active",cp_name)
 	get_tree().call_group("hud","add_cp",cp_pool["choosed"][cp_name])

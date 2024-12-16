@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 		velocity = velocity.bounce(collision_info.get_normal())
 		if collision_info.get_collider().has_method("take_damage"):
-			collision_info.get_collider().take_damage(player_var.player_make_bullet_damage(basic_damage))
+			bullet_damage(collision_info.get_collider(),basic_damage)
 		if bounce_times <0:
 			_on_destroy_timer_timeout()
 func _on_body_entered(_body):

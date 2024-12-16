@@ -23,8 +23,6 @@ animations = [{
 }]
 
 [node name="TraceBullet" instance=ExtResource("1_daakj")]
-z_index = 2
-z_as_relative = false
 scale = Vector2(4, 4)
 script = ExtResource("2_dr78b")
 

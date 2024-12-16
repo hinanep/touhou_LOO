@@ -5,15 +5,15 @@ var basic_damage
 func _ready():
 	#await  get_tree().create_timer(0.2).timeout
 	basic_damage = 10
-	Kill()
+	anime()
 	await  get_tree().create_timer(0.1).timeout
 	var enemy_in_range = $explo_area.get_overlapping_bodies()
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
 					print("爆炸输出！！")
-					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
-func Kill():
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage,"reitama"))
+func anime():
 	AudioManager.play_sfx("music_sfx_explosion")
 	var _particle = bombParticle.instantiate()
 	
@@ -22,12 +22,6 @@ func Kill():
 	_particle.global_transform = global_transform
 	_particle.set_emitting(true)
 	
-	#var enemy_in_range = $explo_area.get_overlapping_bodies()
-	#if enemy_in_range:
-			#for enemy in enemy_in_range:
-				#if enemy.has_method("take_damage"):
-					#print("爆炸输出！！")
-					#enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
 
 	
 

@@ -94,7 +94,7 @@ func add_card(cardname):
 	if cardnum_have >= cardnum_max:
 		player_var.card_num_full = true
 	player_var.card_full = false
-	
+	player_var.damage_sum[cardname] = 0
 	card_list[cardname] = 0
 	card_pool["choosed"][cardname]=card_pool["unchoosed"][cardname]
 	card_pool["unchoosed"].erase(cardname)

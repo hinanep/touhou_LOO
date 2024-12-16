@@ -22,7 +22,7 @@ func add_waza(wazaname):
 		return	
 	CpManager.raise_weight_to_cp(wazaname)
 	var path = waza_pool["unchoosed"][wazaname]["path"]
-	
+	player_var.damage_sum[wazaname] = 0
 	wazanum_have += 1
 	if wazanum_have >= wazanum_max:
 		player_var.waza_num_full = true

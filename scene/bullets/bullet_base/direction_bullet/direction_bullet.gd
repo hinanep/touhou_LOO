@@ -39,7 +39,7 @@ func _on_body_entered(body):
 	_on_hit()
 	
 	if body.has_method("take_damage"):
-		body.take_damage(player_var.player_make_bullet_damage(basic_damage))
+		bullet_damage(body,basic_damage)
 		queue_free()
 func _on_hit():
 	emit_signal("on_hit")
@@ -48,3 +48,6 @@ func _on_hit():
 func _on_destroy():
 	emit_signal("on_destroy")
 	pass
+	
+func bullet_damage(body,damage,damage_source = bullet_modi_map.damage_source):
+	body.take_damage(player_var.player_make_bullet_damage(basic_damage,damage_source))

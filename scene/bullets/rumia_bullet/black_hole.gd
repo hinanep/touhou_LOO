@@ -17,7 +17,7 @@ func _ready():
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
-					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage,"rumia"))
 				if enemy.has_method("set_debuff"):
 					enemy.set_debuff("speed",0.2,1)
 func _physics_process(_delta):

@@ -60,6 +60,7 @@ var shoot_ready = true
 var gen_position
 var bullet_pre 
 var bullet_modi_map
+var clockangle = 0
 func _ready():
 	set_range_and_colddown()
 	add_to_group(waza_config["waza_name"])
@@ -73,6 +74,7 @@ func _ready():
 		"Duration_Addition":1,
 		"Range_Addition":1,
 		"Debuff_Addition":1,
+		"damage_source":waza_config["waza_name"]
 	}
 	if(waza_config["creating_position"] == "self"):
 		gen_position = global_position
@@ -106,6 +108,9 @@ func auto_attack(angle=0,distance=0):
 					continue
 				"random":
 					angle = randf_range(0,2*PI)
+				"clock":
+					clockangle +=  0.25*PI
+					angle = clockangle
 			if waza_config["creating_rule"] == "one":
 				await  get_tree().create_timer(0.1).timeout
 			shoot(bullet_pre,gen_position,angle,bullet_modi_map)

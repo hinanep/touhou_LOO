@@ -54,18 +54,24 @@ var is_card_casting = false
 var player_node
 var exp_need = [12,24,36,48,60,72,84,96,108,132,156,184,216,260,292,348,384,408,432,456,480,504,9999]
 
-
+var damage_sum = {
+	"none" : 0
+}
 #玩家造成伤害公式
-func player_make_melee_damage(basic_damage):
+func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
 	#	return basic_damage * damageRatio * critical_damage
 	#else:
-		return basic_damage * player_melee_damage_ratio
-func player_make_bullet_damage(basic_damage):
+		basic_damage *= player_melee_damage_ratio
+		damage_sum[damage_source] += basic_damage 
+		return basic_damage 
+func player_make_bullet_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
 	#	return basic_damage * damageRatio * critical_damage
 	#else:
-		return basic_damage * player_bullet_damage_ratio
+		basic_damage *= player_bullet_damage_ratio
+		damage_sum[damage_source] += basic_damage 
+		return basic_damage
 		
 #敌人造成伤害公式
 func enemy_make_damage(basic_damage):

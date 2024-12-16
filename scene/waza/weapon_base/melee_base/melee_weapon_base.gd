@@ -85,5 +85,5 @@ func kick():
 	$Sprite2D/AnimationPlayer.play("attack")
 	for enemy in enemy_in_kick_range:
 		if enemy.has_method("take_damage"):
-			enemy.take_damage(player_var.player_make_melee_damage(kick_basic_damage))
+			enemy.take_damage(player_var.player_make_melee_damage(kick_basic_damage,"base_melee"))
 

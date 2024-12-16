@@ -17,7 +17,7 @@ func _ready():
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
-					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage,"reima"))
 func _physics_process(_delta):
 	$AnimatedSprite2D.scale = Vector2(0.00025 * min(counter,100),0.0001* min(counter,100))
 	$AnimatedSprite2D.position = Vector2(0,-0.72 * min(counter,100))
@@ -26,7 +26,7 @@ func _physics_process(_delta):
 	if enemy_in_range:
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
-					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
+					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage,"reima"))
 	pass
 	
 func _on_timer_timeout():

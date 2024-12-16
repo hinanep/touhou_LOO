@@ -17,14 +17,14 @@ func _physics_process(delta):
 			attack_timer.start()
 			for enemy in enemy_in_range:
 				if enemy.has_method("take_damage"):
-					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage))
+					bullet_damage(enemy,basic_damage)
 	attack.rotation += 0.5
 	
 
 func _on_body_entered(body):
 	move = false
 	if body.has_method("take_damage"):
-		body.take_damage(player_var.player_make_bullet_damage(basic_damage))
+		bullet_damage(body,basic_damage)
 
 
 
