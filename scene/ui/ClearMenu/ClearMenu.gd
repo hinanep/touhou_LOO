@@ -10,6 +10,10 @@ func _on_back_button_pressed():
 
 func _open():
 	$CanvasLayer/RichTextLabel/RichTextLabel.text =String.num_int64(player_var.point) 
+	var format_damage = " : %.2f \n"
+	for source in player_var.damage_sum:
+		$CanvasLayer/damagesum.text += source
+		$CanvasLayer/damagesum.text += format_damage % player_var.damage_sum[source]
 	pass
 	
 

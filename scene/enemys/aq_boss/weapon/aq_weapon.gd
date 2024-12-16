@@ -5,13 +5,13 @@ func _ready():
 		waza_config = {
 		"waza_name" : "aq",
 		"level":0,
-		"path":"res://scene/weapons/sekibanki/sekibanki_weapon.tscn",
+		"path":"waza_sekibanki",
 		"weight":0,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
 	
 		"locking_type":"random",#目标、定向、随机方向01
-		"attack_pre":"res://scene/enemys/aq_boss/bullet/random_bullet.tscn",#发射实体路径1
+		"attack_pre":"aq_punch",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
 		"creation_distance":0,#距离生成位置的距离1
 		
@@ -41,12 +41,19 @@ func _ready():
 			"Debuff_Addition":[1,1,1,1,1,1,1,1],
 			"colddown":[1,0.9,0.8,0.7,0.6,0.6,0.6,0.6]
 						},
-		"shoot_sfx":"sfx_bulletshoot"
+		"shoot_sfx":"music_sfx_shoot"
 
 	}
 
 		super._ready()
-
+		bullet_modi_map ={
+		"Damage_Addition":1,
+		"Bullet_Speed_Addition":1,
+		"Duration_Addition":1,
+		"Range_Addition":1,
+		"Debuff_Addition":1,
+		"damage_source":"none"
+	}
 		pass # Replace with function body.
 
 

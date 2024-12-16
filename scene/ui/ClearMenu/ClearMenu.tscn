@@ -93,4 +93,13 @@ com
 专业顾问：
 LR"
 
+[node name="damagesum" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 119.0
+offset_top = 333.0
+offset_right = 596.0
+offset_bottom = 941.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "dps:"
+
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

@@ -15,7 +15,11 @@ func _input(event):
 		else:
 			G.get_gui_view_manager().close_view(pause_id)
 		pauseing = !pauseing
-		
+	if event.is_action_pressed("clockup"):
+		if Engine.time_scale <1.5:
+			Engine.time_scale = 2.0
+		else:
+			Engine.time_scale = 1.0
 func _open():
 	GameManager.upping = false
 	pass

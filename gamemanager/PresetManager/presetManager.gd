@@ -41,6 +41,7 @@ var preset_map = {
 	"modidier_reitama":preload("res://scene/modifier/on_destroy/on_destroy.tscn"),
 	
 	"enemy_boss_aq":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
+	"aq_punch":preload("res://scene/enemys/aq_boss/bullet/random_bullet.tscn"),
 	"enemy_zako_bat_blue":preload("res://scene/enemys/bat_blue/bat_blue.tscn"),
 	"enemy_zako_bat_purple":preload("res://scene/enemys/bat_purple/bat_purple.tscn"),
 	"enemy_zako_bug_orange":preload("res://scene/enemys/bug_orange/bug_orange.tscn"),
