@@ -114,4 +114,5 @@ func _init():
 	wazanum_have = 0
 	wazanum_max = 6
 	waza_maxlevel = 3
-	waza_pool["unchoosed"] = table.unlock.data
+	waza_pool["unchoosed"] = table.unlock.data.duplicate()
+

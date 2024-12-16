@@ -83,7 +83,7 @@ func _on_delete_pressed():
 
 func _on_levelup_pressed():
 	GameManager.level_up()
-	$testhud/Button.grab_focus()
+	
 	pass # Replace with function body.
 
 
