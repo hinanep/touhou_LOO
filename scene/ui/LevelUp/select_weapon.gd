@@ -50,8 +50,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if $select_buttons.get_child_count()!=0:
-		$select_buttons.get_child(0).grab_focus()
+
 	#get_tree().paused = true
 	pass
 
