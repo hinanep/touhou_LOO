@@ -50,6 +50,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if $select_buttons.get_child_count()!=0:
+		$select_buttons.get_child(0).grab_focus()
 	#get_tree().paused = true
 	pass
 
@@ -72,3 +74,27 @@ func close_levelup():
 	$"..".close_self()
 
 	
+
+
+func _on_reroll_button_up():
+	for b in $select_buttons.get_children():
+		b.queue_free()
+	_ready()
+	if $select_buttons.get_child_count()!=0:
+		$select_buttons.get_child(0).grab_focus()
+	pass # Replace with function body.
+
+
+func _on_ban_button_up():
+	if $select_buttons.get_child_count()!=0:
+		$select_buttons.get_child(0).grab_focus()
+	
+	pass # Replace with function body.
+
+
+func _on_abandon_button_up():
+	player_var.point_ratio += 1
+	if $select_buttons.get_child_count()!=0:
+		$select_buttons.get_child(0).grab_focus()
+	close_levelup()
+	pass # Replace with function body.

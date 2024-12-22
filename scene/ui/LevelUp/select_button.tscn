@@ -39,7 +39,6 @@ offset_bottom = 88.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-tooltip_text = "tooltip["
 button_mask = 0
 shortcut = SubResource("Shortcut_siojg")
 texture_normal = SubResource("AtlasTexture_4g7qy")
