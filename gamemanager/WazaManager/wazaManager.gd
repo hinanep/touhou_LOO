@@ -8,7 +8,8 @@ var waza_pool = {
 		#waza_name(string):{ level(int)}
 	},
 	"choosed":{},
-	"max":{}
+	"max":{},
+	"banned":{}
 }
 var waza_list = {
 	#waza_name(string): level(int)
@@ -108,8 +109,19 @@ func del_waza(wazaname):
 
 	CpManager.del_to_maxlist(wazaname)
 
+func ban_routine(routine_name):
+	if(waza_pool["unchoosed"].has(routine_name)):
+		waza_pool["banned"][routine_name]=waza_pool["unchoosed"][routine_name]
+		waza_pool["unchoosed"].erase(routine_name)
 
 	
+	elif(waza_pool["choosed"].has(routine_name)):
+		waza_pool["banned"][routine_name]=waza_pool["choosed"][routine_name]
+		del_waza(routine_name)
+		waza_pool["unchoosed"].erase(routine_name)
+
+	else:
+		return false
 func _init():
 	wazanum_have = 0
 	wazanum_max = 6

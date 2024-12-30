@@ -15,3 +15,6 @@ func upgrade_buff():
 
 func _ready():
 	add_to_group(buff_name)
+
+func del():
+	queue_free()

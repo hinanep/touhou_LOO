@@ -21,3 +21,5 @@ func upgrade_buff():
 	#player_var.set(effect_var_name,player_var.get(effect_var_name)*buff_strongth)
 	
 
+func del():
+	super.del()

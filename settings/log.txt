@@ -1,4 +1,4 @@
+gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\Routine.xlsx:routine => G:\touhou_survivors\settings\dist\Routine\routine.gd
 gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\waza.xlsx:unlock => G:\touhou_survivors\settings\dist\waza\unlock.gd
-gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\示例.xlsx:示例-demo => G:\touhou_survivors\settings\dist\示例\demo.gd
-gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\示例.xlsx:示例-demo2 => G:\touhou_survivors\settings\dist\示例\demo2.gd
+gd_excelexporter.core.engine-WARNING:~$Routine.xlsx 不是配置表，跳过！
 gd_excelexporter.generators.gds2-INFO:创建：dist\settings.gd

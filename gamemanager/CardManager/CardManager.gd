@@ -14,7 +14,8 @@ var card_pool = {
 		#card_name:{"level":,"power?":, ...}
 	},
 	"choosed":{},
-	"max":{}
+	"max":{},
+	"banned":{}
 }
 
 
@@ -157,8 +158,16 @@ func del_card(cardname):
 	card_list.erase(cardname)
 	get_tree().call_group(cardname,"queue_free")
 	
-
-	
+func ban_card(cardname):
+	if(card_pool["unchoosed"].has(cardname)):
+		card_pool["banned"][cardname]=card_pool["unchoosed"][cardname]
+		card_pool["unchoosed"].erase(cardname)
+	elif(card_pool["choosed"].has(cardname)):
+		card_pool["banned"][cardname]=card_pool["choosed"][cardname]
+		del_card(cardname)
+		card_pool["unchoosed"].erase(cardname)
+	else:
+		return false
 func clear_all():
 	print("card_clear")
 

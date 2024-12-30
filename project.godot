@@ -23,7 +23,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-table="*res://gamemanager/settings.gd"
+table="*res://settings/dist/settings.gd"
 player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 CardManager="*res://gamemanager/CardManager/CardManager.gd"
@@ -39,6 +39,7 @@ GameManager="*res://gamemanager/GameManager/game_manager.tscn"
 [debug]
 
 file_logging/enable_file_logging.pc=false
+settings/stdout/print_gpu_profile=true
 
 [display]
 
@@ -143,6 +144,8 @@ clockup={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/texture_mipmap_bias=-0.345
 viewport/hdr_2d=true

@@ -4,6 +4,7 @@ var select_num = 3
 var card_button_pre = PresetManager.getpre("ui_select_button")
 # Called when the node enters the scene tree for the first time.
 var cards_wazas_selected
+var ban_mode = false
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 		
@@ -48,21 +49,25 @@ func _ready():
 		GameManager.add_exp(0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
 
-	#get_tree().paused = true
-	pass
 
 func on_button_selected(upgrade):
+	if ban_mode:
+		if(cards_wazas_selected["wazas"].has(upgrade)):	
+			WazaManager.ban_routine(upgrade)
 	
-	if(cards_wazas_selected["wazas"].has(upgrade)):	
-		WazaManager.add_waza(upgrade)
-	
-	if(cards_wazas_selected["cards"].has(upgrade)):
-		CardManager.add_card(upgrade)
-	if(cards_wazas_selected["buffs"].has(upgrade)):
-		BuffManager.add_buff(upgrade,false)
+		#if(cards_wazas_selected["cards"].has(upgrade)):
+			#CardManager.add_card(upgrade)
+		#if(cards_wazas_selected["buffs"].has(upgrade)):
+			#BuffManager.add_buff(upgrade,false)
+	else:
+		if(cards_wazas_selected["wazas"].has(upgrade)):	
+			WazaManager.add_waza(upgrade)
+		
+		if(cards_wazas_selected["cards"].has(upgrade)):
+			CardManager.add_card(upgrade)
+		if(cards_wazas_selected["buffs"].has(upgrade)):
+			BuffManager.add_buff(upgrade,false)
 
 
 	call_deferred("close_levelup")
@@ -87,7 +92,11 @@ func _on_reroll_button_up():
 func _on_ban_button_up():
 	if $select_buttons.get_child_count()!=0:
 		$select_buttons.get_child(0).grab_focus()
-	
+	if !ban_mode:
+		$back2.set_modulate(Color(1, 0, 0))
+	else:
+		$back2.set_modulate(Color(1, 1, 1))
+	ban_mode = !ban_mode
 	pass # Replace with function body.
 
 

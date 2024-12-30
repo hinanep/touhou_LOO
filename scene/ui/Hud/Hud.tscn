@@ -194,3 +194,10 @@ text = "羁绊"
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1
+
+[node name="renew_timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="renew_timer" to="." method="_on_renew_timer_timeout"]

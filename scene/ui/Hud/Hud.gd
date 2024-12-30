@@ -22,14 +22,6 @@ func _ready():
 		add_card(CardManager.get_active_card_by_name(cardname))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	hp_display()
-	card_power_display()
-	point_and_ratio_display()
-	exp_display()
-	card_display()
-	pass
 
 func hp_display():
 	hp.value = player_var.player_hp
@@ -100,3 +92,12 @@ func add_cp(cp_list):
 		newcp.get_child(0).text = cp_list["cn"]
 		cp_container.add_child(newcp)
 	
+
+
+func _on_renew_timer_timeout():
+	hp_display()
+	card_power_display()
+	point_and_ratio_display()
+	exp_display()
+	card_display()
+

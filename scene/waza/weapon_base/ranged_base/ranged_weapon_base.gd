@@ -12,47 +12,42 @@ var cp_list = {
 
 }
 var waza_config = {
-	"waza_name" : "",
-	"level":0,
-	"path":"",
-	"weight":0,#随机权重
-	"cn":"",#中文名
-	"type":"skill",#技能、符卡、衍生0
-	
-	"locking_type":"",#目标、定向、随机方向01
-	"attack_pre":"",#发射实体路径1
-	"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
-	"creation_distance":0,#距离生成位置的距离1
-	
-	"creating_position":"",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
-	"creating_rule":"",#生成一组、一个个生成1
-	"attack_gen_times":"",#生成次数1
-	"basic_colddown":1.0,#1
-	
-	
-	"Physical_Addition_Efficiency":0.0,#
-	"Magical_Addition_Efficiency":1.0,#
-	"Speed_Efficiency":1.0,#
-	"Duration_Efficiency":1.0,#
-	"Range_Efficiency":1.0,
-	
-	"Magical_Times_Efficiency":1,#1
-	"Physical_Times_Efficiency":1.0,#1	
-	"Reduction_Efficiency":1.0,#1
-	
-	"cp_map":{},#
-	"upgrade_map":{#
-		"Damage_Addition":[],
-		"Bullet_Speed_Addition":[],
-		"Duration_Addition":[],
-		"Range_Addition":[],
-		"Times":[],
-		"Debuff_Addition":[],
-		"colddown":[]
-					},	#
-	"shoot_sfx":"sfx_bulletshoot"
-	}
-	
+	 "routine_name":'sanae',  
+	"cn":'早苗',  
+	"damage_type":'danma',  
+	"basic_cd":1.0,  
+	"locking_type":'nearest_enemy',  
+	"locking_param":[],  
+	"gen_zeropoint":'self',  
+	"gen_target":[],  
+	"gen_position":[[0, 0]],  
+	"inherit_rot":false,  
+	"gen_rule":'random_event',  
+	"gen_pre_arr":[],  
+	"gen_type":'one',  
+	"gen_lag":0.1,  
+	"gen_times_dependence":0,  
+	"gen_times":1,  
+	"event1":['shoot', 'bullet_sanae_small'],  
+	"event2":['shoot', 'bullet_sanae_mid'],  
+	"event3":['shoot', 'bullet_sanae_big'],  
+	"event_weight":[4, 2, 1],  
+	"event_luckeff":[-1, 0, 1],  
+	"melee_efficiency":1.0,  
+	"danma_efficiency":1.0,  
+	"speed_efficiency":1.0,  
+	"duration_efficiency":1.0,  
+	"range_efficiency":1.0,  
+	"danma_times_efficiency":1.0,  
+	"melee_times_efficiency":1.0,  
+	"cd_efficicency":1.0,  
+	"level":0,  
+	"path":'waza_sanae',  
+	"weight":1.0,  
+	"waza_image":'image_waza_sanae',  
+	"shoot_sfx":'music_sfx_shoot',  
+	"cp_map":{},  
+	"comment":['随机射出不同子弹', '属性上升', '属性上升', '属性上升', '属性上升', '属性上升', '属性上升', '属性上升'], }
 
 var shoot_range = 200
 var basic_colddown = 1
@@ -78,19 +73,12 @@ func _ready():
 	}
 	if(waza_config["creating_position"] == "self"):
 		gen_position = global_position
-func _physics_process(_delta):
-	
-	var nearest_enemy = get_nearest_enemy_inarea()
-	if nearest_enemy and active:
-		#print(nearest_enemy.global_position)
-		#look_at(nearest_enemy.global_position)		
-		auto_attack(waza_config["diretion_rotation"],waza_config["creation_distance"])
 		
 func auto_attack(angle=0,distance=0):
 	
-	if shoot_ready:
-		shoot_ready = false
-		shoot_timer.start()
+	#if shoot_ready:
+		#shoot_ready = false
+		#shoot_timer.start()
 		
 		for i in range(int(waza_config["attack_gen_times"] * waza_config["Magical_Times_Efficiency"])):
 			if(waza_config["creating_position"] == "self"):
@@ -118,10 +106,16 @@ func auto_attack(angle=0,distance=0):
 		
 func set_range_and_colddown():
 	shoot_timer.wait_time = waza_config["basic_colddown"] * (1 - player_var.colddown_reduce * waza_config["Reduction_Efficiency"])
+	
+	shoot_timer.one_shot = false
+	shoot_timer.start()
 	$attack_range/CollisionShape2D.set_scale(Vector2(player_var.range_add_ratio * shoot_range,player_var.range_add_ratio * shoot_range))
 	
 func _on_shoot_timer_timeout():
-	shoot_ready = true
+	
+	if has_nearest_enemy_inarea() and active:
+		auto_attack(waza_config["diretion_rotation"],waza_config["creation_distance"])
+
 
 func enemy_near(a,b):
 	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
@@ -133,7 +127,7 @@ func get_nearest_enemy_inarea():
 	return null
 
 func has_nearest_enemy_inarea():
-	return attack_range.has_overlapping_areas()
+	return attack_range.has_overlapping_bodies()
 	
 func shoot(bullet_pree,generate_position,generate_diretion,efficiency_map,target = null):	
 	AudioManager.play_sfx(waza_config["shoot_sfx"])
