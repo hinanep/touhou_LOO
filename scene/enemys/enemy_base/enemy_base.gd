@@ -37,14 +37,11 @@ func _ready():
 func _physics_process(_delta):
 	move_to_target()
 	pass
-
-func _process(_delta):
-
-	pass
+pass
 
 #移动方式：走向玩家
 func move_to_target():
-	
+	NavigationServer2D
 	velocity = get_diretion_to_target() * speed * debuff["speed"]
 	
 	#近身减速防止模型重叠的神秘bug（，过近远离
@@ -90,13 +87,19 @@ func melee_attack(playernode):
 	#print("attack damage")
 	
 #体术攻击准备就绪，体术攻击敌人ready中调用
-func melee_battle_ready():
+func melee_battle_ready(disable = false):
+	if disable:
+		$melee_damage_area.queue_free()
+		return
 	melee_damage_area.monitoring = true
-	#melee_damage_area.monitorable = true
+
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
-func bullet_battle_ready():
+func bullet_battle_ready(disable = false):
+	if disable:
+		$bullet_damage_area.queue_free()
+		return
 	bullet_damage_area.monitoring = true
 	#bullet_damage_area.monitorable = true
 	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)

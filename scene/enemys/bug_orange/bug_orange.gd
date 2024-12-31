@@ -10,6 +10,7 @@ func _ready():
 	
 	#启用体术攻击，默认攻击范围圆形
 	melee_battle_ready()
+	bullet_battle_ready(true)
 	super._ready()
 	#启用弹幕攻击，需设置弹幕攻击方式
 	#bullet_battle_ready()

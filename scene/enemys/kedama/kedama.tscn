@@ -67,6 +67,7 @@ autoplay = "default"
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="melee_damage_area" type="Area2D" parent="."]
+collision_layer = 0
 monitoring = false
 monitorable = false
 
@@ -76,6 +77,7 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
 
 [node name="bullet_damage_area" type="Area2D" parent="."]
+collision_layer = 0
 collision_priority = 0.0
 monitoring = false
 monitorable = false

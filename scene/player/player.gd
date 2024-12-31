@@ -42,10 +42,9 @@ func take_damage(damage):
 		return
 	$AnimationPlayer.play("hurt")
 	AudioManager.play_sfx("music_sfx_hurt")
-	hp -= damage
-	player_var.player_hp = hp
+	player_var.player_hp -= damage
 	
-	if hp < 0.1:
+	if player_var.player_hp < 0.1:
 		died()
 		
 	player_var.is_invincible = true

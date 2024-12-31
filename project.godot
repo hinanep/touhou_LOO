@@ -141,11 +141,13 @@ clockup={
 2d_physics/layer_5="pickup_items"
 2d_physics/layer_6="空气墙"
 
+[physics]
+
+2d/run_on_separate_thread=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/texture_mipmap_bias=-0.345
 viewport/hdr_2d=true

@@ -89,7 +89,7 @@ func player_take_bullet_damage(player,damage):
 func player_get_heal(heal):
 	player_hp += heal
 	player_hp = min(player_hp,player_hp_max)
-
+	
 
 
 
