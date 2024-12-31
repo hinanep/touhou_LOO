@@ -49,7 +49,7 @@ radius = 15.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="slime_green" type="CharacterBody2D" groups=["monster"]]
-collision_layer = 2
+collision_layer = 3
 motion_mode = 1
 safe_margin = 10.0
 script = ExtResource("1_3rtxs")

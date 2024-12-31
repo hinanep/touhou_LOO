@@ -9,7 +9,7 @@ var bullet_times = 1 #弹幕发射数量
 var melee_times = 1 # 体术攻击次数
 var colddown_reduce = 0.0#冷却缩减
 
-var player_hp_max = 200.0 #生命上限
+var player_hp_max = 2000.0 #生命上限
 var player_hp_regen = 0.0 #每秒生命回复
 var lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 var player_speed = 150.0 #移动速度
@@ -80,8 +80,10 @@ func enemy_make_damage(basic_damage):
 
 #玩家受到伤害公式
 func player_take_melee_damage(player,damage):
-	player.take_damage(damage * 10 / (10 + defence_melee))
-	
+
+	damage = damage * 10.0 
+	damage /= 10 + defence_melee
+	player.take_damage(damage)
 
 func player_take_bullet_damage(player,damage):
 	player.take_damage(damage * 10 / (10 + defence_bullet))
@@ -109,7 +111,7 @@ func clear_all():
 	lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 	player_speed = 150.0 #移动速度
 	player_life_addi = 0 #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
-	defence_melee = 100.0 #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
+	defence_melee = 1000.0 #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
 	defence_bullet = 0.0 #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
 	invincible_time = 1 #- 受伤后无敌时间：受到伤害后的无敌时间
 

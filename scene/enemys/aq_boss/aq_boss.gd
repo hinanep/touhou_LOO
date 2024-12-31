@@ -21,7 +21,7 @@ func _physics_process(_delta):
 	move_to_target()
 	
 func move_to_target():
-	if !invinsible:
+	if !invincible:
 		velocity = get_diretion_to_target() * speed * debuff["speed"]
 	move_and_slide()
 func died():
@@ -32,7 +32,7 @@ func died():
 		reincarnation = true
 		next_stage()
 		return
-	invinsible = true
+	invincible = true
 	
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
@@ -51,7 +51,7 @@ func bullet_attack():
 	pass
 	
 func next_stage():
-	invinsible = true
+	invincible = true
 	AudioManager.play_bgm("music_bgm_ff")
 	#bullet_damage_area.monitoring = false
 	$danma/sekibankiWeapon.active = false
@@ -62,7 +62,7 @@ func next_stage():
 #func melee_attack(playernode):
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
 func reincarnation_over():
-	invinsible = false
+	invincible = false
 	reincarnation = false
 	$danma/sekibankiWeapon.active = true
 	$reincarnation.stop()

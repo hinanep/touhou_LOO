@@ -39,7 +39,6 @@ GameManager="*res://gamemanager/GameManager/game_manager.tscn"
 [debug]
 
 file_logging/enable_file_logging.pc=false
-settings/stdout/print_gpu_profile=true
 
 [display]
 

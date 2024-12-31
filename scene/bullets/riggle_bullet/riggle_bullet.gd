@@ -16,12 +16,12 @@ func _physics_process(delta):
 		target = get_tree().get_first_node_in_group("elite")
 	super._physics_process(delta)
 	if   attack_cd and has_overlapping_bodies():
-		print(get_overlapping_bodies())
+
 		for enemy in get_overlapping_bodies():
 			
 			if enemy.has_method("take_damage"):
 				bullet_damage(enemy,basic_damage)
-				print("takeit")
+
 		attack_cd = false
 		$attack_timer.start()
 func _on_body_entered(body):

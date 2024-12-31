@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name player
 @onready var animated_sprite_2d = $AnimatedSprite2D
 var hp = player_var.player_hp_max
 signal player_ready

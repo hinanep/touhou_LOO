@@ -50,8 +50,8 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="enemy_base" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 3
 motion_mode = 1
+safe_margin = 2.0
 script = ExtResource("1_mcymg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -98,4 +98,6 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
+[connection signal="body_exited" from="melee_damage_area" to="." method="_on_melee_damage_area_body_exited"]
+[connection signal="body_exited" from="bullet_damage_area" to="." method="_on_bullet_damage_area_body_exited"]
 [connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]

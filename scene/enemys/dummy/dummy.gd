@@ -23,7 +23,7 @@ func _physics_process(_delta):
 func bullet_attack():
 	pass
 func take_damage(damage):
-	if invinsible:
+	if invincible:
 		return
 	damage_num_display(damage)
 	hp -= damage
