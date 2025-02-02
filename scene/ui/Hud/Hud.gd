@@ -100,4 +100,3 @@ func _on_renew_timer_timeout():
 	point_and_ratio_display()
 	exp_display()
 	card_display()
-

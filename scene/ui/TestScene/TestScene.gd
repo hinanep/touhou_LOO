@@ -42,5 +42,3 @@ func close():
 
 func close_self():
 	G.get_gui_view_manager().close_view(viewInstanceId)
-
-

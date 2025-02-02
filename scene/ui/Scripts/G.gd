@@ -7,4 +7,3 @@ func get_game_root() -> Node:
 
 func get_gui_view_manager() -> GUIViewManager:
 	return get_game_root().get_node("GuiViewManager")
-

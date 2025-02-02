@@ -201,6 +201,3 @@ func _on_debuff_time_timeout():
 	debuff["speed"] = 1.0
 	debuff["target_rediretion"] = player
 	pass # Replace with function body.
-
-
-

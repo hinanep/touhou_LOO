@@ -283,4 +283,3 @@ func scene_init():
 }
 }
 	SpawnManager.prepare_all_spawn_event($SpawnManager,event_list)
-

@@ -199,4 +199,3 @@ func upgrade_waza():
 	#bullet_modi_map["Debuff_Addition"]= waza_config["upgrade_map"]["Debuff_Addition"][waza_config["level"]]
 	shoot_timer.wait_time = waza_config["basic_colddown"] * (1 - player_var.colddown_reduce * waza_config["Reduction_Efficiency"]) * waza_config["upgrade_map"]["colddown"][waza_config["level"]-1]
 	waza_config["attack_gen_times"] = waza_config["upgrade_map"]["Times"][waza_config["level"]-1]
-

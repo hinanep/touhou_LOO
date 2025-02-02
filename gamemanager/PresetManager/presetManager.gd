@@ -112,4 +112,3 @@ func _ready():
 	pass
 func getpre(prename : String):
 	return preset_map[prename]
-

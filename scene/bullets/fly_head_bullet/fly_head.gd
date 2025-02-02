@@ -20,4 +20,3 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		bullet_damage(body,basic_damage)
 	#super._on_body_entered(body)
-

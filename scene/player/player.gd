@@ -72,5 +72,3 @@ func _on_pickup_area_area_entered(area):
 	if area.has_method("fly_to_player"):
 		area.fly_to_player()
 	pass # Replace with function body.
-
-

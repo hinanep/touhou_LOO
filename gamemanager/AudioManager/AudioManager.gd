@@ -35,5 +35,3 @@ func play_sfx(sfx_name:String) -> void:
 
 	sfx_player_playing_pair[sfx_name].stream = PresetManager.getpre(sfx_name)
 	sfx_player_playing_pair[sfx_name].play()
-
-

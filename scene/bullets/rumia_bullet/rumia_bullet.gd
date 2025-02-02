@@ -18,5 +18,3 @@ func _physics_process(delta):
 func _on_destroy_timer_timeout():
 	queue_free()
 	pass # Replace with function body.
-
-

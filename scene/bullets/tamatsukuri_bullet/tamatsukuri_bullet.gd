@@ -33,4 +33,3 @@ func _on_destroy_timer_timeout():
 	_on_destroy()
 	queue_free()
 	pass # Replace with function body.
-

@@ -23,4 +23,3 @@ ski_misumaru:{ "id":'ski_misumaru',  "routines":['rou_misumaru_base'],  "cd":1.0
 ski_sakuya:{ "id":'ski_sakuya',  "routines":['rou_sakuya_base'],  "cd":1.0,  "cd_reduction_efficicency":1.0, },
 
 }
-
