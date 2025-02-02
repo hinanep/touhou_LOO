@@ -22,6 +22,7 @@ animations = [{
 radius = 7.07107
 
 [node name="exp_1" type="Area2D" groups=["crystal"]]
+visible = false
 collision_layer = 16
 script = ExtResource("1_cpuj4")
 

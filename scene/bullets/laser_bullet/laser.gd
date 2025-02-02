@@ -12,7 +12,7 @@ func _ready():
 	destroy_timer = $Timer
 	destroy_timer.start()
 	AudioManager.play_sfx("music_sfx_laser")
-	
+
 	var enemy_in_range = get_overlapping_bodies()
 	if enemy_in_range:
 			for enemy in enemy_in_range:
@@ -28,7 +28,7 @@ func _physics_process(_delta):
 				if enemy.has_method("take_damage"):
 					enemy.take_damage(player_var.player_make_bullet_damage(basic_damage,"reima"))
 	pass
-	
+
 func _on_timer_timeout():
 	queue_free()
 

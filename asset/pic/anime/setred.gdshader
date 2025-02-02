@@ -8,4 +8,3 @@ void fragment() {
 	vec4 c2 = target_color;
 	COLOR = mix(c1, c2, progress) * c1.a;
 }
-

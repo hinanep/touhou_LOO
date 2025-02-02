@@ -23,11 +23,11 @@ b = Vector2(-213, -118)
 a = Vector2(214, 121)
 b = Vector2(-213, 121)
 
-[sub_resource type="Curve2D" id="Curve2D_ssmfw"]
+[sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 214, 2, 0, 0, 0, 0, 212, -10)
+"points": PackedVector2Array(0, 0, 0, 0, 240, 142, 0, 0, 0, 0, -237, 139.5, 0, 0, 0, 0, -238, -133.5, 0, 0, 0, 0, 239, -135, 0, 0, 0, 0, 240, 142.5)
 }
-point_count = 2
+point_count = 5
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ntvng"]
 a = Vector2(-2758, 1477)
@@ -62,14 +62,15 @@ script = ExtResource("1_rc87f")
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_1q6uy")]
 unique_name_in_owner = true
 process_mode = 1
+scale = Vector2(2, 2)
 collision_mask = 51
 safe_margin = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(4, 4)
-limit_smoothed = true
+zoom = Vector2(2, 2)
 
 [node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
+scale = Vector2(1.12, 1.12)
 collision_layer = 4
 collision_mask = 0
 
@@ -87,11 +88,12 @@ shape = SubResource("SegmentShape2D_iloie")
 shape = SubResource("SegmentShape2D_73h7f")
 
 [node name="monster_spawn_line" type="Path2D" parent="player"]
-curve = SubResource("Curve2D_ssmfw")
+scale = Vector2(1.1, 1.1)
+curve = SubResource("Curve2D_wc05l")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
-position = Vector2(214, 2)
-rotation = -1.73594
+position = Vector2(240, 142)
+rotation = -3.13635
 
 [node name="game_manager" type="Node" parent="." groups=["GameManager"]]
 process_mode = 3

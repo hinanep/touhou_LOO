@@ -156,12 +156,12 @@ func select_from_luck():
 			return i
 
 func upgrade_routine():
-
+	level += 1
 
 	pass
 
-func set_upgrade(level:int):
-	level += 1
+func set_upgrade(nlevel:int):
+	level = nlevel
 	pass
 
 

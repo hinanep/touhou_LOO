@@ -42,8 +42,8 @@ func raise_weight_to_cp(xname):
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(xname):
 			for x_name in cp_pool["unactive"][cp]["effect_group"]:
-				if(SkillManager.skill_pool.unchoosed.has(x_name)):
-					SkillManager.skill_pool.unchoosed["weight"] *=1.1
+				if(SkillManager.skill_pool.unlocked.has(x_name)):
+					SkillManager.skill_pool.unlocked["weight"] *=1.1
 				if(CardManager.card_pool["unchoosed"].has(x_name)):
 					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
 				if(BuffManager.buff_pool["unchoosed"].has(x_name)):

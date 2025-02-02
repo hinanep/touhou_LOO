@@ -4,7 +4,7 @@ extends BaseGUIView
 func _open():
 	get_tree().paused = false
 	pass
-	
+
 
 func _close():
 	pass

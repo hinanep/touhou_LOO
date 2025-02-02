@@ -27,6 +27,7 @@ func _open():
 
 
 func _close():
+	SpawnManager.clear()
 	AudioManager.stop_background_bgm()
 
 	pass

@@ -24,6 +24,7 @@ func _ready():
 		skill_pool.unlocked[skills]['weight'] = 1
 
 func add_skill(skill_name):
+
 	if(skill_pool.choosed.has(skill_name)):
 		upgrade_skill(skill_name)
 		return
@@ -50,6 +51,9 @@ func add_skill(skill_name):
 	skill_list[skill_name] = skillpre
 	get_tree().call_group("hud","add_skill",skill_pool.choosed[skill_name])
 	upgrade_skill(skill_name)
+	if skill_name == "ski_basemagic" or skill_name == "ski_basephysics":
+		skill_pool.max[skill_name] = skill_pool.choosed[skill_name]
+		skill_pool.choosed.erase(skill_name)
 
 
 func del_skill(skill_name):
@@ -63,13 +67,14 @@ func del_skill(skill_name):
 		skill_pool.max.erase(skill_name)
 	else:
 		return
+	skill_list[skill_name].destroy()
 	skill_list.erase(skill_name)
 	player_var.skill_num_have -= 1
 
 	player_var.skill_num_full = false
 	player_var.skill_full = false
 
-	skill_list[skill_name].destroy()
+
 
 	CpManager.del_to_maxlist(skill_name)
 
@@ -78,7 +83,7 @@ func upgrade_skill(skill_name):
 
 	if(skill_list[skill_name].level >= player_var.skill_max_level):
 		return
-	skill_list[skill_name].level += 1
+
 	skill_list[skill_name].upgrade_skill()
 
 	if(skill_list[skill_name].level == player_var.skill_max_level):
@@ -108,14 +113,18 @@ func ban_skill(skill_name):
 func unlock_skill(skill_name):
 	pass
 func get_skill_by_name(skill_name):
-	if(skill_pool["choosed"].has(skill_name)):
-		return skill_pool["choosed"][skill_name]
-	if(skill_pool["unlocked"].has(skill_name)):
-		return skill_pool["unchoosed"][skill_name]
-	if(skill_pool["max"].has(skill_name)):
-		return skill_pool["max"][skill_name]
+	if(skill_pool.choosed.has(skill_name)):
+		return skill_pool.choosed[skill_name]
+	if(skill_pool.unlocked.has(skill_name)):
+		return skill_pool.unlocked[skill_name]
+	if(skill_pool.max.has(skill_name)):
+		return skill_pool.max[skill_name]
 	return null
-
+func get_skill_level(skill_name):
+	if skill_list.has(skill_name):
+		return skill_list[skill_name].level
+	else:
+		return 0
 func clear_all():
 	skill_pool.unlocked = table.skill.duplicate()
 	for skills in skill_pool.unlocked:

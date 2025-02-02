@@ -8,7 +8,7 @@ func set_describe_text(describe):
 func _on_button_up():
 	emit_signal("upgrade_selected")
 	pass # Replace with function body.
-	
+
 
 
 func _on_focus_entered():

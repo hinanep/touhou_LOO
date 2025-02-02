@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=14 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="Texture2D" uid="uid://d111f1mjv8x4c" path="res://asset/pic/fairy/left.png" id="3_bbt5x"]
 [ext_resource type="Texture2D" uid="uid://rgktqsf1iapd" path="res://asset/pic/fairy/point.png" id="3_g1rlb"]
 [ext_resource type="Texture2D" uid="uid://c7dk0w5s7aqfj" path="res://asset/pic/fairy/20241105-223621.png" id="5_3pdok"]
-[ext_resource type="Script" path="res://scene/player/enemy_detect_area.gd" id="7_eb0a6"]
 [ext_resource type="Shader" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
@@ -12,9 +11,6 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_keelo"]
 radius = 43.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2lo10"]
-radius = 242.61
 
 [sub_resource type="Animation" id="Animation_3lp87"]
 resource_name = "hurt"
@@ -102,15 +98,6 @@ shape = SubResource("CircleShape2D_keelo")
 [node name="CardManager" type="Node2D" parent="."]
 
 [node name="buffManager" type="Node2D" parent="."]
-
-[node name="enemy_detect" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-script = ExtResource("7_eb0a6")
-
-[node name="detect_shape" type="CollisionShape2D" parent="enemy_detect"]
-shape = SubResource("CircleShape2D_2lo10")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

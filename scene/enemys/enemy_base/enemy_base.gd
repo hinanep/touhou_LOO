@@ -1,5 +1,5 @@
 class_name enemy_base extends CharacterBody2D
-@onready var player= get_tree().get_first_node_in_group("player")
+@onready var player_node = get_tree().get_first_node_in_group("player")
 var curse = player_var.curse
 #var modi = player_var.time_secs /1800.0
 var mob_id :int
@@ -15,7 +15,7 @@ var invincible = false
 signal die(id)
 var debuff = {
 	"speed":1.0,
-	"target_rediretion":player
+	"target_rediretion":player_node
 }
 @onready var progress_bar = $ProgressBar
 
@@ -33,7 +33,7 @@ func _ready():
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
-	debuff["target_rediretion"] = player
+	debuff["target_rediretion"] = player_node
 
 
 func _physics_process(_delta):
@@ -81,6 +81,7 @@ func drop():
 	var drops = PresetManager.getpre(drops_path).instantiate()
 	get_parent().call_deferred("add_child",drops)
 
+
 	drops.global_position = global_position
 	pass
 
@@ -105,7 +106,7 @@ func melee_damage_area_body_entered(_body):
 	if not _body is player:
 		return
 
-	melee_attack(player)
+	melee_attack(_body)
 	melee_attack_cd.start()
 
 
@@ -117,7 +118,7 @@ func _on_melee_damage_area_body_exited(body):
 
 
 func melee_attack_cd_timeout():
-	melee_attack(player)
+	melee_attack(player_node)
 
 
 #体术攻击方法，可覆盖
@@ -164,18 +165,18 @@ func get_diretion_to_target():
 	if debuff["target_rediretion"]!=null:
 		return(debuff["target_rediretion"].global_position - global_position).normalized()
 	else:
-		return(player.global_position - global_position).normalized()
+		return(player_node.global_position - global_position).normalized()
 
 #到玩家距离
 func get_distance_to_player():
-	if player:
-		return global_position.distance_to(player.global_position)
+	if player_node:
+		return global_position.distance_to(player_node.global_position)
 	return Vector2.ZERO
 
 
 func get_distance_squared_to_player():
-	if player:
-		return global_position.distance_squared_to(player.global_position)
+	if player_node:
+		return global_position.distance_squared_to(player_node.global_position)
 	return Vector2.ZERO
 
 
@@ -199,5 +200,5 @@ func set_debuff(param_name,multi=1,time=1):
 
 func _on_debuff_time_timeout():
 	debuff["speed"] = 1.0
-	debuff["target_rediretion"] = player
+	debuff["target_rediretion"] = player_node
 	pass # Replace with function body.

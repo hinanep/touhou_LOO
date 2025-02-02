@@ -8,24 +8,25 @@ extends Node
 
 var upping = false
 func _ready():
-	
+
 	pass
 
 func add_exp(value):
-	
+
 	player_var.player_exp += value
 	AudioManager.play_sfx("music_sfx_pickup")
-
-	if(player_var.player_exp >= player_var.exp_need[player_var.level]) and upping == false:
-		upping = true
+	while player_var.player_exp >= player_var.exp_need[player_var.level]:
 		level_up()
+	#if(player_var.player_exp >= player_var.exp_need[player_var.level]) and upping == false:
+		#upping = true
+		#level_up()
 
-		
+
 func add_score(value):
-	
+
 	player_var.point += value * player_var.point_ratio
 func add_power(power):
-	
+
 	player_var.power += power
 	if(player_var.power > player_var.power_max):
 		player_var.power = player_var.power_max
@@ -39,7 +40,3 @@ func level_up():
 	player_var.player_exp -= player_var.exp_need[player_var.level]
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
-	
-
-
-

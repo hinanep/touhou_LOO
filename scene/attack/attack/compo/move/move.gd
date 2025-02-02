@@ -104,7 +104,7 @@ func move_sekibanki(delta):
 	#body.position += velocity * delta
 	return body.move_and_collide(velocity * delta)
 
-func move_stay(delta):
+func move_stay(_delta):
 	return null
 
 #func reflection(normal:Vector2):

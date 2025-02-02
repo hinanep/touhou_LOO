@@ -1,12 +1,12 @@
 extends CanvasLayer
-var player
+
 var select_num = 3
 var card_button_pre = PresetManager.getpre("ui_select_button")
 # Called when the node enters the scene tree for the first time.
 var cards_skills_selected
 var ban_mode = false
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
+
 
 	cards_skills_selected = RandomPool.random_nselect_from_allpool(select_num)
 
@@ -25,8 +25,8 @@ func _ready():
 			var skill_button = card_button_pre.instantiate()
 			$select_buttons.add_child(skill_button)
 			#多语言支持尚未
-			var ski = SkillManager.get_skill_by_name(w)
-			skill_button.set_upgrade_text(ski.skill_name+" Lv."+String.num(SkillManager.skill_list[w]+1))
+
+			skill_button.set_upgrade_text(w+" Lv."+String.num(SkillManager.get_skill_level(w)+1))
 			#skill_button.set_describe_text(ski["describe_text"][ski["level"]])
 			skill_button.upgrade_selected.connect(on_button_selected.bind(w))
 

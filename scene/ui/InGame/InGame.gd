@@ -29,8 +29,7 @@ func _close():
 	AudioManager.stop_background_bgm()
 
 	pass
-func _process(delta):
-	print_orphan_nodes()
+
 
 func open():
 	_open()
@@ -41,6 +40,7 @@ func close():
 
 
 func close_self():
+	SpawnManager.clear()
 	G.get_gui_view_manager().close_view(viewInstanceId)
 
 func scene_init():

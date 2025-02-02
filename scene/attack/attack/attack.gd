@@ -110,12 +110,12 @@ func dot():
 						damage(b,attack_info.damage)
 
 #对body造成伤害
-func damage(body,damage,damage_source = damage_source):
+func damage(body,damagei,damage_s = damage_source):
 
 	if attack_info.damage_type == 'danma':
-		body.take_damage(player_var.player_make_bullet_damage(damage*attack_info.magical_addition_efficiency,damage_source))
+		body.take_damage(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
 	else:
-		body.take_damage(player_var.player_make_melee_damage(damage*attack_info.physical_addition_efficiency,damage_source))
+		body.take_damage(player_var.player_make_melee_damage(damagei*attack_info.physical_addition_efficiency,damage_s))
 
 	give_debuff(body)
 	if body.hp <= 0:
@@ -139,7 +139,8 @@ func set_active(active:bool):
 	#print('upgrade_attack')
 
 #设置等级
-func set_upgrade(level:int):
+func set_upgrade(nlevel:int):
+	level = nlevel
 	pass
 
 #击中时触发器
@@ -194,13 +195,14 @@ func _on_bullet_erase_area_body_entered(body):
 	drop_item(attack_info.eraseing_item_creation,attack_info.eraseing_item_creation_value,body.global_position)
 
 #击杀时触发器
-func on_kill():
-	drop_item(attack_info.defeating_item_creation,attack_info.defeating_item_creation_value,global_position)
+func on_kill(target_position):
+	if attack_info.defeating_item_creation:
+		drop_item(attack_info.defeating_item_creation,attack_info.defeating_item_creation_value,global_position)
 
 #掉落
-func drop_item(item,value,position):
+func drop_item(item,value,dposition):
 	var drop = PresetManager.getpre(item).instantiate()
-	drop.global_position = global_position
+	drop.global_position = dposition
 	drop.value = value
 	G.get_game_root().add_child(drop)
 

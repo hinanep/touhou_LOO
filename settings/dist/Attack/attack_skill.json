@@ -91,8 +91,8 @@
 	"rotation_rule": "",
 	"omega": 0.0,
 	"reflection": [],
-	"physical_addition_efficiency": 0.0,
-	"magical_addition_efficiency": 1.0,
+	"physical_addition_efficiency": 1.0,
+	"magical_addition_efficiency": 0.0,
 	"speed_efficiency": 1.0,
 	"duration_efficiency": 1.0,
 	"range_efficiency": 1.0
