@@ -30,9 +30,9 @@ func _ready():
 
 	#rotation = velocity.angle()
 func _physics_process(delta):
-	#print(player_var.nearest_enemy.global_position)	
+	#print(player_var.nearest_enemy.global_position)
 	if target!=null:
-		
+
 		target_velocity = global_position.direction_to(target.global_position) * player_var.bullet_speed_ratio * basic_speed
 		velocity = lerp(velocity,target_velocity,trace_strenth)
 	elif !target_lost and !detect_next_target:
@@ -42,17 +42,17 @@ func _physics_process(delta):
 		target = player_var.nearest_enemy
 	rotation = velocity.angle() + PI/2
 	position += velocity * delta
-	
+
 func _on_timer_timeout():
 	queue_free()
 
 func _on_body_entered(body):
-	
+
 	#print("hit")
 	emit_signal("on_hit")
 	if body.has_method("take_damage"):
 		bullet_damage(body,basic_damage)
-		
+
 		queue_free()
 
 func bullet_damage(body,damage,damage_source = bullet_modi_map.damage_source):

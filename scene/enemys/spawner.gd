@@ -1,8 +1,8 @@
 extends Node2D
 var path_follow_2d
 
-var spawnTimer 
-var startTimer 
+var spawnTimer
+var startTimer
 var endTimer
 var spawn_list = {
 	"pre":"",
@@ -24,7 +24,7 @@ func spawner_init(spawner_initlist):
 		"duration":
 			startTimer.wait_time =  maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
-			
+
 			endTimer.wait_time = spawn_list["end_time"] - player_var.time_secs
 			endTimer.start()
 		"once":
@@ -39,7 +39,7 @@ func spawn_mob():
 	path_follow_2d.progress_ratio = randf()
 	mob.global_position = path_follow_2d.global_position
 	mob.setbuff(spawn_list["param_buff"])
-	$".".add_child(mob)
+	SpawnManager.add_mob(mob)
 
 
 
@@ -57,7 +57,7 @@ func _on_end_timer_timeout():
 	spawnTimer.stop()
 	pass # Replace with function body.
 func change_pause():
-	
+
 	if spawnTimer.is_paused() == true:
 		spawnTimer.set_paused(false)
 	else:

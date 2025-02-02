@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://4y2q5lbwx2hx"]
+
+[ext_resource type="PackedScene" uid="uid://d06djxosndaun" path="res://scene/skill/skill_class/skill.tscn" id="1_gm0qv"]
+[ext_resource type="Script" path="res://scene/skill/reimu/ski_reimu.gd" id="2_0fsjn"]
+
+[node name="skill" instance=ExtResource("1_gm0qv")]
+script = ExtResource("2_0fsjn")

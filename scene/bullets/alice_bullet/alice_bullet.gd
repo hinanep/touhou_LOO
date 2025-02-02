@@ -19,7 +19,7 @@ func _physics_process(delta):
 				if enemy.has_method("take_damage"):
 					bullet_damage(enemy,basic_damage)
 	attack.rotation += 0.5
-	
+
 
 func _on_body_entered(body):
 	move = false

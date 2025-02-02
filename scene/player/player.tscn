@@ -76,7 +76,7 @@ collision_mask = 19
 motion_mode = 1
 script = ExtResource("1_eqxiv")
 
-[node name="WazaManager" type="Node2D" parent="."]
+[node name="skill" type="Node2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kq405")

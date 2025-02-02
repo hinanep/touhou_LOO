@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d06djxosndaun"]
+
+[ext_resource type="Script" path="res://scene/skill/skill_class/skill.gd" id="1_lr2nn"]
+
+[node name="skill" type="Node2D"]
+script = ExtResource("1_lr2nn")
+
+[node name="cd_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="cd_timer" to="." method="_on_cd_timer_timeout"]

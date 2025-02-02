@@ -1,0 +1,54 @@
+class_name skill extends Node2D
+
+var skill_info = {
+	skill_name = '',
+	upgrade_group = '',
+	routines = ["rou_reimu"],
+	cd = 1.0,
+	cd_reduction_efficicency = 1.0
+
+}
+signal shoot
+var level = 0
+var upgrade_info = {
+
+}
+var damage_source = ''
+func _ready():
+	name = skill_info.skill_name
+	add_to_group(skill_info.skill_name)
+	add_to_group(skill_info.upgrade_group)
+	damage_source = skill_info.skill_name
+	var cd_timer = $cd_timer
+	cd_timer.wait_time = skill_info.cd
+	cd_timer.timeout.connect(gen_routines)
+
+	cd_timer.start()
+	for oneroutine in skill_info.routines:
+		add_routine(oneroutine)
+
+
+
+func add_routine(routine_name):
+		var routinepre = PresetManager.getpre('routine').instantiate()
+		routinepre.position = Vector2(0,0)
+		routinepre.routine_info = table.routine[routine_name]
+		routinepre.damage_source = damage_source
+		routinepre.set_upgrade(level)
+
+		add_child(routinepre)
+
+
+func gen_routines():
+	emit_signal("shoot")
+
+
+func upgrade_skill():
+	level += 1
+	pass
+
+func destroy():
+	for child in get_children():
+		if child.has_method('destroy'):
+			child.destroy()
+	queue_free()

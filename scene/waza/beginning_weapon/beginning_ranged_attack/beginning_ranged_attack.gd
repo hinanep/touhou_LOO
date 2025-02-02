@@ -5,7 +5,7 @@ func _ready():
 	super._ready()
 
 
-	
+
 func _unhandled_key_input(event):
 	var imputangle = Input.get_vector("move_left","move_right","move_up","move_down").angle()
 	if event.is_released() and imputangle == 0:

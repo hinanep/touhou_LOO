@@ -22,7 +22,7 @@ func _ready():
 	basic_speed *= bullet_modi_map["Bullet_Speed_Addition"]
 	scale *= bullet_modi_map["Range_Addition"]
 
-	
+
 func _physics_process(delta):
 	#var direction = Vector2.RIGHT.rotated(rotation)
 
@@ -34,10 +34,10 @@ func _on_timer_timeout():
 #func _exit_tree():
 	#_on_destroy()
 func _on_body_entered(body):
-	
+
 	#print("hit")
 	_on_hit()
-	
+
 	if body.has_method("take_damage"):
 		bullet_damage(body,basic_damage)
 		queue_free()
@@ -48,6 +48,6 @@ func _on_hit():
 func _on_destroy():
 	emit_signal("on_destroy")
 	pass
-	
+
 func bullet_damage(body,damage,damage_source = bullet_modi_map.damage_source):
 	body.take_damage(player_var.player_make_bullet_damage(damage,damage_source))

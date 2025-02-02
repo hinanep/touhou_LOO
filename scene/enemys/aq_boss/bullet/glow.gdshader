@@ -8,7 +8,7 @@ vec4 screen(vec4 base, vec4 blend){
 }
 void fragment() {
 	vec4 pixel = texture(TEXTURE,UV);
-	
+
 	if(pixel.a < 0.1){
 		pixel.a = 0.0;
 	}

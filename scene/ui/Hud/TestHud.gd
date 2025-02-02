@@ -2,17 +2,17 @@ extends BaseGUIView
 var type = "none"
 var tname = ""
 func _ready():
-	for ucwaza in WazaManager.waza_pool.unchoosed:
-		var wz = WazaManager.waza_pool.unchoosed[ucwaza]
-		var waza_button = PresetManager.getpre("ui_test_wazabutton").instantiate()
-		$testhud/waza_container.add_child(waza_button)
-		waza_button.set_texture(wz.waza_image)
-		waza_button.set_tooltip_text(wz.waza_name)
-		waza_button.selected.connect(on_wazabutton_select.bind(wz.waza_name))
-		
+	for ucskill in table.skill:
+		var ski = table.skill[ucskill]
+		var skill_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		$testhud/skill_container.add_child(skill_button)
+		skill_button.set_texture('image_'+ski.skill_name)
+		skill_button.set_tooltip_text(ski.skill_name)
+		skill_button.selected.connect(on_skillbutton_select.bind(ski.skill_name))
+
 	for uccard in CardManager.card_pool.unchoosed:
 		var cd = CardManager.card_pool.unchoosed[uccard]
-		var card_button = PresetManager.getpre("ui_test_wazabutton").instantiate()
+		var card_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/card_container.add_child(card_button)
 		card_button.set_texture(cd.card_image)
 		card_button.set_tooltip_text(cd.cn)
@@ -20,16 +20,16 @@ func _ready():
 
 	for uccp in CpManager.cp_pool.unactive:
 		var cp = CpManager.cp_pool.unactive[uccp]
-		var cp_button = PresetManager.getpre("ui_test_wazabutton").instantiate()
+		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/cp_container.add_child(cp_button)
 		cp_button.set_texture(cp.cp_image)
 		cp_button.set_tooltip_text(cp.cn)
 		cp_button.selected.connect(on_cpbutton_select.bind(cp.name))
 
-func on_wazabutton_select(wazaname):
+func on_skillbutton_select(skillname):
 	$testhud/Button.grab_focus()
-	type = "waza"
-	tname = wazaname
+	type = "skill"
+	tname = skillname
 
 
 func on_cardbutton_select(cardname):
@@ -41,14 +41,14 @@ func on_cpbutton_select(cpname):
 	$testhud/Button.grab_focus()
 	type = "cp"
 	tname = cpname
-	
+
 
 
 func _on_update_pressed():
 	match type:
-		"waza":
-			WazaManager.add_waza(tname)
-			
+		"skill":
+			SkillManager.add_skill(tname)
+
 		"cp":
 			CpManager.add_cp(tname)
 			pass
@@ -56,7 +56,7 @@ func _on_update_pressed():
 			pass
 		"card":
 			CardManager.add_card(tname)
-			
+
 		"none":
 			pass
 	$testhud/Button.grab_focus()
@@ -65,9 +65,9 @@ func _on_update_pressed():
 
 func _on_delete_pressed():
 	match type:
-		"waza":
-			WazaManager.del_waza(tname)
-			
+		"skill":
+			SkillManager.del_skill(tname)
+
 		"cp":
 			CpManager.del_cp(tname)
 			pass
@@ -83,7 +83,7 @@ func _on_delete_pressed():
 
 func _on_levelup_pressed():
 	GameManager.level_up()
-	
+
 	pass # Replace with function body.
 
 
@@ -91,3 +91,20 @@ func _on_moremana_pressed():
 	GameManager.add_power(player_var.power_max)
 	$testhud/Button.grab_focus()
 	pass # Replace with function body.
+
+func p_o(id):
+	var obj = instance_from_id(int(id))
+	if obj:
+		prints(obj, obj.owner, obj.get_script().get_script_property_list())
+
+
+
+
+
+func _on_button_2_pressed():
+	p_o($testhud/TextEdit.text)
+	pass # Replace with function body.
+
+
+func _on_button_3_pressed():
+	print_orphan_nodes()

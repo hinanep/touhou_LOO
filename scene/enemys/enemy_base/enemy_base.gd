@@ -2,6 +2,7 @@ class_name enemy_base extends CharacterBody2D
 @onready var player= get_tree().get_first_node_in_group("player")
 var curse = player_var.curse
 #var modi = player_var.time_secs /1800.0
+var mob_id :int
 var modi = 0
 var max_hp = curse * (1+modi)
 var hp = max_hp
@@ -11,6 +12,7 @@ var basic_bullet_damage = curse
 var drops_path = "drops_p"
 var target
 var invincible = false
+signal die(id)
 var debuff = {
 	"speed":1.0,
 	"target_rediretion":player
@@ -28,11 +30,11 @@ func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
-	$ProgressBar._set_size(Vector2(144,20)) 
+	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
 	debuff["target_rediretion"] = player
-	
+
 
 func _physics_process(_delta):
 	move_to_target()
@@ -46,8 +48,8 @@ func move_to_target():
 	#if get_distance_squared_to_player() < pow(10,2):
 		#velocity *=  (get_distance_squared_to_player() - 100)/10
 	move_and_slide()
-	
-	
+
+
 func damage_num_display(num):
 	var d = damageNum.instantiate()
 	d.get_child(1).text = String.num_int64(num)
@@ -55,8 +57,8 @@ func damage_num_display(num):
 	d.position = Vector2(0,0)
 	#$".".call_deferred("add_child",d)
 	$".".add_child(d)
-	
-	
+
+
 #受伤
 func take_damage(damage):
 	if invincible:
@@ -67,27 +69,27 @@ func take_damage(damage):
 	if hp <= 0:
 		died()
 		#call_deferred("died")
-		
-		
+
+
 #似了
 func died():
 	drop()
 	queue_free()
-	
-	
+	emit_signal('die',mob_id)
+
 func drop():
 	var drops = PresetManager.getpre(drops_path).instantiate()
-	get_parent().call_deferred("add_child",drops) 
-	
+	get_parent().call_deferred("add_child",drops)
+
 	drops.global_position = global_position
 	pass
-	
-	
 
-	
-	
 
-	
+
+
+
+
+
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready(disable = false):
 	if disable:
@@ -98,30 +100,30 @@ func melee_battle_ready(disable = false):
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
-	
+
 func melee_damage_area_body_entered(_body):
 	if not _body is player:
 		return
 
 	melee_attack(player)
-	melee_attack_cd.start()	
-	
-	
+	melee_attack_cd.start()
+
+
 func _on_melee_damage_area_body_exited(body):
 	if not body is player:
 		return
 
-	melee_attack_cd.stop()	
-	
-	
+	melee_attack_cd.stop()
+
+
 func melee_attack_cd_timeout():
-	melee_attack(player)	
-	
-	
+	melee_attack(player)
+
+
 #体术攻击方法，可覆盖
 func melee_attack(playernode):
 	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(basic_melee_damage))
-	
+
 
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
 func bullet_battle_ready(disable = false):
@@ -132,28 +134,28 @@ func bullet_battle_ready(disable = false):
 	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
 	bullet_damage_area.body_exited.connect(_on_bullet_damage_area_body_exited)
 	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
-	
-	
-func bullet_damage_area_body_entered(_body):	
+
+
+func bullet_damage_area_body_entered(_body):
 	if not _body is player:
 		return
 	bullet_attack()
 	bullet_attack_cd.start()
-	
-	
+
+
 func _on_bullet_damage_area_body_exited(body):
 	if not body is player:
 		return
 
 	bullet_attack_cd.stop()
-	
+
 
 #弹幕攻击方法，待实例实现
 func bullet_attack():
-	pass		
+	pass
 
 
-func bullet_attack_cd_timeout():	
+func bullet_attack_cd_timeout():
 	bullet_attack()
 
 
@@ -169,14 +171,14 @@ func get_distance_to_player():
 	if player:
 		return global_position.distance_to(player.global_position)
 	return Vector2.ZERO
-	
-	
+
+
 func get_distance_squared_to_player():
 	if player:
 		return global_position.distance_squared_to(player.global_position)
 	return Vector2.ZERO
-	
-	
+
+
 func setbuff(multi):
 	max_hp *= multi
 	hp *= multi
@@ -184,7 +186,8 @@ func setbuff(multi):
 	basic_melee_damage *= multi
 
 
-func set_debuff(param_name,multi,time):
+func set_debuff(param_name,multi=1,time=1):
+	return
 	$debuff_time.wait_time = time
 	$debuff_time.start()
 	await get_tree().create_timer(time).timeout

@@ -9,7 +9,7 @@ func _ready():
 		#target = get_tree().get_first_node_in_group("elite")
 	super._ready()
 
-	
+
 	#velocity = global_position.direction_to(player_var.nearest_enemy.global_position) * player_var.bullet_speed_ratio * basic_speed
 func _physics_process(delta):
 	if get_tree().has_group("elite"):
@@ -18,20 +18,20 @@ func _physics_process(delta):
 	if   attack_cd and has_overlapping_bodies():
 
 		for enemy in get_overlapping_bodies():
-			
+
 			if enemy.has_method("take_damage"):
 				bullet_damage(enemy,basic_damage)
 
 		attack_cd = false
 		$attack_timer.start()
 func _on_body_entered(body):
-	
-	
+
+
 	#print("hit")
 	emit_signal("on_hit")
 	if body.has_method("take_damage"):
 		bullet_damage(body,basic_damage)
-	
+
 
 
 func _on_attack_timer_timeout():

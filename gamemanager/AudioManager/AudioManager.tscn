@@ -26,8 +26,9 @@ sfx = {
 }
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.83
+volume_db = -80.0
 
 [node name="SFXPlayerPool" type="Node" parent="."]
 
 [node name="Background_bgm" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0

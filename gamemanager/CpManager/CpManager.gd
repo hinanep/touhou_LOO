@@ -31,16 +31,16 @@ func add_to_maxlist(x_name):
 func del_to_maxlist(x_name):
 	max_list.erase(x_name)
 	for cp in cp_pool["active"]:
-		if cp_pool["active"][cp]["effect_group"].has(x_name):		
+		if cp_pool["active"][cp]["effect_group"].has(x_name):
 			cp_pool["unactive"][cp] = cp_pool["active"][cp]
 			cp_pool["active"].erase(cp)
-			
+
 func raise_weight_to_cp(xname):
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(xname):
 			for x_name in cp_pool["unactive"][cp]["effect_group"]:
-				if(WazaManager.waza_pool["unchoosed"].has(x_name)):
-					WazaManager.waza_pool["unchoosed"][x_name]["weight"] *=1.1
+				if(SkillManager.skill_pool.unchoosed.has(x_name)):
+					SkillManager.skill_pool.unchoosed["weight"] *=1.1
 				if(CardManager.card_pool["unchoosed"].has(x_name)):
 					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
 				if(BuffManager.buff_pool["unchoosed"].has(x_name)):
@@ -52,7 +52,7 @@ func get_cp_unactive(x_name):
 	print(x_name)
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(x_name):
-			
+
 			find = true
 			for x in cp_pool["unactive"][cp]["effect_group"]:
 				if x in max_list:
@@ -71,7 +71,7 @@ func activate_cp(cp_array):
 	for cp_name in cp_array:
 		cp_pool["active"][cp_name] = cp_pool["unactive"][cp_name]
 		cp_pool["unactive"].erase(cp_name)
-		
+
 
 func random_choose_cp():
 	if cp_pool["active"].is_empty():
@@ -80,7 +80,7 @@ func random_choose_cp():
 	var cp_name = cp_pool["active"].keys()[randi_range(0,cp_pool["active"].size()-1)]
 	add_cp(cp_name)
 	return true
-	
+
 func add_cp(cp_name):
 	if cp_pool["choosed"].has(cp_name):
 		return

@@ -16,7 +16,7 @@ func _on_esc_button_pressed():
 
 
 func _on_play_button_button_up():
-	WazaManager.clear_all()
+	SkillManager.clear_all()
 	CardManager.clear_all()
 	CpManager.clear_all()
 	player_var.clear_all()

@@ -15,7 +15,7 @@ func _ready():
 	super._ready()
 	#启用弹幕攻击，需设置弹幕攻击方式
 	#bullet_battle_ready()
-	
+
 func _physics_process(_delta):
 	hp = max_hp
 	pass
@@ -37,8 +37,8 @@ func take_damage(damage):
 
 var count = 0
 func _on_dps_timeout():
-	
-	
+
+
 	damage_array.push_front(sumdamage)
 	sumdamage = 0
 	damage_array.resize(25)
@@ -47,12 +47,12 @@ func _on_dps_timeout():
 			return a+0
 		return a + num;
 		)
-	
-	$dps2.text = String.num(result/5,2) 
+
+	$dps2.text = String.num(result/5,2)
 	pass # Replace with function body.
 
 
 func _on_dps_reset_timeout():
 	sumdamage = 0
-	
+
 	pass # Replace with function body.

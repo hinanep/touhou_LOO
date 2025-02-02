@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://oodot8jv2avh"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_vpnub"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_2suvi"]
+[ext_resource type="Texture2D" uid="uid://bhtp2q0o4vsgc" path="res://asset/pic/bullet/符札弹.png" id="3_g8h18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rh2k7"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fhvm"]
+atlas = ExtResource("3_g8h18")
+region = Rect2(0, 0, 368, 699)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlsjo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fhvm")
+}],
+"loop": true,
+"name": &"reimu",
+"speed": 5.0
+}]
+
+[node name="Attack" instance=ExtResource("1_vpnub")]
+script = ExtResource("2_2suvi")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_rh2k7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(-4.76837e-07, 9.53674e-07)
+scale = Vector2(0.05, 0.055)
+sprite_frames = SubResource("SpriteFrames_xlsjo")
+animation = &"reimu"
+autoplay = "reimu"

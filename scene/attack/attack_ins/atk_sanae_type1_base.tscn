@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://hinu5wd4v8l2"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_i2n1l"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_p2d1r"]
+[ext_resource type="Texture2D" uid="uid://ddvokxqaone08" path="res://asset/pic/bullet/小风.png" id="3_oolln"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_56p1l"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stwfa"]
+atlas = ExtResource("3_oolln")
+region = Rect2(0, 0, 256, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kr2sq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stwfa")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Attack" instance=ExtResource("1_i2n1l")]
+script = ExtResource("2_p2d1r")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_56p1l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_kr2sq")
+animation = &"new_animation"
+autoplay = "new_animation"

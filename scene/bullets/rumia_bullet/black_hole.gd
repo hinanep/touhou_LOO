@@ -28,7 +28,7 @@ func _physics_process(_delta):
 					enemy.set_debuff("speed",0.5,1)
 					enemy.set_debuff("target_rediretion",$".",1)
 	pass
-	
+
 func _on_timer_timeout():
 	queue_free()
 

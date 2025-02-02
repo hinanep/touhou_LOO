@@ -1,11 +1,11 @@
 extends Node2D
 var power = player_var.power
 var cardnum_now
-var cardnum_have 
-var cardnum_max 
+var cardnum_have
+var cardnum_max
 var card_maxlevel
 var card_list = {
-	
+
 }
 	#card_name:level
 var c
@@ -49,7 +49,7 @@ func _init():
 	}
 
 func _input(event):
-	
+
 	if cardnum_have:
 		if event.is_action_pressed("use_card"):
 			use_card()
@@ -60,34 +60,34 @@ func _input(event):
 		if event.is_action_pressed("card_before"):
 			cardnum_now -= 1
 			cardnum_now %= cardnum_have
-		
+
 func use_card():
 	if cardnum_have<=0:
 		return
 	var cardname = card_list.keys()[cardnum_now]
 	print(cardname)#name
-	
+
 	if(card_pool["choosed"].has(cardname)):
 		c = card_pool["choosed"][cardname]
 	else:
 		c = card_pool["max"][cardname]
-		
+
 	if(player_var.power<c["power_cost"]):
 		AudioManager.play_sfx("music_sfx_error")
 		return
 	player_var.power -= c["power_cost"]
 	c["node"].active()
-	
-	
+
+
 func _ready():
 	pass
-	
+
 func add_card(cardname):
 	if(card_pool["choosed"].has(cardname)):
 		upgrade_card(cardname)
 		return
 	if(card_pool["max"].has(cardname)):
-		return	
+		return
 	CpManager.raise_weight_to_cp(cardname)
 	var cardpath = card_pool["unchoosed"][cardname]["path"]
 	get_tree().call_group("hud","add_card",card_pool["unchoosed"][cardname])
@@ -104,11 +104,11 @@ func add_card(cardname):
 	node.add_to_group(card_pool["choosed"][cardname]["card_name"])
 	node.card_init(card_pool["choosed"][cardname])
 	player_var.player_node.get_node("CardManager").add_child(node)
-	
+
 	node.position = Vector2(0,0)
 	card_pool["choosed"][cardname]["node"] = node
 	upgrade_card(cardname)
-	
+
 func upgrade_card(cardname):
 	get_tree().call_group(cardname,"upgrade_card")
 	card_list[cardname] += 1
@@ -125,7 +125,7 @@ func is_card_allmaxlevel():
 	if player_var.card_num_full:
 		for cardname in card_list:
 			if(card_list[cardname]!=card_maxlevel):
-				return false		
+				return false
 		return true
 	pass
 
@@ -142,14 +142,14 @@ func get_upable_card_by_name(cardname):
 	if(card_pool["unchoosed"].has(cardname)):
 		return card_pool["unchoosed"][cardname]
 	return null
-	
+
 func del_card(cardname):
 	if(card_pool["choosed"].has(cardname)):
 		card_pool["unchoosed"][cardname]=card_pool["choosed"][cardname]
 		card_pool["choosed"].erase(cardname)
 	if(card_pool["max"].has(cardname)):
 		card_pool["unchoosed"][cardname]=card_pool["max"][cardname]
-		card_pool["max"].erase(cardname)	
+		card_pool["max"].erase(cardname)
 	CpManager.del_to_maxlist(cardname)
 	card_pool["unchoosed"][cardname]["level"] = 0
 	cardnum_have -= 1
@@ -157,7 +157,7 @@ func del_card(cardname):
 	player_var.card_full = false
 	card_list.erase(cardname)
 	get_tree().call_group(cardname,"queue_free")
-	
+
 func ban_card(cardname):
 	if(card_pool["unchoosed"].has(cardname)):
 		card_pool["banned"][cardname]=card_pool["unchoosed"][cardname]
@@ -172,7 +172,7 @@ func clear_all():
 	print("card_clear")
 
 	card_list = {
-	
+
 }
 	#card_name:level
 

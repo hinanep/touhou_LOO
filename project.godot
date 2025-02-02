@@ -27,14 +27,15 @@ table="*res://settings/dist/settings.gd"
 player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 CardManager="*res://gamemanager/CardManager/CardManager.gd"
+SkillManager="*res://gamemanager/SkillManager/SkillManager.gd"
+CpManager="*res://gamemanager/CpManager/CpManager.gd"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
-RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 SpawnManager="*res://gamemanager/SpawnManager/spawnmanager.gd"
-CpManager="*res://gamemanager/CpManager/CpManager.gd"
-WazaManager="*res://gamemanager/WazaManager/wazaManager.gd"
 BuffManager="*res://gamemanager/BuffManager/BuffManager.gd"
 GameManager="*res://gamemanager/GameManager/game_manager.tscn"
+SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
+RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 
 [debug]
 
@@ -139,6 +140,7 @@ clockup={
 2d_physics/layer_3="反射子弹层"
 2d_physics/layer_5="pickup_items"
 2d_physics/layer_6="空气墙"
+2d_physics/layer_7="敌方弹幕"
 
 [physics]
 
@@ -147,6 +149,10 @@ clockup={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/texture_mipmap_bias=-0.345
 viewport/hdr_2d=true
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

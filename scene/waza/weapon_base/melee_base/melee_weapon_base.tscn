@@ -59,8 +59,8 @@ shape = SubResource("CircleShape2D_2tbq1")
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.257534, -9.4481)
-rotation = -3.14159
+position = Vector2(5, 0)
+rotation = -1.57079
 scale = Vector2(0.0102724, 0.014002)
 texture = ExtResource("2_tf1uv")
 

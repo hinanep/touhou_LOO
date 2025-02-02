@@ -10,9 +10,9 @@ func _ready():
 	pass # Replace with function body.
 
 
-			
-			
-			
+
+
+
 
 func upgrade_waza():
 

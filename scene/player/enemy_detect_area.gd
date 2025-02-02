@@ -4,16 +4,17 @@ var enemy_in_zone
 func _ready():
 	enemy_detect_zone = $"."
 func _physics_process(_delta):
-	enemy_in_zone = enemy_detect_zone.get_overlapping_bodies()
-	if !enemy_in_zone.is_empty():	
-		#player_var.nearest_enemy = enemy_in_zone.reduce(func(min_e,val):return val if enemy_near(val,min_e) else min_e)
+	#enemy_in_zone = enemy_detect_zone.get_overlapping_bodies()
+	#if !enemy_in_zone.is_empty():
+		##player_var.nearest_enemy = enemy_in_zone.reduce(func(min_e,val):return val if enemy_near(val,min_e) else min_e)
+#
+		#player_var.nearest_enemy = get_near_kenemies(enemy_in_zone,1)[0]
+		#if player_var.nearest_enemy!=null:
+			#player_var.nearest_enemy_position = player_var.nearest_enemy.global_position
+		#else:
+			#print("nearest == null!!")
+	pass
 
-		player_var.nearest_enemy = get_near_kenemies(enemy_in_zone,1)[0]
-		if player_var.nearest_enemy!=null:
-			player_var.nearest_enemy_position = player_var.nearest_enemy.global_position
-		else:
-			print("nearest == null!!")
-			
 func get_near_kenemies(enemy_array,k):
 	var n = enemy_array.size()
 	for i in range(n):

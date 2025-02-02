@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=16 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" path="res://scene/ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_m2abi"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_kue7b"]
 [ext_resource type="PackedScene" uid="uid://dp52o3ggs3agk" path="res://scene/enemys/spawner.tscn" id="6_lqv1y"]
-[ext_resource type="PackedScene" uid="uid://cwjf4brydbran" path="res://scene/enemys/dummy/dummy.tscn" id="7_8cjtp"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
 a = Vector2(174, -91)
@@ -70,7 +69,7 @@ safe_margin = 1.0
 zoom = Vector2(4, 4)
 limit_smoothed = true
 
-[node name="reflect" type="CharacterBody2D" parent="player"]
+[node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
 collision_layer = 4
 collision_mask = 0
 
@@ -253,6 +252,3 @@ texture = ExtResource("5_kue7b")
 
 [node name="Spawner" parent="." instance=ExtResource("6_lqv1y")]
 position = Vector2(-44, 2)
-
-[node name="dummy" parent="." instance=ExtResource("7_8cjtp")]
-position = Vector2(143, 0)

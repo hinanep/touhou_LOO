@@ -1,11 +1,11 @@
 extends ranged_weapon_base
 
 
-var target 
+var target
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	print("reimu_ready")
+
 
 
 

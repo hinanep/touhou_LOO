@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6icurf61ufmq"]
+
+[ext_resource type="Script" path="res://scene/attack/attack/compo/lock/lock.gd" id="1_6mrax"]
+
+[node name="Lock" type="Node2D"]
+script = ExtResource("1_6mrax")

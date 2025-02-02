@@ -26,7 +26,7 @@ func _on_body_entered(_body):
 	pass
 	#if body.has_method("take_damage"):
 		#body.take_damage(player_var.player_make_bullet_damage(basic_damage))
-	
+
 
 
 func _on_destroy_timer_timeout():

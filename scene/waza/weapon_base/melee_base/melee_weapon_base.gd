@@ -22,7 +22,7 @@ var waza_config = {
 	"diretion":Vector2(0,0),#发射方向
 	"diretion_rotation":0,#发射方向旋转角（逆时针角度）
 	"creation_distance":0,#距离生成位置的距离
-	
+
 	"creating_position":"",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,
 	"creating_rule":"",#生成一组、一个个生成
 	"attack_gen_times":"",#基础生成次数
@@ -44,13 +44,13 @@ var waza_config = {
 		"Times_Addition":[],
 		"Debuff_Addition":[],
 		"Cd_Reduction":[]
-					}	
+					}
 	}
 func _ready():
 	set_range_and_colddown()
 	$meleeTimer.timeout.connect(_on_kick_timer_timeout)
 func _physics_process(_delta):
-	
+
 
 	nearest_enemy = get_nearest_enemy_inarea()
 	if nearest_enemy:
@@ -60,7 +60,7 @@ func _physics_process(_delta):
 func set_range_and_colddown():
 	melee_timer.wait_time = basic_colddown * (1 - player_var.colddown_reduce)
 	attack_range.set_scale(Vector2(player_var.range_add_ratio,player_var.range_add_ratio))
-	
+
 func _on_kick_timer_timeout():
 	kick_ready = true
 
@@ -69,10 +69,10 @@ func enemy_near(a,b):
 
 func get_nearest_enemy_inarea():
 	var enemy_in_range = attack_range.get_overlapping_bodies() #area范围内的物体
-	if !enemy_in_range.is_empty():	
+	if !enemy_in_range.is_empty():
 		return enemy_in_range.reduce(func(mine,val):return val if enemy_near(val,mine) else mine)
 	return null
-	
+
 
 func auto_attack():
 	if kick_ready:

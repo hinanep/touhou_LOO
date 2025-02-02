@@ -17,7 +17,7 @@ func _input(event):
 		$CollisionShape2D/colli_point.set_visible(!$CollisionShape2D/colli_point.is_visible())
 
 func _enter_tree():
-	
+
 	pass
 func _physics_process(_delta):
 	#移动
@@ -32,27 +32,27 @@ func _physics_process(_delta):
 		animated_sprite_2d.play("stay")
 
 	move_and_slide()
-	
 
-			
+
+
 func take_damage(damage):
-	
+
 	if player_var.is_invincible:
 		print("invincible active")
 		return
 	$AnimationPlayer.play("hurt")
 	AudioManager.play_sfx("music_sfx_hurt")
 	player_var.player_hp -= damage
-	
+
 	if player_var.player_hp < 0.1:
 		died()
-		
+
 	player_var.is_invincible = true
 	$invincible_time.start()
-		
+
 func died():
 	G.get_gui_view_manager().close_all_view()
-	
+
 	G.get_gui_view_manager().open_view("StartMenu")
 
 
@@ -72,5 +72,5 @@ func _on_pickup_area_area_entered(area):
 	if area.has_method("fly_to_player"):
 		area.fly_to_player()
 	pass # Replace with function body.
-	
+
 

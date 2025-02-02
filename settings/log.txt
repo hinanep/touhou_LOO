@@ -1,4 +1,7 @@
-gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\Routine.xlsx:routine => G:\touhou_survivors\settings\dist\Routine\routine.gd
-gd_excelexporter.core.engine-INFO:导出：G:\touhou_survivors\settings\data\waza.xlsx:unlock => G:\touhou_survivors\settings\dist\waza\unlock.gd
-gd_excelexporter.core.engine-WARNING:~$Routine.xlsx 不是配置表，跳过！
-gd_excelexporter.generators.gds2-INFO:创建：dist\settings.gd
+gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Attack.xlsx:attack_skill => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Attack\attack_skill.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Routine.xlsx:routine => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Routine\routine.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Skill.xlsx:skill => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Skill\skill.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\TID.xlsx:Sheet1 => C:\Users\nep\Desktop\touhou_survivors\settings\dist\TID\Sheet1.json
+gd_excelexporter.core.engine-WARNING:~$Attack.xlsx 不是配置表，跳过！
+gd_excelexporter.core.engine-WARNING:~$TID.xlsx 不是配置表，跳过！
+gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

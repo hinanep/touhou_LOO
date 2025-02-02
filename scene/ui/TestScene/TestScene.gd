@@ -20,22 +20,27 @@ func _input(event):
 			Engine.time_scale = 1.0
 func _open():
 	GameManager.upping = false
+	var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
+	dummm.position.x += 100
+	SpawnManager.add_mob(dummm)
 	pass
-	
+
 
 func _close():
 	AudioManager.stop_background_bgm()
 
 	pass
-	
-	
+
+
 func open():
 	_open()
-	
-	
+
+
 func close():
-	_close() 
-	
-	
+	_close()
+
+
 func close_self():
 	G.get_gui_view_manager().close_view(viewInstanceId)
+
+

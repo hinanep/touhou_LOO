@@ -152,7 +152,7 @@ offset_bottom = 1123.0
 scale = Vector2(0.1, 0.1)
 alignment = 1
 
-[node name="waza_container" type="HBoxContainer" parent="hud"]
+[node name="skill_container" type="HBoxContainer" parent="hud"]
 offset_left = 515.0
 offset_top = 950.0
 offset_right = 8795.0

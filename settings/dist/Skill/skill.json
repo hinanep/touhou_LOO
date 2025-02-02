@@ -1,0 +1,93 @@
+{
+  "ski_basemagic": {
+	"skill_name": "ski_basemagic",
+	"upgrade_group": "none",
+	"routines": [
+	  "rou_basemagic"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_basephysics": {
+	"skill_name": "ski_basephysics",
+	"upgrade_group": "none",
+	"routines": [
+	  "rou_basephysics"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_reimu": {
+	"skill_name": "ski_reimu",
+	"upgrade_group": "upg_reimu",
+	"routines": [
+	  "rou_reimu"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_sanae": {
+	"skill_name": "ski_sanae",
+	"upgrade_group": "upg_sanae",
+	"routines": [
+	  "rou_sanae"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_rumia": {
+	"skill_name": "ski_rumia",
+	"upgrade_group": "upg_rumia",
+	"routines": [
+	  "rou_rumia",
+	  "rou_rumia_attachment1"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_wriggle": {
+	"skill_name": "ski_wriggle",
+	"upgrade_group": "upg_wriggle",
+	"routines": [
+	  "rou_wriggle"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_alice": {
+	"skill_name": "ski_alice",
+	"upgrade_group": "upg_alice",
+	"routines": [
+	  "rou_alice"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_sekibanki": {
+	"skill_name": "ski_sekibanki",
+	"upgrade_group": "upg_sekibanki",
+	"routines": [
+	  "rou_sekibanki"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_misumaru": {
+	"skill_name": "ski_misumaru",
+	"upgrade_group": "upg_misumaru",
+	"routines": [
+	  "rou_misumaru"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  },
+  "ski_sakuya": {
+	"skill_name": "ski_sakuya",
+	"upgrade_group": "upg_sakuya",
+	"routines": [
+	  "rou_sakuya"
+	],
+	"cd": 1.0,
+	"cd_reduction_efficicency": 1.0
+  }
+}

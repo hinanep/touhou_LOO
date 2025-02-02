@@ -13,7 +13,7 @@ extends BaseGUIView
 @onready var level_number = $hud/exp_bar/level_number
 
 @onready var card_container = $hud/card_container
-@onready var waza_container = $hud/waza_container
+@onready var skill_container = $hud/skill_container
 @onready var cp_container = $hud/cp_container
 func _ready():
 	hp.max_value = player_var.player_hp_max
@@ -34,7 +34,7 @@ func card_power_display():
 
 func point_and_ratio_display():
 	point_ratio_text.text = ("%.2f" % player_var.point_ratio)
-	
+
 	point_text.text = str(player_var.point)
 
 func exp_display():
@@ -48,13 +48,13 @@ func exp_display():
 
 var cardnum_now = 0
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
-var cp_and_waza_texture = PresetManager.getpre("ui_cp_and_waza_texture")
+var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
 func card_display():
 	if(card_container.get_child_count()==0):
 		return
 
 	cardnum_now = CardManager.cardnum_now
-	
+
 	for child in card_container.get_children():
 		child.set_expand_mode(0)
 		child.set_stretch_mode(3)
@@ -72,26 +72,26 @@ func add_card(card_list):
 	newcard.add_to_group(card_list["card_name"])
 	card_container.add_child(newcard)
 
-func add_waza(waza_list):
-	print("adding waza")
-	if waza_list.has("waza_image"):
-		if waza_list.waza_name == "base_range" or  waza_list.waza_name == "base_melee":
+func add_skill(skill_list):
+	print("adding skill")
+	if skill_list.has("skill_image"):
+		if skill_list.skill_name == "base_range" or  skill_list.skill_name == "base_melee":
 			return
-		var newwaza = cp_and_waza_texture.instantiate()
-		newwaza.add_to_group(waza_list["waza_name"])
-		newwaza.set_texture(PresetManager.getpre(waza_list["waza_image"]))
-		newwaza.get_child(0).text = waza_list["cn"]
-		waza_container.add_child(newwaza)
+		var newskill = cp_and_skill_texture.instantiate()
+		newskill.add_to_group(skill_list["skill_name"])
+		newskill.set_texture(PresetManager.getpre(skill_list["skill_image"]))
+		newskill.get_child(0).text = skill_list["cn"]
+		skill_container.add_child(newskill)
 
 func add_cp(cp_list):
 	print("adding cp")
 	if cp_list.has("cp_image"):
-		var newcp = cp_and_waza_texture.instantiate()
+		var newcp = cp_and_skill_texture.instantiate()
 		newcp.set_texture(PresetManager.getpre(cp_list["cp_image"]))
 		newcp.add_to_group(cp_list["name"])
 		newcp.get_child(0).text = cp_list["cn"]
 		cp_container.add_child(newcp)
-	
+
 
 
 func _on_renew_timer_timeout():

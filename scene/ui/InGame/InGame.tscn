@@ -68,7 +68,7 @@ safe_margin = 1.0
 zoom = Vector2(4, 4)
 limit_smoothed = true
 
-[node name="reflect" type="CharacterBody2D" parent="player"]
+[node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
 collision_layer = 4
 collision_mask = 0
 

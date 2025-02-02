@@ -23,28 +23,29 @@ func _input(event):
 func _open():
 	GameManager.upping = false
 	pass
-	
+
 
 func _close():
 	AudioManager.stop_background_bgm()
 
 	pass
-	
-	
+func _process(delta):
+	print_orphan_nodes()
+
 func open():
 	_open()
-	
-	
+
+
 func close():
-	_close() 
-	
-	
+	_close()
+
+
 func close_self():
 	G.get_gui_view_manager().close_view(viewInstanceId)
 
 func scene_init():
-	WazaManager.add_waza("base_range")
-	WazaManager.add_waza("base_melee")
+	SkillManager.add_skill("ski_basemagic")
+	SkillManager.add_skill("ski_basephysics")
 	CardManager.add_card("fairy")
 	var event_list = {
 #第一波：绿色史莱姆 0~15s
@@ -282,4 +283,4 @@ func scene_init():
 }
 }
 	SpawnManager.prepare_all_spawn_event($SpawnManager,event_list)
-	
+
