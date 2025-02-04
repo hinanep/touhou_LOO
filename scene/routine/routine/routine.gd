@@ -130,7 +130,6 @@ func single_attack(generate_position,generate_rotation):
 
 			new_attack.global_position = generate_position
 			new_attack.rotation = generate_rotation
-			new_attack.set_active(true)
 			$".".add_child(new_attack)
 		'none':
 

@@ -1,10 +1,10 @@
-extends Node2D
+extends Node
 
 var event_list = {}
 
 var spawner_pre
 
-var spawnmanager_node
+@onready var spawnmanager_node = $"."
 var mob_map = AStar2D.new()
 var mob_dic:Dictionary
 var id = 0
@@ -33,7 +33,7 @@ func prepare_all_spawn_event(spawnmanager,eventlist):
 		add_spawn_event(event_list[event])
 
 func add_mob(mob_ins):
-	add_child(mob_ins)
+	spawnmanager_node.add_child(mob_ins)
 
 	mob_ins.die.connect(del_mob)
 	mob_ins.mob_id = id
@@ -57,7 +57,7 @@ func get_strongest_mob():
 			maxmob = mob_dic[mob]
 	return maxmob
 func clear():
-	for child in get_children():
+	for child in spawnmanager_node.get_children():
 		child.queue_free()
 	mob_map = AStar2D.new()
 	id = 0

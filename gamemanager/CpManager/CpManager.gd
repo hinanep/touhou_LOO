@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 var max_list = []
 var cp_pool = {
 	"unactive":{

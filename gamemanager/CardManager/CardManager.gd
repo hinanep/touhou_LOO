@@ -1,5 +1,5 @@
-extends Node2D
-var power = player_var.power
+extends Node
+
 var cardnum_now
 var cardnum_have
 var cardnum_max

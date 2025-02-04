@@ -127,6 +127,9 @@ func get_skill_level(skill_name):
 		return 0
 func clear_all():
 	skill_pool.unlocked = table.skill.duplicate()
+	skill_pool.choosed = {}
+	skill_pool.max = {}
+	skill_pool.banned = {}
 	for skills in skill_pool.unlocked:
 		skill_pool.unlocked[skills]['weight'] = 1
 

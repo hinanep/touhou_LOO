@@ -1,4 +1,4 @@
-extends Node2D
+extends RefCounted
 class_name MoveComponent
 var move_type:Callable
 var velocity = 0
@@ -11,6 +11,24 @@ var attack_info
 var lock :LockComponent
 var ref = false
 var colli_info :KinematicCollision2D
+var moving_rule = {
+	straight='straight',
+	trail='trail',
+	sekibanki='sekibanki',
+	polar='polar'
+
+}
+var velocity_system_front = {
+			character='character',
+
+			world='world',
+
+			lock='lock',
+
+			routine='routine',
+
+			random='random',
+}
 func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 	body = B
 	attack_info = attack_in
@@ -21,15 +39,15 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 	diretion = diretion_routine
 	ref = !attack_info.reflection.is_empty()
 	match attack_info.moving_rule:
-		'straight':
+		moving_rule.straight:
 			move_type = Callable(move_straight)
-		'trail':
+		moving_rule.trail:
 			move_type = Callable(move_trace_target)
-		'sekibanki':
+		moving_rule.sekibanki:
 			move_type = Callable(move_sekibanki)
-			top_level = true
+			body.top_level = true
 			velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
-		'polar':
+		moving_rule.polar:
 			move_type = Callable(move_polar)
 
 func update(delta):
@@ -66,13 +84,14 @@ func move_straight(delta):
 		velocity = attack_info.moving_parameter[0]
 		acc = attack_info.moving_parameter[1]
 		match attack_info.velocity_system_front:
-			'character':
+			velocity_system_front.character:
 				diretion = Vector2.from_angle(player_var.player_diretion_angle)
-			'world':
-				diretion = Vector2(1,0)
-			'lock':
-				var t = lock.find_next_target()
 
+			velocity_system_front.world:
+				diretion = Vector2(1,0)
+
+			velocity_system_front.lock:
+				var t = lock.find_next_target()
 				if t is Vector2:
 					diretion = body.global_position.direction_to(t)
 				elif t != null:
@@ -80,10 +99,13 @@ func move_straight(delta):
 
 				else:
 					diretion = Vector2.from_angle(player_var.player_diretion_angle)
-			'routine':
+
+			velocity_system_front.routine:
 				pass
-			'random':
+
+			velocity_system_front.random:
 				diretion = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
+
 	velocity = min(attack_info.moving_parameter[2],velocity+acc*delta)
 	#body.position += velocity * diretion * delta
 	return body.move_and_collide(velocity * diretion * delta)

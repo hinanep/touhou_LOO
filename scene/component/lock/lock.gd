@@ -1,4 +1,4 @@
-extends Node2D
+extends RefCounted
 class_name LockComponent
 var lock_func:Callable
 var lock_target = null

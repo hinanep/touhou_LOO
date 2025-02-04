@@ -23,8 +23,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-table="*res://settings/dist/settings.gd"
 player_var="*res://gamemanager/player_var.gd"
+table="*res://settings/dist/settings.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 CardManager="*res://gamemanager/CardManager/CardManager.gd"
 SkillManager="*res://gamemanager/SkillManager/SkillManager.gd"

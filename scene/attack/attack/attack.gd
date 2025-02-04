@@ -47,7 +47,7 @@ func _ready():
 	$duration_timer.connect("timeout",destroy.bind('timeout'))
 	if attack_info.reflection.has('enemy'):
 		$".".collision_mask += 1
-	if attack_info.reflection.has('enemy'):
+	if attack_info.reflection.has('wall'):
 		$".".collision_mask += 2
 	damage_source = get_parent().damage_source
 
@@ -64,10 +64,9 @@ func _ready():
 	lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
 	move_compo = MoveComponent.new($".",attack_info,lock_compo,diretion_routine)
 
-
-
-
 	set_active(node_active)
+
+
 
 func _physics_process(delta):
 	move_compo.update(delta)
@@ -101,8 +100,7 @@ func set_shape(cshape):
 
 #dot伤害
 func dot():
-	while(dot_on):
-			await get_tree().create_timer(0.25).timeout
+	if dot_on :
 			if $damage_area.has_overlapping_bodies():
 				_on_hit()
 				for b in $damage_area.get_overlapping_bodies():
@@ -123,14 +121,20 @@ func damage(body,damagei,damage_s = damage_source):
 
 #设置攻击的活动与否
 func set_active(active:bool):
+	if active and attack_info.damage_times == 'dot' and is_inside_tree():
+		dot_on = active
+		var timer = Timer.new()
+		add_child(timer)
+		timer.wait_time = 0.25
+		timer.timeout.connect(dot)
+		timer.start()
 	visible = active
 	set_process(active)
 	set_physics_process(active)
 	$damage_area.monitoring = active
 	$bullet_erase_area.monitoring = active
-	dot_on = active
-	if active and attack_info.damage_times == 'dot' and is_inside_tree():
-		dot()
+
+
 
 
 
@@ -169,8 +173,6 @@ func destroy(message:String):
 	for destroy_gen in attack_info.destroying_routine_creation:
 		get_tree().call_group(destroy_gen,'attacks',true,global_position,rotation)
 
-	lock_compo.queue_free()
-	move_compo.queue_free()
 	queue_free()
 
 

@@ -27,7 +27,7 @@ var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前
 var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 2000#- 符力上限：可存储的最大符力
 var skill_max_level = 3
-@onready var ui_manager = get_tree().get_first_node_in_group("UiManager")
+
 
 #运行时使用
 
