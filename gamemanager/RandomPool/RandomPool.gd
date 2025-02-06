@@ -1,10 +1,5 @@
 extends Node
 
-
-
-var skill_full = player_var.skill_full
-var card_full = player_var.card_full
-
 func _ready():
 	seed("Hello world".hash())
 	print(random_nselect_from_allpool(3))
@@ -16,60 +11,61 @@ func _ready():
 func random_nselect_from_allpool(n:int):
 	var cards = []
 	var skills = []
-	var buffs = []
-	if !player_var.skill_num_full:
-		for skillname in SkillManager.skill_pool["unlocked"]:
-			skills.append([skillname,SkillManager.skill_pool["unlocked"][skillname]["weight"]])
-	for skillname in SkillManager.skill_pool["choosed"]:
-		skills.append([skillname,SkillManager.skill_pool["choosed"][skillname]["weight"]])
+	var passives = []
+	if !player_var.SkillManager.skill_num_full:
+		for skillname in player_var.SkillManager.skill_pool["unlocked"]:
+			skills.append([skillname,player_var.SkillManager.skill_pool["unlocked"][skillname]["weight"]])
+	for skillname in player_var.SkillManager.skill_pool["choosed"]:
+		skills.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
 
 	if !player_var.card_num_full:
-		for cardname in CardManager.card_pool["unchoosed"]:
-			cards.append([cardname,CardManager.card_pool["unchoosed"][cardname]["weight"]])
-	for cardname in CardManager.card_pool["choosed"]:
-		cards.append([cardname,CardManager.card_pool["choosed"][cardname]["weight"]])
+		for cardname in player_var.CardManager.card_pool["unlocked"]:
+			cards.append([cardname,player_var.CardManager.card_pool["unlocked"][cardname]["weight"]])
+	for cardname in player_var.CardManager.card_pool["choosed"]:
+		cards.append([cardname,player_var.CardManager.card_pool["choosed"][cardname]["weight"]])
 
 	if !player_var.passive_num_full:
-		for buffname in BuffManager.buff_pool["unchoosed"]:
-			buffs.append([buffname,BuffManager.buff_pool["unchoosed"][buffname]["weight"]])
-	for buffname in BuffManager.buff_pool["choosed"]:
-		buffs.append([buffname,BuffManager.buff_pool["choosed"][buffname]["weight"]])
+		for passivename in PassiveManager.buff_pool["unchoosed"]:
+			passives.append([passivename,PassiveManager.buff_pool["unchoosed"][passivename]["weight"]])
+	for passivename in PassiveManager.buff_pool["choosed"]:
+		passives.append([passivename,PassiveManager.buff_pool["choosed"][passivename]["weight"]])
 
 	var pool = []
 	pool.append_array(cards)
 	pool.append_array(skills)
-	pool.append_array(buffs)
+	pool.append_array(passives)
+
 	var nselect = selectm_from_samples(pool,n)
 	var skills_ans = []
 	var cards_ans = []
-	var buffs_ans = []
+	var passives_ans = []
 	for x in nselect:
 		if x in skills:
 			skills_ans.append(x[0])
-		if x in cards:
+		elif x in cards:
 			cards_ans.append(x[0])
-		if x in buffs:
-			buffs_ans.append(x[0])
-	return{"cards":cards_ans,"skills":skills_ans,"buffs":buffs_ans}
+		elif x in passives:
+			passives_ans.append(x[0])
+	return{"cards":cards_ans,"skills":skills_ans,"passives":passives_ans}
 
-
-func random_select_from_skill():
-	var pool = [
-		#name:weight
-	]
-
-	for skillname in SkillManager.skill_pool["unchoosed"]:
-		pool.append([skillname,SkillManager.skill_pool["unchoosed"][skillname]["weight"]])
-	for skillname in SkillManager.skill_pool["choosed"]:
-		pool.append([skillname,SkillManager.skill_pool["choosed"][skillname]["weight"]])
-	#a_expj(pool,1)
-	if pool.is_empty():
-		return null
-
-	return selectm_from_samples(pool,1)[0][0]
-
-func random_select_from_card():
-	pass
+#
+#func random_select_from_skill():
+	#var pool = [
+		##name:weight
+	#]
+#
+	#for skillname in player_var.SkillManager.skill_pool["unchoosed"]:
+		#pool.append([skillname,player_var.SkillManager.skill_pool["unchoosed"][skillname]["weight"]])
+	#for skillname in player_var.SkillManager.skill_pool["choosed"]:
+		#pool.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
+	##a_expj(pool,1)
+	#if pool.is_empty():
+		#return null
+#
+	#return selectm_from_samples(pool,1)[0][0]
+#
+#func random_select_from_card():
+	#pass
 
 
 func selectm_from_samples(samples, m):

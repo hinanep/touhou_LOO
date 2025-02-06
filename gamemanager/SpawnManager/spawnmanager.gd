@@ -62,13 +62,3 @@ func clear():
 	mob_map = AStar2D.new()
 	id = 0
 	mob_dic = {}
-#event:
-#"slime_green_1":{
-	#"pre":PresetManager.getpre("enemy_zako_slime_green"),
-	#"spawn_mode":"duration",
-	#"start_time":0,
-	#"end_time":15,
-	#"tick_time":2,
-	#"number":10,
-	#"param_buff":0.75
-#}

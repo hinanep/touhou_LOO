@@ -23,18 +23,17 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-player_var="*res://gamemanager/player_var.gd"
+SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
 table="*res://settings/dist/settings.gd"
+player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
-CardManager="*res://gamemanager/CardManager/CardManager.gd"
-SkillManager="*res://gamemanager/SkillManager/SkillManager.gd"
+CardManager="res://gamemanager/CardManager/CardManager.gd"
 CpManager="*res://gamemanager/CpManager/CpManager.gd"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
 SpawnManager="*res://gamemanager/SpawnManager/spawnmanager.gd"
-BuffManager="*res://gamemanager/BuffManager/BuffManager.gd"
 GameManager="*res://gamemanager/GameManager/game_manager.tscn"
-SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
+PassiveManager="*res://gamemanager/BuffManager/BuffManager.gd"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 
 [debug]
@@ -58,7 +57,6 @@ enabled=PackedStringArray("res://addons/GDExcelExporter/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://scene/bullets/": "purple",
 "res://scene/drops/": "red",
 "res://scene/enemys/": "orange",
 "res://scene/particle/": "teal",

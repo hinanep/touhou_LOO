@@ -98,6 +98,13 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 30.0
+neighbor_distance = 100.0
+debug_enabled = true
+
 [connection signal="body_exited" from="melee_damage_area" to="." method="_on_melee_damage_area_body_exited"]
 [connection signal="body_exited" from="bullet_damage_area" to="." method="_on_bullet_damage_area_body_exited"]
 [connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="on_compute_safevelocity"]

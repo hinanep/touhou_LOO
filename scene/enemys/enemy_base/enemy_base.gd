@@ -25,29 +25,48 @@ var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 
 @onready var bullet_damage_area = $bullet_damage_area
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
-
+@onready var navi = NavigationAgent2D.new()
 func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
+	add_child(navi)
+	navi.velocity_computed.connect(on_compute_safevelocity)
+	navi.avoidance_enabled = true
+	navi.radius = 10
+	navi.neighbor_distance = 30
+	navi.debug_enabled = true
+	navi.max_speed = speed
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
+
 	debuff["target_rediretion"] = player_node
 
+func on_compute_safevelocity(safevelocity):
+	velocity = safevelocity
+
+	move_and_slide()
+
+func set_movement_target(target):
+	navi.set_target_position(target.global_position)
 
 func _physics_process(_delta):
+	set_movement_target(player_node)
 	move_to_target()
-
 
 #移动方式：走向玩家
 func move_to_target():
+	var next_path_position: Vector2 = navi.get_next_path_position()
+	var new_velocity: Vector2 = global_position.direction_to(next_path_position) * speed
 
-	velocity = get_diretion_to_target() * speed * debuff["speed"]
-	#近身减速防止模型重叠的神秘bug（，过近远离
-	#if get_distance_squared_to_player() < pow(10,2):
-		#velocity *=  (get_distance_squared_to_player() - 100)/10
-	move_and_slide()
+	if navi.avoidance_enabled:
+		navi.velocity = new_velocity
+	else:
+		on_compute_safevelocity(new_velocity)
+
+
+
 
 
 func damage_num_display(num):

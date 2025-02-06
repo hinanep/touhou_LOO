@@ -1,6 +1,5 @@
-
-class_name card extends Node2D
-
+extends Node2D
+class_name cards
 var level = 1
 var maxlevel = 8
 var damage_type = 1
@@ -22,21 +21,19 @@ func active():
 	player_var.is_invincible = true
 	player_var.is_card_casting = true
 	pass
-	
+
 func card_init(card_dic):
 	level = card_dic["level"]
 	print("card init")
-	
+
 func upgrade_card():
-	#CardManager.card_pool["choosed"][card_name]["power_cost"] -= 4
+	#player_var.CardManager.card_pool["choosed"][card_name]["power_cost"] -= 4
 	pass
 func _on_invincible_time_timeout():
 	player_var.is_invincible = false
-	
+
 
 
 
 func _on_endtime_timeout():
 	player_var.is_card_casting = false
-
-

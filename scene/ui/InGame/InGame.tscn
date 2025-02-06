@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=16 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://scene/ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -43,6 +43,14 @@ b = Vector2(2762, 1477)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5hk87"]
 a = Vector2(-2757, -1489)
 b = Vector2(2760, -1489)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4ftu5"]
+vertices = PackedVector2Array(220.688, 116.078, -221.148, 117.906, -211.797, -107.242, 217.289, -112.742)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-231, -127, 237, -133, 241, 136, -242, 138)])
+parsed_geometry_type = 1
+parsed_collision_mask = 0
+agent_radius = 20.0
 
 [node name="InGame" type="Control"]
 process_mode = 3
@@ -253,3 +261,9 @@ texture = ExtResource("5_6vlxu")
 [node name="Wall14" type="Sprite2D" parent="map/wall"]
 position = Vector2(2775.5, 963)
 texture = ExtResource("5_6vlxu")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4ftu5")
+use_edge_connections = false
+
+[connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]

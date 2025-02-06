@@ -18,6 +18,9 @@ func _ready():
 	name = skill_info.skill_name
 	add_to_group(skill_info.skill_name)
 	add_to_group(skill_info.upgrade_group)
+	SignalBus.upgrade_skill.connect(upgrade_skill)
+	SignalBus.del_skill.connect(destroy)
+	#SignalBus.del_skill.connect(destroy)
 	damage_source = skill_info.skill_name
 	var cd_timer = $cd_timer
 	cd_timer.wait_time = skill_info.cd
@@ -43,11 +46,20 @@ func gen_routines():
 	emit_signal("shoot")
 
 
-func upgrade_skill():
-	level += 1
-	pass
+func upgrade_skill(skill_name):
+	if skill_info.skill_name != skill_name:
+		return
 
-func destroy():
+	level += 1
+	if(level == player_var.skill_level_max):
+		SignalBus.upgrade_max.emit(skill_name)
+
+
+
+
+func destroy(skill_name):
+	if skill_info.skill_name != skill_name:
+		return
 	for child in get_children():
 		if child.has_method('destroy'):
 			child.destroy()

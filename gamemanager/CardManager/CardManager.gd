@@ -1,5 +1,5 @@
 extends Node
-
+class_name CardManagers
 var cardnum_now
 var cardnum_have
 var cardnum_max
@@ -10,7 +10,7 @@ var card_list = {
 	#card_name:level
 var c
 var card_pool = {
-	"unchoosed":{
+	"unlocked":{
 		#card_name:{"level":,"power?":, ...}
 	},
 	"choosed":{},
@@ -24,7 +24,7 @@ func _init():
 	cardnum_have = 0
 	cardnum_max = 3
 	card_maxlevel = 2
-	card_pool["unchoosed"]["marisa"] = {
+	card_pool["unlocked"]["marisa"] = {
 		"card_name":"marisa",
 		"level":0,
 		"power_cost":2000,
@@ -36,7 +36,7 @@ func _init():
 		"cn":"魔理沙",
 		"describe_text":["强大的魔炮，强大的卡牌伴随着代价","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"]
 	}
-	card_pool["unchoosed"]["fairy"] = {
+	card_pool["unlocked"]["fairy"] = {
 		"card_name":"fairy",
 		"level": card_maxlevel-1,
 		"power_cost":500,
@@ -49,11 +49,10 @@ func _init():
 	}
 
 func _input(event):
-
 	if cardnum_have:
 		if event.is_action_pressed("use_card"):
+			SignalBus.use_card.emit()
 			use_card()
-			print("usepress")
 		if event.is_action_pressed("card_next"):
 			cardnum_now += 1
 			cardnum_now %= cardnum_have
@@ -81,7 +80,27 @@ func use_card():
 
 func _ready():
 	pass
+func on_try_add_card(card_name):
+	if(card_pool["choosed"].has(card_name)):
+		upgrade_card(card_name)
+		return
+	if(card_pool["max"].has(card_name)):
+		return
+func on_add_card(ski_info):
+	pass
+func on_del_card(card_name):
+	pass
 
+func on_upgrade_card(card_name):
+	pass
+func on_upgrade_card_max(card_name):
+	pass
+
+func on_ban_card(card_name):
+	pass
+
+func on_unlock_card(card_name):
+	pass
 func add_card(cardname):
 	if(card_pool["choosed"].has(cardname)):
 		upgrade_card(cardname)
@@ -89,28 +108,30 @@ func add_card(cardname):
 	if(card_pool["max"].has(cardname)):
 		return
 	CpManager.raise_weight_to_cp(cardname)
-	var cardpath = card_pool["unchoosed"][cardname]["path"]
-	get_tree().call_group("hud","add_card",card_pool["unchoosed"][cardname])
+
+	var cardpath = card_pool["unlocked"][cardname]["path"]
+	#get_tree().call_group("hud","add_card",card_pool["unlocked"][cardname])
 	cardnum_have += 1
 	if cardnum_have >= cardnum_max:
 		player_var.card_num_full = true
 	player_var.card_full = false
 	player_var.damage_sum[cardname] = 0
 	card_list[cardname] = 0
-	card_pool["choosed"][cardname]=card_pool["unchoosed"][cardname]
-	card_pool["unchoosed"].erase(cardname)
+	card_pool["choosed"][cardname]=card_pool["unlocked"][cardname]
+	card_pool["unlocked"].erase(cardname)
+
 	card_pool["choosed"][cardname]["pre"] = PresetManager.getpre(cardpath)
 	var node = card_pool["choosed"][cardname]["pre"].instantiate()
 	node.add_to_group(card_pool["choosed"][cardname]["card_name"])
 	node.card_init(card_pool["choosed"][cardname])
 	player_var.player_node.get_node("CardManager").add_child(node)
-
 	node.position = Vector2(0,0)
+
 	card_pool["choosed"][cardname]["node"] = node
 	upgrade_card(cardname)
 
 func upgrade_card(cardname):
-	get_tree().call_group(cardname,"upgrade_card")
+	#get_tree().call_group(cardname,"upgrade_card")
 	card_list[cardname] += 1
 	card_pool["choosed"][cardname]["level"] += 1
 	if(card_pool["choosed"][cardname]["level"]>= card_maxlevel):
@@ -139,33 +160,33 @@ func get_active_card_by_name(cardname):
 func get_upable_card_by_name(cardname):
 	if(card_pool["choosed"].has(cardname)):
 		return card_pool["choosed"][cardname]
-	if(card_pool["unchoosed"].has(cardname)):
-		return card_pool["unchoosed"][cardname]
+	if(card_pool["unlocked"].has(cardname)):
+		return card_pool["unlocked"][cardname]
 	return null
 
 func del_card(cardname):
 	if(card_pool["choosed"].has(cardname)):
-		card_pool["unchoosed"][cardname]=card_pool["choosed"][cardname]
+		card_pool["unlocked"][cardname]=card_pool["choosed"][cardname]
 		card_pool["choosed"].erase(cardname)
 	if(card_pool["max"].has(cardname)):
-		card_pool["unchoosed"][cardname]=card_pool["max"][cardname]
+		card_pool["unlocked"][cardname]=card_pool["max"][cardname]
 		card_pool["max"].erase(cardname)
 	CpManager.del_to_maxlist(cardname)
-	card_pool["unchoosed"][cardname]["level"] = 0
+	card_pool["unlocked"][cardname]["level"] = 0
 	cardnum_have -= 1
 	player_var.card_num_full = false
 	player_var.card_full = false
 	card_list.erase(cardname)
-	get_tree().call_group(cardname,"queue_free")
+	#get_tree().call_group(cardname,"queue_free")
 
 func ban_card(cardname):
-	if(card_pool["unchoosed"].has(cardname)):
-		card_pool["banned"][cardname]=card_pool["unchoosed"][cardname]
-		card_pool["unchoosed"].erase(cardname)
+	if(card_pool["unlocked"].has(cardname)):
+		card_pool["banned"][cardname]=card_pool["unlocked"][cardname]
+		card_pool["unlocked"].erase(cardname)
 	elif(card_pool["choosed"].has(cardname)):
 		card_pool["banned"][cardname]=card_pool["choosed"][cardname]
 		del_card(cardname)
-		card_pool["unchoosed"].erase(cardname)
+		card_pool["unlocked"].erase(cardname)
 	else:
 		return false
 func clear_all():
@@ -177,7 +198,7 @@ func clear_all():
 	#card_name:level
 
 	card_pool = {
-	"unchoosed":{
+	"unlocked":{
 		#card_name:{"level":,"power?":, ...}
 	},
 	"choosed":{},

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" path="res://scene/ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -28,6 +28,11 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 240, 142, 0, 0, 0, 0, -237, 139.5, 0, 0, 0, 0, -238, -133.5, 0, 0, 0, 0, 239, -135, 0, 0, 0, 0, 240, 142.5)
 }
 point_count = 5
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uxygy"]
+vertices = PackedVector2Array(322.25, 181.43, -292, 177.563, -292, -173.68, 331.719, -185.297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-302, -183.5, -302, 187.5, 332, 191.5, 342, -195.5)])
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ntvng"]
 a = Vector2(-2758, 1477)
@@ -94,6 +99,9 @@ curve = SubResource("Curve2D_wc05l")
 [node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
 position = Vector2(240, 142)
 rotation = -3.13635
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="player"]
+navigation_polygon = SubResource("NavigationPolygon_uxygy")
 
 [node name="game_manager" type="Node" parent="." groups=["GameManager"]]
 process_mode = 3

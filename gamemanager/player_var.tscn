@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://k2breoxt1mk6"]
+
+[ext_resource type="Script" path="res://gamemanager/player_var.gd" id="1_xu1tb"]
+
+[node name="PlayerVar" type="Node"]
+script = ExtResource("1_xu1tb")

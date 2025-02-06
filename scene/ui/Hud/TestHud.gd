@@ -10,8 +10,8 @@ func _ready():
 		skill_button.set_tooltip_text(ski.skill_name)
 		skill_button.selected.connect(on_skillbutton_select.bind(ski.skill_name))
 
-	for uccard in CardManager.card_pool.unchoosed:
-		var cd = CardManager.card_pool.unchoosed[uccard]
+	for uccard in player_var.CardManager.card_pool.unlocked:
+		var cd = player_var.CardManager.card_pool.unlocked[uccard]
 		var card_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/card_container.add_child(card_button)
 		card_button.set_texture(cd.card_image)
@@ -47,7 +47,7 @@ func on_cpbutton_select(cpname):
 func _on_update_pressed():
 	match type:
 		"skill":
-			SkillManager.add_skill(tname)
+			SignalBus.try_add_skill.emit(tname)
 
 		"cp":
 			CpManager.add_cp(tname)
@@ -55,7 +55,7 @@ func _on_update_pressed():
 		"passive":
 			pass
 		"card":
-			CardManager.add_card(tname)
+			player_var.CardManager.add_card(tname)
 
 		"none":
 			pass
@@ -66,7 +66,7 @@ func _on_update_pressed():
 func _on_delete_pressed():
 	match type:
 		"skill":
-			SkillManager.del_skill(tname)
+			SignalBus.del_skill.emit(tname)
 
 		"cp":
 			CpManager.del_cp(tname)
@@ -74,7 +74,7 @@ func _on_delete_pressed():
 		"passive":
 			pass
 		"card":
-			CardManager.del_card(tname)
+			player_var.CardManager.del_card(tname)
 		"none":
 			pass
 	$testhud/Button.grab_focus()

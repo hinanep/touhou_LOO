@@ -24,10 +24,11 @@ func _init():
 		"weight":1,
 		"cp_image":"image_cp_reitama"
 	}
-
+	SignalBus.del_skill.connect(del_to_maxlist)
 func add_to_maxlist(x_name):
 	max_list.append(x_name)
 	activate_cp(get_cp_unactive(x_name))
+
 func del_to_maxlist(x_name):
 	max_list.erase(x_name)
 
@@ -42,12 +43,12 @@ func raise_weight_to_cp(xname):
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(xname):
 			for x_name in cp_pool["unactive"][cp]["effect_group"]:
-				if(SkillManager.skill_pool.unlocked.has(x_name)):
-					SkillManager.skill_pool.unlocked["weight"] *=1.1
-				if(CardManager.card_pool["unchoosed"].has(x_name)):
-					CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
-				if(BuffManager.buff_pool["unchoosed"].has(x_name)):
-					BuffManager.buff_pool["unchoosed"][x_name]["weight"] *=1.1
+				if(player_var.SkillManager.skill_pool.unlocked.has(x_name)):
+					player_var.SkillManager.skill_pool.unlocked["weight"] *=1.1
+				if(player_var.CardManager.card_pool["unchoosed"].has(x_name)):
+					player_var.CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
+				if(PassiveManager.buff_pool["unchoosed"].has(x_name)):
+					PassiveManager.buff_pool["unchoosed"][x_name]["weight"] *=1.1
 func get_cp_unactive(x_name):
 	var find = false
 	var cp_array = []

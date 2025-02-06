@@ -1,12 +1,5 @@
 extends Node
-
-
-
-
-
-@onready var UiManager = get_tree().get_first_node_in_group("UiManager")
-
-var upping = false
+var is_uping = false
 func _ready():
 
 	pass
@@ -15,7 +8,8 @@ func add_exp(value):
 
 	player_var.player_exp += value
 	AudioManager.play_sfx("music_sfx_pickup")
-	while player_var.player_exp >= player_var.exp_need[player_var.level]:
+	if is_uping!=true and player_var.player_exp >= player_var.exp_need[player_var.level]:
+		is_uping = true
 		level_up()
 	#if(player_var.player_exp >= player_var.exp_need[player_var.level]) and upping == false:
 		#upping = true

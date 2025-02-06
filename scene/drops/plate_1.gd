@@ -23,7 +23,7 @@ func _on_body_entered(_body):
 		#green
 		2:
 			get_tree().call_group("crystal","fly_to_player",1,2,1)
-			CardManager.use_card()
+			player_var.CardManager.use_card()
 		#blue
 		3:
 			get_tree().call_group("crystal","fly_to_player",1,1,2,true)

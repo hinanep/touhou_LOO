@@ -13,13 +13,13 @@ func _ready():
 	melee_battle_ready()
 	super._ready()
 	#启用弹幕攻击，需设置弹幕攻击方式
-	bullet_battle_ready()
-	
+	#bullet_battle_ready()
+
 	get_tree().call_group("monster","queue_free")
 	get_tree().call_group("spawner","change_pause")
 func _physics_process(_delta):
 	move_to_target()
-	
+
 func move_to_target():
 	if !invincible:
 		velocity = get_diretion_to_target() * speed * debuff["speed"]
@@ -33,7 +33,7 @@ func died():
 		next_stage()
 		return
 	invincible = true
-	
+
 	get_tree().call_group("spawner","change_pause")
 	print("aq sile")
 	player_var.is_invincible = true
@@ -47,9 +47,9 @@ func died():
 	G.get_gui_view_manager().open_view("ClearMenu")
 #弹幕攻击方法，待实例实现
 func bullet_attack():
-	
+
 	pass
-	
+
 func next_stage():
 	invincible = true
 	AudioManager.play_bgm("music_bgm_ff")
@@ -57,7 +57,7 @@ func next_stage():
 	$danma/sekibankiWeapon.active = false
 	$reincarnation.start()
 	pass
-	
+
 #体术攻击方法，可重新实现
 #func melee_attack(playernode):
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))

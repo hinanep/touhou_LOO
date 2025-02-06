@@ -26,11 +26,14 @@ var power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符�
 var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 2000#- 符力上限：可存储的最大符力
-var skill_max_level = 3
-
+var skill_level_max = 8
+var skill_num_max = 5
+var card_level_max = 8
+var card_num_max = 5
 
 #运行时使用
-
+var SkillManager :SkillManagers
+var CardManager :CardManagers
 var player_hp = player_hp_max
 var power = power_max
 var point:int = 0
@@ -42,14 +45,9 @@ var player_diretion_angle = 0
 
 var card_full = false#没有能升级的符卡并且卡位满了
 var card_num_full = false#卡位满了
-var card_level_max = 8
-var card_num_max = 5
 
-var skill_num_full = false
-var skill_full = false
-var skill_num_have = 0
-var skill_level_max = 8
-var skill_num_max = 5
+
+
 
 var passive_num_full = false
 var passive_full = false
@@ -64,7 +62,9 @@ var damage_sum = {
 	"none" : 0
 }
 
-
+func _ready() -> void:
+	SkillManager = SkillManagers.new()
+	CardManager = CardManagers.new()
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
@@ -131,8 +131,8 @@ func clear_all():
 	change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 	curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 	power_max = 2000#- 符力上限：可存储的最大符力
-	skill_max_level = 3
-
+	skill_level_max = 8
+	skill_num_max = 5
 
 
 	player_hp = player_hp_max
@@ -149,11 +149,8 @@ func clear_all():
 	card_level_max = 8
 	card_num_max = 5
 
-	skill_num_full = false
-	skill_full = false
-	skill_num_have = 0
-	skill_level_max = 8
-	skill_num_max = 5
+
+
 
 	passive_num_full = false
 	passive_full = false
@@ -166,3 +163,4 @@ func clear_all():
 	damage_sum = {
 		"none" : 0
 	}
+	_ready()

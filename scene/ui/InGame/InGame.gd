@@ -21,7 +21,6 @@ func _input(event):
 		else:
 			Engine.time_scale = 1.0
 func _open():
-	GameManager.upping = false
 	pass
 
 
@@ -44,9 +43,10 @@ func close_self():
 	G.get_gui_view_manager().close_view(viewInstanceId)
 
 func scene_init():
-	SkillManager.add_skill("ski_basemagic")
-	SkillManager.add_skill("ski_basephysics")
-	CardManager.add_card("fairy")
+	SignalBus.try_add_skill.emit("ski_basemagic")
+	SignalBus.try_add_skill.emit("ski_basephysics")
+
+	player_var.CardManager.add_card("fairy")
 	var event_list = {
 #第一波：绿色史莱姆 0~15s
 "slime_green_1":{

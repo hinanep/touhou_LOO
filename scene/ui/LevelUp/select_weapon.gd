@@ -6,8 +6,6 @@ var card_button_pre = PresetManager.getpre("ui_select_button")
 var cards_skills_selected
 var ban_mode = false
 func _ready():
-
-
 	cards_skills_selected = RandomPool.random_nselect_from_allpool(select_num)
 
 	for c in cards_skills_selected["cards"]:
@@ -15,7 +13,7 @@ func _ready():
 			var card_button = card_button_pre.instantiate()
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
-			var cd = CardManager.get_upable_card_by_name(c)
+			var cd = player_var.CardManager.get_upable_card_by_name(c)
 			card_button.set_upgrade_text(cd["cn"]+" Lv."+String.num(cd["level"]+1))
 			card_button.set_describe_text(cd["describe_text"][cd["level"]])
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
@@ -26,16 +24,16 @@ func _ready():
 			$select_buttons.add_child(skill_button)
 			#多语言支持尚未
 
-			skill_button.set_upgrade_text(w+" Lv."+String.num(SkillManager.get_skill_level(w)+1))
+			skill_button.set_upgrade_text(w+" Lv."+String.num(player_var.SkillManager.get_skill_level(w)+1))
 			#skill_button.set_describe_text(ski["describe_text"][ski["level"]])
 			skill_button.upgrade_selected.connect(on_button_selected.bind(w))
 
-	for b in cards_skills_selected["buffs"]:
+	for b in cards_skills_selected["passives"]:
 		if b != null:
 			var buff_button = card_button_pre.instantiate()
 			$select_buttons.add_child(buff_button)
 			#多语言支持尚未
-			var bf = BuffManager.get_upable_buff_by_name(b)
+			var bf = PassiveManager.get_upable_buff_by_name(b)
 			buff_button.set_upgrade_text(bf["cn"]+" Lv."+String.num(bf["level"]+1))
 			buff_button.set_describe_text(bf["describe_text"][bf["level"]])
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
@@ -54,7 +52,7 @@ func _ready():
 func on_button_selected(upgrade):
 	if ban_mode:
 		if(cards_skills_selected["skills"].has(upgrade)):
-			SkillManager.ban_skill(upgrade)
+			player_var.SkillManager.ban_skill(upgrade)
 
 		#if(cards_skills_selected["cards"].has(upgrade)):
 			#CardManager.add_card(upgrade)
@@ -62,16 +60,16 @@ func on_button_selected(upgrade):
 			#BuffManager.add_buff(upgrade,false)
 	else:
 		if(cards_skills_selected["skills"].has(upgrade)):
-			SkillManager.add_skill(upgrade)
+
+			SignalBus.try_add_skill.emit(upgrade)
 
 		if(cards_skills_selected["cards"].has(upgrade)):
-			CardManager.add_card(upgrade)
-		if(cards_skills_selected["buffs"].has(upgrade)):
-			BuffManager.add_buff(upgrade,false)
+			player_var.CardManager.add_card(upgrade)
+		if(cards_skills_selected["passives"].has(upgrade)):
+			PassiveManager.add_buff(upgrade,false)
 
 
 	call_deferred("close_levelup")
-	GameManager.add_exp(0)
 	pass # Replace with function body.
 
 func close_levelup():

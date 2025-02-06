@@ -1,36 +1,36 @@
-extends ranged_weapon_base
+extends skill
 
 
 func _ready():
-		waza_config = {
+		skill_info = {
 		"waza_name" : "aq",
 		"level":0,
 		"path":"waza_sekibanki",
 		"weight":0,
 		"cn":"赤蛮奇",
 		"type":"skill",#技能、符卡、衍生0
-	
+
 		"locking_type":"random",#目标、定向、随机方向01
 		"attack_pre":"aq_punch",#发射实体路径1
 		"diretion_rotation":0,#发射方向旋转角（逆时针角度）1
 		"creation_distance":0,#距离生成位置的距离1
-		
+
 		"creating_position":"self",#生成位置：在自机处、最近几名敌人处、什么神秘地方处,1
 		"creating_rule":"one",#生成一组、一个个生成1
 		"attack_gen_times":20,#生成次数1
 		"basic_colddown":1,#1
-		
-		
+
+
 		"Physical_Addition_Efficiency":0.0,#
 		"Magical_Addition_Efficiency":1.0,#
 		"Speed_Efficiency":1.0,#
 		"Duration_Efficiency":1.0,#
 		"Range_Efficiency":1.0,
-		
+
 		"Magical_Times_Efficiency":1,#1
-		"Physical_Times_Efficiency":1.0,#1	
+		"Physical_Times_Efficiency":1.0,#1
 		"Reduction_Efficiency":1.0,#1
-		
+
 		"cp_map":{},#
 		"upgrade_map":{#
 			"Damage_Addition":[1,2,3,4,5,6,7,8],
@@ -57,9 +57,9 @@ func _ready():
 		pass # Replace with function body.
 
 
-			
-			
-			
+
+
+
 
 func upgrade_waza():
 

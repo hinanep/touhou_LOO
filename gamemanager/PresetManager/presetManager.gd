@@ -2,19 +2,7 @@ extends Node
 @export var sasa : PackedScene
 var preset_map = {
 
-	"bullet_reimu": preload("res://scene/bullets/reimu_bullet/reimu_bullet.tscn"),
-	"bullet_laser":preload("res://scene/bullets/laser_bullet/laser.tscn"),
-	"bullet_alice":preload("res://scene/bullets/alice_bullet/alice_bullet.tscn"),
-	"bullet_beginning":preload("res://scene/bullets/beginning_bullet/beginning_bullet.tscn"),
-	"bullet_flyhead":preload("res://scene/bullets/fly_head_bullet/fly_head.tscn"),
-	"bullet_riggle":preload("res://scene/bullets/riggle_bullet/riggle_bullet.tscn"),
-	"bullet_rumia":preload("res://scene/bullets/rumia_bullet/rumia_bullet.tscn"),
-	"bullet_rumia_blackhole":preload("res://scene/bullets/rumia_bullet/black_hole.tscn"),
-	"bullet_sanae_small":preload("res://scene/bullets/sanae_bullet/small/sanae_bullet_small.tscn"),
-	"bullet_sanae_mid":preload("res://scene/bullets/sanae_bullet/mid/sanae_bullet_mid.tscn"),
-	"bullet_sanae_big":preload("res://scene/bullets/sanae_bullet/big/sanae_bullet_big.tscn"),
-	"bullet_tamatsukuri":preload("res://scene/bullets/tamatsukuri_bullet/tamatsukuri_bullet.tscn"),
-	"bullet_tamatsukuri_bomb":preload("res://scene/bullets/tamatsukuri_bullet/bomb.tscn"),
+
 
 	"drops_p":preload("res://scene/drops/exp_1.tscn"),
 	"drops_plate":preload("res://scene/drops/plate_1.tscn"),
@@ -25,6 +13,7 @@ var preset_map = {
 	'skill':preload("res://scene/skill/skill_class/skill.tscn"),
 	'routine':preload("res://scene/routine/routine/routine.tscn"),
 	'attack':preload("res://scene/attack/attack/attack.tscn"),
+	'card':preload("res://scene/cards/card/card.tscn"),
 	#"skill_reimu":preload("res://scene/skill/reimu/reimu_weapon.tscn"),
 	#"skill_alice":preload("res://scene/skill/alice_weapon/alice_weapon.tscn"),
 	#"skill_beginning_range":preload("res://scene/skill/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn"),
@@ -39,12 +28,9 @@ var preset_map = {
 
 	"particle_explosion":preload("res://scene/particle/explosion.tscn"),
 
-	"modifier_rumia":preload("res://scene/modifier/on_hit/rumia/rumia_on_hit.tscn"),
-	"modidier_reima":preload("res://scene/modifier/on_hit/on_hit.tscn"),
-	"modidier_reitama":preload("res://scene/modifier/on_destroy/on_destroy.tscn"),
 
 	"enemy_boss_aq":preload("res://scene/enemys/aq_boss/aq_boss.tscn"),
-	"aq_punch":preload("res://scene/enemys/aq_boss/bullet/random_bullet.tscn"),
+	#"aq_punch":preload("res://scene/enemys/aq_boss/bullet/random_bullet.tscn"),
 	"enemy_zako_bat_blue":preload("res://scene/enemys/bat_blue/bat_blue.tscn"),
 	"enemy_zako_bat_purple":preload("res://scene/enemys/bat_purple/bat_purple.tscn"),
 	"enemy_zako_bug_orange":preload("res://scene/enemys/bug_orange/bug_orange.tscn"),
@@ -111,4 +97,7 @@ func _ready():
 		#preset_map[name] =
 	pass
 func getpre(prename : String):
-	return preset_map[prename]
+	if preset_map.has(prename):
+		return preset_map[prename]
+	print('pre  '+prename+'  not found!')
+	return null

@@ -18,8 +18,9 @@ extends BaseGUIView
 func _ready():
 	hp.max_value = player_var.player_hp_max
 	card_power.max_value = player_var.power_max
-	for cardname in CardManager.card_list.keys():
-		add_card(CardManager.get_active_card_by_name(cardname))
+	SignalBus.add_skill.connect(add_skill)
+	for cardname in player_var.CardManager.card_list.keys():
+		add_card(player_var.CardManager.get_active_card_by_name(cardname))
 
 
 
@@ -53,7 +54,7 @@ func card_display():
 	if(card_container.get_child_count()==0):
 		return
 
-	cardnum_now = CardManager.cardnum_now
+	cardnum_now = player_var.CardManager.cardnum_now
 
 	for child in card_container.get_children():
 		child.set_expand_mode(0)
@@ -72,15 +73,17 @@ func add_card(card_list):
 	newcard.add_to_group(card_list["card_name"])
 	card_container.add_child(newcard)
 
-func add_skill(skill_list):
-	print("adding skill")
-	if skill_list.has("skill_image"):
-		if skill_list.skill_name == "base_range" or  skill_list.skill_name == "base_melee":
+func add_skill(ski_info):
+		var skill_name = ski_info.skill_name
+
+		if skill_name == "ski_basemagic" or skill_name == "ski_basephysics":
 			return
 		var newskill = cp_and_skill_texture.instantiate()
-		newskill.add_to_group(skill_list["skill_name"])
-		newskill.set_texture(PresetManager.getpre(skill_list["skill_image"]))
-		newskill.get_child(0).text = skill_list["cn"]
+		newskill.selfname = skill_name
+		newskill.set_texture(PresetManager.getpre('image_'+skill_name))
+		newskill.get_child(0).text = skill_name
+		SignalBus.del_skill.connect(newskill.destroy)
+		SignalBus.upgrade_skill.connect(newskill.upgrade)
 		skill_container.add_child(newskill)
 
 func add_cp(cp_list):
