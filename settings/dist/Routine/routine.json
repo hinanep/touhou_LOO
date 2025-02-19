@@ -1,120 +1,115 @@
 {
-  "rou_basemagic": {
-	"routine_name": "rou_basemagic",
-	"group_id": "rou_basemagic",
-	"upgrade_group": "none",
+  "rou_basemagic_base": {
+	"id": "rou_basemagic_base",
+	"upgrade_group": "",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_basemagic_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 1,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_basephysics": {
-	"routine_name": "rou_basephysics",
-	"group_id": "rou_basephysics",
-	"upgrade_group": "none",
+  "rou_basephysics_base": {
+	"id": "rou_basephysics_base",
+	"upgrade_group": "",
 	"type": "base",
-	"damage_type": "melee",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_basephysics_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 1,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_reimu": {
-	"routine_name": "rou_reimu",
-	"group_id": "rou_reimu",
+  "rou_reimu_base": {
+	"id": "rou_reimu_base",
 	"upgrade_group": "upg_reimu",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_reimu_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 3,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_sanae": {
-	"routine_name": "rou_sanae",
-	"group_id": "rou_sanae",
+  "rou_sanae_base": {
+	"id": "rou_sanae_base",
 	"upgrade_group": "upg_sanae",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
 	"special_creating_attack": "probability",
 	"special_creating_attack_parameter": [
@@ -130,651 +125,139 @@
 	  "atk_sanae_type2_base",
 	  "atk_sanae_type3_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 1,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_rumia": {
-	"routine_name": "rou_rumia",
-	"group_id": "rou_rumia",
+  "rou_rumia_base": {
+	"id": "rou_rumia_base",
 	"upgrade_group": "upg_rumia",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_rumia_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 3,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_rumia_attachment1": {
-	"routine_name": "rou_rumia_attachment1",
-	"group_id": "rou_rumia_attachment1",
+  "rou_rumia_attachment1_base": {
+	"id": "rou_rumia_attachment1_base",
 	"upgrade_group": "upg_rumia",
 	"type": "ex",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_rumia_attachment1_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 1,
 	"interval": 0.2,
-	"zeropoint": "input",
+	"zero_point": "input",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 0.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_wriggle": {
-	"routine_name": "rou_wriggle",
-	"group_id": "rou_wriggle",
+  "rou_wriggle_base": {
+	"id": "rou_wriggle_base",
 	"upgrade_group": "upg_wriggle",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
+	"effective_condition": "",
+	"locking_type": "",
 	"locking_parameter": [],
-	"special_creating_attack": "none",
+	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
 	  "atk_wriggle_base"
 	],
-	"special_creating_summoned": "none",
+	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
 	"times": 5,
 	"interval": 0.2,
-	"zeropoint": "character",
+	"zero_point": "character",
 	"system_front": "character",
 	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
+	"position_dependence": [
+	  "",
+	  ""
 	],
-	"gen_position": [
+	"position": [
 	  0,
 	  0
 	],
 	"danma_times_efficiency": 1.0,
 	"melee_times_efficiency": 0.0
   },
-  "rou_alice": {
-	"routine_name": "rou_alice",
-	"group_id": "rou_alice",
+  "rou_alice_base": {
+	"id": "rou_alice_base",
 	"upgrade_group": "upg_alice",
 	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "none"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [
-	  "sum_alice_0"
-	],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 3,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 1.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_alice_attachment1": {
-	"routine_name": "rou_alice_attachment1",
-	"group_id": "rou_alice_attachment1",
-	"upgrade_group": "upg_alice",
-	"type": "ex",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_alice_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_sekibanki": {
-	"routine_name": "rou_sekibanki",
-	"group_id": "rou_sekibanki",
-	"upgrade_group": "upg_sekibanki",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_sekibanki_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 5,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 1.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_misumaru": {
-	"routine_name": "rou_misumaru",
-	"group_id": "rou_misumaru",
-	"upgrade_group": "upg_misumaru",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_misumaru_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 3,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 1.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_misumaru_attachment1": {
-	"routine_name": "rou_misumaru_attachment1",
-	"group_id": "rou_misumaru_attachment1",
-	"upgrade_group": "none",
-	"type": "ex",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_rou_misumaru_attachment1_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_sakuya": {
-	"routine_name": "rou_sakuya",
-	"group_id": "rou_sakuya",
-	"upgrade_group": "upg_sakuya",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_sakuya_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "multi",
-	"once_creating_parameter": [
-	  3.0
-	],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 1.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_sakuya_attachment1": {
-	"routine_name": "rou_sakuya_attachment1",
-	"group_id": "rou_sakuya_attachment1",
-	"upgrade_group": "upg_sakuya",
-	"type": "ex",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_sakuya_attachment1_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_marisa": {
-	"routine_name": "rou_marisa",
-	"group_id": "rou_marisa",
-	"upgrade_group": "upg_marisa",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_marisa_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_youmu": {
-	"routine_name": "rou_youmu",
-	"group_id": "rou_youmu",
-	"upgrade_group": "upg_youmu",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_youmu_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_reimu_marisa1": {
-	"routine_name": "rou_reimu_marisa1",
-	"group_id": "rou_reimu_marisa1",
-	"upgrade_group": "none",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_reimu_marisa1_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_reimu_marisa2": {
-	"routine_name": "rou_reimu_marisa2",
-	"group_id": "rou_reimu_marisa2",
-	"upgrade_group": "none",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_reimu_marisa2_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "character",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_marisa_alice": {
-	"routine_name": "rou_marisa_alice",
-	"group_id": "rou_marisa_alice",
-	"upgrade_group": "none",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_marisa_alice_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_alice_ptchouli1": {
-	"routine_name": "rou_alice_ptchouli1",
-	"group_id": "rou_alice_ptchouli1",
-	"upgrade_group": "none",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_alice_patchouli1_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "rou_alice_ptchouli2": {
-	"routine_name": "rou_alice_ptchouli2",
-	"group_id": "rou_alice_ptchouli2",
-	"upgrade_group": "none",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_alice_patchouli2_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 1,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "character",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 0.0,
-	"melee_times_efficiency": 0.0
-  },
-  "": {
-	"routine_name": "",
-	"group_id": "",
-	"upgrade_group": "",
-	"type": "",
-	"damage_type": "",
-	"effective_group": "",
+	"effective_condition": "",
 	"locking_type": "",
 	"locking_parameter": [],
 	"special_creating_attack": "",
@@ -782,18 +265,483 @@
 	"creating_attack": [],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
+	"creating_summoned": [
+	  "sum_alice_0"
+	],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 3,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 1.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_alice_attachment1_base": {
+	"id": "rou_alice_attachment1_base",
+	"upgrade_group": "upg_alice",
+	"type": "ex",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_alice_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
 	"creating_summoned": [],
 	"special_creating": "",
-	"once_creating_type": "",
-	"once_creating_parameter": [],
-	"times_depend": "",
-	"times": 0,
-	"interval": 0.0,
-	"zeropoint": "",
-	"system_front": "",
-	"system_type": "",
-	"position_depend": [],
-	"gen_position": [],
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_sekibanki_base": {
+	"id": "rou_sekibanki_base",
+	"upgrade_group": "upg_sekibanki",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_sekibanki_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 5,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 1.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_misumaru_base": {
+	"id": "rou_misumaru_base",
+	"upgrade_group": "upg_misumaru",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_misumaru_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 3,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 1.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_misumaru_attachment1_base": {
+	"id": "rou_misumaru_attachment1_base",
+	"upgrade_group": "",
+	"type": "ex",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_rou_misumaru_attachment1_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_sakuya_base": {
+	"id": "rou_sakuya_base",
+	"upgrade_group": "upg_sakuya",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_sakuya_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "multi_together",
+	"one_creating_parameter": [
+	  3.0
+	],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 1.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_sakuya_attachment1_base": {
+	"id": "rou_sakuya_attachment1_base",
+	"upgrade_group": "upg_sakuya",
+	"type": "ex",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_sakuya_attachment1_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_marisa_base": {
+	"id": "rou_marisa_base",
+	"upgrade_group": "upg_marisa",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_marisa_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_youmu_base": {
+	"id": "rou_youmu_base",
+	"upgrade_group": "upg_youmu",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_youmu_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_reimu_marisa1_base": {
+	"id": "rou_reimu_marisa1_base",
+	"upgrade_group": "",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_reimu_marisa1_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_reimu_marisa2_base": {
+	"id": "rou_reimu_marisa2_base",
+	"upgrade_group": "",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_reimu_marisa2_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "character",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_marisa_alice_base": {
+	"id": "rou_marisa_alice_base",
+	"upgrade_group": "",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_marisa_alice_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_alice_ptchouli1_base": {
+	"id": "rou_alice_ptchouli1_base",
+	"upgrade_group": "",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_alice_patchouli1_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
+	"danma_times_efficiency": 0.0,
+	"melee_times_efficiency": 0.0
+  },
+  "rou_alice_ptchouli2_base": {
+	"id": "rou_alice_ptchouli2_base",
+	"upgrade_group": "",
+	"type": "base",
+	"effective_condition": "",
+	"locking_type": "",
+	"locking_parameter": [],
+	"special_creating_attack": "",
+	"special_creating_attack_parameter": [],
+	"creating_attack": [
+	  "atk_alice_patchouli2_base"
+	],
+	"special_creating_summoned": "",
+	"special_creating_summoned_parameter": [],
+	"creating_summoned": [],
+	"special_creating": "",
+	"one_creating_type": "single",
+	"one_creating_parameter": [],
+	"times_dependence": "",
+	"times": 1,
+	"interval": 0.2,
+	"zero_point": "input",
+	"system_front": "character",
+	"system_type": "rectangular",
+	"position_dependence": [
+	  "",
+	  ""
+	],
+	"position": [
+	  0,
+	  0
+	],
 	"danma_times_efficiency": 0.0,
 	"melee_times_efficiency": 0.0
   }

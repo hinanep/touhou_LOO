@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5wosd6tpxr6w"]
 
-[ext_resource type="Texture2D" uid="uid://d10hvbd5ft6im" path="res://asset/pic/crystal/灵梦.png" id="1_1m74h"]
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_fs4gk"]
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="1_qg3hj"]
 [ext_resource type="Script" path="res://scene/ui/TestScene/buttons/test_skillbutton.gd" id="2_dt0ei"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
@@ -42,7 +42,7 @@ size_flags_vertical = 4
 tooltip_text = "tooltip["
 focus_mode = 1
 shortcut = SubResource("Shortcut_siojg")
-texture_normal = ExtResource("1_1m74h")
+texture_normal = ExtResource("1_qg3hj")
 stretch_mode = 0
 script = ExtResource("2_dt0ei")
 

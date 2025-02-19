@@ -13,9 +13,9 @@ func _ready():
 			var card_button = card_button_pre.instantiate()
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
-			var cd = player_var.CardManager.get_upable_card_by_name(c)
-			card_button.set_upgrade_text(cd["cn"]+" Lv."+String.num(cd["level"]+1))
-			card_button.set_describe_text(cd["describe_text"][cd["level"]])
+			var cd = player_var.CardManager.get_card_by_name(c)
+			card_button.set_upgrade_text(cd.id+" Lv."+String.num(player_var.CardManager.get_card_level(cd)+1))
+			#card_button.set_describe_text(cd["describe_text"][cd["level"]])
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 
 	for w in cards_skills_selected["skills"]:
@@ -64,7 +64,8 @@ func on_button_selected(upgrade):
 			SignalBus.try_add_skill.emit(upgrade)
 
 		if(cards_skills_selected["cards"].has(upgrade)):
-			player_var.CardManager.add_card(upgrade)
+			SignalBus.try_add_card.emit(upgrade)
+
 		if(cards_skills_selected["passives"].has(upgrade)):
 			PassiveManager.add_buff(upgrade,false)
 

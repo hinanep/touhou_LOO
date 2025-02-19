@@ -19,15 +19,28 @@ func _input(event):
 		else:
 			Engine.time_scale = 1.0
 func _open():
-	GameManager.upping = false
+	player_var.new_scene()
+	player_var.SkillManager = SkillManagers.new()
+	player_var.CardManager = CardManagers.new()
+	GameManager.is_uping = false
 	var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 	dummm.position.x += 100
-	SpawnManager.add_mob(dummm)
+	player_var.SpawnManager = $SpawnManager
+	$SpawnManager.add_mob(dummm)
+	var bs = preload("res://scene/enemys/slime_blue/slime_blue.tscn")
+	#for i in range(50):
+		#await get_tree().create_timer(0.1).timeout
+		#SpawnManager.add_mob(bs.instantiate())
+		#SpawnManager.add_mob(bs.instantiate())
+		#SpawnManager.add_mob(bs.instantiate())
+		#SpawnManager.add_mob(bs.instantiate())
+		#SpawnManager.add_mob(bs.instantiate())
+
 	pass
 
 
 func _close():
-	SpawnManager.clear()
+
 	AudioManager.stop_background_bgm()
 
 	pass

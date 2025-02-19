@@ -10,7 +10,11 @@ static func loader(path:String):
 	file.close()
 	return data
 
-var attack_skill = loader('res://settings/dist/Attack/attack_skill.json')
-var routine = loader('res://settings/dist/Routine/routine.json')
-var skill = loader('res://settings/dist/Skill/skill.json')
-var Sheet1 = loader('res://settings/dist/TID/Sheet1.json')
+var Attack = loader('res://settings/dist/Attack/Attack.json')
+var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
+var Passive = loader('res://settings/dist/Passive/Passive.json')
+var Routine = loader('res://settings/dist/Routine/Routine.json')
+var Skill = loader('res://settings/dist/Skill/Skill.json')
+var SpellCard = loader('res://settings/dist/SpellCard/SpellCard.json')
+var Stage1 = loader('res://settings/dist/StageProcess/Stage1.json')
+var StageProcess = loader('res://settings/dist/StageProcess/StageProcess.json')

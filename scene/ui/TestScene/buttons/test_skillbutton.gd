@@ -6,7 +6,8 @@ signal selected
 #func set_describe_text(describe):
 	#$describe.text = "[color=white]"+describe
 func set_texture(image):
-	set_texture_normal(PresetManager.getpre(image))
+	if image!=null:
+		set_texture_normal(PresetManager.getpre(image))
 
 func _on_button_up():
 	emit_signal("selected")
