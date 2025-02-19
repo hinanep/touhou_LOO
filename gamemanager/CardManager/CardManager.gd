@@ -1,207 +1,133 @@
-extends Node
+extends Object
 class_name CardManagers
-var cardnum_now
+
 var cardnum_have
-var cardnum_max
-var card_maxlevel
+
+
 var card_list = {
 
 }
-	#card_name:level
-var c
+
+var card_num_max = 5
+
 var card_pool = {
-	"unlocked":{
-		#card_name:{"level":,"power?":, ...}
-	},
-	"choosed":{},
-	"max":{},
-	"banned":{}
+	locked = {},
+	unlocked = {},
+	choosed = {},
+	max = {},
+	banned = {}
 }
 
 
 func _init():
-	cardnum_now = 0
+
 	cardnum_have = 0
-	cardnum_max = 3
-	card_maxlevel = 2
-	card_pool["unlocked"]["marisa"] = {
-		"card_name":"marisa",
-		"level":0,
-		"power_cost":2000,
-		"path":"card_masterspark",
-		"pre":null,
-		"weight":1,
-		"card_image":"image_card_marisa",
-		"node":null,
-		"cn":"魔理沙",
-		"describe_text":["强大的魔炮，强大的卡牌伴随着代价","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升","属性上升"]
-	}
-	card_pool["unlocked"]["fairy"] = {
-		"card_name":"fairy",
-		"level": card_maxlevel-1,
-		"power_cost":500,
-		"path":"card_fairy",
-		"pre":null,
-		"weight":0,
-		"card_image":"image_card_fairy",
-		"node":null,
-		"cn":"大妖精"
-	}
+	SignalBus.try_add_card.connect(on_try_add_card)
+	SignalBus.add_card.connect(on_add_card)
+	SignalBus.del_card.connect(on_del_card)
+	SignalBus.upgrade_max.connect(on_upgrade_card_max)
+	SignalBus.ban_card.connect(on_ban_card)
+	SignalBus.upgrade_card.connect(on_upgrade_card)
 
-func _input(event):
-	if cardnum_have:
-		if event.is_action_pressed("use_card"):
-			SignalBus.use_card.emit()
-			use_card()
-		if event.is_action_pressed("card_next"):
-			cardnum_now += 1
-			cardnum_now %= cardnum_have
-		if event.is_action_pressed("card_before"):
-			cardnum_now -= 1
-			cardnum_now %= cardnum_have
+	card_pool.unlocked = table.SpellCard.duplicate()
+	for cards in card_pool.unlocked:
+		card_pool.unlocked[cards]['weight'] = 1
 
-func use_card():
-	if cardnum_have<=0:
+func on_try_add_card(id):
+	if(card_pool.choosed.has(id)):
+		SignalBus.upgrade_card.emit(id)
 		return
-	var cardname = card_list.keys()[cardnum_now]
-	print(cardname)#name
-
-	if(card_pool["choosed"].has(cardname)):
-		c = card_pool["choosed"][cardname]
-	else:
-		c = card_pool["max"][cardname]
-
-	if(player_var.power<c["power_cost"]):
-		AudioManager.play_sfx("music_sfx_error")
+	if(card_pool.max.has(id)):
 		return
-	player_var.power -= c["power_cost"]
-	c["node"].active()
+	if(card_pool.locked.has(id)):
+		on_unlock_card(id)
+	SignalBus.add_card.emit(card_pool.unlocked[id])
 
-
-func _ready():
-	pass
-func on_try_add_card(card_name):
-	if(card_pool["choosed"].has(card_name)):
-		upgrade_card(card_name)
-		return
-	if(card_pool["max"].has(card_name)):
-		return
-func on_add_card(ski_info):
-	pass
-func on_del_card(card_name):
-	pass
-
-func on_upgrade_card(card_name):
-	pass
-func on_upgrade_card_max(card_name):
-	pass
-
-func on_ban_card(card_name):
-	pass
-
-func on_unlock_card(card_name):
-	pass
-func add_card(cardname):
-	if(card_pool["choosed"].has(cardname)):
-		upgrade_card(cardname)
-		return
-	if(card_pool["max"].has(cardname)):
-		return
-	CpManager.raise_weight_to_cp(cardname)
-
-	var cardpath = card_pool["unlocked"][cardname]["path"]
-	#get_tree().call_group("hud","add_card",card_pool["unlocked"][cardname])
+func on_add_card(card_info):
+	var id = card_info.id
+	player_var.damage_sum[id] = 0
 	cardnum_have += 1
-	if cardnum_have >= cardnum_max:
-		player_var.card_num_full = true
+	if cardnum_have >= card_num_max:
+		player_var.cardnum_full = true
 	player_var.card_full = false
-	player_var.damage_sum[cardname] = 0
-	card_list[cardname] = 0
-	card_pool["choosed"][cardname]=card_pool["unlocked"][cardname]
-	card_pool["unlocked"].erase(cardname)
 
-	card_pool["choosed"][cardname]["pre"] = PresetManager.getpre(cardpath)
-	var node = card_pool["choosed"][cardname]["pre"].instantiate()
-	node.add_to_group(card_pool["choosed"][cardname]["card_name"])
-	node.card_init(card_pool["choosed"][cardname])
-	player_var.player_node.get_node("CardManager").add_child(node)
-	node.position = Vector2(0,0)
+	card_pool.choosed[id]=card_pool.unlocked[id]
+	card_pool.unlocked.erase(id)
+	card_list[id] = 0
+	if id == "sc_daiyousei_base" :
+		card_pool.max[id] = card_pool.choosed[id]
+		card_pool.choosed.erase(id)
+		return
+	SignalBus.upgrade_card.emit(id)
+	print('add_card')
 
-	card_pool["choosed"][cardname]["node"] = node
-	upgrade_card(cardname)
-
-func upgrade_card(cardname):
-	#get_tree().call_group(cardname,"upgrade_card")
-	card_list[cardname] += 1
-	card_pool["choosed"][cardname]["level"] += 1
-	if(card_pool["choosed"][cardname]["level"]>= card_maxlevel):
-		card_pool["max"][cardname] = card_pool["choosed"][cardname]
-		card_pool["choosed"].erase(cardname)
-		CpManager.add_to_maxlist(cardname)
-		if is_card_allmaxlevel():
-			player_var.card_full = true
+func on_del_card(id):
+	if(card_pool.choosed.has(id)):
+		card_pool.unlocked[id]=card_pool.choosed[id]
+		card_pool.choosed.erase(id)
 
 
-func is_card_allmaxlevel():
-	if player_var.card_num_full:
-		for cardname in card_list:
-			if(card_list[cardname]!=card_maxlevel):
-				return false
-		return true
-	pass
+	elif(card_pool.max.has(id)):
+		card_pool.unlocked[id]=card_pool.max[id]
+		card_pool.max.erase(id)
+	else:
+		return
 
-func get_active_card_by_name(cardname):
-	if(card_pool["choosed"].has(cardname)):
-		return card_pool["choosed"][cardname]
-	if(card_pool["max"].has(cardname)):
-		return card_pool["max"][cardname]
-	return null
-
-func get_upable_card_by_name(cardname):
-	if(card_pool["choosed"].has(cardname)):
-		return card_pool["choosed"][cardname]
-	if(card_pool["unlocked"].has(cardname)):
-		return card_pool["unlocked"][cardname]
-	return null
-
-func del_card(cardname):
-	if(card_pool["choosed"].has(cardname)):
-		card_pool["unlocked"][cardname]=card_pool["choosed"][cardname]
-		card_pool["choosed"].erase(cardname)
-	if(card_pool["max"].has(cardname)):
-		card_pool["unlocked"][cardname]=card_pool["max"][cardname]
-		card_pool["max"].erase(cardname)
-	CpManager.del_to_maxlist(cardname)
-	card_pool["unlocked"][cardname]["level"] = 0
 	cardnum_have -= 1
+
 	player_var.card_num_full = false
 	player_var.card_full = false
-	card_list.erase(cardname)
-	#get_tree().call_group(cardname,"queue_free")
 
-func ban_card(cardname):
-	if(card_pool["unlocked"].has(cardname)):
-		card_pool["banned"][cardname]=card_pool["unlocked"][cardname]
-		card_pool["unlocked"].erase(cardname)
-	elif(card_pool["choosed"].has(cardname)):
-		card_pool["banned"][cardname]=card_pool["choosed"][cardname]
-		del_card(cardname)
-		card_pool["unlocked"].erase(cardname)
+func on_upgrade_card(id):
+	if not card_list.has(id):
+		return
+	card_list[id] += 1
+
+func on_upgrade_card_max(id):
+
+	card_pool.max[id] = card_pool.choosed[id]
+	card_pool.choosed.erase(id)
+
+	if player_var.card_num_full and card_pool.choosed.is_empty():
+		player_var.card_full = true
+
+
+
+
+func on_ban_card(id):
+	if(card_pool.unlocked.has(id)):
+		card_pool.banned[id]=card_pool.unlocked[id]
+		card_pool.unlocked.erase(id)
+
+	elif(card_pool.choosed.has(id)):
+		card_pool.banned[id]=card_pool.choosed[id]
+		card_pool.unlocked.erase(id)
+		SignalBus.del_card.emit(id)
+
 	else:
 		return false
-func clear_all():
-	print("card_clear")
 
-	card_list = {
+func on_unlock_card(id):
+	pass
 
-}
-	#card_name:level
+func get_card_by_name(id):
+	if(card_pool.choosed.has(id)):
+		return card_pool.choosed[id]
+	if(card_pool.unlocked.has(id)):
+		return card_pool.unlocked[id]
+	if(card_pool.max.has(id)):
+		return card_pool.max[id]
+	return null
 
-	card_pool = {
-	"unlocked":{
-		#card_name:{"level":,"power?":, ...}
-	},
-	"choosed":{},
-	"max":{}
-}
-	_init()
+func get_card_level(id):
+	if card_list.has(id):
+		return card_list[id]
+	else:
+		return 0
+func destroy():
+	SignalBus.try_add_card.disconnect(on_try_add_card)
+	SignalBus.add_card.disconnect(on_add_card)
+	SignalBus.del_card.disconnect(on_del_card)
+	SignalBus.upgrade_max.disconnect(on_upgrade_card_max)
+	SignalBus.ban_card.disconnect(on_ban_card)
+	SignalBus.upgrade_card.disconnect(on_upgrade_card)

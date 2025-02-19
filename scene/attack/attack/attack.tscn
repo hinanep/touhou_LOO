@@ -31,7 +31,6 @@ rect = Rect2(-1, -1, 2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
-scale = Vector2(0.9, 0.9)
 shape = ExtResource("2_43jrx")
 
 [connection signal="body_entered" from="bullet_erase_area" to="." method="_on_bullet_erase_area_body_entered"]

@@ -2,10 +2,10 @@ extends Node
 
 func _ready():
 	seed("Hello world".hash())
-	print(random_nselect_from_allpool(3))
-	print(random_nselect_from_allpool(3))
-
-	print(random_nselect_from_allpool(3))
+	#print(random_nselect_from_allpool(3))
+	#print(random_nselect_from_allpool(3))
+#
+	#print(random_nselect_from_allpool(3))
 	pass
 
 func random_nselect_from_allpool(n:int):

@@ -7,7 +7,7 @@ func _ready():
 
 func _on_body_entered(_body):
 	game_manager.add_exp(experience)
-	
+
 	for i in range(3):
 		if CpManager.random_choose_cp():
 			continue
@@ -19,7 +19,7 @@ func _on_body_entered(_body):
 		#red
 		1:
 			get_tree().call_group("crystal","fly_to_player",2,1,1)
-			G.get_gui_view_manager().open_view("LevelUp")
+			game_manager.add_exp(player_var.exp_need[player_var.level])
 		#green
 		2:
 			get_tree().call_group("crystal","fly_to_player",1,2,1)

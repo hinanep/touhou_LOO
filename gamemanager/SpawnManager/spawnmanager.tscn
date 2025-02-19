@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="1_jskvr"]
 
-[node name="Spawnmanager" type="Node2D"]
+[node name="SpawnManager" type="Node2D"]
 script = ExtResource("1_jskvr")

@@ -33,11 +33,11 @@ var move_compo : MoveComponent
 
 func _ready():
 
-	if attack_info.upgrade_group != 'none':
+	if attack_info.has('upgrade_group'):
 		add_to_group(attack_info.upgrade_group)
-	if attack_info.effective_condition != 'none':
+	if attack_info.has('effective_condition'):
 		add_to_group(attack_info.effective_condition)
-	add_to_group(attack_info.attack_name)
+	add_to_group(attack_info.id)
 
 	rotation_degrees = attack_info.ri
 	$duration_timer.wait_time = attack_info.duration
@@ -45,11 +45,12 @@ func _ready():
 	$bullet_erase_area.set_monitoring(attack_info.bullet_eraseing)
 	$damage_area.connect("body_entered",_on_damage_area_body_entered)
 	$duration_timer.connect("timeout",destroy.bind('timeout'))
-	if attack_info.reflection.has('enemy'):
-		$".".collision_mask += 1
-	if attack_info.reflection.has('wall'):
-		$".".collision_mask += 2
-	damage_source = get_parent().damage_source
+	if attack_info.has('reflection'):
+		if attack_info.reflection.has('enemy'):
+			$".".collision_mask += 1
+		if attack_info.reflection.has('wall'):
+			$".".collision_mask += 2
+
 
 	set_shape(attack_info.shape)
 	set_scale(Vector2(1,1) * player_var.range_add_ratio/2)
@@ -60,8 +61,9 @@ func _ready():
 			top_level = true
 		else:
 			global_position = position
+	if attack_info.has('locking_type'):
+		lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
 
-	lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
 	move_compo = MoveComponent.new($".",attack_info,lock_compo,diretion_routine)
 
 	set_active(node_active)
@@ -82,6 +84,7 @@ func set_shape(cshape):
 			$VisibleOnScreenNotifier2D.scale = Vector2(1,1)* attack_info.size[0]
 			$damage_area/CollisionShape2D.position = Vector2(0,0)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0)
+			$CollisionShape2D.position = Vector2(0,0)
 		'rectangle_center':
 
 			cshape = RectangleShape2D.new()
@@ -93,7 +96,7 @@ func set_shape(cshape):
 			$VisibleOnScreenNotifier2D.rect = Rect2(-Vector2(attack_info.size[0]/2,attack_info.size[1]),cshape.size)
 			$damage_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0-attack_info.size[1]/2)
-
+			$CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 	$damage_area/CollisionShape2D.shape = cshape
 	$bullet_erase_area/CollisionShape2D.shape = cshape
 	$CollisionShape2D.shape = cshape
@@ -149,8 +152,10 @@ func set_upgrade(nlevel:int):
 
 #击中时触发器
 func _on_hit():
-	for hit_gen in attack_info.hitting_routine_creation:
-		get_tree().call_group(hit_gen,'attacks',true,global_position,rotation)
+	if attack_info.has('hitting_routine_creation'):
+		for hit_gen in attack_info.hitting_routine_creation:
+			print(hit_gen)
+			get_tree().call_group(hit_gen,'attacks',true,global_position,rotation)
 
 
 
@@ -170,8 +175,9 @@ func _on_damage_area_body_entered(body):
 #摧毁本攻击
 func destroy(message:String):
 	#print(message)
-	for destroy_gen in attack_info.destroying_routine_creation:
-		get_tree().call_group(destroy_gen,'attacks',true,global_position,rotation)
+	if attack_info.has('destroying_routine_creation'):
+		for destroy_gen in attack_info.destroying_routine_creation:
+			get_tree().call_group(destroy_gen,'attacks',true,global_position,rotation)
 
 	queue_free()
 
@@ -184,9 +190,7 @@ func cp_active():
 
 #施加debuff
 func give_debuff(body):
-	if attack_info.debuff.is_empty():
-		return
-	else:
+	if attack_info.has('debuff'):
 		for i in attack_info.debuff.size():
 			body.set_debuff(attack_info.debuff[i])
 
@@ -194,11 +198,13 @@ func give_debuff(body):
 #消弹
 func _on_bullet_erase_area_body_entered(body):
 	body.queue_free()
-	drop_item(attack_info.eraseing_item_creation,attack_info.eraseing_item_creation_value,body.global_position)
+	if attack_info.has('eraseing_item_creation'):
+		drop_item(attack_info.eraseing_item_creation,attack_info.eraseing_item_creation_value,body.global_position)
 
 #击杀时触发器
 func on_kill(target_position):
-	if attack_info.defeating_item_creation:
+
+	if attack_info.has('defeating_item_creation'):
 		drop_item(attack_info.defeating_item_creation,attack_info.defeating_item_creation_value,global_position)
 
 #掉落

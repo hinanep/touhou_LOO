@@ -1,5 +1,5 @@
 extends Node
-@export var sasa : PackedScene
+
 var preset_map = {
 
 
@@ -63,21 +63,24 @@ var preset_map = {
 	"ui_cp_and_skill_texture":preload("res://scene/ui/Hud/cp_and_skill_texture.tscn"),
 	"ui_test_skillbutton":preload("res://scene/ui/TestScene/buttons/test_skillbutton.tscn"),
 
-	"image_card_fairy":preload("res://asset/pic/crystal/大妖精.png"),
-	"image_ski_basemagic":preload("res://asset/pic/crystal/大妖精.png"),
-	"image_ski_basephysics":preload("res://asset/pic/crystal/大妖精.png"),
-	"image_card_marisa":preload("res://asset/pic/crystal/魔理沙.png"),
-	"image_ski_reimu":preload("res://asset/pic/crystal/灵梦.png"),
-	"image_ski_alice":preload("res://asset/pic/crystal/爱丽丝.png"),
-	"image_ski_sekibanki":preload("res://asset/pic/crystal/赤蛮奇.png"),
-	"image_ski_wriggle":preload("res://asset/pic/crystal/莉格露.png"),
-	"image_ski_rumia":preload("res://asset/pic/crystal/露米娅.png"),
-	"image_ski_sanae":preload("res://asset/pic/crystal/早苗.png"),
-	"image_ski_sakuya":preload("res://asset/pic/crystal/早苗.png"),
-	"image_ski_misumaru":preload("res://asset/pic/crystal/魅须丸.png"),
-	"image_passive_pachuli":preload("res://asset/pic/crystal/帕秋莉.png"),
-	"image_cp_reima":preload("res://asset/pic/crystal/灵梦×魔理沙.png"),
-	"image_cp_reitama":preload("res://asset/pic/crystal/灵丸.png"),
+	"img_sc_marisa_base":preload("res://asset/pic/crystal/魔理沙.png"),
+	"img_sc_youmu_base":preload("res://asset/pic/crystal/魔理沙.png"),
+	"img_sc_daiyousei_base":preload("res://asset/pic/crystal/大妖精.png"),
+
+	"img_ski_basemagic_base":preload("res://asset/pic/crystal/大妖精.png"),
+	"img_ski_basephysics_base":preload("res://asset/pic/crystal/大妖精.png"),
+	"img_ski_reimu_base":preload("res://asset/pic/crystal/灵梦.png"),
+	"img_ski_alice_base":preload("res://asset/pic/crystal/爱丽丝.png"),
+	"img_ski_sekibanki_base":preload("res://asset/pic/crystal/赤蛮奇.png"),
+	"img_ski_wriggle_base":preload("res://asset/pic/crystal/莉格露.png"),
+	"img_ski_rumia_base":preload("res://asset/pic/crystal/露米娅.png"),
+	"img_ski_sanae_base":preload("res://asset/pic/crystal/早苗.png"),
+	"img_ski_sakuya_base":preload("res://asset/pic/crystal/早苗.png"),
+	"img_ski_misumaru_base":preload("res://asset/pic/crystal/魅须丸.png"),
+
+	"img_passive_pachuli":preload("res://asset/pic/crystal/帕秋莉.png"),
+	"img_cp_reima":preload("res://asset/pic/crystal/灵梦×魔理沙.png"),
+	"img_cp_reitama":preload("res://asset/pic/crystal/灵丸.png"),
 	'img_atk_basemagic_base':preload("res://asset/pic/bullet/子弹.png"),
 	'img_atk_reimu_base':preload("res://asset/pic/bullet/符札弹.png"),
 	'img_atk_sanae_type1_base':preload("res://asset/pic/bullet/小风.png"),

@@ -4,7 +4,7 @@ func _ready():
 	mana_cost = 44
 	duration_time = 1
 
-	card_name = "fairy"
+	id = "fairy"
 
 	super._ready()
 func _process(_delta):

@@ -8,9 +8,9 @@ var duration_time = 6
 var invincible_time = 6
 var locking_type = 0
 var locking_target = null
-var card_name = ""
+var id = ""
 func _ready():
-	add_to_group(card_name)
+	add_to_group(id)
 
 
 func active():
@@ -27,7 +27,7 @@ func card_init(card_dic):
 	print("card init")
 
 func upgrade_card():
-	#player_var.CardManager.card_pool["choosed"][card_name]["power_cost"] -= 4
+	#player_var.CardManager.card_pool["choosed"][id]["power_cost"] -= 4
 	pass
 func _on_invincible_time_timeout():
 	player_var.is_invincible = false

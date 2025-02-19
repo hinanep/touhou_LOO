@@ -1,11 +1,11 @@
-extends RefCounted
+extends Object
 class_name SkillManagers
 var skill_num_have = 0
 var skill_num_full = false
 var skill_full = false
 
 var skill_info = {
-	skill_name = '',
+	id = '',
 	upgrade_group = '',
 	skills = [],
 	cd = 1.0,
@@ -13,7 +13,7 @@ var skill_info = {
 
 }
 var skill_pool = {
-	#skill_name : skill_info
+	#id : skill_info
 	locked = {},
 	unlocked = {},
 	choosed = {},
@@ -21,7 +21,7 @@ var skill_pool = {
 	banned = {}
 }
 
-#skill_name:node
+#id:node
 var skill_list = {}
 
 func _init() -> void:
@@ -32,46 +32,46 @@ func _init() -> void:
 	SignalBus.ban_skill.connect(on_ban_skill)
 	SignalBus.upgrade_skill.connect(on_upgrade_skill)
 
-	skill_pool.unlocked = table.skill.duplicate()
+	skill_pool.unlocked = table.Skill.duplicate()
 	for skills in skill_pool.unlocked:
 		skill_pool.unlocked[skills]['weight'] = 1
 
-func on_try_add_skill(skill_name):
-	if(skill_pool.choosed.has(skill_name)):
-		SignalBus.upgrade_skill.emit(skill_name)
+func on_try_add_skill(id):
+	if(skill_pool.choosed.has(id)):
+		SignalBus.upgrade_skill.emit(id)
 		return
-	if(skill_pool.max.has(skill_name)):
+	if(skill_pool.max.has(id)):
 		return
-	if(skill_pool.locked.has(skill_name)):
-		on_unlock_skill(skill_name)
-	SignalBus.add_skill.emit(skill_pool.unlocked[skill_name])
+	if(skill_pool.locked.has(id)):
+		on_unlock_skill(id)
+	SignalBus.add_skill.emit(skill_pool.unlocked[id])
 
 func on_add_skill(ski_info):
-	var skill_name = ski_info.skill_name
-	player_var.damage_sum[skill_name] = 0
+	var id = ski_info.id
+	player_var.damage_sum[id] = 0
 	skill_num_have += 1
 	if skill_num_have >= player_var.skill_num_max:
 		skill_num_full = true
 	skill_full = false
 
-	skill_pool.choosed[skill_name]=skill_pool.unlocked[skill_name]
-	skill_pool.unlocked.erase(skill_name)
-	skill_list[skill_name] = 0
-	if skill_name == "ski_basemagic" or skill_name == "ski_basephysics":
-		skill_pool.max[skill_name] = skill_pool.choosed[skill_name]
-		skill_pool.choosed.erase(skill_name)
+	skill_pool.choosed[id]=skill_pool.unlocked[id]
+	skill_pool.unlocked.erase(id)
+	skill_list[id] = 0
+	if id == "ski_basemagic_base" or id == "ski_basephysics_base":
+		skill_pool.max[id] = skill_pool.choosed[id]
+		skill_pool.choosed.erase(id)
 	else:
-		SignalBus.upgrade_skill.emit(skill_name)
+		SignalBus.upgrade_skill.emit(id)
 
-func on_del_skill(skill_name):
-	if(skill_pool.choosed.has(skill_name)):
-		skill_pool.unlocked[skill_name]=skill_pool.choosed[skill_name]
-		skill_pool.choosed.erase(skill_name)
+func on_del_skill(id):
+	if(skill_pool.choosed.has(id)):
+		skill_pool.unlocked[id]=skill_pool.choosed[id]
+		skill_pool.choosed.erase(id)
 
 
-	elif(skill_pool.max.has(skill_name)):
-		skill_pool.unlocked[skill_name]=skill_pool.max[skill_name]
-		skill_pool.max.erase(skill_name)
+	elif(skill_pool.max.has(id)):
+		skill_pool.unlocked[id]=skill_pool.max[id]
+		skill_pool.max.erase(id)
 	else:
 		return
 
@@ -80,13 +80,13 @@ func on_del_skill(skill_name):
 	skill_num_full = false
 	skill_full = false
 
-func on_upgrade_skill(skill_name):
-	skill_list[skill_name] += 1
+func on_upgrade_skill(id):
+	skill_list[id] += 1
 
-func on_upgrade_skill_max(skill_name):
+func on_upgrade_skill_max(id):
 
-	skill_pool.max[skill_name] = skill_pool.choosed[skill_name]
-	skill_pool.choosed.erase(skill_name)
+	skill_pool.max[id] = skill_pool.choosed[id]
+	skill_pool.choosed.erase(id)
 
 	if skill_num_full and skill_pool.choosed.is_empty():
 		skill_full = true
@@ -94,33 +94,40 @@ func on_upgrade_skill_max(skill_name):
 
 
 
-func on_ban_skill(skill_name):
-	if(skill_pool.unlocked.has(skill_name)):
-		skill_pool.banned[skill_name]=skill_pool.unlocked[skill_name]
-		skill_pool.unlocked.erase(skill_name)
+func on_ban_skill(id):
+	if(skill_pool.unlocked.has(id)):
+		skill_pool.banned[id]=skill_pool.unlocked[id]
+		skill_pool.unlocked.erase(id)
 
-	elif(skill_pool.choosed.has(skill_name)):
-		skill_pool.banned[skill_name]=skill_pool.choosed[skill_name]
-		skill_pool.unlocked.erase(skill_name)
-		SignalBus.del_skill.emit(skill_name)
+	elif(skill_pool.choosed.has(id)):
+		skill_pool.banned[id]=skill_pool.choosed[id]
+		skill_pool.unlocked.erase(id)
+		SignalBus.del_skill.emit(id)
 
 	else:
 		return false
 
-func on_unlock_skill(skill_name):
+func on_unlock_skill(id):
 	pass
 
-func get_skill_by_name(skill_name):
-	if(skill_pool.choosed.has(skill_name)):
-		return skill_pool.choosed[skill_name]
-	if(skill_pool.unlocked.has(skill_name)):
-		return skill_pool.unlocked[skill_name]
-	if(skill_pool.max.has(skill_name)):
-		return skill_pool.max[skill_name]
+func get_skill_by_name(id):
+	if(skill_pool.choosed.has(id)):
+		return skill_pool.choosed[id]
+	if(skill_pool.unlocked.has(id)):
+		return skill_pool.unlocked[id]
+	if(skill_pool.max.has(id)):
+		return skill_pool.max[id]
 	return null
 
-func get_skill_level(skill_name):
-	if skill_list.has(skill_name):
-		return skill_list[skill_name]
+func get_skill_level(id):
+	if skill_list.has(id):
+		return skill_list[id]
 	else:
 		return 0
+func destroy():
+	SignalBus.try_add_skill.disconnect(on_try_add_skill)
+	SignalBus.add_skill.disconnect(on_add_skill)
+	SignalBus.del_skill.disconnect(on_del_skill)
+	SignalBus.upgrade_max.disconnect(on_upgrade_skill_max)
+	SignalBus.ban_skill.disconnect(on_ban_skill)
+	SignalBus.upgrade_skill.disconnect(on_upgrade_skill)

@@ -1,52 +1,66 @@
 extends Node2D
 class_name card
 var card_info={
-
+	"id": "sc_daiyousei_base",
+	"type": "base",
+	"routine": [
+	  "rou_marisa_base"
+	],
+	"buff": [],
+	"buff_value_factor": [],
+	"special": "none",
+	"special_parameter": [],
+	"mana": 500.0,
+	"invincible_time": 0.5,
+	"invicible_time_depend": "none"
 }
 
 var damage_source :String= ''
 var level :int= 0
 signal shoot
+var max_level = player_var.card_level_max
 func _ready() -> void:
-	name = card_info.card_name
-	damage_source = card_info.caed_name
-	for rou in card_info.routine:
-		add_routine(rou)
+	name = card_info.id
+	damage_source = card_info.id
+	if card_info.has('routines'):
+		for rou in card_info.routines:
+			add_routine(rou)
 	SignalBus.upgrade_card.connect(upgrade_card)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
 
-func on_try_use_card(card_name):
-	if card_name != card_info.card_name:
-		return
 
 
-func on_use_card(card_name):
-	if card_name != card_info.card_name:
+func on_use_card(id):
+	if id != card_info.id:
 		return
+	if player_var.power<card_info.mana:
+		return
+	print(id)
 	emit_signal("shoot")
-	SignalBus.use_card.emit(card_info.card_name)
+	SignalBus.player_invincible.emit(card_info.invincible_time)
+	SignalBus.true_use_card.emit(card_info.id)
 	#get buff
 
-func add_routine(routine_name):
+func add_routine(id):
 	var routinepre = PresetManager.getpre('routine').instantiate()
 	routinepre.position = Vector2(0,0)
-	routinepre.routine_info = table.routine[routine_name]
+	routinepre.routine_info = table.Routine[id]
 	routinepre.damage_source = damage_source
 	routinepre.set_upgrade(level)
 	add_child(routinepre)
 
 
-func upgrade_card(card_name):
-	if card_info.card_name != card_name:
+func upgrade_card(id):
+	if card_info.id != id:
 		return
 
 	level += 1
-	if(level == player_var.card_level_max):
-		SignalBus.upgrade_max.emit(card_name)
+	if(level == max_level):
+		SignalBus.upgrade_max.emit(id)
 
-func destroy(card_name):
-	if card_info.card_name != card_name:
+func destroy(id):
+	if card_info.id != id:
 		return
 	for child in get_children():
 		if child.has_method('destroy'):

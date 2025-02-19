@@ -3,8 +3,10 @@ class_name LockComponent
 var lock_func:Callable
 var lock_target = null
 var body
+var SpawnManager = player_var.SpawnManager
 func _init(B,locking_type,lock_routine = null):
 	body = B
+
 	match locking_type:
 		'routine':
 			lock_target = lock_routine

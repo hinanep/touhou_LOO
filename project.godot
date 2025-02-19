@@ -23,15 +23,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+table="*res://settings/dist/table.gd"
 SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
-table="*res://settings/dist/settings.gd"
 player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
-CardManager="res://gamemanager/CardManager/CardManager.gd"
 CpManager="*res://gamemanager/CpManager/CpManager.gd"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
-SpawnManager="*res://gamemanager/SpawnManager/spawnmanager.gd"
 GameManager="*res://gamemanager/GameManager/game_manager.tscn"
 PassiveManager="*res://gamemanager/BuffManager/BuffManager.gd"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
@@ -44,7 +42,7 @@ file_logging/enable_file_logging.pc=false
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor]
 
@@ -139,6 +137,11 @@ clockup={
 2d_physics/layer_5="pickup_items"
 2d_physics/layer_6="空气墙"
 2d_physics/layer_7="敌方弹幕"
+
+[navigation]
+
+avoidance/thread_model/avoidance_use_multiple_threads=false
+avoidance/thread_model/avoidance_use_high_priority_threads=false
 
 [physics]
 

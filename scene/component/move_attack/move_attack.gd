@@ -18,7 +18,7 @@ var moving_rule = {
 	polar='polar'
 
 }
-var velocity_system_front = {
+var diretions = {
 			character='character',
 
 			world='world',
@@ -37,7 +37,7 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 		return
 	lock = lock_com
 	diretion = diretion_routine
-	ref = !attack_info.reflection.is_empty()
+	ref = attack_info.has('reflection')
 	match attack_info.moving_rule:
 		moving_rule.straight:
 			move_type = Callable(move_straight)
@@ -83,14 +83,14 @@ func move_straight(delta):
 	if diretion == Vector2(0,0):
 		velocity = attack_info.moving_parameter[0]
 		acc = attack_info.moving_parameter[1]
-		match attack_info.velocity_system_front:
-			velocity_system_front.character:
+		match attack_info.diretion:
+			diretions.character:
 				diretion = Vector2.from_angle(player_var.player_diretion_angle)
 
-			velocity_system_front.world:
+			diretions.world:
 				diretion = Vector2(1,0)
 
-			velocity_system_front.lock:
+			diretions.lock:
 				var t = lock.find_next_target()
 				if t is Vector2:
 					diretion = body.global_position.direction_to(t)
@@ -100,10 +100,10 @@ func move_straight(delta):
 				else:
 					diretion = Vector2.from_angle(player_var.player_diretion_angle)
 
-			velocity_system_front.routine:
+			diretions.routine:
 				pass
 
-			velocity_system_front.random:
+			diretions.random:
 				diretion = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
 
 	velocity = min(attack_info.moving_parameter[2],velocity+acc*delta)

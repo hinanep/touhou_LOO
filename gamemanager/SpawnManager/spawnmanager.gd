@@ -1,11 +1,11 @@
 extends Node
-
+class_name SpawnManagers
 var event_list = {}
 
 var spawner_pre
 
 @onready var spawnmanager_node = $"."
-var mob_map = AStar2D.new()
+var mob_map : AStar2D
 var mob_dic:Dictionary
 var id = 0
 func _physics_process(_delta):
@@ -21,24 +21,25 @@ func draw_astar_map():
 func add_spawn_event(spawner_init):
 	var new_spawner = spawner_pre.instantiate()
 	spawnmanager_node.add_child(new_spawner)
-	new_spawner.spawner_init(spawner_init)
+	new_spawner.spawner_init(spawner_init,spawnmanager_node)
 
 
-func prepare_all_spawn_event(spawnmanager,eventlist):
+func spawnmanager_init(eventlist):
 	spawner_pre = PresetManager.getpre("enemy_spawner")
-	spawnmanager_node = spawnmanager
-	event_list = eventlist
-
+	event_list = table.get(eventlist)
 	for event in event_list:
 		add_spawn_event(event_list[event])
 
 func add_mob(mob_ins):
-	spawnmanager_node.add_child(mob_ins)
+	if mob_dic.size()>300:
+		mob_ins.free()
+		return
 
 	mob_ins.die.connect(del_mob)
 	mob_ins.mob_id = id
 	mob_dic[id] = mob_ins
 	id += 1
+	spawnmanager_node.add_child(mob_ins)
 
 func del_mob(mob_id):
 	mob_dic.erase(mob_id)

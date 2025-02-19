@@ -8,8 +8,8 @@ func _ready():
 	basic_damage = 500
 
 	duration_time = 5
-	card_name = "marisa"
-	print(card_name)
+	id = "marisa"
+	print(id)
 	print(level)
 	super._ready()
 func _process(_delta):

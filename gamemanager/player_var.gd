@@ -28,12 +28,13 @@ var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
 var power_max = 2000#- 符力上限：可存储的最大符力
 var skill_level_max = 8
 var skill_num_max = 5
-var card_level_max = 8
-var card_num_max = 5
+
+
 
 #运行时使用
 var SkillManager :SkillManagers
 var CardManager :CardManagers
+var SpawnManager :SpawnManagers
 var player_hp = player_hp_max
 var power = power_max
 var point:int = 0
@@ -45,7 +46,8 @@ var player_diretion_angle = 0
 
 var card_full = false#没有能升级的符卡并且卡位满了
 var card_num_full = false#卡位满了
-
+var card_level_max = 8
+var card_num_max = 5
 
 
 
@@ -63,6 +65,17 @@ var damage_sum = {
 }
 
 func _ready() -> void:
+	#SkillManager = SkillManagers.new()
+	#CardManager = CardManagers.new()
+	pass
+func new_scene():
+	if SkillManager!=null:
+		SkillManager.destroy()
+		SkillManager.free()
+	if CardManager!=null:
+		CardManager.destroy()
+		CardManager.free()
+
 	SkillManager = SkillManagers.new()
 	CardManager = CardManagers.new()
 #玩家造成伤害公式
