@@ -1,0 +1,13 @@
+{
+  "test1": {
+	"stage_id": "test1",
+	"spawn_type": "once",
+	"start_time": 10,
+	"end_time": 100,
+	"tick_time": 2.0,
+	"enemy_type": "enemy_elite_slime",
+	"amount_parameter": 5,
+	"enemy_attribute_boost": 1.0,
+	"enemy_barrage_boost": []
+  }
+}

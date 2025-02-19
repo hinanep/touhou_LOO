@@ -1,0 +1,24 @@
+{
+  "test1": {
+	"event_id": "test1",
+	"spawn_type": "duration",
+	"start_time": 0,
+	"end_time": 100,
+	"tick_time": 2.0,
+	"enemy_type": "enemy_zako_slime_green",
+	"amount_parameter": 5,
+	"enemy_attribute_boost": 1.0,
+	"enemy_barrage_boost": []
+  },
+  "test2": {
+	"event_id": "test2",
+	"spawn_type": "once",
+	"start_time": 10,
+	"end_time": 100,
+	"tick_time": 2.0,
+	"enemy_type": "enemy_elite_slime",
+	"amount_parameter": 5,
+	"enemy_attribute_boost": 1.0,
+	"enemy_barrage_boost": []
+  }
+}

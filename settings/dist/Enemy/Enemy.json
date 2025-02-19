@@ -1,0 +1,13 @@
+{
+  "enm_kedama": {
+    "Id": "enm_kedama",
+    "Movement": "default",
+    "danma": "",
+    "Barrage_Parameter": [],
+    "Shoot_Interval": 0.0,
+    "Physical_Damage": 10.0,
+    "Magical_Damage": 0.0,
+    "Health": 100.0,
+    "Speed": 50.0
+  }
+}

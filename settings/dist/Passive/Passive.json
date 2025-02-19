@@ -1,0 +1,68 @@
+{
+  "psv_patchouli_base": {
+	"id": "psv_patchouli_base",
+	"upgrade_group": "upg_patchouli",
+	"type": "base",
+	"buff": [
+	  "buff_max_mana_forever"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  },
+  "psv_saki_base": {
+	"id": "psv_saki_base",
+	"upgrade_group": "upg_saki",
+	"type": "base",
+	"buff": [
+	  "buff_bullet_speed_forever"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  },
+  "psv_narumi_base": {
+	"id": "psv_narumi_base",
+	"upgrade_group": "upg_narumi",
+	"type": "base",
+	"buff": [
+	  "buff_live_disposable"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  },
+  "psv_junko_base": {
+	"id": "psv_junko_base",
+	"upgrade_group": "upg_junko",
+	"type": "base",
+	"buff": [
+	  "buff_pyhsical_times_forever"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  },
+  "psv_kisumi_base": {
+	"id": "psv_kisumi_base",
+	"upgrade_group": "upg_kisumi",
+	"type": "base",
+	"buff": [
+	  "buff_pyhsical_defense_forever"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  },
+  "psv_momoyo_base": {
+	"id": "psv_momoyo_base",
+	"upgrade_group": "upg_momoyo",
+	"type": "base",
+	"buff": [
+	  "buff_magical_addition_forever"
+	],
+	"buff_value_factor": [
+	  1.0
+	]
+  }
+}
