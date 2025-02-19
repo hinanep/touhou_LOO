@@ -14,15 +14,15 @@ func _ready():
 	super._ready()
 	#启用弹幕攻击，需设置弹幕攻击方式
 	#bullet_battle_ready()
-	
+
 func _physics_process(_delta):
 	move_to_target()
 	pass
 #弹幕攻击方法，待实例实现
 func bullet_attack():
 	pass
-	
+
 func died():
 	#AudioManager.bgm_over()
-	
+
 	super.died()

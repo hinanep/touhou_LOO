@@ -25,47 +25,51 @@ var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 
 @onready var bullet_damage_area = $bullet_damage_area
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
-@onready var navi = NavigationAgent2D.new()
+@onready var navi = $NavigationAgent2D
 func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
-	add_child(navi)
-	navi.velocity_computed.connect(on_compute_safevelocity)
-	navi.avoidance_enabled = true
-	navi.radius = 10
-	navi.neighbor_distance = 30
-	navi.debug_enabled = true
+
 	navi.max_speed = speed
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
+	navi.target_position = player_node.global_position
 
 	debuff["target_rediretion"] = player_node
+	#await get_tree().create_timer(0.5).timeout
+	#navi.get_next_path_position()
+
 
 func on_compute_safevelocity(safevelocity):
 	velocity = safevelocity
 
-	move_and_slide()
-
-func set_movement_target(target):
-	navi.set_target_position(target.global_position)
+	#move_and_collide(velocity*0.016)
 
 func _physics_process(_delta):
-	set_movement_target(player_node)
 	move_to_target()
 
 #移动方式：走向玩家
 func move_to_target():
-	var next_path_position: Vector2 = navi.get_next_path_position()
-	var new_velocity: Vector2 = global_position.direction_to(next_path_position) * speed
+	#if navi.is_navigation_finished():
+		#return
 
 	if navi.avoidance_enabled:
-		navi.velocity = new_velocity
+		if NavigationServer2D.map_get_iteration_id(navi.get_navigation_map()) == 0:
+			return
+
+		#navi.target_position = player_node.global_position
+		#var nexposition = navi.get_next_path_position()
+		#var new_velocity = global_position.direction_to(nexposition) * speed
+		navi.get_next_path_position()
+		navi.set_velocity(global_position.direction_to(player_node.global_position) * speed)
+		#navi.velocity = global_position.direction_to(player_node.global_position) * speed
 	else:
-		on_compute_safevelocity(new_velocity)
 
+		velocity =  global_position.direction_to(player_node.global_position) * speed
 
+	move_and_slide()
 
 
 
@@ -221,4 +225,14 @@ func set_debuff(param_name,multi=1,time=1):
 func _on_debuff_time_timeout():
 	debuff["speed"] = 1.0
 	debuff["target_rediretion"] = player_node
+	pass # Replace with function body.
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	navi.avoidance_enabled = true
+	pass # Replace with function body.
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	navi.avoidance_enabled = false
 	pass # Replace with function body.

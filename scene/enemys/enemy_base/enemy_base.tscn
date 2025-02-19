@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=12 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
 [ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="2_p2xrr"]
+[ext_resource type="PackedScene" uid="uid://ldbefuo07loe" path="res://scene/enemys/enemy_base/navigation_agent_2d.tscn" id="3_26pcd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
 atlas = ExtResource("2_p2xrr")
@@ -98,13 +99,15 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 30.0
-neighbor_distance = 100.0
-debug_enabled = true
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[connection signal="body_exited" from="melee_damage_area" to="." method="_on_melee_damage_area_body_exited"]
-[connection signal="body_exited" from="bullet_damage_area" to="." method="_on_bullet_damage_area_body_exited"]
+[node name="NavigationAgent2D" parent="." instance=ExtResource("3_26pcd")]
+path_metadata_flags = 0
+avoidance_enabled = false
+neighbor_distance = 40.0
+time_horizon_agents = 0.5
+
 [connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="on_compute_safevelocity"]

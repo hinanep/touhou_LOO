@@ -1,7 +1,7 @@
 class_name skill extends Node2D
 
 var skill_info = {
-	skill_name = '',
+	id = '',
 	upgrade_group = '',
 	routines = ["rou_reimu"],
 	cd = 1.0,
@@ -15,13 +15,13 @@ var upgrade_info = {
 }
 var damage_source = ''
 func _ready():
-	name = skill_info.skill_name
-	add_to_group(skill_info.skill_name)
+	name = skill_info.id
+	add_to_group(skill_info.id)
 	add_to_group(skill_info.upgrade_group)
 	SignalBus.upgrade_skill.connect(upgrade_skill)
 	SignalBus.del_skill.connect(destroy)
 	#SignalBus.del_skill.connect(destroy)
-	damage_source = skill_info.skill_name
+	damage_source = skill_info.id
 	var cd_timer = $cd_timer
 	cd_timer.wait_time = skill_info.cd
 	cd_timer.timeout.connect(gen_routines)
@@ -32,10 +32,10 @@ func _ready():
 
 
 
-func add_routine(routine_name):
+func add_routine(id):
 		var routinepre = PresetManager.getpre('routine').instantiate()
 		routinepre.position = Vector2(0,0)
-		routinepre.routine_info = table.routine[routine_name]
+		routinepre.routine_info = table.Routine[id]
 		routinepre.damage_source = damage_source
 		routinepre.set_upgrade(level)
 
@@ -46,19 +46,19 @@ func gen_routines():
 	emit_signal("shoot")
 
 
-func upgrade_skill(skill_name):
-	if skill_info.skill_name != skill_name:
+func upgrade_skill(id):
+	if skill_info.id != id:
 		return
 
 	level += 1
 	if(level == player_var.skill_level_max):
-		SignalBus.upgrade_max.emit(skill_name)
+		SignalBus.upgrade_max.emit(id)
 
 
 
 
-func destroy(skill_name):
-	if skill_info.skill_name != skill_name:
+func destroy(id):
+	if skill_info.id != id:
 		return
 	for child in get_children():
 		if child.has_method('destroy'):

@@ -1,104 +1,50 @@
-[gd_scene load_steps=14 format=3 uid="uid://8ncxsxbjl5dy"]
+[gd_scene load_steps=12 format=3 uid="uid://drvux8yixlmvx"]
 
 [ext_resource type="Script" path="res://scene/enemys/kedama/kedama.gd" id="1_uq7qr"]
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_xu4fn"]
 [ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_fomu3"]
 [ext_resource type="Texture2D" uid="uid://csxuo6kjhraty" path="res://asset/pic/enemy/kedamaL.png" id="3_4iltg"]
 [ext_resource type="Texture2D" uid="uid://cdxlsrs4eqeau" path="res://asset/pic/enemy/kedamaR.png" id="4_ytwnf"]
 [ext_resource type="Texture2D" uid="uid://cgx3bwy3aimev" path="res://asset/pic/enemy/kedamaU.png" id="5_4ig7w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h3l13"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2ruc"]
 atlas = ExtResource("2_fomu3")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_anan6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsp1i"]
 atlas = ExtResource("3_4iltg")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmqu6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvrib"]
 atlas = ExtResource("4_ytwnf")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lde0n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab8uf"]
 atlas = ExtResource("5_4ig7w")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgvqk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h3l13")
+"texture": SubResource("AtlasTexture_o2ruc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_anan6")
+"texture": SubResource("AtlasTexture_lsp1i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmqu6")
+"texture": SubResource("AtlasTexture_nvrib")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lde0n")
+"texture": SubResource("AtlasTexture_ab8uf")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
-radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
-radius = 30.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vh4o"]
-bg_color = Color(1, 1, 1, 1)
-
-[node name="kedama" type="CharacterBody2D" groups=["monster"]]
-scale = Vector2(0.5, 0.5)
-collision_layer = 2
-motion_mode = 1
-safe_margin = 10.0
+[node name="enemy_base" instance=ExtResource("1_xu4fn")]
 script = ExtResource("1_uq7qr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_4gakf")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_itioj")
-
-[node name="melee_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
-
-[node name="bullet_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-collision_priority = 0.0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
-
-[node name="debuff_time" type="Timer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -18.0
-offset_top = -18.0
-offset_right = 126.0
-offset_bottom = 14.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-theme_override_styles/fill = SubResource("StyleBoxFlat_6vh4o")
-step = 1.0
-value = 100.0
-show_percentage = false
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cgvqk")

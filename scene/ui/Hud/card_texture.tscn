@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b423fr4pl50lx"]
+[gd_scene load_steps=3 format=3 uid="uid://b423fr4pl50lx"]
 
 [ext_resource type="Texture2D" uid="uid://bgwbvmlvrp21y" path="res://asset/pic/crystal/爱丽丝×魔理沙.png" id="1_p4g05"]
+[ext_resource type="Script" path="res://scene/ui/Hud/card_texture.gd" id="2_d07md"]
 
 [node name="card_texture" type="TextureRect"]
 custom_minimum_size = Vector2(1, 0)
 texture = ExtResource("1_p4g05")
 stretch_mode = 3
+script = ExtResource("2_d07md")
 
 [node name="cn" type="RichTextLabel" parent="."]
 layout_mode = 0

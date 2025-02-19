@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scene/ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
 [ext_resource type="Script" path="res://gamemanager/GameManager/game_manager.gd" id="3_ksuh1"]
+[ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_r7dq7"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_6vlxu"]
 
@@ -44,14 +45,6 @@ b = Vector2(2762, 1477)
 a = Vector2(-2757, -1489)
 b = Vector2(2760, -1489)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4ftu5"]
-vertices = PackedVector2Array(220.688, 116.078, -221.148, 117.906, -211.797, -107.242, 217.289, -112.742)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-231, -127, 237, -133, 241, 136, -242, 138)])
-parsed_geometry_type = 1
-parsed_collision_mask = 0
-agent_radius = 20.0
-
 [node name="InGame" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -73,7 +66,7 @@ collision_mask = 51
 safe_margin = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 limit_smoothed = true
 
 [node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
@@ -108,6 +101,7 @@ script = ExtResource("3_ksuh1")
 
 [node name="SpawnManager" type="Node2D" parent="." groups=["SpawnManager"]]
 process_mode = 1
+script = ExtResource("4_2ujjm")
 
 [node name="air_wall" type="StaticBody2D" parent="."]
 collision_layer = 32
@@ -261,9 +255,3 @@ texture = ExtResource("5_6vlxu")
 [node name="Wall14" type="Sprite2D" parent="map/wall"]
 position = Vector2(2775.5, 963)
 texture = ExtResource("5_6vlxu")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_4ftu5")
-use_edge_connections = false
-
-[connection signal="bake_finished" from="NavigationRegion2D" to="." method="_on_navigation_region_2d_bake_finished"]

@@ -6,6 +6,7 @@ extends BaseGUIView
 @onready var card_power = $hud/card_power
 @onready var card_power_text = $hud/card_power/card_power_text
 
+
 @onready var point_ratio_text = $hud/point_ratio/text
 @onready var point_text = $hud/point/text
 
@@ -19,8 +20,12 @@ func _ready():
 	hp.max_value = player_var.player_hp_max
 	card_power.max_value = player_var.power_max
 	SignalBus.add_skill.connect(add_skill)
-	for cardname in player_var.CardManager.card_list.keys():
-		add_card(player_var.CardManager.get_active_card_by_name(cardname))
+	SignalBus.add_card.connect(on_add_card)
+	SignalBus.del_card.connect(on_del_card)
+	SignalBus.card_select_before.connect(card_display_left)
+	SignalBus.card_select_next.connect(card_display_right)
+	#for cardname in player_var.CardManager.card_list.keys():
+		#add_card(player_var.CardManager.get_active_card_by_name(cardname))
 
 
 
@@ -47,41 +52,77 @@ func exp_display():
 
 
 
-var cardnum_now = 0
+var card_selecting = 0
+var card_having
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
-func card_display():
-	if(card_container.get_child_count()==0):
+#func card_display():
+	#if(card_container.get_child_count()==0):
+		#return
+	#cardnum_now = player_var.CardManager.cardnum_now
+	#for child in card_container.get_children():
+		#child.set_expand_mode(0)
+		#child.set_stretch_mode(3)
+	#card_container.get_child(cardnum_now).set_expand_mode(2)
+	#card_container.get_child(cardnum_now).set_stretch_mode(4)
+func card_display_left():
+
+	card_having = card_container.get_child_count()
+	if(card_having==0):
 		return
+	card_selecting = (card_selecting-1)%card_having
+	card_container.get_child((card_selecting+1)%card_having).set_expand_mode(0)
+	card_container.get_child((card_selecting+1)%card_having).set_stretch_mode(3)
+	card_container.get_child(card_selecting).set_expand_mode(2)
+	card_container.get_child(card_selecting).set_stretch_mode(4)
 
-	cardnum_now = player_var.CardManager.cardnum_now
+func card_display_right():
+	card_having = card_container.get_child_count()
+	if(card_having==0):
+		return
+	card_selecting = (card_selecting+1)%card_having
+	card_container.get_child((card_selecting-1)%card_having).set_expand_mode(0)
+	card_container.get_child((card_selecting-1)%card_having).set_stretch_mode(3)
+	card_container.get_child(card_selecting).set_expand_mode(2)
+	card_container.get_child(card_selecting).set_stretch_mode(4)
 
+
+func on_add_card(card_list):
+
+	var newcard = card_tex_pre.instantiate()
+	newcard.set_texture(PresetManager.getpre('img_'+card_list.id))
+	newcard.get_child(0).text = card_list.id
+	newcard.cardid = card_list.id
+
+	card_container.add_child(newcard)
+	card_having = card_container.get_child_count()
 	for child in card_container.get_children():
 		child.set_expand_mode(0)
 		child.set_stretch_mode(3)
+	card_container.get_child(card_selecting).set_expand_mode(2)
+	card_container.get_child(card_selecting).set_stretch_mode(4)
 
-
-	card_container.get_child(cardnum_now).set_expand_mode(2)
-	card_container.get_child(cardnum_now).set_stretch_mode(4)
-
-
-func add_card(card_list):
-	print("adding card")
-	var newcard = card_tex_pre.instantiate()
-	newcard.set_texture(PresetManager.getpre(card_list["card_image"]))
-	newcard.get_child(0).text = card_list["cn"]
-	newcard.add_to_group(card_list["card_name"])
-	card_container.add_child(newcard)
+func on_del_card(id):
+	await get_tree().create_timer(0.1).timeout
+	card_having = card_container.get_child_count()
+	if(card_having==0):
+		return
+	card_selecting = (card_selecting)%card_having
+	for child in card_container.get_children():
+		child.set_expand_mode(0)
+		child.set_stretch_mode(3)
+	card_container.get_child(card_selecting).set_expand_mode(2)
+	card_container.get_child(card_selecting).set_stretch_mode(4)
 
 func add_skill(ski_info):
-		var skill_name = ski_info.skill_name
+		var id = ski_info.id
 
-		if skill_name == "ski_basemagic" or skill_name == "ski_basephysics":
+		if id == "ski_basemagic_base" or id == "ski_basephysics_base":
 			return
 		var newskill = cp_and_skill_texture.instantiate()
-		newskill.selfname = skill_name
-		newskill.set_texture(PresetManager.getpre('image_'+skill_name))
-		newskill.get_child(0).text = skill_name
+		newskill.selfname = id
+		newskill.set_texture(PresetManager.getpre('img_'+id))
+		newskill.get_child(0).text = id
 		SignalBus.del_skill.connect(newskill.destroy)
 		SignalBus.upgrade_skill.connect(newskill.upgrade)
 		skill_container.add_child(newskill)
@@ -102,4 +143,3 @@ func _on_renew_timer_timeout():
 	card_power_display()
 	point_and_ratio_display()
 	exp_display()
-	card_display()

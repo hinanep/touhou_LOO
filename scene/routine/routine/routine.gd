@@ -9,40 +9,7 @@ var routine_modifier = {
 }
 
 var routine_info = {
-	"routine_name": "rou_reimu",
-	"group_id": "rou_reimu",
-	"upgrade_group": "upg_reimu",
-	"type": "base",
-	"damage_type": "danma",
-	"effective_group": "none",
-	"locking_type": "none",
-	"locking_parameter": [],
-	"special_creating_attack": "none",
-	"special_creating_attack_parameter": [],
-	"creating_attack": [
-	  "atk_reimu_base"
-	],
-	"special_creating_summoned": "none",
-	"special_creating_summoned_parameter": [],
-	"creating_summoned": [],
-	"special_creating": "none",
-	"once_creating_type": "single",
-	"once_creating_parameter": [],
-	"times_depend": "none",
-	"times": 3,
-	"interval": 0.2,
-	"zeropoint": "input",
-	"system_front": "input",
-	"system_type": "rectangular",
-	"position_depend": [
-	  "none,none"
-	],
-	"gen_position": [
-	  0,
-	  0
-	],
-	"danma_times_efficiency": 1.0,
-	"melee_times_efficiency": 0.0
+
   }
 
 var gen_position
@@ -51,22 +18,23 @@ var attack_nodes = []
 var level = 0
 var damage_source = ''
 func _ready():
-	name = routine_info.routine_name
-	add_to_group(routine_info.routine_name)
-	add_to_group(routine_info.upgrade_group)
-	add_to_group(routine_info.effective_group)
-
-	for attack_name in routine_info.creating_attack:
-		if attack_name == 'none':
-			continue
-		add_attack(attack_name)
+	name = routine_info.id
+	add_to_group(routine_info.id)
+	if routine_info.has("upgrade_group"):
+		add_to_group(routine_info.upgrade_group)
+	if routine_info.has("effective_condition"):
+		add_to_group(routine_info.effective_condition)
+	if routine_info.has("creating_attack"):
+		for id in routine_info.creating_attack:
+			add_attack(id)
 	match routine_info.type:
 		'base':
 			get_parent().shoot.connect(attacks)
 		'ex':
 			pass
-	for summon in routine_info.creating_summoned:
-		summon = PresetManager.getpre(summon)
+	if routine_info.has('creating_summoned'):
+		for summon in routine_info.creating_summoned:
+			summon = PresetManager.getpre(summon)
 
 
 
@@ -75,7 +43,7 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 		gen_position = input_position
 		gen_rotation = input_rotation
 		return
-	match routine_info.zeropoint:
+	match routine_info.zero_point:
 		'character':
 			gen_position = player_var.player_node.global_position
 
@@ -96,7 +64,7 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 	match routine_info.system_type:
 
 		'rectangular':
-			add_vector =Vector2(routine_info.gen_position[0],routine_info.gen_position[1])
+			add_vector =Vector2(routine_info.position[0],routine_info.position[1])
 			pass
 		'polar':
 			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
@@ -107,15 +75,15 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
-		match routine_info.once_creating_type:
+		match routine_info.one_creating_type:
 			'single':
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 
 					single_attack(gen_position,gen_rotation)
-			'multi':
-				for j in range(routine_info.once_creating_parameter[0]):
+			'multi_together':
+				for j in range(routine_info.one_creating_parameter[0]):
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
@@ -124,21 +92,22 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 
 func single_attack(generate_position,generate_rotation):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])
-	match routine_info.special_creating_attack:
-		'probability':
-			var new_attack = attack_nodes[select_from_luck()].duplicate()
-
-			new_attack.global_position = generate_position
-			new_attack.rotation = generate_rotation
-			$".".add_child(new_attack)
-		'none':
-
-			for attack_node in attack_nodes:
-				var new_attack = attack_node.duplicate()
+	if routine_info.has('special_creating_attack'):
+		match routine_info.special_creating_attack:
+			'probability':
+				var new_attack = attack_nodes[select_from_luck()].duplicate()
 
 				new_attack.global_position = generate_position
 				new_attack.rotation = generate_rotation
 				$".".add_child(new_attack)
+
+	else:
+		for attack_node in attack_nodes:
+			var new_attack = attack_node.duplicate()
+
+			new_attack.global_position = generate_position
+			new_attack.rotation = generate_rotation
+			$".".add_child(new_attack)
 
 
 func select_from_luck():
@@ -164,11 +133,11 @@ func set_upgrade(nlevel:int):
 	pass
 
 
-func add_attack(attack_name):
-	var attack_info = table.attack_skill[attack_name]
+func add_attack(id):
+	var attack_info = table.Attack[id]
 
 	#var attack_pre = PresetManager.getpre('attack').instantiate()
-	var attack_pre = load("res://scene/attack/attack_ins/"+attack_name+".tscn").instantiate()
+	var attack_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
 
 	attack_pre.attack_info = attack_info
 	attack_pre.node_active = false

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwjf4brydbran"]
+[gd_scene load_steps=9 format=3 uid="uid://cwjf4brydbran"]
 
 [ext_resource type="Script" path="res://scene/enemys/dummy/dummy.gd" id="1_8axhr"]
 [ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_amfcj"]
+[ext_resource type="PackedScene" uid="uid://ldbefuo07loe" path="res://scene/enemys/enemy_base/navigation_agent_2d.tscn" id="3_mcvkd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpq08"]
 atlas = ExtResource("2_amfcj")
@@ -100,6 +101,12 @@ text = "DPS:"
 [node name="dps_reset" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="NavigationAgent2D" parent="." instance=ExtResource("3_mcvkd")]
+path_metadata_flags = 0
+avoidance_enabled = false
+neighbor_distance = 40.0
+time_horizon_agents = 0.5
 
 [connection signal="timeout" from="dps" to="." method="_on_dps_timeout"]
 [connection signal="timeout" from="dps_reset" to="." method="_on_dps_reset_timeout"]

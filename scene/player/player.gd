@@ -7,11 +7,9 @@ func _init():
 	player_var.player_node = $"."
 	pass
 func _ready():
-	$invincible_time.wait_time = player_var.invincible_time
+	SignalBus.player_invincible.connect(on_player_invincible)
 
 
-
-	pass
 func _input(event):
 	if event.is_action_pressed("slow_mode"):
 		$CollisionShape2D/colli_point.set_visible(!$CollisionShape2D/colli_point.is_visible())
@@ -44,10 +42,15 @@ func take_damage(damage):
 	AudioManager.play_sfx("music_sfx_hurt")
 	player_var.player_hp -= damage
 
+	SignalBus.player_hurt.emit()
 	if player_var.player_hp < 0.1:
 		died()
+	SignalBus.player_invincible.emit(player_var.invincible_time)
 
+func on_player_invincible(time):
 	player_var.is_invincible = true
+	$invincible_time.stop()
+	$invincible_time.wait_time = time
 	$invincible_time.start()
 
 func died():

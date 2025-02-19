@@ -1,101 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddjn4u735g7im"]
+[gd_scene load_steps=4 format=3 uid="uid://drvux8yixlmvx"]
 
 [ext_resource type="Script" path="res://scene/enemys/slime/slime.gd" id="1_mucw3"]
-[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="2_yhde2"]
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_xu4fn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
-atlas = ExtResource("2_yhde2")
-region = Rect2(0, 24, 24, 24)
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgvqk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxkib"]
-atlas = ExtResource("2_yhde2")
-region = Rect2(24, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dcn67"]
-atlas = ExtResource("2_yhde2")
-region = Rect2(48, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyehq"]
-atlas = ExtResource("2_yhde2")
-region = Rect2(72, 24, 24, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dvdn7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sxkib")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dcn67")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tyehq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
-radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
-radius = 15.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rp2ph"]
-bg_color = Color(1, 1, 1, 1)
-
-[node name="slime" type="CharacterBody2D" groups=["monster"]]
-collision_layer = 2
-collision_mask = 3
-motion_mode = 1
-safe_margin = 10.0
+[node name="enemy_base" instance=ExtResource("1_xu4fn")]
 script = ExtResource("1_mucw3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
-sprite_frames = SubResource("SpriteFrames_4gakf")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_itioj")
-
-[node name="melee_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
-
-[node name="bullet_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-collision_priority = 0.0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
-
-[node name="debuff_time" type="Timer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -18.0
-offset_top = -18.0
-offset_right = 126.0
-offset_bottom = 14.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-theme_override_styles/fill = SubResource("StyleBoxFlat_rp2ph")
-step = 1.0
-value = 100.0
-show_percentage = false
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cgvqk")

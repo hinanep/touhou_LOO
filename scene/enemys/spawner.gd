@@ -4,23 +4,27 @@ var path_follow_2d
 var spawnTimer
 var startTimer
 var endTimer
+var mob_pre
+var SpawnManager
 var spawn_list = {
-	"pre":"",
-	"spawn_mode":"once",
+	"enemy_type":"",
+	"spawn_type":"once",
 	"start_time":0,
 	"end_time":0,
 	"tick_time":1,
-	"number":1,
-	"param_buff":1
+	"amount_parameter":1,
+	'enemy_attribute_boost':1,
+	'enemy_barrage_boost':1
 }
-func spawner_init(spawner_initlist):
+func spawner_init(spawner_initlist,parent):
+	SpawnManager = parent
 	spawn_list=spawner_initlist
 	spawnTimer = $spawnTimer
 	startTimer = $startTimer
 	endTimer   = $endTimer
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
 	spawnTimer.wait_time = maxf(spawn_list["tick_time"],0.1)
-	match spawn_list["spawn_mode"]:
+	match spawn_list["spawn_type"]:
 		"duration":
 			startTimer.wait_time =  maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
@@ -31,20 +35,23 @@ func spawner_init(spawner_initlist):
 			startTimer.wait_time =   maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
 			spawnTimer.set_one_shot(true)
-
-
-func spawn_mob():
+			endTimer.wait_time = startTimer.wait_time + 1
+			endTimer.start()
+	mob_pre = PresetManager.getpre(spawn_list["enemy_type"])
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
-	var mob = spawn_list["pre"].instantiate()
-	path_follow_2d.progress_ratio = randf()
+func spawn_mob():
+	if path_follow_2d!=null:
+		path_follow_2d.progress_ratio = randf()
+	var mob = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
-	mob.setbuff(spawn_list["param_buff"])
+	mob.setbuff(spawn_list['enemy_attribute_boost'])
+	#instantiate()
 	SpawnManager.add_mob(mob)
 
 
 
 func _on_timer_timeout():
-	for i in range(spawn_list["number"]):
+	for i in range(spawn_list["amount_parameter"]):
 		spawn_mob()
 
 
@@ -55,6 +62,7 @@ func _on_start_timer_timeout():
 
 func _on_end_timer_timeout():
 	spawnTimer.stop()
+	queue_free()
 	pass # Replace with function body.
 func change_pause():
 

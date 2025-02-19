@@ -2,21 +2,21 @@ extends BaseGUIView
 var type = "none"
 var tname = ""
 func _ready():
-	for ucskill in table.skill:
-		var ski = table.skill[ucskill]
+	for ucskill in table.Skill:
+		var ski = table.Skill[ucskill]
 		var skill_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/skill_container.add_child(skill_button)
-		skill_button.set_texture('image_'+ski.skill_name)
-		skill_button.set_tooltip_text(ski.skill_name)
-		skill_button.selected.connect(on_skillbutton_select.bind(ski.skill_name))
+		skill_button.set_texture('img_'+ski.id)
+		skill_button.set_tooltip_text(ski.id)
+		skill_button.selected.connect(on_skillbutton_select.bind(ski.id))
 
 	for uccard in player_var.CardManager.card_pool.unlocked:
 		var cd = player_var.CardManager.card_pool.unlocked[uccard]
 		var card_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/card_container.add_child(card_button)
-		card_button.set_texture(cd.card_image)
-		card_button.set_tooltip_text(cd.cn)
-		card_button.selected.connect(on_cardbutton_select.bind(cd.card_name))
+		card_button.set_texture('img_'+cd.id)
+		card_button.set_tooltip_text(cd.id)
+		card_button.selected.connect(on_cardbutton_select.bind(cd.id))
 
 	for uccp in CpManager.cp_pool.unactive:
 		var cp = CpManager.cp_pool.unactive[uccp]
@@ -55,7 +55,7 @@ func _on_update_pressed():
 		"passive":
 			pass
 		"card":
-			player_var.CardManager.add_card(tname)
+			SignalBus.try_add_card.emit(tname)
 
 		"none":
 			pass
@@ -74,7 +74,7 @@ func _on_delete_pressed():
 		"passive":
 			pass
 		"card":
-			player_var.CardManager.del_card(tname)
+			SignalBus.del_card.emit(tname)
 		"none":
 			pass
 	$testhud/Button.grab_focus()

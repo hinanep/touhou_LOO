@@ -1,97 +1,42 @@
-[gd_scene load_steps=12 format=3 uid="uid://dl30vb4qgqfbq"]
+[gd_scene load_steps=10 format=3 uid="uid://drvux8yixlmvx"]
 
 [ext_resource type="Script" path="res://scene/enemys/ghost/ghost.gd" id="1_u2v4r"]
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_xu4fn"]
 [ext_resource type="Texture2D" uid="uid://cji57mdrf4nao" path="res://asset/pic/enemy/jack-o-lanternL.png" id="2_6lklv"]
 [ext_resource type="Texture2D" uid="uid://da8dmt5gk07ny" path="res://asset/pic/enemy/jack-o-lanternR.png" id="3_kj63v"]
 [ext_resource type="Texture2D" uid="uid://b1l45tl63nkh2" path="res://asset/pic/enemy/jack-o-lanternUD.png" id="4_q4v5r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nwp58"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik5mb"]
 atlas = ExtResource("2_6lklv")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kusbx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2rk4"]
 atlas = ExtResource("3_kj63v")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8squf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fua0c"]
 atlas = ExtResource("4_q4v5r")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgvqk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nwp58")
+"texture": SubResource("AtlasTexture_ik5mb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kusbx")
+"texture": SubResource("AtlasTexture_d2rk4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8squf")
+"texture": SubResource("AtlasTexture_fua0c")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
-radius = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7wm4"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_shwxr"]
-radius = 26.0192
-
-[node name="ghost" type="CharacterBody2D" groups=["monster"]]
-scale = Vector2(0.4, 0.4)
-collision_layer = 2
-motion_mode = 1
-safe_margin = 10.0
+[node name="enemy_base" instance=ExtResource("1_xu4fn")]
 script = ExtResource("1_u2v4r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_4gakf")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_itioj")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -27.0
-offset_top = -42.0
-offset_right = 195.0
-offset_bottom = 14.0
-scale = Vector2(0.25, 0.125)
-tooltip_text = "
-"
-theme_override_styles/fill = SubResource("StyleBoxFlat_s7wm4")
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="melee_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
-
-[node name="bullet_damage_area" type="Area2D" parent="."]
-collision_layer = 0
-collision_priority = 0.0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
-shape = SubResource("CircleShape2D_shwxr")
-
-[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
-
-[node name="debuff_time" type="Timer" parent="."]
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cgvqk")
