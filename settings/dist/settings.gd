@@ -11,6 +11,7 @@ static func loader(path:String):
 	return data
 
 var Attack = loader('res://settings/dist/Attack/Attack.json')
+var Buff = loader('res://settings/dist/Buff/Buff.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
 var Passive = loader('res://settings/dist/Passive/Passive.json')
 var Routine = loader('res://settings/dist/Routine/Routine.json')

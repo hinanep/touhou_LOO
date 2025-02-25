@@ -108,7 +108,9 @@ func on_ban_skill(id):
 		return false
 
 func on_unlock_skill(id):
-	pass
+	skill_pool.unlocked[id] = skill_pool.banned[id]
+	skill_pool.banned.erase(id)
+
 
 func get_skill_by_name(id):
 	if(skill_pool.choosed.has(id)):

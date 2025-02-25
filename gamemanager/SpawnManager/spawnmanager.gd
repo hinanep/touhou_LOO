@@ -48,7 +48,10 @@ func del_mob(mob_id):
 func get_nearest_mob(search_position):
 	if mob_dic.is_empty():
 		return null
-	return mob_dic[mob_map.get_closest_point(search_position)]
+	var near_mob_id =mob_map.get_closest_point(search_position)
+	if near_mob_id!=-1:
+
+		return mob_dic[near_mob_id]
 func get_strongest_mob():
 	if mob_dic.is_empty():
 		return null

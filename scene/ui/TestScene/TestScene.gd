@@ -20,8 +20,7 @@ func _input(event):
 			Engine.time_scale = 1.0
 func _open():
 	player_var.new_scene()
-	player_var.SkillManager = SkillManagers.new()
-	player_var.CardManager = CardManagers.new()
+
 	GameManager.is_uping = false
 	var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 	dummm.position.x += 100

@@ -10,8 +10,8 @@ func _ready():
 		skill_button.set_tooltip_text(ski.id)
 		skill_button.selected.connect(on_skillbutton_select.bind(ski.id))
 
-	for uccard in player_var.CardManager.card_pool.unlocked:
-		var cd = player_var.CardManager.card_pool.unlocked[uccard]
+	for uccard in table.SpellCard:
+		var cd = table.SpellCard[uccard]
 		var card_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/card_container.add_child(card_button)
 		card_button.set_texture('img_'+cd.id)

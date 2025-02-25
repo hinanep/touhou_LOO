@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=17 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="PackedScene" uid="uid://clsoje0yt1dit" path="res://scene/component/skill/SkillComponent.tscn" id="2_20a0v"]
 [ext_resource type="PackedScene" uid="uid://fec4arl424pc" path="res://scene/component/card/CardComponent.tscn" id="3_astcg"]
 [ext_resource type="Texture2D" uid="uid://d111f1mjv8x4c" path="res://asset/pic/fairy/left.png" id="3_bbt5x"]
 [ext_resource type="Texture2D" uid="uid://rgktqsf1iapd" path="res://asset/pic/fairy/point.png" id="3_g1rlb"]
+[ext_resource type="PackedScene" uid="uid://cw4f8v0lfq8dq" path="res://scene/component/buff/BuffComponent.tscn" id="4_54cbq"]
 [ext_resource type="Texture2D" uid="uid://c7dk0w5s7aqfj" path="res://asset/pic/fairy/20241105-223621.png" id="5_3pdok"]
 [ext_resource type="Shader" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
 
@@ -78,6 +79,8 @@ script = ExtResource("1_eqxiv")
 
 [node name="card" parent="." instance=ExtResource("3_astcg")]
 
+[node name="BuffComponent" parent="." instance=ExtResource("4_54cbq")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kq405")
 
@@ -111,7 +114,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_7menj")
 position = Vector2(-1, 6.77626e-21)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
 animation = &"left"
 autoplay = "stay"

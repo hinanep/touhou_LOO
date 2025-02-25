@@ -1,33 +1,38 @@
 extends Node
 
-var player_melee_damage_ratio = 1.0#- 体术伤害倍率：影响体术类技能的伤害
-var player_bullet_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技能的伤害
-var bullet_speed_ratio = 1.0 #子弹速度比率
-var keep_time = 1.0 #持续时间#
-var range_add_ratio = 1.0 #攻击范围
-var danma_times = 0 #弹幕发射数量加成
-var melee_times = 0 # 体术攻击次数
-var colddown_reduce = 0.0#冷却缩减
+var player_melee_damage_ratio#- 体术伤害倍率：影响体术类技能的伤害
+var player_bullet_damage_ratio #- 弹幕伤害倍率：影响弹幕类技能的伤害
+var bullet_speed_ratio #子弹速度比率
+var keep_time  #持续时间#
+var range_add_ratio#攻击范围
+var danma_times  #弹幕发射数量加成
+var melee_times  # 体术攻击次数
+var colddown_reduce #冷却缩减
 
-var player_hp_max = 2000.0 #生命上限
-var player_hp_regen = 0.0 #每秒生命回复
-var lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
-var player_speed = 150.0 #移动速度
-var player_life_addi = 0 #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
-var defence_melee = 100.0 #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
-var defence_bullet = 0.0 #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
-var invincible_time = 1 #- 受伤后无敌时间：受到伤害后的无敌时间
+var player_hp_max: #生命上限
+	get:
+		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
+var hp_max_ex = 200
+var hp_max_ex_percent = 1.5
 
-var range_pick = 30#- 拾取范围：拾取记忆碎片的最大距离
-var luck = 1.0 #- 幸运：影响各种与概率相关的东西
-var experience_ratio = 1.0 #- 经验倍率：影响每一记忆碎片增加多少经验
-var point_ratio = 1.0#- 得点倍率：影响每一记忆碎片增加多少分数
-var power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符力
-var change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
-var curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
-var power_max = 2000#- 符力上限：可存储的最大符力
-var skill_level_max = 8
-var skill_num_max = 5
+var player_hp_regen  #每秒生命回复
+var lifesteal  #吸血：造成伤害时回复伤害量与吸血相乘的生命值
+var player_speed  #移动速度
+var player_life_addi  #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
+var defence_melee  #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
+var defence_bullet #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
+var invincible_time  #- 受伤后无敌时间：受到伤害后的无敌时间
+
+var range_pick #- 拾取范围：拾取记忆碎片的最大距离
+var luck  #- 幸运：影响各种与概率相关的东西
+var experience_ratio  #- 经验倍率：影响每一记忆碎片增加多少经验
+var point_ratio #- 得点倍率：影响每一记忆碎片增加多少分数
+var power_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
+var change_times #- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
+var curse  #- 诅咒：增加敌人的各属性和刷新率
+var power_max #- 符力上限：可存储的最大符力
+var skill_level_max
+var skill_num_max
 
 
 
@@ -35,38 +40,34 @@ var skill_num_max = 5
 var SkillManager :SkillManagers
 var CardManager :CardManagers
 var SpawnManager :SpawnManagers
-var player_hp = player_hp_max
-var power = power_max
-var point:int = 0
-var player_exp = 0
-var level = 0
-var is_invincible = false
-var time_secs = 0
-var player_diretion_angle = 0
+var player_hp
+var power
+var point:int
+var player_exp
+var level
+var is_invincible
+var time_secs
+var player_diretion_angle
 
-var card_full = false#没有能升级的符卡并且卡位满了
-var card_num_full = false#卡位满了
-var card_level_max = 8
-var card_num_max = 5
+var card_full #没有能升级的符卡并且卡位满了
+var card_num_full #卡位满了
+var card_level_max
+var card_num_max
 
 
 
-var passive_num_full = false
-var passive_full = false
-var passive_level_max = 8
-var passive_num_max = 5
+var passive_num_full
+var passive_full
+var passive_level_max
+var passive_num_max
 
-var is_card_casting = false
+var is_card_casting
 var player_node
-var exp_need = [12,24,36,48,60,72,84,96,108,132,156,184,216,260,292,348,384,408,432,456,480,504,9999]
+var exp_need
 
-var damage_sum = {
-	"none" : 0
-}
+var damage_sum
 
 func _ready() -> void:
-	#SkillManager = SkillManagers.new()
-	#CardManager = CardManagers.new()
 	pass
 func new_scene():
 	if SkillManager!=null:
@@ -113,67 +114,8 @@ func player_get_heal(heal):
 	player_hp += heal
 	player_hp = min(player_hp,player_hp_max)
 
-
-
-
-
-func clear_all():
-	player_melee_damage_ratio = 1.0#- 体术伤害倍率：影响体术类技能的伤害
-	player_bullet_damage_ratio = 1.0#- 弹幕伤害倍率：影响弹幕类技能的伤害
-	bullet_speed_ratio = 1.0 #子弹速度比率
-	keep_time = 1.0 #持续时间#
-	range_add_ratio = 1.0 #攻击范围
-	danma_times = 0 #弹幕发射数量加成
-	melee_times = 0 # 体术攻击次数
-	colddown_reduce = 0.0#冷却缩减
-
-	player_hp_max = 2000.0 #生命上限
-	player_hp_regen = 0.0 #每秒生命回复
-	lifesteal = 0.0 #吸血：造成伤害时回复伤害量与吸血相乘的生命值
-	player_speed = 150.0 #移动速度
-	player_life_addi = 0 #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
-	defence_melee = 100.0 #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
-	defence_bullet = 0.0 #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
-	invincible_time = 1 #- 受伤后无敌时间：受到伤害后的无敌时间
-
-	range_pick = 30#- 拾取范围：拾取记忆碎片的最大距离
-	luck = 1.0 #- 幸运：影响各种与概率相关的东西
-	experience_ratio = 1.0 #- 经验倍率：影响每一记忆碎片增加多少经验
-	point_ratio = 1.0#- 得点倍率：影响每一记忆碎片增加多少分数
-	power_ratio = 1.0#- 符力倍率：影响每一记忆碎片增加多少符力
-	change_times = 2#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
-	curse = 1.0 #- 诅咒：增加敌人的各属性和刷新率
-	power_max = 2000#- 符力上限：可存储的最大符力
-	skill_level_max = 8
-	skill_num_max = 5
-
-
-	player_hp = player_hp_max
-	power = power_max
-	point = 0
-	player_exp = 0
-	level = 0
-	is_invincible = false
-	time_secs = 0
-	player_diretion_angle = 0
-
-	card_full = false#没有能升级的符卡并且卡位满了
-	card_num_full = false#卡位满了
-	card_level_max = 8
-	card_num_max = 5
-
-
-
-
-	passive_num_full = false
-	passive_full = false
-	passive_level_max = 8
-	passive_num_max = 5
-
-	is_card_casting = false
-	exp_need = [12,24,36,48,60,72,84,96,108,132,156,184,216,260,292,348,384,408,432,456,480,504,9999]
-
-	damage_sum = {
-		"none" : 0
-	}
+func ini():
+	var ini = initial_status.new().status
+	for property in ini:
+		set(property,ini[property])
 	_ready()

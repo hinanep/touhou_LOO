@@ -1,0 +1,65 @@
+{
+  "buff_max_mana_forever": {
+    "id": "buff_max_mana_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "max_mana",
+    "base_buff_value": 500.0
+  },
+  "buff_bullet_speed_forever": {
+    "id": "buff_bullet_speed_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "bullet_speed",
+    "base_buff_value": 0.2
+  },
+  "buff_live_disposable": {
+    "id": "buff_live_disposable",
+    "type": "disposable",
+    "keep_time": 0.0,
+    "buff_type": "live",
+    "base_buff_value": 1.0
+  },
+  "buff_magical_times_forever": {
+    "id": "buff_magical_times_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "magical_times",
+    "base_buff_value": 1.0
+  },
+  "buff_pyhsical_defense_forever": {
+    "id": "buff_pyhsical_defense_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "pyhsical_defense",
+    "base_buff_value": 0.2
+  },
+  "buff_magical_addition_forever": {
+    "id": "buff_magical_addition_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "magical_addition",
+    "base_buff_value": 0.2
+  },
+  "buff_hp_disposable": {
+    "id": "buff_hp_disposable",
+    "type": "disposable",
+    "keep_time": 0.0,
+    "buff_type": "hp",
+    "base_buff_value": 50.0
+  },
+  "buff_mana_disposable": {
+    "id": "buff_mana_disposable",
+    "type": "disposable",
+    "keep_time": 0.0,
+    "buff_type": "mana",
+    "base_buff_value": 5.0
+  },
+  "buff_mana_cost_forever": {
+    "id": "buff_mana_cost_forever",
+    "type": "forever",
+    "keep_time": 0.0,
+    "buff_type": "mana_cost",
+    "base_buff_value": 1.0
+  }
+}

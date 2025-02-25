@@ -1,10 +1,11 @@
 extends CharacterBody2D
 class_name player
 @onready var animated_sprite_2d = $AnimatedSprite2D
-var hp = player_var.player_hp_max
+
 
 func _init():
 	player_var.player_node = $"."
+	player_var.player_hp = player_var.player_hp_max
 	pass
 func _ready():
 	SignalBus.player_invincible.connect(on_player_invincible)
@@ -30,7 +31,6 @@ func _physics_process(_delta: float) -> void:
 		animated_sprite_2d.play("stay")
 
 	move_and_slide()
-
 
 
 func take_damage(damage):

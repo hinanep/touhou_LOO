@@ -1,12 +1,9 @@
 extends Node
-
+var rnd
 func _ready():
-	seed("Hello world".hash())
-	#print(random_nselect_from_allpool(3))
-	#print(random_nselect_from_allpool(3))
-#
-	#print(random_nselect_from_allpool(3))
-	pass
+	rnd = RandomNumberGenerator.new()
+	rnd.seed = hash("Hello world")
+
 
 func random_nselect_from_allpool(n:int):
 	var cards = []
@@ -36,6 +33,7 @@ func random_nselect_from_allpool(n:int):
 	pool.append_array(passives)
 
 	var nselect = selectm_from_samples(pool,n)
+
 	var skills_ans = []
 	var cards_ans = []
 	var passives_ans = []
@@ -48,32 +46,9 @@ func random_nselect_from_allpool(n:int):
 			passives_ans.append(x[0])
 	return{"cards":cards_ans,"skills":skills_ans,"passives":passives_ans}
 
-#
-#func random_select_from_skill():
-	#var pool = [
-		##name:weight
-	#]
-#
-	#for skillname in player_var.SkillManager.skill_pool["unchoosed"]:
-		#pool.append([skillname,player_var.SkillManager.skill_pool["unchoosed"][skillname]["weight"]])
-	#for skillname in player_var.SkillManager.skill_pool["choosed"]:
-		#pool.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
-	##a_expj(pool,1)
-	#if pool.is_empty():
-		#return null
-#
-	#return selectm_from_samples(pool,1)[0][0]
-#
-#func random_select_from_card():
-	#pass
 
 
 func selectm_from_samples(samples, m):
-	#
-	#:samples: [(item, weight), ...]
-	#:k: number of selected items
-	#:returns: [(item, weight), ...]
-	#
 
 	var heap = [] # [(new_weight, item), ...]
 	var wi
@@ -84,7 +59,7 @@ func selectm_from_samples(samples, m):
 			continue
 
 		wi = sample[1]
-		ui = randf_range(0,1)
+		ui = rnd.randf_range(0,1)
 		ki = ui ** (1.0/wi)
 
 		if len(heap) < m:

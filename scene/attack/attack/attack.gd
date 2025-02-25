@@ -53,7 +53,7 @@ func _ready():
 
 
 	set_shape(attack_info.shape)
-	set_scale(Vector2(1,1) * player_var.range_add_ratio/2)
+	set_scale(Vector2(1,1) * player_var.range_add_ratio)
 
 	if node_active:
 		$duration_timer.start()
