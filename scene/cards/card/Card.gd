@@ -25,7 +25,7 @@ func _ready() -> void:
 	if card_info.has('routines'):
 		for rou in card_info.routines:
 			add_routine(rou)
-	SignalBus.upgrade_card.connect(upgrade_card)
+	SignalBus.upgrade_group.connect(upgrade_card)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
 
@@ -34,10 +34,11 @@ func _ready() -> void:
 func on_use_card(id):
 	if id != card_info.id:
 		return
-	if player_var.power<card_info.mana:
+	if player_var.mana<card_info.mana/player_var.mana_cost:
 		return
 	print(id)
 	emit_signal("shoot")
+	player_var.mana-=card_info.mana/player_var.mana_cost
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
 	#get buff
@@ -51,13 +52,13 @@ func add_routine(id):
 	add_child(routinepre)
 
 
-func upgrade_card(id):
-	if card_info.id != id:
+func upgrade_card(group):
+	if card_info.upgrade_group != group:
 		return
 
 	level += 1
 	if(level == max_level):
-		SignalBus.upgrade_max.emit(id)
+		SignalBus.upgrade_max.emit(card_info.id)
 
 func destroy(id):
 	if card_info.id != id:

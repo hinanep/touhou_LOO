@@ -13,8 +13,8 @@ func _ready():
 			var card_button = card_button_pre.instantiate()
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
-			var cd = player_var.CardManager.get_card_by_name(c)
-			card_button.set_upgrade_text(cd.id+" Lv."+String.num(player_var.CardManager.get_card_level(cd)+1))
+
+			card_button.set_upgrade_text(c+" Lv."+String.num(player_var.CardManager.get_card_level(c)+1))
 			#card_button.set_describe_text(cd["describe_text"][cd["level"]])
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 
@@ -33,9 +33,9 @@ func _ready():
 			var buff_button = card_button_pre.instantiate()
 			$select_buttons.add_child(buff_button)
 			#多语言支持尚未
-			var bf = PassiveManager.get_upable_buff_by_name(b)
-			buff_button.set_upgrade_text(bf["cn"]+" Lv."+String.num(bf["level"]+1))
-			buff_button.set_describe_text(bf["describe_text"][bf["level"]])
+
+			buff_button.set_upgrade_text(b+" Lv."+String.num(player_var.SkillManager.get_skill_level(b)+1))
+			#buff_button.set_describe_text(bf["describe_text"][bf["level"]])
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
 
 	if $select_buttons.get_child_count()!=0:
@@ -52,12 +52,12 @@ func _ready():
 func on_button_selected(upgrade):
 	if ban_mode:
 		if(cards_skills_selected["skills"].has(upgrade)):
-			player_var.SkillManager.ban_skill(upgrade)
+			SignalBus.ban_skill.emit(upgrade)
 
-		#if(cards_skills_selected["cards"].has(upgrade)):
-			#CardManager.add_card(upgrade)
-		#if(cards_skills_selected["buffs"].has(upgrade)):
-			#BuffManager.add_buff(upgrade,false)
+		if(cards_skills_selected["cards"].has(upgrade)):
+			SignalBus.ban_card.emit(upgrade)
+		if(cards_skills_selected["buffs"].has(upgrade)):
+			SignalBus.ban_passive.emit(upgrade)
 	else:
 		if(cards_skills_selected["skills"].has(upgrade)):
 
@@ -67,7 +67,8 @@ func on_button_selected(upgrade):
 			SignalBus.try_add_card.emit(upgrade)
 
 		if(cards_skills_selected["passives"].has(upgrade)):
-			PassiveManager.add_buff(upgrade,false)
+			SignalBus.try_add_passive.emit(upgrade)
+
 
 
 	call_deferred("close_levelup")

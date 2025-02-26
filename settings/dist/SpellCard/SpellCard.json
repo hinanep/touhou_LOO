@@ -1,7 +1,7 @@
 {
   "sc_daiyousei_base": {
 	"id": "sc_daiyousei_base",
-	"upgrade_group": "",
+	"upgrade_group": "none",
 	"type": "base",
 	"routines": [
 	  "rou_marisa_base"

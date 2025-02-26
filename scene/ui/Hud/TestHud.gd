@@ -88,7 +88,7 @@ func _on_levelup_pressed():
 
 
 func _on_moremana_pressed():
-	GameManager.add_power(player_var.power_max)
+	GameManager.add_mana(player_var.mana_max)
 	$testhud/Button.grab_focus()
 	pass # Replace with function body.
 

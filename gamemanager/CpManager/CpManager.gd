@@ -45,10 +45,10 @@ func raise_weight_to_cp(xname):
 			for x_name in cp_pool["unactive"][cp]["effect_group"]:
 				if(player_var.SkillManager.skill_pool.unlocked.has(x_name)):
 					player_var.SkillManager.skill_pool.unlocked["weight"] *=1.1
-				if(player_var.CardManager.card_pool["unchoosed"].has(x_name)):
-					player_var.CardManager.card_pool["unchoosed"][x_name]["weight"] *=1.1
-				if(PassiveManager.buff_pool["unchoosed"].has(x_name)):
-					PassiveManager.buff_pool["unchoosed"][x_name]["weight"] *=1.1
+				if(player_var.CardManager.card_pool['unlocked'].has(x_name)):
+					player_var.CardManager.card_pool['unlocked'][x_name]["weight"] *=1.1
+				if(player_var.PassiveManager.buff_pool['unlocked'].has(x_name)):
+					player_var.PassiveManager.buff_pool['unlocked'][x_name]["weight"] *=1.1
 func get_cp_unactive(x_name):
 	var find = false
 	var cp_array = []

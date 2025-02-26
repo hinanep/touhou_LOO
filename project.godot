@@ -31,7 +31,6 @@ CpManager="*res://gamemanager/CpManager/CpManager.gd"
 G="*res://scene/ui/Scripts/G.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
 GameManager="*res://gamemanager/GameManager/game_manager.tscn"
-PassiveManager="*res://gamemanager/BuffManager/BuffManager.gd"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 
 [debug]

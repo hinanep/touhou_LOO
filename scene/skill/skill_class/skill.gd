@@ -18,7 +18,7 @@ func _ready():
 	name = skill_info.id
 	add_to_group(skill_info.id)
 	add_to_group(skill_info.upgrade_group)
-	SignalBus.upgrade_skill.connect(upgrade_skill)
+	SignalBus.upgrade_group.connect(upgrade_skill)
 	SignalBus.del_skill.connect(destroy)
 	#SignalBus.del_skill.connect(destroy)
 	damage_source = skill_info.id
@@ -46,13 +46,13 @@ func gen_routines():
 	emit_signal("shoot")
 
 
-func upgrade_skill(id):
-	if skill_info.id != id:
+func upgrade_skill(group):
+	if skill_info.upgrade_group != group:
 		return
 
 	level += 1
 	if(level == player_var.skill_level_max):
-		SignalBus.upgrade_max.emit(id)
+		SignalBus.upgrade_max.emit(skill_info.id)
 
 
 

@@ -51,7 +51,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "100/100"
 
-[node name="card_power" type="ProgressBar" parent="hud"]
+[node name="card_mana" type="ProgressBar" parent="hud"]
 modulate = Color(0.181439, 0.947954, 0, 1)
 offset_left = 19.0
 offset_top = 67.0
@@ -61,7 +61,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_kxoq7")
 value = 50.0
 show_percentage = false
 
-[node name="card_power_text" type="RichTextLabel" parent="hud/card_power"]
+[node name="card_mana_text" type="RichTextLabel" parent="hud/card_mana"]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 9.0

@@ -34,15 +34,15 @@ func _init() -> void:
 	SignalBus.del_passive.connect(on_del_passive)
 	SignalBus.upgrade_max.connect(on_upgrade_passive_max)
 	SignalBus.ban_passive.connect(on_ban_passive)
-	SignalBus.upgrade_passive.connect(on_upgrade_passive)
+	SignalBus.upgrade_group.connect(on_upgrade_passive)
 
-	passive_pool.unlocked = table.passive.duplicate()
+	passive_pool.unlocked = table.Passive.duplicate()
 	for passives in passive_pool.unlocked:
 		passive_pool.unlocked[passives]['weight'] = 1
 
 func on_try_add_passive(id):
 	if(passive_pool.choosed.has(id)):
-		SignalBus.upgrade_passive.emit(id)
+		SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group)
 		return
 	if(passive_pool.max.has(id)):
 		return
@@ -62,7 +62,7 @@ func on_add_passive(ski_info):
 	passive_pool.unlocked.erase(id)
 	passive_list[id] = 0
 
-	SignalBus.upgrade_passive.emit(id)
+	SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group)
 
 func on_del_passive(id):
 	if(passive_pool.choosed.has(id)):
@@ -81,8 +81,10 @@ func on_del_passive(id):
 	passive_num_full = false
 	passive_full = false
 
-func on_upgrade_passive(id):
-	passive_list[id] += 1
+func on_upgrade_passive(group):
+	for psvi in passive_list:
+		if get_passive_by_name(psvi).upgrade_group == group:
+			passive_list[psvi] += 1
 
 func on_upgrade_passive_max(id):
 
@@ -131,4 +133,4 @@ func destroy():
 	SignalBus.del_passive.disconnect(on_del_passive)
 	SignalBus.upgrade_max.disconnect(on_upgrade_passive_max)
 	SignalBus.ban_passive.disconnect(on_ban_passive)
-	SignalBus.upgrade_passive.disconnect(on_upgrade_passive)
+	SignalBus.upgrade_group.disconnect(on_upgrade_passive)

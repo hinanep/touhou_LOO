@@ -22,16 +22,17 @@ var status = {
 	luck = 1.0, #- 幸运：影响各种与概率相关的东西
 	experience_ratio = 1.0 ,#- 经验倍率：影响每一记忆碎片增加多少经验
 	point_ratio = 1.0,#- 得点倍率：影响每一记忆碎片增加多少分数
-	power_ratio = 1.0,#- 符力倍率：影响每一记忆碎片增加多少符力
+	mana_ratio = 1.0,#- 符力倍率：影响每一记忆碎片增加多少符力
 	change_times = 2,#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 	curse = 1.0, #- 诅咒：增加敌人的各属性和刷新率
-	power_max = 2000,#- 符力上限：可存储的最大符力
+	mana_max = 2000,#- 符力上限：可存储的最大符力
 	skill_level_max = 8,
 	skill_num_max = 5,
 
 
 	player_hp = 2000.0,
-	power = 2000,
+	mana = 2000,
+	mana_cost= 1,
 	point = 0,
 	player_exp = 0,
 	level = 0,

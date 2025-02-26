@@ -1,0 +1,678 @@
+{
+  "upg_reimu": {
+    "id": "upg_reimu",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_sanae": {
+    "id": "upg_sanae",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_rumia": {
+    "id": "upg_rumia",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_wriggle": {
+    "id": "upg_wriggle",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_alice": {
+    "id": "upg_alice",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_sekibanki": {
+    "id": "upg_sekibanki",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_misumaru": {
+    "id": "upg_misumaru",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_sakuya": {
+    "id": "upg_sakuya",
+    "type": "skill",
+    "level": 6,
+    "damage_addition": [
+      0.25,
+      0.25,
+      0.25,
+      0.25,
+      0.5,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      1,
+      1,
+      2,
+      2,
+      3
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [
+      0,
+      0,
+      0,
+      0.5,
+      0.5,
+      0.5
+    ],
+    "special": "none"
+  },
+  "upg_marisa": {
+    "id": "upg_marisa",
+    "type": "spellcard",
+    "level": 3,
+    "damage_addition": [
+      0,
+      0.25,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      0,
+      0
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_youmu": {
+    "id": "upg_youmu",
+    "type": "spellcard",
+    "level": 3,
+    "damage_addition": [
+      0,
+      0.25,
+      0.5
+    ],
+    "bullet_speed_addition": [
+      0,
+      0,
+      0
+    ],
+    "duration_addition": [
+      0,
+      0,
+      0
+    ],
+    "range_addition": [
+      0,
+      0,
+      0
+    ],
+    "times_addition": [
+      0,
+      0,
+      0
+    ],
+    "debuff_addition": [
+      0,
+      0,
+      0
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_patchouli": {
+    "id": "upg_patchouli",
+    "type": "passive",
+    "level": 4,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_saki": {
+    "id": "upg_saki",
+    "type": "passive",
+    "level": 4,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_narumi": {
+    "id": "upg_narumi",
+    "type": "passive",
+    "level": 2,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0
+    ],
+    "cd_reduction": [],
+    "special": "disposable_buff"
+  },
+  "upg_junko": {
+    "id": "upg_junko",
+    "type": "passive",
+    "level": 4,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_kisumi": {
+    "id": "upg_kisumi",
+    "type": "passive",
+    "level": 4,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  },
+  "upg_momoyo": {
+    "id": "upg_momoyo",
+    "type": "passive",
+    "level": 4,
+    "damage_addition": [],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "debuff_addition": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "cd_reduction": [],
+    "special": "none"
+  }
+}

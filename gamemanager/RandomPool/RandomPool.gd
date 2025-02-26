@@ -22,10 +22,10 @@ func random_nselect_from_allpool(n:int):
 		cards.append([cardname,player_var.CardManager.card_pool["choosed"][cardname]["weight"]])
 
 	if !player_var.passive_num_full:
-		for passivename in PassiveManager.buff_pool["unchoosed"]:
-			passives.append([passivename,PassiveManager.buff_pool["unchoosed"][passivename]["weight"]])
-	for passivename in PassiveManager.buff_pool["choosed"]:
-		passives.append([passivename,PassiveManager.buff_pool["choosed"][passivename]["weight"]])
+		for passivename in player_var.PassiveManager.passive_pool['unlocked']:
+			passives.append([passivename,player_var.PassiveManager.passive_pool['unlocked'][passivename]["weight"]])
+	for passivename in player_var.PassiveManager.passive_pool["choosed"]:
+		passives.append([passivename,player_var.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
 
 	var pool = []
 	pool.append_array(cards)

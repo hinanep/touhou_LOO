@@ -2,9 +2,10 @@ extends TextureRect
 
 var selfname = ''
 var level = 0
+var upgrade_group
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,6 +17,6 @@ func destroy(delname):
 
 	pass
 func upgrade(upname):
-	if selfname == upname:
+	if upgrade_group == upname:
 		level += 1
 		$RichTextLabel.text = selfname + 'LV.' + str(level)

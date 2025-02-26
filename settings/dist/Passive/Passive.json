@@ -4,7 +4,7 @@
 	"upgrade_group": "upg_patchouli",
 	"type": "base",
 	"buff": [
-	  "buff_max_mana_forever"
+	  "buff_mana_max_forever"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -15,7 +15,7 @@
 	"upgrade_group": "upg_saki",
 	"type": "base",
 	"buff": [
-	  "buff_bullet_speed_forever"
+	  "buff_bullet_speed_ratio_forever"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -26,7 +26,7 @@
 	"upgrade_group": "upg_narumi",
 	"type": "base",
 	"buff": [
-	  "buff_live_disposable"
+	  "buff_player_life_addi_disposable"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -37,7 +37,7 @@
 	"upgrade_group": "upg_junko",
 	"type": "base",
 	"buff": [
-	  "buff_pyhsical_times_forever"
+	  "buff_danma_times_forever"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -48,7 +48,7 @@
 	"upgrade_group": "upg_kisumi",
 	"type": "base",
 	"buff": [
-	  "buff_pyhsical_defense_forever"
+	  "buff_defence_melee_forever"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -59,7 +59,7 @@
 	"upgrade_group": "upg_momoyo",
 	"type": "base",
 	"buff": [
-	  "buff_magical_addition_forever"
+	  "buff_player_bullet_damage_ratio_forever"
 	],
 	"buff_value_factor": [
 	  1.0

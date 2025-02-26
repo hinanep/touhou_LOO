@@ -27,10 +27,10 @@ var range_pick #- 拾取范围：拾取记忆碎片的最大距离
 var luck  #- 幸运：影响各种与概率相关的东西
 var experience_ratio  #- 经验倍率：影响每一记忆碎片增加多少经验
 var point_ratio #- 得点倍率：影响每一记忆碎片增加多少分数
-var power_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
+var mana_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times #- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse  #- 诅咒：增加敌人的各属性和刷新率
-var power_max #- 符力上限：可存储的最大符力
+var mana_max #- 符力上限：可存储的最大符力
 var skill_level_max
 var skill_num_max
 
@@ -40,8 +40,10 @@ var skill_num_max
 var SkillManager :SkillManagers
 var CardManager :CardManagers
 var SpawnManager :SpawnManagers
+var PassiveManager :PassiveManagers
 var player_hp
-var power
+var mana
+var mana_cost
 var point:int
 var player_exp
 var level
@@ -68,6 +70,7 @@ var exp_need
 var damage_sum
 
 func _ready() -> void:
+	ini()
 	pass
 func new_scene():
 	if SkillManager!=null:
@@ -76,9 +79,12 @@ func new_scene():
 	if CardManager!=null:
 		CardManager.destroy()
 		CardManager.free()
-
+	if PassiveManager!=null:
+		PassiveManager.destroy()
+		PassiveManager.free()
 	SkillManager = SkillManagers.new()
 	CardManager = CardManagers.new()
+	PassiveManager = PassiveManagers.new()
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
@@ -118,4 +124,3 @@ func ini():
 	var ini = initial_status.new().status
 	for property in ini:
 		set(property,ini[property])
-	_ready()

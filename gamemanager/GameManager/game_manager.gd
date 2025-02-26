@@ -19,13 +19,13 @@ func add_exp(value):
 func add_score(value):
 
 	player_var.point += value * player_var.point_ratio
-func add_power(power):
+func add_mana(mana):
 
-	player_var.power += power
-	if(player_var.power > player_var.power_max):
-		player_var.power = player_var.power_max
-	if(player_var.power < 0):
-		player_var.power = 0
+	player_var.mana += mana
+	if(player_var.mana > player_var.mana_max):
+		player_var.mana = player_var.mana_max
+	if(player_var.mana < 0):
+		player_var.mana = 0
 
 
 func level_up():

@@ -7,24 +7,12 @@ var preset_map = {
 	"drops_p":"res://scene/drops/exp_1.tscn",
 	"drops_plate":"res://scene/drops/plate_1.tscn",
 
-	"card_fairy":"res://scene/cards/beginning_card/beginning_card.tscn",
-	"card_masterspark":"res://scene/cards/masterapark/masterspark.tscn",
-
 	'skill':"res://scene/skill/skill_class/skill.tscn",
 	'routine':"res://scene/routine/routine/routine.tscn",
 	'attack':"res://scene/attack/attack/attack.tscn",
 	'card':"res://scene/cards/card/card.tscn",
-	#"skill_reimu":"res://scene/skill/reimu/reimu_weapon.tscn",
-	#"skill_alice":"res://scene/skill/alice_weapon/alice_weapon.tscn",
-	#"skill_beginning_range":"res://scene/skill/beginning_weapon/beginning_ranged_attack/beginning_ranged_attack.tscn",
-	#"skill_beginning_melee":"res://scene/skill/weapon_base/melee_base/melee_weapon_base.tscn",
-	#"skill_sekibanki":"res://scene/skill/sekibanki/sekibanki_weapon.tscn",
-	#"skill_riggle":"res://scene/skill/riggle/riggle_weapon.tscn",
-	#"skill_rumia":"res://scene/skill/rumia/rumia_weapon.tscn",
-	#"skill_sanae":"res://scene/skill/sanae/sanae_weapon.tscn",
-	#"skill_tamatsukuri":"res://scene/skill/tamatsukuri/tamatsukuri.tscn",
+	'passive':"res://scene/passive/base_passive/Passive.tscn",
 
-	"passive_pachuli":"res://scene/passive/pachuli/pachuli.tscn",
 
 	"particle_explosion":"res://scene/particle/explosion.tscn",
 

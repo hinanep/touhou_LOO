@@ -3,8 +3,8 @@ extends BaseGUIView
 @onready var hp = $hud/hp
 @onready var hp_text = $hud/hp/hp_text
 
-@onready var card_power = $hud/card_power
-@onready var card_power_text = $hud/card_power/card_power_text
+@onready var card_mana = $hud/card_mana
+@onready var card_mana_text = $hud/card_mana/card_mana_text
 
 
 @onready var point_ratio_text = $hud/point_ratio/text
@@ -18,7 +18,7 @@ extends BaseGUIView
 @onready var cp_container = $hud/cp_container
 func _ready():
 	hp.max_value = player_var.player_hp_max
-	card_power.max_value = player_var.power_max
+	card_mana.max_value = player_var.mana_max
 	SignalBus.add_skill.connect(add_skill)
 	SignalBus.add_card.connect(on_add_card)
 	SignalBus.del_card.connect(on_del_card)
@@ -33,10 +33,10 @@ func hp_display():
 	hp.value = player_var.player_hp
 	hp_text.text = ("%d" % player_var.player_hp) + "/" + str(player_var.player_hp_max)
 
-func card_power_display():
-	card_power.value = player_var.power
-	card_power.max_value = player_var.power_max
-	card_power_text.text = str(player_var.power) + "/" + str(player_var.power_max)
+func card_mana_display():
+	card_mana.value = player_var.mana
+	card_mana.max_value = player_var.mana_max
+	card_mana_text.text = str(player_var.mana) + "/" + str(player_var.mana_max)
 
 func point_and_ratio_display():
 	point_ratio_text.text = ("%.2f" % player_var.point_ratio)
@@ -93,7 +93,9 @@ func on_add_card(card_list):
 	newcard.set_texture(PresetManager.getpre('img_'+card_list.id))
 	newcard.get_child(0).text = card_list.id
 	newcard.cardid = card_list.id
-
+	newcard.upgrade_group = card_list.upgrade_group
+	SignalBus.del_card.connect(newcard.destroy)
+	SignalBus.upgrade_group.connect(newcard.upgrade)
 	card_container.add_child(newcard)
 	card_having = card_container.get_child_count()
 	for child in card_container.get_children():
@@ -121,10 +123,11 @@ func add_skill(ski_info):
 			return
 		var newskill = cp_and_skill_texture.instantiate()
 		newskill.selfname = id
+		newskill.upgrade_group = ski_info.upgrade_group
 		newskill.set_texture(PresetManager.getpre('img_'+id))
 		newskill.get_child(0).text = id
 		SignalBus.del_skill.connect(newskill.destroy)
-		SignalBus.upgrade_skill.connect(newskill.upgrade)
+		SignalBus.upgrade_group.connect(newskill.upgrade)
 		skill_container.add_child(newskill)
 
 func add_cp(cp_list):
@@ -140,6 +143,6 @@ func add_cp(cp_list):
 
 func _on_renew_timer_timeout():
 	hp_display()
-	card_power_display()
+	card_mana_display()
 	point_and_ratio_display()
 	exp_display()

@@ -30,7 +30,7 @@ func _init() -> void:
 	SignalBus.del_skill.connect(on_del_skill)
 	SignalBus.upgrade_max.connect(on_upgrade_skill_max)
 	SignalBus.ban_skill.connect(on_ban_skill)
-	SignalBus.upgrade_skill.connect(on_upgrade_skill)
+	SignalBus.upgrade_group.connect(on_upgrade_skill)
 
 	skill_pool.unlocked = table.Skill.duplicate()
 	for skills in skill_pool.unlocked:
@@ -38,7 +38,7 @@ func _init() -> void:
 
 func on_try_add_skill(id):
 	if(skill_pool.choosed.has(id)):
-		SignalBus.upgrade_skill.emit(id)
+		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group)
 		return
 	if(skill_pool.max.has(id)):
 		return
@@ -61,7 +61,7 @@ func on_add_skill(ski_info):
 		skill_pool.max[id] = skill_pool.choosed[id]
 		skill_pool.choosed.erase(id)
 	else:
-		SignalBus.upgrade_skill.emit(id)
+		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group)
 
 func on_del_skill(id):
 	if(skill_pool.choosed.has(id)):
@@ -80,8 +80,11 @@ func on_del_skill(id):
 	skill_num_full = false
 	skill_full = false
 
-func on_upgrade_skill(id):
-	skill_list[id] += 1
+func on_upgrade_skill(group):
+	for skilli in skill_list:
+		if get_skill_by_name(skilli).upgrade_group == group:
+			skill_list[skilli] += 1
+
 
 func on_upgrade_skill_max(id):
 
@@ -132,4 +135,4 @@ func destroy():
 	SignalBus.del_skill.disconnect(on_del_skill)
 	SignalBus.upgrade_max.disconnect(on_upgrade_skill_max)
 	SignalBus.ban_skill.disconnect(on_ban_skill)
-	SignalBus.upgrade_skill.disconnect(on_upgrade_skill)
+	SignalBus.upgrade_group.disconnect(on_upgrade_skill)
