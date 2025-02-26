@@ -36,7 +36,6 @@ func _physics_process(_delta: float) -> void:
 func take_damage(damage):
 
 	if player_var.is_invincible:
-		print("invincible active")
 		return
 	$AnimationPlayer.play("hurt")
 	AudioManager.play_sfx("music_sfx_hurt")

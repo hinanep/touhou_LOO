@@ -14,8 +14,8 @@ func _ready():
 			$select_buttons.add_child(card_button)
 			#多语言支持尚未
 
-			card_button.set_upgrade_text(c+" Lv."+String.num(player_var.CardManager.get_card_level(c)+1))
-			#card_button.set_describe_text(cd["describe_text"][cd["level"]])
+			card_button.set_upgrade_text(table.TID[c][player_var.language]+" Lv."+String.num(player_var.CardManager.get_card_level(c)+1))
+			card_button.set_describe_text(table.TID[c+'_dsc'][player_var.language])
 			card_button.upgrade_selected.connect(on_button_selected.bind(c))
 
 	for w in cards_skills_selected["skills"]:
@@ -24,8 +24,8 @@ func _ready():
 			$select_buttons.add_child(skill_button)
 			#多语言支持尚未
 
-			skill_button.set_upgrade_text(w+" Lv."+String.num(player_var.SkillManager.get_skill_level(w)+1))
-			#skill_button.set_describe_text(ski["describe_text"][ski["level"]])
+			skill_button.set_upgrade_text(table.TID[w][player_var.language]+" Lv."+String.num(player_var.SkillManager.get_skill_level(w)+1))
+			skill_button.set_describe_text(table.TID[w+'_dsc'][player_var.language])
 			skill_button.upgrade_selected.connect(on_button_selected.bind(w))
 
 	for b in cards_skills_selected["passives"]:
@@ -34,8 +34,8 @@ func _ready():
 			$select_buttons.add_child(buff_button)
 			#多语言支持尚未
 
-			buff_button.set_upgrade_text(b+" Lv."+String.num(player_var.SkillManager.get_skill_level(b)+1))
-			#buff_button.set_describe_text(bf["describe_text"][bf["level"]])
+			buff_button.set_upgrade_text(table.TID[b][player_var.language]+" Lv."+String.num(player_var.SkillManager.get_skill_level(b)+1))
+			buff_button.set_describe_text(table.TID[b+'_dsc'][player_var.language])
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
 
 	if $select_buttons.get_child_count()!=0:

@@ -1,6 +1,6 @@
 {
-  "sc_daiyousei_base": {
-	"id": "sc_daiyousei_base",
+  "sc_daiyousei": {
+	"id": "sc_daiyousei",
 	"upgrade_group": "none",
 	"type": "base",
 	"routines": [
@@ -14,8 +14,8 @@
 	"invincible_time": 0.5,
 	"invicible_time_depend": ""
   },
-  "sc_marisa_base": {
-	"id": "sc_marisa_base",
+  "sc_marisa": {
+	"id": "sc_marisa",
 	"upgrade_group": "upg_sc_marisa",
 	"type": "base",
 	"routines": [],
@@ -31,8 +31,8 @@
 	"invincible_time": 6.0,
 	"invicible_time_depend": ""
   },
-  "sc_youmu_base": {
-	"id": "sc_youmu_base",
+  "sc_youmu": {
+	"id": "sc_youmu",
 	"upgrade_group": "upg_sc_youmu",
 	"type": "base",
 	"routines": [

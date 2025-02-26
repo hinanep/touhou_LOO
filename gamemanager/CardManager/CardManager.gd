@@ -54,12 +54,11 @@ func on_add_card(card_info):
 	card_pool.choosed[id]=card_pool.unlocked[id]
 	card_pool.unlocked.erase(id)
 	card_list[id] = 0
-	if id == "sc_daiyousei_base" :
+	if id == "sc_daiyousei" :
 		card_pool.max[id] = card_pool.choosed[id]
 		card_pool.choosed.erase(id)
 		return
 	SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group)
-	print('add_card')
 
 func on_del_card(id):
 	if(card_pool.choosed.has(id)):

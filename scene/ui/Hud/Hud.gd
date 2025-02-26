@@ -92,7 +92,7 @@ func on_add_card(card_list):
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(PresetManager.getpre('img_'+card_list.id))
 	newcard.get_child(0).text = card_list.id
-	newcard.cardid = card_list.id
+	newcard.cardid = table.TID[card_list.id+'_fullname'][player_var.language]
 	newcard.upgrade_group = card_list.upgrade_group
 	SignalBus.del_card.connect(newcard.destroy)
 	SignalBus.upgrade_group.connect(newcard.upgrade)
@@ -119,10 +119,10 @@ func on_del_card(id):
 func add_skill(ski_info):
 		var id = ski_info.id
 
-		if id == "ski_basemagic_base" or id == "ski_basephysics_base":
+		if id == "ski_basemagic" or id == "ski_basephysics":
 			return
 		var newskill = cp_and_skill_texture.instantiate()
-		newskill.selfname = id
+		newskill.selfname = table.TID[id][player_var.language]
 		newskill.upgrade_group = ski_info.upgrade_group
 		newskill.set_texture(PresetManager.getpre('img_'+id))
 		newskill.get_child(0).text = id
@@ -131,7 +131,7 @@ func add_skill(ski_info):
 		skill_container.add_child(newskill)
 
 func add_cp(cp_list):
-	print("adding cp")
+
 	if cp_list.has("cp_image"):
 		var newcp = cp_and_skill_texture.instantiate()
 		newcp.set_texture(PresetManager.getpre(cp_list["cp_image"]))

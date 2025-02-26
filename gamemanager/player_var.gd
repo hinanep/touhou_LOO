@@ -34,7 +34,7 @@ var mana_max #- 符力上限：可存储的最大符力
 var skill_level_max
 var skill_num_max
 
-
+var language = 'CHS'
 
 #运行时使用
 var SkillManager :SkillManagers

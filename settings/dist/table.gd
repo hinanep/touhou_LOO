@@ -18,7 +18,6 @@ static func loader(path:String):
 				data[key].erase(skey)
 	return data
 
-
 var Attack = loader('res://settings/dist/Attack/Attack.json')
 var Buff = loader('res://settings/dist/Buff/Buff.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
@@ -28,6 +27,7 @@ var Skill = loader('res://settings/dist/Skill/Skill.json')
 var SpellCard = loader('res://settings/dist/SpellCard/SpellCard.json')
 var Stage1 = loader('res://settings/dist/StageProcess/Stage1.json')
 var StageProcess = loader('res://settings/dist/StageProcess/StageProcess.json')
+var TID = loader('res://settings/dist/TID/TID.json')
 var Upgrade = loader('res://settings/dist/Upgrade/Upgrade.json')
 
 

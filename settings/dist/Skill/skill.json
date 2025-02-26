@@ -1,6 +1,6 @@
 {
-  "ski_basemagic_base": {
-    "id": "ski_basemagic_base",
+  "ski_basemagic": {
+    "id": "ski_basemagic",
     "upgrade_group": "none",
     "type": "base",
     "routines": [
@@ -9,8 +9,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_basephysics_base": {
-    "id": "ski_basephysics_base",
+  "ski_basephysics": {
+    "id": "ski_basephysics",
     "upgrade_group": "none",
     "type": "base",
     "routines": [
@@ -19,8 +19,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_reimu_base": {
-    "id": "ski_reimu_base",
+  "ski_reimu": {
+    "id": "ski_reimu",
     "upgrade_group": "upg_reimu",
     "type": "base",
     "routines": [
@@ -29,8 +29,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_sanae_base": {
-    "id": "ski_sanae_base",
+  "ski_sanae": {
+    "id": "ski_sanae",
     "upgrade_group": "upg_sanae",
     "type": "base",
     "routines": [
@@ -39,8 +39,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_rumia_base": {
-    "id": "ski_rumia_base",
+  "ski_rumia": {
+    "id": "ski_rumia",
     "upgrade_group": "upg_rumia",
     "type": "base",
     "routines": [
@@ -50,8 +50,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_wriggle_base": {
-    "id": "ski_wriggle_base",
+  "ski_wriggle": {
+    "id": "ski_wriggle",
     "upgrade_group": "upg_wriggle",
     "type": "base",
     "routines": [
@@ -60,8 +60,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_alice_base": {
-    "id": "ski_alice_base",
+  "ski_alice": {
+    "id": "ski_alice",
     "upgrade_group": "upg_alice",
     "type": "base",
     "routines": [
@@ -70,8 +70,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_sekibanki_base": {
-    "id": "ski_sekibanki_base",
+  "ski_sekibanki": {
+    "id": "ski_sekibanki",
     "upgrade_group": "upg_sekibanki",
     "type": "base",
     "routines": [
@@ -80,8 +80,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_misumaru_base": {
-    "id": "ski_misumaru_base",
+  "ski_misumaru": {
+    "id": "ski_misumaru",
     "upgrade_group": "upg_misumaru",
     "type": "base",
     "routines": [
@@ -90,8 +90,8 @@
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
   },
-  "ski_sakuya_base": {
-    "id": "ski_sakuya_base",
+  "ski_sakuya": {
+    "id": "ski_sakuya",
     "upgrade_group": "upg_sakuya",
     "type": "base",
     "routines": [

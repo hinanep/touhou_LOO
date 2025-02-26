@@ -36,7 +36,6 @@ func on_use_card(id):
 		return
 	if player_var.mana<card_info.mana/player_var.mana_cost:
 		return
-	print(id)
 	emit_signal("shoot")
 	player_var.mana-=card_info.mana/player_var.mana_cost
 	SignalBus.player_invincible.emit(card_info.invincible_time)

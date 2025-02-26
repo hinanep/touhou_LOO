@@ -1,6 +1,6 @@
 {
-  "psv_patchouli_base": {
-	"id": "psv_patchouli_base",
+  "psv_patchouli": {
+	"id": "psv_patchouli",
 	"upgrade_group": "upg_patchouli",
 	"type": "base",
 	"buff": [
@@ -10,8 +10,8 @@
 	  1.0
 	]
   },
-  "psv_saki_base": {
-	"id": "psv_saki_base",
+  "psv_saki": {
+	"id": "psv_saki",
 	"upgrade_group": "upg_saki",
 	"type": "base",
 	"buff": [
@@ -21,8 +21,8 @@
 	  1.0
 	]
   },
-  "psv_narumi_base": {
-	"id": "psv_narumi_base",
+  "psv_narumi": {
+	"id": "psv_narumi",
 	"upgrade_group": "upg_narumi",
 	"type": "base",
 	"buff": [
@@ -32,8 +32,8 @@
 	  1.0
 	]
   },
-  "psv_junko_base": {
-	"id": "psv_junko_base",
+  "psv_junko": {
+	"id": "psv_junko",
 	"upgrade_group": "upg_junko",
 	"type": "base",
 	"buff": [
@@ -43,8 +43,8 @@
 	  1.0
 	]
   },
-  "psv_kisumi_base": {
-	"id": "psv_kisumi_base",
+  "psv_kisumi": {
+	"id": "psv_kisumi",
 	"upgrade_group": "upg_kisumi",
 	"type": "base",
 	"buff": [
@@ -54,8 +54,8 @@
 	  1.0
 	]
   },
-  "psv_momoyo_base": {
-	"id": "psv_momoyo_base",
+  "psv_momoyo": {
+	"id": "psv_momoyo",
 	"upgrade_group": "upg_momoyo",
 	"type": "base",
 	"buff": [

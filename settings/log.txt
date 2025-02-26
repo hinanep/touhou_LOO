@@ -6,5 +6,6 @@ gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Skill.xlsx:Skill => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Skill\Skill.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\SpellCard.xlsx:SpellCard => C:\Users\nep\Desktop\touhou_survivors\settings\dist\SpellCard\SpellCard.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\StageProcess.xlsx:Stage1 => C:\Users\nep\Desktop\touhou_survivors\settings\dist\StageProcess\Stage1.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\TID.xlsx:TID => C:\Users\nep\Desktop\touhou_survivors\settings\dist\TID\TID.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Upgrade.xlsx:Upgrade => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Upgrade\Upgrade.json
 gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

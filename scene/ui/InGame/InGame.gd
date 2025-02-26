@@ -44,8 +44,8 @@ func close_self():
 
 func scene_init():
 	player_var.new_scene()
-	SignalBus.try_add_skill.emit("ski_basemagic_base")
-	SignalBus.try_add_skill.emit("ski_basephysics_base")
-	SignalBus.try_add_card.emit("sc_daiyousei_base")
+	SignalBus.try_add_skill.emit("ski_basemagic")
+	SignalBus.try_add_skill.emit("ski_basephysics")
+	SignalBus.try_add_card.emit("sc_daiyousei")
 	$SpawnManager.spawnmanager_init('Stage1')
 	player_var.SpawnManager = $SpawnManager

@@ -57,7 +57,7 @@ func on_add_skill(ski_info):
 	skill_pool.choosed[id]=skill_pool.unlocked[id]
 	skill_pool.unlocked.erase(id)
 	skill_list[id] = 0
-	if id == "ski_basemagic_base" or id == "ski_basephysics_base":
+	if id == "ski_basemagic" or id == "ski_basephysics":
 		skill_pool.max[id] = skill_pool.choosed[id]
 		skill_pool.choosed.erase(id)
 	else:

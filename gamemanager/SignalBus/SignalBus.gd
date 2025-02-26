@@ -49,11 +49,10 @@ func _ready() -> void:
 
 func _on_signal_emit(message1='',message2='',message3='',message4='') -> void:
 	print_rich("[color=yellow][b]------[/b][/color]")
+	var n = {}
 
 	print_rich(message2)
 	print_rich(message1)
 	print_rich(message3)
 	print_rich(message4)
 	print_rich("[color=yellow][b]------[/b][/color]")
-
-	#print(n)

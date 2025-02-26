@@ -138,13 +138,6 @@ func set_active(active:bool):
 	$bullet_erase_area.monitoring = active
 
 
-
-
-
-#func upgrade_attack():
-	#level += 1
-	#print('upgrade_attack')
-
 #设置等级
 func set_upgrade(nlevel:int):
 	level = nlevel
@@ -161,11 +154,9 @@ func _on_hit():
 
 #敌人进入攻击范围
 func _on_damage_area_body_entered(body):
-	#if body in damaged_bodies:
-		#return
+
 	if body.has_method("take_damage"):
 		_on_hit()
-		#damaged_bodies.append(body)
 
 		damage(body,attack_info.damage)
 		penetration += 1
@@ -174,7 +165,7 @@ func _on_damage_area_body_entered(body):
 
 #摧毁本攻击
 func destroy(message:String):
-	#print(message)
+
 	if attack_info.has('destroying_routine_creation'):
 		for destroy_gen in attack_info.destroying_routine_creation:
 			get_tree().call_group(destroy_gen,'attacks',true,global_position,rotation)

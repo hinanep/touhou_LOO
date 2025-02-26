@@ -52,8 +52,7 @@ func raise_weight_to_cp(xname):
 func get_cp_unactive(x_name):
 	var find = false
 	var cp_array = []
-	print("get_cp_unactive")
-	print(x_name)
+
 	for cp in cp_pool["unactive"]:
 		if cp_pool["unactive"][cp]["effect_group"].has(x_name):
 
