@@ -88,7 +88,10 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation)
+func get_need_routines():
+	var need_routines:Array
 
+	return need_routines
 
 func single_attack(generate_position,generate_rotation):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])

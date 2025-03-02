@@ -1,0 +1,86 @@
+{
+  "sum_alice_base": {
+	"id": "sum_alice_base",
+	"using_upgrade": "upg_alice",
+	"type": "base",
+	"effective_condition": "",
+	"duration": 6.0,
+	"dependence": "",
+	"can_be_hited": false,
+	"initial_hp": 1.0,
+	"automatic_routine": [
+	  "rou_alice_attachment1_base"
+	],
+	"cd": 1.0,
+	"movement": "sandsoldier",
+	"movement_parameter": [
+	  2.0
+	],
+	"creating_routine": [],
+	"destroying_routine": [],
+	"special": []
+  },
+  "sum_alice_marisa": {
+	"id": "sum_alice_marisa",
+	"using_upgrade": "none",
+	"type": "boost",
+	"effective_condition": "cp_marisa_alice",
+	"duration": 0.0,
+	"dependence": "",
+	"can_be_hited": false,
+	"initial_hp": 0.0,
+	"automatic_routine": [],
+	"cd": 0.0,
+	"movement": "",
+	"movement_parameter": [],
+	"creating_routine": [],
+	"destroying_routine": [
+	  "rou_alice_marisa_sum1_base"
+	],
+	"special": [
+	  "scdestroy"
+	]
+  },
+  "sum_alice_patchouli": {
+	"id": "sum_alice_patchouli",
+	"using_upgrade": "none",
+	"type": "boost",
+	"effective_condition": "cp_alice_patchouli",
+	"duration": 0.0,
+	"dependence": "",
+	"can_be_hited": false,
+	"initial_hp": 0.0,
+	"automatic_routine": [],
+	"cd": 0.0,
+	"movement": "",
+	"movement_parameter": [],
+	"creating_routine": [
+	  "rou_alice_ptchouli1_base"
+	],
+	"destroying_routine": [
+	  "rou_alice_ptchouli2_base"
+	],
+	"special": []
+  },
+  "sum_alice_marisa_attachment1_base": {
+	"id": "sum_alice_marisa_attachment1_base",
+	"using_upgrade": "none",
+	"type": "base",
+	"effective_condition": "",
+	"duration": 1.0,
+	"dependence": "sumdep_mana_multiply",
+	"can_be_hited": false,
+	"initial_hp": 1.0,
+	"automatic_routine": [
+	  "rou_marisa_alice_atk_base"
+	],
+	"cd": 999999.0,
+	"movement": "none",
+	"movement_parameter": [],
+	"creating_routine": [],
+	"destroying_routine": [
+	  "rou_alice_marisa_sum2_base"
+	],
+	"special": []
+  }
+}

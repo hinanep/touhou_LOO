@@ -1,0 +1,12 @@
+{
+  "atkdep_mana_multiply": {
+    "id": "atkdep_mana_multiply",
+    "attribute": "mana",
+    "calculation": "linear",
+    "calculation_parameter": [
+      0.0025,
+      0
+    ],
+    "relationship": "multiply"
+  }
+}

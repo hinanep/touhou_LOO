@@ -13,6 +13,18 @@ var drops_path = "drops_p"
 var target
 var invincible = false
 signal die(id)
+var mob_info = {
+	"id": "enm_mempeace",
+	"type": "zako",
+	"movement": "default",
+	"danma": "",
+	"barrage_parameter": [],
+	"shoot_interval": 0.0,
+	"physical_damage": 5.0,
+	"magical_damage": 0.0,
+	"health": 100.0,
+	"speed": 50.0
+  }
 var debuff = {
 	"speed":1.0,
 	"target_rediretion":player_node
@@ -30,13 +42,19 @@ func _ready():
 	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
-
-	navi.max_speed = speed
+	name = mob_info.id
+	speed = mob_info.speed
+	navi.max_speed = mob_info.speed
+	max_hp = mob_info.health
+	hp = max_hp
+	basic_melee_damage = mob_info.physical_damage
+	basic_bullet_damage = mob_info.magical_damage
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
 	navi.target_position = player_node.global_position
-
+	melee_battle_ready()
+	bullet_battle_ready(true)
 	debuff["target_rediretion"] = player_node
 	#await get_tree().create_timer(0.5).timeout
 	#navi.get_next_path_position()
@@ -52,25 +70,21 @@ func _physics_process(_delta):
 
 #移动方式：走向玩家
 func move_to_target():
-	#if navi.is_navigation_finished():
-		#return
 
 	if navi.avoidance_enabled:
 		if NavigationServer2D.map_get_iteration_id(navi.get_navigation_map()) == 0:
 			return
 
-		#navi.target_position = player_node.global_position
-		#var nexposition = navi.get_next_path_position()
-		#var new_velocity = global_position.direction_to(nexposition) * speed
 		navi.get_next_path_position()
 		navi.set_velocity(global_position.direction_to(player_node.global_position) * speed)
-		#navi.velocity = global_position.direction_to(player_node.global_position) * speed
+
 	else:
 
 		velocity =  global_position.direction_to(player_node.global_position) * speed
 
 	move_and_slide()
-
+func creep():
+	pass
 
 
 func damage_num_display(num):

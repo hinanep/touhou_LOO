@@ -1,13 +1,26 @@
-class_name skill extends Node2D
+class_name summon extends Node2D
 
-var skill_info = {
-	id = '',
-	upgrade_group = '',
-	routines = ["rou_reimu"],
-	cd = 1.0,
-	cd_reduction_efficicency = 1.0
-
-}
+var skill_info =  {
+	"id": "sum_alice_base",
+	"using_upgrade": "upg_alice",
+	"type": "base",
+	"effective_condition": "",
+	"duration": 6.0,
+	"dependence": "",
+	"can_be_hited": false,
+	"initial_hp": 1.0,
+	"automatic_routine": [
+	  "rou_alice_attachment1_base"
+	],
+	"cd": 1.0,
+	"movement": "sandsoldier",
+	"movement_parameter": [
+	  2.0
+	],
+	"creating_routine": [],
+	"destroying_routine": [],
+	"special": []
+  }
 signal shoot
 var level = 0
 var upgrade_info = {
@@ -40,10 +53,7 @@ func add_routine(id):
 		routinepre.set_upgrade(level)
 
 		add_child(routinepre)
-		var need_routines = routinepre.get_need_routines()
-		if not need_routines.is_empty():
-			for rid in need_routines:
-				add_routine(rid)
+
 
 func gen_routines():
 	emit_signal("shoot")
@@ -56,6 +66,8 @@ func upgrade_skill(group):
 	level += 1
 	if(level == player_var.skill_level_max):
 		SignalBus.upgrade_max.emit(skill_info.id)
+
+
 
 
 func destroy(id):

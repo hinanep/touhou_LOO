@@ -28,7 +28,7 @@ var preset_map = {
 	"enemy_zako_slime_blue":"res://scene/enemys/slime_blue/slime_blue.tscn",
 	"enemy_zako_slime_green":"res://scene/enemys/slime_green/slime_green.tscn",
 	"enemy_elite_slime":"res://scene/enemys/elite_slime/elite_slime.tscn",
-
+	'enemy':"res://scene/enemys/enemy_base/enemy_base.tscn",
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
 
 	"music_sfx_cp":"res://asset/music/sfx/cp.wav",
@@ -97,5 +97,9 @@ func getpre(prename : String):
 	if preset_map.has(prename) :
 	#	return ResourceLoader.load_threaded_get(preset_map[prename])
 		return preset_map[prename]
+	if(prename.contains('enm')):
+		print('pre  '+prename+'  not found!')
+		return preset_map.enemy
+
 	print('pre  '+prename+'  not found!')
 	return null

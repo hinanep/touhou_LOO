@@ -8,6 +8,7 @@ signal add_skill(skill_info)
 signal del_skill(id)
 #尝试ban技能时发出
 signal ban_skill(id)
+signal trigger_routine_by_id(routine_id)
 
 signal try_add_card(id)
 signal add_card(card_info)

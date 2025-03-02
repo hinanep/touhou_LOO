@@ -41,6 +41,7 @@ var SkillManager :SkillManagers
 var CardManager :CardManagers
 var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
+var dep:dep_formula = dep_formula.new()
 var player_hp
 var mana
 var mana_cost

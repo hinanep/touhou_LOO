@@ -92,7 +92,7 @@ func on_add_card(card_list):
 	var newcard = card_tex_pre.instantiate()
 	newcard.set_texture(PresetManager.getpre('img_'+card_list.id))
 	newcard.get_child(0).text = card_list.id
-	newcard.cardid = table.TID[card_list.id+'_fullname'][player_var.language]
+	newcard.cardid = table.TID[card_list.id+'_name'][player_var.language]
 	newcard.upgrade_group = card_list.upgrade_group
 	SignalBus.del_card.connect(newcard.destroy)
 	SignalBus.upgrade_group.connect(newcard.upgrade)

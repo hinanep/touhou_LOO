@@ -25,25 +25,28 @@ func spawner_init(spawner_initlist,parent):
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
 	spawnTimer.wait_time = maxf(spawn_list["tick_time"],0.1)
 	match spawn_list["spawn_type"]:
-		"duration":
+		"zako":
 			startTimer.wait_time =  maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
 
 			endTimer.wait_time = spawn_list["end_time"] - player_var.time_secs
 			endTimer.start()
-		"once":
+		"elite":
 			startTimer.wait_time =   maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
 			startTimer.start()
 			spawnTimer.set_one_shot(true)
 			endTimer.wait_time = startTimer.wait_time + 1
 			endTimer.start()
 	mob_pre = PresetManager.getpre(spawn_list["enemy_type"])
+
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
 func spawn_mob():
+
 	if path_follow_2d!=null:
 		path_follow_2d.progress_ratio = randf()
 	var mob = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
+	mob.mob_info = table.Enemy[spawn_list["enemy_type"]]
 	mob.setbuff(spawn_list['enemy_attribute_boost'])
 	#instantiate()
 	SpawnManager.add_mob(mob)

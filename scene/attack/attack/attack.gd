@@ -40,7 +40,10 @@ func _ready():
 	add_to_group(attack_info.id)
 
 	rotation_degrees = attack_info.ri
-	$duration_timer.wait_time = attack_info.duration
+	if attack_info.has('duration_dependence'):
+		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
+	else:
+		$duration_timer.wait_time = attack_info.duration
 	kill.connect(on_kill)
 	$bullet_erase_area.set_monitoring(attack_info.bullet_eraseing)
 	$damage_area.connect("body_entered",_on_damage_area_body_entered)
@@ -53,7 +56,7 @@ func _ready():
 
 
 	set_shape(attack_info.shape)
-	set_scale(Vector2(1,1) * player_var.range_add_ratio)
+
 
 	if node_active:
 		$duration_timer.start()
@@ -75,7 +78,10 @@ func _physics_process(delta):
 
 
 func set_shape(cshape):
-
+	var addi = 1
+	if attack_info.has('size_dependence'):
+		addi = player_var.dep.operate_dep(attack_info.size_dependence,addi)
+	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
 	match cshape:
 		'circle':
 			cshape = CircleShape2D.new()

@@ -1,51 +1,51 @@
 {
   "sc_daiyousei": {
-	"id": "sc_daiyousei",
-	"upgrade_group": "none",
-	"type": "base",
-	"routines": [
-	  "rou_marisa_base"
-	],
-	"buff": [],
-	"buff_value_factor": [],
-	"special": "",
-	"special_parameter": [],
-	"mana": 500.0,
-	"invincible_time": 0.5,
-	"invicible_time_depend": ""
+    "id": "sc_daiyousei",
+    "upgrade_group": "none",
+    "type": "base",
+    "routines": [
+      "rou_marisa_base"
+    ],
+    "buff": [],
+    "buff_value_factor": [],
+    "special": "",
+    "special_parameter": [],
+    "mana": 500.0,
+    "invincible_time": 0.5,
+    "invicible_time_depend": ""
   },
   "sc_marisa": {
-	"id": "sc_marisa",
-	"upgrade_group": "upg_sc_marisa",
-	"type": "base",
-	"routines": [],
-	"buff": [
-	  "buff_hp_disposable"
-	],
-	"buff_value_factor": [
-	  1.0
-	],
-	"special": "",
-	"special_parameter": [],
-	"mana": 2000.0,
-	"invincible_time": 6.0,
-	"invicible_time_depend": ""
+    "id": "sc_marisa",
+    "upgrade_group": "upg_sc_marisa",
+    "type": "base",
+    "routines": [],
+    "buff": [
+      "buff_hp_disposable"
+    ],
+    "buff_value_factor": [
+      1.0
+    ],
+    "special": "",
+    "special_parameter": [],
+    "mana": 2000.0,
+    "invincible_time": 6.0,
+    "invicible_time_depend": ""
   },
   "sc_youmu": {
-	"id": "sc_youmu",
-	"upgrade_group": "upg_sc_youmu",
-	"type": "base",
-	"routines": [
-	  "rou_youmu_base"
-	],
-	"buff": [],
-	"buff_value_factor": [],
-	"special": "dash",
-	"special_parameter": [
-	  500.0
-	],
-	"mana": 200.0,
-	"invincible_time": 0.5,
-	"invicible_time_depend": ""
+    "id": "sc_youmu",
+    "upgrade_group": "upg_sc_youmu",
+    "type": "base",
+    "routines": [
+      "rou_youmu_base"
+    ],
+    "buff": [],
+    "buff_value_factor": [],
+    "special": "dash",
+    "special_parameter": [
+      500.0
+    ],
+    "mana": 200.0,
+    "invincible_time": 0.5,
+    "invicible_time_depend": ""
   }
 }

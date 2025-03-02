@@ -11,30 +11,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -43,14 +22,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -73,30 +45,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -105,14 +56,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -135,30 +79,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -167,14 +90,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -197,30 +113,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -229,14 +124,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -259,30 +147,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -291,14 +158,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -321,30 +181,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -353,14 +192,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -383,30 +215,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -415,14 +226,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -445,30 +249,9 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
     "times_addition": [
       0,
       1,
@@ -477,14 +260,7 @@
       2,
       3
     ],
-    "debuff_addition": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
+    "buff_addition": [],
     "cd_reduction": [
       0,
       0,
@@ -504,31 +280,11 @@
       0.25,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0
-    ],
-    "times_addition": [
-      0,
-      0,
-      0
-    ],
-    "debuff_addition": [
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "buff_addition": [],
     "cd_reduction": [],
     "special": "none"
   },
@@ -541,31 +297,11 @@
       0.25,
       0.5
     ],
-    "bullet_speed_addition": [
-      0,
-      0,
-      0
-    ],
-    "duration_addition": [
-      0,
-      0,
-      0
-    ],
-    "range_addition": [
-      0,
-      0,
-      0
-    ],
-    "times_addition": [
-      0,
-      0,
-      0
-    ],
-    "debuff_addition": [
-      0,
-      0,
-      0
-    ],
+    "bullet_speed_addition": [],
+    "duration_addition": [],
+    "range_addition": [],
+    "times_addition": [],
+    "buff_addition": [],
     "cd_reduction": [],
     "special": "none"
   },
@@ -578,11 +314,11 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0.5,
+    "buff_addition": [
       1,
-      1.5
+      0.5,
+      0.5,
+      0.5
     ],
     "cd_reduction": [],
     "special": "none"
@@ -596,11 +332,11 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0.5,
+    "buff_addition": [
       1,
-      1.5
+      0.5,
+      0.5,
+      0.5
     ],
     "cd_reduction": [],
     "special": "none"
@@ -614,12 +350,12 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0
+    "buff_addition": [
+      1,
+      1
     ],
     "cd_reduction": [],
-    "special": "disposable_buff"
+    "special": "none"
   },
   "upg_junko": {
     "id": "upg_junko",
@@ -630,11 +366,11 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0.5,
+    "buff_addition": [
       1,
-      1.5
+      0.5,
+      0.5,
+      0.5
     ],
     "cd_reduction": [],
     "special": "none"
@@ -648,11 +384,11 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0.5,
+    "buff_addition": [
       1,
-      1.5
+      0.5,
+      0.5,
+      0.5
     ],
     "cd_reduction": [],
     "special": "none"
@@ -666,11 +402,11 @@
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [],
-    "debuff_addition": [
-      0,
-      0.5,
+    "buff_addition": [
       1,
-      1.5
+      0.5,
+      0.5,
+      0.5
     ],
     "cd_reduction": [],
     "special": "none"

@@ -101,20 +101,20 @@
 	"JP": "",
 	"ENG": ""
   },
-  "sc_daiyousei_fullname": {
-	"Id": "sc_daiyousei_fullname",
+  "sc_daiyousei_name": {
+	"Id": "sc_daiyousei_name",
 	"CHS": "治愈「繁茂微风」",
 	"JP": "",
 	"ENG": ""
   },
-  "sc_marisa_fullname": {
-	"Id": "sc_marisa_fullname",
+  "sc_marisa_name": {
+	"Id": "sc_marisa_name",
 	"CHS": "记忆「Master Spark」",
 	"JP": "",
 	"ENG": ""
   },
-  "sc_youmu_fullname": {
-	"Id": "sc_youmu_fullname",
+  "sc_youmu_name": {
+	"Id": "sc_youmu_name",
 	"CHS": "记忆「现世斩」",
 	"JP": "",
 	"ENG": ""
@@ -212,6 +212,48 @@
   "sc_youmu_dsc": {
 	"Id": "sc_youmu_dsc",
 	"CHS": "自机向前方冲刺，并伤害路径上的敌人",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_damage": {
+	"Id": "upg_damage",
+	"CHS": "增加伤害",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_bullet_speed": {
+	"Id": "upg_bullet_speed",
+	"CHS": "增加弹速",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_duration": {
+	"Id": "upg_duration",
+	"CHS": "增加持续时间",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_range": {
+	"Id": "upg_range",
+	"CHS": "增加攻击范围",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_times": {
+	"Id": "upg_times",
+	"CHS": "增加发射数量",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_buff": {
+	"Id": "upg_buff",
+	"CHS": "增加属性数值",
+	"JP": "",
+	"ENG": ""
+  },
+  "upg_cd": {
+	"Id": "upg_cd",
+	"CHS": "减少冷却时间",
 	"JP": "",
 	"ENG": ""
   }

@@ -34,7 +34,7 @@ func _ready():
 			$select_buttons.add_child(buff_button)
 			#多语言支持尚未
 
-			buff_button.set_upgrade_text(table.TID[b][player_var.language]+" Lv."+String.num(player_var.SkillManager.get_skill_level(b)+1))
+			buff_button.set_upgrade_text(table.TID[b][player_var.language]+" Lv."+String.num(player_var.PassiveManager.get_skill_level(b)+1))
 			buff_button.set_describe_text(table.TID[b+'_dsc'][player_var.language])
 			buff_button.upgrade_selected.connect(on_button_selected.bind(b))
 
