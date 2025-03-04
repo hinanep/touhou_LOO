@@ -1,7 +1,7 @@
 {
-  "sum_alice_base": {
-	"id": "sum_alice_base",
-	"using_upgrade": "upg_alice",
+  "sum_alice": {
+	"id": "sum_alice",
+	"upgrade_group": "upg_alice",
 	"type": "base",
 	"effective_condition": "",
 	"duration": 6.0,
@@ -9,7 +9,7 @@
 	"can_be_hited": false,
 	"initial_hp": 1.0,
 	"automatic_routine": [
-	  "rou_alice_attachment1_base"
+	  "rou_alice_attachment"
 	],
 	"cd": 1.0,
 	"movement": "sandsoldier",
@@ -18,13 +18,14 @@
 	],
 	"creating_routine": [],
 	"destroying_routine": [],
-	"special": []
+	"special": [],
+	"special_routine": []
   },
   "sum_alice_marisa": {
 	"id": "sum_alice_marisa",
-	"using_upgrade": "none",
+	"upgrade_group": "none",
 	"type": "boost",
-	"effective_condition": "cp_marisa_alice",
+	"effective_condition": "cp_alice_marisa",
 	"duration": 0.0,
 	"dependence": "",
 	"can_be_hited": false,
@@ -34,16 +35,17 @@
 	"movement": "",
 	"movement_parameter": [],
 	"creating_routine": [],
-	"destroying_routine": [
-	  "rou_alice_marisa_sum1_base"
-	],
+	"destroying_routine": [],
 	"special": [
 	  "scdestroy"
+	],
+	"special_routine": [
+	  "rou_alice_marisa_attachment1"
 	]
   },
   "sum_alice_patchouli": {
 	"id": "sum_alice_patchouli",
-	"using_upgrade": "none",
+	"upgrade_group": "none",
 	"type": "boost",
 	"effective_condition": "cp_alice_patchouli",
 	"duration": 0.0,
@@ -55,32 +57,34 @@
 	"movement": "",
 	"movement_parameter": [],
 	"creating_routine": [
-	  "rou_alice_ptchouli1_base"
+	  "rou_alice_ptchouli_attachment1"
 	],
 	"destroying_routine": [
-	  "rou_alice_ptchouli2_base"
+	  "rou_alice_ptchouli_attachment2"
 	],
-	"special": []
+	"special": [],
+	"special_routine": []
   },
-  "sum_alice_marisa_attachment1_base": {
-	"id": "sum_alice_marisa_attachment1_base",
-	"using_upgrade": "none",
+  "sum_alice_marisa_attachment1": {
+	"id": "sum_alice_marisa_attachment1",
+	"upgrade_group": "none",
 	"type": "base",
 	"effective_condition": "",
 	"duration": 1.0,
-	"dependence": "sumdep_mana_multiply",
+	"dependence": "sumdep_marisa_alice_duration",
 	"can_be_hited": false,
 	"initial_hp": 1.0,
-	"automatic_routine": [
-	  "rou_marisa_alice_atk_base"
-	],
-	"cd": 999999.0,
+	"automatic_routine": [],
+	"cd": 0.0,
 	"movement": "none",
 	"movement_parameter": [],
-	"creating_routine": [],
-	"destroying_routine": [
-	  "rou_alice_marisa_sum2_base"
+	"creating_routine": [
+	  "rou_alice_marisa_attachment2"
 	],
-	"special": []
+	"destroying_routine": [
+	  "rou_alice_marisa_attachment3"
+	],
+	"special": [],
+	"special_routine": []
   }
 }

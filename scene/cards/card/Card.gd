@@ -1,10 +1,10 @@
 extends Node2D
 class_name card
 var card_info={
-	"id": "sc_daiyousei_base",
+	"id": "sc_daiyousei",
 	"type": "base",
 	"routine": [
-	  "rou_marisa_base"
+	  "rou_marisa"
 	],
 	"buff": [],
 	"buff_value_factor": [],

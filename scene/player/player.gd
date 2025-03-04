@@ -45,7 +45,6 @@ func take_damage(damage):
 	if player_var.player_hp < 0.1:
 		died()
 	SignalBus.player_invincible.emit(player_var.invincible_time)
-
 func on_player_invincible(time):
 	player_var.is_invincible = true
 	$invincible_time.stop()

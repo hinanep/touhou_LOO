@@ -18,13 +18,13 @@ func _ready():
 		card_button.set_tooltip_text(cd.id)
 		card_button.selected.connect(on_cardbutton_select.bind(cd.id))
 
-	for uccp in CpManager.cp_pool.unactive:
-		var cp = CpManager.cp_pool.unactive[uccp]
+	for uccp in table.Couple:
+		var cp = table.Couple[uccp]
 		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/cp_container.add_child(cp_button)
-		cp_button.set_texture(cp.cp_image)
-		cp_button.set_tooltip_text(cp.cn)
-		cp_button.selected.connect(on_cpbutton_select.bind(cp.name))
+		cp_button.set_texture('img_'+cp.id)
+		cp_button.set_tooltip_text(cp.id)
+		cp_button.selected.connect(on_cpbutton_select.bind(cp.id))
 
 func on_skillbutton_select(skillname):
 	$testhud/Button.grab_focus()
@@ -50,7 +50,7 @@ func _on_update_pressed():
 			SignalBus.try_add_skill.emit(tname)
 
 		"cp":
-			CpManager.add_cp(tname)
+			player_var.CpManager.add_cp(tname)
 			pass
 		"passive":
 			pass
@@ -69,7 +69,7 @@ func _on_delete_pressed():
 			SignalBus.del_skill.emit(tname)
 
 		"cp":
-			CpManager.del_cp(tname)
+			SignalBus.cp_del.emit(tname)
 			pass
 		"passive":
 			pass

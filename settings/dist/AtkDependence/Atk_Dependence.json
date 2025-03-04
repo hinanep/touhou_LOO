@@ -1,6 +1,6 @@
 {
-  "atkdep_mana_multiply": {
-    "id": "atkdep_mana_multiply",
+  "atkdep_marisa_alice_duration": {
+    "id": "atkdep_marisa_alice_duration",
     "attribute": "mana",
     "calculation": "linear",
     "calculation_parameter": [

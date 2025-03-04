@@ -9,7 +9,7 @@ func _on_body_entered(_body):
 	game_manager.add_exp(experience)
 
 	for i in range(3):
-		if CpManager.random_choose_cp():
+		if player_var.CpManager.random_choose_cp():
 			continue
 		else:
 			#random upgrade waza/card/passive

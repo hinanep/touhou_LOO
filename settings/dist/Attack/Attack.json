@@ -1,6 +1,6 @@
 {
-  "atk_basemagic_base": {
-    "id": "atk_basemagic_base",
+  "atk_basemagic": {
+    "id": "atk_basemagic",
     "upgrade_group": "",
     "type": "base",
     "effective_condition": "",
@@ -48,8 +48,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_basephysics_base": {
-    "id": "atk_basephysics_base",
+  "atk_basephysics": {
+    "id": "atk_basephysics",
     "upgrade_group": "",
     "type": "base",
     "effective_condition": "",
@@ -93,8 +93,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_reimu_base": {
-    "id": "atk_reimu_base",
+  "atk_reimu": {
+    "id": "atk_reimu",
     "upgrade_group": "upg_reimu",
     "type": "base",
     "effective_condition": "",
@@ -142,8 +142,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_reimu_sanae": {
-    "id": "atk_reimu_sanae",
+  "atk_reimu_sanae_boost": {
+    "id": "atk_reimu_sanae_boost",
     "upgrade_group": "",
     "type": "boost",
     "effective_condition": "cp_reimu_sanae",
@@ -189,8 +189,8 @@
     "duration_efficiency": 0.0,
     "range_efficiency": 0.0
   },
-  "atk_sanae_type1_base": {
-    "id": "atk_sanae_type1_base",
+  "atk_sanae_type1": {
+    "id": "atk_sanae_type1",
     "upgrade_group": "upg_sanae",
     "type": "base",
     "effective_condition": "",
@@ -242,8 +242,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_sanae_type2_base": {
-    "id": "atk_sanae_type2_base",
+  "atk_sanae_type2": {
+    "id": "atk_sanae_type2",
     "upgrade_group": "upg_sanae",
     "type": "base",
     "effective_condition": "",
@@ -295,8 +295,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_sanae_type3_base": {
-    "id": "atk_sanae_type3_base",
+  "atk_sanae_type3": {
+    "id": "atk_sanae_type3",
     "upgrade_group": "upg_sanae",
     "type": "base",
     "effective_condition": "",
@@ -344,8 +344,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_rumia_base": {
-    "id": "atk_rumia_base",
+  "atk_rumia": {
+    "id": "atk_rumia",
     "upgrade_group": "upg_rumia",
     "type": "base",
     "effective_condition": "",
@@ -359,7 +359,7 @@
     "buff": [],
     "buff_value_factor": [],
     "hitting_routine_creation": [
-      "rou_rumia_attachment1_base"
+      "rou_rumia_attachment"
     ],
     "destroying_routine_creation": [],
     "bullet_eraseing": false,
@@ -395,8 +395,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_rumia_attachment1_base": {
-    "id": "atk_rumia_attachment1_base",
+  "atk_rumia_attachment": {
+    "id": "atk_rumia_attachment",
     "upgrade_group": "upg_rumia",
     "type": "base",
     "effective_condition": "",
@@ -444,8 +444,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_wriggle_base": {
-    "id": "atk_wriggle_base",
+  "atk_wriggle": {
+    "id": "atk_wriggle",
     "upgrade_group": "upg_wriggle",
     "type": "base",
     "effective_condition": "",
@@ -493,8 +493,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_alice_base": {
-    "id": "atk_alice_base",
+  "atk_alice_attachment": {
+    "id": "atk_alice_attachment",
     "upgrade_group": "upg_alice",
     "type": "base",
     "effective_condition": "",
@@ -538,8 +538,195 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_sekibanki_base": {
-    "id": "atk_sekibanki_base",
+  "atk_alice_marisa_attachment": {
+    "id": "atk_alice_marisa_attachment",
+    "upgrade_group": "",
+    "type": "base",
+    "effective_condition": "",
+    "damage_times": "dot",
+    "damage_type": "danma",
+    "damage": 50.0,
+    "duration": 1.0,
+    "duration_dependence": "atkdep_marisa_alice_duration",
+    "debuff": [],
+    "basic_debuff_effect": [],
+    "buff": [],
+    "buff_value_factor": [],
+    "hitting_routine_creation": [],
+    "destroying_routine_creation": [],
+    "bullet_eraseing": true,
+    "defeating_item_creation": [],
+    "defeating_item_creation_value": 0.0,
+    "eraseing_item_creation": [],
+    "eraseing_item_creation_value": 0.0,
+    "penetration": 999999,
+    "shape": "rectangle_edge",
+    "size_dependence": [],
+    "size": [
+      1080,
+      200
+    ],
+    "ri_dependence": "",
+    "ri": 0.0,
+    "locking_type": "front",
+    "reference_system": "character",
+    "moving": false,
+    "moving_rule": "",
+    "moving_parameter": [],
+    "diretion": "",
+    "rotation": true,
+    "rotation_rule": "locking",
+    "omega": 30.0,
+    "reflection": [],
+    "physical_addition_efficiency": 0.0,
+    "magical_addition_efficiency": 1.0,
+    "speed_efficiency": 1.0,
+    "duration_efficiency": 1.0,
+    "range_efficiency": 1.0
+  },
+  "atk_alice_marisa_attachment_patchouli_boost": {
+    "id": "atk_alice_marisa_attachment_patchouli_boost",
+    "upgrade_group": "",
+    "type": "boost",
+    "effective_condition": "cp_marisa_patchouli",
+    "damage_times": "",
+    "damage_type": "",
+    "damage": 0.0,
+    "duration": 0.0,
+    "duration_dependence": "",
+    "debuff": [],
+    "basic_debuff_effect": [],
+    "buff": [],
+    "buff_value_factor": [],
+    "hitting_routine_creation": [],
+    "destroying_routine_creation": [],
+    "bullet_eraseing": false,
+    "defeating_item_creation": [
+      "mana"
+    ],
+    "defeating_item_creation_value": 3.0,
+    "eraseing_item_creation": [
+      "mana"
+    ],
+    "eraseing_item_creation_value": 3.0,
+    "penetration": 0,
+    "shape": "",
+    "size_dependence": [],
+    "size": [],
+    "ri_dependence": "",
+    "ri": 0.0,
+    "locking_type": "",
+    "reference_system": "",
+    "moving": false,
+    "moving_rule": "",
+    "moving_parameter": [],
+    "diretion": "",
+    "rotation": false,
+    "rotation_rule": "",
+    "omega": 0.0,
+    "reflection": [],
+    "physical_addition_efficiency": 0.0,
+    "magical_addition_efficiency": 0.0,
+    "speed_efficiency": 0.0,
+    "duration_efficiency": 0.0,
+    "range_efficiency": 0.0
+  },
+  "atk_alice_patchouli_attachment1": {
+    "id": "atk_alice_patchouli_attachment1",
+    "upgrade_group": "",
+    "type": "base",
+    "effective_condition": "",
+    "damage_times": "dot",
+    "damage_type": "danma",
+    "damage": 25.0,
+    "duration": 1.0,
+    "duration_dependence": "",
+    "debuff": [],
+    "basic_debuff_effect": [],
+    "buff": [],
+    "buff_value_factor": [],
+    "hitting_routine_creation": [],
+    "destroying_routine_creation": [],
+    "bullet_eraseing": false,
+    "defeating_item_creation": [],
+    "defeating_item_creation_value": 0.0,
+    "eraseing_item_creation": [],
+    "eraseing_item_creation_value": 0.0,
+    "penetration": 999999,
+    "shape": "circle",
+    "size_dependence": [],
+    "size": [
+      250.0
+    ],
+    "ri_dependence": "",
+    "ri": 0.0,
+    "locking_type": "",
+    "reference_system": "world",
+    "moving": false,
+    "moving_rule": "",
+    "moving_parameter": [],
+    "diretion": "",
+    "rotation": false,
+    "rotation_rule": "",
+    "omega": 0.0,
+    "reflection": [],
+    "physical_addition_efficiency": 1.0,
+    "magical_addition_efficiency": 0.0,
+    "speed_efficiency": 1.0,
+    "duration_efficiency": 0.0,
+    "range_efficiency": 1.0
+  },
+  "atk_alice_patchouli_attachment2": {
+    "id": "atk_alice_patchouli_attachment2",
+    "upgrade_group": "",
+    "type": "base",
+    "effective_condition": "",
+    "damage_times": "dot",
+    "damage_type": "danma",
+    "damage": 0.0,
+    "duration": 3.0,
+    "duration_dependence": "",
+    "debuff": [],
+    "basic_debuff_effect": [],
+    "buff": [
+      "buff_mana_disposable"
+    ],
+    "buff_value_factor": [
+      1.0
+    ],
+    "hitting_routine_creation": [],
+    "destroying_routine_creation": [],
+    "bullet_eraseing": false,
+    "defeating_item_creation": [],
+    "defeating_item_creation_value": 0.0,
+    "eraseing_item_creation": [],
+    "eraseing_item_creation_value": 0.0,
+    "penetration": 999999,
+    "shape": "circle",
+    "size_dependence": [],
+    "size": [
+      200.0
+    ],
+    "ri_dependence": "",
+    "ri": 0.0,
+    "locking_type": "",
+    "reference_system": "world",
+    "moving": false,
+    "moving_rule": "",
+    "moving_parameter": [],
+    "diretion": "",
+    "rotation": false,
+    "rotation_rule": "",
+    "omega": 0.0,
+    "reflection": [],
+    "physical_addition_efficiency": 0.0,
+    "magical_addition_efficiency": 0.0,
+    "speed_efficiency": 1.0,
+    "duration_efficiency": 0.0,
+    "range_efficiency": 1.0
+  },
+  "atk_sekibanki": {
+    "id": "atk_sekibanki",
     "upgrade_group": "upg_sekibanki",
     "type": "base",
     "effective_condition": "",
@@ -585,8 +772,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_misumaru_base": {
-    "id": "atk_misumaru_base",
+  "atk_misumaru": {
+    "id": "atk_misumaru",
     "upgrade_group": "upg_misumaru",
     "type": "base",
     "effective_condition": "",
@@ -606,7 +793,7 @@
     "defeating_item_creation_value": 0.0,
     "eraseing_item_creation": [],
     "eraseing_item_creation_value": 0.0,
-    "penetration": 9999,
+    "penetration": 0,
     "shape": "circle",
     "size_dependence": [],
     "size": [
@@ -636,11 +823,11 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_misumaru_reimu": {
-    "id": "atk_misumaru_reimu",
+  "atk_misumaru_reimu_boost": {
+    "id": "atk_misumaru_reimu_boost",
     "upgrade_group": "",
     "type": "boost",
-    "effective_condition": "cp_reimu_sekibanki",
+    "effective_condition": "cp_misumaru_reimu",
     "damage_times": "",
     "damage_type": "",
     "damage": 0.0,
@@ -652,7 +839,7 @@
     "buff_value_factor": [],
     "hitting_routine_creation": [],
     "destroying_routine_creation": [
-      "rou_misumaru_attachment1_base"
+      "rou_misumaru_reimu_attachment"
     ],
     "bullet_eraseing": false,
     "defeating_item_creation": [],
@@ -681,8 +868,8 @@
     "duration_efficiency": 0.0,
     "range_efficiency": 0.0
   },
-  "atk_misumaru_attachment1_base": {
-    "id": "atk_misumaru_attachment1_base",
+  "atk_misumaru_reimu_attachment": {
+    "id": "atk_misumaru_reimu_attachment",
     "upgrade_group": "",
     "type": "base",
     "effective_condition": "",
@@ -726,8 +913,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_sakuya_base": {
-    "id": "atk_sakuya_base",
+  "atk_sakuya": {
+    "id": "atk_sakuya",
     "upgrade_group": "upg_sakuya",
     "type": "base",
     "effective_condition": "",
@@ -742,7 +929,7 @@
     "buff_value_factor": [],
     "hitting_routine_creation": [],
     "destroying_routine_creation": [
-      "rou_sakuya_attachment1_base"
+      "rou_sakuya_attachment"
     ],
     "bullet_eraseing": false,
     "defeating_item_creation": [],
@@ -776,8 +963,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_sakuya_attachment1_base": {
-    "id": "atk_sakuya_attachment1_base",
+  "atk_sakuya_attachment": {
+    "id": "atk_sakuya_attachment",
     "upgrade_group": "upg_sakuya",
     "type": "base",
     "effective_condition": "",
@@ -825,8 +1012,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_marisa_base": {
-    "id": "atk_marisa_base",
+  "atk_marisa": {
+    "id": "atk_marisa",
     "upgrade_group": "upg_marisa",
     "type": "base",
     "effective_condition": "",
@@ -871,8 +1058,8 @@
     "duration_efficiency": 1.0,
     "range_efficiency": 1.0
   },
-  "atk_marisa_patchouli": {
-    "id": "atk_marisa_patchouli",
+  "atk_marisa_patchouli_boost": {
+    "id": "atk_marisa_patchouli_boost",
     "upgrade_group": "",
     "type": "boost",
     "effective_condition": "cp_marisa_patchouli",
@@ -918,8 +1105,8 @@
     "duration_efficiency": 0.0,
     "range_efficiency": 0.0
   },
-  "atk_youmu_base": {
-    "id": "atk_youmu_base",
+  "atk_youmu": {
+    "id": "atk_youmu",
     "upgrade_group": "upg_youmu",
     "type": "base",
     "effective_condition": "",
@@ -964,8 +1151,8 @@
     "duration_efficiency": 0.0,
     "range_efficiency": 1.0
   },
-  "atk_reimu_marisa1_base": {
-    "id": "atk_reimu_marisa1_base",
+  "atk_reimu_marisa_attachment1": {
+    "id": "atk_reimu_marisa_attachment1",
     "upgrade_group": "",
     "type": "base",
     "effective_condition": "",
@@ -1013,8 +1200,8 @@
     "duration_efficiency": 0.0,
     "range_efficiency": 1.0
   },
-  "atk_reimu_marisa2_base": {
-    "id": "atk_reimu_marisa2_base",
+  "atk_reimu_marisa_attachment2": {
+    "id": "atk_reimu_marisa_attachment2",
     "upgrade_group": "",
     "type": "base",
     "effective_condition": "",
@@ -1054,193 +1241,6 @@
     "reflection": [],
     "physical_addition_efficiency": 0.0,
     "magical_addition_efficiency": 1.0,
-    "speed_efficiency": 1.0,
-    "duration_efficiency": 0.0,
-    "range_efficiency": 1.0
-  },
-  "atk_marisa_alice_base": {
-    "id": "atk_marisa_alice_base",
-    "upgrade_group": "",
-    "type": "base",
-    "effective_condition": "",
-    "damage_times": "dot",
-    "damage_type": "danma",
-    "damage": 50.0,
-    "duration": 1.0,
-    "duration_dependence": "atkdep_mana_multiply",
-    "debuff": [],
-    "basic_debuff_effect": [],
-    "buff": [],
-    "buff_value_factor": [],
-    "hitting_routine_creation": [],
-    "destroying_routine_creation": [],
-    "bullet_eraseing": true,
-    "defeating_item_creation": [],
-    "defeating_item_creation_value": 0.0,
-    "eraseing_item_creation": [],
-    "eraseing_item_creation_value": 0.0,
-    "penetration": 999999,
-    "shape": "rectangle_edge",
-    "size_dependence": [],
-    "size": [
-      1080,
-      200
-    ],
-    "ri_dependence": "",
-    "ri": 0.0,
-    "locking_type": "front",
-    "reference_system": "character",
-    "moving": false,
-    "moving_rule": "",
-    "moving_parameter": [],
-    "diretion": "",
-    "rotation": true,
-    "rotation_rule": "locking",
-    "omega": 30.0,
-    "reflection": [],
-    "physical_addition_efficiency": 0.0,
-    "magical_addition_efficiency": 1.0,
-    "speed_efficiency": 1.0,
-    "duration_efficiency": 1.0,
-    "range_efficiency": 1.0
-  },
-  "atk_marisa_alice_patchouli": {
-    "id": "atk_marisa_alice_patchouli",
-    "upgrade_group": "",
-    "type": "boost",
-    "effective_condition": "cp_marisa_patchouli",
-    "damage_times": "",
-    "damage_type": "",
-    "damage": 0.0,
-    "duration": 0.0,
-    "duration_dependence": "",
-    "debuff": [],
-    "basic_debuff_effect": [],
-    "buff": [],
-    "buff_value_factor": [],
-    "hitting_routine_creation": [],
-    "destroying_routine_creation": [],
-    "bullet_eraseing": false,
-    "defeating_item_creation": [
-      "mana"
-    ],
-    "defeating_item_creation_value": 3.0,
-    "eraseing_item_creation": [
-      "mana"
-    ],
-    "eraseing_item_creation_value": 3.0,
-    "penetration": 0,
-    "shape": "",
-    "size_dependence": [],
-    "size": [],
-    "ri_dependence": "",
-    "ri": 0.0,
-    "locking_type": "",
-    "reference_system": "",
-    "moving": false,
-    "moving_rule": "",
-    "moving_parameter": [],
-    "diretion": "",
-    "rotation": false,
-    "rotation_rule": "",
-    "omega": 0.0,
-    "reflection": [],
-    "physical_addition_efficiency": 0.0,
-    "magical_addition_efficiency": 0.0,
-    "speed_efficiency": 0.0,
-    "duration_efficiency": 0.0,
-    "range_efficiency": 0.0
-  },
-  "atk_alice_patchouli1_base": {
-    "id": "atk_alice_patchouli1_base",
-    "upgrade_group": "",
-    "type": "base",
-    "effective_condition": "",
-    "damage_times": "dot",
-    "damage_type": "danma",
-    "damage": 25.0,
-    "duration": 1.0,
-    "duration_dependence": "",
-    "debuff": [],
-    "basic_debuff_effect": [],
-    "buff": [],
-    "buff_value_factor": [],
-    "hitting_routine_creation": [],
-    "destroying_routine_creation": [],
-    "bullet_eraseing": false,
-    "defeating_item_creation": [],
-    "defeating_item_creation_value": 0.0,
-    "eraseing_item_creation": [],
-    "eraseing_item_creation_value": 0.0,
-    "penetration": 999999,
-    "shape": "circle",
-    "size_dependence": [],
-    "size": [
-      250.0
-    ],
-    "ri_dependence": "",
-    "ri": 0.0,
-    "locking_type": "",
-    "reference_system": "world",
-    "moving": false,
-    "moving_rule": "",
-    "moving_parameter": [],
-    "diretion": "",
-    "rotation": false,
-    "rotation_rule": "",
-    "omega": 0.0,
-    "reflection": [],
-    "physical_addition_efficiency": 1.0,
-    "magical_addition_efficiency": 0.0,
-    "speed_efficiency": 1.0,
-    "duration_efficiency": 0.0,
-    "range_efficiency": 1.0
-  },
-  "atk_alice_patchouli2_base": {
-    "id": "atk_alice_patchouli2_base",
-    "upgrade_group": "",
-    "type": "base",
-    "effective_condition": "",
-    "damage_times": "dot",
-    "damage_type": "danma",
-    "damage": 0.0,
-    "duration": 3.0,
-    "duration_dependence": "",
-    "debuff": [],
-    "basic_debuff_effect": [],
-    "buff": [
-      "buff_mana_disposable"
-    ],
-    "buff_value_factor": [
-      1.0
-    ],
-    "hitting_routine_creation": [],
-    "destroying_routine_creation": [],
-    "bullet_eraseing": false,
-    "defeating_item_creation": [],
-    "defeating_item_creation_value": 0.0,
-    "eraseing_item_creation": [],
-    "eraseing_item_creation_value": 0.0,
-    "penetration": 999999,
-    "shape": "circle",
-    "size_dependence": [],
-    "size": [
-      200.0
-    ],
-    "ri_dependence": "",
-    "ri": 0.0,
-    "locking_type": "",
-    "reference_system": "world",
-    "moving": false,
-    "moving_rule": "",
-    "moving_parameter": [],
-    "diretion": "",
-    "rotation": false,
-    "rotation_rule": "",
-    "omega": 0.0,
-    "reflection": [],
-    "physical_addition_efficiency": 0.0,
-    "magical_addition_efficiency": 0.0,
     "speed_efficiency": 1.0,
     "duration_efficiency": 0.0,
     "range_efficiency": 1.0

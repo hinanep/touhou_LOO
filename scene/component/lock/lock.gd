@@ -28,7 +28,7 @@ func find_strongest_target():
 
 
 func find_front_target():
-	return player_var.player_node.global_position  + Vector2.from_angle(player_var.player_diretion_angle)
+	return player_var.player_node.global_position  + 100*Vector2.from_angle(player_var.player_diretion_angle)
 
 
 func find_null_target():

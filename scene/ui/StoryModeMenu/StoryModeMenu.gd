@@ -17,7 +17,7 @@ func _on_esc_button_pressed():
 
 func _on_play_button_button_up():
 
-	CpManager.clear_all()
+
 	player_var.ini()
 	G.get_gui_view_manager().open_view("InGame")
 	close_self()

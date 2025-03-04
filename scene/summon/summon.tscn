@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://xgi6s0ewkkow"]
+[gd_scene load_steps=6 format=3 uid="uid://xgi6s0ewkkow"]
 
 [ext_resource type="Script" path="res://scene/summon/summon.gd" id="1_3ka8b"]
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="2_d546s"]
+[ext_resource type="Texture2D" uid="uid://b4akvjdo07s81" path="res://asset/pic/bullet/激光.png" id="3_uni7t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gevj1"]
+atlas = ExtResource("2_d546s")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pm8ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gevj1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Summon" type="Node2D"]
 script = ExtResource("1_3ka8b")
+
+[node name="cd_timer" type="Timer" parent="."]
+
+[node name="duration" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pm8ww")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 250, -1)
+texture = ExtResource("3_uni7t")
+texture_mode = 1

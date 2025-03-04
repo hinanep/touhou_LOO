@@ -15,11 +15,13 @@ var routine_info = {
 var gen_position
 var gen_rotation
 var attack_nodes = []
+var summons = {}
 var level = 0
 var damage_source = ''
 func _ready():
 	name = routine_info.id
 	add_to_group(routine_info.id)
+	SignalBus.trigger_routine_by_id.connect(called)
 	if routine_info.has("upgrade_group"):
 		add_to_group(routine_info.upgrade_group)
 	if routine_info.has("effective_condition"):
@@ -27,14 +29,12 @@ func _ready():
 	if routine_info.has("creating_attack"):
 		for id in routine_info.creating_attack:
 			add_attack(id)
-	match routine_info.type:
-		'base':
-			get_parent().shoot.connect(attacks)
-		'ex':
-			pass
+
 	if routine_info.has('creating_summoned'):
 		for summon in routine_info.creating_summoned:
-			summon = PresetManager.getpre(summon)
+			var spre = PresetManager.getpre(summon)
+
+			summons[summon] = spre
 
 
 
@@ -70,6 +70,10 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
 	gen_position += add_vector
 
+func called(routine_id,force_world_position,input_position,input_rotation):
+	if routine_id != routine_info.id:
+		return
+	attacks(force_world_position,input_position,input_rotation)
 
 func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,has_interval=true):
 
@@ -80,14 +84,16 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
-
 					single_attack(gen_position,gen_rotation)
+					single_summon(gen_position,gen_rotation)
+
 			'multi_together':
 				for j in range(routine_info.one_creating_parameter[0]):
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation)
+					single_summon(gen_position,gen_rotation)
 func get_need_routines():
 	var need_routines:Array
 
@@ -111,6 +117,24 @@ func single_attack(generate_position,generate_rotation):
 			new_attack.global_position = generate_position
 			new_attack.rotation = generate_rotation
 			$".".add_child(new_attack)
+func single_summon(generate_position,generate_rotation):
+
+	#if routine_info.has('special_creating_attack'):
+		#match routine_info.special_creating_attack:
+			#'probability':
+				#var new_attack = attack_nodes[select_from_luck()].duplicate()
+#
+				#new_attack.global_position = generate_position
+				#new_attack.rotation = generate_rotation
+				#$".".add_child(new_attack)
+#
+	#else:
+		for summon_id in summons:
+			var new_summon = summons[summon_id].instantiate()
+			new_summon.summon_info = table.Summoned[summon_id]
+			new_summon.global_position = generate_position
+			new_summon.rotation = generate_rotation
+			$".".add_child(new_summon)
 
 
 func select_from_luck():
@@ -150,6 +174,21 @@ func add_attack(id):
 		attack_pre.attack_modifier[modi].append(routine_modifier[modi])
 	add_child(attack_pre)
 	attack_nodes.append(attack_pre)
+
+func add_summon(id):
+	var summon_info = table.Summoned[id]
+
+
+	var summon_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
+
+	summon_pre.summon_info = summon_info
+	summon_pre.node_active = false
+	summon_pre.set_upgrade(level)
+	summon_pre.damage_source = damage_source
+	#for modi in routine_modifier:
+		#summon_pre.attack_modifier[modi].append(routine_modifier[modi])
+	add_child(summon_pre)
+	summons.append(summon_pre)
 
 func destroy():
 	for child in get_children():

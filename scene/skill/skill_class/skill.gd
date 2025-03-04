@@ -27,8 +27,14 @@ func _ready():
 	cd_timer.timeout.connect(gen_routines)
 
 	cd_timer.start()
-	for oneroutine in skill_info.routines:
-		add_routine(oneroutine)
+
+	for aroutine in table.Routine:
+		if table.Routine[aroutine].skill_group == skill_info.id:
+
+			var r = add_routine(aroutine)
+			print(aroutine+'this is routine')
+			if aroutine in skill_info.routines:
+				shoot.connect(r.attacks)
 
 
 
@@ -40,10 +46,7 @@ func add_routine(id):
 		routinepre.set_upgrade(level)
 
 		add_child(routinepre)
-		var need_routines = routinepre.get_need_routines()
-		if not need_routines.is_empty():
-			for rid in need_routines:
-				add_routine(rid)
+		return routinepre
 
 func gen_routines():
 	emit_signal("shoot")

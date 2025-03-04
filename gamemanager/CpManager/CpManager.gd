@@ -10,20 +10,6 @@ var cp_pool = {
 }
 
 func _init():
-	cp_pool["unactive"]["reima"] = {
-		"name":"reima",
-		"effect_group":["reimu","marisa"],
-		"cn":"灵魔",
-		"weight":1,
-		"cp_image":"image_cp_reima"
-	}
-	cp_pool["unactive"]["reitama"] = {
-		"name":"reitama",
-		"effect_group":["reimu","tamatsukuri"],
-		"cn":"灵丸",
-		"weight":1,
-		"cp_image":"image_cp_reitama"
-	}
 	SignalBus.del_skill.connect(del_to_maxlist)
 func add_to_maxlist(x_name):
 	max_list.append(x_name)

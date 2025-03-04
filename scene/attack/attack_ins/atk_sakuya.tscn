@@ -7,7 +7,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
 [node name="Attack" instance=ExtResource("1_bgcvx")]
-scale = Vector2(1, 1)
 script = ExtResource("2_l2oxa")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]

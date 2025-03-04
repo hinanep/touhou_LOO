@@ -8,7 +8,7 @@ signal add_skill(skill_info)
 signal del_skill(id)
 #尝试ban技能时发出
 signal ban_skill(id)
-signal trigger_routine_by_id(routine_id)
+signal trigger_routine_by_id(routine_id,force_world_position,input_position,input_rotation)
 
 signal try_add_card(id)
 signal add_card(card_info)
@@ -24,7 +24,7 @@ signal card_select_before()
 #尝试在player上添加技能，选择、捡起、升级技能时发出，
 signal try_add_passive(id)
 #判定满足加技能条件后发出
-signal add_passive(skill_info)
+signal add_passive(psv_info)
 #尝试删除技能时发出 ：ban
 signal del_passive(id)
 #尝试ban技能时发出
@@ -40,6 +40,8 @@ signal spellcard_cast
 #满足升级组升级条件时发出
 signal upgrade_group(group)
 signal upgrade_max(anyname)
+signal cp_active(cp_info)
+signal cp_del(cpid)
 
 func _ready() -> void:
 	var signal_dic = get_signal_list()
@@ -48,7 +50,7 @@ func _ready() -> void:
 		connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
 
 
-func _on_signal_emit(message1='',message2='',message3='',message4='') -> void:
+func _on_signal_emit(message1='',message2='',message3='',message4='',message5='') -> void:
 	print_rich("[color=yellow][b]------[/b][/color]")
 	var n = {}
 
@@ -56,4 +58,5 @@ func _on_signal_emit(message1='',message2='',message3='',message4='') -> void:
 	print_rich(message1)
 	print_rich(message3)
 	print_rich(message4)
+	print_rich(message5)
 	print_rich("[color=yellow][b]------[/b][/color]")

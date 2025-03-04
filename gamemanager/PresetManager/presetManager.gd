@@ -10,12 +10,13 @@ var preset_map = {
 	'skill':"res://scene/skill/skill_class/skill.tscn",
 	'routine':"res://scene/routine/routine/routine.tscn",
 	'attack':"res://scene/attack/attack/attack.tscn",
+	'summon':"res://scene/summon/summon.tscn",
 	'card':"res://scene/cards/card/card.tscn",
 	'passive':"res://scene/passive/base_passive/Passive.tscn",
-
+	'cp':"res://scene/cp/cp.tscn",
 
 	"particle_explosion":"res://scene/particle/explosion.tscn",
-
+	'sum_alice':"res://scene/summon/summon_ins/sum_alice.tscn",
 
 	"enemy_boss_aq":"res://scene/enemys/aq_boss/aq_boss.tscn",
 	#"aq_punch":"res://scene/enemys/aq_boss/bullet/random_bullet.tscn",
@@ -50,7 +51,7 @@ var preset_map = {
 	"ui_card_texture":"res://scene/ui/Hud/card_texture.tscn",
 	"ui_cp_and_skill_texture":"res://scene/ui/Hud/cp_and_skill_texture.tscn",
 	"ui_test_skillbutton":"res://scene/ui/TestScene/buttons/test_skillbutton.tscn",
-
+	'img_p':"res://asset/pic/p.png",
 	"img_sc_marisa":"res://asset/pic/crystal/魔理沙.png",
 	"img_sc_youmu":"res://asset/pic/crystal/魔理沙.png",
 	"img_sc_daiyousei":"res://asset/pic/crystal/大妖精.png",
@@ -69,15 +70,15 @@ var preset_map = {
 	"img_passive_pachuli":"res://asset/pic/crystal/帕秋莉.png",
 	"img_cp_reima":"res://asset/pic/crystal/灵梦×魔理沙.png",
 	"img_cp_reitama":"res://asset/pic/crystal/灵丸.png",
-	'img_atk_basemagic_base':"res://asset/pic/bullet/子弹.png",
-	'img_atk_reimu_base':"res://asset/pic/bullet/符札弹.png",
-	'img_atk_sanae_type1_base':"res://asset/pic/bullet/小风.png",
-	'img_atk_sanae_type2_base':"res://asset/pic/bullet/中风1.png",
-	'img_atk_sanae_type3_base':"res://asset/pic/bullet/大风.png",
-	'img_atk_rumia_base':"res://asset/pic/bullet/子弹.png",
-	'img_atk_wriggle_base':"res://asset/pic/bullet/firefly.png",
-	'img_atk_sekibanki_base':"res://asset/pic/bullet/头.png",
-	'img_atk_misumaru_base':"res://asset/pic/bullet/yinyangorb.png",
+	'img_atk_basemagic':"res://asset/pic/bullet/子弹.png",
+	'img_atk_reimu':"res://asset/pic/bullet/符札弹.png",
+	'img_atk_sanae_type1':"res://asset/pic/bullet/小风.png",
+	'img_atk_sanae_type2':"res://asset/pic/bullet/中风1.png",
+	'img_atk_sanae_type3':"res://asset/pic/bullet/大风.png",
+	'img_atk_rumia':"res://asset/pic/bullet/子弹.png",
+	'img_atk_wriggle':"res://asset/pic/bullet/firefly.png",
+	'img_atk_sekibanki':"res://asset/pic/bullet/头.png",
+	'img_atk_misumaru':"res://asset/pic/bullet/yinyangorb.png",
 }
 
 
@@ -87,8 +88,7 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-
-	if(ResourceLoader.load_threaded_get_status(preset_map['img_atk_misumaru_base']) == 3):
+	if(ResourceLoader.load_threaded_get_status(preset_map['img_atk_misumaru']) == 3):
 		for name in preset_map:
 			preset_map[name] = ResourceLoader.load_threaded_get(preset_map[name])
 		process_mode = 4
@@ -100,6 +100,11 @@ func getpre(prename : String):
 	if(prename.contains('enm')):
 		print('pre  '+prename+'  not found!')
 		return preset_map.enemy
-
+	if(prename.contains('img')):
+		print('pre  '+prename+'  not found!')
+		return preset_map.img_p
+	if(prename.contains('sum')):
+		print('pre  '+prename+'  not found!')
+		return preset_map.summon
 	print('pre  '+prename+'  not found!')
 	return null

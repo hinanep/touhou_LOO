@@ -154,7 +154,8 @@ func _on_hit():
 	if attack_info.has('hitting_routine_creation'):
 		for hit_gen in attack_info.hitting_routine_creation:
 			print(hit_gen)
-			get_tree().call_group(hit_gen,'attacks',true,global_position,rotation)
+			SignalBus.trigger_routine_by_id.emit(hit_gen,true,global_position,rotation)
+
 
 
 
@@ -174,7 +175,7 @@ func destroy(message:String):
 
 	if attack_info.has('destroying_routine_creation'):
 		for destroy_gen in attack_info.destroying_routine_creation:
-			get_tree().call_group(destroy_gen,'attacks',true,global_position,rotation)
+			SignalBus.trigger_routine_by_id.emit(destroy_gen,true,global_position,rotation)
 
 	queue_free()
 

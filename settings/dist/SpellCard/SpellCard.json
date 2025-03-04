@@ -3,11 +3,13 @@
     "id": "sc_daiyousei",
     "upgrade_group": "none",
     "type": "base",
-    "routines": [
-      "rou_marisa_base"
+    "routines": [],
+    "buff": [
+      "buff_player_hp_disposable"
     ],
-    "buff": [],
-    "buff_value_factor": [],
+    "buff_value_factor": [
+      1.0
+    ],
     "special": "",
     "special_parameter": [],
     "mana": 500.0,
@@ -18,13 +20,11 @@
     "id": "sc_marisa",
     "upgrade_group": "upg_sc_marisa",
     "type": "base",
-    "routines": [],
-    "buff": [
-      "buff_hp_disposable"
+    "routines": [
+      "rou_marisa"
     ],
-    "buff_value_factor": [
-      1.0
-    ],
+    "buff": [],
+    "buff_value_factor": [],
     "special": "",
     "special_parameter": [],
     "mana": 2000.0,
@@ -36,7 +36,7 @@
     "upgrade_group": "upg_sc_youmu",
     "type": "base",
     "routines": [
-      "rou_youmu_base"
+      "rou_youmu"
     ],
     "buff": [],
     "buff_value_factor": [],

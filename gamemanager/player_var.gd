@@ -41,6 +41,7 @@ var SkillManager :SkillManagers
 var CardManager :CardManagers
 var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
+var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
 var player_hp
 var mana
@@ -83,9 +84,14 @@ func new_scene():
 	if PassiveManager!=null:
 		PassiveManager.destroy()
 		PassiveManager.free()
+	if CpManager!=null:
+		CpManager.destroy()
+		CpManager.free()
+
 	SkillManager = SkillManagers.new()
 	CardManager = CardManagers.new()
 	PassiveManager = PassiveManagers.new()
+	CpManager = CpManagers.new()
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:

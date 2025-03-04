@@ -4,7 +4,7 @@ func operate_dep(depid,value):
 	if not dep_table.has(depid):
 		push_warning('not found depend'+depid)
 
-		return 0
+		return value
 	var addi
 	match dep_table[depid].calculation:
 		'linear':

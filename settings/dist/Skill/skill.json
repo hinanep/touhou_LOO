@@ -4,7 +4,7 @@
     "upgrade_group": "none",
     "type": "base",
     "routines": [
-      "rou_basemagic_base"
+      "rou_basemagic"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -14,7 +14,7 @@
     "upgrade_group": "none",
     "type": "base",
     "routines": [
-      "rou_basephysics_base"
+      "rou_basephysics"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -24,7 +24,7 @@
     "upgrade_group": "upg_reimu",
     "type": "base",
     "routines": [
-      "rou_reimu_base"
+      "rou_reimu"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -34,7 +34,7 @@
     "upgrade_group": "upg_sanae",
     "type": "base",
     "routines": [
-      "rou_sanae_base"
+      "rou_sanae"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -44,8 +44,7 @@
     "upgrade_group": "upg_rumia",
     "type": "base",
     "routines": [
-      "rou_rumia_base",
-      "rou_rumia_attachment1_base"
+      "rou_rumia"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -55,7 +54,7 @@
     "upgrade_group": "upg_wriggle",
     "type": "base",
     "routines": [
-      "rou_wriggle_base"
+      "rou_wriggle"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -65,7 +64,7 @@
     "upgrade_group": "upg_alice",
     "type": "base",
     "routines": [
-      "rou_alice_base"
+      "rou_alice"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -75,7 +74,7 @@
     "upgrade_group": "upg_sekibanki",
     "type": "base",
     "routines": [
-      "rou_sekibanki_base"
+      "rou_sekibanki"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -85,7 +84,7 @@
     "upgrade_group": "upg_misumaru",
     "type": "base",
     "routines": [
-      "rou_misumaru_base"
+      "rou_misumaru"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0
@@ -95,8 +94,7 @@
     "upgrade_group": "upg_sakuya",
     "type": "base",
     "routines": [
-      "rou_sakuya_base",
-      "rou_sakuya_attachment1_base"
+      "rou_sakuya"
     ],
     "cd": 1.0,
     "cd_reduction_efficicency": 1.0

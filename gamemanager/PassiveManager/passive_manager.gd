@@ -5,7 +5,7 @@ var passive_num_full = false
 var passive_full = false
 
 var passive_info = {
-	"id": "psv_patchouli_base",
+	"id": "psv_patchouli",
 	"upgrade_group": "upg_patchouli",
 	"type": "base",
 	"buff": [

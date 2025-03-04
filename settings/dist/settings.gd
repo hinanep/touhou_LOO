@@ -13,6 +13,7 @@ static func loader(path:String):
 var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
 var Attack = loader('res://settings/dist/Attack/Attack.json')
 var Buff = loader('res://settings/dist/Buff/Buff.json')
+var Couple = loader('res://settings/dist/Couple/Couple.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
 var Passive = loader('res://settings/dist/Passive/Passive.json')
 var Routine = loader('res://settings/dist/Routine/Routine.json')
