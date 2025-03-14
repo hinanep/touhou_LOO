@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://csceeasel71i8"]
-
-[ext_resource type="Script" path="res://gamemanager/CpManager/CpManager.gd" id="1_48nrm"]
-
-[node name="CpManager" type="Node2D" groups=["manager"]]
-script = ExtResource("1_48nrm")

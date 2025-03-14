@@ -4,6 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://dyj8le51dtysy" path="res://scene/attack/attack/attack_shape/circle.tres" id="2_43jrx"]
 
 [node name="Attack" type="CharacterBody2D"]
+process_mode = 1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_awf6h")

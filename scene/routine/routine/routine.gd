@@ -70,12 +70,17 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
 	gen_position += add_vector
 
-func called(routine_id,force_world_position,input_position,input_rotation):
+func called(routine_id,force_world_position,input_position,input_rotation,parent_node):
 	if routine_id != routine_info.id:
 		return
-	attacks(force_world_position,input_position,input_rotation)
 
-func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,has_interval=true):
+	if parent_node == null:
+		parent_node = $"."
+
+
+	attacks(force_world_position,input_position,input_rotation,true,parent_node)
+
+func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,has_interval=true,parent_node = $"."):
 
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
@@ -84,7 +89,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
-					single_attack(gen_position,gen_rotation)
+					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
 
 			'multi_together':
@@ -92,31 +97,41 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
-					single_attack(gen_position,gen_rotation)
+					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
-func get_need_routines():
-	var need_routines:Array
 
-	return need_routines
 
-func single_attack(generate_position,generate_rotation):
+func single_attack(generate_position,generate_rotation,parent_node ):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
 				var new_attack = attack_nodes[select_from_luck()].duplicate()
+				if parent_node != $".":
 
-				new_attack.global_position = generate_position
-				new_attack.rotation = generate_rotation
-				$".".add_child(new_attack)
+
+					new_attack.position = generate_position
+					new_attack.rotation = generate_rotation
+				else:
+
+					new_attack.global_position = generate_position
+					new_attack.rotation = generate_rotation
+
+				parent_node.add_child(new_attack)
 
 	else:
 		for attack_node in attack_nodes:
-			var new_attack = attack_node.duplicate()
+			if parent_node != null:
+				var new_attack = attack_node.duplicate()
 
-			new_attack.global_position = generate_position
-			new_attack.rotation = generate_rotation
-			$".".add_child(new_attack)
+				if parent_node != $".":
+						new_attack.global_position = parent_node.global_position + gen_position
+						new_attack.rotation = generate_rotation
+				else:
+						new_attack.global_position = generate_position
+						new_attack.rotation = generate_rotation
+
+				parent_node.add_child(new_attack)
 func single_summon(generate_position,generate_rotation):
 
 	#if routine_info.has('special_creating_attack'):

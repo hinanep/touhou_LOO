@@ -20,6 +20,7 @@ animations = [{
 }]
 
 [node name="Summon" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_3ka8b")
 
 [node name="cd_timer" type="Timer" parent="."]

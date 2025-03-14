@@ -59,7 +59,8 @@ func _ready():
 		rediretion()
 func _physics_process(delta: float) -> void:
 
-	global_position =global_position.move_toward(target_location,delta * 1000)
+	global_position =global_position.move_toward(target_location,delta * 400)
+
 	$Line2D.set_point_position(1,player_var.player_node.global_position-global_position)
 
 func rediretion():
@@ -72,7 +73,7 @@ func rediretion():
 func on_create():
 	if summon_info.has('creating_routine'):
 		for rs in summon_info.creating_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation)
+			SignalBus.trigger_routine_by_id.emit(rs,true,Vector2.ZERO,global_rotation,$".")
 
 
 
@@ -80,7 +81,8 @@ func on_create():
 func gen_routines():
 	if summon_info.has('automatic_routine'):
 		for rs in summon_info.automatic_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation)
+
+			SignalBus.trigger_routine_by_id.emit(rs,true,Vector2.ZERO,global_rotation,$".")
 
 
 func upgrade_summon(group):
@@ -93,7 +95,7 @@ func upgrade_summon(group):
 
 func scdestroy(scid):
 	for rs in summon_info.special_routine:
-		SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation)
+		SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation,$".")
 	destroy(summon_info.id)
 
 
@@ -102,8 +104,8 @@ func destroy(id):
 		return
 	if summon_info.has('destroying_routine'):
 		for rs in summon_info.destroying_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation)
+			SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation,$".")
 	for child in get_children():
 		if child.has_method('destroy'):
-			child.destroy()
+			child.destroy('summon_destroy')
 	queue_free()

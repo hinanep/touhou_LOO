@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnniu3dbjynwk"]
+
+[ext_resource type="Script" path="res://ui/StoryModeMenu/StoryModeMenu.gd" id="1_dxd36"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0u4se"]
+font_size = 72
+
+[node name="StoryModeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxd36")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_right = 288.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "故事模式游戏界面"
+label_settings = SubResource("LabelSettings_0u4se")
+
+[node name="EscButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "设定"
+
+[node name="playButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 332.0
+offset_right = 1079.0
+offset_bottom = 473.0
+
+[node name="weapon" type="RichTextLabel" parent="playButton"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 35.0
+offset_right = 250.0
+offset_bottom = 105.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=white]开始游戏[/color]"
+scroll_active = false
+
+[connection signal="pressed" from="EscButton" to="." method="_on_esc_button_pressed"]
+[connection signal="button_up" from="playButton" to="." method="_on_play_button_button_up"]

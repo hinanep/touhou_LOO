@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxhe0o8utfl7j"]
+
+[ext_resource type="Script" path="res://ui/ClearMenu/ClearMenu.gd" id="1_u1kcc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqope"]
+font_size = 72
+
+[node name="ClearMenu" type="Control"]
+z_index = 500
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1kcc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -247.5
+offset_top = 23.0
+offset_right = 233.5
+offset_bottom = 122.0
+grow_horizontal = 2
+text = "YOU  WIN！！"
+label_settings = SubResource("LabelSettings_qqope")
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 277.0
+offset_right = -72.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+text = "返回主菜单"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 773.0
+offset_top = 322.0
+offset_right = 904.0
+offset_bottom = 362.0
+scale = Vector2(4, 4)
+text = "SCORE："
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RichTextLabel"]
+layout_mode = 0
+offset_left = 60.5
+offset_top = 0.25
+offset_right = 296.5
+offset_bottom = 40.25
+text = "10"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1303.0
+offset_top = 341.0
+offset_right = 1780.0
+offset_bottom = 949.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "插入一则STAFF表
+策划：
+BTO
+
+美术：
+com
+
+程序：
+涅普 the 屎山创造者
+天马
+
+专业顾问：
+LR"
+
+[node name="damagesum" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 119.0
+offset_top = 333.0
+offset_right = 596.0
+offset_bottom = 941.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "dps:"
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

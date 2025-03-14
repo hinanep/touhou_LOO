@@ -8,7 +8,11 @@ signal add_skill(skill_info)
 signal del_skill(id)
 #尝试ban技能时发出
 signal ban_skill(id)
-signal trigger_routine_by_id(routine_id,force_world_position,input_position,input_rotation)
+signal trigger_routine_by_id(routine_id,
+							force_world_position,
+							input_position,
+							input_rotation,
+							parent_node)
 
 signal try_add_card(id)
 signal add_card(card_info)
@@ -42,7 +46,7 @@ signal upgrade_group(group)
 signal upgrade_max(anyname)
 signal cp_active(cp_info)
 signal cp_del(cpid)
-
+var log = false
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 
@@ -50,13 +54,15 @@ func _ready() -> void:
 		connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
 
 
-func _on_signal_emit(message1='',message2='',message3='',message4='',message5='') -> void:
-	print_rich("[color=yellow][b]------[/b][/color]")
-	var n = {}
+func _on_signal_emit(message1='',message2='',message3='',message4='',message5='',message6='') -> void:
+	if(log):
+		print_rich("[color=yellow][b]------[/b][/color]")
+		var n = {}
 
-	print_rich(message2)
-	print_rich(message1)
-	print_rich(message3)
-	print_rich(message4)
-	print_rich(message5)
-	print_rich("[color=yellow][b]------[/b][/color]")
+		print_rich(message2)
+		print_rich(message1)
+		print_rich(message3)
+		print_rich(message4)
+		print_rich(message5)
+		print_rich(message6)
+		print_rich("[color=yellow][b]------[/b][/color]")

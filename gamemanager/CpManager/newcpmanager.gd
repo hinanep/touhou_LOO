@@ -109,3 +109,8 @@ func del_cp(cpid):
 	if cp_pool.actived.has(cpid):
 		cp_pool.unlocked[cpid] = cp_pool.actived[cpid]
 		cp_pool.actived.erase(cpid)
+func destroy():
+	SignalBus.del_skill.disconnect(del_to_maxlist)
+	SignalBus.upgrade_max.disconnect(add_to_maxlist)
+	SignalBus.cp_del.disconnect(del_cp)
+	pass

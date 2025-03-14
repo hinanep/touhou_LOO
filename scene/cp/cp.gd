@@ -16,7 +16,7 @@ func on_using_card(id):
 			trigger_buff(i)
 	for i in range(cp_info.creating_routine.size()):
 		if cp_info.creating_routine_moment[i]=='sc':
-			SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i])
+			SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],null)
 func trigger_buff(i):
 	if cp_info.get('buff_value_factor_depend',[]).size()>i:
 		SignalBus.player_add_buff.emit(cp_info.giving_buff[i],
@@ -31,4 +31,4 @@ func trigger_buff(i):
 func on_player_hurt():
 	for i in range(cp_info.creating_routine.size()):
 		if cp_info.creating_routine_moment[i]=='hurt':
-			SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i])
+			SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],null)
