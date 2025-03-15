@@ -22,10 +22,11 @@ func _ready():
 	name = routine_info.id
 	add_to_group(routine_info.id)
 	SignalBus.trigger_routine_by_id.connect(called)
-	if routine_info.has("upgrade_group"):
-		add_to_group(routine_info.upgrade_group)
-	if routine_info.has("effective_condition"):
-		add_to_group(routine_info.effective_condition)
+	SignalBus.upgrade_group.connect(upgrade_routine)
+	#if routine_info.has("upgrade_group"):
+		#add_to_group(routine_info.upgrade_group)
+	#if routine_info.has("effective_condition"):
+		#add_to_group(routine_info.effective_condition)
 	if routine_info.has("creating_attack"):
 		for id in routine_info.creating_attack:
 			add_attack(id)
@@ -165,10 +166,17 @@ func select_from_luck():
 		if r<0:
 			return i
 
-func upgrade_routine():
+func upgrade_routine(group):
+	if not routine_info.has("upgrade_group"):
+		return
+	if routine_info.upgrade_group != group:
+		return
 	level += 1
+	if level == 1:
+		return
+	routine_info.times += table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2]
 
-	pass
+
 
 func set_upgrade(nlevel:int):
 	level = nlevel

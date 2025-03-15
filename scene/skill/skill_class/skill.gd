@@ -23,7 +23,7 @@ func _ready():
 	#SignalBus.del_skill.connect(destroy)
 	damage_source = skill_info.id
 	var cd_timer = $cd_timer
-	cd_timer.wait_time = skill_info.cd
+	cd_timer.wait_time = skill_info.cd  / (1+player_var.colddown_reduce * skill_info.cd_reduction_efficicency)
 	cd_timer.timeout.connect(gen_routines)
 
 	cd_timer.start()
@@ -55,8 +55,15 @@ func gen_routines():
 func upgrade_skill(group):
 	if skill_info.upgrade_group != group:
 		return
-
+	if(level+1 > player_var.skill_level_max):
+		return
 	level += 1
+
+	if level == 1:
+		return
+
+	$cd_timer.wait_time = skill_info.cd  /(1+table.Upgrade[group].cd_reduction[level-1]) / (1+player_var.colddown_reduce * skill_info.cd_reduction_efficicency)
+
 	if(level == player_var.skill_level_max):
 		SignalBus.upgrade_max.emit(skill_info.id)
 

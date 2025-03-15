@@ -26,7 +26,7 @@ var status = {
 	change_times = 2,#- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 	curse = 1.0, #- 诅咒：增加敌人的各属性和刷新率
 	mana_max = 2000,#- 符力上限：可存储的最大符力
-	skill_level_max = 8,
+	skill_level_max = 6,
 	skill_num_max = 5,
 
 
@@ -42,7 +42,7 @@ var status = {
 
 	card_full = false,#没有能升级的符卡并且卡位满了
 	card_num_full = false,#卡位满了
-	card_level_max = 8,
+	card_level_max = 6,
 	card_num_max = 5,
 
 
@@ -50,7 +50,7 @@ var status = {
 
 	passive_num_full = false,
 	passive_full = false,
-	passive_level_max = 8,
+	passive_level_max = 6,
 	passive_num_max = 5,
 
 	is_card_casting = false,
