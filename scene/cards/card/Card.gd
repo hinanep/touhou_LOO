@@ -24,7 +24,8 @@ func _ready() -> void:
 	damage_source = card_info.id
 	if card_info.has('routines'):
 		for rou in card_info.routines:
-			add_routine(rou)
+			var r = add_routine(rou)
+			shoot.connect(r.attacks)
 	SignalBus.upgrade_group.connect(upgrade_card)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
@@ -40,6 +41,7 @@ func on_use_card(id):
 	player_var.mana-=card_info.mana/player_var.mana_cost
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
+	shoot.emit()
 	#get buff
 
 func add_routine(id):
@@ -49,6 +51,7 @@ func add_routine(id):
 	routinepre.damage_source = damage_source
 	routinepre.set_upgrade(level)
 	add_child(routinepre)
+	return routinepre
 
 
 func upgrade_card(group):

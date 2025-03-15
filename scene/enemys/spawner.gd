@@ -47,7 +47,7 @@ func spawn_mob():
 	var mob = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
 	mob.mob_info = table.Enemy[spawn_list["enemy_type"]]
-	mob.setbuff(spawn_list['enemy_attribute_boost'])
+	mob.multi = (spawn_list['enemy_attribute_boost'])
 	#instantiate()
 	SpawnManager.add_mob(mob)
 

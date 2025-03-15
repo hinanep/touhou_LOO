@@ -27,7 +27,7 @@ script = ExtResource("2_liw8n")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="5"]
 position = Vector2(0, -2)
 scale = Vector2(0.261719, 0.257813)
 sprite_frames = SubResource("SpriteFrames_m4ib8")

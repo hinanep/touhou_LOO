@@ -6,7 +6,7 @@ var cp_pool = {
 	ready={},
 	actived={}
 }
-var max_list
+var max_list = []
 #"cp_reimu_marisa": {
 	#"id": "cp_reimu_marisa",
 	#"partment": [
@@ -36,7 +36,8 @@ func add_to_maxlist(id):
 	activate_cp(get_cp_unactive(id))
 
 func del_to_maxlist(id):
-	max_list.erase(id)
+	if max_list.has(id):
+		max_list.erase(id)
 
 	for cp in cp_pool.ready:
 		if cp_pool.ready[cp].partment.has(id):

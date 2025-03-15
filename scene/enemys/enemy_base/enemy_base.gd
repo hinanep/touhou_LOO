@@ -1,17 +1,13 @@
 class_name enemy_base extends CharacterBody2D
 @onready var player_node = get_tree().get_first_node_in_group("player")
-var curse = player_var.curse
+
 #var modi = player_var.time_secs /1800.0
 var mob_id :int
-var modi = 0
-var max_hp = curse * (1+modi)
-var hp = max_hp
-var speed = 40
-var basic_melee_damage = curse
-var basic_bullet_damage = curse
+var hp
 var drops_path = "drops_p"
 var target
 var invincible = false
+var multi = 1.0
 signal die(id)
 var mob_info = {
 	"id": "enm_mempeace",
@@ -25,9 +21,8 @@ var mob_info = {
 	"health": 100.0,
 	"speed": 50.0
   }
-var debuff = {
-	"speed":1.0,
-	"target_rediretion":player_node
+var debuff_timer = {
+	#buff_id:[buff_intensity,buff_time]
 }
 @onready var progress_bar = $ProgressBar
 
@@ -38,26 +33,41 @@ var damageNum = preload("res://scene/enemys/enemy_base/damageNum.tscn")
 @onready var bullet_damage_area = $bullet_damage_area
 @onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
 @onready var navi = $NavigationAgent2D
+var movement:Callable
+var creep_move:bool
+var atkable = true
+var moveable = true
 func _ready():
-	set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
+	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
 	set_z_as_relative(false)
+
 	name = mob_info.id
-	speed = mob_info.speed
 	navi.max_speed = mob_info.speed
-	max_hp = mob_info.health
-	hp = max_hp
-	basic_melee_damage = mob_info.physical_damage
-	basic_bullet_damage = mob_info.magical_damage
+	hp = mob_info.health
+
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 1
 	navi.target_position = player_node.global_position
-	melee_battle_ready()
-	bullet_battle_ready(true)
-	debuff["target_rediretion"] = player_node
-	#await get_tree().create_timer(0.5).timeout
-	#navi.get_next_path_position()
+
+	melee_battle_ready(mob_info.physical_damage == 0)
+	bullet_battle_ready(mob_info.magical_damage == 0)
+	match mob_info.movement:
+		'default':
+			movement = move_to_target
+		'creep':
+			movement = creep
+			var creeptimer = Timer.new()
+			creeptimer.wait_time = 2
+			creeptimer.timeout.connect(
+				func():
+					creep_move = !creep_move
+			)
+			add_child(creeptimer)
+			creeptimer.start()
+
+	setbuff(multi)
 
 
 func on_compute_safevelocity(safevelocity):
@@ -66,7 +76,8 @@ func on_compute_safevelocity(safevelocity):
 	#move_and_collide(velocity*0.016)
 
 func _physics_process(_delta):
-	move_to_target()
+	if moveable:
+		movement.call()
 
 #移动方式：走向玩家
 func move_to_target():
@@ -76,20 +87,22 @@ func move_to_target():
 			return
 
 		navi.get_next_path_position()
-		navi.set_velocity(global_position.direction_to(player_node.global_position) * speed)
+		navi.set_velocity(global_position.direction_to(player_node.global_position) * mob_info.speed)
 
 	else:
 
-		velocity =  global_position.direction_to(player_node.global_position) * speed
+		velocity =  global_position.direction_to(player_node.global_position) * mob_info.speed
 
 	move_and_slide()
 func creep():
-	pass
+	if creep_move:
+		move_to_target()
+
 
 
 func damage_num_display(num):
 	var d = damageNum.instantiate()
-	d.get_child(1).text = String.num_int64(num)
+	d.showdamage(num)
 	#d.global_position = global_position
 	d.position = Vector2(2*randf()-1,randf())*5
 
@@ -103,7 +116,7 @@ func take_damage(damage):
 		return
 	damage_num_display(damage)
 	hp -= damage
-	progress_bar.value = hp/max_hp * 100
+	progress_bar.value = hp/mob_info.health * 100
 	if hp <= 0:
 		died()
 		#call_deferred("died")
@@ -112,8 +125,11 @@ func take_damage(damage):
 #似了
 func died():
 	drop()
-	queue_free()
 	emit_signal('die',mob_id)
+	atkable = false
+	await get_tree().create_timer(0.1).timeout
+	queue_free()
+
 
 func drop():
 	var drops = PresetManager.getpre(drops_path).instantiate()
@@ -141,6 +157,7 @@ func melee_battle_ready(disable = false):
 	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
 
 func melee_damage_area_body_entered(_body):
+
 	if not _body is player:
 		return
 
@@ -161,7 +178,9 @@ func melee_attack_cd_timeout():
 
 #体术攻击方法，可覆盖
 func melee_attack(playernode):
-	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(basic_melee_damage))
+	if not atkable:
+		return
+	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(mob_info.physical_damage))
 
 
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
@@ -191,6 +210,8 @@ func _on_bullet_damage_area_body_exited(body):
 
 #弹幕攻击方法，待实例实现
 func bullet_attack():
+	if not atkable:
+		return
 	pass
 
 
@@ -200,8 +221,8 @@ func bullet_attack_cd_timeout():
 
 #到玩家方向单位向量
 func get_diretion_to_target():
-	if debuff["target_rediretion"]!=null:
-		return(debuff["target_rediretion"].global_position - global_position).normalized()
+	if debuff_timer["target_rediretion"]!=null:
+		return(debuff_timer["target_rediretion"].global_position - global_position).normalized()
 	else:
 		return(player_node.global_position - global_position).normalized()
 
@@ -219,27 +240,15 @@ func get_distance_squared_to_player():
 
 
 func setbuff(multi):
-	max_hp *= multi
+	mob_info.health *= multi
 	hp *= multi
-	basic_bullet_damage *= multi
-	basic_melee_damage *= multi
+	mob_info.physical_damage *= multi
+	mob_info.magical_damage *= multi
 
 
-func set_debuff(param_name,multi=1,time=1):
-	return
-	$debuff_time.wait_time = time
-	$debuff_time.start()
-	await get_tree().create_timer(time).timeout
-	if param_name == "speed":
-		debuff["speed"] = multi
-	if param_name == "target_rediretion":
-		debuff["target_rediretion"] = multi
+func set_debuff(buff_name,intensity,duration,source):
+	$buff.add_buff(buff_name,intensity,duration,source)
 
-
-func _on_debuff_time_timeout():
-	debuff["speed"] = 1.0
-	debuff["target_rediretion"] = player_node
-	pass # Replace with function body.
 
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:

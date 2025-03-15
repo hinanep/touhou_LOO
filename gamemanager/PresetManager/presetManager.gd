@@ -10,6 +10,7 @@ var preset_map = {
 	'skill':"res://scene/skill/skill_class/skill.tscn",
 	'routine':"res://scene/routine/routine/routine.tscn",
 	'attack':"res://scene/attack/attack/attack.tscn",
+	'notfoundatk':"res://scene/attack/attack_ins/notfindattack.tscn",
 	'summon':"res://scene/summon/summon.tscn",
 	'card':"res://scene/cards/card/card.tscn",
 	'passive':"res://scene/passive/base_passive/Passive.tscn",
@@ -106,5 +107,6 @@ func getpre(prename : String):
 	if(prename.contains('sum')):
 		print('pre  '+prename+'  not found!')
 		return preset_map.summon
+
 	print('pre  '+prename+'  not found!')
 	return null

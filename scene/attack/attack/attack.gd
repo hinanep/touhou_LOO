@@ -153,7 +153,6 @@ func set_upgrade(nlevel:int):
 func _on_hit():
 	if attack_info.has('hitting_routine_creation'):
 		for hit_gen in attack_info.hitting_routine_creation:
-			print(hit_gen)
 			SignalBus.trigger_routine_by_id.emit(hit_gen,true,global_position,rotation,null)
 
 
@@ -190,7 +189,8 @@ func cp_active():
 func give_debuff(body):
 	if attack_info.has('debuff'):
 		for i in attack_info.debuff.size():
-			body.set_debuff(attack_info.debuff[i])
+
+			body.set_debuff(attack_info.debuff[i],attack_info.debuff_intensity[i],attack_info.debuff_duration[i],$".")
 
 
 #消弹

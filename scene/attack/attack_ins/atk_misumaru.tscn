@@ -41,7 +41,7 @@ script = ExtResource("2_qqp3b")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_ok0vd")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="3"]
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_ssgop")
 animation = &"ou"

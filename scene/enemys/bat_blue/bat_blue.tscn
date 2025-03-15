@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://owvethc2bt82"]
+[gd_scene load_steps=8 format=3 uid="uid://owvethc2bt82"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_chbas"]
-[ext_resource type="Script" path="res://scene/enemys/bat_blue/bat_blue.gd" id="1_s3crx"]
 [ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/pic/enemy/enemies-spritesheet.png" id="2_qtdfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbnch"]
@@ -41,7 +40,6 @@ animations = [{
 }]
 
 [node name="bat_blue" instance=ExtResource("1_chbas")]
-script = ExtResource("1_s3crx")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_cgvqk")

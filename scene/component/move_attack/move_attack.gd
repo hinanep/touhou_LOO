@@ -1,6 +1,7 @@
 extends RefCounted
 class_name MoveComponent
 var move_type:Callable
+var rotate_type:Callable = move_stay
 var velocity = 0
 var diretion = Vector2(0,0)
 var acc = 0
@@ -49,7 +50,22 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 			velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
 		moving_rule.polar:
 			move_type = Callable(move_polar)
+	#if attack_info.has('rotation_rule'):
+		#print('rotationri')
+	if attack_info.has('rotation_rule'):
+		match attack_info.rotation_rule:
+			'uniform':
 
+					rotate_type = rot_uniform
+			'speed':
+
+					rotate_type = rot_speed
+			'locking':
+
+					rotate_type = rot_locking
+
+	#else:
+		#rotate_type = move_stay
 func update(delta):
 	colli_info = move_type.call(delta)
 	if ref and colli_info is KinematicCollision2D:
@@ -60,7 +76,7 @@ func update(delta):
 		if diretion is Vector2:
 			diretion = diretion.bounce(normal)
 			velocity = attack_info.moving_parameter[0]
-
+	rotate_type.call(delta)
 #velocity:vector2 diretion:null
 func move_trace_target(delta):
 	if lock.lock_target == null:
@@ -74,7 +90,7 @@ func move_trace_target(delta):
 	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]
 	velocity += acc
 	velocity = velocity.normalized() * min(velocity.length(),attack_info.moving_parameter[2])
-	body.rotation = velocity.angle() + PI/2
+	diretion = velocity.normalized()
 	return body.move_and_collide(velocity * delta)
 	#body.position += velocity * delta
 
@@ -124,12 +140,26 @@ func move_sekibanki(delta):
 	velocity +=  velocity.rotated(PI/2).normalized() * delta * attack_info.moving_parameter[0]
 	velocity = velocity.normalized() * attack_info.moving_parameter[0] * player_var.bullet_speed_ratio
 	#body.position += velocity * delta
+	diretion = velocity.normalized()
 	return body.move_and_collide(velocity * delta)
 
 func move_stay(_delta):
 	return null
 
-#func reflection(normal:Vector2):
-	#normal = normal.normalized()
-	#velocity = attack_info.moving_parameter[0]
-	#diretion = diretion - 2*normal.dot(diretion)*normal
+func rot_uniform(delta):
+	body.rotation_degrees += attack_info.omega * delta
+var target_rotate
+func rot_speed(delta):
+
+	target_rotate = Vector2.from_angle(body.rotation).angle_to(diretion) + PI/2
+	if abs(target_rotate) < deg_to_rad(attack_info.omega) *delta:
+		body.rotate(target_rotate)
+	else:
+		if target_rotate > 0:
+			body.rotate(deg_to_rad(attack_info.omega)*delta)
+		else:
+			body.rotate(-deg_to_rad(attack_info.omega)*delta)
+
+
+func rot_locking(delta):
+	body.rotation += min(body.global_position.direction_to(lock.lock_target.global_position).angle(),rad_to_deg(attack_info.omega)* delta)

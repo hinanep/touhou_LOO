@@ -10,7 +10,8 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -59,7 +60,8 @@
 	"duration": 0.25,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -104,7 +106,8 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -155,7 +158,10 @@
 	"debuff": [
 	  "root"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
+	  1.0
+	],
+	"debuff_duration": [
 	  0.5
 	],
 	"buff": [],
@@ -202,7 +208,10 @@
 	"debuff": [
 	  "root"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
+	  1.0
+	],
+	"debuff_duration": [
 	  0.5
 	],
 	"buff": [],
@@ -255,8 +264,11 @@
 	"debuff": [
 	  "airborne"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
 	  20.0
+	],
+	"debuff_duration": [
+	  1.0
 	],
 	"buff": [],
 	"buff_value_factor": [],
@@ -308,8 +320,11 @@
 	"debuff": [
 	  "airborne"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
 	  50.0
+	],
+	"debuff_duration": [
+	  1.0
 	],
 	"buff": [],
 	"buff_value_factor": [],
@@ -355,7 +370,8 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [
@@ -408,7 +424,10 @@
 	"debuff": [
 	  "slowdown"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
+	  0.2
+	],
+	"debuff_duration": [
 	  1.0
 	],
 	"buff": [],
@@ -455,7 +474,8 @@
 	"duration": 10.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -504,7 +524,8 @@
 	"duration": 1.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -549,7 +570,8 @@
 	"duration": 1.0,
 	"duration_dependence": "atkdep_marisa_alice_duration",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -595,7 +617,8 @@
 	"duration": 0.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -642,7 +665,8 @@
 	"duration": 1.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -687,7 +711,8 @@
 	"duration": 3.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [
 	  "buff_mana_disposable"
 	],
@@ -736,7 +761,8 @@
 	"duration": 10.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -783,7 +809,8 @@
 	"duration": 10.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -793,7 +820,7 @@
 	"defeating_item_creation_value": 0.0,
 	"eraseing_item_creation": [],
 	"eraseing_item_creation_value": 0.0,
-	"penetration": 0,
+	"penetration": 999,
 	"shape": "circle",
 	"size_dependence": [],
 	"size": [
@@ -834,7 +861,8 @@
 	"duration": 0.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -879,7 +907,8 @@
 	"duration": 0.5,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -924,7 +953,8 @@
 	"duration": 3.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -974,7 +1004,8 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -1023,7 +1054,8 @@
 	"duration": 6.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -1069,7 +1101,8 @@
 	"duration": 0.0,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -1116,7 +1149,8 @@
 	"duration": 0.5,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
@@ -1164,7 +1198,10 @@
 	"debuff": [
 	  "airborne"
 	],
-	"basic_debuff_effect": [
+	"debuff_intensity": [
+	  200.0
+	],
+	"debuff_duration": [
 	  200.0
 	],
 	"buff": [],
@@ -1211,7 +1248,8 @@
 	"duration": 0.5,
 	"duration_dependence": "",
 	"debuff": [],
-	"basic_debuff_effect": [],
+	"debuff_intensity": [],
+	"debuff_duration": [],
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],

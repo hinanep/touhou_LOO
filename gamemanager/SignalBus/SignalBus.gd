@@ -46,7 +46,7 @@ signal upgrade_group(group)
 signal upgrade_max(anyname)
 signal cp_active(cp_info)
 signal cp_del(cpid)
-var log = false
+var log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 

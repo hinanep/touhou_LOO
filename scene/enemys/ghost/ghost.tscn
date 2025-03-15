@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://drvux8yixlmvx"]
+[gd_scene load_steps=9 format=3 uid="uid://drvux8yixlmvx"]
 
-[ext_resource type="Script" path="res://scene/enemys/ghost/ghost.gd" id="1_u2v4r"]
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_xu4fn"]
 [ext_resource type="Texture2D" uid="uid://cji57mdrf4nao" path="res://asset/pic/enemy/jack-o-lanternL.png" id="2_6lklv"]
 [ext_resource type="Texture2D" uid="uid://da8dmt5gk07ny" path="res://asset/pic/enemy/jack-o-lanternR.png" id="3_kj63v"]
@@ -36,7 +35,6 @@ animations = [{
 }]
 
 [node name="enemy_base" instance=ExtResource("1_xu4fn")]
-script = ExtResource("1_u2v4r")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_cgvqk")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=13 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
 [ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="2_p2xrr"]
 [ext_resource type="PackedScene" uid="uid://ldbefuo07loe" path="res://scene/enemys/enemy_base/navigation_agent_2d.tscn" id="3_26pcd"]
+[ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_2avwg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
 atlas = ExtResource("2_p2xrr")
@@ -83,8 +84,6 @@ shape = SubResource("CircleShape2D_v8ilp")
 
 [node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
 
-[node name="debuff_time" type="Timer" parent="."]
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
 offset_left = -18.0
@@ -107,7 +106,9 @@ avoidance_enabled = false
 neighbor_distance = 40.0
 time_horizon_agents = 0.5
 
-[connection signal="timeout" from="debuff_time" to="." method="_on_debuff_time_timeout"]
+[node name="buff" type="Node" parent="."]
+script = ExtResource("4_2avwg")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="on_compute_safevelocity"]
