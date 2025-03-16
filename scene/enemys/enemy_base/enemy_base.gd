@@ -21,9 +21,7 @@ var mob_info = {
 	"health": 100.0,
 	"speed": 50.0
   }
-var debuff_timer = {
-	#buff_id:[buff_intensity,buff_time]
-}
+
 @onready var progress_bar = $ProgressBar
 
 @onready var melee_damage_area = $melee_damage_area
@@ -37,6 +35,7 @@ var movement:Callable
 var creep_move:bool
 var atkable = true
 var moveable = true
+
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
@@ -69,19 +68,17 @@ func _ready():
 
 	setbuff(multi)
 
-
+#不用理解，避障用
 func on_compute_safevelocity(safevelocity):
 	velocity = safevelocity
 
-	#move_and_collide(velocity*0.016)
-
+#根据表选择适当的移动函数（初始化时选择
 func _physics_process(_delta):
 	if moveable:
 		movement.call()
 
 #移动方式：走向玩家
 func move_to_target():
-
 	if navi.avoidance_enabled:
 		if NavigationServer2D.map_get_iteration_id(navi.get_navigation_map()) == 0:
 			return
@@ -90,16 +87,15 @@ func move_to_target():
 		navi.set_velocity(global_position.direction_to(player_node.global_position) * mob_info.speed)
 
 	else:
-
 		velocity =  global_position.direction_to(player_node.global_position) * mob_info.speed
-
 	move_and_slide()
+
+#移动方式：蛄蛹（初始化时设置了定时反转creep_move变量）
 func creep():
 	if creep_move:
 		move_to_target()
 
-
-
+#伤害数字表示
 func damage_num_display(num):
 	var d = damageNum.instantiate()
 	d.showdamage(num)
@@ -107,10 +103,10 @@ func damage_num_display(num):
 	d.position = Vector2(2*randf()-1,randf())*5
 
 	#$".".call_deferred("add_child",d)
-	$".".add_child(d)
+	add_child(d)
 
 
-#受伤
+#受到伤害
 func take_damage(damage):
 	if invincible:
 		return
@@ -130,20 +126,12 @@ func died():
 	await get_tree().create_timer(0.1).timeout
 	queue_free()
 
-
+#掉落
 func drop():
 	var drops = PresetManager.getpre(drops_path).instantiate()
 	get_parent().call_deferred("add_child",drops)
 
-
 	drops.global_position = global_position
-	pass
-
-
-
-
-
-
 
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready(disable = false):
@@ -155,23 +143,22 @@ func melee_battle_ready(disable = false):
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
-
+#疑似玩家进入体术攻击范围，开打
 func melee_damage_area_body_entered(_body):
-
 	if not _body is player:
 		return
 
 	melee_attack(_body)
 	melee_attack_cd.start()
 
-
+#疑似玩家离开体术攻击范围，停手
 func _on_melee_damage_area_body_exited(body):
 	if not body is player:
 		return
 
 	melee_attack_cd.stop()
 
-
+#定时打人
 func melee_attack_cd_timeout():
 	melee_attack(player_node)
 
@@ -200,31 +187,24 @@ func bullet_damage_area_body_entered(_body):
 	bullet_attack()
 	bullet_attack_cd.start()
 
-
 func _on_bullet_damage_area_body_exited(body):
 	if not body is player:
 		return
 
 	bullet_attack_cd.stop()
 
-
 #弹幕攻击方法，待实例实现
 func bullet_attack():
 	if not atkable:
 		return
-	pass
-
 
 func bullet_attack_cd_timeout():
 	bullet_attack()
 
-
 #到玩家方向单位向量
 func get_diretion_to_target():
-	if debuff_timer["target_rediretion"]!=null:
-		return(debuff_timer["target_rediretion"].global_position - global_position).normalized()
-	else:
-		return(player_node.global_position - global_position).normalized()
+
+	return(player_node.global_position - global_position).normalized()
 
 #到玩家距离
 func get_distance_to_player():
@@ -232,30 +212,27 @@ func get_distance_to_player():
 		return global_position.distance_to(player_node.global_position)
 	return Vector2.ZERO
 
-
+#到玩家距离平方
 func get_distance_squared_to_player():
 	if player_node:
 		return global_position.distance_squared_to(player_node.global_position)
 	return Vector2.ZERO
 
-
+#设置基础属性加成，读表
 func setbuff(multi):
 	mob_info.health *= multi
 	hp *= multi
 	mob_info.physical_damage *= multi
 	mob_info.magical_damage *= multi
 
-
+#得到了debuff
 func set_debuff(buff_name,intensity,duration,source):
 	$buff.add_buff(buff_name,intensity,duration,source)
 
-
-
+#进入屏幕时触发
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	navi.avoidance_enabled = true
-	pass # Replace with function body.
 
-
+#离开屏幕时触发
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	navi.avoidance_enabled = false
-	pass # Replace with function body.

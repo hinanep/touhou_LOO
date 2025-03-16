@@ -1,12 +1,7 @@
 class_name routine extends Node2D
 
 var active = true
-var routine_modifier = {
-	"on_hit":[],
-	"on_flying":[],
-	"on_emit":[],
-	"on_destroy":[]
-}
+
 
 var routine_info = {
 
@@ -18,15 +13,14 @@ var attack_nodes = []
 var summons = {}
 var level = 0
 var damage_source = ''
+
+#初始化
 func _ready():
 	name = routine_info.id
 	add_to_group(routine_info.id)
 	SignalBus.trigger_routine_by_id.connect(called)
 	SignalBus.upgrade_group.connect(upgrade_routine)
-	#if routine_info.has("upgrade_group"):
-		#add_to_group(routine_info.upgrade_group)
-	#if routine_info.has("effective_condition"):
-		#add_to_group(routine_info.effective_condition)
+
 	if routine_info.has("creating_attack"):
 		for id in routine_info.creating_attack:
 			add_attack(id)
@@ -38,7 +32,7 @@ func _ready():
 			summons[summon] = spre
 
 
-
+#根据表中对应项获取攻击生成位置
 func get_gen_position(force_world_position:bool,input_position,input_rotation):
 	if force_world_position:
 		gen_position = input_position
@@ -71,6 +65,7 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
 	gen_position += add_vector
 
+#外部调用生成接口，由信号总线中 trigger_routine_by_id 控制，输入：调用招式id，强制输入对应世界坐标生成，输入位置，输入旋转，强制父节点（使生成攻击作为其子节点（生成攻击通常作为本招式子节点））
 func called(routine_id,force_world_position,input_position,input_rotation,parent_node):
 	if routine_id != routine_info.id:
 		return
@@ -81,6 +76,7 @@ func called(routine_id,force_world_position,input_position,input_rotation,parent
 
 	attacks(force_world_position,input_position,input_rotation,true,parent_node)
 
+#生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
 func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,has_interval=true,parent_node = $"."):
 
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
@@ -101,7 +97,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
 
-
+#生成单次攻击
 func single_attack(generate_position,generate_rotation,parent_node ):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])
 	if routine_info.has('special_creating_attack'):
@@ -133,6 +129,8 @@ func single_attack(generate_position,generate_rotation,parent_node ):
 						new_attack.rotation = generate_rotation
 
 				parent_node.add_child(new_attack)
+
+#生成单次召唤物 TODO：随机种类召唤物
 func single_summon(generate_position,generate_rotation):
 
 	#if routine_info.has('special_creating_attack'):
@@ -152,7 +150,7 @@ func single_summon(generate_position,generate_rotation):
 			new_summon.rotation = generate_rotation
 			$".".add_child(new_summon)
 
-
+#随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
 func select_from_luck():
 	var sum = 0
 	var weight_delta = []
@@ -166,6 +164,7 @@ func select_from_luck():
 		if r<0:
 			return i
 
+#根据group升级招式，level1没有属性提升且算法会数组越界所以特判
 func upgrade_routine(group):
 	if not routine_info.has("upgrade_group"):
 		return
@@ -176,13 +175,7 @@ func upgrade_routine(group):
 		return
 	routine_info.times += table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2]
 
-
-
-func set_upgrade(nlevel:int):
-	level = nlevel
-	pass
-
-
+#招式初始化时使用，按表将需要使用的攻击加入子节点并使其休眠，生成攻击时复制其
 func add_attack(id):
 	var attack_info = table.Attack[id]
 
@@ -191,13 +184,12 @@ func add_attack(id):
 
 	attack_pre.attack_info = attack_info
 	attack_pre.node_active = false
-	attack_pre.set_upgrade(level)
 	attack_pre.damage_source = damage_source
-	for modi in routine_modifier:
-		attack_pre.attack_modifier[modi].append(routine_modifier[modi])
+
 	add_child(attack_pre)
 	attack_nodes.append(attack_pre)
 
+#招式初始化时使用，按表将需要使用的召唤物加入子节点并使其休眠，生成攻击时复制其
 func add_summon(id):
 	var summon_info = table.Summoned[id]
 
@@ -208,11 +200,11 @@ func add_summon(id):
 	summon_pre.node_active = false
 	summon_pre.set_upgrade(level)
 	summon_pre.damage_source = damage_source
-	#for modi in routine_modifier:
-		#summon_pre.attack_modifier[modi].append(routine_modifier[modi])
+
 	add_child(summon_pre)
 	summons.append(summon_pre)
 
+#销毁所有子节点，销毁招式
 func destroy():
 	for child in get_children():
 		if child.has_method('destroy'):

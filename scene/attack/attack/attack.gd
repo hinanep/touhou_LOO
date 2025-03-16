@@ -5,19 +5,14 @@ class_name attack
 #击杀目标发出的信号
 signal kill(global_position)
 
-@export var attack_modifier = {
-	"on_hit":[],
-	"on_flying":[],
-	"on_emit":[],
-	"on_destroy":[]
-}
+
 @export var damage_source :String
 @export var attack_info = {
 	  }
 #已伤害目标，用于防止非dot多次伤害？暂时没必要
 #var damaged_bodies = []
 
-#已穿透目标
+#已穿透目标数量
 var penetration = 0
 #节点活动性
 var node_active = true
@@ -30,7 +25,7 @@ var dot_on = false
 var lock_compo : LockComponent
 var move_compo : MoveComponent
 
-
+#初始化
 func _ready():
 
 	if attack_info.has('upgrade_group'):
@@ -72,11 +67,11 @@ func _ready():
 	set_active(node_active)
 
 
-
+#运动组件更新
 func _physics_process(delta):
 	move_compo.update(delta)
 
-
+#初始化攻击形状
 func set_shape(cshape):
 	var addi = 1
 	if attack_info.has('size_dependence'):
@@ -144,21 +139,13 @@ func set_active(active:bool):
 	$bullet_erase_area.monitoring = active
 
 
-#设置等级
-func set_upgrade(nlevel:int):
-	level = nlevel
-	pass
-
 #击中时触发器
 func _on_hit():
 	if attack_info.has('hitting_routine_creation'):
 		for hit_gen in attack_info.hitting_routine_creation:
 			SignalBus.trigger_routine_by_id.emit(hit_gen,true,global_position,rotation,null)
 
-
-
-
-#敌人进入攻击范围
+#敌人进入攻击范围时触发
 func _on_damage_area_body_entered(body):
 
 	if body.has_method("take_damage"):
@@ -178,20 +165,18 @@ func destroy(message:String):
 
 	queue_free()
 
-
-#激活cp效果
+#激活cp效果 TODO：boost似乎还没有实现
 func cp_active():
 	if attack_info.type == 'boost':
 		#todo
 		get_parent().get_child(0).attack_info += attack_info
 
-#施加debuff
+#对body施加debuff
 func give_debuff(body):
 	if attack_info.has('debuff'):
-		for i in attack_info.debuff.size():
-
-			body.set_debuff(attack_info.debuff[i],attack_info.debuff_intensity[i],attack_info.debuff_duration[i],$".")
-
+		if body.has_method('set_debuff'):
+			for i in attack_info.debuff.size():
+				body.set_debuff(attack_info.debuff[i],attack_info.debuff_intensity[i],attack_info.debuff_duration[i],$".")
 
 #消弹
 func _on_bullet_erase_area_body_entered(body):
@@ -212,8 +197,6 @@ func drop_item(item,value,dposition):
 	drop.value = value
 	G.get_game_root().add_child(drop)
 
-
-
-
+#离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy('cannot vis')

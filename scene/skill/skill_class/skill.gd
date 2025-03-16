@@ -14,6 +14,8 @@ var upgrade_info = {
 
 }
 var damage_source = ''
+
+
 func _ready():
 	name = skill_info.id
 	add_to_group(skill_info.id)
@@ -37,16 +39,15 @@ func _ready():
 				shoot.connect(r.attacks)
 
 
-
 func add_routine(id):
 		var routinepre = PresetManager.getpre('routine').instantiate()
 		routinepre.position = Vector2(0,0)
 		routinepre.routine_info = table.Routine[id]
 		routinepre.damage_source = damage_source
-		routinepre.set_upgrade(level)
 
 		add_child(routinepre)
 		return routinepre
+
 
 func gen_routines():
 	emit_signal("shoot")
