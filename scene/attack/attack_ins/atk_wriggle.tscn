@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_xgb5y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
 position = Vector2(-4.76837e-07, 9.53674e-07)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_5ll8b")
 animation = &"reimu"
 autoplay = "reimu"
