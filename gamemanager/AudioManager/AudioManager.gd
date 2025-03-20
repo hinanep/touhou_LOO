@@ -1,13 +1,28 @@
 extends Node
 
-@export var bgm = {}
-@export var sfx = {}
 
-@onready var bgm_player = $BGMPlayer
-@onready var background_bgm_player = $Background_bgm
+var bgm_player
+var background_bgm_player
+var SFXPlayerPool
 @onready var sfx_player_playing_pair = {}
 func _ready():
-	pass
+	bgm_player = AudioStreamPlayer.new()
+	bgm_player.name = 'bgm_player'
+	bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	bgm_player.bus ='bgm'
+
+	background_bgm_player =  AudioStreamPlayer.new()
+	background_bgm_player.name = 'background_bgm_player'
+	background_bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	background_bgm_player.bus ='background'
+
+	add_child(bgm_player)
+	add_child(background_bgm_player)
+
+	SFXPlayerPool = Node.new()
+	SFXPlayerPool.name = 'SFXPlayerPool'
+	add_child(SFXPlayerPool)
+
 
 func play_background_bgm(bgm_name:String) -> void:
 
@@ -30,8 +45,12 @@ func bgm_over():
 func play_sfx(sfx_name:String) -> void:
 	if(!sfx_player_playing_pair.has(sfx_name)):
 		var new_player = AudioStreamPlayer.new()
-		$SFXPlayerPool.add_child(new_player)
+		SFXPlayerPool.add_child(new_player)
 		sfx_player_playing_pair[sfx_name] = new_player
 
 	sfx_player_playing_pair[sfx_name].stream = PresetManager.getpre(sfx_name)
 	sfx_player_playing_pair[sfx_name].play()
+func new_sfx_player():
+	var new_player = AudioStreamPlayer.new()
+	new_player.bus = 'sfx'
+	return new_player

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://def8milxirujq"]
+[gd_scene load_steps=6 format=3 uid="uid://def8milxirujq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_h12sq"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
@@ -7,15 +7,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm7v0"]
 radius = 100.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dp52x"]
-atlas = ExtResource("3_jxk2k")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ib8rk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bocds"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dp52x")
+"texture": ExtResource("3_jxk2k")
 }],
 "loop": true,
 "name": &"default",
@@ -28,10 +24,7 @@ script = ExtResource("2_pp31y")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_tm7v0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
-modulate = Color(0, 0, 0, 0.290196)
-light_mask = 3
-visibility_layer = 3
-scale = Vector2(4, 3.86)
-sprite_frames = SubResource("SpriteFrames_ib8rk")
-autoplay = "default"
+[node name="texture" parent="." index="5"]
+modulate = Color(0, 0, 0, 0.545098)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_bocds")

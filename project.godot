@@ -28,13 +28,15 @@ SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
 player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 G="*res://ui/Scripts/G.gd"
-AudioManager="*res://gamemanager/AudioManager/AudioManager.tscn"
 GameManager="*res://gamemanager/GameManager/game_manager.tscn"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
+AudioManager="*res://gamemanager/AudioManager/AudioManager.gd"
 
 [debug]
 
 file_logging/enable_file_logging.pc=false
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
 
 [display]
 
@@ -144,8 +146,6 @@ avoidance/thread_model/avoidance_use_high_priority_threads=false
 [physics]
 
 2d/run_on_separate_thread=true
-common/physics_ticks_per_second=100
-common/max_physics_steps_per_frame=11
 common/physics_jitter_fix=0.0
 common/physics_interpolation=true
 

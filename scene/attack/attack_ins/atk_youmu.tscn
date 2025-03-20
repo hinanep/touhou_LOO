@@ -10,3 +10,7 @@ script = ExtResource("2_dc43h")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="texture" parent="." index="5"]
+scale = Vector2(0.4, 0.4)
+offset = Vector2(0, -50)

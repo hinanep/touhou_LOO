@@ -12,6 +12,4 @@ gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Summoned.xlsx:Summoned => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Summoned\Summoned.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\TID.xlsx:TID => C:\Users\nep\Desktop\touhou_survivors\settings\dist\TID\TID.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\nep\Desktop\touhou_survivors\settings\data\Upgrade.xlsx:Upgrade => C:\Users\nep\Desktop\touhou_survivors\settings\dist\Upgrade\Upgrade.json
-gd_excelexporter.core.engine-WARNING:~$Enemy.xlsx 不是配置表，跳过！
-gd_excelexporter.core.engine-WARNING:~$StageProcess.xlsx 不是配置表，跳过！
 gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

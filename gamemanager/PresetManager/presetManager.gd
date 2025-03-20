@@ -19,17 +19,7 @@ var preset_map = {
 	"particle_explosion":"res://scene/particle/explosion.tscn",
 	'sum_alice':"res://scene/summon/summon_ins/sum_alice.tscn",
 
-	"enemy_boss_aq":"res://scene/enemys/aq_boss/aq_boss.tscn",
-	#"aq_punch":"res://scene/enemys/aq_boss/bullet/random_bullet.tscn",
-	"enemy_zako_bat_blue":"res://scene/enemys/bat_blue/bat_blue.tscn",
-	"enemy_zako_bat_purple":"res://scene/enemys/bat_purple/bat_purple.tscn",
-	"enemy_zako_bug_orange":"res://scene/enemys/bug_orange/bug_orange.tscn",
-	"enemy_zako_bug_pink":"res://scene/enemys/bug_pink/bug_pink.tscn",
-	"enemy_zako_ghost":"res://scene/enemys/ghost/ghost.tscn",
-	"enemy_zako_kedama":"res://scene/enemys/kedama/kedama.tscn",
-	"enemy_zako_slime_blue":"res://scene/enemys/slime_blue/slime_blue.tscn",
-	"enemy_zako_slime_green":"res://scene/enemys/slime_green/slime_green.tscn",
-	"enemy_elite_slime":"res://scene/enemys/elite_slime/elite_slime.tscn",
+
 	'enemy':"res://scene/enemys/enemy_base/enemy_base.tscn",
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
 
@@ -84,14 +74,14 @@ var preset_map = {
 
 
 func _ready():
-	for name in preset_map:
-		ResourceLoader.load_threaded_request(preset_map[name],'',true)
+	for pname in preset_map:
+		ResourceLoader.load_threaded_request(preset_map[pname],'',true)
 
 
 func _process(delta: float) -> void:
 	if(ResourceLoader.load_threaded_get_status(preset_map['img_atk_misumaru']) == 3):
-		for name in preset_map:
-			preset_map[name] = ResourceLoader.load_threaded_get(preset_map[name])
+		for pname in preset_map:
+			preset_map[pname] = ResourceLoader.load_threaded_get(preset_map[pname])
 		process_mode = 4
 
 func getpre(prename : String):

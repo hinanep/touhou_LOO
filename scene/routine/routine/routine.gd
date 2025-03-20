@@ -26,10 +26,10 @@ func _ready():
 			add_attack(id)
 
 	if routine_info.has('creating_summoned'):
-		for summon in routine_info.creating_summoned:
-			var spre = PresetManager.getpre(summon)
+		for sum in routine_info.creating_summoned:
+			var spre = PresetManager.getpre(sum)
 
-			summons[summon] = spre
+			summons[sum] = spre
 
 
 #根据表中对应项获取攻击生成位置
@@ -97,7 +97,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
 
-#生成单次攻击
+#生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
 func single_attack(generate_position,generate_rotation,parent_node ):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])
 	if routine_info.has('special_creating_attack'):

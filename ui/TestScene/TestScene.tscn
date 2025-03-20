@@ -67,7 +67,6 @@ collision_mask = 51
 safe_margin = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2, 2)
 
 [node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
 scale = Vector2(1.12, 1.12)

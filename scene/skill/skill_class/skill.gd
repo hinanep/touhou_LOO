@@ -37,7 +37,7 @@ func _ready():
 			print(aroutine+'this is routine')
 			if aroutine in skill_info.routines:
 				shoot.connect(r.attacks)
-
+	gen_routines()
 
 func add_routine(id):
 		var routinepre = PresetManager.getpre('routine').instantiate()

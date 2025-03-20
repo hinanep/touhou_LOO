@@ -28,8 +28,8 @@ script = ExtResource("2_lb0pk")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_m4sdu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(0.35, 0.35)
+[node name="texture" parent="." index="5"]
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_cwfhk")
 animation = &"reimu"
-autoplay = "reimu"
+autoplay = ""

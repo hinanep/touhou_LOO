@@ -19,12 +19,12 @@ func _ready():
 		card_button.selected.connect(on_cardbutton_select.bind(cd.id))
 
 	for uccp in table.Couple:
-		var cp = table.Couple[uccp]
+		var cps = table.Couple[uccp]
 		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/cp_container.add_child(cp_button)
-		cp_button.set_texture('img_'+cp.id)
-		cp_button.set_tooltip_text(cp.id)
-		cp_button.selected.connect(on_cpbutton_select.bind(cp.id))
+		cp_button.set_texture('img_'+cps.id)
+		cp_button.set_tooltip_text(cps.id)
+		cp_button.selected.connect(on_cpbutton_select.bind(cps.id))
 
 func on_skillbutton_select(skillname):
 	$testhud/Button.grab_focus()

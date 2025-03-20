@@ -33,25 +33,25 @@ var diretions = {
 func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 	body = B
 	attack_info = attack_in
-	if !attack_info.moving:
-		move_type = move_stay
-		return
+
 	lock = lock_com
 	diretion = diretion_routine
 	ref = attack_info.has('reflection')
-	match attack_info.moving_rule:
-		moving_rule.straight:
-			move_type = Callable(move_straight)
-		moving_rule.trail:
-			move_type = Callable(move_trace_target)
-		moving_rule.sekibanki:
-			move_type = Callable(move_sekibanki)
-			body.top_level = true
-			velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
-		moving_rule.polar:
-			move_type = Callable(move_polar)
-	#if attack_info.has('rotation_rule'):
-		#print('rotationri')
+	if attack_info.has('moving_rule'):
+		match attack_info.moving_rule:
+			moving_rule.straight:
+				move_type = Callable(move_straight)
+			moving_rule.trail:
+				move_type = Callable(move_trace_target)
+			moving_rule.sekibanki:
+				move_type = Callable(move_sekibanki)
+				body.top_level = true
+				velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
+			moving_rule.polar:
+				move_type = Callable(move_polar)
+	if !attack_info.moving:
+		move_type = move_stay
+
 	if attack_info.has('rotation_rule'):
 		match attack_info.rotation_rule:
 			'uniform':
@@ -61,11 +61,9 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 
 					rotate_type = rot_speed
 			'locking':
-
+					print(attack_info.rotation_rule)
 					rotate_type = rot_locking
-
-	#else:
-		#rotate_type = move_stay
+	max_rad_perframe = deg_to_rad(attack_info.omega) /Engine.physics_ticks_per_second
 func update(delta):
 	colli_info = move_type.call(delta)
 	if ref and colli_info is KinematicCollision2D:
@@ -107,11 +105,11 @@ func move_straight(delta):
 				diretion = Vector2(1,0)
 
 			diretions.lock:
-				var t = lock.find_next_target()
-				if t is Vector2:
-					diretion = body.global_position.direction_to(t)
-				elif t != null:
-					diretion = body.global_position.direction_to(t.global_position)
+				lock.find_next_target()
+				if lock.lock_position!=null:
+					diretion = body.global_position.direction_to(lock.lock_position)
+				elif  lock.lock_target!=null:
+					diretion = body.global_position.direction_to(lock.lock_target.global_position)
 
 				else:
 					diretion = Vector2.from_angle(player_var.player_diretion_angle)
@@ -144,6 +142,7 @@ func move_sekibanki(delta):
 	return body.move_and_collide(velocity * delta)
 
 func move_stay(_delta):
+
 	return null
 
 func rot_uniform(delta):
@@ -162,4 +161,24 @@ func rot_speed(delta):
 
 
 func rot_locking(delta):
-	body.rotation += min(body.global_position.direction_to(lock.lock_target.global_position).angle(),rad_to_deg(attack_info.omega)* delta)
+	if lock!=null:
+		lock.find_next_target()
+	var target_position
+	if lock.lock_target!=null:
+		target_position = lock.lock_target.global_position
+	elif lock.lock_position!=null:
+		target_position = lock.lock_position
+	rotate_to_diretion(body.global_position.direction_to(target_position),delta)
+var max_rad_perframe
+func rotate_to_diretion(target_diretion,delta):
+	target_rotate = Vector2.from_angle(body.rotation).angle_to(target_diretion) + PI/2
+	if target_rotate > PI:
+		target_rotate -= 2*PI
+
+	if abs(target_rotate) < max_rad_perframe:
+		body.rotate(target_rotate)
+	else:
+		if target_rotate > 0:
+			body.rotate(max_rad_perframe)
+		else:
+			body.rotate(-max_rad_perframe)

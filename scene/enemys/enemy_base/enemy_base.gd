@@ -9,6 +9,7 @@ var target
 var invincible = false
 var multi = 1.0
 signal die(id)
+var is_inscreen:bool = false
 var mob_info = {
 	"id": "enm_mempeace",
 	"type": "zako",
@@ -217,13 +218,12 @@ func get_distance_squared_to_player():
 	if player_node:
 		return global_position.distance_squared_to(player_node.global_position)
 	return Vector2.ZERO
-
 #设置基础属性加成，读表
-func setbuff(multi):
-	mob_info.health *= multi
-	hp *= multi
-	mob_info.physical_damage *= multi
-	mob_info.magical_damage *= multi
+func setbuff(mult):
+	mob_info.health *= mult
+	hp *= mult
+	mob_info.physical_damage *= mult
+	mob_info.magical_damage *= mult
 
 #得到了debuff
 func set_debuff(buff_name,intensity,duration,source):
@@ -232,7 +232,9 @@ func set_debuff(buff_name,intensity,duration,source):
 #进入屏幕时触发
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	navi.avoidance_enabled = true
+	is_inscreen =true
 
 #离开屏幕时触发
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	navi.avoidance_enabled = false
+	is_inscreen = false

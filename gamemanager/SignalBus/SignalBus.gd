@@ -46,7 +46,7 @@ signal upgrade_group(group)
 signal upgrade_max(anyname)
 signal cp_active(cp_info)
 signal cp_del(cpid)
-var log = true
+var is_log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 
@@ -55,9 +55,9 @@ func _ready() -> void:
 
 
 func _on_signal_emit(message1='',message2='',message3='',message4='',message5='',message6='') -> void:
-	if(log):
+	if(is_log):
 		print_rich("[color=yellow][b]------[/b][/color]")
-		var n = {}
+		#var n = {}
 
 		print_rich(message2)
 		print_rich(message1)

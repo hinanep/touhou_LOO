@@ -128,6 +128,6 @@ func player_get_heal(heal):
 	player_hp = min(player_hp,player_hp_max)
 
 func ini():
-	var ini = initial_status.new().status
-	for property in ini:
-		set(property,ini[property])
+	var ini_list = initial_status.new().status
+	for property in ini_list:
+		set(property,ini_list[property])

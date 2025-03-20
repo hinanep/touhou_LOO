@@ -58,7 +58,7 @@ func get_strongest_mob():
 		return null
 	var maxmob =mob_dic[mob_dic.keys()[0]]
 	for mob in mob_dic:
-		if mob_dic[mob].hp > maxmob.hp:
+		if mob_dic[mob].is_inscreen and mob_dic[mob].hp > maxmob.hp:
 			maxmob = mob_dic[mob]
 	return maxmob
 func clear():

@@ -2,11 +2,6 @@ extends enemy_base
 var stage = 2
 var reincarnation = false
 func _ready():
-	max_hp *= 10000
-	hp = max_hp
-	speed = 40
-	basic_melee_damage *= 10
-	basic_bullet_damage *= 10
 	drops_path = "drops_plate"
 	AudioManager.play_bgm("music_bgm_saga")
 	#启用体术攻击，默认攻击范围圆形
@@ -17,13 +12,7 @@ func _ready():
 
 	get_tree().call_group("monster","queue_free")
 	get_tree().call_group("spawner","change_pause")
-func _physics_process(_delta):
-	move_to_target()
 
-func move_to_target():
-	if !invincible:
-		velocity = get_diretion_to_target() * speed * debuff["speed"]
-	move_and_slide()
 func died():
 	if reincarnation == true:
 		return
@@ -71,10 +60,10 @@ func reincarnation_over():
 
 
 func _on_reincarnation_timeout():
-	hp += max_hp * 0.04
-	progress_bar.value = hp/max_hp * 100
-	if(hp >= max_hp):
-		reincarnation_over()
+	#hp += max_hp * 0.04
+	#progress_bar.value = hp/max_hp * 100
+	#if(hp >= max_hp):
+	reincarnation_over()
 	pass # Replace with function body.
 
 

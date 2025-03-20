@@ -39,17 +39,17 @@ func del_to_maxlist(id):
 	if max_list.has(id):
 		max_list.erase(id)
 
-	for cp in cp_pool.ready:
-		if cp_pool.ready[cp].partment.has(id):
-			cp_pool.unlocked[cp] = cp_pool.ready[cp]
-			cp_pool.ready.erase(cp)
-	for cp in cp_pool.actived:
-		if cp_pool.actived[cp].partment.has(id):
-			SignalBus.cp_del.emit(cp)
+	for cps in cp_pool.ready:
+		if cp_pool.ready[cps].partment.has(id):
+			cp_pool.unlocked[cps] = cp_pool.ready[cp]
+			cp_pool.ready.erase(cps)
+	for cps in cp_pool.actived:
+		if cp_pool.actived[cps].partment.has(id):
+			SignalBus.cp_del.emit(cps)
 func raise_weight_to_cp(xname):
-	for cp in cp_pool.unlocked:
-		if cp_pool.unlocked[cp].partment.has(xname):
-			for id in cp_pool.unlocked[cp].partment:
+	for cps in cp_pool.unlocked:
+		if cp_pool.unlocked[cps].partment.has(xname):
+			for id in cp_pool.unlocked[cps].partment:
 				if(player_var.SkillManager.skill_pool.unlocked.has(id)):
 					player_var.SkillManager.skill_pool.unlocked["weight"] *=1.1
 				if(player_var.CardManager.card_pool.unlocked.has(id)):
@@ -60,18 +60,18 @@ func get_cp_unactive(id):
 	var find = false
 	var cp_array = []
 
-	for cp in cp_pool.unlocked:
-		if cp_pool.unlocked[cp].partment.has(id):
+	for cps in cp_pool.unlocked:
+		if cp_pool.unlocked[cps].partment.has(id):
 
 			find = true
-			for x in cp_pool.unlocked[cp].partment:
+			for x in cp_pool.unlocked[cps].partment:
 				if x in max_list:
 					continue
 				else:
 					find = false
 					break
 			if find:
-				cp_array.append(cp_pool.unlocked[cp].id)
+				cp_array.append(cp_pool.unlocked[cps].id)
 
 	return cp_array
 

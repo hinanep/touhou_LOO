@@ -71,17 +71,19 @@ func _ready():
 func _physics_process(delta):
 	move_compo.update(delta)
 
+
 #初始化攻击形状
 func set_shape(cshape):
 	var addi = 1
 	if attack_info.has('size_dependence'):
 		addi = player_var.dep.operate_dep(attack_info.size_dependence,addi)
-	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
+	var texture = $texture
 	match cshape:
 		'circle':
 			cshape = CircleShape2D.new()
 
 			cshape.radius = attack_info.size[0]
+			texture.scale *= sqrt( attack_info.size[0]/20)
 			$VisibleOnScreenNotifier2D.scale = Vector2(1,1)* attack_info.size[0]
 			$damage_area/CollisionShape2D.position = Vector2(0,0)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0)
@@ -90,18 +92,24 @@ func set_shape(cshape):
 
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(attack_info.size[0],attack_info.size[1])
+			texture.scale *= Vector2(sqrt(attack_info.size[0]/20),sqrt(attack_info.size[1]/20))
 			$VisibleOnScreenNotifier2D.rect = Rect2(-cshape.size/2,cshape.size)
 		'rectangle_edge':
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(attack_info.size[0],attack_info.size[1])
 			$VisibleOnScreenNotifier2D.rect = Rect2(-Vector2(attack_info.size[0]/2,attack_info.size[1]),cshape.size)
+			#矩形中心点
 			$damage_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
-			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0-attack_info.size[1]/2)
+			$bullet_erase_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
+
+			texture.scale *= Vector2(sqrt(attack_info.size[0]/20),sqrt(attack_info.size[1]/20))
 	$damage_area/CollisionShape2D.shape = cshape
 	$bullet_erase_area/CollisionShape2D.shape = cshape
 	$CollisionShape2D.shape = cshape
 
+	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
+	texture.scale *= sqrt(player_var.range_add_ratio*addi)
 #dot伤害
 func dot():
 	if dot_on :
@@ -133,6 +141,7 @@ func set_active(active:bool):
 		timer.timeout.connect(dot)
 		timer.start()
 	visible = active
+	$texture.visible = active
 	set_process(active)
 	set_physics_process(active)
 	$damage_area.monitoring = active
@@ -154,7 +163,7 @@ func _on_damage_area_body_entered(body):
 		damage(body,attack_info.damage)
 		penetration += 1
 		if penetration > attack_info.penetration:
-			destroy('pene')
+			call_deferred("destroy", 'pene')
 
 #摧毁本攻击
 func destroy(message:String):
@@ -199,4 +208,11 @@ func drop_item(item,value,dposition):
 
 #离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	destroy('cannot vis')
+	$exit_screen_timer.start()
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$exit_screen_timer.stop()
+
+
+func _on_exit_screen_timer_timeout() -> void:
+	call_deferred("destroy", 'cannot vis')

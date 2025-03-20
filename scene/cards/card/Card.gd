@@ -37,11 +37,11 @@ func on_use_card(id):
 		return
 	if player_var.mana<card_info.mana/player_var.mana_cost:
 		return
-	emit_signal("shoot")
+
 	player_var.mana-=card_info.mana/player_var.mana_cost
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
-	shoot.emit()
+	emit_signal("shoot")
 	#get buff
 
 func add_routine(id):
@@ -49,7 +49,7 @@ func add_routine(id):
 	routinepre.position = Vector2(0,0)
 	routinepre.routine_info = table.Routine[id]
 	routinepre.damage_source = damage_source
-	routinepre.set_upgrade(level)
+
 	add_child(routinepre)
 	return routinepre
 

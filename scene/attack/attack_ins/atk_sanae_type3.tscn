@@ -28,8 +28,8 @@ script = ExtResource("2_ryf0y")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_beisj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(0.4, 0.4)
+[node name="texture" parent="." index="5"]
+scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_x34tr")
 animation = &"new_animation"
-autoplay = "new_animation"
+autoplay = ""
