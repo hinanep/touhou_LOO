@@ -23,7 +23,7 @@ script = ExtResource("2_y2vk4")
 shape = ExtResource("3_od6hf")
 
 [node name="texture" parent="." index="5"]
-rotation = -1.5708
+rotation = 0.0
 scale = Vector2(0.004, 0.048)
 sprite_frames = SubResource("SpriteFrames_sgjwi")
 offset = Vector2(3000, 0)

@@ -34,7 +34,7 @@ func _ready():
 		add_to_group(attack_info.effective_condition)
 	add_to_group(attack_info.id)
 
-	rotation_degrees = attack_info.ri
+
 	if attack_info.has('duration_dependence'):
 		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
 	else:
@@ -61,6 +61,8 @@ func _ready():
 			global_position = position
 	if attack_info.has('locking_type'):
 		lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
+	else:
+		lock_compo = LockComponent.new($".",null,lock_routine)
 
 	move_compo = MoveComponent.new($".",attack_info,lock_compo,diretion_routine)
 

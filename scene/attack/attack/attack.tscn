@@ -22,6 +22,7 @@ collision_mask = 0
 script = ExtResource("1_awf6h")
 
 [node name="damage_area" type="Area2D" parent="."]
+rotation = 1.5708
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -30,6 +31,7 @@ monitorable = false
 shape = ExtResource("2_43jrx")
 
 [node name="bullet_erase_area" type="Area2D" parent="."]
+rotation = 1.5708
 collision_layer = 0
 collision_mask = 64
 monitorable = false
@@ -43,11 +45,13 @@ rect = Rect2(-1, -1, 2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
+rotation = 1.5708
 scale = Vector2(0.9, 0.9)
 shape = ExtResource("2_43jrx")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 texture_repeat = 1
+rotation = 1.5708
 scale = Vector2(0.31, 0.31)
 sprite_frames = SubResource("SpriteFrames_3rfkp")
 autoplay = "default"

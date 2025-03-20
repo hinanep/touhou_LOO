@@ -18,6 +18,8 @@ func _init(B,locking_type,lock_routine = null):
 			lock_func = find_strongest_target
 		'front':
 			lock_func = find_front_target
+		null:
+			lock_func = find_null_target
 
 
 func find_nearest_target():

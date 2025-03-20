@@ -48,7 +48,7 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 
 	match routine_info.system_front:
 		'character':
-			gen_rotation = player_var.player_node.rotation
+			gen_rotation = player_var.player_diretion_angle
 		'world':
 			gen_rotation = 0
 		'input':
@@ -60,10 +60,10 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 
 		'rectangular':
 			add_vector =Vector2(routine_info.position[0],routine_info.position[1])
-			pass
+
 		'polar':
 			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
-	gen_position += add_vector
+	gen_position += add_vector.rotated(gen_rotation)
 
 #外部调用生成接口，由信号总线中 trigger_routine_by_id 控制，输入：调用招式id，强制输入对应世界坐标生成，输入位置，输入旋转，强制父节点（使生成攻击作为其子节点（生成攻击通常作为本招式子节点））
 func called(routine_id,force_world_position,input_position,input_rotation,parent_node):
@@ -108,11 +108,11 @@ func single_attack(generate_position,generate_rotation,parent_node ):
 
 
 					new_attack.position = generate_position
-					new_attack.rotation = generate_rotation
+					#new_attack.rotation = generate_rotation
 				else:
 
 					new_attack.global_position = generate_position
-					new_attack.rotation = generate_rotation
+					#new_attack.rotation = generate_rotation
 
 				parent_node.add_child(new_attack)
 
@@ -123,10 +123,10 @@ func single_attack(generate_position,generate_rotation,parent_node ):
 
 				if parent_node != $".":
 						new_attack.global_position = parent_node.global_position + gen_position
-						new_attack.rotation = generate_rotation
+						#new_attack.rotation = generate_rotation
 				else:
 						new_attack.global_position = generate_position
-						new_attack.rotation = generate_rotation
+						#new_attack.rotation = generate_rotation
 
 				parent_node.add_child(new_attack)
 
@@ -147,7 +147,7 @@ func single_summon(generate_position,generate_rotation):
 			var new_summon = summons[summon_id].instantiate()
 			new_summon.summon_info = table.Summoned[summon_id]
 			new_summon.global_position = generate_position
-			new_summon.rotation = generate_rotation
+			#new_summon.rotation = generate_rotation
 			$".".add_child(new_summon)
 
 #随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
