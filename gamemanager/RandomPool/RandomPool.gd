@@ -37,14 +37,19 @@ func random_nselect_from_allpool(n:int):
 	var skills_ans = []
 	var cards_ans = []
 	var passives_ans = []
+	var ans = {}
 	for x in nselect:
 		if x in skills:
 			skills_ans.append(x[0])
+			ans[x[0]]='skill'
 		elif x in cards:
 			cards_ans.append(x[0])
+			ans[x[0]]='card'
 		elif x in passives:
 			passives_ans.append(x[0])
-	return{"cards":cards_ans,"skills":skills_ans,"passives":passives_ans}
+			ans[x[0]]='passive'
+
+	return ans
 
 
 

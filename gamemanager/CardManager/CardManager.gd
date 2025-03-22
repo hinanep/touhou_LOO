@@ -30,8 +30,11 @@ func _init():
 	SignalBus.upgrade_group.connect(on_upgrade_card)
 
 	card_pool.unlocked = table.SpellCard.duplicate()
-	for cards in card_pool.unlocked:
-		card_pool.unlocked[cards]['weight'] = 1
+	for id in card_pool.unlocked:
+		if id != 'sc_daiyousei':
+			card_pool.unlocked[id]['weight'] = 1
+		else:
+			card_pool.unlocked[id]['weight'] = 0
 
 func on_try_add_card(id):
 	if(card_pool.choosed.has(id)):

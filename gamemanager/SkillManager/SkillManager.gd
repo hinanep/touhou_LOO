@@ -33,8 +33,12 @@ func _init() -> void:
 	SignalBus.upgrade_group.connect(on_upgrade_skill)
 
 	skill_pool.unlocked = table.Skill.duplicate()
-	for skills in skill_pool.unlocked:
-		skill_pool.unlocked[skills]['weight'] = 1
+	for id in skill_pool.unlocked:
+		if id == "ski_basemagic" or id == "ski_basephysics":
+			skill_pool.unlocked[id]['weight'] = 0
+		else:
+			skill_pool.unlocked[id]['weight'] = 1
+
 
 func on_try_add_skill(id):
 	if(skill_pool.choosed.has(id)):

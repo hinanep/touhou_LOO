@@ -131,7 +131,7 @@
 	"moving_rule": "trail",
 	"moving_parameter": [
 	  300,
-	  1000,
+	  2000,
 	  300
 	],
 	"diretion": "",
@@ -498,7 +498,7 @@
 	"moving": true,
 	"moving_rule": "trail",
 	"moving_parameter": [
-	  200,
+	  50,
 	  1500,
 	  200
 	],

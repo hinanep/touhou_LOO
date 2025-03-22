@@ -11,9 +11,7 @@ func add_exp(value):
 	if is_uping!=true and player_var.player_exp >= player_var.exp_need[player_var.level]:
 		is_uping = true
 		level_up()
-	#if(player_var.player_exp >= player_var.exp_need[player_var.level]) and upping == false:
-		#upping = true
-		#level_up()
+
 
 
 func add_score(value):
