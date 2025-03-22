@@ -86,7 +86,8 @@ func on_upgrade_card(group):
 			card_list[cardi] += 1
 
 func on_upgrade_card_max(id):
-
+	if not card_list.has(id):
+		return
 	card_pool.max[id] = card_pool.choosed[id]
 	card_pool.choosed.erase(id)
 

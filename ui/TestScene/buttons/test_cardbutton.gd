@@ -7,11 +7,11 @@ signal selected
 	#$describe.text = "[color=white]"+describe
 func set_texture(image):
 	set_texture_normal(PresetManager.getpre(image))
-	
+
 func _on_button_up():
 	emit_signal("selected")
-	
-	
+
+
 
 #
 #func _on_focus_entered():

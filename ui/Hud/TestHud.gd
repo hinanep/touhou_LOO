@@ -69,7 +69,7 @@ func _on_delete_pressed():
 			SignalBus.del_skill.emit(tname)
 
 		"cp":
-			SignalBus.cp_del.emit(tname)
+			SignalBus.del_cp.emit(tname)
 			pass
 		"passive":
 			pass

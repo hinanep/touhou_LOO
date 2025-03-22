@@ -91,7 +91,8 @@ func on_upgrade_skill(group):
 
 
 func on_upgrade_skill_max(id):
-
+	if not skill_list.has(id):
+		return
 	skill_pool.max[id] = skill_pool.choosed[id]
 	skill_pool.choosed.erase(id)
 

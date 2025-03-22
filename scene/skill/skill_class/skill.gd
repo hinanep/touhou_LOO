@@ -34,7 +34,7 @@ func _ready():
 		if table.Routine[aroutine].skill_group == skill_info.id:
 
 			var r = add_routine(aroutine)
-			print(aroutine+'this is routine')
+
 			if aroutine in skill_info.routines:
 				shoot.connect(r.attacks)
 	gen_routines()

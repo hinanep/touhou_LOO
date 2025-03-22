@@ -58,7 +58,7 @@ var card_num_full #卡位满了
 var card_level_max
 var card_num_max
 
-
+var summon_level_max
 
 var passive_num_full
 var passive_full

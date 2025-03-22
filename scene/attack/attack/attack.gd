@@ -28,11 +28,18 @@ var move_compo : MoveComponent
 #初始化
 func _ready():
 
-	if attack_info.has('upgrade_group'):
-		add_to_group(attack_info.upgrade_group)
-	if attack_info.has('effective_condition'):
-		add_to_group(attack_info.effective_condition)
-	add_to_group(attack_info.id)
+	#if attack_info.has('upgrade_group'):
+		#add_to_group(attack_info.upgrade_group)
+	#if attack_info.has('effective_condition'):
+		#add_to_group(attack_info.effective_condition)
+	#add_to_group(attack_info.id)
+	name = attack_info.id
+	set_active(node_active)
+	if attack_info.type == 'base':
+		SignalBus.atk_boost.connect(recive_boost)
+	elif attack_info.type == 'boost':
+		SignalBus.cp_active.connect(boost_active)
+		return
 
 
 	if attack_info.has('duration_dependence'):
@@ -48,6 +55,8 @@ func _ready():
 			$".".collision_mask += 1
 		if attack_info.reflection.has('wall'):
 			$".".collision_mask += 2
+
+
 
 
 	set_shape(attack_info.shape)
@@ -66,7 +75,7 @@ func _ready():
 
 	move_compo = MoveComponent.new($".",attack_info,lock_compo,diretion_routine)
 
-	set_active(node_active)
+
 
 
 #运动组件更新
@@ -207,6 +216,28 @@ func drop_item(item,value,dposition):
 	drop.global_position = dposition
 	drop.value = value
 	G.get_game_root().add_child(drop)
+
+#当本攻击是boost类型且接受到激活信号时触发
+func boost_active(cp_info):
+	if attack_info.has('effective_condition') and attack_info.effective_condition != cp_info.id:
+		return
+	SignalBus.atk_boost.emit(attack_info)
+#当本攻击接受到boost攻击发出的boost信号时触发
+func recive_boost(atk_info):
+
+	if atk_info.routine_group != attack_info.routine_group:
+		return
+
+	for key in atk_info:
+		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition':
+			continue
+		if atk_info[key] is bool:
+			continue
+		if not attack_info.has(key):
+			print(key)
+			attack_info[key] = atk_info[key]
+		else:
+			attack_info[key] += atk_info[key]
 
 #离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():

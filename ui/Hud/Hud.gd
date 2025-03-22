@@ -24,8 +24,7 @@ func _ready():
 	SignalBus.del_card.connect(on_del_card)
 	SignalBus.card_select_before.connect(card_display_left)
 	SignalBus.card_select_next.connect(card_display_right)
-	#for cardname in player_var.CardManager.card_list.keys():
-		#add_card(player_var.CardManager.get_active_card_by_name(cardname))
+
 
 
 
@@ -47,7 +46,7 @@ func exp_display():
 	exp_bar.max_value = player_var.exp_need[player_var.level]
 	exp_bar.value = player_var.player_exp
 	level_number.text = ("%d" % player_var.level)
-	pass
+
 
 
 
@@ -56,15 +55,7 @@ var card_selecting = 0
 var card_having
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
-#func card_display():
-	#if(card_container.get_child_count()==0):
-		#return
-	#cardnum_now = player_var.CardManager.cardnum_now
-	#for child in card_container.get_children():
-		#child.set_expand_mode(0)
-		#child.set_stretch_mode(3)
-	#card_container.get_child(cardnum_now).set_expand_mode(2)
-	#card_container.get_child(cardnum_now).set_stretch_mode(4)
+
 func card_display_left():
 
 	card_having = card_container.get_child_count()
@@ -87,17 +78,15 @@ func card_display_right():
 	card_container.get_child(card_selecting).set_stretch_mode(4)
 
 
-func on_add_card(card_list):
+func on_add_card(card_info):
 
 	var newcard = card_tex_pre.instantiate()
-	newcard.set_texture(PresetManager.getpre('img_'+card_list.id))
-	newcard.get_child(0).text = card_list.id
-	newcard.cardid = table.TID[card_list.id+'_name'][player_var.language]
-	newcard.upgrade_group = card_list.upgrade_group
-	SignalBus.del_card.connect(newcard.destroy)
-	SignalBus.upgrade_group.connect(newcard.upgrade)
+	newcard.set_card(card_info)
+
 	card_container.add_child(newcard)
+
 	card_having = card_container.get_child_count()
+
 	for child in card_container.get_children():
 		child.set_expand_mode(0)
 		child.set_stretch_mode(3)
@@ -117,26 +106,19 @@ func on_del_card(id):
 	card_container.get_child(card_selecting).set_stretch_mode(4)
 
 func add_skill(ski_info):
-		var id = ski_info.id
-
-		if id == "ski_basemagic" or id == "ski_basephysics":
+		if ski_info.id == "ski_basemagic" or ski_info.id == "ski_basephysics":
 			return
 		var newskill = cp_and_skill_texture.instantiate()
-		newskill.selfname = table.TID[id][player_var.language]
-		newskill.upgrade_group = ski_info.upgrade_group
-		newskill.set_texture(PresetManager.getpre('img_'+id))
-		newskill.get_child(0).text = id
-		SignalBus.del_skill.connect(newskill.destroy)
-		SignalBus.upgrade_group.connect(newskill.upgrade)
+
+		newskill.set_skill(ski_info)
+
 		skill_container.add_child(newskill)
 
-func add_cp(cp_list):
+func add_cp(cp_info):
 
-	if cp_list.has("cp_image"):
+
 		var newcp = cp_and_skill_texture.instantiate()
-		newcp.set_texture(PresetManager.getpre(cp_list["cp_image"]))
-		newcp.add_to_group(cp_list["name"])
-		newcp.get_child(0).text = cp_list["cn"]
+
 		cp_container.add_child(newcp)
 
 

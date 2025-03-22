@@ -10,7 +10,7 @@ var routine_info = {
 var gen_position
 var gen_rotation
 var attack_nodes = []
-var summons = {}
+var summons = []
 var level = 0
 var damage_source = ''
 
@@ -21,15 +21,27 @@ func _ready():
 	SignalBus.trigger_routine_by_id.connect(called)
 	SignalBus.upgrade_group.connect(upgrade_routine)
 
-	if routine_info.has("creating_attack"):
-		for id in routine_info.creating_attack:
-			add_attack(id)
+	for atk in table.Attack:
+		if table.Attack[atk].routine_group == routine_info.id:
+			var atknode = add_attack(atk)
+			if routine_info.has('creating_attack') and atk in routine_info.creating_attack:
+				attack_nodes.append(atknode)
 
-	if routine_info.has('creating_summoned'):
-		for sum in routine_info.creating_summoned:
-			var spre = PresetManager.getpre(sum)
+	for sum in table.Summoned:
+		if table.Summoned[sum].routine_group == routine_info.id:
+			var sumnode = add_summon(sum)
+			if routine_info.has('creating_summoned') and sum in routine_info.creating_summoned:
+				summons.append(sumnode)
 
-			summons[sum] = spre
+	#if routine_info.has("creating_attack"):
+		#for id in routine_info.creating_attack:
+			#attack_nodes.append(add_attack(id))
+
+	#if routine_info.has('creating_summoned'):
+		#for sum in routine_info.creating_summoned:
+			#var spre = PresetManager.getpre(sum)
+#
+			#summons[sum] = spre
 
 
 #根据表中对应项获取攻击生成位置
@@ -143,12 +155,16 @@ func single_summon(generate_position,generate_rotation):
 				#$".".add_child(new_attack)
 #
 	#else:
-		for summon_id in summons:
-			var new_summon = summons[summon_id].instantiate()
-			new_summon.summon_info = table.Summoned[summon_id]
-			new_summon.global_position = generate_position
-			#new_summon.rotation = generate_rotation
-			$".".add_child(new_summon)
+		for sumnode in summons:
+			var new_sum  = sumnode.duplicate()
+			new_sum.global_position = generate_position
+			$".".add_child(new_sum)
+		#for summon_id in summons:
+			#var new_summon = summons[summon_id].instantiate()
+			#new_summon.summon_info = table.Summoned[summon_id]
+			#new_summon.global_position = generate_position
+			##new_summon.rotation = generate_rotation
+			#$".".add_child(new_summon)
 
 #随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
 func select_from_luck():
@@ -180,6 +196,7 @@ func add_attack(id):
 	var attack_info = table.Attack[id]
 
 	#var attack_pre = PresetManager.getpre('attack').instantiate()
+
 	var attack_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
 
 	attack_pre.attack_info = attack_info
@@ -187,22 +204,21 @@ func add_attack(id):
 	attack_pre.damage_source = damage_source
 
 	add_child(attack_pre)
-	attack_nodes.append(attack_pre)
+	return attack_pre
+
 
 #招式初始化时使用，按表将需要使用的召唤物加入子节点并使其休眠，生成攻击时复制其
 func add_summon(id):
 	var summon_info = table.Summoned[id]
 
-
-	var summon_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
+	var summon_pre = load("res://scene/summon/summon_ins/"+id+".tscn").instantiate()
 
 	summon_pre.summon_info = summon_info
 	summon_pre.node_active = false
-	summon_pre.set_upgrade(level)
 	summon_pre.damage_source = damage_source
 
 	add_child(summon_pre)
-	summons.append(summon_pre)
+	return summon_pre
 
 #销毁所有子节点，销毁招式
 func destroy():

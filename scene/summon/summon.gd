@@ -1,5 +1,5 @@
 class_name summon extends Node2D
-var summon_info =  {
+@export var summon_info =  {
 	"id": "sum_alice_base",
 	"using_upgrade": "upg_alice",
 	"type": "base",
@@ -21,15 +21,21 @@ var summon_info =  {
 	"special": []
   }
 signal shoot
-var level = 0
-var upgrade_info = {
-
-}
+@export var level = 0
+var node_active = true
 var hp
 var target_location:Vector2
-var damage_source = ''
+@export var damage_source = ''
 func _ready():
+
 	name = summon_info.id
+	set_active(node_active)
+	if summon_info.type == 'base':
+		SignalBus.sum_boost.connect(recive_boost)
+	elif summon_info.type == 'boost':
+		SignalBus.cp_active.connect(boost_active)
+		return
+
 
 	SignalBus.upgrade_group.connect(upgrade_summon)
 
@@ -55,8 +61,11 @@ func _ready():
 		target_location = global_position
 
 	on_create()
-	if summon_info.movement=='sandsoldier':
-		rediretion()
+	if summon_info.has('movement'):
+		if summon_info.movement=='sandsoldier':
+			rediretion()
+
+
 func _physics_process(delta: float) -> void:
 
 	global_position =global_position.move_toward(target_location,delta * 400)
@@ -109,3 +118,28 @@ func destroy(id):
 		if child.has_method('destroy'):
 			child.destroy('summon_destroy')
 	queue_free()
+
+func set_active(active:bool):
+	$cd_timer.paused = !active
+	$duration.paused = !active
+	visible = active
+	#$texture.visible = active
+	set_process(active)
+	set_physics_process(active)
+
+#当本攻击是boost类型且接受到激活信号时触发
+func boost_active(cp_info):
+	if summon_info.effective_condition != cp_info.id:
+		return
+	SignalBus.sum_boost.emit(summon_info)
+#当本攻击接受到boost攻击发出的boost信号时触发
+func recive_boost(sum_info):
+	if sum_info.routine_group != summon_info.routine_group:
+		return
+	for key in sum_info:
+		if key == 'type' or 'routine_group' or 'effective_condition':
+			continue
+		if !summon_info.has(key):
+			summon_info[key] = sum_info[key]
+		else:
+			summon_info[key] += sum_info[key]

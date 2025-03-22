@@ -45,7 +45,9 @@ signal spellcard_cast
 signal upgrade_group(group)
 signal upgrade_max(anyname)
 signal cp_active(cp_info)
-signal cp_del(cpid)
+signal del_cp(cpid)
+signal atk_boost(attack_info)
+signal sum_boost(sum_info)
 var is_log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()

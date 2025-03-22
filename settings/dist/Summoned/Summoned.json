@@ -1,6 +1,7 @@
 {
   "sum_alice": {
 	"id": "sum_alice",
+	"routine_group": "rou_alice",
 	"upgrade_group": "upg_alice",
 	"type": "base",
 	"effective_condition": "",
@@ -23,6 +24,7 @@
   },
   "sum_alice_marisa": {
 	"id": "sum_alice_marisa",
+	"routine_group": "rou_alice",
 	"upgrade_group": "none",
 	"type": "boost",
 	"effective_condition": "cp_alice_marisa",
@@ -45,6 +47,7 @@
   },
   "sum_alice_patchouli": {
 	"id": "sum_alice_patchouli",
+	"routine_group": "rou_alice",
 	"upgrade_group": "none",
 	"type": "boost",
 	"effective_condition": "cp_alice_patchouli",
@@ -67,6 +70,7 @@
   },
   "sum_alice_marisa_attachment1": {
 	"id": "sum_alice_marisa_attachment1",
+	"routine_group": "rou_alice_marisa_attachment1",
 	"upgrade_group": "none",
 	"type": "base",
 	"effective_condition": "",

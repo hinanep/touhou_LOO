@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=9 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
@@ -11,6 +11,11 @@ texture = SubResource("CanvasTexture_jvsk6")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxoq7"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_08wx8"]
+default_base_scale = 0.5
+default_font = ExtResource("3_o5w7m")
+default_font_size = 60
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia0gh"]
 bg_color = Color(0.831373, 0.737255, 0.294118, 1)
@@ -44,11 +49,11 @@ show_percentage = false
 layout_mode = 0
 offset_left = 2.0
 offset_top = 9.0
-offset_right = 211.0
+offset_right = 378.0
 offset_bottom = 56.0
-scale = Vector2(2, 2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
 
 [node name="card_mana" type="ProgressBar" parent="hud"]
@@ -65,29 +70,31 @@ show_percentage = false
 layout_mode = 0
 offset_left = -1.0
 offset_top = 9.0
-offset_right = 208.0
-offset_bottom = 56.0
-scale = Vector2(2, 2)
+offset_right = 373.0
+offset_bottom = 42.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
 
 [node name="point_ratio" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345929, 0.903254, 1, 1)
 offset_left = 1591.0
 offset_top = 14.0
-offset_right = 1841.0
-offset_bottom = 54.0
-scale = Vector2(2, 2)
+offset_right = 2247.0
+offset_bottom = 118.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
 text = "得点倍率："
 
 [node name="text" type="RichTextLabel" parent="hud/point_ratio"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 4.0
-offset_right = 213.0
-offset_bottom = 44.0
+offset_left = 280.0
+offset_top = 8.0
+offset_right = 626.0
+offset_bottom = 86.0
+theme = SubResource("Theme_08wx8")
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "0"
 
@@ -95,19 +102,21 @@ text = "0"
 modulate = Color(0.345098, 0.901961, 1, 1)
 offset_left = 1594.0
 offset_top = 71.0
-offset_right = 1844.0
-offset_bottom = 111.0
-scale = Vector2(2, 2)
+offset_right = 2238.0
+offset_bottom = 161.0
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
 text = "分数："
 
 [node name="text" type="RichTextLabel" parent="hud/point"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 4.0
-offset_right = 235.0
-offset_bottom = 44.0
+offset_left = 176.0
+offset_top = 18.0
+offset_right = 584.0
+offset_bottom = 100.0
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
 text = "0"
 
 [node name="exp_bar" type="ProgressBar" parent="hud"]
@@ -167,30 +176,6 @@ offset_right = 2934.0
 offset_bottom = 1236.0
 scale = Vector2(0.1, 0.1)
 alignment = 1
-
-[node name="card" type="RichTextLabel" parent="hud"]
-offset_left = 39.0
-offset_top = 173.0
-offset_right = 90.0
-offset_bottom = 213.0
-scale = Vector2(2, 2)
-text = "符卡"
-
-[node name="waaza" type="RichTextLabel" parent="hud"]
-offset_left = 416.0
-offset_top = 974.0
-offset_right = 467.0
-offset_bottom = 1014.0
-scale = Vector2(2, 2)
-text = "招式"
-
-[node name="cp" type="RichTextLabel" parent="hud"]
-offset_left = 38.0
-offset_top = 287.0
-offset_right = 89.0
-offset_bottom = 327.0
-scale = Vector2(2, 2)
-text = "羁绊"
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1

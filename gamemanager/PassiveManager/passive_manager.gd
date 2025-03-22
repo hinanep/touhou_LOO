@@ -87,7 +87,8 @@ func on_upgrade_passive(group):
 			passive_list[psvi] += 1
 
 func on_upgrade_passive_max(id):
-
+	if not passive_list.has(id):
+		return
 	passive_pool.max[id] = passive_pool.choosed[id]
 	passive_pool.choosed.erase(id)
 

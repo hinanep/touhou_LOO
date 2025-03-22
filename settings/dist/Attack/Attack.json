@@ -1,6 +1,7 @@
 {
   "atk_basemagic": {
 	"id": "atk_basemagic",
+	"routine_group": "rou_basemagic",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -51,6 +52,7 @@
   },
   "atk_basephysics": {
 	"id": "atk_basephysics",
+	"routine_group": "rou_basephysics",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -97,6 +99,7 @@
   },
   "atk_reimu": {
 	"id": "atk_reimu",
+	"routine_group": "rou_reimu",
 	"upgrade_group": "upg_reimu",
 	"type": "base",
 	"effective_condition": "",
@@ -130,8 +133,8 @@
 	"moving": true,
 	"moving_rule": "trail",
 	"moving_parameter": [
-	  300,
-	  2000,
+	  200,
+	  1500,
 	  300
 	],
 	"diretion": "",
@@ -147,6 +150,7 @@
   },
   "atk_reimu_sanae_boost": {
 	"id": "atk_reimu_sanae_boost",
+	"routine_group": "rou_reimu",
 	"upgrade_group": "",
 	"type": "boost",
 	"effective_condition": "cp_reimu_sanae",
@@ -197,6 +201,7 @@
   },
   "atk_sanae_type1": {
 	"id": "atk_sanae_type1",
+	"routine_group": "rou_sanae",
 	"upgrade_group": "upg_sanae",
 	"type": "base",
 	"effective_condition": "",
@@ -253,6 +258,7 @@
   },
   "atk_sanae_type2": {
 	"id": "atk_sanae_type2",
+	"routine_group": "rou_sanae",
 	"upgrade_group": "upg_sanae",
 	"type": "base",
 	"effective_condition": "",
@@ -309,6 +315,7 @@
   },
   "atk_sanae_type3": {
 	"id": "atk_sanae_type3",
+	"routine_group": "rou_sanae",
 	"upgrade_group": "upg_sanae",
 	"type": "base",
 	"effective_condition": "",
@@ -361,6 +368,7 @@
   },
   "atk_rumia": {
 	"id": "atk_rumia",
+	"routine_group": "rou_rumia",
 	"upgrade_group": "upg_rumia",
 	"type": "base",
 	"effective_condition": "",
@@ -413,6 +421,7 @@
   },
   "atk_rumia_attachment": {
 	"id": "atk_rumia_attachment",
+	"routine_group": "rou_rumia_attachment",
 	"upgrade_group": "upg_rumia",
 	"type": "base",
 	"effective_condition": "",
@@ -465,6 +474,7 @@
   },
   "atk_wriggle": {
 	"id": "atk_wriggle",
+	"routine_group": "rou_wriggle",
 	"upgrade_group": "upg_wriggle",
 	"type": "base",
 	"effective_condition": "",
@@ -515,6 +525,7 @@
   },
   "atk_alice_attachment": {
 	"id": "atk_alice_attachment",
+	"routine_group": "rou_alice_attachment",
 	"upgrade_group": "upg_alice",
 	"type": "base",
 	"effective_condition": "",
@@ -561,6 +572,7 @@
   },
   "atk_alice_marisa_attachment": {
 	"id": "atk_alice_marisa_attachment",
+	"routine_group": "rou_alice_marisa_attachment1",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -608,6 +620,7 @@
   },
   "atk_alice_marisa_attachment_patchouli_boost": {
 	"id": "atk_alice_marisa_attachment_patchouli_boost",
+	"routine_group": "ski_alice",
 	"upgrade_group": "",
 	"type": "boost",
 	"effective_condition": "cp_marisa_patchouli",
@@ -656,6 +669,7 @@
   },
   "atk_alice_patchouli_attachment1": {
 	"id": "atk_alice_patchouli_attachment1",
+	"routine_group": "rou_alice_ptchouli_attachment1",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -702,6 +716,7 @@
   },
   "atk_alice_patchouli_attachment2": {
 	"id": "atk_alice_patchouli_attachment2",
+	"routine_group": "rou_alice_ptchouli_attachment2",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -752,6 +767,7 @@
   },
   "atk_sekibanki": {
 	"id": "atk_sekibanki",
+	"routine_group": "rou_sekibanki",
 	"upgrade_group": "upg_sekibanki",
 	"type": "base",
 	"effective_condition": "",
@@ -800,6 +816,7 @@
   },
   "atk_misumaru": {
 	"id": "atk_misumaru",
+	"routine_group": "rou_misumaru",
 	"upgrade_group": "upg_misumaru",
 	"type": "base",
 	"effective_condition": "",
@@ -852,6 +869,7 @@
   },
   "atk_misumaru_reimu_boost": {
 	"id": "atk_misumaru_reimu_boost",
+	"routine_group": "rou_misumaru",
 	"upgrade_group": "",
 	"type": "boost",
 	"effective_condition": "cp_misumaru_reimu",
@@ -898,6 +916,7 @@
   },
   "atk_misumaru_reimu_attachment": {
 	"id": "atk_misumaru_reimu_attachment",
+	"routine_group": "rou_misumaru_reimu_attachment",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -944,6 +963,7 @@
   },
   "atk_sakuya": {
 	"id": "atk_sakuya",
+	"routine_group": "rou_sakuya",
 	"upgrade_group": "upg_sakuya",
 	"type": "base",
 	"effective_condition": "",
@@ -995,6 +1015,7 @@
   },
   "atk_sakuya_attachment": {
 	"id": "atk_sakuya_attachment",
+	"routine_group": "rou_sakuya_attachment",
 	"upgrade_group": "upg_sakuya",
 	"type": "base",
 	"effective_condition": "",
@@ -1045,6 +1066,7 @@
   },
   "atk_marisa": {
 	"id": "atk_marisa",
+	"routine_group": "rou_marisa",
 	"upgrade_group": "upg_marisa",
 	"type": "base",
 	"effective_condition": "",
@@ -1092,6 +1114,7 @@
   },
   "atk_marisa_patchouli_boost": {
 	"id": "atk_marisa_patchouli_boost",
+	"routine_group": "rou_marisa",
 	"upgrade_group": "",
 	"type": "boost",
 	"effective_condition": "cp_marisa_patchouli",
@@ -1140,6 +1163,7 @@
   },
   "atk_youmu": {
 	"id": "atk_youmu",
+	"routine_group": "rou_youmu",
 	"upgrade_group": "upg_youmu",
 	"type": "base",
 	"effective_condition": "",
@@ -1187,6 +1211,7 @@
   },
   "atk_reimu_marisa_attachment1": {
 	"id": "atk_reimu_marisa_attachment1",
+	"routine_group": "rou_reimu_marisa_attachment1",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",
@@ -1239,6 +1264,7 @@
   },
   "atk_reimu_marisa_attachment2": {
 	"id": "atk_reimu_marisa_attachment2",
+	"routine_group": "rou_reimu_marisa_attachment2",
 	"upgrade_group": "",
 	"type": "base",
 	"effective_condition": "",

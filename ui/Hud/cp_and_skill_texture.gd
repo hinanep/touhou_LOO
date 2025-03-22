@@ -1,21 +1,36 @@
 extends TextureRect
 
 var selfname = ''
+var id = ''
 var level = 0
 var upgrade_group
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+
+func set_skill(skill_info):
+		id = skill_info.id
+
+		selfname = table.TID[id][player_var.language]
+		upgrade_group = skill_info.upgrade_group
+
+		set_texture(PresetManager.getpre('img_'+id))
+		$RichTextLabel.text = selfname
+
+		SignalBus.del_skill.connect(destroy)
+		SignalBus.upgrade_group.connect(upgrade)
+
+func set_cp(cp_info):
+		id = cp_info.id
+		selfname = table.TID[id][player_var.language]
+		upgrade_group =null
+		set_texture(PresetManager.getpre('img_'+id))
+		$RichTextLabel.text = selfname
+		SignalBus.del_cp.connect(destroy)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-func destroy(delname):
-	if selfname == delname:
+
+func destroy(did):
+	if id == did:
 		queue_free()
 
-	pass
 func upgrade(upname):
 	if upgrade_group == upname:
 		level += 1

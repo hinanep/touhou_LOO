@@ -34,4 +34,7 @@ func _input(event):
 func on_del_card(id):
 	card_arr.erase(id)
 	cardnum_have -= 1
-	cardnum_now = cardnum_now%cardnum_have
+	if cardnum_have !=0:
+		cardnum_now = cardnum_now%cardnum_have
+	else:
+		cardnum_now = 0

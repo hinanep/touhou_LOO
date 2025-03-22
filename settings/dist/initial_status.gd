@@ -28,7 +28,7 @@ var status = {
 	mana_max = 2000,#- 符力上限：可存储的最大符力
 	skill_level_max = 6,
 	skill_num_max = 5,
-
+	summon_level_max = 6,
 
 	player_hp = 2000.0,
 	mana = 2000,
