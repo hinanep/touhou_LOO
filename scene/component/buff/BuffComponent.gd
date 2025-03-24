@@ -13,6 +13,6 @@ func _physics_process(delta: float) -> void:
 	buff_update.emit()
 
 func player_add_buff(buff_id,buff_intensity,source):
-	var buff_info = table.Buff[buff_id]
+	var buff_info = table.Buff[buff_id].duplicate()
 	new_buff = Buff.new(buff_info,buff_intensity,source)
 	buffs.push_back(new_buff)

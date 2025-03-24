@@ -12,6 +12,9 @@ var colddown_reduce #冷却缩减
 var player_hp_max: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
+	set(value):
+		player_hp_max = value
+		print('hp='+str(player_hp_max))
 var hp_max_ex = 200
 var hp_max_ex_percent = 1.5
 

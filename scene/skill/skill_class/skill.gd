@@ -42,7 +42,7 @@ func _ready():
 func add_routine(id):
 		var routinepre = PresetManager.getpre('routine').instantiate()
 		routinepre.position = Vector2(0,0)
-		routinepre.routine_info = table.Routine[id]
+		routinepre.routine_info = table.Routine[id].duplicate()
 		routinepre.damage_source = damage_source
 
 		add_child(routinepre)

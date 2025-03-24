@@ -209,7 +209,7 @@ func add_attack(id):
 
 #招式初始化时使用，按表将需要使用的召唤物加入子节点并使其休眠，生成攻击时复制其
 func add_summon(id):
-	var summon_info = table.Summoned[id]
+	var summon_info = table.Summoned[id].duplicate()
 
 	var summon_pre = load("res://scene/summon/summon_ins/"+id+".tscn").instantiate()
 

@@ -46,7 +46,7 @@ func spawn_mob():
 		path_follow_2d.progress_ratio = randf()
 	var mob = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
-	mob.mob_info = table.Enemy[spawn_list["enemy_type"]]
+	mob.mob_info = table.Enemy[spawn_list["enemy_type"]].duplicate()
 	mob.multi = (spawn_list['enemy_attribute_boost'])
 	#instantiate()
 	SpawnManager.add_mob(mob)

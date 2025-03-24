@@ -45,13 +45,15 @@ func on_use_card(id):
 	if card_info.has('special'):
 		match card_info.special:
 			'dash':
-				player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
+				var tween = create_tween()
+				tween.tween_property(player_var.player_node,'global_position',player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0],1)
+				#player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 	#get buff
 
 func add_routine(id):
 	var routinepre = PresetManager.getpre('routine').instantiate()
 	routinepre.position = Vector2(0,0)
-	routinepre.routine_info = table.Routine[id]
+	routinepre.routine_info = table.Routine[id].duplicate()
 	routinepre.damage_source = damage_source
 
 	add_child(routinepre)

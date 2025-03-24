@@ -223,7 +223,7 @@ func drop_item(item,value,dposition):
 #当本攻击是boost类型且接受到激活信号时触发
 func boost_active(cp_info,is_active:bool):
 	if cp_info is String:
-		cp_info = table.Couple[cp_info]
+		cp_info = table.Couple[cp_info].duplicate()
 	if attack_info.has('effective_condition') and attack_info.effective_condition != cp_info.id:
 		return
 	for node in get_parent().get_children():
