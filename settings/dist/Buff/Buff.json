@@ -1,65 +1,65 @@
 {
   "buff_mana_max_forever": {
-    "id": "buff_mana_max_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "mana_max",
-    "base_buff_value": 500.0
+	"id": "buff_mana_max_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "mana_max",
+	"base_buff_value": 500.0
   },
   "buff_bullet_speed_ratio_forever": {
-    "id": "buff_bullet_speed_ratio_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "bullet_speed_ratio",
-    "base_buff_value": 0.2
+	"id": "buff_bullet_speed_ratio_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "bullet_speed_ratio",
+	"base_buff_value": 0.2
   },
   "buff_player_life_addi_disposable": {
-    "id": "buff_player_life_addi_disposable",
-    "type": "disposable",
-    "keep_time": 0.0,
-    "property": "player_life_addi",
-    "base_buff_value": 1.0
+	"id": "buff_player_life_addi_disposable",
+	"type": "disposable",
+	"keep_time": 0.0,
+	"property": "player_life_addi",
+	"base_buff_value": 1.0
   },
   "buff_danma_times_forever": {
-    "id": "buff_danma_times_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "danma_times",
-    "base_buff_value": 1.0
+	"id": "buff_danma_times_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "danma_times",
+	"base_buff_value": 1.0
   },
   "buff_defence_melee_forever": {
-    "id": "buff_defence_melee_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "defence_melee",
-    "base_buff_value": 0.2
+	"id": "buff_defence_melee_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "defence_melee",
+	"base_buff_value": 0.2
   },
   "buff_player_bullet_damage_ratio_forever": {
-    "id": "buff_player_bullet_damage_ratio_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "player_bullet_damage_ratio",
-    "base_buff_value": 0.2
+	"id": "buff_player_bullet_damage_ratio_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "player_bullet_damage_ratio",
+	"base_buff_value": 0.2
   },
   "buff_player_hp_disposable": {
-    "id": "buff_player_hp_disposable",
-    "type": "disposable",
-    "keep_time": 0.0,
-    "property": "player_hp",
-    "base_buff_value": 50.0
+	"id": "buff_player_hp_disposable",
+	"type": "disposable",
+	"keep_time": 0.0,
+	"property": "player_hp",
+	"base_buff_value": 50.0
   },
   "buff_mana_disposable": {
-    "id": "buff_mana_disposable",
-    "type": "disposable",
-    "keep_time": 0.0,
-    "property": "mana",
-    "base_buff_value": 5.0
+	"id": "buff_mana_disposable",
+	"type": "disposable",
+	"keep_time": 0.0,
+	"property": "mana",
+	"base_buff_value": 5.0
   },
   "buff_mana_cost_forever": {
-    "id": "buff_mana_cost_forever",
-    "type": "forever",
-    "keep_time": 0.0,
-    "property": "mana_cost",
-    "base_buff_value": 1.0
+	"id": "buff_mana_cost_forever",
+	"type": "forever",
+	"keep_time": 0.0,
+	"property": "mana_cost",
+	"base_buff_value": 1.0
   }
 }

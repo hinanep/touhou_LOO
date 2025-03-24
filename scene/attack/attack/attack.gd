@@ -9,6 +9,8 @@ signal kill(global_position)
 @export var damage_source :String
 @export var attack_info = {
 	  }
+
+
 #已伤害目标，用于防止非dot多次伤害？暂时没必要
 #var damaged_bodies = []
 
@@ -38,7 +40,8 @@ func _ready():
 	if attack_info.type == 'base':
 		SignalBus.atk_boost.connect(recive_boost)
 	elif attack_info.type == 'boost':
-		SignalBus.cp_active.connect(boost_active)
+		SignalBus.cp_active.connect(boost_active.bind(true))
+		SignalBus.cp_del.connect(boost_active.bind(false))
 		return
 
 
@@ -212,19 +215,24 @@ func on_kill(target_position):
 
 #掉落
 func drop_item(item,value,dposition):
-	var drop = PresetManager.getpre(item).instantiate()
+	var drop = PresetManager.getpre('drops_'+item).instantiate()
 	drop.global_position = dposition
 	drop.value = value
 	G.get_game_root().add_child(drop)
 
 #当本攻击是boost类型且接受到激活信号时触发
-func boost_active(cp_info):
+func boost_active(cp_info,is_active:bool):
+	if cp_info is String:
+		cp_info = table.Couple[cp_info]
 	if attack_info.has('effective_condition') and attack_info.effective_condition != cp_info.id:
 		return
-	SignalBus.atk_boost.emit(attack_info)
-#当本攻击接受到boost攻击发出的boost信号时触发
-func recive_boost(atk_info):
+	for node in get_parent().get_children():
+		node.recive_boost(attack_info,is_active)
 
+#当本攻击接受到boost攻击发出的boost信号时触发
+func recive_boost(atk_info,is_active):
+	#if atk_info is String:
+		#atk_info = table.Couple[atk_info]
 	if atk_info.routine_group != attack_info.routine_group:
 		return
 
@@ -232,6 +240,14 @@ func recive_boost(atk_info):
 		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition':
 			continue
 		if atk_info[key] is bool:
+			continue
+		if not is_active:
+			match typeof(atk_info[key]):
+				TYPE_ARRAY:
+					for element in atk_info[key]:
+						attack_info[key].erase(element)
+				_:
+					attack_info[key] -= atk_info[key]
 			continue
 		if not attack_info.has(key):
 			print(key)

@@ -2,7 +2,7 @@ class_name drops_base extends Area2D
 @onready var player_node= get_tree().get_first_node_in_group("player")
 @onready var game_manager = get_tree().get_first_node_in_group("GameManager")
 
-
+var value = 0
 var experience = 1
 var score = 1
 var mana = 1

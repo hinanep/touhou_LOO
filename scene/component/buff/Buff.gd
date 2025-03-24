@@ -5,7 +5,7 @@ var end_time:float = INF
 var buff_info:Dictionary
 var target = player_var
 var source
-func _init(buff_inf,buff_source) -> void:
+func _init(buff_inf,buff_intensity,buff_source) -> void:
 	buff_info = buff_inf
 	source = buff_source
 	SignalBus.player_del_buff_by_source.connect(del_buff_by_source)

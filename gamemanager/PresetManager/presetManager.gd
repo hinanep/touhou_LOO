@@ -6,6 +6,7 @@ var preset_map = {
 
 	"drops_p":"res://scene/drops/exp_1.tscn",
 	"drops_plate":"res://scene/drops/plate_1.tscn",
+	'drops_mana':"res://scene/drops/mana.tscn",
 
 	'skill':"res://scene/skill/skill_class/skill.tscn",
 	'routine':"res://scene/routine/routine/routine.tscn",
@@ -59,8 +60,11 @@ var preset_map = {
 	"img_ski_misumaru":"res://asset/pic/crystal/魅须丸.png",
 
 	"img_passive_pachuli":"res://asset/pic/crystal/帕秋莉.png",
+
 	"img_cp_reima":"res://asset/pic/crystal/灵梦×魔理沙.png",
 	"img_cp_reitama":"res://asset/pic/crystal/灵丸.png",
+
+
 	'img_atk_basemagic':"res://asset/pic/bullet/子弹.png",
 	'img_atk_reimu':"res://asset/pic/bullet/符札弹.png",
 	'img_atk_sanae_type1':"res://asset/pic/bullet/小风.png",

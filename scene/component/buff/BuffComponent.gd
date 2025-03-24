@@ -14,5 +14,5 @@ func _physics_process(delta: float) -> void:
 
 func player_add_buff(buff_id,buff_intensity,source):
 	var buff_info = table.Buff[buff_id]
-	new_buff = Buff.new(buff_info,source)
+	new_buff = Buff.new(buff_info,buff_intensity,source)
 	buffs.push_back(new_buff)

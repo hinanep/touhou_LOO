@@ -30,7 +30,7 @@ var max_list = []
 func _init():
 	SignalBus.del_skill.connect(del_to_maxlist)
 	SignalBus.upgrade_max.connect(add_to_maxlist)
-	SignalBus.del_cp.connect(del_cp)
+	SignalBus.cp_del.connect(cp_del)
 	cp_pool.unlocked = table.Couple.duplicate()
 #当某个技能？升满，加入满级列表，留待羁绊解锁判断
 func add_to_maxlist(id):
@@ -48,7 +48,7 @@ func del_to_maxlist(id):
 			cp_pool.ready.erase(cps)
 	for cps in cp_pool.actived:
 		if cp_pool.actived[cps].partment.has(id):
-			SignalBus.del_cp.emit(cps)
+			SignalBus.cp_del.emit(cps)
 
 func raise_weight_to_cp(xname):
 	for cps in cp_pool.unlocked:
@@ -110,12 +110,12 @@ func add_cp(cpid):
 
 
 
-func del_cp(cpid):
+func cp_del(cpid):
 	if cp_pool.actived.has(cpid):
 		cp_pool.unlocked[cpid] = cp_pool.actived[cpid]
 		cp_pool.actived.erase(cpid)
 func destroy():
 	SignalBus.del_skill.disconnect(del_to_maxlist)
 	SignalBus.upgrade_max.disconnect(add_to_maxlist)
-	SignalBus.del_cp.disconnect(del_cp)
+	SignalBus.cp_del.disconnect(cp_del)
 	pass

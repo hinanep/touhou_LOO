@@ -23,7 +23,7 @@ func set_cp(cp_info):
 		upgrade_group =null
 		set_texture(PresetManager.getpre('img_'+id))
 		$RichTextLabel.text = selfname
-		SignalBus.del_cp.connect(destroy)
+		SignalBus.cp_del.connect(destroy)
 
 
 

@@ -22,7 +22,7 @@ func _ready():
 		var cps = table.Couple[uccp]
 		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/cp_container.add_child(cp_button)
-		cp_button.set_texture('img_'+cps.id)
+		#cp_button.set_texture('img_'+cps.id)
 		cp_button.set_tooltip_text(cps.id)
 		cp_button.selected.connect(on_cpbutton_select.bind(cps.id))
 
@@ -69,7 +69,7 @@ func _on_delete_pressed():
 			SignalBus.del_skill.emit(tname)
 
 		"cp":
-			SignalBus.del_cp.emit(tname)
+			SignalBus.cp_del.emit(tname)
 			pass
 		"passive":
 			pass

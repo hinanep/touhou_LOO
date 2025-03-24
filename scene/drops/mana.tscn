@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ah0wkd5a4ri"]
+
+[ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_wl1w0"]
+[ext_resource type="Script" path="res://scene/drops/mana.gd" id="2_chgmx"]
+
+[node name="DropsBase" instance=ExtResource("1_wl1w0")]
+script = ExtResource("2_chgmx")

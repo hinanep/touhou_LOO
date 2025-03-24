@@ -42,6 +42,9 @@ func on_use_card(id):
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
 	emit_signal("shoot")
+	match card_info.special:
+		'dash':
+			player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 	#get buff
 
 func add_routine(id):
