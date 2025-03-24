@@ -32,13 +32,13 @@ func _ready() -> void:
 
 
 
-func on_use_card(id):
+func on_use_card(id,cost_rate):
 	if id != card_info.id:
 		return
-	if player_var.mana<card_info.mana/player_var.mana_cost:
+	if player_var.mana<card_info.mana/player_var.mana_cost*cost_rate:
 		return
 
-	player_var.mana-=card_info.mana/player_var.mana_cost
+	player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
 	emit_signal("shoot")
@@ -46,7 +46,9 @@ func on_use_card(id):
 		match card_info.special:
 			'dash':
 				var tween = create_tween()
-				tween.tween_property(player_var.player_node,'global_position',player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0],1)
+				tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+				tween.tween_property(player_var.player_node,'global_position',player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0],0.5)
+
 				#player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 	#get buff
 

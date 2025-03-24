@@ -48,6 +48,9 @@ func spawn_mob():
 	mob.global_position = path_follow_2d.global_position
 	mob.mob_info = table.Enemy[spawn_list["enemy_type"]].duplicate()
 	mob.multi = (spawn_list['enemy_attribute_boost'])
+	if spawn_list["spawn_type"] == 'elite':
+		mob.drops_path = "drops_plate"
+		mob.set_scale(Vector2(4,4))
 	#instantiate()
 	SpawnManager.add_mob(mob)
 

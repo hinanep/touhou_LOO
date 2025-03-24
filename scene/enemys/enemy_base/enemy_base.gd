@@ -70,7 +70,9 @@ func _ready():
 	setbuff(multi)
 	var tween = create_tween()
 
-	tween.tween_property($AnimatedSprite2D,'skew',0,1)
+	tween.tween_property($AnimatedSprite2D,'skew',0,1.5)
+
+
 #不用理解，避障用
 func on_compute_safevelocity(safevelocity):
 	velocity = safevelocity
