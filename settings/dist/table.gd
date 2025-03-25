@@ -6,7 +6,7 @@ static func loader(path:String):
 	var islog = false
 	var file = FileAccess.open(path,FileAccess.READ)
 	var txt = file.get_as_text()
-	var data = JSON.parse_string(txt)
+	var data:Dictionary = JSON.parse_string(txt)
 	file.close()
 	for key in data.keys():
 		for skey in data[key].keys():
@@ -16,6 +16,7 @@ static func loader(path:String):
 					print(key)
 					print(skey)
 				data[key].erase(skey)
+	data.make_read_only()
 	return data
 
 var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')

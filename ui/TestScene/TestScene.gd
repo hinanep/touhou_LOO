@@ -26,15 +26,9 @@ func _open():
 	dummm.position.x += 100
 	player_var.SpawnManager = $SpawnManager
 	$SpawnManager.add_mob(dummm)
-	#var bs = preload("res://scene/enemys/slime_blue/slime_blue.tscn")
-	#for i in range(50):
-		#await get_tree().create_timer(0.1).timeout
-		#SpawnManager.add_mob(bs.instantiate())
-		#SpawnManager.add_mob(bs.instantiate())
-		#SpawnManager.add_mob(bs.instantiate())
-		#SpawnManager.add_mob(bs.instantiate())
-		#SpawnManager.add_mob(bs.instantiate())
-
+	for i in 2000:
+		SignalBus.drop.emit("drops_p",%player.global_position+Vector2(randf_range(-1,1),randf_range(-1,1))*400)
+func _physics_process(delta: float) -> void:
 	pass
 
 

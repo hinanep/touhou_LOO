@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_m2abi"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_kue7b"]
 [ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
+[ext_resource type="Script" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
 a = Vector2(174, -91)
@@ -252,3 +253,6 @@ position = Vector2(2775.5, 963)
 texture = ExtResource("5_kue7b")
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
+
+[node name="Node2D" type="Node2D" parent="SpawnManager"]
+script = ExtResource("7_7uj5j")

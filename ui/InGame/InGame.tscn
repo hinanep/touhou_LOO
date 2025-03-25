@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=17 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_r7dq7"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_6vlxu"]
+[ext_resource type="Script" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
 a = Vector2(174, -91)
@@ -106,6 +107,9 @@ script = ExtResource("3_ksuh1")
 [node name="SpawnManager" type="Node2D" parent="." groups=["SpawnManager"]]
 process_mode = 1
 script = ExtResource("4_2ujjm")
+
+[node name="drops" type="Node2D" parent="SpawnManager"]
+script = ExtResource("5_7ehn4")
 
 [node name="air_wall" type="StaticBody2D" parent="."]
 collision_layer = 32

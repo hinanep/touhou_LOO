@@ -48,7 +48,9 @@ signal cp_active(cp_info)
 signal cp_del(cp_id)
 signal atk_boost(attack_info)
 signal sum_boost(sum_info)
-var is_log = true
+
+signal drop(id,global_position)
+var is_log = false
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 

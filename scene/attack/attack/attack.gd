@@ -215,6 +215,7 @@ func on_kill(target_position):
 
 #掉落
 func drop_item(item,value,dposition):
+
 	var drop = PresetManager.getpre('drops_'+item).instantiate()
 	drop.global_position = dposition
 	drop.value = value

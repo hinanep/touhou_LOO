@@ -23,7 +23,7 @@ func _on_body_entered(_body):
 		#green
 		2:
 			get_tree().call_group("crystal","fly_to_player",1,2,1)
-			SignalBus.use_card.emit()
+			SignalBus.plate_use_card.emit()
 		#blue
 		3:
 			get_tree().call_group("crystal","fly_to_player",1,1,2,true)
