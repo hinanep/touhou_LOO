@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=18 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_kue7b"]
 [ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
 [ext_resource type="Script" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
+[ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master.tscn" id="8_1so0a"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
 a = Vector2(174, -91)
@@ -256,3 +257,13 @@ texture = ExtResource("5_kue7b")
 
 [node name="Node2D" type="Node2D" parent="SpawnManager"]
 script = ExtResource("7_7uj5j")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(200, 0)
+
+[node name="SubViewport" type="SubViewport" parent="Sprite2D"]
+transparent_bg = true
+
+[node name="Master" parent="Sprite2D/SubViewport" instance=ExtResource("8_1so0a")]

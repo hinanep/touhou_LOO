@@ -26,8 +26,11 @@ func _open():
 	dummm.position.x += 100
 	player_var.SpawnManager = $SpawnManager
 	$SpawnManager.add_mob(dummm)
-	for i in 2000:
-		SignalBus.drop.emit("drops_p",%player.global_position+Vector2(randf_range(-1,1),randf_range(-1,1))*400)
+
+
+	$Sprite2D.texture =$Sprite2D/SubViewport.get_texture()
+	#for i in 2000:
+		#SignalBus.drop.emit("drops_p",%player.global_position+Vector2(randf_range(-1,1),randf_range(-1,1))*400)
 func _physics_process(delta: float) -> void:
 	pass
 

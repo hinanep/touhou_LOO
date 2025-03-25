@@ -189,7 +189,7 @@ func upgrade_routine(group):
 	level += 1
 	if level == 1:
 		return
-	routine_info.times += table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2]
+	routine_info.times += (table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2])*routine_info.danma_times_efficiency
 
 #招式初始化时使用，按表将需要使用的攻击加入子节点并使其休眠，生成攻击时复制其
 func add_attack(id):
