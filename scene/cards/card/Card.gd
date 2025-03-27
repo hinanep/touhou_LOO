@@ -36,12 +36,17 @@ func on_use_card(id,cost_rate):
 	if id != card_info.id:
 		return
 	if player_var.mana<card_info.mana/player_var.mana_cost*cost_rate:
+		AudioManager.play_sfx('music_sfx_error')
 		return
 
 	player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
-	emit_signal("shoot")
+	if not card_info.is_following:
+		emit_signal("shoot",true,global_position)
+	else:
+		emit_signal("shoot")
+
 	if card_info.has('special'):
 		match card_info.special:
 			'dash':

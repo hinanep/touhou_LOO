@@ -13,7 +13,7 @@ var attack_nodes = []
 var summons = []
 var level = 0
 var damage_source = ''
-
+var has_interval = true
 #初始化
 func _ready():
 	name = routine_info.id
@@ -33,6 +33,8 @@ func _ready():
 			if routine_info.has('creating_summoned') and sum in routine_info.creating_summoned:
 				summons.append(sumnode)
 
+	if routine_info.interval > 0.01:
+		has_interval = true
 	#if routine_info.has("creating_attack"):
 		#for id in routine_info.creating_attack:
 			#attack_nodes.append(add_attack(id))
@@ -81,15 +83,14 @@ func get_gen_position(force_world_position:bool,input_position,input_rotation):
 func called(routine_id,force_world_position,input_position,input_rotation,parent_node):
 	if routine_id != routine_info.id:
 		return
-
 	if parent_node == null:
 		parent_node = $"."
 
 
-	attacks(force_world_position,input_position,input_rotation,true,parent_node)
+	attacks(force_world_position,input_position,input_rotation,parent_node)
 
 #生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
-func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,has_interval=true,parent_node = $"."):
+func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,parent_node = $"."):
 
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
@@ -131,7 +132,8 @@ func single_attack(generate_position,generate_rotation,parent_node ):
 	else:
 		for attack_node in attack_nodes:
 			if parent_node != null:
-				var new_attack = attack_node.duplicate()
+				#TODO： duplicate15与7的性能区别？
+				var new_attack = attack_node.duplicate(7)
 
 				if parent_node != $".":
 						new_attack.global_position = parent_node.global_position + gen_position
@@ -193,7 +195,7 @@ func upgrade_routine(group):
 
 #招式初始化时使用，按表将需要使用的攻击加入子节点并使其休眠，生成攻击时复制其
 func add_attack(id):
-	var attack_info = table.Attack[id]
+	var attack_info = table.Attack[id].duplicate()
 
 	#var attack_pre = PresetManager.getpre('attack').instantiate()
 
@@ -202,7 +204,7 @@ func add_attack(id):
 	attack_pre.attack_info = attack_info
 	attack_pre.node_active = false
 	attack_pre.damage_source = damage_source
-
+	attack_pre.first_init()
 	add_child(attack_pre)
 	return attack_pre
 

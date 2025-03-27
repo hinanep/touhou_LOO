@@ -27,42 +27,39 @@ var dot_on = false
 var lock_compo : LockComponent
 var move_compo : MoveComponent
 
-#初始化
-func _ready():
-
-	#if attack_info.has('upgrade_group'):
-		#add_to_group(attack_info.upgrade_group)
-	#if attack_info.has('effective_condition'):
-		#add_to_group(attack_info.effective_condition)
-	#add_to_group(attack_info.id)
-	name = attack_info.id
-	set_active(node_active)
+func first_init():
+	const cont = 2
 	if attack_info.type == 'base':
-		SignalBus.atk_boost.connect(recive_boost)
+		SignalBus.atk_boost.connect(recive_boost,cont)
 	elif attack_info.type == 'boost':
-		SignalBus.cp_active.connect(boost_active.bind(true))
-		SignalBus.cp_del.connect(boost_active.bind(false))
+		SignalBus.cp_active.connect(boost_active.bind(true),cont)
+		SignalBus.cp_del.connect(boost_active.bind(false),cont)
 		return
-
-
+	$damage_area.connect("body_entered",_on_damage_area_body_entered,cont)
+	$duration_timer.connect("timeout",destroy.bind('timeout'),cont)
 	if attack_info.has('duration_dependence'):
 		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
 	else:
 		$duration_timer.wait_time = attack_info.duration
-	kill.connect(on_kill)
+	kill.connect(on_kill,cont)
+	SignalBus.upgrade_group.connect(upgrade_attack,cont)
+
 	$bullet_erase_area.set_monitoring(attack_info.bullet_eraseing)
-	$damage_area.connect("body_entered",_on_damage_area_body_entered)
-	$duration_timer.connect("timeout",destroy.bind('timeout'))
 	if attack_info.has('reflection'):
 		if attack_info.reflection.has('enemy'):
 			$".".collision_mask += 1
 		if attack_info.reflection.has('wall'):
 			$".".collision_mask += 2
-
-
-
-
 	set_shape(attack_info.shape)
+
+
+#初始化
+func _ready():
+
+
+	name = attack_info.id
+	#first_init()
+	set_active(node_active)
 
 
 	if node_active:
@@ -71,6 +68,7 @@ func _ready():
 			top_level = true
 		else:
 			global_position = position
+
 	if attack_info.has('locking_type'):
 		lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
 	else:
@@ -80,9 +78,9 @@ func _ready():
 
 
 
-
 #运动组件更新
 func _physics_process(delta):
+
 	move_compo.update(delta)
 
 
@@ -97,7 +95,8 @@ func set_shape(cshape):
 			cshape = CircleShape2D.new()
 
 			cshape.radius = attack_info.size[0]
-			texture.scale *= sqrt( attack_info.size[0]/20)
+			texture.scale *= attack_info.size[0]/20
+
 			$VisibleOnScreenNotifier2D.scale = Vector2(1,1)* attack_info.size[0]
 			$damage_area/CollisionShape2D.position = Vector2(0,0)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0)
@@ -106,7 +105,8 @@ func set_shape(cshape):
 
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(attack_info.size[0],attack_info.size[1])
-			texture.scale *= Vector2(sqrt(attack_info.size[0]/20),sqrt(attack_info.size[1]/20))
+			texture.scale *= Vector2(attack_info.size[0]/20,attack_info.size[1]/20)
+
 			$VisibleOnScreenNotifier2D.rect = Rect2(-cshape.size/2,cshape.size)
 		'rectangle_edge':
 			cshape = RectangleShape2D.new()
@@ -116,14 +116,19 @@ func set_shape(cshape):
 			$damage_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
-
-			texture.scale *= Vector2(sqrt(attack_info.size[0]/20),sqrt(attack_info.size[1]/20))
+			#print(texture.scale)
+			texture.scale *= Vector2(attack_info.size[0]/20,attack_info.size[1]/20)
+			#print(texture.scale)
+			#print('scaleeeeeeeee')
+			#print(sqrt( attack_info.size[0]/20))
 	$damage_area/CollisionShape2D.shape = cshape
 	$bullet_erase_area/CollisionShape2D.shape = cshape
 	$CollisionShape2D.shape = cshape
 
 	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
-	texture.scale *= sqrt(player_var.range_add_ratio*addi)
+	texture.scale *= player_var.range_add_ratio*addi
+	#print('scaleeeeeeeee')
+	#print(sqrt( attack_info.size[0]/20))
 #dot伤害
 func dot():
 	if dot_on :
@@ -188,11 +193,10 @@ func destroy(message:String):
 
 	queue_free()
 
-#激活cp效果 TODO：boost似乎还没有实现
-func cp_active():
-	if attack_info.type == 'boost':
-		#todo
-		get_parent().get_child(0).attack_info += attack_info
+##激活cp效果 TODO：boost似乎还没有实现
+#func cp_active():
+	#if attack_info.type == 'boost':
+		#get_parent().get_child(0).attack_info += attack_info
 
 #对body施加debuff
 func give_debuff(body):
@@ -216,10 +220,10 @@ func on_kill(target_position):
 #掉落
 func drop_item(item,value,dposition):
 
-	var drop = PresetManager.getpre('drops_'+item).instantiate()
-	drop.global_position = dposition
-	drop.value = value
-	G.get_game_root().add_child(drop)
+	var drops = PresetManager.getpre('drops_'+item).instantiate()
+	drops.global_position = dposition
+	drops.value = value
+	G.get_game_root().add_child(drops)
 
 #当本攻击是boost类型且接受到激活信号时触发
 func boost_active(cp_info,is_active:bool):
@@ -232,8 +236,7 @@ func boost_active(cp_info,is_active:bool):
 
 #当本攻击接受到boost攻击发出的boost信号时触发
 func recive_boost(atk_info,is_active):
-	#if atk_info is String:
-		#atk_info = table.Couple[atk_info]
+
 	if atk_info.routine_group != attack_info.routine_group:
 		return
 
@@ -251,11 +254,21 @@ func recive_boost(atk_info,is_active):
 					attack_info[key] -= atk_info[key]
 			continue
 		if not attack_info.has(key):
-			print(key)
 			attack_info[key] = atk_info[key]
 		else:
 			attack_info[key] += atk_info[key]
+#根据group升级招式，level1没有属性提升且算法会数组越界所以特判
+func upgrade_attack(group):
+	if not attack_info.has("upgrade_group"):
+		return
+	if attack_info.upgrade_group != group:
+		return
+	level += 1
+	if level == 1:
+		return
+	if table.Upgrade[group].has('damage_addition'):
 
+		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
 #离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$exit_screen_timer.start()

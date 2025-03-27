@@ -98,6 +98,27 @@ theme = SubResource("Theme_08wx8")
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "0"
 
+[node name="fps" type="RichTextLabel" parent="hud"]
+modulate = Color(0.345098, 0.901961, 1, 1)
+offset_left = 1640.0
+offset_top = 1026.0
+offset_right = 2284.0
+offset_bottom = 1116.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
+text = "FPS："
+
+[node name="text" type="RichTextLabel" parent="hud/fps"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 20.0
+offset_right = 616.0
+offset_bottom = 102.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
+text = "0"
+
 [node name="point" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345098, 0.901961, 1, 1)
 offset_left = 1594.0

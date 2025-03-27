@@ -50,7 +50,7 @@ signal atk_boost(attack_info)
 signal sum_boost(sum_info)
 
 signal drop(id,global_position)
-var is_log = false
+var is_log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 

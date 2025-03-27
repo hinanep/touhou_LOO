@@ -261,6 +261,7 @@ script = ExtResource("7_7uj5j")
 [node name="SubViewport" type="SubViewport" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(200, 0)
 
 [node name="SubViewport" type="SubViewport" parent="Sprite2D"]

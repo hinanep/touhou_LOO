@@ -14,7 +14,8 @@
     "special_parameter": [],
     "mana": 500.0,
     "invincible_time": 0.5,
-    "invicible_time_depend": ""
+    "invicible_time_depend": "",
+    "is_following": true
   },
   "sc_marisa": {
     "id": "sc_marisa",
@@ -29,7 +30,8 @@
     "special_parameter": [],
     "mana": 2000.0,
     "invincible_time": 6.0,
-    "invicible_time_depend": ""
+    "invicible_time_depend": "",
+    "is_following": true
   },
   "sc_youmu": {
     "id": "sc_youmu",
@@ -46,6 +48,7 @@
     ],
     "mana": 200.0,
     "invincible_time": 0.5,
-    "invicible_time_depend": ""
+    "invicible_time_depend": "",
+    "is_following": false
   }
 }

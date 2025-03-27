@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Buff
+class_name Buffs
 var process_time:float= 0
 var end_time:float = INF
 var buff_info:Dictionary

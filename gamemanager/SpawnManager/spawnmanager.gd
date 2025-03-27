@@ -31,7 +31,7 @@ func spawnmanager_init(eventlist):
 		add_spawn_event(event_list[event])
 
 func add_mob(mob_ins):
-
+	#TODO:在生成实例前终止
 	if mob_dic.size()>300:
 		mob_ins.free()
 		return

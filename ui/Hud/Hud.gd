@@ -128,3 +128,4 @@ func _on_renew_timer_timeout():
 	card_mana_display()
 	point_and_ratio_display()
 	exp_display()
+	$hud/fps/text.text = str(Engine.get_frames_per_second())

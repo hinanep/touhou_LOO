@@ -6,14 +6,16 @@ var background_bgm_player
 var SFXPlayerPool
 @onready var sfx_player_playing_pair = {}
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	bgm_player = AudioStreamPlayer.new()
 	bgm_player.name = 'bgm_player'
-	bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	#bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	bgm_player.bus ='bgm'
 
 	background_bgm_player =  AudioStreamPlayer.new()
 	background_bgm_player.name = 'background_bgm_player'
-	background_bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	#background_bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	background_bgm_player.bus ='background'
 
 	add_child(bgm_player)
@@ -45,6 +47,7 @@ func bgm_over():
 func play_sfx(sfx_name:String) -> void:
 	if(!sfx_player_playing_pair.has(sfx_name)):
 		var new_player = AudioStreamPlayer.new()
+
 		SFXPlayerPool.add_child(new_player)
 		sfx_player_playing_pair[sfx_name] = new_player
 
