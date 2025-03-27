@@ -269,6 +269,8 @@ func upgrade_attack(group):
 	if table.Upgrade[group].has('damage_addition'):
 
 		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
+	if table.Upgrade[group].has('bullet_speed_addition'):
+		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
 #离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$exit_screen_timer.start()

@@ -12,7 +12,9 @@ func _init(buff_inf,buff_intensity,buff_source) -> void:
 	on_create()
 
 func on_create():
+
 	target.set(buff_info.property,target.get(buff_info.property) + buff_info.base_buff_value)
+
 	if buff_info.type =='disposable':
 		on_destroy()
 

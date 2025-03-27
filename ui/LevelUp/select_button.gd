@@ -21,11 +21,11 @@ func _on_button_up():
 
 func _on_focus_entered():
 	$describe.visible = true
-	$AnimatedSprite2D.visible = true
+	$describe/AnimatedSprite2D.visible = true
 
 
 
 
 func _on_focus_exited():
 	$describe.visible = false
-	$AnimatedSprite2D.visible = false
+	$describe/AnimatedSprite2D.visible = false

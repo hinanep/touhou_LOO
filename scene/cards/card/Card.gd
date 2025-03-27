@@ -46,7 +46,9 @@ func on_use_card(id,cost_rate):
 		emit_signal("shoot",true,global_position)
 	else:
 		emit_signal("shoot")
-
+	if card_info.has('buff'):
+		for i in card_info.buff.size():
+			SignalBus.player_add_buff.emit(card_info.buff[i],card_info.buff_value_factor[i],card_info.id)
 	if card_info.has('special'):
 		match card_info.special:
 			'dash':

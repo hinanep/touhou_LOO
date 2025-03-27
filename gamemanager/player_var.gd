@@ -46,7 +46,12 @@ var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
 var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
-var player_hp
+var player_hp:
+	get:
+		return player_hp
+	set(value):
+		player_hp = clamp(value,-1,player_hp_max)
+
 var mana
 var mana_cost
 var point:int
