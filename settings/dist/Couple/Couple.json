@@ -123,7 +123,7 @@
     "creating_routine": [],
     "creating_routine_moment": [],
     "giving_buff": [
-      "buff_hp_disposable"
+      "buff_player_hp_disposable"
     ],
     "giving_buff_moment": [
       "sc"

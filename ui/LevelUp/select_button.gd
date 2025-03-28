@@ -22,19 +22,31 @@ func set_text(type,id):
 			upgroup = table.Passive[id].upgrade_group
 			$weapon.text =table.TID[id][player_var.language]+" Lv."+String.num(newlevel )
 	if newlevel == 1:
-		$describe.text = "[color=white]"+table.TID[id+'_dsc'][player_var.language]
-	else:
+		$describe.text += table.TID[id+'_dsc'][player_var.language]
+	for upkey in table.Upgrade[upgroup]:
+		try_upgrade_text(id,upgroup,newlevel,upkey)
 
-		for upkey in table.Upgrade[upgroup]:
-			try_upgrade_text(upgroup,newlevel,upkey)
+func try_upgrade_text(id,upgroup,newlevel,property):
 
-func try_upgrade_text(upgroup,newlevel,property):
+
 	if table.Upgrade[upgroup].has(property) and table.Upgrade[upgroup][property] is Array:
+		#如果这是一个被动技能
 		if property == 'buff_addition':
-			$describe.text += table.TID[property][player_var.language] + ' ' + str(table.Upgrade[upgroup][property][newlevel-1])+'\n'
+			#等级1时被动技能只需要显示buff基础数值
+			if newlevel == 1:
+				$describe.text += ' '+str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value )
+				return
+			#技能描述
+			$describe.text += " [color=white]"+table.TID[id+'_dsc'][player_var.language]
+			#添加buff基础数值
+			$describe.text +=' ' + str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value )
+			#本次升级技能倍率
+			$describe.text += '\n '+table.TID[property][player_var.language] + ' ' + str(table.Upgrade[upgroup][property][newlevel-1])+'x\n'
 			return
 		if table.Upgrade[upgroup][property][newlevel-1] != table.Upgrade[upgroup][property][newlevel-2]:
-			$describe.text += table.TID[property][player_var.language] + ' ' +str(table.Upgrade[upgroup][property][newlevel-2]) + '->' + str(table.Upgrade[upgroup][property][newlevel-1])+'\n'
+			if newlevel == 1:
+				return
+			$describe.text += ' '+table.TID[property][player_var.language] + ' ' +str(table.Upgrade[upgroup][property][newlevel-2]) + '->' + str(table.Upgrade[upgroup][property][newlevel-1])+'\n'
 
 
 func _on_button_up():

@@ -247,7 +247,7 @@
   },
   "buff_addition": {
 	"Id": "buff_addition",
-	"CHS": "增加属性数值",
+	"CHS": "增加倍率",
 	"JP": "",
 	"ENG": ""
   },

@@ -53,23 +53,23 @@ script = ExtResource("2_n5vdr")
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 266.0
+offset_left = 268.0
 offset_top = 22.0
-offset_right = 1810.0
+offset_right = 1812.0
 offset_bottom = 318.0
 scale = Vector2(0.25, 0.25)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 132
 bbcode_enabled = true
-text = "[color=white]灵梦"
+text = " [color=white]灵梦"
 fit_content = true
 scroll_active = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="describe"]
 z_index = -1
-position = Vector2(824, 400)
-scale = Vector2(7.46875, 9.95833)
+position = Vector2(814, 617)
+scale = Vector2(7.51563, 14.8125)
 sprite_frames = SubResource("SpriteFrames_jjexo")
 
 [node name="weapon" type="RichTextLabel" parent="."]
