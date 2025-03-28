@@ -49,7 +49,7 @@ func first_init():
 		if attack_info.reflection.has('enemy'):
 			$".".collision_mask += 2
 		if attack_info.reflection.has('wall'):
-			$".".collision_mask += 32
+			$".".collision_mask += 4
 	set_shape(attack_info.shape)
 
 

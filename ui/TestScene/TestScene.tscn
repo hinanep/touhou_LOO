@@ -68,24 +68,22 @@ scale = Vector2(2, 2)
 collision_mask = 51
 safe_margin = 1.0
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-
-[node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
+[node name="reflect2" type="CharacterBody2D" parent="player" groups=["wall"]]
 scale = Vector2(1.12, 1.12)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/reflect2"]
 position = Vector2(39, -28)
 shape = SubResource("SegmentShape2D_bfbrv")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_3g015")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_iloie")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_73h7f")
 
 [node name="monster_spawn_line" type="Path2D" parent="player"]

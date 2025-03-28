@@ -11,6 +11,8 @@ func on_unlocking():
 			trigger_buff(i)
 
 func on_using_card(id):
+	if not cp_info.has('giving_buff_moment'):
+		return
 	for i in range(cp_info.giving_buff_moment.size()):
 		if cp_info.giving_buff_moment[i]=='sc':
 			trigger_buff(i)

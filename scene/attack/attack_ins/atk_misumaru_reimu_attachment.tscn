@@ -189,5 +189,6 @@ script = ExtResource("2_tyll6")
 shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="texture" parent="." index="5"]
+rotation = 0.0
 sprite_frames = SubResource("SpriteFrames_5mx8r")
 frame = 20
