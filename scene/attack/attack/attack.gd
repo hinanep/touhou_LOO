@@ -18,6 +18,7 @@ signal kill(global_position)
 var penetration = 0
 #节点活动性
 var node_active = true
+
 #招式可能传入的索敌与方向
 var lock_routine
 var diretion_routine = Vector2(0,0)
@@ -267,10 +268,20 @@ func upgrade_attack(group):
 	if level == 1:
 		return
 	if table.Upgrade[group].has('damage_addition'):
+		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
 
-		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
 	if table.Upgrade[group].has('bullet_speed_addition'):
-		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
+
+		for i in attack_info.moving_parameter.size():
+			if i == 1:
+				continue
+			attack_info.moving_parameter[i]*=(1+table.Upgrade[group].bullet_speed_addition[level-1])/(1+table.Upgrade[group].bullet_speed_addition[level-2])
+	if table.Upgrade[group].has('duration_addition'):
+		attack_info.duration *=(1+ table.Upgrade[group].duration_addition[level-1]) / (1+table.Upgrade[group].duration_addition[level-2])
+	if table.Upgrade[group].has('range_addition'):
+		for i in attack_info.size:
+			i*=(1+ table.Upgrade[group].range_addition[level-1]) / (1+table.Upgrade[group].range_addition[level-2])
+
 #离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$exit_screen_timer.start()

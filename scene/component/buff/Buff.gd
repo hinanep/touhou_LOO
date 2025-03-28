@@ -5,15 +5,17 @@ var end_time:float = INF
 var buff_info:Dictionary
 var target = player_var
 var source
+var intensity = 1.0
 func _init(buff_inf,buff_intensity,buff_source) -> void:
 	buff_info = buff_inf
 	source = buff_source
+	intensity = buff_intensity
 	SignalBus.player_del_buff_by_source.connect(del_buff_by_source)
 	on_create()
 
 func on_create():
 
-	target.set(buff_info.property,target.get(buff_info.property) + buff_info.base_buff_value)
+	target.set(buff_info.property,target.get(buff_info.property) + buff_info.base_buff_value * intensity)
 
 	if buff_info.type =='disposable':
 		on_destroy()
@@ -26,7 +28,7 @@ func on_update(delta):
 func on_destroy():
 	if buff_info.type =='disposable':
 		return
-	target.set(buff_info.property,target.get(buff_info.property) - buff_info.base_buff_value)
+	target.set(buff_info.property,target.get(buff_info.property) - buff_info.base_buff_value * intensity)
 
 
 func on_refresh():

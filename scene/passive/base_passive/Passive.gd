@@ -21,15 +21,16 @@ func _ready():
 func upgrade_passive(group):
 	if group != psv_info.upgrade_group:
 		return
+	level+=1
+	var intensity = table.Upgrade[psv_info.upgrade_group].buff_addition[level-1]
+	trigger_buff(intensity)
 
-	trigger_buff()
-	level+=1;
 	if(level == max_level):
 		SignalBus.upgrade_max.emit(psv_info.id)
 func del():
 	SignalBus.player_del_buff_by_source.emit(psv_info.id)
 	queue_free()
 
-func trigger_buff():
+func trigger_buff(intensity):
 	for i in range(psv_info.buff.size()):
-		SignalBus.player_add_buff.emit(psv_info.buff[i],psv_info.buff_value_factor[i],psv_info.id)
+		SignalBus.player_add_buff.emit(psv_info.buff[i],psv_info.buff_value_factor[i]*intensity,psv_info.id)

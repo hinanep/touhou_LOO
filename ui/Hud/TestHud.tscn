@@ -60,6 +60,23 @@ offset_bottom = 352.0
 scale = Vector2(2, 2)
 text = "招式"
 
+[node name="psv_container" type="GridContainer" parent="testhud"]
+offset_left = 1507.0
+offset_top = 548.0
+offset_right = 5447.0
+offset_bottom = 1798.0
+scale = Vector2(0.1, 0.1)
+columns = 7
+
+[node name="psv" type="RichTextLabel" parent="testhud"]
+clip_contents = false
+offset_left = 1401.0
+offset_top = 548.0
+offset_right = 1445.0
+offset_bottom = 577.0
+scale = Vector2(2, 2)
+text = "被动"
+
 [node name="cp" type="RichTextLabel" parent="testhud"]
 offset_left = 1405.0
 offset_top = 446.0
@@ -69,10 +86,10 @@ scale = Vector2(2, 2)
 text = "羁绊"
 
 [node name="update" type="TextureButton" parent="testhud"]
-offset_left = 1407.0
-offset_top = 543.0
-offset_right = 1537.0
-offset_bottom = 636.0
+offset_left = 1404.0
+offset_top = 701.0
+offset_right = 1534.0
+offset_bottom = 794.0
 focus_mode = 1
 texture_normal = ExtResource("2_we724")
 texture_pressed = ExtResource("3_2gmep")
@@ -89,10 +106,10 @@ scale = Vector2(2, 2)
 text = "升级选定"
 
 [node name="delete" type="TextureButton" parent="testhud"]
-offset_left = 1564.0
-offset_top = 545.0
-offset_right = 1694.0
-offset_bottom = 638.0
+offset_left = 1600.0
+offset_top = 702.0
+offset_right = 1730.0
+offset_bottom = 795.0
 focus_mode = 1
 texture_normal = ExtResource("4_wkgob")
 texture_pressed = ExtResource("3_2gmep")
