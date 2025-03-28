@@ -42,10 +42,11 @@ func on_use_card(id,cost_rate):
 	player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
-	if not card_info.is_following:
-		emit_signal("shoot",true,global_position)
-	else:
-		emit_signal("shoot")
+	if card_info.has('is_following'):
+		if not card_info.is_following:
+			emit_signal("shoot",true,global_position)
+		else:
+			emit_signal("shoot")
 	if card_info.has('buff'):
 		for i in card_info.buff.size():
 			SignalBus.player_add_buff.emit(card_info.buff[i],card_info.buff_value_factor[i],card_info.id)

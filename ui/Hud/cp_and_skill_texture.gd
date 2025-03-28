@@ -19,7 +19,8 @@ func set_skill(skill_info):
 
 func set_cp(cp_info):
 		id = cp_info.id
-		selfname = table.TID[id][player_var.language]
+		selfname = id
+		#selfname = table.TID[id][player_var.language]
 		upgrade_group =null
 		set_texture(PresetManager.getpre('img_'+id))
 		$RichTextLabel.text = selfname

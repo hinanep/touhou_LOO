@@ -47,9 +47,9 @@ func first_init():
 	$bullet_erase_area.set_monitoring(attack_info.bullet_eraseing)
 	if attack_info.has('reflection'):
 		if attack_info.reflection.has('enemy'):
-			$".".collision_mask += 1
-		if attack_info.reflection.has('wall'):
 			$".".collision_mask += 2
+		if attack_info.reflection.has('wall'):
+			$".".collision_mask += 32
 	set_shape(attack_info.shape)
 
 

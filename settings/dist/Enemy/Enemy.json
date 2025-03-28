@@ -8,7 +8,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_memsad": {
@@ -20,7 +20,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_mempeace": {
@@ -32,7 +32,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_kedama": {
@@ -44,7 +44,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_yuurei": {
@@ -56,7 +56,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_onibi": {
@@ -68,7 +68,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_book": {
@@ -80,7 +80,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_boy": {
@@ -92,7 +92,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_girl": {
@@ -104,7 +104,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 15.0,
+    "health": 30.0,
     "speed": 50.0
   },
   "enm_memcolorful": {
@@ -116,7 +116,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 10.0,
     "magical_damage": 0.0,
-    "health": 500.0,
+    "health": 1000.0,
     "speed": 30.0
   },
   "enm_eltkedama": {
@@ -128,7 +128,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 500.0,
+    "health": 1000.0,
     "speed": 75.0
   },
   "enm_teacher": {
@@ -140,7 +140,7 @@
     "shoot_interval": 0.0,
     "physical_damage": 12.0,
     "magical_damage": 0.0,
-    "health": 750.0,
+    "health": 1500.0,
     "speed": 50.0
   }
 }

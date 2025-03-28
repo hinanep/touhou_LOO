@@ -6,30 +6,37 @@
     "damage_addition": [
       0,
       0.25,
-      0.25,
-      0.25,
       0.5,
+      0.5,
+      0.5,
+      1
+    ],
+    "bullet_speed_addition": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
       0.5
     ],
-    "bullet_speed_addition": [],
     "duration_addition": [],
     "range_addition": [],
     "times_addition": [
       0,
       1,
-      1,
       2,
-      2,
-      3
+      3,
+      4,
+      5
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
-      0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.4,
+      0.4
     ],
     "special": "none"
   },
@@ -46,24 +53,38 @@
       0.5
     ],
     "bullet_speed_addition": [],
-    "duration_addition": [],
-    "range_addition": [],
-    "times_addition": [
-      0,
-      1,
-      1,
-      2,
-      2,
-      3
-    ],
-    "buff_addition": [],
-    "cd_reduction": [
+    "duration_addition": [
       0,
       0,
       0,
       0.5,
       0.5,
       0.5
+    ],
+    "range_addition": [
+      0,
+      0.1,
+      0.1,
+      0.2,
+      0.3,
+      0.3
+    ],
+    "times_addition": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      3
+    ],
+    "buff_addition": [],
+    "cd_reduction": [
+      0,
+      0,
+      0.2,
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -80,24 +101,38 @@
       0.5
     ],
     "bullet_speed_addition": [],
-    "duration_addition": [],
-    "range_addition": [],
+    "duration_addition": [
+      0,
+      0,
+      0.2,
+      0.2,
+      0.2,
+      0.5
+    ],
+    "range_addition": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
     "times_addition": [
+      0,
       0,
       1,
       1,
       2,
-      2,
-      3
+      2
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -107,31 +142,45 @@
     "level": 6,
     "damage_addition": [
       0,
-      0.25,
-      0.25,
-      0.25,
-      0.5,
-      0.5
-    ],
-    "bullet_speed_addition": [],
-    "duration_addition": [],
-    "range_addition": [],
-    "times_addition": [
+      0,
       0,
       1,
-      1,
+      2,
+      2
+    ],
+    "bullet_speed_addition": [
+      0,
+      0.2,
+      0.3,
+      0.4,
+      0.4,
+      0.5
+    ],
+    "duration_addition": [],
+    "range_addition": [
+      0,
+      0,
+      0.1,
+      0.1,
+      0.2,
+      0.2
+    ],
+    "times_addition": [
+      0,
       2,
       2,
-      3
+      3,
+      4,
+      5
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -148,24 +197,31 @@
       0.5
     ],
     "bullet_speed_addition": [],
-    "duration_addition": [],
+    "duration_addition": [
+      0,
+      0,
+      0.2,
+      0.2,
+      0.5,
+      0.5
+    ],
     "range_addition": [],
     "times_addition": [
       0,
+      0,
+      0,
       1,
       1,
-      2,
-      2,
-      3
+      2
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -181,25 +237,39 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [],
-    "duration_addition": [],
+    "bullet_speed_addition": [
+      0,
+      0.2,
+      0.3,
+      0.4,
+      0.4,
+      0.5
+    ],
+    "duration_addition": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5
+    ],
     "range_addition": [],
     "times_addition": [
       0,
       1,
-      1,
       2,
-      2,
-      3
+      3,
+      4,
+      5
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -231,9 +301,9 @@
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },
@@ -249,25 +319,39 @@
       0.5,
       0.5
     ],
-    "bullet_speed_addition": [],
+    "bullet_speed_addition": [
+      0,
+      0.2,
+      0.3,
+      0.4,
+      0.4,
+      0.5
+    ],
     "duration_addition": [],
-    "range_addition": [],
+    "range_addition": [
+      0,
+      0,
+      0.3,
+      0.3,
+      0.3,
+      0.3
+    ],
     "times_addition": [
       0,
-      1,
-      1,
-      2,
-      2,
-      3
+      0,
+      0,
+      0,
+      0,
+      1
     ],
     "buff_addition": [],
     "cd_reduction": [
       0,
       0,
       0,
-      0.5,
-      0.5,
-      0.5
+      0.2,
+      0.2,
+      0.2
     ],
     "special": "none"
   },

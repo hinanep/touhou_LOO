@@ -108,11 +108,11 @@
 	"locking_parameter": [],
 	"special_creating_attack": "probability",
 	"special_creating_attack_parameter": [
-	  75,
+	  70,
 	  -1,
-	  20,
+	  27,
 	  0,
-	  5,
+	  3,
 	  1
 	],
 	"creating_attack": [
@@ -137,7 +137,7 @@
 	  0,
 	  0
 	],
-	"danma_times_efficiency": 1.0,
+	"danma_times_efficiency": 0.4,
 	"melee_times_efficiency": 0.0
   },
   "rou_rumia": {
@@ -160,7 +160,7 @@
 	"one_creating_type": "single",
 	"one_creating_parameter": [],
 	"times_dependence": "",
-	"times": 3,
+	"times": 2,
 	"interval": 0.2,
 	"zero_point": "character",
 	"system_front": "character",
@@ -226,7 +226,7 @@
 	"one_creating_type": "single",
 	"one_creating_parameter": [],
 	"times_dependence": "",
-	"times": 5,
+	"times": 4,
 	"interval": 0.04,
 	"zero_point": "character",
 	"system_front": "character",
@@ -490,7 +490,7 @@
 	"one_creating_type": "single",
 	"one_creating_parameter": [],
 	"times_dependence": "",
-	"times": 5,
+	"times": 2,
 	"interval": 0.2,
 	"zero_point": "character",
 	"system_front": "character",

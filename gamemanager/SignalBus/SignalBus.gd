@@ -22,8 +22,8 @@ signal ban_card(id)
 
 signal use_card(id,cost_rate)
 signal true_use_card(id)
-signal card_select_next()
-signal card_select_before()
+signal card_select_next(bias)
+
 signal plate_use_card
 #尝试在player上添加技能，选择、捡起、升级技能时发出，
 signal try_add_passive(id)

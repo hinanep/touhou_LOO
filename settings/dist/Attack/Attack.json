@@ -58,7 +58,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "melee",
-    "damage": 5.0,
+    "damage": 10.0,
     "duration": 0.25,
     "duration_dependence": "",
     "debuff": [],
@@ -298,9 +298,9 @@
     "moving": true,
     "moving_rule": "straight",
     "moving_parameter": [
-      150,
+      500,
       0,
-      150
+      500
     ],
     "diretion": "character",
     "rotation": false,
@@ -321,7 +321,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 20.0,
+    "damage": 10.0,
     "duration": 1.0,
     "duration_dependence": "",
     "debuff": [
@@ -417,7 +417,7 @@
     "magical_addition_efficiency": 1.0,
     "speed_efficiency": 1.0,
     "duration_efficiency": 1.0,
-    "range_efficiency": 1.0
+    "range_efficiency": 0.5
   },
   "atk_rumia_attachment": {
     "id": "atk_rumia_attachment",
@@ -452,7 +452,7 @@
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      150.0
+      120.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -481,7 +481,7 @@
     "damage_times": "dot",
     "damage_type": "danma",
     "damage": 1.0,
-    "duration": 7.5,
+    "duration": 5.0,
     "duration_dependence": "",
     "debuff": [],
     "debuff_intensity": [],
@@ -495,11 +495,11 @@
     "defeating_item_creation_value": 0.0,
     "eraseing_item_creation": [],
     "eraseing_item_creation_value": 0.0,
-    "penetration": 999999,
+    "penetration": 10,
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      10.0
+      7.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -509,8 +509,8 @@
     "moving_rule": "trail",
     "moving_parameter": [
       50,
-      1500,
-      200
+      1000,
+      150
     ],
     "diretion": "",
     "rotation": true,
@@ -531,7 +531,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 2.0,
+    "damage": 5.0,
     "duration": 0.5,
     "duration_dependence": "",
     "debuff": [],
@@ -550,7 +550,7 @@
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      50.0
+      35.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -597,8 +597,8 @@
     "shape": "rectangle_edge",
     "size_dependence": [],
     "size": [
-      1080,
-      200
+      200,
+      1080
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -773,8 +773,8 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 3.0,
-    "duration": 5.0,
+    "damage": 10.0,
+    "duration": 8.0,
     "duration_dependence": "",
     "debuff": [],
     "debuff_intensity": [],
@@ -801,7 +801,7 @@
     "moving": true,
     "moving_rule": "sekibanki",
     "moving_parameter": [
-      250.0
+      150.0
     ],
     "diretion": "",
     "rotation": true,
@@ -822,7 +822,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "danma",
-    "damage": 25.0,
+    "damage": 10.0,
     "duration": 10.0,
     "duration_dependence": "",
     "debuff": [],
@@ -969,7 +969,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 3.0,
+    "damage": 4.0,
     "duration": 3.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1021,7 +1021,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "danma",
-    "damage": 75.0,
+    "damage": 10.0,
     "duration": 999999.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1036,7 +1036,7 @@
     "defeating_item_creation_value": 0.0,
     "eraseing_item_creation": [],
     "eraseing_item_creation_value": 0.0,
-    "penetration": 999999,
+    "penetration": 1,
     "shape": "circle",
     "size_dependence": [],
     "size": [
@@ -1091,8 +1091,8 @@
     "shape": "rectangle_edge",
     "size_dependence": [],
     "size": [
-      1080,
-      500
+      500,
+      1080
     ],
     "ri_dependence": "lock",
     "ri": 0.0,
@@ -1188,8 +1188,8 @@
     "shape": "rectangle_edge",
     "size_dependence": [],
     "size": [
-      960,
-      500
+      500,
+      960
     ],
     "ri_dependence": "lock",
     "ri": 0.0,

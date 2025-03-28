@@ -22,9 +22,9 @@ func _ready():
 	SignalBus.add_skill.connect(add_skill)
 	SignalBus.add_card.connect(on_add_card)
 	SignalBus.del_card.connect(on_del_card)
-	SignalBus.card_select_before.connect(card_display_left)
-	SignalBus.card_select_next.connect(card_display_right)
 
+	SignalBus.card_select_next.connect(card_display)
+	SignalBus.cp_active.connect(add_cp)
 
 
 
@@ -56,28 +56,24 @@ var card_having
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
 
-func card_display_left():
 
+func card_display(bias):
 	card_having = card_container.get_child_count()
 	if(card_having==0):
 		return
-	card_selecting = (card_selecting-1)%card_having
-	card_container.get_child((card_selecting+1)%card_having).set_expand_mode(0)
-	card_container.get_child((card_selecting+1)%card_having).set_stretch_mode(3)
-	card_container.get_child(card_selecting).set_expand_mode(2)
-	card_container.get_child(card_selecting).set_stretch_mode(4)
+	if bias!=0:
+		card_container.get_child(card_selecting).set_expand_mode(0)
+		card_container.get_child(card_selecting).set_stretch_mode(3)
 
-func card_display_right():
-	card_having = card_container.get_child_count()
-	if(card_having==0):
-		return
-	card_selecting = (card_selecting+1)%card_having
-	card_container.get_child((card_selecting-1)%card_having).set_expand_mode(0)
-	card_container.get_child((card_selecting-1)%card_having).set_stretch_mode(3)
-	card_container.get_child(card_selecting).set_expand_mode(2)
-	card_container.get_child(card_selecting).set_stretch_mode(4)
+		card_selecting = int(card_selecting+bias)%card_having
 
+		card_container.get_child(card_selecting).set_expand_mode(2)
+		card_container.get_child(card_selecting).set_stretch_mode(4)
 
+		$hud/card_now/crystal.set_texture(card_container.get_child(card_selecting).card_texture)
+
+	$hud/card_now/cardid.text = card_container.get_child(card_selecting).cardname
+	$hud/card_now/manacost.text = '符力消耗：' + str(card_container.get_child(card_selecting).manacost/player_var.mana_cost)
 func on_add_card(card_info):
 
 	var newcard = card_tex_pre.instantiate()
@@ -118,7 +114,7 @@ func add_cp(cp_info):
 
 
 		var newcp = cp_and_skill_texture.instantiate()
-
+		newcp.set_cp(cp_info)
 		cp_container.add_child(newcp)
 
 
@@ -128,4 +124,5 @@ func _on_renew_timer_timeout():
 	card_mana_display()
 	point_and_ratio_display()
 	exp_display()
+	card_display(0)
 	$hud/fps/text.text = str(Engine.get_frames_per_second())
