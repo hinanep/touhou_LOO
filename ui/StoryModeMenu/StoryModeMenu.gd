@@ -3,7 +3,7 @@ extends BaseGUIView
 
 func _process(_delta):
 	if Input.is_key_pressed(KEY_ESCAPE):
-		print("ESC")
+
 		_on_esc_button_pressed()
 	# _on_esc_button_pressed()
 	pass

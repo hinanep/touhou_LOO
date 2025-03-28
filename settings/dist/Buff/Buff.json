@@ -61,5 +61,12 @@
 	"keep_time": 0.0,
 	"property": "mana_cost",
 	"base_buff_value": 1.0
+  },
+  "dash": {
+	"id": "dash",
+	"type": "continuous",
+	"keep_time": 0.5,
+	"property": "",
+	"base_buff_value": 1000.0
   }
 }

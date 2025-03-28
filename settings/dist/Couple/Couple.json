@@ -1,138 +1,138 @@
 {
   "cp_reimu_marisa": {
-	"id": "cp_reimu_marisa",
-	"partment": [
-	  "ski_reimu",
-	  "sc_marisa"
-	],
-	"creating_routine": [
-	  "rou_reimu_marisa1",
-	  "rou_reimu_marisa2"
-	],
-	"creating_routine_moment": [
-	  "hurt"
-	],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_reimu_marisa",
+    "partment": [
+      "ski_reimu",
+      "sc_marisa"
+    ],
+    "creating_routine": [
+      "rou_reimu_marisa1",
+      "rou_reimu_marisa2"
+    ],
+    "creating_routine_moment": [
+      "hurt"
+    ],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_reimu_sanae": {
-	"id": "cp_reimu_sanae",
-	"partment": [
-	  "ski_reimu",
-	  "ski_sanae"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_reimu_sanae",
+    "partment": [
+      "ski_reimu",
+      "ski_sanae"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_reimu_misumaru": {
-	"id": "cp_reimu_misumaru",
-	"partment": [
-	  "ski_reimu",
-	  "ski_misumaru"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_reimu_misumaru",
+    "partment": [
+      "ski_reimu",
+      "ski_misumaru"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_marisa_alice": {
-	"id": "cp_marisa_alice",
-	"partment": [
-	  "sc_marisa",
-	  "ski_alice"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_marisa_alice",
+    "partment": [
+      "sc_marisa",
+      "ski_alice"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_marisa_patchouli": {
-	"id": "cp_marisa_patchouli",
-	"partment": [
-	  "sc_marisa",
-	  "psv_patchouli"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_marisa_patchouli",
+    "partment": [
+      "sc_marisa",
+      "psv_patchouli"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_alice_patchouli": {
-	"id": "cp_alice_patchouli",
-	"partment": [
-	  "ski_alice",
-	  "psv_patchouli"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [],
-	"giving_buff_moment": [],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_alice_patchouli",
+    "partment": [
+      "ski_alice",
+      "psv_patchouli"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [],
+    "giving_buff_moment": [],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_marisa_alice_patchouli": {
-	"id": "cp_marisa_alice_patchouli",
-	"partment": [
-	  "ski_alice",
-	  "psv_patchouli",
-	  "sc_marisa"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [
-	  "buff_mana_cost_forever"
-	],
-	"giving_buff_moment": [
-	  "getting"
-	],
-	"buff_value_factor_depend": [],
-	"buff_value_factor": [
-	  1.0
-	]
+    "id": "cp_marisa_alice_patchouli",
+    "partment": [
+      "ski_alice",
+      "psv_patchouli",
+      "sc_marisa"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [
+      "buff_mana_cost_forever"
+    ],
+    "giving_buff_moment": [
+      "getting"
+    ],
+    "buff_value_factor_depend": [],
+    "buff_value_factor": [
+      1.0
+    ]
   },
   "cp_marisa_narumi": {
-	"id": "cp_marisa_narumi",
-	"partment": [
-	  "sc_marisa",
-	  "psv_narumi"
-	],
-	"creating_routine": [],
-	"creating_routine_moment": [],
-	"giving_buff": [
-	  "buff_hp_disposable"
-	],
-	"giving_buff_moment": [
-	  "sc"
-	],
-	"buff_value_factor_depend": [
-	  "atkdep_mana_multiply"
-	],
-	"buff_value_factor": [
-	  0.08
-	]
+    "id": "cp_marisa_narumi",
+    "partment": [
+      "sc_marisa",
+      "psv_narumi"
+    ],
+    "creating_routine": [],
+    "creating_routine_moment": [],
+    "giving_buff": [
+      "buff_player_hp_disposable"
+    ],
+    "giving_buff_moment": [
+      "sc"
+    ],
+    "buff_value_factor_depend": [
+      "atkdep_mana_multiply"
+    ],
+    "buff_value_factor": [
+      0.08
+    ]
   }
 }

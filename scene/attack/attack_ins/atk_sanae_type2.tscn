@@ -37,6 +37,7 @@ script = ExtResource("2_lhhvw")
 shape = SubResource("CircleShape2D_wdgtq")
 
 [node name="texture" parent="." index="5"]
+rotation = 0.0
 scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_8n432")
 animation = &"new_animation"

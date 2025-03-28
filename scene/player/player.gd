@@ -52,6 +52,10 @@ func on_player_invincible(time):
 	$invincible_time.start()
 
 func died():
+	if player_var.player_life_addi > 0:
+		player_var.player_life_addi -= 1
+		player_var.player_hp = player_var.player_hp_max
+		return
 	G.get_gui_view_manager().close_all_view()
 
 	G.get_gui_view_manager().open_view("StartMenu")

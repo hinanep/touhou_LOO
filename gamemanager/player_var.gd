@@ -12,6 +12,9 @@ var colddown_reduce #冷却缩减
 var player_hp_max: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
+	set(value):
+		player_hp_max = value
+		print('hp='+str(player_hp_max))
 var hp_max_ex = 200
 var hp_max_ex_percent = 1.5
 
@@ -43,7 +46,12 @@ var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
 var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
-var player_hp
+var player_hp:
+	get:
+		return player_hp
+	set(value):
+		player_hp = clamp(value,-1,player_hp_max)
+
 var mana
 var mana_cost
 var point:int
@@ -67,7 +75,9 @@ var passive_num_max
 
 var is_card_casting
 var player_node
-var exp_need
+var exp_need:
+	get:
+		return level*12 +12
 
 var damage_sum
 

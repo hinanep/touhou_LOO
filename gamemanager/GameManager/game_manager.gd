@@ -8,7 +8,7 @@ func add_exp(value):
 
 	player_var.player_exp += value
 	AudioManager.play_sfx("music_sfx_pickup")
-	if is_uping!=true and player_var.player_exp >= player_var.exp_need[player_var.level]:
+	if is_uping!=true and player_var.player_exp >= player_var.exp_need:
 		is_uping = true
 		level_up()
 
@@ -29,6 +29,6 @@ func add_mana(mana):
 func level_up():
 
 	AudioManager.play_sfx("music_sfx_levelup")
-	player_var.player_exp -= player_var.exp_need[player_var.level]
+	player_var.player_exp -= player_var.exp_need
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")

@@ -64,6 +64,7 @@ func on_add_card(card_info):
 	SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group)
 
 func on_del_card(id):
+	card_list.erase(id)
 	if(card_pool.choosed.has(id)):
 		card_pool.unlocked[id]=card_pool.choosed[id]
 		card_pool.choosed.erase(id)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0x756vtjadka"]
+
+[sub_resource type="Environment" id="Environment_quntc"]
+ambient_light_color = Color(0.864675, 0.864675, 0.864675, 1)
+ambient_light_energy = 2.59
+
+[sub_resource type="SphereMesh" id="SphereMesh_k7vla"]
+radius = 0.1
+height = 0.2
+
+[node name="Master" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80666, 1.11043, 5.85087)
+environment = SubResource("Environment_quntc")
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+light_energy = 2.0
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23104, 1.51023, -0.0014081)
+mesh = SubResource("SphereMesh_k7vla")
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0

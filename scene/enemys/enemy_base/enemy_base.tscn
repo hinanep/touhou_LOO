@@ -58,6 +58,7 @@ script = ExtResource("1_mcymg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)
+skew = -1.56905
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
 

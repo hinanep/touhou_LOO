@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene load_steps=23 format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="PackedScene" uid="uid://clsoje0yt1dit" path="res://scene/component/skill/SkillComponent.tscn" id="2_20a0v"]
@@ -70,6 +70,17 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xlgpr"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nv7q1"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_doahy"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_25blp"]
+normal = Vector2(-1, 0)
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 z_as_relative = false
@@ -124,6 +135,29 @@ scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
 animation = &"left"
 autoplay = "stay"
+
+[node name="reflect" type="CharacterBody2D" parent="." groups=["wall"]]
+collision_layer = 4
+collision_mask = 0
+
+[node name="left" type="CollisionShape2D" parent="reflect"]
+position = Vector2(-480, 2)
+shape = SubResource("WorldBoundaryShape2D_xlgpr")
+
+[node name="top" type="CollisionShape2D" parent="reflect"]
+position = Vector2(-2, -266)
+shape = SubResource("WorldBoundaryShape2D_nv7q1")
+
+[node name="down" type="CollisionShape2D" parent="reflect"]
+position = Vector2(0, 271)
+shape = SubResource("WorldBoundaryShape2D_doahy")
+
+[node name="right" type="CollisionShape2D" parent="reflect"]
+position = Vector2(478, 1)
+shape = SubResource("WorldBoundaryShape2D_25blp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]

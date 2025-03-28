@@ -83,6 +83,7 @@ func add_buff(buff_id,intensity,duration,source):
 			return
 		elif intensity == buff_engaging[buff_id][0]:
 			buff_engaging[buff_id][1] =max(duration,buff_engaging[buff_id][1])
+			return
 	buff_engaging[buff_id] = [0,0]
 	buff_engaging[buff_id][0] = intensity
 	buff_engaging[buff_id][1] = duration

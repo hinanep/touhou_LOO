@@ -47,34 +47,19 @@ position = Vector2(579, 140.667)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_h36oa")
 
-[node name="reroll" type="TextureButton" parent="select_weapon"]
-offset_left = 956.0
-offset_top = 83.3333
-offset_right = 1207.0
-offset_bottom = 165.333
+[node name="select_buttons2" type="VBoxContainer" parent="select_weapon"]
+offset_left = 997.0
+offset_top = -2.0
+offset_right = 1248.0
+offset_bottom = 252.0
+scale = Vector2(0.8, 0.8)
+focus_mode = 2
+
+[node name="ban" type="TextureButton" parent="select_weapon/select_buttons2"]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_2ah3e")
 
-[node name="weapon" type="RichTextLabel" parent="select_weapon/reroll"]
-layout_mode = 0
-offset_left = 89.3333
-offset_top = 19.3333
-offset_right = 378.333
-offset_bottom = 128.333
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 28
-bbcode_enabled = true
-text = "[color=white]刷新"
-scroll_active = false
-
-[node name="ban" type="TextureButton" parent="select_weapon"]
-offset_left = 958.0
-offset_top = 184.667
-offset_right = 1209.0
-offset_bottom = 266.667
-texture_normal = SubResource("AtlasTexture_2ah3e")
-
-[node name="weapon" type="RichTextLabel" parent="select_weapon/ban"]
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/ban"]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 19.3334
@@ -87,26 +72,40 @@ bbcode_enabled = true
 text = "[color=white]排除不想要的"
 scroll_active = false
 
-[node name="abandon" type="TextureButton" parent="select_weapon"]
-offset_left = 956.0
-offset_top = -20.6667
-offset_right = 1207.0
-offset_bottom = 61.3334
+[node name="reroll" type="TextureButton" parent="select_weapon/select_buttons2"]
+layout_mode = 2
 texture_normal = SubResource("AtlasTexture_2ah3e")
 
-[node name="weapon" type="RichTextLabel" parent="select_weapon/abandon"]
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/reroll"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 18.6667
-offset_right = 299.0
-offset_bottom = 127.667
+offset_left = 89.3333
+offset_top = 19.3333
+offset_right = 378.333
+offset_bottom = 128.333
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
-text = "[color=white]放弃升级（得点倍率+"
+text = "[color=white]刷新"
 scroll_active = false
 
-[connection signal="button_up" from="select_weapon/reroll" to="select_weapon" method="_on_reroll_button_up"]
-[connection signal="button_up" from="select_weapon/ban" to="select_weapon" method="_on_ban_button_up"]
-[connection signal="button_up" from="select_weapon/abandon" to="select_weapon" method="_on_abandon_button_up"]
+[node name="abandon" type="TextureButton" parent="select_weapon/select_buttons2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_2ah3e")
+
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/abandon"]
+layout_mode = 0
+offset_left = 65.3333
+offset_top = 20.6667
+offset_right = 354.333
+offset_bottom = 129.667
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=white]放弃升级"
+scroll_active = false
+
+[connection signal="button_up" from="select_weapon/select_buttons2/ban" to="select_weapon" method="_on_ban_button_up"]
+[connection signal="button_up" from="select_weapon/select_buttons2/reroll" to="select_weapon" method="_on_reroll_button_up"]
+[connection signal="button_up" from="select_weapon/select_buttons2/abandon" to="select_weapon" method="_on_abandon_button_up"]

@@ -215,44 +215,44 @@
 	"JP": "",
 	"ENG": ""
   },
-  "upg_damage": {
-	"Id": "upg_damage",
+  "damage_addition": {
+	"Id": "damage_addition",
 	"CHS": "增加伤害",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_bullet_speed": {
-	"Id": "upg_bullet_speed",
+  "bullet_speed_addition": {
+	"Id": "bullet_speed_addition",
 	"CHS": "增加弹速",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_duration": {
-	"Id": "upg_duration",
+  "duration_addition": {
+	"Id": "duration_addition",
 	"CHS": "增加持续时间",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_range": {
-	"Id": "upg_range",
+  "range_addition": {
+	"Id": "range_addition",
 	"CHS": "增加攻击范围",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_times": {
-	"Id": "upg_times",
+  "times_addition": {
+	"Id": "times_addition",
 	"CHS": "增加发射数量",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_buff": {
-	"Id": "upg_buff",
-	"CHS": "增加属性数值",
+  "buff_addition": {
+	"Id": "buff_addition",
+	"CHS": "增加倍率",
 	"JP": "",
 	"ENG": ""
   },
-  "upg_cd": {
-	"Id": "upg_cd",
+  "cd_reduction": {
+	"Id": "cd_reduction",
 	"CHS": "减少冷却时间",
 	"JP": "",
 	"ENG": ""

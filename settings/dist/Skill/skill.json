@@ -46,7 +46,7 @@
     "routines": [
       "rou_rumia"
     ],
-    "cd": 1.0,
+    "cd": 2.0,
     "cd_reduction_efficicency": 1.0
   },
   "ski_wriggle": {
@@ -76,7 +76,7 @@
     "routines": [
       "rou_sekibanki"
     ],
-    "cd": 1.0,
+    "cd": 3.0,
     "cd_reduction_efficicency": 1.0
   },
   "ski_misumaru": {

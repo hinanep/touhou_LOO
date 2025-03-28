@@ -26,6 +26,13 @@ func _ready():
 		cp_button.set_tooltip_text(cps.id)
 		cp_button.selected.connect(on_cpbutton_select.bind(cps.id))
 
+	for psv in table.Passive:
+		var psv_info = table.Passive[psv]
+		var psv_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		$testhud/psv_container.add_child(psv_button)
+		psv_button.set_tooltip_text(psv_info.id)
+		psv_button.selected.connect(on_psvbutton_select.bind(psv_info.id))
+
 func on_skillbutton_select(skillname):
 	$testhud/Button.grab_focus()
 	type = "skill"
@@ -42,6 +49,10 @@ func on_cpbutton_select(cpname):
 	type = "cp"
 	tname = cpname
 
+func on_psvbutton_select(psvname):
+	$testhud/Button.grab_focus()
+	type = "psv"
+	tname = psvname
 
 
 func _on_update_pressed():
@@ -52,7 +63,8 @@ func _on_update_pressed():
 		"cp":
 			player_var.CpManager.add_cp(tname)
 			pass
-		"passive":
+		"psv":
+			SignalBus.try_add_passive.emit(tname)
 			pass
 		"card":
 			SignalBus.try_add_card.emit(tname)
@@ -72,6 +84,7 @@ func _on_delete_pressed():
 			SignalBus.cp_del.emit(tname)
 			pass
 		"passive":
+			SignalBus.del_passive.emit(tname)
 			pass
 		"card":
 			SignalBus.del_card.emit(tname)

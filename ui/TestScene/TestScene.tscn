@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=18 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_m2abi"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_kue7b"]
 [ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
+[ext_resource type="Script" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
+[ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master.tscn" id="8_1so0a"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bfbrv"]
 a = Vector2(174, -91)
@@ -66,24 +68,22 @@ scale = Vector2(2, 2)
 collision_mask = 51
 safe_margin = 1.0
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-
-[node name="reflect" type="CharacterBody2D" parent="player" groups=["wall"]]
+[node name="reflect2" type="CharacterBody2D" parent="player" groups=["wall"]]
 scale = Vector2(1.12, 1.12)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/reflect2"]
 position = Vector2(39, -28)
 shape = SubResource("SegmentShape2D_bfbrv")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_3g015")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_iloie")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="player/reflect"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="player/reflect2"]
 shape = SubResource("SegmentShape2D_73h7f")
 
 [node name="monster_spawn_line" type="Path2D" parent="player"]
@@ -252,3 +252,17 @@ position = Vector2(2775.5, 963)
 texture = ExtResource("5_kue7b")
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
+
+[node name="Node2D" type="Node2D" parent="SpawnManager"]
+script = ExtResource("7_7uj5j")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(200, 0)
+
+[node name="SubViewport" type="SubViewport" parent="Sprite2D"]
+transparent_bg = true
+
+[node name="Master" parent="Sprite2D/SubViewport" instance=ExtResource("8_1so0a")]

@@ -69,6 +69,10 @@ func _ready():
 
 	setbuff(multi)
 
+
+	create_tween().tween_property($AnimatedSprite2D,'skew',0,1.5)
+
+
 #不用理解，避障用
 func on_compute_safevelocity(safevelocity):
 	velocity = safevelocity
@@ -123,16 +127,20 @@ func take_damage(damage):
 func died():
 	drop()
 	emit_signal('die',mob_id)
+	invincible = true
 	atkable = false
-	await get_tree().create_timer(0.1).timeout
+	set_physics_process(false)
+	create_tween().tween_property($AnimatedSprite2D,'skew',PI/2,0.5)
+	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
 #掉落
 func drop():
-	var drops = PresetManager.getpre(drops_path).instantiate()
-	get_parent().call_deferred("add_child",drops)
-
-	drops.global_position = global_position
+	SignalBus.drop.emit(drops_path,global_position)
+	#var drops = PresetManager.getpre(drops_path).instantiate()
+	#get_parent().call_deferred("add_child",drops)
+#
+	#drops.global_position = global_position
 
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready(disable = false):

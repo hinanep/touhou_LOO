@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=12 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
+[ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
+[ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jvsk6"]
@@ -19,6 +21,10 @@ default_font_size = 60
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia0gh"]
 bg_color = Color(0.831373, 0.737255, 0.294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvsvv"]
+atlas = ExtResource("3_atrcm")
+region = Rect2(118, 4, 122, 206)
 
 [node name="Hud" type="Control" groups=["hud"]]
 process_mode = 3
@@ -98,6 +104,27 @@ theme = SubResource("Theme_08wx8")
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 text = "0"
 
+[node name="fps" type="RichTextLabel" parent="hud"]
+modulate = Color(0.345098, 0.901961, 1, 1)
+offset_left = 1640.0
+offset_top = 1026.0
+offset_right = 2284.0
+offset_bottom = 1116.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
+text = "FPS："
+
+[node name="text" type="RichTextLabel" parent="hud/fps"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 20.0
+offset_right = 616.0
+offset_bottom = 102.0
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 60
+text = "0"
+
 [node name="point" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345098, 0.901961, 1, 1)
 offset_left = 1594.0
@@ -154,11 +181,11 @@ text = "lev."
 [node name="cards" type="Node" parent="hud"]
 
 [node name="card_container" type="HBoxContainer" parent="hud"]
-offset_left = 114.0
-offset_top = 153.0
-offset_right = 2934.0
-offset_bottom = 1123.0
-scale = Vector2(0.1, 0.1)
+offset_left = 37.0
+offset_top = 124.0
+offset_right = 3467.0
+offset_bottom = 1374.0
+scale = Vector2(0.08, 0.08)
 alignment = 1
 
 [node name="skill_container" type="HBoxContainer" parent="hud"]
@@ -170,12 +197,54 @@ scale = Vector2(0.1, 0.1)
 alignment = 1
 
 [node name="cp_container" type="HBoxContainer" parent="hud"]
-offset_left = 114.0
-offset_top = 266.0
-offset_right = 2934.0
-offset_bottom = 1236.0
-scale = Vector2(0.1, 0.1)
+offset_left = 40.0
+offset_top = 377.0
+offset_right = 2860.0
+offset_bottom = 1347.0
+scale = Vector2(0.07, 0.07)
 alignment = 1
+
+[node name="card_now" type="TextureRect" parent="hud"]
+offset_left = 19.0
+offset_top = 354.0
+offset_right = 141.0
+offset_bottom = 722.0
+rotation = -1.5708
+texture = SubResource("AtlasTexture_bvsvv")
+
+[node name="crystal" type="TextureRect" parent="hud/card_now"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 19.0
+offset_right = 179.0
+offset_bottom = 100.0
+rotation = 1.5708
+texture = ExtResource("4_eyoy3")
+expand_mode = 2
+
+[node name="cardid" type="RichTextLabel" parent="hud/card_now"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 106.0
+offset_right = 1540.0
+offset_bottom = 271.0
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 100
+text = "符卡名"
+fit_content = true
+
+[node name="manacost" type="RichTextLabel" parent="hud/card_now"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 107.0
+offset_right = 1356.0
+offset_bottom = 292.0
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 100
+text = "符力消耗"
+fit_content = true
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1

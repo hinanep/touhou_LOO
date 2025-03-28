@@ -49,6 +49,8 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 					body.rotation = body.global_position.angle_to_point(lock.lock_position)+deg_to_rad(attack_info.ri)
 			'character':
 					body.rotation = player_var.player_diretion_angle
+	else:
+		body.rotation = deg_to_rad(attack_info.ri)
 	diretion = Vector2.from_angle(body.rotation)
 
 	if attack_info.has('moving_rule'):
