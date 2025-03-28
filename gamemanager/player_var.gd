@@ -75,7 +75,9 @@ var passive_num_max
 
 var is_card_casting
 var player_node
-var exp_need
+var exp_need:
+	get:
+		return level*12 +12
 
 var damage_sum
 

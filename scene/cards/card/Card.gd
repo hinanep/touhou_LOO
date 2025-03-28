@@ -1,24 +1,13 @@
 extends Node2D
 class_name card
 var card_info={
-	"id": "sc_daiyousei",
-	"type": "base",
-	"routine": [
-	  "rou_marisa"
-	],
-	"buff": [],
-	"buff_value_factor": [],
-	"special": "none",
-	"special_parameter": [],
-	"mana": 500.0,
-	"invincible_time": 0.5,
-	"invicible_time_depend": "none"
+
 }
 
 var damage_source :String= ''
 var level :int= 0
 signal shoot
-var max_level = player_var.card_level_max
+var max_level
 func _ready() -> void:
 	name = card_info.id
 	damage_source = card_info.id
@@ -29,8 +18,8 @@ func _ready() -> void:
 	SignalBus.upgrade_group.connect(upgrade_card)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
-
-
+	if table.Upgrade.has(card_info.upgrade_group):
+		max_level = table.Upgrade[card_info.upgrade_group].level
 
 func on_use_card(id,cost_rate):
 	if id != card_info.id:

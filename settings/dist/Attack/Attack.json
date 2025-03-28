@@ -859,7 +859,7 @@
 	"rotation_rule": "uniform",
 	"omega": 30.0,
 	"reflection": [
-	  "enemy","wall"
+	  "enemy"
 	],
 	"physical_addition_efficiency": 0.0,
 	"magical_addition_efficiency": 1.0,

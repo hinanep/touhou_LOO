@@ -10,6 +10,7 @@ var skill_info = {
 }
 signal shoot
 var level = 0
+var max_level
 var upgrade_info = {
 
 }
@@ -38,6 +39,9 @@ func _ready():
 			if aroutine in skill_info.routines:
 				shoot.connect(r.attacks)
 	gen_routines()
+	if table.Upgrade.has(skill_info.upgrade_group):
+		max_level = table.Upgrade[skill_info.upgrade_group].level
+
 
 func add_routine(id):
 		var routinepre = PresetManager.getpre('routine').instantiate()
@@ -65,7 +69,7 @@ func upgrade_skill(group):
 
 	$cd_timer.wait_time = skill_info.cd  /(1+table.Upgrade[group].cd_reduction[level-1]) / (1+player_var.colddown_reduce * skill_info.cd_reduction_efficicency)
 
-	if(level == player_var.skill_level_max):
+	if(level == max_level):
 		SignalBus.upgrade_max.emit(skill_info.id)
 
 

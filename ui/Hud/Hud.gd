@@ -43,7 +43,7 @@ func point_and_ratio_display():
 	point_text.text = str(player_var.point)
 
 func exp_display():
-	exp_bar.max_value = player_var.exp_need[player_var.level]
+	exp_bar.max_value = player_var.exp_need
 	exp_bar.value = player_var.player_exp
 	level_number.text = ("%d" % player_var.level)
 
@@ -72,7 +72,7 @@ func card_display(bias):
 
 		$hud/card_now/crystal.set_texture(card_container.get_child(card_selecting).card_texture)
 
-	$hud/card_now/cardid.text = card_container.get_child(card_selecting).cardname
+	$hud/card_now/cardid.text = card_container.get_child(card_selecting).describe
 	$hud/card_now/manacost.text = '符力消耗：' + str(card_container.get_child(card_selecting).manacost/player_var.mana_cost)
 func on_add_card(card_info):
 
