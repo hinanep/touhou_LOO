@@ -20,6 +20,11 @@ func _input(event):
 			Engine.time_scale = 2.0
 		else:
 			Engine.time_scale = 1.0
+	
+	if event.is_action_pressed("dialogue"):
+		G.get_gui_view_manager().open_view("DialogueMenu")
+
+
 func _open():
 	pass
 
