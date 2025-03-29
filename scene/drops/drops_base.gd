@@ -2,7 +2,7 @@ class_name drop extends Area2D
 @onready var player_node= get_tree().get_first_node_in_group("player")
 @onready var game_manager = get_tree().get_first_node_in_group("GameManager")
 
-var value = 0
+var value = 1
 var experience = 1
 var score = 1
 var mana = 1
@@ -12,8 +12,8 @@ var point_ratio = false
 func _ready() -> void:
 	set_physics_process(false)
 func _physics_process(delta):
-
-	position +=  global_position.direction_to(player_node.global_position) * delta * speed_ratio
+	if player_node:
+		position +=  global_position.direction_to(player_node.global_position) * delta * speed_ratio
 
 func _on_body_entered(_body):
 

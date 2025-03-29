@@ -44,6 +44,7 @@ monitorable = false
 rect = Rect2(-1, -1, 2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 rotation = 1.5708
 scale = Vector2(0.9, 0.9)

@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://2ah0wkd5a4ri"]
+[gd_scene load_steps=6 format=3 uid="uid://2ah0wkd5a4ri"]
 
 [ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_wl1w0"]
 [ext_resource type="Script" path="res://scene/drops/mana.gd" id="2_chgmx"]
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="3_7tgfe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daway"]
+atlas = ExtResource("3_7tgfe")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s8ofo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daway")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="DropsBase" instance=ExtResource("1_wl1w0")]
+z_index = 0
+monitoring = true
 script = ExtResource("2_chgmx")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+modulate = Color(0.215686, 1, 1, 1)
+z_index = -5
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_s8ofo")
+frame_progress = 0.0

@@ -74,7 +74,7 @@ var preset_map = {
 	"img_cp_alice_patchouli":"res://asset/pic/crystal/爱丽丝×帕秋莉.png",
 	"img_cp_marisa_alice_patchouli":"res://asset/pic/crystal/三魔女.png",
 	"img_cp_marisa_narumi":"res://asset/pic/crystal/魔理沙×成美.png",
-	
+
 
 
 	'img_atk_basemagic':"res://asset/pic/bullet/子弹.png",

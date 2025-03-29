@@ -49,12 +49,14 @@ signal cp_del(cp_id)
 signal atk_boost(attack_info)
 signal sum_boost(sum_info)
 
-signal drop(id,global_position)
+signal drop(id,global_position,value)
 var is_log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()
 
 	for sig in signal_dic:
+		#if sig.name =='trigger_routine_by_id':
+			#continue
 		connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
 
 

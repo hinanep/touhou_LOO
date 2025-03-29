@@ -3,6 +3,7 @@ extends BaseGUIView
 
 func _open():
 	get_tree().paused = false
+	player_var.ini()
 	pass
 
 

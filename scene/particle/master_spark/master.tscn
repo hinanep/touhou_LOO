@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cinuqkkm2arnk"]
 
-[ext_resource type="Shader" path="res://scene/particle/master.gdshader" id="1_uma1c"]
+[ext_resource type="Shader" path="res://scene/particle/master_spark/master.gdshader" id="1_uma1c"]
 
 [sub_resource type="Curve" id="Curve_2jy5x"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0165289, 0.10989), 5.15169, 5.15169, 0, 0, Vector2(0.239669, 0.725275), 0.0, 0.0, 0, 0, Vector2(0.483471, 0.923077), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]

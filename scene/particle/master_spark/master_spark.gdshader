@@ -14,7 +14,7 @@ https://godotshaders.com/shader/billboard-sprite3d-hitflash-godot-4-x/
 */
 
 shader_type spatial;
-render_mode unshaded; // optional 
+render_mode unshaded; // optional
 
 uniform sampler2D albedo: hint_default_white; // the laser texture, a vertical gradient is suggested
 
@@ -33,14 +33,14 @@ uniform float brightness = 1.0; // make extra bright, good for lasers
 
 
 void vertex() {
-  
+
     VERTEX += vec3(0,0.5,0); // correction for quad to make it stretch correctly
-    
+
     VERTEX.y *= line_length; // stretch the lines length
     VERTEX.x *= line_width; // thin or fat line
-    
+
     vec3 _target_position = normalize((MODEL_MATRIX * vec4(default_axis.x, default_axis.y, default_axis.z, 0.0)).xyz);
-    
+
     // this is the same as a the y-billboard code but we can set any vector as the direction
     // as a consequence of the matrix, it also stretches the line!
     MODELVIEW_MATRIX = VIEW_MATRIX *
@@ -51,21 +51,21 @@ void vertex() {
             0.0
             ),
             MODEL_MATRIX[3]);
-    
+
     //cargo code? i probabally don't need this unless we try to use normal maps
-    //MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX); 
+    //MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 }
 
 void fragment() {
-    
+
     vec2 uv = UV;
-    
+
     if (correct_uv){
         uv.y *= line_length;
     }
-    
+
     uv += uv_offset_animation * TIME; // scrolls the texture
-    
+
     vec4 _color = texture(albedo, uv);
     _color *= color;
     _color.r *= brightness;

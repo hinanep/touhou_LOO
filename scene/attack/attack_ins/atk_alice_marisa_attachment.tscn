@@ -1,21 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://biv3ye4x52b1g"]
+[gd_scene load_steps=11 format=3 uid="uid://biv3ye4x52b1g"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_brahv"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ag7ab"]
-[ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/pic/bullet/魔炮.png" id="3_fkl5b"]
+[ext_resource type="Shader" path="res://scene/particle/master_spark/center_white.gdshader" id="3_xakbb"]
+[ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master_spark/master.tscn" id="4_05ogu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sgjwi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_fkl5b")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdc8n"]
+
+[sub_resource type="Gradient" id="Gradient_le8q4"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0221239, 0.181416, 0.230089, 0.269911, 0.539823, 0.712389, 0.774336, 0.831858, 0.938053, 0.969027, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.462899, 0.569118, 0.64933, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.52549, 1, 0.47451, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 1, 0, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8a4a"]
+gradient = SubResource("Gradient_le8q4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxkbp"]
+shader = ExtResource("3_xakbb")
+shader_parameter/gradient_color = SubResource("GradientTexture1D_q8a4a")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vxpc2"]
+viewport_path = NodePath("texture/master/SubViewport")
 
 [node name="Attack" instance=ExtResource("1_brahv")]
 script = ExtResource("2_ag7ab")
@@ -23,7 +30,22 @@ script = ExtResource("2_ag7ab")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
 
+[node name="CollisionShape2D" parent="." index="4"]
+visible = false
+
 [node name="texture" parent="." index="5"]
 rotation = 0.0
-scale = Vector2(0.007, 0.048)
-sprite_frames = SubResource("SpriteFrames_sgjwi")
+scale = Vector2(0.2, 0.01)
+sprite_frames = SubResource("SpriteFrames_pdc8n")
+
+[node name="master" type="Sprite2D" parent="texture" index="0"]
+z_index = 1
+material = SubResource("ShaderMaterial_hxkbp")
+position = Vector2(280, 0)
+scale = Vector2(1.1, 1.2)
+texture = SubResource("ViewportTexture_vxpc2")
+
+[node name="SubViewport" type="SubViewport" parent="texture/master" index="0"]
+transparent_bg = true
+
+[node name="Master" parent="texture/master/SubViewport" index="0" instance=ExtResource("4_05ogu")]

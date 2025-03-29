@@ -52,7 +52,9 @@ var player_hp:
 	set(value):
 		player_hp = clamp(value,-1,player_hp_max)
 
-var mana
+var mana:
+		set(value):
+			mana = clamp(value,0,mana_max)
 var mana_cost
 var point:int
 var player_exp
@@ -128,10 +130,10 @@ func player_take_melee_damage(player_ins,damage):
 
 	damage = damage * 10.0
 	damage /= 10 + defence_melee
-	player_ins.take_damage(damage)
+	player_ins.player_take_damage(damage)
 
 func player_take_bullet_damage(player_ins,damage):
-	player_ins.take_damage(damage * 10 / (10 + defence_bullet))
+	player_ins.player_take_damage(damage * 10 / (10 + defence_bullet))
 
 func player_get_heal(heal):
 	player_hp += heal

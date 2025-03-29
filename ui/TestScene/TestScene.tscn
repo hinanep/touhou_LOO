@@ -252,5 +252,5 @@ texture = ExtResource("5_kue7b")
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
 
-[node name="Node2D" type="Node2D" parent="SpawnManager"]
+[node name="drops" type="Node2D" parent="SpawnManager"]
 script = ExtResource("7_7uj5j")

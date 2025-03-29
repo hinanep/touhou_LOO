@@ -63,7 +63,7 @@ var buff_list={
 		},
 		'kill'={
 			on_create=Callable(func(intensity,duration,source):
-			body.take_damage(9999)
+			body.mob_take_damage(9999)
 				),
 			on_update=Callable(func(intensity):
 			pass

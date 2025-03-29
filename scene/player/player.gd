@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func take_damage(damage):
+func player_take_damage(damage):
 
 	if player_var.is_invincible:
 		return

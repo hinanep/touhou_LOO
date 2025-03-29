@@ -1,5 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://xl116nrs0eme"]
+[gd_scene load_steps=5 format=3 uid="uid://xl116nrs0eme"]
 
 [ext_resource type="PackedScene" uid="uid://xgi6s0ewkkow" path="res://scene/summon/summon.tscn" id="1_63xra"]
+[ext_resource type="Texture2D" uid="uid://bob0u3cbl1qh6" path="res://asset/pic/bullet/yinyangorb.png" id="2_mdfq7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7we1"]
+atlas = ExtResource("2_mdfq7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_io6qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7we1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Summon" instance=ExtResource("1_63xra")]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_io6qe")

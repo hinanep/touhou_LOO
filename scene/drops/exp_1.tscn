@@ -27,7 +27,7 @@ collision_layer = 16
 script = ExtResource("1_cpuj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.74902)
+modulate = Color(1, 1, 1, 0.560784)
 z_index = -5
 sprite_frames = SubResource("SpriteFrames_cdvnr")
 autoplay = "default"

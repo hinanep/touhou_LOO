@@ -17,10 +17,10 @@ vec3 sample_color(float cordi){
 	return texture(gradient_color,vec2(cordi,0.0)).rgb;
 }
 void fragment() {
-	
+
 	COLOR.rgb = mix(COLOR.rgb,sample_color(custom_uv.x)*0.5,0.5);
 	COLOR.rgb *= clamp(5.0-5.0*abs(custom_uv.y),1.2,10.0);
-	
+
 	//COLOR = vec4(1.,1.,1.,1.);
 	// Called for every pixel the material is visible on.
 }

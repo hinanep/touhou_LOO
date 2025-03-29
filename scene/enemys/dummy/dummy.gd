@@ -15,7 +15,7 @@ func _physics_process(_delta):
 #弹幕攻击方法，待实例实现
 func bullet_attack():
 	pass
-func take_damage(damage):
+func mob_take_damage(damage):
 	if invincible:
 		return
 	damage_num_display(damage)

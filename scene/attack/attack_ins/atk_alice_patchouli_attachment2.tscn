@@ -1,12 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmwaholxl4co8"]
+[gd_scene load_steps=7 format=3 uid="uid://dmwaholxl4co8"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_l4wq1"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_2eiqs"]
+[ext_resource type="Texture2D" uid="uid://rgktqsf1iapd" path="res://asset/pic/fairy/point.png" id="3_wy7su"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv7bv"]
+atlas = ExtResource("3_wy7su")
+region = Rect2(0, 0, 728, 728)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knjxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv7bv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Attack" instance=ExtResource("1_l4wq1")]
 script = ExtResource("2_2eiqs")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="texture" parent="." index="5"]
+modulate = Color(0.0235294, 0.929412, 1, 0.317647)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_knjxs")

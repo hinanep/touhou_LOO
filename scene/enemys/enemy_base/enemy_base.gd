@@ -112,7 +112,7 @@ func damage_num_display(num):
 
 
 #受到伤害
-func take_damage(damage):
+func mob_take_damage(damage):
 	if invincible:
 		return
 	damage_num_display(damage)
@@ -136,11 +136,8 @@ func died():
 
 #掉落
 func drop():
-	SignalBus.drop.emit(drops_path,global_position)
-	#var drops = PresetManager.getpre(drops_path).instantiate()
-	#get_parent().call_deferred("add_child",drops)
-#
-	#drops.global_position = global_position
+	SignalBus.drop.emit(drops_path,global_position,1)
+
 
 #体术攻击准备就绪，体术攻击敌人ready中调用
 func melee_battle_ready(disable = false):

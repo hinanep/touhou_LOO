@@ -52,6 +52,8 @@ func first_init():
 		if attack_info.reflection.has('wall'):
 			$".".collision_mask += 4
 	set_shape(attack_info.shape)
+	if attack_info.has('buff'):
+		$damage_area.collision_mask = 1
 
 
 #初始化
@@ -133,19 +135,26 @@ func set_shape(cshape):
 #dot伤害
 func dot():
 	if dot_on :
+			#print('dot')
 			if $damage_area.has_overlapping_bodies():
+
 				_on_hit()
 				for b in $damage_area.get_overlapping_bodies():
-					if b.has_method("take_damage"):
+					if b.has_method("mob_take_damage"):
 						damage(b,attack_info.damage)
-
+					elif b.has_method('player_take_damage'):
+						if attack_info.has('buff'):
+							for i in attack_info.buff.size():
+								SignalBus.player_add_buff.emit(attack_info.buff[i],attack_info.buff_value_factor[i],attack_info.id)
 #对body造成伤害
 func damage(body,damagei,damage_s = damage_source):
 
 	if attack_info.damage_type == 'danma':
-		body.take_damage(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
+
+		body.mob_take_damage(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
 	else:
-		body.take_damage(player_var.player_make_melee_damage(damagei*attack_info.physical_addition_efficiency,damage_s))
+		print(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
+		body.mob_take_damage(player_var.player_make_melee_damage(damagei*attack_info.physical_addition_efficiency,damage_s))
 
 	give_debuff(body)
 	if body.hp <= 0:
@@ -176,8 +185,11 @@ func _on_hit():
 
 #敌人进入攻击范围时触发
 func _on_damage_area_body_entered(body):
-
-	if body.has_method("take_damage"):
+	if attack_info.has('buff'):
+		for i in attack_info.buff.size():
+			SignalBus.player_add_buff.emit(attack_info.buff[i],attack_info.buff_value_factor[i],attack_info.id)
+		return
+	if body.has_method("mob_take_damage"):
 		_on_hit()
 
 		damage(body,attack_info.damage)
@@ -217,15 +229,12 @@ func on_kill(target_position):
 
 	if attack_info.has('defeating_item_creation'):
 		for item in attack_info.defeating_item_creation:
-			drop_item(item,attack_info.defeating_item_creation_value,global_position)
+			drop_item(item,attack_info.defeating_item_creation_value,target_position)
 
 #掉落
 func drop_item(item,value,dposition):
+	SignalBus.drop.emit('drops_'+item,dposition,value)
 
-	var drops = PresetManager.getpre('drops_'+item).instantiate()
-	drops.global_position = dposition
-	drops.value = value
-	G.get_game_root().add_child(drops)
 
 #当本攻击是boost类型且接受到激活信号时触发
 func boost_active(cp_info,is_active:bool):

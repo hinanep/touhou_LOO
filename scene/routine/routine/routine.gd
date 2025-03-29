@@ -28,7 +28,7 @@ func _ready():
 				attack_nodes.append(atknode)
 
 	for sum in table.Summoned:
-		if table.Summoned[sum].routine_group == routine_info.id:
+		if table.Summoned[sum].routine_group.has(routine_info.id) :
 			var sumnode = add_summon(sum)
 			if routine_info.has('creating_summoned') and sum in routine_info.creating_summoned:
 				summons.append(sumnode)
