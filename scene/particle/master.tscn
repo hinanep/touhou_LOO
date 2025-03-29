@@ -49,7 +49,7 @@ curve = SubResource("Curve_sf78s")
 [node name="Master" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118289, 0, 10.7279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 5.004)
 cull_mask = 8192
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
