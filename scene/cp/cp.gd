@@ -31,6 +31,7 @@ func trigger_buff(i):
 										cp_info.buff_value_factor[i],
 										cp_info.id)
 func on_player_hurt():
-	for i in range(cp_info.creating_routine.size()):
-		if cp_info.creating_routine_moment[i]=='hurt':
-			SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],null)
+	if(cp_info.has('creating_routine')):
+		for i in range(cp_info.creating_routine.size()):
+			if cp_info.creating_routine_moment[i]=='hurt':
+				SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],null)

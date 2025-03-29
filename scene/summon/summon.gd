@@ -68,7 +68,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 
-	global_position =global_position.move_toward(target_location,delta * 400)
+	global_position =global_position.move_toward(target_location,delta * 400 * player_var.bullet_speed_ratio)
 
 	$Line2D.set_point_position(1,player_var.player_node.global_position-global_position)
 

@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb4cfns75xyno"]
+[gd_scene load_steps=8 format=3 uid="uid://bb4cfns75xyno"]
 
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="1_85b3i"]
+[ext_resource type="Shader" path="res://scene/particle/master_spark/master_spark.gdshader" id="1_ewr7t"]
 [ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/pic/bullet/魔炮.png" id="2_fpatt"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xekbb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dponk"]
+render_priority = 0
+shader = ExtResource("1_ewr7t")
+shader_parameter/line_width = 1.0
+shader_parameter/line_length = 1.0
+shader_parameter/correct_uv = true
+shader_parameter/uv_offset_animation = Vector2(0, 1)
+shader_parameter/default_axis = Vector3(0, 1, 0)
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 1.0
 
 [sub_resource type="Curve" id="Curve_gs2wo"]
 _data = [Vector2(0.0264901, 0.144282), 0.0, 0.0, 0, 0, Vector2(0.31457, 0.40359), 0.0, 0.0, 0, 0, Vector2(0.990066, 0.490027), 0.0, 0.0, 0, 0]
@@ -13,12 +23,15 @@ point_count = 3
 offsets = PackedFloat32Array(0.0364963, 0.288321, 1)
 colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800073, 1, 0.786916, 0.0004815, 0.78691, 1)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xekbb"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="MasterSpark" type="CPUParticles2D" parent="."]
 z_index = 10
-material = SubResource("CanvasItemMaterial_xekbb")
-amount = 4
+material = SubResource("ShaderMaterial_dponk")
+amount = 20
+lifetime = 5.0
 texture = ExtResource("1_85b3i")
 spread = 0.0
 gravity = Vector2(0, 0)

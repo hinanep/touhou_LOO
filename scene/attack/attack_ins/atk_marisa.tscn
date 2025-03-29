@@ -2,19 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_cci4r"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_y2vk4"]
-[ext_resource type="Texture2D" uid="uid://hjt0yj6vvk6d" path="res://asset/pic/bullet/魔炮.png" id="3_cp73b"]
 [ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_od6hf"]
+[ext_resource type="PackedScene" uid="uid://jh25f6kbce2d" path="res://scene/particle/master_spark/master_spark2.tscn" id="4_qrg0o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sgjwi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_cp73b")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Attack" instance=ExtResource("1_cci4r")]
 script = ExtResource("2_y2vk4")
@@ -25,6 +16,10 @@ shape = ExtResource("3_od6hf")
 [node name="texture" parent="." index="5"]
 position = Vector2(-0.5, 0)
 rotation = 0.0
-scale = Vector2(0.00416667, 0.027)
+scale = Vector2(0.02, 0.03)
 sprite_frames = SubResource("SpriteFrames_sgjwi")
 offset = Vector2(3000, 0)
+
+[node name="Node2D" parent="texture" index="0" instance=ExtResource("4_qrg0o")]
+position = Vector2(30, 0)
+scale = Vector2(1, 0.5)

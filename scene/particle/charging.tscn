@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0x756vtjadka"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpork"]
+emission_enabled = true
+emission = Color(0.957242, 0.779872, 0.310986, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ds3g4"]
+material = SubResource("StandardMaterial3D_kpork")
+radius = 0.05
+height = 0.1
+
+[node name="charging" type="Node3D"]
+
+[node name="charging" type="CPUParticles3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.232383, 0, 0.185613)
+amount = 30
+lifetime = 0.29
+speed_scale = 3.0
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_ds3g4")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 8.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -22.52
+radial_accel_max = -15.89
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.590544)
+cull_mask = 1040383
+projection = 2

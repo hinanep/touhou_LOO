@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://jh25f6kbce2d"]
+
+[ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/charging.tscn" id="1_oc2ru"]
+[ext_resource type="Shader" path="res://scene/particle/master_spark/center_white.gdshader" id="1_uqn6h"]
+[ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master.tscn" id="2_3lh6v"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7iy1l"]
+light_mode = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n1gil"]
+viewport_path = NodePath("master_spark/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_dvp2e"]
+offsets = PackedFloat32Array(0.787611, 0.995575)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8a4a"]
+gradient = SubResource("Gradient_dvp2e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lu5jp"]
+shader = ExtResource("1_uqn6h")
+shader_parameter/gradient_color = SubResource("GradientTexture1D_q8a4a")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n2i1a"]
+viewport_path = NodePath("master/SubViewport")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="master_spark" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.156863, 1)
+material = SubResource("CanvasItemMaterial_7iy1l")
+position = Vector2(-1, -2)
+scale = Vector2(0.7, 0.7)
+texture = SubResource("ViewportTexture_n1gil")
+
+[node name="SubViewport" type="SubViewport" parent="master_spark"]
+transparent_bg = true
+
+[node name="charging" parent="master_spark/SubViewport" instance=ExtResource("1_oc2ru")]
+
+[node name="master" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lu5jp")
+position = Vector2(-2, 3)
+rotation = -0.0152314
+scale = Vector2(2.176, 4)
+texture = SubResource("ViewportTexture_n2i1a")
+
+[node name="SubViewport" type="SubViewport" parent="master"]
+transparent_bg = true
+
+[node name="Master" parent="master/SubViewport" instance=ExtResource("2_3lh6v")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
