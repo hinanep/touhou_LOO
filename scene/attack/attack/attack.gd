@@ -216,7 +216,8 @@ func _on_bullet_erase_area_body_entered(body):
 func on_kill(target_position):
 
 	if attack_info.has('defeating_item_creation'):
-		drop_item(attack_info.defeating_item_creation,attack_info.defeating_item_creation_value,global_position)
+		for item in attack_info.defeating_item_creation:
+			drop_item(item,attack_info.defeating_item_creation_value,global_position)
 
 #掉落
 func drop_item(item,value,dposition):

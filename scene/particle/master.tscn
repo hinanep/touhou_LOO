@@ -1,30 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0x756vtjadka"]
+[gd_scene load_steps=10 format=3 uid="uid://cinuqkkm2arnk"]
 
-[sub_resource type="Environment" id="Environment_quntc"]
-ambient_light_color = Color(0.864675, 0.864675, 0.864675, 1)
-ambient_light_energy = 2.59
+[ext_resource type="Shader" path="res://scene/particle/master.gdshader" id="1_uma1c"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_k7vla"]
-radius = 0.1
-height = 0.2
+[sub_resource type="Curve" id="Curve_2jy5x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0165289, 0.10989), 5.15169, 5.15169, 0, 0, Vector2(0.239669, 0.725275), 0.0, 0.0, 0, 0, Vector2(0.483471, 0.923077), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_e5t7m"]
+curve = SubResource("Curve_2jy5x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8vot5"]
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.1
+orbit_velocity_min = 10.0
+orbit_velocity_max = 10.0
+gravity = Vector3(1, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+scale_curve = SubResource("CurveTexture_e5t7m")
+
+[sub_resource type="Curve" id="Curve_sf78s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.182482, 0.81512), 2.97983, 2.97983, 0, 0, Vector2(0.459854, 0.863773), 0.0, 0.0, 0, 0, Vector2(0.733577, 0.941617), 0.0, 0.0, 0, 0, Vector2(1, 0.776198), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_1qa3e"]
+offsets = PackedFloat32Array(0, 0.678899, 1)
+colors = PackedColorArray(0.984314, 1, 0.27451, 1, 0.99961, 0.695453, 0.647568, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_el7g3"]
+gradient = SubResource("Gradient_1qa3e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp6by"]
+render_priority = 0
+shader = ExtResource("1_uma1c")
+shader_parameter/gradient_color = SubResource("GradientTexture2D_el7g3")
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_dnq1d"]
+material = SubResource("ShaderMaterial_vp6by")
+radius = 1.2
+sections = 3
+section_length = 1.0
+cap_top = false
+cap_bottom = false
+curve = SubResource("Curve_sf78s")
 
 [node name="Master" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80666, 1.11043, 5.85087)
-environment = SubResource("Environment_quntc")
-current = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118289, 0, 10.7279)
+cull_mask = 8192
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
-light_energy = 2.0
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.47223e-07, -2, 1.64301e-07, -1.87939, -8.21505e-08, 0.68404, -0.68404, -2.04746e-07, -1.87939, 0.0734509, 0, -0.0544443)
+layers = 8192
+gi_mode = 2
+amount = 32
+lifetime = 6.0
+preprocess = 2.0
+speed_scale = 2.0
+visibility_aabb = AABB(-2, -7.06333, -2, 4, 9.06266, 4)
+draw_order = 2
+process_material = SubResource("ParticleProcessMaterial_8vot5")
+draw_pass_1 = SubResource("TubeTrailMesh_dnq1d")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23104, 1.51023, -0.0014081)
-mesh = SubResource("SphereMesh_k7vla")
-emission_shape = 1
-emission_sphere_radius = 1.0
-spread = 20.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.721857, 0, -0.692042, 0, 1, 0, 0.692042, 0, 0.721857, 0, 0, 0)

@@ -28,7 +28,7 @@ func _open():
 	$SpawnManager.add_mob(dummm)
 
 
-	$Sprite2D.texture =$Sprite2D/SubViewport.get_texture()
+
 	#for i in 2000:
 		#SignalBus.drop.emit("drops_p",%player.global_position+Vector2(randf_range(-1,1),randf_range(-1,1))*400)
 func _physics_process(delta: float) -> void:
