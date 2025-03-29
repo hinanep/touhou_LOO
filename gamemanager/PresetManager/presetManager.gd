@@ -45,7 +45,7 @@ var preset_map = {
 	"ui_test_skillbutton":"res://ui/TestScene/buttons/test_skillbutton.tscn",
 	'img_p':"res://asset/pic/p.png",
 	"img_sc_marisa":"res://asset/pic/crystal/魔理沙.png",
-	"img_sc_youmu":"res://asset/pic/crystal/魔理沙.png",
+	"img_sc_youmu":"res://asset/pic/crystal/妖梦.png",
 	"img_sc_daiyousei":"res://asset/pic/crystal/大妖精.png",
 
 	"img_ski_basemagic":"res://asset/pic/crystal/大妖精.png",
@@ -56,13 +56,25 @@ var preset_map = {
 	"img_ski_wriggle":"res://asset/pic/crystal/莉格露.png",
 	"img_ski_rumia":"res://asset/pic/crystal/露米娅.png",
 	"img_ski_sanae":"res://asset/pic/crystal/早苗.png",
-	"img_ski_sakuya":"res://asset/pic/crystal/早苗.png",
+	"img_ski_sakuya":"res://asset/pic/crystal/咲夜.png",
 	"img_ski_misumaru":"res://asset/pic/crystal/魅须丸.png",
 
 	"img_passive_pachuli":"res://asset/pic/crystal/帕秋莉.png",
+	"img_passive_saki":"res://asset/pic/crystal/早鬼.png",
+	"img_passive_narumi":"res://asset/pic/crystal/成美.png",
+	"img_passive_junko":"res://asset/pic/crystal/纯狐.png",
+	"img_passive_kisumi":"res://asset/pic/crystal/琪斯美.png",
+	"img_passive_momoyo":"res://asset/pic/crystal/百百世.png",
 
-	"img_cp_reima":"res://asset/pic/crystal/灵梦×魔理沙.png",
-	"img_cp_reitama":"res://asset/pic/crystal/灵丸.png",
+	"img_cp_reimu_marisa":"res://asset/pic/crystal/灵梦×魔理沙.png",
+	"img_cp_reimu_sanae":"res://asset/pic/crystal/灵梦×早苗.png",
+	"img_cp_reimu_misumaru":"res://asset/pic/crystal/灵梦×魅须丸.png",
+	"img_cp_marisa_alice":"res://asset/pic/crystal/魔理沙×爱丽丝.png",
+	"img_cp_marisa_patchouli":"res://asset/pic/crystal/魔理沙×帕秋莉.png",
+	"img_cp_alice_patchouli":"res://asset/pic/crystal/爱丽丝×帕秋莉.png",
+	"img_cp_marisa_alice_patchouli":"res://asset/pic/crystal/三魔女.png",
+	"img_cp_marisa_narumi":"res://asset/pic/crystal/魔理沙×成美.png",
+	
 
 
 	'img_atk_basemagic':"res://asset/pic/bullet/子弹.png",
