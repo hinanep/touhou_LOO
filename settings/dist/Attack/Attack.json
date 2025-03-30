@@ -600,7 +600,7 @@
 	  200,
 	  1080
 	],
-	"ri_dependence": "",
+	"ri_dependence": "lock",
 	"ri": 0.0,
 	"locking_type": "front",
 	"reference_system": "character",
@@ -620,10 +620,10 @@
   },
   "atk_alice_marisa_attachment_patchouli_boost": {
 	"id": "atk_alice_marisa_attachment_patchouli_boost",
-	"routine_group": "ski_alice",
+	"routine_group": "rou_alice_marisa_attachment2",
 	"upgrade_group": "",
 	"type": "boost",
-	"effective_condition": "cp_marisa_patchouli",
+	"effective_condition": "cp_marisa_alice_patchouli",
 	"damage_times": "",
 	"damage_type": "",
 	"damage": 0.0,

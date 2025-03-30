@@ -283,7 +283,7 @@ func upgrade_attack(group):
 	if table.Upgrade[group].has('bullet_speed_addition'):
 
 		for i in attack_info.moving_parameter.size():
-			if i == 1:
+			if i == 1 and attack_info.moving_rule != 'polar':
 				continue
 			attack_info.moving_parameter[i]*=(1+table.Upgrade[group].bullet_speed_addition[level-1])/(1+table.Upgrade[group].bullet_speed_addition[level-2])
 	if table.Upgrade[group].has('duration_addition'):

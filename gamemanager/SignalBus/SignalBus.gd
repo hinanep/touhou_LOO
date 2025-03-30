@@ -55,8 +55,8 @@ func _ready() -> void:
 	var signal_dic = get_signal_list()
 
 	for sig in signal_dic:
-		#if sig.name =='trigger_routine_by_id':
-			#continue
+		if sig.name =='trigger_routine_by_id':
+			continue
 		connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
 
 

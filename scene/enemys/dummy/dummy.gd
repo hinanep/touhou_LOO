@@ -5,7 +5,7 @@ var damage_array = []
 func _ready():
 
 	$dps.wait_time = dpstick
-
+	$buff.brittle_modify = 0.0001
 	super._ready()
 
 

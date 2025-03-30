@@ -98,7 +98,7 @@ func _process(delta: float) -> void:
 	if(ResourceLoader.load_threaded_get_status(preset_map['img_atk_misumaru']) == 3):
 		for pname in preset_map:
 			preset_map[pname] = ResourceLoader.load_threaded_get(preset_map[pname])
-		process_mode = 4
+		process_mode = PROCESS_MODE_DISABLED
 
 func getpre(prename : String):
 	if preset_map.has(prename) :

@@ -10,3 +10,6 @@ script = ExtResource("2_ekuid")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="texture" parent="." index="5"]
+modulate = Color(1, 1, 1, 0.309804)

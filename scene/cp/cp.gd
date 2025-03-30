@@ -4,6 +4,7 @@ var cp_info = {}
 func _ready() -> void:
 	SignalBus.true_use_card.connect(on_using_card)
 	SignalBus.player_hurt.connect(on_player_hurt)
+	SignalBus.cp_del.connect(destroy)
 	on_unlocking()
 func on_unlocking():
 	if cp_info.has('giving_buff_moment'):
@@ -39,3 +40,7 @@ func on_player_hurt():
 		for i in range(cp_info.creating_routine.size()):
 			if cp_info.creating_routine_moment[i]=='hurt':
 				SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],false,global_position,rotation,null)
+func destroy(desid):
+	if desid == cp_info.id:
+		SignalBus.player_del_buff_by_source.emit(cp_info.id)
+		queue_free()

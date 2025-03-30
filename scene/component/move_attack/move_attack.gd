@@ -111,6 +111,7 @@ func move_trace_target(delta):
 	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]
 	velocity += acc*delta
 	velocity = velocity.normalized() * min(velocity.length(),attack_info.moving_parameter[2])
+	velocity *= player_var.bullet_speed_ratio
 	diretion = velocity.normalized()
 	return body.move_and_collide(velocity * delta)
 	#body.position += velocity * delta
@@ -142,14 +143,14 @@ func move_straight_init():
 				diretion = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized()
 func move_straight(delta):
 
-	velocity = min(attack_info.moving_parameter[2],velocity+acc*delta)
-	#body.position += velocity * diretion * delta
+	velocity = min(attack_info.moving_parameter[2],velocity+acc*delta) * player_var.bullet_speed_ratio
+
 	return body.move_and_collide(velocity * diretion * delta)
 
 
 func move_polar(delta):
-	polar_len += attack_info.moving_parameter[0] * delta
-	polar_angle += attack_info.moving_parameter[1] * delta
+	polar_len += attack_info.moving_parameter[0] * delta* player_var.bullet_speed_ratio
+	polar_angle += attack_info.moving_parameter[1] * delta* player_var.bullet_speed_ratio
 	body.position = Vector2.from_angle(deg_to_rad(polar_angle)) * polar_len
 
 

@@ -2,7 +2,7 @@ extends Node
 var rnd
 func _ready():
 	rnd = RandomNumberGenerator.new()
-	rnd.seed = hash("Hello world")
+	#rnd.seed = hash("Hello world")
 
 
 func random_nselect_from_allpool(n:int):

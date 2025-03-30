@@ -18,6 +18,6 @@ func format_display():
 func _on_timer_timeout():
 	seconds += 1
 	player_var.time_secs = seconds
-	minutes = floor(seconds/60)
+	minutes = floor(seconds/60.0)
 	format_display()
 	pass # Replace with function body.
