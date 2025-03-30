@@ -1017,11 +1017,7 @@
     "reference_system": "character",
     "moving": true,
     "moving_rule": "polar",
-    "moving_parameter_dependence": [
-      "atkdep_sakuya_polarangle",
-      "",
-      ""
-    ],
+    "moving_parameter_dependence": [],
     "moving_parameter": [
       120,
       20,
