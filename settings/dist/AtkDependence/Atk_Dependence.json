@@ -8,5 +8,15 @@
       0
     ],
     "relationship": "multiply"
+  },
+  "atkdep_sakuya_polarangle": {
+    "id": "atkdep_sakuya_polarangle",
+    "attribute": "number",
+    "calculation": "linear",
+    "calculation_parameter": [
+      1,
+      0
+    ],
+    "relationship": "multiply"
   }
 }

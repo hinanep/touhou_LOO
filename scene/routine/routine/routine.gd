@@ -107,26 +107,24 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 					if has_interval:
 						await  get_tree().create_timer(routine_info.interval).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
-					single_attack(gen_position,gen_rotation,parent_node)
+					single_attack(gen_position,gen_rotation,parent_node,j)
 					single_summon(gen_position,gen_rotation)
 
 #生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
-func single_attack(generate_position,generate_rotation,parent_node ):
+func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0):
 	#AudioManager.play_sfx(routine_info["shoot_sfx"])
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
 				var new_attack = attack_nodes[select_from_luck()].duplicate()
 				if parent_node != $".":
-
-
 					new_attack.position = generate_position
-					#new_attack.rotation = generate_rotation
+
 				else:
 
 					new_attack.global_position = generate_position
 					#new_attack.rotation = generate_rotation
-
+				new_attack.batch_num = batch_num
 				parent_node.add_child(new_attack)
 
 	else:
@@ -141,7 +139,7 @@ func single_attack(generate_position,generate_rotation,parent_node ):
 				else:
 						new_attack.global_position = generate_position
 						#new_attack.rotation = generate_rotation
-
+				new_attack.batch_num = batch_num
 				parent_node.add_child(new_attack)
 
 #生成单次召唤物 TODO：随机种类召唤物
