@@ -36,7 +36,7 @@ var preset_map = {
 	"music_sfx_levelup":"res://asset/music/sfx/levelup.wav",
 
 	"music_bgm_saga":"res://asset/music/Japanese Saga.mp3",
-	"music_bgm_oldworld":"res://asset/music/令人怀念的东方之血 ~ Old World.mp3",
+	"music_bgm_oldworld":"res://asset/music/ChillKeine.wav",
 	"music_bgm_ff":"res://asset/music/祖堅正慶 - 神なき世界.mp3",
 
 	"ui_select_button":"res://ui/LevelUp/select_button.tscn",
