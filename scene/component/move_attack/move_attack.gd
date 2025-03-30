@@ -67,6 +67,9 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 				velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
 			moving_rule.polar:
 				move_type = Callable(move_polar)
+				if attack_info.has('moving_parameter_dependence'):
+					if attack_info.moving_parameter_dependence[0] == 'atkdep_sakuya_polarangle':
+						polar_angle +=  attack_info.moving_parameter[0] + 120*body.batch_num
 	if !attack_info.moving:
 		move_type = move_stay
 
@@ -149,9 +152,11 @@ func move_straight(delta):
 
 
 func move_polar(delta):
-	polar_len += attack_info.moving_parameter[0] * delta* player_var.bullet_speed_ratio
-	polar_angle += attack_info.moving_parameter[1] * delta* player_var.bullet_speed_ratio
+	polar_len += attack_info.moving_parameter[1] * delta* player_var.bullet_speed_ratio
+	polar_angle += attack_info.moving_parameter[2] * delta* player_var.bullet_speed_ratio
 	body.position = Vector2.from_angle(deg_to_rad(polar_angle)) * polar_len
+
+
 
 
 

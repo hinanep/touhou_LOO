@@ -39,8 +39,7 @@ colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800
 [node name="master_spark" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.156863, 1)
 material = SubResource("CanvasItemMaterial_7iy1l")
-position = Vector2(-1, -2)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("ViewportTexture_n1gil")
 
 [node name="SubViewport" type="SubViewport" parent="master_spark"]
@@ -51,8 +50,8 @@ transparent_bg = true
 [node name="master" type="Sprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_lu5jp")
-position = Vector2(268, -1)
-scale = Vector2(1.1, 1.2)
+position = Vector2(442.7, -1)
+scale = Vector2(1.91133, 1.8)
 texture = SubResource("ViewportTexture_n2i1a")
 
 [node name="SubViewport" type="SubViewport" parent="master"]
