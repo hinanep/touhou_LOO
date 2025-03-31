@@ -57,6 +57,7 @@ safe_margin = 2.0
 script = ExtResource("1_mcymg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 skew = -1.56905
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
@@ -86,11 +87,11 @@ shape = SubResource("CircleShape2D_v8ilp")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
-offset_left = -18.0
+offset_left = -14.0
 offset_top = -18.0
-offset_right = 126.0
+offset_right = 130.0
 offset_bottom = 2.0
-scale = Vector2(0.25, 0.125)
+scale = Vector2(0.2, 0.125)
 tooltip_text = "
 "
 theme_override_styles/fill = SubResource("StyleBoxFlat_2yl7h")

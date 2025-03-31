@@ -27,7 +27,7 @@ var status = {
 	curse = 1.0, #- 诅咒：增加敌人的各属性和刷新率
 	mana_max = 2000,#- 符力上限：可存储的最大符力
 	skill_level_max = 6,
-	skill_num_max = 5,
+	skill_num_max = 6,
 	summon_level_max = 6,
 
 	player_hp = 2000.0,
@@ -43,7 +43,7 @@ var status = {
 	card_full = false,#没有能升级的符卡并且卡位满了
 	card_num_full = false,#卡位满了
 	card_level_max = 6,
-	card_num_max = 5,
+	card_num_max = 3,
 
 
 
@@ -51,7 +51,7 @@ var status = {
 	passive_num_full = false,
 	passive_full = false,
 	passive_level_max = 6,
-	passive_num_max = 5,
+	passive_num_max = 3,
 
 	is_card_casting = false,
 	exp_need = [12,24,36,48,60,72,84,96,108,132,156,184,216,260,292,348,384,408,432,456,480,504,9223372036854775807],

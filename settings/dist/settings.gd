@@ -4,11 +4,11 @@ extends Node
 
 
 static func loader(path:String):
-    var file = FileAccess.open(path,FileAccess.READ)
-    var txt = file.get_as_text()
-    var data = JSON.parse_string(txt)
-    file.close()
-    return data
+	var file = FileAccess.open(path,FileAccess.READ)
+	var txt = file.get_as_text()
+	var data = JSON.parse_string(txt)
+	file.close()
+	return data
 
 var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
 var Attack = loader('res://settings/dist/Attack/Attack.json')
