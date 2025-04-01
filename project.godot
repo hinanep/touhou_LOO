@@ -64,6 +64,10 @@ folder_colors={
 
 import/blender/enabled=false
 
+[global_group]
+
+drop=""
+
 [gui]
 
 theme/default_font_generate_mipmaps=true

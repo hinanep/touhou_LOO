@@ -48,9 +48,7 @@ var status = {
 
 
 
-	passive_num_full = false,
-	passive_full = false,
-	passive_level_max = 6,
+
 	passive_num_max = 3,
 
 	is_card_casting = false,

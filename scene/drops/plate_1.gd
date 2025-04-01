@@ -18,13 +18,13 @@ func _on_body_entered(_body):
 	match color:
 		#red
 		1:
-			get_tree().call_group("crystal","fly_to_player",2,1,1)
+			get_tree().call_group("drop","fly_to_player",2,1,1)
 			game_manager.add_exp(player_var.exp_need)
 		#green
 		2:
-			get_tree().call_group("crystal","fly_to_player",1,2,1)
+			get_tree().call_group("drop","fly_to_player",1,2,1)
 			SignalBus.plate_use_card.emit()
 		#blue
 		3:
-			get_tree().call_group("crystal","fly_to_player",1,1,2,true)
+			get_tree().call_group("drop","fly_to_player",1,1,2,true)
 	queue_free()

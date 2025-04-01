@@ -19,7 +19,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DropsBase" instance=ExtResource("1_wl1w0")]
+[node name="DropsBase" groups=["drop"] instance=ExtResource("1_wl1w0")]
 z_index = 0
 monitoring = true
 script = ExtResource("2_chgmx")

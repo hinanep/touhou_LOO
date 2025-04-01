@@ -7,6 +7,7 @@ signal shoot
 var node_active = true
 var hp
 var target_location:Vector2
+var max_level = 0
 @export var damage_source = ''
 func _ready():
 
@@ -19,7 +20,8 @@ func _ready():
 		SignalBus.cp_del.connect(boost_active.bind(false))
 		return
 
-
+	#if table.Upgrade.has(summon_info.upgrade_group):
+		#max_level = table.Upgrade[summon_info.upgrade_group].level
 	SignalBus.upgrade_group.connect(upgrade_summon)
 
 	if summon_info.has('special'):
@@ -84,8 +86,7 @@ func upgrade_summon(group):
 		return
 
 	level += 1
-	if(level == player_var.summon_level_max):
-		SignalBus.upgrade_max.emit(summon_info.id)
+
 
 func scdestroy(scid):
 	for rs in summon_info.special_routine:

@@ -52,6 +52,7 @@ func spawn_mob():
 		mob.drops_path = "drops_plate"
 		mob.set_scale(Vector2(4,4))
 	#instantiate()
+	mob.drop_num = 1.0
 	SpawnManager.add_mob(mob)
 
 

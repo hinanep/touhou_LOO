@@ -70,7 +70,7 @@ collision_layer = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+[node name="melee_damage_area" type="CollisionShape2D" parent="melee_damage_area"]
 shape = SubResource("CircleShape2D_v8ilp")
 
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]

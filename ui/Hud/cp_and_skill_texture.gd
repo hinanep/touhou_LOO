@@ -26,6 +26,17 @@ func set_cp(cp_info):
 		$RichTextLabel.text = selfname
 		SignalBus.cp_del.connect(destroy)
 
+func set_psv(psv_info):
+		id = psv_info.id
+
+		selfname = table.TID[id][player_var.language]
+		upgrade_group = psv_info.upgrade_group
+
+		set_texture(PresetManager.getpre('img_'+id))
+		$RichTextLabel.text = selfname
+
+		SignalBus.del_passive.connect(destroy)
+		SignalBus.upgrade_group.connect(upgrade)
 
 
 func destroy(did):

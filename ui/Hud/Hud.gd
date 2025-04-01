@@ -16,11 +16,13 @@ extends BaseGUIView
 @onready var card_container = $hud/card_container
 @onready var skill_container = $hud/skill_container
 @onready var cp_container = $hud/cp_container
+@onready var psv_container = $hud/psv_container
 func _ready():
 	hp.max_value = player_var.player_hp_max
 	card_mana.max_value = player_var.mana_max
 	SignalBus.add_skill.connect(add_skill)
 	SignalBus.add_card.connect(on_add_card)
+	SignalBus.add_passive.connect(add_passive)
 	SignalBus.del_card.connect(on_del_card)
 
 	SignalBus.card_select_next.connect(card_display)
@@ -117,6 +119,13 @@ func add_cp(cp_info):
 		newcp.set_cp(cp_info)
 		cp_container.add_child(newcp)
 
+func add_passive(psv_info):
+
+		var newpsv = cp_and_skill_texture.instantiate()
+
+		newpsv.set_psv(psv_info)
+
+		psv_container.add_child(newpsv)
 
 
 func _on_renew_timer_timeout():

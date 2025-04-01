@@ -17,9 +17,9 @@ func _physics_process(delta):
 
 func _on_body_entered(_body):
 
-	game_manager.add_exp(experience)
-	game_manager.add_score(score)
-	game_manager.add_mana(mana)
+	game_manager.add_exp(experience*value)
+	game_manager.add_score(score*value)
+	game_manager.add_mana(mana*value)
 	if point_ratio:
 		player_var.point_ratio += 0.01
 	queue_free()

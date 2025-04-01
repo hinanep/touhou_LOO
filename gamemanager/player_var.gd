@@ -8,15 +8,21 @@ var range_add_ratio#攻击范围
 var danma_times  #弹幕发射数量加成
 var melee_times  # 体术攻击次数
 var colddown_reduce #冷却缩减
-
-var player_hp_max: #生命上限
+var player_hp=0:
+	get:
+		return player_hp
+	set(value):
+		player_hp = clamp(value,-1,player_hp_max)
+var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
 	set(value):
+		var ex = value - player_hp_max
 		player_hp_max = value
-		print('hp='+str(player_hp_max))
-var hp_max_ex = 200
-var hp_max_ex_percent = 1.5
+		player_hp += ex
+
+var hp_max_ex = 0
+var hp_max_ex_percent = 1
 
 var player_hp_regen  #每秒生命回复
 var lifesteal  #吸血：造成伤害时回复伤害量与吸血相乘的生命值
@@ -33,7 +39,11 @@ var point_ratio #- 得点倍率：影响每一记忆碎片增加多少分数
 var mana_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times #- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse  #- 诅咒：增加敌人的各属性和刷新率
-var mana_max #- 符力上限：可存储的最大符力
+var mana_max=0: #- 符力上限：可存储的最大符力
+			set(value):
+				var ex = value - mana_max
+				mana_max = value
+				mana += ex
 var skill_level_max
 var skill_num_max
 
@@ -46,13 +56,9 @@ var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
 var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
-var player_hp:
-	get:
-		return player_hp
-	set(value):
-		player_hp = clamp(value,-1,player_hp_max)
 
-var mana:
+
+var mana=0:
 		set(value):
 			mana = clamp(value,0,mana_max)
 var mana_cost
@@ -70,9 +76,8 @@ var card_num_max
 
 var summon_level_max
 
-var passive_num_full
-var passive_full
-var passive_level_max
+
+
 var passive_num_max
 
 var is_card_casting

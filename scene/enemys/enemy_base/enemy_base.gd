@@ -8,6 +8,7 @@ var drops_path = "drops_p"
 var target
 var invincible = false
 var multi = 1.0
+var drop_num = 1.0
 signal die(id)
 var is_inscreen:bool = false
 var mob_info = {
@@ -136,7 +137,7 @@ func died():
 
 #掉落
 func drop():
-	SignalBus.drop.emit(drops_path,global_position,1)
+	SignalBus.drop.emit(drops_path,global_position,drop_num)
 
 
 #体术攻击准备就绪，体术攻击敌人ready中调用

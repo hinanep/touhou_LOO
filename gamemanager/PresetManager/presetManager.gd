@@ -59,12 +59,12 @@ var preset_map = {
 	"img_ski_sakuya":"res://asset/pic/crystal/咲夜.png",
 	"img_ski_misumaru":"res://asset/pic/crystal/魅须丸.png",
 
-	"img_passive_pachuli":"res://asset/pic/crystal/帕秋莉.png",
-	"img_passive_saki":"res://asset/pic/crystal/早鬼.png",
-	"img_passive_narumi":"res://asset/pic/crystal/成美.png",
-	"img_passive_junko":"res://asset/pic/crystal/纯狐.png",
-	"img_passive_kisumi":"res://asset/pic/crystal/琪斯美.png",
-	"img_passive_momoyo":"res://asset/pic/crystal/百百世.png",
+	"img_psv_patchouli":"res://asset/pic/crystal/帕秋莉.png",
+	"img_psv_saki":"res://asset/pic/crystal/早鬼.png",
+	"img_psv_narumi":"res://asset/pic/crystal/成美.png",
+	"img_psv_junko":"res://asset/pic/crystal/纯狐.png",
+	"img_psv_kisumi":"res://asset/pic/crystal/琪斯美.png",
+	"img_psv_momoyo":"res://asset/pic/crystal/百百世.png",
 
 	"img_cp_reimu_marisa":"res://asset/pic/crystal/灵梦×魔理沙.png",
 	"img_cp_reimu_sanae":"res://asset/pic/crystal/灵梦×早苗.png",
