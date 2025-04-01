@@ -15,11 +15,9 @@ shape = ExtResource("3_od6hf")
 
 [node name="texture" parent="." index="5"]
 position = Vector2(-0.5, 0)
-rotation = 0.0
-scale = Vector2(0.02, 0.08)
+scale = Vector2(0.045, 0.024)
 sprite_frames = SubResource("SpriteFrames_sgjwi")
 offset = Vector2(3000, 0)
 
 [node name="Node2D" parent="texture" index="0" instance=ExtResource("4_qrg0o")]
-position = Vector2(30, 0)
-scale = Vector2(1, 0.5)
+position = Vector2(-1.90735e-06, -6.25)

@@ -30,9 +30,6 @@ script = ExtResource("2_ag7ab")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
 
-[node name="CollisionShape2D" parent="." index="4"]
-visible = false
-
 [node name="texture" parent="." index="5"]
 rotation = 0.0
 scale = Vector2(0.2, 0.01)

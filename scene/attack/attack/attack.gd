@@ -120,7 +120,7 @@ func set_shape(cshape):
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			#print(texture.scale)
-			texture.scale *= Vector2(attack_info.size[1]/20,attack_info.size[0]/20)
+			texture.scale *= Vector2(attack_info.size[0]/20,attack_info.size[1]/20)
 
 	$damage_area/CollisionShape2D.shape = cshape
 	$bullet_erase_area/CollisionShape2D.shape = cshape

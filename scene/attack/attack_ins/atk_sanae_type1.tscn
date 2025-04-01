@@ -29,7 +29,6 @@ script = ExtResource("2_p2d1r")
 shape = SubResource("CircleShape2D_56p1l")
 
 [node name="texture" parent="." index="5"]
-rotation = 0.0
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_kr2sq")
 animation = &"new_animation"

@@ -67,9 +67,8 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 				velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
 			moving_rule.polar:
 				move_type = Callable(move_polar)
-				if attack_info.has('moving_parameter_dependence'):
-					if attack_info.moving_parameter_dependence[0] == 'atkdep_sakuya_polarangle':
-						polar_angle +=  attack_info.moving_parameter[0] + 120*body.batch_num
+
+				polar_angle +=  attack_info.moving_parameter[0] + 120*body.batch_num
 	if !attack_info.moving:
 		move_type = move_stay
 
@@ -162,11 +161,11 @@ func move_polar(delta):
 
 func move_sekibanki(delta):
 	if(player_var.player_node != null):
-		velocity +=0.5 * attack_info.moving_parameter[0] *  body.global_position.direction_to(player_var.player_node.global_position) *delta*sqrt(body.global_position.distance_to(player_var.player_node.global_position))
+		velocity +=0.5 * attack_info.moving_parameter[0] * body.global_position.direction_to(player_var.player_node.global_position) *delta*sqrt(body.global_position.distance_to(player_var.player_node.global_position))
 	velocity +=  velocity.rotated(PI/2).normalized() * delta * attack_info.moving_parameter[0]
-	velocity = velocity.normalized() * attack_info.moving_parameter[0] * player_var.bullet_speed_ratio
-	#body.position += velocity * delta
 	diretion = velocity.normalized()
+	velocity = velocity.normalized() * attack_info.moving_parameter[0] * player_var.bullet_speed_ratio
+
 	return body.move_and_collide(velocity * delta)
 
 func move_stay(_delta):

@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmppkk7xftxae"]
+[gd_scene load_steps=4 format=3 uid="uid://cmppkk7xftxae"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_ddg6b"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_dc43h"]
+[ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_368xe"]
 
 [node name="Attack" instance=ExtResource("1_ddg6b")]
 script = ExtResource("2_dc43h")
 
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = ExtResource("3_368xe")
+
 [node name="CollisionShape2D" parent="." index="4"]
-visible = false
 disabled = true
 
 [node name="texture" parent="." index="5"]
-scale = Vector2(0.2, 0.224)
+scale = Vector2(0.2, 0.2)
 offset = Vector2(0, -50)
