@@ -105,10 +105,8 @@ func creep():
 func damage_num_display(num):
 	var d = damageNum.instantiate()
 	d.showdamage(num)
-	#d.global_position = global_position
-	d.position = Vector2(2*randf()-1,randf())*5
 
-	#$".".call_deferred("add_child",d)
+
 	add_child(d)
 
 

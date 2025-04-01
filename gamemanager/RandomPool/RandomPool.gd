@@ -51,6 +51,44 @@ func random_nselect_from_allpool(n:int):
 
 	return ans
 
+func random_nselect_from_have(n:int):
+	var cards = []
+	var skills = []
+	var passives = []
+
+	for skillname in player_var.SkillManager.skill_pool["choosed"]:
+		skills.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
+
+
+	for cardname in player_var.CardManager.card_pool["choosed"]:
+		cards.append([cardname,player_var.CardManager.card_pool["choosed"][cardname]["weight"]])
+
+	for passivename in player_var.PassiveManager.passive_pool["choosed"]:
+		passives.append([passivename,player_var.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
+
+	var pool = []
+	pool.append_array(cards)
+	pool.append_array(skills)
+	pool.append_array(passives)
+
+	var nselect = selectm_from_samples(pool,n)
+
+	var skills_ans = []
+	var cards_ans = []
+	var passives_ans = []
+	var ans = {}
+	for x in nselect:
+		if x in skills:
+			skills_ans.append(x[0])
+			ans[x[0]]='skill'
+		elif x in cards:
+			cards_ans.append(x[0])
+			ans[x[0]]='card'
+		elif x in passives:
+			passives_ans.append(x[0])
+			ans[x[0]]='passive'
+
+	return ans
 
 
 func selectm_from_samples(samples, m):

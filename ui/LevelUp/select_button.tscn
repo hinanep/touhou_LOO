@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwppujyrfed45"]
+[gd_scene load_steps=10 format=3 uid="uid://cwppujyrfed45"]
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_0h5rc"]
 [ext_resource type="Script" path="res://ui/LevelUp/select_button.gd" id="2_n5vdr"]
@@ -32,6 +32,14 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54iwe"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [node name="select_button" type="TextureButton"]
 offset_right = 256.0
@@ -76,12 +84,13 @@ sprite_frames = SubResource("SpriteFrames_jjexo")
 layout_mode = 0
 offset_left = 18.0
 offset_top = 24.0
-offset_right = 890.0
+offset_right = 1050.0
 offset_bottom = 224.0
 scale = Vector2(0.25, 0.25)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 100
+theme_override_styles/fill = SubResource("StyleBoxFlat_54iwe")
 text = "灵梦"
 fit_content = true
 scroll_active = false

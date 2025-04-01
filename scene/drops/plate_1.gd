@@ -8,12 +8,11 @@ func _ready():
 func _on_body_entered(_body):
 	game_manager.add_exp(experience)
 
-	for i in range(3):
-		if player_var.CpManager.random_choose_cp():
-			continue
-		else:
-			#random upgrade waza/card/passive
-			pass
+
+	if not player_var.CpManager.random_choose_cp():
+		for j in 3:
+			rand_upgrade()
+
 	var color = randi_range(1,3)
 	match color:
 		#red
@@ -28,3 +27,17 @@ func _on_body_entered(_body):
 		3:
 			get_tree().call_group("drop","fly_to_player",1,1,2,true)
 	queue_free()
+
+func rand_upgrade():
+	var selected = RandomPool.random_nselect_from_have(1)
+	if selected.is_empty():
+		print('no upgradeable')
+		return
+	for id in selected:
+		match selected[id]:
+			'skill':
+				SignalBus.try_add_skill.emit(id)
+			'card':
+				SignalBus.try_add_card.emit(id)
+			'passive':
+				SignalBus.try_add_passive.emit(id)
