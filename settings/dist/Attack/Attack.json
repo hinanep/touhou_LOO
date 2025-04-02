@@ -541,7 +541,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 5.0,
+    "damage": 7.0,
     "duration": 0.5,
     "duration_dependence": "",
     "debuff": [],
@@ -560,7 +560,7 @@
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      35.0
+      75.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -988,7 +988,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 5.0,
+    "damage": 2.0,
     "duration": 3.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1057,7 +1057,7 @@
     "defeating_item_creation_value": 0.0,
     "eraseing_item_creation": [],
     "eraseing_item_creation_value": 0.0,
-    "penetration": 2,
+    "penetration": 0,
     "shape": "circle",
     "size_dependence": [],
     "size": [

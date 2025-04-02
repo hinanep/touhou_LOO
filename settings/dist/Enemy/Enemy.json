@@ -6,7 +6,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -18,7 +18,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -30,7 +30,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -42,7 +42,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 100.0
@@ -54,7 +54,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -66,7 +66,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -78,7 +78,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -90,7 +90,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -102,7 +102,7 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 2.0,
     "magical_damage": 0.0,
     "health": 30.0,
     "speed": 50.0
@@ -114,9 +114,9 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 10.0,
+    "physical_damage": 4.0,
     "magical_damage": 0.0,
-    "health": 1000.0,
+    "health": 800.0,
     "speed": 30.0
   },
   "enm_eltkedama": {
@@ -126,9 +126,9 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
-    "health": 1000.0,
+    "health": 800.0,
     "speed": 150.0
   },
   "enm_teacher": {
@@ -138,9 +138,9 @@
     "danma": "",
     "barrage_parameter": [],
     "shoot_interval": 0.0,
-    "physical_damage": 12.0,
+    "physical_damage": 5.0,
     "magical_damage": 0.0,
-    "health": 1500.0,
+    "health": 1000.0,
     "speed": 50.0
   }
 }
