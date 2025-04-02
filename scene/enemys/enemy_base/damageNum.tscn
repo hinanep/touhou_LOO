@@ -67,6 +67,7 @@ autoplay = "new_animation"
 
 [node name="damage" type="Label" parent="."]
 modulate = Color(0.235294, 0.772549, 0.835294, 1)
+z_as_relative = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

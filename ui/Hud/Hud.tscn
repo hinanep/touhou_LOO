@@ -178,6 +178,7 @@ text = "lev."
 
 [node name="level_number" type="RichTextLabel" parent="hud/exp_bar"]
 modulate = Color(0.832836, 0.737421, 0.294243, 1)
+clip_contents = false
 layout_mode = 0
 offset_left = 26.0001
 offset_top = 99.0

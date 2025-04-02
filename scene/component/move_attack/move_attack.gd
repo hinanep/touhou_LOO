@@ -110,11 +110,12 @@ func move_trace_target(delta):
 		lock.find_next_target()
 		return
 
-	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]
+	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]* player_var.bullet_speed_ratio
 	velocity += acc*delta
-	velocity = velocity.normalized() * min(velocity.length(),attack_info.moving_parameter[2])
-	velocity *= player_var.bullet_speed_ratio
 	diretion = velocity.normalized()
+	velocity = diretion * min(velocity.length(),attack_info.moving_parameter[2]* player_var.bullet_speed_ratio)
+
+
 	return body.move_and_collide(velocity * delta)
 	#body.position += velocity * delta
 

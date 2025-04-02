@@ -51,6 +51,8 @@ radius = 16.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="enemy_base" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
 collision_layer = 2
 motion_mode = 1
 safe_margin = 2.0
