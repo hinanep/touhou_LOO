@@ -1,14 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://buapai5om3oao"]
+[gd_scene load_steps=9 format=3 uid="uid://buapai5om3oao"]
 
 [ext_resource type="Script" path="res://ui/LevelUp/LevelUp.gd" id="1_wgmem"]
 [ext_resource type="Script" path="res://ui/LevelUp/select_weapon.gd" id="2_2i5d0"]
 [ext_resource type="Texture2D" uid="uid://6nfx362wjv4p" path="res://asset/pic/ui/升级UI.png" id="3_kbms8"]
 [ext_resource type="Texture2D" uid="uid://cradmhyi52t4m" path="res://asset/pic/ui/120111_hr1.png" id="4_h36oa"]
 [ext_resource type="Texture2D" uid="uid://g5lvf18upjqr" path="res://asset/pic/ui/battletalk_hr1_oldver.png" id="5_qkjax"]
+[ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="6_hwo62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ah3e"]
 atlas = ExtResource("5_qkjax")
 region = Rect2(3, 291, 251, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkj25"]
+atlas = ExtResource("6_hwo62")
+region = Rect2(1, 99, 254, 85)
 
 [node name="LevelUp" type="Control"]
 process_mode = 3
@@ -57,7 +62,10 @@ focus_mode = 2
 
 [node name="ban" type="TextureButton" parent="select_weapon/select_buttons2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../abandon")
+focus_neighbor_bottom = NodePath("../reroll")
 texture_normal = SubResource("AtlasTexture_2ah3e")
+texture_focused = SubResource("AtlasTexture_nkj25")
 
 [node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/ban"]
 layout_mode = 0
@@ -74,7 +82,10 @@ scroll_active = false
 
 [node name="reroll" type="TextureButton" parent="select_weapon/select_buttons2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../ban")
+focus_neighbor_bottom = NodePath("../abandon")
 texture_normal = SubResource("AtlasTexture_2ah3e")
+texture_focused = SubResource("AtlasTexture_nkj25")
 
 [node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/reroll"]
 layout_mode = 0
@@ -91,7 +102,10 @@ scroll_active = false
 
 [node name="abandon" type="TextureButton" parent="select_weapon/select_buttons2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../reroll")
+focus_neighbor_bottom = NodePath("../ban")
 texture_normal = SubResource("AtlasTexture_2ah3e")
+texture_focused = SubResource("AtlasTexture_nkj25")
 
 [node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/abandon"]
 layout_mode = 0
@@ -105,6 +119,15 @@ theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[color=white]放弃升级"
 scroll_active = false
+
+[node name="Control" type="Control" parent="select_weapon"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = -67.0
+offset_top = -67.0
+offset_right = 1209.0
+offset_bottom = 657.0
 
 [connection signal="button_up" from="select_weapon/select_buttons2/ban" to="select_weapon" method="_on_ban_button_up"]
 [connection signal="button_up" from="select_weapon/select_buttons2/reroll" to="select_weapon" method="_on_reroll_button_up"]

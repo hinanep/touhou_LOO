@@ -8,14 +8,24 @@ var ban_mode = false
 func _ready():
 	selected = RandomPool.random_nselect_from_allpool(select_num)
 	for id in selected:
-		var card_button = card_button_pre.instantiate()
+		var card_button:TextureButton = card_button_pre.instantiate()
 		card_button.set_text(selected[id],id)
+		card_button.name = 'choose'
 		card_button.upgrade_selected.connect(on_button_selected.bind(id))
 		$select_buttons.add_child(card_button)
+		card_button.focus_neighbor_right = '../../select_buttons2/ban'
 
 
 	if $select_buttons.get_child_count()!=0:
-		$select_buttons.get_child(0).grab_focus()
+		var first = $select_buttons.get_child(0)
+		var end = $select_buttons.get_child($select_buttons.get_child_count()-1)
+		first.grab_focus()
+		$select_buttons2/ban.focus_neighbor_left ='../../select_buttons/choose'
+		$select_buttons2/reroll.focus_neighbor_left ='../../select_buttons/choose'
+		$select_buttons2/abandon.focus_neighbor_left ='../../select_buttons/choose'
+
+		first.focus_neighbor_top ='../'+end.name
+		end.focus_neighbor_bottom = '../choose'
 	else:
 		player_var.point_ratio *= 1.1
 		call_deferred("close_levelup")
