@@ -44,7 +44,7 @@
     "buff_value_factor": [],
     "special": "dash",
     "special_parameter": [
-      500.0
+      250.0
     ],
     "mana": 200.0,
     "invincible_time": 0.5,

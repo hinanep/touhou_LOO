@@ -1,260 +1,308 @@
 {
   "ui_upgrade": {
-	"Id": "ui_upgrade",
-	"CHS": "升级",
-	"JP": "アップグレード",
-	"ENG": "upgrade"
+    "Id": "ui_upgrade",
+    "CHS": "升级",
+    "JP": "アップグレード",
+    "ENG": "upgrade"
   },
   "ski_reimu": {
-	"Id": "ski_reimu",
-	"CHS": "博丽灵梦",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_reimu",
+    "CHS": "博丽灵梦",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sanae": {
-	"Id": "ski_sanae",
-	"CHS": "东风谷早苗",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sanae",
+    "CHS": "东风谷早苗",
+    "JP": "",
+    "ENG": ""
   },
   "ski_rumia": {
-	"Id": "ski_rumia",
-	"CHS": "露米娅",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_rumia",
+    "CHS": "露米娅",
+    "JP": "",
+    "ENG": ""
   },
   "ski_wriggle": {
-	"Id": "ski_wriggle",
-	"CHS": "莉格露",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_wriggle",
+    "CHS": "莉格露",
+    "JP": "",
+    "ENG": ""
   },
   "ski_alice": {
-	"Id": "ski_alice",
-	"CHS": "爱丽丝",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_alice",
+    "CHS": "爱丽丝",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sekibanki": {
-	"Id": "ski_sekibanki",
-	"CHS": "赤蛮奇",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sekibanki",
+    "CHS": "赤蛮奇",
+    "JP": "",
+    "ENG": ""
   },
   "ski_misumaru": {
-	"Id": "ski_misumaru",
-	"CHS": "玉造魅须丸",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_misumaru",
+    "CHS": "玉造魅须丸",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sakuya": {
-	"Id": "ski_sakuya",
-	"CHS": "十六夜咲夜",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sakuya",
+    "CHS": "十六夜咲夜",
+    "JP": "",
+    "ENG": ""
   },
   "psv_patchouli": {
-	"Id": "psv_patchouli",
-	"CHS": "帕秋莉",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_patchouli",
+    "CHS": "帕秋莉",
+    "JP": "",
+    "ENG": ""
   },
   "psv_saki": {
-	"Id": "psv_saki",
-	"CHS": "骊驹早鬼",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_saki",
+    "CHS": "骊驹早鬼",
+    "JP": "",
+    "ENG": ""
   },
   "psv_narumi": {
-	"Id": "psv_narumi",
-	"CHS": "矢田寺成美",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_narumi",
+    "CHS": "矢田寺成美",
+    "JP": "",
+    "ENG": ""
   },
   "psv_junko": {
-	"Id": "psv_junko",
-	"CHS": "纯狐",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_junko",
+    "CHS": "纯狐",
+    "JP": "",
+    "ENG": ""
   },
   "psv_kisumi": {
-	"Id": "psv_kisumi",
-	"CHS": "琪斯美",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_kisumi",
+    "CHS": "琪斯美",
+    "JP": "",
+    "ENG": ""
   },
   "psv_momoyo": {
-	"Id": "psv_momoyo",
-	"CHS": "姬虫百百世",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_momoyo",
+    "CHS": "姬虫百百世",
+    "JP": "",
+    "ENG": ""
   },
   "sc_marisa": {
-	"Id": "sc_marisa",
-	"CHS": "雾雨魔理沙",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_marisa",
+    "CHS": "雾雨魔理沙",
+    "JP": "",
+    "ENG": ""
   },
   "sc_youmu": {
-	"Id": "sc_youmu",
-	"CHS": "魂魄妖梦",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_youmu",
+    "CHS": "魂魄妖梦",
+    "JP": "",
+    "ENG": ""
   },
   "sc_daiyousei_name": {
-	"Id": "sc_daiyousei_name",
-	"CHS": "治愈「繁茂微风」",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_daiyousei_name",
+    "CHS": "治愈「繁茂微风」",
+    "JP": "",
+    "ENG": ""
   },
   "sc_marisa_name": {
-	"Id": "sc_marisa_name",
-	"CHS": "记忆「Master Spark」",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_marisa_name",
+    "CHS": "记忆「Master Spark」",
+    "JP": "",
+    "ENG": ""
   },
   "sc_youmu_name": {
-	"Id": "sc_youmu_name",
-	"CHS": "记忆「现世斩」",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_youmu_name",
+    "CHS": "记忆「现世斩」",
+    "JP": "",
+    "ENG": ""
   },
   "ski_reimu_dsc": {
-	"Id": "ski_reimu_dsc",
-	"CHS": "发射追踪敌人的符纸",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_reimu_dsc",
+    "CHS": "发射追踪敌人的符纸",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sanae_dsc": {
-	"Id": "ski_sanae_dsc",
-	"CHS": "发射引发风之力的弹幕，如果运气好的话会引发更大的风",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sanae_dsc",
+    "CHS": "发射引发风之力的弹幕，如果运气好的话会引发更大的风",
+    "JP": "",
+    "ENG": ""
   },
   "ski_rumia_dsc": {
-	"Id": "ski_rumia_dsc",
-	"CHS": "发射黑暗球，击中敌人后会生成减速区域",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_rumia_dsc",
+    "CHS": "发射黑暗球，击中敌人后会生成减速区域",
+    "JP": "",
+    "ENG": ""
   },
   "ski_wriggle_dsc": {
-	"Id": "ski_wriggle_dsc",
-	"CHS": "发射萤火虫，追踪自机周围血量最高的敌人并持续造成伤害",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_wriggle_dsc",
+    "CHS": "发射萤火虫，追踪自机周围血量最高的敌人并持续造成伤害",
+    "JP": "",
+    "ENG": ""
   },
   "ski_alice_dsc": {
-	"Id": "ski_alice_dsc",
-	"CHS": "召唤冲向敌人并对周围敌人造成伤害的人偶",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_alice_dsc",
+    "CHS": "召唤冲向敌人并对周围敌人造成伤害的人偶",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sekibanki_dsc": {
-	"Id": "ski_sekibanki_dsc",
-	"CHS": "发射围绕在自机附近的赤蛮奇的头",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sekibanki_dsc",
+    "CHS": "发射围绕在自机附近的赤蛮奇的头",
+    "JP": "",
+    "ENG": ""
   },
   "ski_misumaru_dsc": {
-	"Id": "ski_misumaru_dsc",
-	"CHS": "发射会在敌人之间反弹的阴阳玉",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_misumaru_dsc",
+    "CHS": "发射会在敌人之间反弹的阴阳玉",
+    "JP": "",
+    "ENG": ""
   },
   "ski_sakuya_dsc": {
-	"Id": "ski_sakuya_dsc",
-	"CHS": "发射先在自机周围旋转、随后向自机前方飞出的飞刀",
-	"JP": "",
-	"ENG": ""
+    "Id": "ski_sakuya_dsc",
+    "CHS": "发射先在自机周围旋转、随后向自机前方飞出的飞刀",
+    "JP": "",
+    "ENG": ""
   },
   "psv_patchouli_dsc": {
-	"Id": "psv_patchouli_dsc",
-	"CHS": "增加符力存储上限",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_patchouli_dsc",
+    "CHS": "增加符力存储上限",
+    "JP": "",
+    "ENG": ""
   },
   "psv_saki_dsc": {
-	"Id": "psv_saki_dsc",
-	"CHS": "增加弹幕速度",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_saki_dsc",
+    "CHS": "增加弹幕速度",
+    "JP": "",
+    "ENG": ""
   },
   "psv_narumi_dsc": {
-	"Id": "psv_narumi_dsc",
-	"CHS": "增加残机",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_narumi_dsc",
+    "CHS": "增加残机",
+    "JP": "",
+    "ENG": ""
   },
   "psv_junko_dsc": {
-	"Id": "psv_junko_dsc",
-	"CHS": "增加发射数量",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_junko_dsc",
+    "CHS": "增加发射数量",
+    "JP": "",
+    "ENG": ""
   },
   "psv_kisumi_dsc": {
-	"Id": "psv_kisumi_dsc",
-	"CHS": "增加体术抗性",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_kisumi_dsc",
+    "CHS": "增加体术抗性",
+    "JP": "",
+    "ENG": ""
   },
   "psv_momoyo_dsc": {
-	"Id": "psv_momoyo_dsc",
-	"CHS": "增加弹幕伤害倍率",
-	"JP": "",
-	"ENG": ""
+    "Id": "psv_momoyo_dsc",
+    "CHS": "增加弹幕伤害倍率",
+    "JP": "",
+    "ENG": ""
   },
   "sc_marisa_dsc": {
-	"Id": "sc_marisa_dsc",
-	"CHS": "释放强大的魔炮",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_marisa_dsc",
+    "CHS": "释放强大的魔炮",
+    "JP": "",
+    "ENG": ""
   },
   "sc_youmu_dsc": {
-	"Id": "sc_youmu_dsc",
-	"CHS": "自机向前方冲刺，并伤害路径上的敌人",
-	"JP": "",
-	"ENG": ""
+    "Id": "sc_youmu_dsc",
+    "CHS": "自机向前方冲刺，并伤害路径上的敌人",
+    "JP": "",
+    "ENG": ""
   },
   "damage_addition": {
-	"Id": "damage_addition",
-	"CHS": "额外伤害",
-	"JP": "",
-	"ENG": ""
+    "Id": "damage_addition",
+    "CHS": "额外伤害",
+    "JP": "",
+    "ENG": ""
   },
   "bullet_speed_addition": {
-	"Id": "bullet_speed_addition",
-	"CHS": "额外弹速",
-	"JP": "",
-	"ENG": ""
+    "Id": "bullet_speed_addition",
+    "CHS": "额外弹速",
+    "JP": "",
+    "ENG": ""
   },
   "duration_addition": {
-	"Id": "duration_addition",
-	"CHS": "额外持续时间",
-	"JP": "",
-	"ENG": ""
+    "Id": "duration_addition",
+    "CHS": "额外持续时间",
+    "JP": "",
+    "ENG": ""
   },
   "range_addition": {
-	"Id": "range_addition",
-	"CHS": "额外攻击范围",
-	"JP": "",
-	"ENG": ""
+    "Id": "range_addition",
+    "CHS": "额外攻击范围",
+    "JP": "",
+    "ENG": ""
   },
   "times_addition": {
-	"Id": "times_addition",
-	"CHS": "额外发射数量",
-	"JP": "",
-	"ENG": ""
+    "Id": "times_addition",
+    "CHS": "额外发射数量",
+    "JP": "",
+    "ENG": ""
   },
   "buff_addition": {
-	"Id": "buff_addition",
-	"CHS": "额外属性增加倍率",
-	"JP": "",
-	"ENG": ""
+    "Id": "buff_addition",
+    "CHS": "额外属性增加倍率",
+    "JP": "",
+    "ENG": ""
   },
-  "cd_reduction": {
-	"Id": "cd_reduction",
-	"CHS": "额外冷却时间缩减",
-	"JP": "",
-	"ENG": ""
+  "cd_addition": {
+    "Id": "cd_addition",
+    "CHS": "额外冷却时间缩减",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_reimu_marisa": {
+    "Id": "cp_reimu_marisa",
+    "CHS": "灵梦×魔理沙",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_reimu_sanae": {
+    "Id": "cp_reimu_sanae",
+    "CHS": "灵梦×早苗",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_reimu_misumaru": {
+    "Id": "cp_reimu_misumaru",
+    "CHS": "灵梦×魅须丸",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_alice": {
+    "Id": "cp_marisa_alice",
+    "CHS": "魔理沙×爱丽丝",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_patchouli": {
+    "Id": "cp_marisa_patchouli",
+    "CHS": "魔理沙×帕秋莉",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_alice_patchouli": {
+    "Id": "cp_alice_patchouli",
+    "CHS": "爱丽丝×帕秋莉",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_alice_patchouli": {
+    "Id": "cp_marisa_alice_patchouli",
+    "CHS": "魔女的夜宴",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_narumi": {
+    "Id": "cp_marisa_narumi",
+    "CHS": "魔理沙×成美",
+    "JP": "",
+    "ENG": ""
   }
 }

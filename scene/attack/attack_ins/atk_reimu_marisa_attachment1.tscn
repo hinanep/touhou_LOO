@@ -1,9 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://c463pilmvtddq"]
+[gd_scene load_steps=7 format=3 uid="uid://c463pilmvtddq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_pubi6"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_66t2g"]
+[ext_resource type="Texture2D" uid="uid://brl84c8kpqipq" path="res://asset/pic/bullet/主角组.png" id="3_rf13u"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmv4u"]
+atlas = ExtResource("3_rf13u")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbr14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmv4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Attack" instance=ExtResource("1_pubi6")]
 script = ExtResource("2_66t2g")
@@ -13,3 +29,6 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="texture" parent="." index="5"]
 modulate = Color(1, 1, 1, 0.290196)
+position = Vector2(1, -2)
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_jbr14")
