@@ -251,8 +251,8 @@
     "JP": "",
     "ENG": ""
   },
-  "cd_addition": {
-    "Id": "cd_addition",
+  "cd_reduction": {
+    "Id": "cd_reduction",
     "CHS": "额外冷却时间缩减",
     "JP": "",
     "ENG": ""
