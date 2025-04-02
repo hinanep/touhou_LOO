@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_0h5rc"]
 [ext_resource type="Script" path="res://ui/LevelUp/select_button.gd" id="2_n5vdr"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_cd0xr"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
 device = -1
@@ -33,14 +34,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54iwe"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-
 [node name="select_button" type="TextureButton"]
 offset_right = 256.0
 offset_bottom = 88.0
@@ -64,9 +57,10 @@ layout_mode = 0
 offset_left = 268.0
 offset_top = 22.0
 offset_right = 1812.0
-offset_bottom = 318.0
+offset_bottom = 246.0
 scale = Vector2(0.25, 0.25)
 mouse_filter = 2
+theme = ExtResource("3_cd0xr")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 132
 bbcode_enabled = true
@@ -84,13 +78,13 @@ sprite_frames = SubResource("SpriteFrames_jjexo")
 layout_mode = 0
 offset_left = 18.0
 offset_top = 24.0
-offset_right = 1050.0
-offset_bottom = 224.0
-scale = Vector2(0.25, 0.25)
+offset_right = 2178.0
+offset_bottom = 327.0
+scale = Vector2(0.1, 0.1)
 mouse_filter = 2
+theme = ExtResource("3_cd0xr")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 100
-theme_override_styles/fill = SubResource("StyleBoxFlat_54iwe")
+theme_override_font_sizes/normal_font_size = 250
 text = "灵梦"
 fit_content = true
 scroll_active = false

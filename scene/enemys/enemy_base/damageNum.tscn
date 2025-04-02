@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clvkueof1i4cp"]
+[gd_scene load_steps=6 format=3 uid="uid://clvkueof1i4cp"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/damageNum.gd" id="1_nyfbe"]
+[ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="2_moawx"]
 
 [sub_resource type="Animation" id="Animation_3nstp"]
 length = 0.001
@@ -73,11 +74,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -8.0
 offset_top = -12.0
-offset_right = 49.0
+offset_right = 80.0
 offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("2_moawx")
 theme_override_font_sizes/font_size = 50
 text = "50"
 

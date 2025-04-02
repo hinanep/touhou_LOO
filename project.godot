@@ -42,7 +42,9 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=2
 window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 
 [editor]
 
@@ -69,11 +71,6 @@ drop=""
 
 [gui]
 
-theme/custom_font="res://asset/fonts/PixelOperator8.ttf"
-theme/default_font_antialiasing=0
-theme/default_font_hinting=0
-theme/default_font_multichannel_signed_distance_field=true
-theme/default_font_generate_mipmaps=true
 theme/lcd_subpixel_layout=0
 
 [input]

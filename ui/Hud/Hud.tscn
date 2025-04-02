@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=13 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
 [ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jvsk6"]
 
@@ -93,7 +94,7 @@ offset_top = 14.0
 offset_right = 2247.0
 offset_bottom = 118.0
 scale = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 60
 text = "得点倍率："
 
@@ -137,7 +138,7 @@ offset_top = 71.0
 offset_right = 2238.0
 offset_bottom = 161.0
 scale = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 60
 text = "分数："
 
@@ -165,23 +166,27 @@ show_percentage = false
 [node name="RichTextLabel" type="RichTextLabel" parent="hud/exp_bar"]
 modulate = Color(0.831373, 0.737255, 0.294118, 1)
 layout_mode = 0
-offset_left = 49.0
-offset_top = 24.0
-offset_right = 77.0
-offset_bottom = 73.0
+offset_left = 27.0
+offset_top = 17.0
+offset_right = 82.0
+offset_bottom = 66.0
 rotation = 1.5708
 scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 15
 text = "lev."
 
 [node name="level_number" type="RichTextLabel" parent="hud/exp_bar"]
 modulate = Color(0.832836, 0.737421, 0.294243, 1)
 layout_mode = 0
-offset_left = 49.0001
-offset_top = 78.0
-offset_right = 77.0001
-offset_bottom = 127.0
+offset_left = 26.0001
+offset_top = 99.0
+offset_right = 84.0
+offset_bottom = 148.0
 rotation = 1.5708
 scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 15
 text = "lev."
 
 [node name="cards" type="Node" parent="hud"]
@@ -238,6 +243,7 @@ offset_right = 4345.0
 offset_bottom = 373.0
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
+theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 200
 text = "符卡名"
 fit_content = true
@@ -251,6 +257,7 @@ offset_right = 2551.0
 offset_bottom = 374.0
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
+theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 200
 text = "符力消耗"
 fit_content = true

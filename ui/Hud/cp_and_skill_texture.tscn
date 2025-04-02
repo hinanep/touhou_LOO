@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dalot4hpwth2w"]
+[gd_scene load_steps=4 format=3 uid="uid://dalot4hpwth2w"]
 
 [ext_resource type="Texture2D" uid="uid://bgwbvmlvrp21y" path="res://asset/pic/crystal/爱丽丝×魔理沙.png" id="1_rxrsf"]
 [ext_resource type="Script" path="res://ui/Hud/cp_and_skill_texture.gd" id="2_pvgmu"]
-[ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_gyn4c"]
-
-[sub_resource type="Theme" id="Theme_koh88"]
-default_font = ExtResource("3_gyn4c")
-default_font_size = 5
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_nig1a"]
 
 [node name="card_texture" type="TextureRect"]
 custom_minimum_size = Vector2(1, 0)
@@ -20,6 +16,6 @@ offset_left = 100.0
 offset_top = -271.0
 offset_right = 1265.0
 offset_bottom = 276.0
-theme = SubResource("Theme_koh88")
+theme = ExtResource("3_nig1a")
 theme_override_font_sizes/normal_font_size = 180
 text = "魔理沙"
