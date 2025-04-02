@@ -13,5 +13,4 @@ gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\setti
 gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\TID.xlsx:TID => D:\Files\THLoO\touhou_survivors\settings\dist\TID\TID.json
 gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Upgrade.xlsx:Upgrade => D:\Files\THLoO\touhou_survivors\settings\dist\Upgrade\Upgrade.json
 gd_excelexporter.core.engine-WARNING:~$Attack.xlsx 不是配置表，跳过！
-gd_excelexporter.core.engine-WARNING:~$SpellCard.xlsx 不是配置表，跳过！
 gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

@@ -31,5 +31,5 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 modulate = Color(1, 1, 1, 0.309804)
 position = Vector2(-1, -2)
 rotation = 0.785398
-scale = Vector2(0.16, 0.16)
+scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_jbr14")

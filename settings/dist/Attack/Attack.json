@@ -1249,10 +1249,10 @@
       "airborne"
     ],
     "debuff_intensity": [
-      200.0
+      18.0
     ],
     "debuff_duration": [
-      200.0
+      0.2
     ],
     "buff": [],
     "buff_value_factor": [],
