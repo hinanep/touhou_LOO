@@ -16,9 +16,9 @@ script = ExtResource("2_pvgmu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 133.0
+offset_left = 100.0
 offset_top = -271.0
-offset_right = 1121.0
+offset_right = 1265.0
 offset_bottom = 276.0
 theme = SubResource("Theme_koh88")
 theme_override_font_sizes/normal_font_size = 180

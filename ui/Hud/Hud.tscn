@@ -208,6 +208,7 @@ offset_top = 377.0
 offset_right = 2860.0
 offset_bottom = 1347.0
 scale = Vector2(0.07, 0.07)
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="card_now" type="TextureRect" parent="hud"]
@@ -233,8 +234,8 @@ clip_contents = false
 layout_mode = 0
 offset_left = 105.0
 offset_top = 106.0
-offset_right = 2775.0
-offset_bottom = 361.0
+offset_right = 4345.0
+offset_bottom = 373.0
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 200
@@ -244,10 +245,10 @@ fit_content = true
 [node name="manacost" type="RichTextLabel" parent="hud/card_now"]
 clip_contents = false
 layout_mode = 0
-offset_left = 61.0
+offset_left = 51.0
 offset_top = 107.0
-offset_right = 2561.0
-offset_bottom = 362.0
+offset_right = 2551.0
+offset_bottom = 374.0
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/normal_font_size = 200
@@ -260,6 +261,7 @@ offset_top = 138.0
 offset_right = 5398.0
 offset_bottom = 1108.0
 scale = Vector2(0.1, 0.1)
+alignment = 2
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1

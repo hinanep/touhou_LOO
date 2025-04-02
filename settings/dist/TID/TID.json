@@ -251,9 +251,57 @@
 	"JP": "",
 	"ENG": ""
   },
-  "cd_reduction": {
-	"Id": "cd_reduction",
+  "cd_addition": {
+	"Id": "cd_addition",
 	"CHS": "额外冷却时间缩减",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_reimu_marisa": {
+	"Id": "cp_reimu_marisa",
+	"CHS": "灵梦×魔理沙",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_reimu_sanae": {
+	"Id": "cp_reimu_sanae",
+	"CHS": "灵梦×早苗",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_reimu_misumaru": {
+	"Id": "cp_reimu_misumaru",
+	"CHS": "灵梦×魅须丸",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_alice": {
+	"Id": "cp_marisa_alice",
+	"CHS": "魔理沙×爱丽丝",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_patchouli": {
+	"Id": "cp_marisa_patchouli",
+	"CHS": "魔理沙×帕秋莉",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_alice_patchouli": {
+	"Id": "cp_alice_patchouli",
+	"CHS": "爱丽丝×帕秋莉",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_alice_patchouli": {
+	"Id": "cp_marisa_alice_patchouli",
+	"CHS": "魔女的夜宴",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_narumi": {
+	"Id": "cp_marisa_narumi",
+	"CHS": "魔理沙×成美",
 	"JP": "",
 	"ENG": ""
   }

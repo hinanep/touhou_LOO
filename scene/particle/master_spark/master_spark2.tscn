@@ -35,6 +35,7 @@ offsets = PackedFloat32Array(0.0364963, 0.288321, 1)
 colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800073, 1, 0.786916, 0.0004815, 0.78691, 1)
 
 [node name="Node2D" type="Node2D"]
+modulate = Color(1, 1, 1, 0.811765)
 rotation = -1.5708
 
 [node name="master_spark" type="Sprite2D" parent="."]
