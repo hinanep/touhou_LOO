@@ -279,7 +279,7 @@
     "level": 6,
     "damage_addition": [
       0,
-      0.25,
+      0,
       0.25,
       0.25,
       0.5,
@@ -338,11 +338,11 @@
     ],
     "times_addition": [
       0,
-      0,
-      0,
-      0,
-      0,
-      1
+      1,
+      1,
+      2,
+      2,
+      3
     ],
     "buff_addition": [],
     "cd_reduction": [
