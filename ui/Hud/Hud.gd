@@ -23,6 +23,7 @@ func _ready():
 	SignalBus.add_skill.connect(add_skill)
 	SignalBus.add_card.connect(on_add_card)
 	SignalBus.add_passive.connect(add_passive)
+
 	SignalBus.del_card.connect(on_del_card)
 
 	SignalBus.card_select_next.connect(card_display)

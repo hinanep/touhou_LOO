@@ -83,9 +83,9 @@ func _on_delete_pressed():
 		"cp":
 			SignalBus.cp_del.emit(tname)
 			pass
-		"passive":
+		"psv":
 			SignalBus.del_passive.emit(tname)
-			pass
+
 		"card":
 			SignalBus.del_card.emit(tname)
 		"none":

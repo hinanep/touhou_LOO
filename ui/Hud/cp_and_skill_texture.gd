@@ -15,6 +15,8 @@ func set_skill(skill_info):
 		$RichTextLabel.text = selfname
 
 		SignalBus.del_skill.connect(destroy)
+		SignalBus.cp_del.connect(destroy)
+		SignalBus.del_passive.connect(destroy)
 		SignalBus.upgrade_group.connect(upgrade)
 
 func set_cp(cp_info):
