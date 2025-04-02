@@ -1212,8 +1212,8 @@
     "shape": "rectangle_edge",
     "size_dependence": [],
     "size": [
-      150,
-      250
+      300,
+      500
     ],
     "ri_dependence": "lock",
     "ri": 0.0,
