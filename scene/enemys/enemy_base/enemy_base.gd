@@ -60,7 +60,7 @@ func _ready():
 		'creep':
 			movement = creep
 			var creeptimer = Timer.new()
-			creeptimer.wait_time = 2
+			creeptimer.wait_time = 0.6
 			creeptimer.timeout.connect(
 				func():
 					creep_move = !creep_move
