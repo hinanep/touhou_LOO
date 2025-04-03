@@ -53,3 +53,10 @@ func scene_init():
 	SignalBus.try_add_card.emit("sc_daiyousei")
 	$SpawnManager.spawnmanager_init('Stage1')
 	player_var.SpawnManager = $SpawnManager
+
+
+func _on_end_game_timeout() -> void:
+	AudioManager.play_sfx("music_sfx_clear")
+	await get_tree().create_timer(5.0).timeout
+	G.get_gui_view_manager().close_all_view()
+	G.get_gui_view_manager().open_view("ClearMenu")

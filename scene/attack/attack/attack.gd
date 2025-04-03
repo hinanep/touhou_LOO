@@ -128,8 +128,7 @@ func set_shape(cshape):
 
 	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
 	texture.scale *= player_var.range_add_ratio*addi
-	#print('scaleeeeeeeee')
-	#print(sqrt( attack_info.size[0]/20))
+
 #dot伤害
 func dot():
 	if dot_on :
@@ -151,7 +150,7 @@ func damage(body,damagei,damage_s = damage_source):
 
 		body.mob_take_damage(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
 	else:
-		print(player_var.player_make_bullet_damage(damagei*attack_info.magical_addition_efficiency,damage_s))
+
 		body.mob_take_damage(player_var.player_make_melee_damage(damagei*attack_info.physical_addition_efficiency,damage_s))
 
 	give_debuff(body)

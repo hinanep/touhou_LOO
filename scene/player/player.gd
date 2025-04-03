@@ -52,13 +52,14 @@ func on_player_invincible(time):
 	$invincible_time.start()
 
 func died():
+	AudioManager.play_sfx("music_sfx_die")
 	if player_var.player_life_addi > 0:
 		player_var.player_life_addi -= 1
 		player_var.player_hp = player_var.player_hp_max
 		return
 	G.get_gui_view_manager().close_all_view()
 
-	G.get_gui_view_manager().open_view("StartMenu")
+	G.get_gui_view_manager().open_view("ClearMenu")
 
 
 func _on_invincible_time_timeout():

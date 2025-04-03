@@ -89,6 +89,24 @@ theme = ExtResource("2_mdpa5")
 theme_override_font_sizes/font_size = 500
 text = "测试"
 
+[node name="TextEdit" type="TextEdit" parent="."]
+clip_contents = false
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 690.0
+offset_right = 4990.0
+offset_bottom = 3820.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("2_mdpa5")
+theme_override_font_sizes/font_size = 200
+text = "上下左右移动
+Z键确定
+X键释放符卡
+AS切换符卡
+esc暂停
++号时间加速
+shift看判定点"
+
 [connection signal="pressed" from="VBoxContainer/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WikiButton" to="." method="_on_wiki_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]

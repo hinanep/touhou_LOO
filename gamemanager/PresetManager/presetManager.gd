@@ -34,15 +34,22 @@ var preset_map = {
 	"music_sfx_shoot":"res://asset/music/sfx/tap.wav",
 	"music_sfx_pickup":"res://asset/music/sfx/pickup.wav",
 	"music_sfx_levelup":"res://asset/music/sfx/levelup.wav",
+	"music_sfx_clear":"res://asset/music/sfx/clear.wav",
+	"music_sfx_die":"res://asset/music/sfx/dead.wav",
+
 
 	"music_bgm_saga":"res://asset/music/Japanese Saga.mp3",
 	"music_bgm_oldworld":"res://asset/music/ChillKeine.wav",
-	"music_bgm_ff":"res://asset/music/祖堅正慶 - 神なき世界.mp3",
+
 
 	"ui_select_button":"res://ui/LevelUp/select_button.tscn",
 	"ui_card_texture":"res://ui/Hud/card_texture.tscn",
 	"ui_cp_and_skill_texture":"res://ui/Hud/cp_and_skill_texture.tscn",
 	"ui_test_skillbutton":"res://ui/TestScene/buttons/test_skillbutton.tscn",
+
+	'img_skill_icon':"res://asset/pic/ui/skill.png",
+	'img_card_icon':"res://asset/pic/ui/card.png",
+	'img_passive_icon':"res://asset/pic/ui/passive.png",
 	'img_p':"res://asset/pic/p.png",
 	"img_sc_marisa":"res://asset/pic/crystal/魔理沙.png",
 	"img_sc_youmu":"res://asset/pic/crystal/妖梦.png",

@@ -304,5 +304,17 @@
 	"CHS": "魔理沙×成美",
 	"JP": "",
 	"ENG": ""
+  },
+  "ski_basemagic": {
+	"Id": "ski_basemagic",
+	"CHS": "基础弹幕",
+	"JP": "",
+	"ENG": ""
+  },
+  "ski_basephysics": {
+	"Id": "ski_basephysics",
+	"CHS": "基础近战",
+	"JP": "",
+	"ENG": ""
   }
 }
