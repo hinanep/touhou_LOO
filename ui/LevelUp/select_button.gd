@@ -25,7 +25,7 @@ func set_text(type,id):
 		$describe.text += table.TID[id+'_dsc'][player_var.language]
 	for upkey in table.Upgrade[upgroup]:
 		try_upgrade_text(id,upgroup,newlevel,upkey)
-
+	$icon.set_texture(PresetManager.getpre('img_'+type+'_icon'))
 func try_upgrade_text(id,upgroup,newlevel,property):
 
 

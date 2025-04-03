@@ -11,6 +11,7 @@ var speed_ratio = 200
 var point_ratio = false
 func _ready() -> void:
 	set_physics_process(false)
+
 func _physics_process(delta):
 	if player_node:
 		position +=  global_position.direction_to(player_node.global_position) * delta * speed_ratio

@@ -50,6 +50,7 @@ signal atk_boost(attack_info)
 signal sum_boost(sum_info)
 
 signal drop(id,global_position,value)
+signal fly_to_player(exp_buff,mana_buff,score_buff ,point_ratio_buff)
 var is_log = true
 func _ready() -> void:
 	var signal_dic = get_signal_list()

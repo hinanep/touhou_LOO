@@ -53,6 +53,7 @@ func spawn_mob():
 		mob.set_scale(Vector2(4,4))
 	#instantiate()
 	mob.drop_num = 1.0
+
 	SpawnManager.add_mob(mob)
 
 

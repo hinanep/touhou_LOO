@@ -1,40 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=16 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
-[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="2_p2xrr"]
+[ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_o3xt7"]
 [ext_resource type="PackedScene" uid="uid://ldbefuo07loe" path="res://scene/enemys/enemy_base/navigation_agent_2d.tscn" id="3_26pcd"]
+[ext_resource type="Texture2D" uid="uid://csxuo6kjhraty" path="res://asset/pic/enemy/kedamaL.png" id="3_w4sb4"]
+[ext_resource type="Texture2D" uid="uid://cgx3bwy3aimev" path="res://asset/pic/enemy/kedamaU.png" id="4_0hteq"]
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_2avwg"]
+[ext_resource type="Texture2D" uid="uid://cdxlsrs4eqeau" path="res://asset/pic/enemy/kedamaR.png" id="5_o8hrx"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvdn7"]
-atlas = ExtResource("2_p2xrr")
-region = Rect2(0, 24, 24, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjmvx"]
+atlas = ExtResource("2_o3xt7")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxkib"]
-atlas = ExtResource("2_p2xrr")
-region = Rect2(24, 24, 24, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_56aes"]
+atlas = ExtResource("3_w4sb4")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dcn67"]
-atlas = ExtResource("2_p2xrr")
-region = Rect2(48, 24, 24, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ea52i"]
+atlas = ExtResource("4_0hteq")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyehq"]
-atlas = ExtResource("2_p2xrr")
-region = Rect2(72, 24, 24, 24)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprp0"]
+atlas = ExtResource("5_o8hrx")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dvdn7")
+"texture": SubResource("AtlasTexture_gjmvx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sxkib")
+"texture": SubResource("AtlasTexture_56aes")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dcn67")
+"texture": SubResource("AtlasTexture_ea52i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tyehq")
+"texture": SubResource("AtlasTexture_ea52i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tprp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjmvx")
 }],
 "loop": true,
 "name": &"default",
@@ -51,7 +60,7 @@ radius = 16.0
 bg_color = Color(1, 1, 1, 1)
 
 [node name="enemy_base" type="CharacterBody2D"]
-z_index = 1
+z_index = 10
 z_as_relative = false
 collision_layer = 2
 motion_mode = 1
@@ -59,8 +68,10 @@ safe_margin = 2.0
 script = ExtResource("1_mcymg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
-skew = -1.56905
+z_index = 10
+z_as_relative = false
+scale = Vector2(0.3, 0.3)
+skew = -0.0122173
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
 

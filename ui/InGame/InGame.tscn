@@ -220,3 +220,10 @@ shape = SubResource("WorldBoundaryShape2D_dbslg")
 [node name="right" type="CollisionShape2D" parent="air_wall"]
 position = Vector2(2763, -2)
 shape = SubResource("WorldBoundaryShape2D_6actc")
+
+[node name="end_game" type="Timer" parent="."]
+process_mode = 1
+wait_time = 370.0
+autostart = true
+
+[connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]

@@ -91,7 +91,7 @@ func called(routine_id,force_world_position,input_position,input_rotation,parent
 
 #生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
 func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,parent_node = $"."):
-
+	AudioManager.play_sfx("music_sfx_shoot")
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
 		match routine_info.one_creating_type:
@@ -112,7 +112,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 
 #生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
 func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0):
-	#AudioManager.play_sfx(routine_info["shoot_sfx"])
+
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':

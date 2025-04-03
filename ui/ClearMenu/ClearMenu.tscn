@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxhe0o8utfl7j"]
+[gd_scene load_steps=5 format=3 uid="uid://bxhe0o8utfl7j"]
 
 [ext_resource type="Script" path="res://ui/ClearMenu/ClearMenu.gd" id="1_u1kcc"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="2_arkay"]
+[ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_5oc8k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qqope"]
 font_size = 72
@@ -33,12 +35,13 @@ grow_vertical = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -247.5
-offset_top = 23.0
-offset_right = 233.5
-offset_bottom = 122.0
+offset_left = -333.0
+offset_top = 33.0
+offset_right = 261.0
+offset_bottom = 132.0
 grow_horizontal = 2
-text = "YOU  WIN！！"
+theme_override_fonts/font = ExtResource("3_5oc8k")
+text = "YOU  WIN?"
 label_settings = SubResource("LabelSettings_qqope")
 
 [node name="BackButton" type="Button" parent="CanvasLayer"]
@@ -47,21 +50,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = 277.0
-offset_right = -72.0
-offset_bottom = 308.0
+offset_left = -229.0
+offset_top = 228.0
+offset_right = 1279.0
+offset_bottom = 597.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("2_arkay")
+theme_override_font_sizes/font_size = 300
 text = "返回主菜单"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 773.0
-offset_top = 322.0
-offset_right = 904.0
-offset_bottom = 362.0
-scale = Vector2(4, 4)
+offset_left = 713.0
+offset_top = 311.0
+offset_right = 5683.0
+offset_bottom = 1511.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/normal_font = ExtResource("3_5oc8k")
+theme_override_font_sizes/normal_font_size = 600
 text = "SCORE："
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RichTextLabel"]
@@ -73,6 +80,7 @@ offset_bottom = 40.25
 text = "10"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 offset_left = 1303.0
 offset_top = 341.0
 offset_right = 1780.0
@@ -94,12 +102,16 @@ com
 LR"
 
 [node name="damagesum" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 119.0
-offset_top = 333.0
-offset_right = 596.0
-offset_bottom = 941.0
-theme_override_font_sizes/normal_font_size = 32
+clip_contents = false
+offset_left = 55.0
+offset_top = 178.0
+offset_right = 3315.0
+offset_bottom = 3858.0
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("2_arkay")
+theme_override_font_sizes/normal_font_size = 256
 bbcode_enabled = true
-text = "dps:"
+text = "总伤:
+"
 
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
