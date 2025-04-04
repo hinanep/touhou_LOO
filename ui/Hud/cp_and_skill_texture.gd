@@ -48,4 +48,4 @@ func destroy(did):
 func upgrade(upname):
 	if upgrade_group == upname:
 		level += 1
-		$RichTextLabel.text = selfname + 'LV.' + str(level)
+		$RichTextLabel.text = selfname + '\nLV.' + str(level)

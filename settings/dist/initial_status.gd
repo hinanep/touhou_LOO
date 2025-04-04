@@ -45,7 +45,10 @@ var status = {
 	card_level_max = 6,
 	card_num_max = 3,
 
-
+	air_wall_top = -10000,
+	air_wall_bottom = 10000,
+	air_wall_left = -10000,
+	air_wall_right = 10000,
 
 
 

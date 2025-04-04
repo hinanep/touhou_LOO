@@ -1,10 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://clmx1f2x0jsxs"]
+[gd_scene load_steps=9 format=3 uid="uid://clmx1f2x0jsxs"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_bg30o"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_aflkx"]
+[ext_resource type="Shader" path="res://asset/shaders/bloom.gdshader" id="3_smr6h"]
 [ext_resource type="Texture2D" uid="uid://cp4u0gu7at4am" path="res://asset/pic/bullet/日符.png" id="3_vkqjo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdqir"]
+shader = ExtResource("3_smr6h")
+shader_parameter/radius = 0.5
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3
+shader_parameter/brightness = 0.435
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6k0ch"]
 atlas = ExtResource("3_vkqjo")
@@ -29,6 +37,7 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="texture" parent="." index="5"]
 modulate = Color(1, 1, 1, 0.498039)
+material = SubResource("ShaderMaterial_pdqir")
 position = Vector2(1, -1)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_5dk41")

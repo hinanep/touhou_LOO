@@ -57,6 +57,10 @@ var PassiveManager :PassiveManagers
 var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
 
+var air_wall_top
+var air_wall_bottom
+var air_wall_left
+var air_wall_right
 
 var mana=0:
 		set(value):
