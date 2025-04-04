@@ -42,9 +42,14 @@ func on_use_card(id,cost_rate):
 	if card_info.has('special'):
 		match card_info.special:
 			'dash':
-				var tween = create_tween()
-				tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-				tween.tween_property(player_var.player_node,'global_position',player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0],0.5)
+				var tween = player_var.player_node.create_tween()
+				#tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+				var end_position:Vector2 = player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
+				end_position.x = clamp(end_position.x,player_var.air_wall_left,player_var.air_wall_right)
+				end_position.y = clamp(end_position.y,player_var.air_wall_top,player_var.air_wall_bottom)
+				print('dash')
+				print(end_position)
+				tween.tween_property(player_var.player_node,'global_position',end_position,0.5)
 
 				#player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 	#get buff

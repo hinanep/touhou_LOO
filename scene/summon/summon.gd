@@ -115,6 +115,8 @@ func set_active(active:bool):
 
 #当本攻击是boost类型且接受到激活信号时触发
 func boost_active(cp_info,is_active):
+	if cp_info is String:
+		cp_info = table.Couple[cp_info]
 	if summon_info.effective_condition != cp_info.id:
 		return
 	SignalBus.sum_boost.emit(summon_info,is_active)

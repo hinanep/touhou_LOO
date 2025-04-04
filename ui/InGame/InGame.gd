@@ -36,6 +36,10 @@ func _close():
 
 
 func open():
+	player_var.air_wall_top = $air_wall/top.position.y
+	player_var.air_wall_bottom = $air_wall/down.position.y
+	player_var.air_wall_left = $air_wall/left.position.x
+	player_var.air_wall_right = $air_wall/right.position.x
 	_open()
 
 
