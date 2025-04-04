@@ -1,39 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfvl58xcl0rms"]
+[gd_scene load_steps=6 format=3 uid="uid://cavm07fciqflj"]
 
 [ext_resource type="Script" path="res://scene/drops/exp_1.gd" id="1_cpuj4"]
+[ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_mpm0o"]
 [ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="2_xbr8h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnkcy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7ued"]
 atlas = ExtResource("2_xbr8h")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cdvnr"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3q6v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hnkcy")
+"texture": SubResource("AtlasTexture_u7ued")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cjjcq"]
-radius = 7.07107
-
-[node name="exp_1" type="Area2D" groups=["drop"]]
+[node name="DropsBase" instance=ExtResource("1_mpm0o")]
 visible = false
-collision_layer = 16
+monitoring = true
 script = ExtResource("1_cpuj4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.560784)
-z_index = -5
-sprite_frames = SubResource("SpriteFrames_cdvnr")
-autoplay = "default"
-frame_progress = 0.0828607
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_cjjcq")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_v3q6v")
+frame_progress = 0.0

@@ -51,18 +51,20 @@ signal sum_boost(sum_info)
 
 signal drop(id,global_position,value)
 signal fly_to_player(exp_buff,mana_buff,score_buff ,point_ratio_buff)
-var is_log = true
+var is_log = false
 func _ready() -> void:
-	var signal_dic = get_signal_list()
+	if(is_log):
+		var signal_dic = get_signal_list()
 
-	for sig in signal_dic:
-		if sig.name =='trigger_routine_by_id':
-			continue
-		connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
+		for sig in signal_dic:
+			if sig.name =='trigger_routine_by_id':
+				continue
+
+			connect(sig.name,_on_signal_emit.bind('[color=green][b]SIGNAL EMITTED:[/b][/color]'+sig.name))
 
 
 func _on_signal_emit(message1='',message2='',message3='',message4='',message5='',message6='') -> void:
-	if(is_log):
+
 		print_rich("[color=yellow][b]------[/b][/color]")
 		#var n = {}
 

@@ -54,7 +54,7 @@ func first_init():
 	set_shape(attack_info.shape)
 	if attack_info.has('buff'):
 		$damage_area.collision_mask = 1
-
+	damage_source = attack_info.damage_belong
 
 #初始化
 func _ready():

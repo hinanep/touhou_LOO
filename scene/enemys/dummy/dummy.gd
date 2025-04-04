@@ -20,13 +20,16 @@ func mob_take_damage(damage):
 		return
 	damage_num_display(damage)
 	hp -= damage
+	if hp < 0:
+		died()
 	progress_bar.value = hp/mob_info.health * 100
 	sumdamage += damage
 	$dps_reset.start()
 #体术攻击方法，可重新实现
 #func melee_attack(playernode):
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
-
+func died():
+	drop()
 
 var count = 0
 func _on_dps_timeout():
