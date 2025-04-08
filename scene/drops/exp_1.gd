@@ -8,6 +8,6 @@ func _ready():
 	mana = experience
 	$AnimatedSprite2D.scale = Vector2(experience/20.0,experience/20.0)
 	SignalBus.fly_to_player.connect(fly_to_player)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.1,false,true).timeout
 	$".".visible = true
 	set_physics_process(false)

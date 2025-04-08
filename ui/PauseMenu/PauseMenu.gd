@@ -11,11 +11,19 @@ func _open():
 		is_pausing = true
 	else:
 		get_tree().paused = true
-	pass
+
+func _input(event: InputEvent) -> void:
+
+	if event.is_action_pressed("pause"):
+		#event.pressed= false
+		close_self()
+
 
 
 func _close():
-	if !is_pausing:
+	if is_pausing:
+		pass
+	else:
 		get_tree().paused = false
 	pass
 

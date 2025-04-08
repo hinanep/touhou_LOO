@@ -130,7 +130,7 @@ func died():
 	atkable = false
 	set_physics_process(false)
 	create_tween().tween_property($AnimatedSprite2D,'skew',PI/2,0.5)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5,false,true).timeout
 	queue_free()
 
 #掉落

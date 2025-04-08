@@ -10,5 +10,5 @@ func _ready():
 	score = 0
 	SignalBus.fly_to_player.connect(fly_to_player)
 	set_physics_process(false)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.1,false,true).timeout
 	$".".visible = true

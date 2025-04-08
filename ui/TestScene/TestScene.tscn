@@ -219,3 +219,6 @@ texture = ExtResource("5_kue7b")
 
 [node name="drops" type="Node2D" parent="SpawnManager"]
 script = ExtResource("7_7uj5j")
+
+[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+color = Color(0.709804, 0.807843, 0.835294, 1)

@@ -6,13 +6,11 @@ func _ready():
 	#$Spawner.spawn_list.pre = PresetManager.getpre("enemy_boss_aq")
 var pauseing = false
 var pause_id
-func _input(event):
+func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
-		if !pauseing:
+
 			pause_id = G.get_gui_view_manager().open_view("PauseMenu")
-		else:
-			G.get_gui_view_manager().close_view(pause_id)
-		pauseing = !pauseing
+
 	if event.is_action_pressed("clockup"):
 		if Engine.time_scale >0.8:
 			Engine.time_scale = 0.1

@@ -22,6 +22,7 @@ animations = [{
 }]
 
 [node name="Attack" instance=ExtResource("1_bgcvx")]
+z_index = 12
 script = ExtResource("2_l2oxa")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]

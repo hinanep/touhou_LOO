@@ -4,6 +4,7 @@ extends drop
 func _ready():
 	experience = 100
 	score = 10000
+	not_fusioning = false
 	set_physics_process(false)
 func _on_body_entered(_body):
 	game_manager.add_exp(experience)

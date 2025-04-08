@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://o4yslgmrf8td"]
+[gd_scene load_steps=8 format=3 uid="uid://o4yslgmrf8td"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_wq5qk"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_57lmb"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_6i6rb"]
+[ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="4_p60xu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
@@ -13,10 +14,7 @@ region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4pqui"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_6i6rb")
-}],
+"frames": [],
 "loop": true,
 "name": &"new_animation",
 "speed": 30.0
@@ -43,3 +41,9 @@ scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_4pqui")
 animation = &"new_animation"
 autoplay = ""
+
+[node name="PointLight2D" type="PointLight2D" parent="texture" index="0"]
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+blend_mode = 1
+texture = ExtResource("4_p60xu")

@@ -29,7 +29,7 @@ func died():
 	drop()
 	$danma/sekibankiWeapon.active = false
 	$AnimatedSprite2D.play("die")
-	await  get_tree().create_timer(6).timeout
+	await  get_tree().create_timer(6,false,true).timeout
 	AudioManager.bgm_over()
 	queue_free()
 	G.get_gui_view_manager().close_all_view()

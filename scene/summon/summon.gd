@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 
 func rediretion():
 	while(true):
-		await get_tree().create_timer(summon_info.movement_parameter[0]).timeout
+		await get_tree().create_timer(summon_info.movement_parameter[0],false,true).timeout
 		var target = player_var.SpawnManager.get_nearest_mob(global_position)
 		if target!=null:
 			target_location = target.global_position

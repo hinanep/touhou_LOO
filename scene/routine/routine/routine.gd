@@ -97,7 +97,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 		match routine_info.one_creating_type:
 			'single':
 					if has_interval:
-						await  get_tree().create_timer(routine_info.interval).timeout
+						await  get_tree().create_timer(routine_info.interval,false,true).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
@@ -105,7 +105,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 			'multi_together':
 				for j in range(routine_info.one_creating_parameter[0]):
 					if has_interval:
-						await  get_tree().create_timer(routine_info.interval).timeout
+						await  get_tree().create_timer(routine_info.interval,false,true).timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node,j)
 					single_summon(gen_position,gen_rotation)
