@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjiyxejki7vkd"]
+
+[ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_3eskm"]
+[ext_resource type="Script" path="res://ui/boss_alert/alert.gd" id="1_il06i"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_hnmxd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg47e"]
+atlas = ExtResource("1_3eskm")
+region = Rect2(-5, 187, 260, 97)
+
+[node name="Alert" type="CanvasLayer"]
+visible = false
+follow_viewport_enabled = true
+script = ExtResource("1_il06i")
+
+[node name="PopupPanel" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -240.0
+offset_right = 960.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.965, 1)
+pivot_offset = Vector2(960, 60)
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_wg47e")
+expand_mode = 1
+
+[node name="RichTextLabel" type="Label" parent="."]
+offset_left = 500.35
+offset_top = 300.0
+offset_right = 1500.35
+offset_bottom = 600.0
+scale = Vector2(0.1, 1)
+pivot_offset = Vector2(500, 150)
+size_flags_horizontal = 4
+theme = ExtResource("3_hnmxd")
+theme_override_font_sizes/font_size = 200
+text = "哇袄"
+horizontal_alignment = 1
+vertical_alignment = 1
