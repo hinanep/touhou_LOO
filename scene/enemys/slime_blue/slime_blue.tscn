@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://drvux8yixlmvx"]
+
+[ext_resource type="Script" path="res://scene/enemys/slime_blue/slime_blue.gd" id="1_xtkoc"]
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_xu4fn"]
+[ext_resource type="Texture2D" uid="uid://dhgnpev2870io" path="res://asset/pic/enemy/enemies-spritesheet.png" id="2_ovbsc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghl6r"]
+atlas = ExtResource("2_ovbsc")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmdq3"]
+atlas = ExtResource("2_ovbsc")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb7px"]
+atlas = ExtResource("2_ovbsc")
+region = Rect2(40, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp118"]
+atlas = ExtResource("2_ovbsc")
+region = Rect2(60, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgvqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghl6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmdq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb7px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp118")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_xu4fn")]
+script = ExtResource("1_xtkoc")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_cgvqk")

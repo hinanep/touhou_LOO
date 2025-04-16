@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwppujyrfed45"]
+
+[ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_0h5rc"]
+[ext_resource type="Script" path="res://scene/ui/LevelUp/select_button.gd" id="2_n5vdr"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_siojg"]
+events = [SubResource("InputEventKey_1hpiu")]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g7qy"]
+atlas = ExtResource("1_0h5rc")
+region = Rect2(-1, 0, 256, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkj25"]
+atlas = ExtResource("1_0h5rc")
+region = Rect2(1, 99, 254, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6w10"]
+atlas = ExtResource("1_0h5rc")
+region = Rect2(0, 288, 256, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jjexo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6w10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="select_button" type="TextureButton"]
+offset_right = 256.0
+offset_bottom = 88.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_mask = 0
+shortcut = SubResource("Shortcut_siojg")
+texture_normal = SubResource("AtlasTexture_4g7qy")
+texture_pressed = SubResource("AtlasTexture_4g7qy")
+texture_hover = SubResource("AtlasTexture_nkj25")
+texture_disabled = SubResource("AtlasTexture_4g7qy")
+texture_focused = SubResource("AtlasTexture_nkj25")
+stretch_mode = 0
+script = ExtResource("2_n5vdr")
+
+[node name="describe" type="RichTextLabel" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 266.0
+offset_top = 22.0
+offset_right = 868.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=white]灵梦"
+scroll_active = false
+
+[node name="weapon" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 262.0
+offset_bottom = 92.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 28
+text = "灵梦"
+scroll_active = false
+
+[node name="Control" type="Control" parent="."]
+z_index = 1
+anchors_preset = 0
+offset_right = 268.0
+offset_bottom = 88.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(454, 50)
+scale = Vector2(1.625, 1)
+sprite_frames = SubResource("SpriteFrames_jjexo")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

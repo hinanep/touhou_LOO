@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://drvux8yixlmvx"]
+
+[ext_resource type="PackedScene" uid="uid://drvux8yixlmvx" path="res://scene/enemys/slime/slime.tscn" id="1_kw1kv"]
+[ext_resource type="Script" path="res://scene/enemys/elite_slime/elite_slime.gd" id="2_m6vql"]
+[ext_resource type="Texture2D" uid="uid://b5gsh7cv6tvtw" path="res://asset/pic/enemy/slime_green.png" id="3_3m6ne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc8rq"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt4w1"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpma8"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bftg"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjov1"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2th3"]
+atlas = ExtResource("3_3m6ne")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ftmo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc8rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt4w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpma8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bftg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjov1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2th3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc2ti"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="elite_slime" groups=["elite"] instance=ExtResource("1_kw1kv")]
+script = ExtResource("2_m6vql")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+modulate = Color(0.592284, 0, 0.0114338, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3ftmo")
+
+[node name="debuff_time2" type="Timer" parent="." index="5"]
+
+[node name="ProgressBar" parent="." index="6"]
+offset_top = -10.0
+offset_bottom = 9.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_pc2ti")

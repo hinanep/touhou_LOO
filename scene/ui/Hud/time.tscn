@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlwk4q8jl4cbx"]
+
+[ext_resource type="Script" path="res://gamemanager/time_manager.gd" id="1_qyx6y"]
+[ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="2_4swgu"]
+
+[node name="time" type="Node"]
+script = ExtResource("1_qyx6y")
+
+[node name="time_ui" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="time_ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 18.0
+offset_right = 95.0
+offset_bottom = 58.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="time_ui/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_4swgu")
+fit_content = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
