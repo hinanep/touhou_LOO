@@ -9,7 +9,8 @@ func _init():
 	pass
 func _ready():
 	SignalBus.player_invincible.connect(on_player_invincible)
-
+	await get_tree().create_timer(10).timeout
+	AudioManager.swap_backbgm('music_bgm_oldworld')
 
 func _input(event):
 	if event.is_action_pressed("slow_mode"):

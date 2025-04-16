@@ -63,7 +63,6 @@ script = ExtResource("1_nyfbe")
 libraries = {
 "": SubResource("AnimationLibrary_ixi6e")
 }
-autoplay = "new_animation"
 
 [node name="damage" type="Label" parent="."]
 modulate = Color(0.235294, 0.772549, 0.835294, 1)
@@ -80,9 +79,13 @@ offset_right = 80.0
 offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("2_moawx")
 theme_override_font_sizes/font_size = 50
 text = "50"
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="disappear" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="disappear" to="." method="_on_disappear_timeout"]

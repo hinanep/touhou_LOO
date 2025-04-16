@@ -23,7 +23,11 @@ func _init(B,locking_type,lock_routine = null):
 
 
 func find_nearest_target():
-	lock_target = SpawnManager.get_nearest_mob(body.global_position)
+	var target_array:Array =  SpawnManager.find_closest_enemies(body.global_position,1,1000,null)
+
+	if target_array.is_empty():
+		return null
+	lock_target = target_array[0]
 	return lock_target
 
 

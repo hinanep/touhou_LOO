@@ -1,12 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://o4yslgmrf8td"]
+[gd_scene load_steps=13 format=3 uid="uid://o4yslgmrf8td"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_wq5qk"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_57lmb"]
+[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="2_jq27m"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_6i6rb"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="4_p60xu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
+
+[sub_resource type="Gradient" id="Gradient_xeyun"]
+offsets = PackedFloat32Array(0.0117647, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5jrwj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3y687"]
+color_ramp = SubResource("Gradient_xeyun")
+noise = SubResource("FastNoiseLite_5jrwj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbf28"]
+shader = ExtResource("2_jq27m")
+shader_parameter/distor_modi = 0.123
+shader_parameter/mainTexture = SubResource("NoiseTexture2D_3y687")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6fq0"]
 atlas = ExtResource("4_6i6rb")
@@ -37,6 +52,7 @@ shape = SubResource("CircleShape2D_7lt5v")
 [node name="texture" parent="." index="5"]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.941176)
+material = SubResource("ShaderMaterial_hbf28")
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_4pqui")
 animation = &"new_animation"

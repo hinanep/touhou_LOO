@@ -41,9 +41,10 @@ func _ready():
 	duration.start()
 	top_level = true
 	global_position = position
-	var target = player_var.SpawnManager.get_nearest_mob(global_position)
-	if target!=null:
-		target_location = target.global_position
+	var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
+
+	if not target.is_empty():
+		target_location = target[0].global_position
 	else:
 		target_location = global_position
 
@@ -62,9 +63,10 @@ func _physics_process(delta: float) -> void:
 func rediretion():
 	while(true):
 		await get_tree().create_timer(summon_info.movement_parameter[0],false,true).timeout
-		var target = player_var.SpawnManager.get_nearest_mob(global_position)
-		if target!=null:
-			target_location = target.global_position
+		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
+
+		if not target.is_empty():
+			target_location = target[0].global_position
 
 func on_create():
 	if summon_info.has('creating_routine'):

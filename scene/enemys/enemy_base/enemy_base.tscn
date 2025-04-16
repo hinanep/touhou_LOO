@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqqre42sbdbua"]
+[gd_scene load_steps=17 format=3 uid="uid://bqqre42sbdbua"]
 
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/enemy_base.gd" id="1_mcymg"]
 [ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_o3xt7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cgx3bwy3aimev" path="res://asset/pic/enemy/kedamaU.png" id="4_0hteq"]
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_2avwg"]
 [ext_resource type="Texture2D" uid="uid://cdxlsrs4eqeau" path="res://asset/pic/enemy/kedamaR.png" id="5_o8hrx"]
+[ext_resource type="PackedScene" uid="uid://clvkueof1i4cp" path="res://scene/enemys/enemy_base/damageNum.tscn" id="8_cu48r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjmvx"]
 atlas = ExtResource("2_o3xt7")
@@ -118,10 +119,12 @@ show_percentage = false
 path_metadata_flags = 0
 avoidance_enabled = false
 neighbor_distance = 40.0
-time_horizon_agents = 0.5
+time_horizon_agents = 0.3
 
 [node name="buff" type="Node" parent="."]
 script = ExtResource("4_2avwg")
+
+[node name="DamageNum" parent="." instance=ExtResource("8_cu48r")]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

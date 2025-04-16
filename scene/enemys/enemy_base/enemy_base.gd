@@ -38,6 +38,11 @@ var creep_move:bool
 var atkable = true
 var moveable = true
 
+var last_position: Vector2 # 存储上一帧的位置，用于检测是否移动
+const GRID_CELL_SIZE = Vector2(200, 200)
+# 可选: 存储当前所在的单元格坐标，可以用于优化更新逻辑
+var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未知
+
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	set_z_index(1)
@@ -72,7 +77,7 @@ func _ready():
 
 
 	create_tween().tween_property($AnimatedSprite2D,'skew',0,1.5)
-
+	last_position = global_position
 
 #不用理解，避障用
 func on_compute_safevelocity(safevelocity):
@@ -82,6 +87,13 @@ func on_compute_safevelocity(safevelocity):
 func _physics_process(_delta):
 	if moveable:
 		movement.call()
+	if not global_position.is_equal_approx(last_position):
+		# 如果有管理器引用，则通知管理器更新位置
+
+		player_var.SpawnManager.update_enemy_position_in_grid(self, last_position, global_position)
+
+		# 更新上一帧的位置
+		last_position = global_position
 
 #移动方式：走向玩家
 func move_to_target():
@@ -103,11 +115,11 @@ func creep():
 
 #伤害数字表示
 func damage_num_display(num):
-	var d = damageNum.instantiate()
-	d.showdamage(num)
+
+	$DamageNum.showdamage(num)
 
 
-	add_child(d)
+
 
 
 #受到伤害

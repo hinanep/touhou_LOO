@@ -59,19 +59,21 @@ func spawn_mob():
 
 
 func _on_timer_timeout():
+	if SpawnManager.mob_dic.size()>300:
+		return
 	for i in range(spawn_list["amount_parameter"]):
 		spawn_mob()
 
 
 func _on_start_timer_timeout():
 	spawnTimer.start()
-	pass # Replace with function body.
+
 
 
 func _on_end_timer_timeout():
 	spawnTimer.stop()
 	queue_free()
-	pass # Replace with function body.
+
 func change_pause():
 
 	if spawnTimer.is_paused() == true:

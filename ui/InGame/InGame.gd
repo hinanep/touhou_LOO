@@ -31,7 +31,7 @@ func _open():
 
 func _close():
 	AudioManager.stop_background_bgm()
-
+	player_var.SpawnManager.clear()
 	pass
 
 

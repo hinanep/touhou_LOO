@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwjf4brydbran"]
+[gd_scene load_steps=11 format=3 uid="uid://cwjf4brydbran"]
 
 [ext_resource type="Script" path="res://scene/enemys/dummy/dummy.gd" id="1_8axhr"]
 [ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_amfcj"]
 [ext_resource type="PackedScene" uid="uid://ldbefuo07loe" path="res://scene/enemys/enemy_base/navigation_agent_2d.tscn" id="3_mcvkd"]
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_whe7s"]
+[ext_resource type="PackedScene" uid="uid://clvkueof1i4cp" path="res://scene/enemys/enemy_base/damageNum.tscn" id="5_yrgr4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpq08"]
 atlas = ExtResource("2_amfcj")
@@ -111,6 +112,8 @@ time_horizon_agents = 0.5
 
 [node name="buff" type="Node" parent="."]
 script = ExtResource("4_whe7s")
+
+[node name="DamageNum" parent="." instance=ExtResource("5_yrgr4")]
 
 [connection signal="timeout" from="dps" to="." method="_on_dps_timeout"]
 [connection signal="timeout" from="dps_reset" to="." method="_on_dps_reset_timeout"]

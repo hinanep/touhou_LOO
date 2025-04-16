@@ -1,15 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://def8milxirujq"]
+[gd_scene load_steps=13 format=3 uid="uid://def8milxirujq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_h12sq"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
+[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="3_adj0c"]
+[ext_resource type="Texture2D" uid="uid://uvpx40wiwo0b" path="res://asset/pic/texture/whitehole.png" id="4_npua3"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="4_qiwug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm7v0"]
 radius = 100.0
 
+[sub_resource type="Gradient" id="Gradient_4860m"]
+offsets = PackedFloat32Array(0, 0.00235294, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.101176, 0.101176, 0.101176, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jb6lp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_16l2n"]
+color_ramp = SubResource("Gradient_4860m")
+noise = SubResource("FastNoiseLite_jb6lp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ksqw"]
+shader = ExtResource("3_adj0c")
+shader_parameter/distor_modi = 0.01
+shader_parameter/mainTexture = SubResource("NoiseTexture2D_16l2n")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqpyb"]
+atlas = ExtResource("4_npua3")
+region = Rect2(0, 0, 500, 500)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bocds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqpyb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Attack" instance=ExtResource("1_h12sq")]
+z_index = 6
 script = ExtResource("2_pp31y")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
@@ -17,13 +48,14 @@ visible = false
 shape = SubResource("CircleShape2D_tm7v0")
 
 [node name="texture" parent="." index="5"]
-modulate = Color(0, 0, 0, 0.545098)
-scale = Vector2(0.8, 0.8)
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_4ksqw")
+scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_bocds")
 
 [node name="PointLight2D" type="PointLight2D" parent="texture" index="0"]
 rotation = -1.5708
-scale = Vector2(0.2, 0.2)
+scale = Vector2(2, 2)
 energy = 0.5
 blend_mode = 1
 texture = ExtResource("4_qiwug")

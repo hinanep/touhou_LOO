@@ -1,9 +1,10 @@
 extends Node
 
 
-var bgm_player
-var background_bgm_player
+var bgm_player:AudioStreamPlayer
+var background_bgm_player:AudioStreamPlayer
 var SFXPlayerPool
+var swaping_backbgm:AudioStream
 @onready var sfx_player_playing_pair = {}
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -39,6 +40,17 @@ func play_bgm(bgm_name:String) -> void:
 	background_bgm_player.set_stream_paused(true)
 	bgm_player.stream = PresetManager.getpre(bgm_name)
 	bgm_player.play()
+
+func swap_backbgm(bgm_name = null):
+	if bgm_name == null:
+		var point = background_bgm_player.get_playback_position()
+		background_bgm_player.stream = swaping_backbgm
+		background_bgm_player.play(point)
+		return
+	swaping_backbgm = background_bgm_player.stream
+	var point = background_bgm_player.get_playback_position()
+	background_bgm_player.stream = PresetManager.getpre(bgm_name)
+	background_bgm_player.play(point)
 
 func bgm_over():
 	bgm_player.stop()

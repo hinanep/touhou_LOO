@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://v4gxpugft4ox"]
+[gd_scene load_steps=7 format=3 uid="uid://v4gxpugft4ox"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_cci4r"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_y2vk4"]
 [ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_od6hf"]
 [ext_resource type="PackedScene" uid="uid://jh25f6kbce2d" path="res://scene/particle/master_spark/master_spark2.tscn" id="4_qrg0o"]
+[ext_resource type="Texture2D" uid="uid://d1q4dixvdq85u" path="res://asset/pic/texture/mask.png" id="5_0cnfu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sgjwi"]
 
@@ -21,3 +22,11 @@ offset = Vector2(3000, 0)
 
 [node name="Node2D" parent="texture" index="0" instance=ExtResource("4_qrg0o")]
 position = Vector2(-1.90735e-06, -6.25)
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="7"]
+visible = false
+position = Vector2(300, 0)
+color = Color(1, 1, 0.462745, 1)
+energy = 1.5
+texture = ExtResource("5_0cnfu")
+offset = Vector2(10, 0)
