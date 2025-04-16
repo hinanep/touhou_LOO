@@ -11,7 +11,7 @@ var id = 0
 const GRID_CELL_SIZE = Vector2(100, 100)
 var spatial_grid: SpatialGrid
 var audit_timer = 0.0
-const AUDIT_INTERVAL = 5.0 # 每 5 秒检查一次
+const AUDIT_INTERVAL = 15.0 # 每 15 秒检查一次
 func _ready() -> void:
 	spatial_grid =SpatialGrid.new(GRID_CELL_SIZE)
 
@@ -114,6 +114,9 @@ func find_closest_enemies(center_position: Vector2, count: int, max_radius: floa
 			var dist_sq = spatial_grid.get_min_distance_sq_to_cell(center_position, cell)
 			min_dist_sq_to_layer = min(min_dist_sq_to_layer, dist_sq)
 
+		if min_dist_sq_to_layer > max_radius_sq:
+			break
+
 		# 如果已经找到了足够的候选者，并且它们中的第 N 个比当前层所有单元格的最近距离还要近，
 		# 那么更外层的单元格必然更远，可以停止搜索。
 		if candidates.size() >= count:
@@ -131,8 +134,8 @@ func find_closest_enemies(center_position: Vector2, count: int, max_radius: floa
 			# 再次检查距离，如果单元格本身完全在 max_radius 之外，可以跳过
 			# 注意：get_min_distance_sq_to_cell 计算的是到边界的距离，如果点在内部距离为0
 			# 如果单元格到点的最小距离已超限，则该单元格内不可能有符合条件的点
-			if min_dist_sq_to_layer > max_radius_sq and cell_coords != center_cell: # 仅当最小距离大于0时检查
-				 # 实际上，上面的 break 条件更强，这里可以简化或移除
+			if cell_coords != center_cell:
+
 				 # 但保留此检查可以避免处理那些明显过远的单元格内的对象
 				var cell_dist_sq = spatial_grid.get_min_distance_sq_to_cell(center_position, cell_coords)
 				if cell_dist_sq > max_radius_sq:
@@ -192,32 +195,23 @@ func audit_spatial_grid():
 	if not is_instance_valid(spatial_grid): return
 
 	var cells_to_delete_if_empty = [] # 记录清理后变空的单元格
-	var invalid_found_count = 0
 
 	# 遍历所有单元格坐标
 	# 使用 .keys().duplicate() 避免在迭代时修改字典导致问题
 	for cell_coords in spatial_grid.grid.keys().duplicate():
 		var cell_array = spatial_grid.grid[cell_coords]
-		var original_size = cell_array.size()
 
 		# 使用反向循环或创建一个新数组来安全地移除元素
 		var cleaned_array = []
-		var cell_had_invalid = false
+
 		for i in range(cell_array.size() - 1, -1, -1):
-			var obj = cell_array[i]
-			if is_instance_valid(obj):
-				# cleaned_array.push_front(obj) # 如果要保持顺序，添加到新数组前端
-				pass # 如果原地修改则什么都不做
-			else:
-				# 发现了无效引用！
-				# print("Audit: Found invalid reference in cell %s at index %s. Removing." % [cell_coords, i])
+			if not is_instance_valid(cell_array[i]):
+
 				cell_array.remove_at(i) # 直接在原数组中移除
-				cell_had_invalid = true
-				invalid_found_count += 1
 
 		# 如果单元格在清理后变空了
-		if cell_array.is_empty() and cell_had_invalid: # 确保是因为清理才变空的
-			# print("Audit: Cell %s became empty after cleaning invalid references. Removing cell." % cell_coords)
+		if cell_array.is_empty():
+
 			cells_to_delete_if_empty.append(cell_coords)
 
 	# 清理结束后，统一删除那些变空的单元格
@@ -225,8 +219,6 @@ func audit_spatial_grid():
 		if spatial_grid.grid.has(cell_coords): # 再次检查以防万一
 			spatial_grid.grid.erase(cell_coords)
 
-	# if invalid_found_count > 0:
-	#	 print("Spatial Grid Audit finished. Found and removed %s invalid references." % invalid_found_count)
 
 # 你可以在 _process 中每隔一段时间调用一次 audit_spatial_grid()，或者在特定事件后调用
 # 例如：

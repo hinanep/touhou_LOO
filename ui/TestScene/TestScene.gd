@@ -20,7 +20,7 @@ func _open():
 	player_var.new_scene()
 
 	GameManager.is_uping = false
-	for i in 300:
+	for i in 1:
 		var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 		dummm.position.x += 2*i
 		player_var.SpawnManager = $SpawnManager

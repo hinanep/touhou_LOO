@@ -7,7 +7,7 @@ func _ready():
 	$dps.wait_time = dpstick
 	$buff.brittle_modify = 1
 	super._ready()
-
+	drops_path = "drops_plate"
 
 func _physics_process(_delta):
 	hp = mob_info.health
@@ -20,7 +20,7 @@ func mob_take_damage(damage):
 		return
 	damage_num_display(damage)
 	hp -= damage
-	if hp < 0:
+	if hp <= 0:
 		died()
 	progress_bar.value = hp/mob_info.health * 100
 	sumdamage += damage
@@ -28,7 +28,7 @@ func mob_take_damage(damage):
 #体术攻击方法，可重新实现
 #func melee_attack(playernode):
 #	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
-func died():
+func died(disppear = false):
 	drop()
 
 var count = 0

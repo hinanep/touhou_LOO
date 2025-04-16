@@ -57,6 +57,7 @@ func died():
 	if player_var.player_life_addi > 0:
 		player_var.player_life_addi -= 1
 		player_var.player_hp = player_var.player_hp_max
+		player_var.mana = player_var.mana_max
 		return
 	G.get_gui_view_manager().close_all_view()
 

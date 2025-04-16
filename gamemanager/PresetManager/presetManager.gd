@@ -5,7 +5,7 @@ var preset_map = {
 
 
 	"drops_p":"res://scene/drops/exp_1.tscn",
-	"drops_plate":"res://scene/drops/plate_1.tscn",
+	"drops_plate":"res://scene/drops/plate/plate_1.tscn",
 	'drops_mana':"res://scene/drops/mana.tscn",
 
 	'skill':"res://scene/skill/skill_class/skill.tscn",

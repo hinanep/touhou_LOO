@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4blcuk46p5c"]
+
+[ext_resource type="Texture2D" uid="uid://ch3kmg0nf21xp" path="res://asset/pic/ui/passive.png" id="1_4toir"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="Passive" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_4toir")
+offset = Vector2(0, -800)

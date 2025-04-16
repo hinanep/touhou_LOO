@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=14 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
+[ext_resource type="Script" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jvsk6"]
 
@@ -278,5 +279,8 @@ process_mode = 1
 process_callback = 0
 wait_time = 0.2
 autostart = true
+
+[node name="arrow" type="CanvasLayer" parent="."]
+script = ExtResource("7_guf3d")
 
 [connection signal="timeout" from="renew_timer" to="." method="_on_renew_timer_timeout"]
