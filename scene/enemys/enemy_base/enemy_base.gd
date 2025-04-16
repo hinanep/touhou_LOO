@@ -164,7 +164,7 @@ func move_to_target():
 	#else:
 		#velocity =  global_position.direction_to(player_node.global_position) * mob_info.speed
 	velocity =  compute_safevelocity(global_position.direction_to(player_node.global_position) * mob_info.speed)
-
+	$AnimatedSprite2D.flip_h = (velocity.x > 0)
 	move_and_slide()
 
 #移动方式：蛄蛹（初始化时设置了定时反转creep_move变量）
