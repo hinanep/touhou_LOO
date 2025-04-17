@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=15 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_r7dq7"]
 [ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_6vlxu"]
 [ext_resource type="Script" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
+[ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
@@ -71,6 +72,7 @@ script = ExtResource("4_2ujjm")
 script = ExtResource("5_7ehn4")
 
 [node name="map" type="Control" parent="."]
+visible = false
 z_index = -500
 z_as_relative = false
 anchors_preset = 0
@@ -208,7 +210,7 @@ position = Vector2(2775.5, 963)
 texture = ExtResource("5_6vlxu")
 
 [node name="air_wall" type="StaticBody2D" parent="."]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 0
 
 [node name="left" type="CollisionShape2D" parent="air_wall"]
@@ -234,5 +236,9 @@ autostart = true
 
 [node name="WorldEnvironment" type="CanvasModulate" parent="."]
 color = Color(0.709804, 0.807843, 0.835294, 1)
+
+[node name="Node2D" parent="." instance=ExtResource("9_7xnml")]
+position = Vector2(0, -1000)
+scale = Vector2(0.5, 0.5)
 
 [connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]

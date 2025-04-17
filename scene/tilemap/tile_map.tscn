@@ -61,4 +61,3 @@ format = 2
 layer_0/name = "0"
 layer_1/name = "1"
 layer_1/y_sort_origin = 1
-layer_1/tile_data = PackedInt32Array()

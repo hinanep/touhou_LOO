@@ -62,7 +62,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w473w"]
 shader = ExtResource("2_0ctk8")
 shader_parameter/width = 10.0
-shader_parameter/outline_color = Color(0.901961, 0.12549, 0, 0.356863)
+shader_parameter/outline_color = Color(1, 0.00999999, 0.00999999, 0.423529)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
