@@ -40,6 +40,7 @@ animations = [{
 radius = 5.0
 
 [node name="plate_1" type="Area2D" groups=["treasure_chests"]]
+z_index = -1
 scale = Vector2(4, 4)
 collision_layer = 16
 script = ExtResource("1_s86ur")
@@ -62,6 +63,7 @@ texture = ExtResource("5_erhmg")
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["treasure_chests"]]
 
 [node name="Passive" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0.34, 0.714, 1, 1)
 position = Vector2(0, -50)
 rotation = 3.14159
 scale = Vector2(0.04, 0.04)

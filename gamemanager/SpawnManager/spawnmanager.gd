@@ -14,19 +14,12 @@ var audit_timer = 0.0
 const AUDIT_INTERVAL = 15.0 # 每 15 秒检查一次
 func _ready() -> void:
 	spatial_grid =SpatialGrid.new(GRID_CELL_SIZE)
+	#WorkerThreadPool
+	#thread.start(find_closest_enemies)
 
-func _physics_process(delta):
-	audit_timer += delta
-	if audit_timer >= AUDIT_INTERVAL:
-		audit_timer = 0.0
-		audit_spatial_grid()
 
-#func draw_astar_map():
-		#var ast = AStar2D.new()
-		#for i in mob_dic:
-			#if mob_dic[i]!=null:
-				#ast.add_point(i,mob_dic[i].global_position)
-		#mob_map = ast
+
+
 
 func add_spawn_event(spawner_init):
 	var new_spawner = spawner_pre.instantiate()
@@ -219,13 +212,161 @@ func audit_spatial_grid():
 		if spatial_grid.grid.has(cell_coords): # 再次检查以防万一
 			spatial_grid.grid.erase(cell_coords)
 
+func process_mob_movement(delta):
+	# --- 0. 检查依赖项 ---
+	#if not is_instance_valid(spatial_grid) or not Engine.has_singleton("WorkerThreadPool"):
+		## 如果网格无效或线程池不可用，则跳过优化逻辑
+		## (你可能需要添加一个不使用线程的备用逻辑)
+		##_apply_forces_and_move(delta) # 假设有一个应用力并移动的函数
+		#return
 
-# 你可以在 _process 中每隔一段时间调用一次 audit_spatial_grid()，或者在特定事件后调用
-# 例如：
-# var audit_timer = 0.0
-# const AUDIT_INTERVAL = 5.0 # 每 5 秒检查一次
-# func _process(delta):
-#     audit_timer += delta
-#     if audit_timer >= AUDIT_INTERVAL:
-#         audit_timer = 0.0
-#         audit_spatial_grid()
+	# --- 1. 等待并收集上一帧 (N-1) 的计算结果 ---
+	var previous_results = {} # 创建一个临时字典来收集结果
+	results_mutex.lock() # 锁定以安全访问共享字典
+	previous_results = avoidance_results.duplicate(true) # 深度复制结果
+	avoidance_results.clear() # 清空共享字典，为下次计算做准备
+	results_mutex.unlock()
+
+	# 等待上一帧提交的所有任务完成
+	for task_id in avoidance_task_ids:
+		WorkerThreadPool.wait_for_task_completion(task_id)
+	avoidance_task_ids.clear() # 清空任务 ID 列表
+
+	# --- 2. 应用上一帧 (N-1) 计算出的避障力到当前帧 (N) ---
+	# (这部分逻辑与步骤 4 的移动合并)
+
+	# --- 3. 准备当前帧 (N) 的计算数据 ---
+	var enemies_data_to_process = [] # 存储需要计算的敌人及其邻居信息
+
+	# 3.1 收集所有有效敌人的 ID 和位置 (主线程)
+	var current_enemy_positions = {} # {id: pos}
+	var current_enemy_targets = {} # {id: target_velocity} (假设敌人有目标速度)
+	for id in mob_dic.keys():
+		var enemy = mob_dic[id]
+		if is_instance_valid(enemy):
+			current_enemy_positions[id] = enemy.global_position
+			# 假设 Enemy 有一个 get_desired_velocity() 方法
+			if enemy.has_method("get_desired_velocity"):
+				current_enemy_targets[id] = enemy.get_desired_velocity()
+			else:
+				current_enemy_targets[id] = Vector2.ZERO
+
+	# 3.2 为每个敌人查询邻居 (主线程，访问 SpatialGrid)
+	for id in current_enemy_positions:
+		var enemy_pos = current_enemy_positions[id]
+		# 在主线程安全地查询空间网格
+		var neighbors_nodes = find_closest_enemies( # 使用 EnemyManager 的方法
+			enemy_pos,
+			AVOIDANCE_NEIGHBOR_QUERY_COUNT,
+			AVOIDANCE_RADIUS,
+			mob_dic[id] # 排除自己
+		)
+
+		# 提取邻居的位置 (或其他线程安全的数据)
+		var neighbor_positions = PackedVector2Array() # 使用 PackedArray 更安全
+		for neighbor_node in neighbors_nodes:
+			if is_instance_valid(neighbor_node):
+				neighbor_positions.append(neighbor_node.global_position)
+
+		# 将需要传递给工作线程的数据打包
+		enemies_data_to_process.append({
+			"id": id,
+			"pos": enemy_pos,
+			"neighbors": neighbor_positions
+		})
+
+	# --- 4. 分发当前帧 (N) 的计算任务到线程池 (主线程) ---
+	for enemy_data in enemies_data_to_process:
+		# 创建 Callable 指向静态计算函数
+		var task_callable = Callable(self, "_calculate_avoidance_task").bind(
+			enemy_data["id"],
+			enemy_data["pos"],
+			enemy_data["neighbors"],
+			AVOIDANCE_RADIUS_SQ, # 传入平方值避免在线程中重复计算
+			AVOIDANCE_STRENGTH,
+			results_mutex, # 传入互斥锁引用
+			avoidance_results # 传入共享结果字典引用 (线程将写入这里)
+		)
+		# 添加任务到线程池，并存储任务 ID
+		var task_id = WorkerThreadPool.add_task(task_callable)
+		avoidance_task_ids.append(task_id)
+
+	# 启动线程池处理任务 (如果需要/或者它自动处理)
+	# WorkerThreadPool.start() - 通常不需要手动调用 start
+
+	# --- 5. 应用力并移动 (主线程) ---
+	# 在这里，我们将上一帧计算出的力 (存储在 previous_results 中) 应用到当前帧
+	_apply_forces_and_move(previous_results, current_enemy_targets, delta)
+
+
+# --- 多线程避障相关变量 ---
+# 存储上一帧分发的任务 ID
+var avoidance_task_ids: Array = []
+# 存储上一帧计算完成的结果 { enemy_id: avoidance_force }
+var avoidance_results: Dictionary = {}
+# 用于保护 avoidance_results 字典的互斥锁
+var results_mutex: Mutex = Mutex.new()
+
+# 敌人避障计算参数 (可以从 Enemy 脚本移动到这里，或者每个 Enemy 仍有自己的参数)
+const AVOIDANCE_RADIUS = 40.0 # 示例值
+const AVOIDANCE_STRENGTH = 3000.0 # 示例值
+const AVOIDANCE_NEIGHBOR_QUERY_COUNT = 6 # 示例值
+const AVOIDANCE_RADIUS_SQ = AVOIDANCE_RADIUS * AVOIDANCE_RADIUS # 预计算平方值
+
+func _physics_process(delta):
+	audit_timer += delta
+	if audit_timer >= AUDIT_INTERVAL:
+		audit_timer = 0.0
+		audit_spatial_grid()
+	#process_mob_movement(delta)
+
+
+# 静态方法或普通方法，用于在工作线程中执行纯计算
+# !! 重要: 此函数内绝对不能访问任何 Godot 节点或非线程安全的全局变量 !!
+# !! 只能使用传入的参数和局部变量进行计算 !!
+static func _calculate_avoidance_task(enemy_id, enemy_pos, neighbor_positions, radius_sq, strength, mutex, results):
+	var avoidance_force = Vector2.ZERO
+	for neighbor_pos in neighbor_positions:
+		var to_neighbor = neighbor_pos - enemy_pos
+		var dist_sq = to_neighbor.length_squared()
+
+		if dist_sq > 0.001 and dist_sq < radius_sq:
+			# var weight = strength / dist_sq # 或者其他计算方式
+
+			var weight = strength * (1.0 - sqrt(dist_sq / radius_sq)) # 线性衰减示例
+
+			# 避免在距离非常近时力度无限大或过大
+			#weight = min(weight, strength * 10.0) # 示例：限制最大权重
+
+			var away_direction = -to_neighbor.normalized()
+			avoidance_force += away_direction * weight
+	#avoidance_force = avoidance_force.limit_length(500)
+
+	# 使用互斥锁安全地写入共享的结果字典
+	mutex.lock()
+	results[enemy_id] = avoidance_force
+	mutex.unlock()
+	# 任务完成
+
+
+# 辅助函数：应用力和移动敌人 (在主线程执行)
+func _apply_forces_and_move(forces_from_last_frame: Dictionary, current_targets: Dictionary, delta):
+	for id in mob_dic:
+		var enemy = mob_dic[id]
+		if not is_instance_valid(enemy): continue
+
+		## 获取敌人期望的速度 (来自当前帧的AI逻辑)
+		#var desired_velocity = current_targets.get(id, Vector2.ZERO)
+#
+		## 获取上一帧计算出的避障力
+		#var avoidance = forces_from_last_frame.get(id, Vector2.ZERO)
+		var final_velocity = current_targets.get(id, Vector2.ZERO) + forces_from_last_frame.get(id, Vector2.ZERO)*0.5
+		#final_velocity = lerp(current_targets.get(id, Vector2.ZERO),forces_from_last_frame.get(id, Vector2.ZERO),0.8)
+		if final_velocity.length_squared() > enemy.mob_info.speed * enemy.mob_info.speed:
+			final_velocity = final_velocity.normalized() * enemy.mob_info.speed
+		# 结合速度 (这里的 enemy 需要是 CharacterBody2D 或类似节点)
+		enemy.velocity = enemy.velocity.move_toward(final_velocity,150)
+
+
+		# 执行移动
+		enemy.move_and_slide()
