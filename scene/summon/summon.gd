@@ -36,7 +36,8 @@ func _ready():
 		cd_timer.start()
 
 	var duration = $duration
-	duration.wait_time = summon_info.duration
+	duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
+
 	duration.timeout.connect(destroy.bind(summon_info.id))
 	duration.start()
 	top_level = true

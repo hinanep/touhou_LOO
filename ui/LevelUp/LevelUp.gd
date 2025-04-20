@@ -25,5 +25,5 @@ func close_self():
 
 
 	G.get_gui_view_manager().close_view(viewInstanceId)
-	GameManager.is_uping = false
-	GameManager.add_exp(0)
+	player_var.is_uping = false
+	player_var.player_exp += 0

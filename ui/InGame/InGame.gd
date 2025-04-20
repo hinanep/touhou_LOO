@@ -16,8 +16,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			#G.get_gui_view_manager().close_view(pause_id)
 		#pauseing = !pauseing
 	if event.is_action_pressed("clockup"):
-		if Engine.time_scale <3.5:
-			Engine.time_scale = 4.0
+		if Engine.time_scale <1.5:
+			Engine.time_scale = 2.0
 		else:
 			Engine.time_scale = 1.0
 

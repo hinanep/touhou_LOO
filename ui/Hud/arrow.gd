@@ -44,6 +44,12 @@ func _ready():
 
 func _on_viewport_size_changed():
 	viewport_size = get_viewport().get_visible_rect().size
+var chest_screen_pos: Vector2
+	# 获取必要的摄像机信息
+var cam_global_pos: Vector2
+var cam_screen_center: Vector2
+var cam_zoom: Vector2
+var chest_world_pos: Vector2
 
 func _process(delta):
 	if not is_instance_valid(camera):
@@ -66,21 +72,19 @@ func _process(delta):
 			current_chests[chest.get_instance_id()] = chest
 
 	# 获取必要的摄像机信息
-	var cam_global_pos: Vector2 = camera.global_position
-	var cam_screen_center: Vector2 = camera.get_screen_center_position()
-	var cam_zoom: Vector2 = camera.get_zoom() # 注意 zoom 是 Vector2
+	cam_global_pos = camera.global_position
+	cam_screen_center = viewport_size/2
+	cam_zoom = camera.get_zoom() # 注意 zoom 是 Vector2
+
 	# --- 更新或创建箭头 ---
 	for chest_id in current_chests:
 		var chest = current_chests[chest_id]
-		var chest_world_pos: Vector2 = chest.global_position
+		chest_world_pos = chest.global_position
 
 		# 将宝箱世界坐标转换为屏幕坐标 - 使用新的计算公式
-		var chest_screen_pos: Vector2 = cam_screen_center + (chest_world_pos - cam_global_pos) * cam_zoom
+		chest_screen_pos = cam_screen_center + (chest_world_pos - cam_global_pos) * cam_zoom
 
-		var is_visible_on_screen = Rect2(Vector2(-480,-270), viewport_size/2).has_point(chest_screen_pos)
-		#print('cam_global_pos' , cam_global_pos)
-		#print('cam_screen_center' , cam_screen_center)
-		#print('chest_screen_pos' , chest_screen_pos)
+		var is_visible_on_screen = Rect2(Vector2(0,60), viewport_size).has_point(chest_screen_pos)
 
 
 		var arrow_instance = _ensure_arrow_exists(chest_id)
@@ -91,8 +95,8 @@ func _process(delta):
 			var arrow_target_world_pos = chest_world_pos + Vector2(0, -on_screen_vertical_offset)
 
 			# 将世界坐标转换为屏幕坐标 (CanvasLayer 坐标) - 使用新的计算公式
-			var arrow_screen_pos = cam_screen_center + (arrow_target_world_pos - cam_global_pos)
-			arrow_screen_pos = (arrow_target_world_pos - cam_global_pos) * cam_zoom+Vector2(960,540)
+			var arrow_screen_pos
+			arrow_screen_pos = (arrow_target_world_pos - cam_global_pos) * cam_zoom+viewport_size/2
 
 			arrow_instance.position = arrow_screen_pos
 			arrow_instance.rotation = PI / 2.0 # 假设箭头向右为0度
@@ -104,8 +108,8 @@ func _process(delta):
 			arrow_instance.rotation = direction.angle()
 			var projected_pos = direction
 
-			arrow_instance.position = intersect_center_ray_rect_min_t(direction,safe_rect)* cam_zoom+Vector2(960,540)
-			#projected_pos.clamp(safe_rect.position, safe_rect.end)* cam_zoom+Vector2(960,540)
+			arrow_instance.position = intersect_center_ray_rect_min_t(direction,safe_rect)* cam_zoom+viewport_size/2
+
 
 			arrow_instance.visible = true
 

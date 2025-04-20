@@ -19,7 +19,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _open():
 	player_var.new_scene()
 
-	GameManager.is_uping = false
+	player_var.is_uping = false
 	for i in 1:
 		var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 		dummm.position.x += 2*i

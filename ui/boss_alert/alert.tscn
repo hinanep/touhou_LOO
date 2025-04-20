@@ -9,7 +9,6 @@ atlas = ExtResource("1_3eskm")
 region = Rect2(-5, 187, 260, 97)
 
 [node name="Alert" type="CanvasLayer"]
-visible = false
 follow_viewport_enabled = true
 script = ExtResource("1_il06i")
 

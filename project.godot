@@ -24,13 +24,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 table="*res://settings/dist/table.gd"
-SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
-player_var="*res://gamemanager/player_var.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
-G="*res://ui/Scripts/G.gd"
-GameManager="*res://gamemanager/GameManager/game_manager.tscn"
-RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.gd"
+SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
+RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
+player_var="*res://gamemanager/player_var.gd"
+G="*res://ui/Scripts/G.gd"
+GameManager="res://gamemanager/GameManager/game_manager.tscn"
 
 [debug]
 
@@ -168,7 +168,11 @@ avoidance/thread_model/avoidance_use_high_priority_threads=false
 [physics]
 
 2d/run_on_separate_thread=true
+common/physics_ticks_per_second=45
 common/physics_jitter_fix=0.0
+2d/default_linear_damp=0.0
+2d/default_angular_damp=0.0
+2d/solver/solver_iterations=8
 common/physics_interpolation=true
 
 [rendering]

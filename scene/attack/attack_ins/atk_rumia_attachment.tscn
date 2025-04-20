@@ -56,6 +56,6 @@ sprite_frames = SubResource("SpriteFrames_bocds")
 [node name="PointLight2D" type="PointLight2D" parent="texture" index="0"]
 rotation = -1.5708
 scale = Vector2(2, 2)
-energy = 0.5
+energy = 0.4
 blend_mode = 1
 texture = ExtResource("4_qiwug")

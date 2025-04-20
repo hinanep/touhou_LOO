@@ -38,10 +38,7 @@ func first_init():
 		return
 	$damage_area.connect("body_entered",_on_damage_area_body_entered,cont)
 	$duration_timer.connect("timeout",destroy.bind('timeout'),cont)
-	if attack_info.has('duration_dependence'):
-		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
-	else:
-		$duration_timer.wait_time = attack_info.duration
+
 	kill.connect(on_kill,cont)
 	SignalBus.upgrade_group.connect(upgrade_attack,cont)
 
@@ -58,7 +55,10 @@ func first_init():
 
 #初始化
 func _ready():
-
+	if attack_info.has('duration_dependence'):
+		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
+	else:
+		$duration_timer.wait_time = attack_info.duration
 
 	name = attack_info.id
 	#first_init()

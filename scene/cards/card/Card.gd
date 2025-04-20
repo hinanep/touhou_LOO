@@ -29,6 +29,7 @@ func on_use_card(id,cost_rate):
 		return
 
 	player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
+	player_var.last_cardcost = card_info.mana/player_var.mana_cost*cost_rate
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)
 	if card_info.has('is_following'):

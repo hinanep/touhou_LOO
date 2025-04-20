@@ -34,18 +34,24 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func player_take_damage(damage):
+func take_damage(type,damage):
 
 	if player_var.is_invincible:
 		return
+
 	$AnimationPlayer.play("hurt")
 	AudioManager.play_sfx("music_sfx_hurt")
-	player_var.player_hp -= damage
+	match type:
+		'melee':
+			player_var.player_hp -= player_var.player_take_melee_damage(damage)
+		'danma':
+			player_var.player_hp -= player_var.player_take_danma_damage(damage)
 
 	SignalBus.player_hurt.emit()
 	if player_var.player_hp < 0.1:
 		died()
 	SignalBus.player_invincible.emit(player_var.invincible_time)
+
 func on_player_invincible(time):
 	player_var.is_invincible = true
 	$invincible_time.stop()

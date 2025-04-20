@@ -49,7 +49,8 @@ func add_mob(mob_ins):
 
 
 func del_mob(mob_id):
-	if is_instance_valid(mob_dic[mob_id]) and spatial_grid:
+
+	if is_instance_valid(mob_dic.get(mob_id)) and spatial_grid:
 		# 假设敌人有 global_position
 		spatial_grid.remove_object(mob_dic[mob_id], mob_dic[mob_id].last_position)
 

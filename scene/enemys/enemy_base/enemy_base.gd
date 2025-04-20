@@ -55,6 +55,7 @@ var avoidance_strength: float = 50.0
 var avoidance_neighbor_query_count: int = 2
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
+	name = str(mob_id)
 	set_z_index(1)
 	set_z_as_relative(false)
 
@@ -104,6 +105,11 @@ func get_desired_velocity():
 	return global_position.direction_to(player_node.global_position) * mob_info.speed
 
 func compute_safevelocity(body=self,idea_velocity = 0):
+	if not is_inscreen:
+		body.velocity = idea_velocity
+		move_and_slide()
+		return
+
 	var avoidance_force: Vector2 = Vector2.ZERO
 	idea_velocity = get_desired_velocity()
 	$AnimatedSprite2D.flip_h = (idea_velocity.x > 0)
@@ -184,8 +190,7 @@ func mob_take_damage(damage):
 func died(disppear = false):
 	if(disppear):
 		emit_signal('die',mob_id)
-		queue_free()
-		print('disppear')
+		call_deferred('queue_free')
 		return
 	drop()
 	emit_signal('die',mob_id)
@@ -232,10 +237,11 @@ func melee_attack_cd_timeout():
 
 
 #体术攻击方法，可覆盖
-func melee_attack(playernode):
+func melee_attack(body):
 	if not atkable:
 		return
-	player_var.player_take_melee_damage(playernode,player_var.enemy_make_damage(mob_info.physical_damage))
+	if body.has_method('take_damage'):
+		body.take_damage('melee',mob_info.physical_damage)
 
 
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用

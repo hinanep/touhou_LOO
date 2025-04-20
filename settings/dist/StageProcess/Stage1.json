@@ -8,7 +8,8 @@
 	"enemy_type": "enm_memhappy",
 	"amount_parameter": 5,
 	"enemy_attribute_boost": 1.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 1.0
   },
   "evt_zako_2": {
 	"event_id": "evt_zako_2",
@@ -19,7 +20,8 @@
 	"enemy_type": "enm_memsad",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 1.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 1.0
   },
   "evt_zako_3": {
 	"event_id": "evt_zako_3",
@@ -30,7 +32,8 @@
 	"enemy_type": "enm_mempeace",
 	"amount_parameter": 10,
 	"enemy_attribute_boost": 1.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 1.0
   },
   "evt_elite_1": {
 	"event_id": "evt_elite_1",
@@ -41,7 +44,8 @@
 	"enemy_type": "enm_memcolorful",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 1.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 1.0
   },
   "evt_zako_4": {
 	"event_id": "evt_zako_4",
@@ -52,7 +56,8 @@
 	"enemy_type": "enm_kedama",
 	"amount_parameter": 10,
 	"enemy_attribute_boost": 1.8,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 1.8
   },
   "evt_zako_5": {
 	"event_id": "evt_zako_5",
@@ -63,7 +68,8 @@
 	"enemy_type": "enm_yuurei",
 	"amount_parameter": 12,
 	"enemy_attribute_boost": 2.4,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 2.4
   },
   "evt_zako_6": {
 	"event_id": "evt_zako_6",
@@ -74,7 +80,8 @@
 	"enemy_type": "enm_onibi",
 	"amount_parameter": 15,
 	"enemy_attribute_boost": 3.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 3.0
   },
   "evt_elite_2": {
 	"event_id": "evt_elite_2",
@@ -85,7 +92,8 @@
 	"enemy_type": "enm_eltkedama",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 3.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 3.0
   },
   "evt_zako_7": {
 	"event_id": "evt_zako_7",
@@ -96,7 +104,8 @@
 	"enemy_type": "enm_boy",
 	"amount_parameter": 10,
 	"enemy_attribute_boost": 4.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 4.0
   },
   "evt_zako_8": {
 	"event_id": "evt_zako_8",
@@ -107,7 +116,8 @@
 	"enemy_type": "enm_girl",
 	"amount_parameter": 10,
 	"enemy_attribute_boost": 5.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 5.0
   },
   "evt_elite_3": {
 	"event_id": "evt_elite_3",
@@ -118,7 +128,8 @@
 	"enemy_type": "enm_teacher",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 5.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 5.0
   },
   "evt_zako_9": {
 	"event_id": "evt_zako_9",
@@ -129,7 +140,8 @@
 	"enemy_type": "enm_book",
 	"amount_parameter": 6,
 	"enemy_attribute_boost": 6.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 6.0
   },
   "evt_zako_10": {
 	"event_id": "evt_zako_10",
@@ -140,7 +152,8 @@
 	"enemy_type": "enm_memhappy",
 	"amount_parameter": 6,
 	"enemy_attribute_boost": 7.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 7.0
   },
   "evt_elite_4": {
 	"event_id": "evt_elite_4",
@@ -151,7 +164,8 @@
 	"enemy_type": "enm_memcolorful",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 7.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 7.0
   },
   "evt_zako_11": {
 	"event_id": "evt_zako_11",
@@ -162,7 +176,8 @@
 	"enemy_type": "enm_kedama",
 	"amount_parameter": 7,
 	"enemy_attribute_boost": 7.5,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 7.5
   },
   "evt_zako_12": {
 	"event_id": "evt_zako_12",
@@ -173,7 +188,8 @@
 	"enemy_type": "enm_memsad",
 	"amount_parameter": 7,
 	"enemy_attribute_boost": 8.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 8.0
   },
   "evt_elite_5": {
 	"event_id": "evt_elite_5",
@@ -184,7 +200,8 @@
 	"enemy_type": "enm_eltkedama",
 	"amount_parameter": 2,
 	"enemy_attribute_boost": 8.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 8.0
   },
   "evt_zako_13": {
 	"event_id": "evt_zako_13",
@@ -195,7 +212,8 @@
 	"enemy_type": "enm_yuurei",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 8.5,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 8.5
   },
   "evt_zako_14": {
 	"event_id": "evt_zako_14",
@@ -206,7 +224,8 @@
 	"enemy_type": "enm_mempeace",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 9.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 9.0
   },
   "evt_elite_6": {
 	"event_id": "evt_elite_6",
@@ -217,7 +236,8 @@
 	"enemy_type": "enm_memcolorful",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 9.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 9.0
   },
   "evt_elite_7": {
 	"event_id": "evt_elite_7",
@@ -228,7 +248,8 @@
 	"enemy_type": "enm_eltkedama",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 9.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 9.0
   },
   "evt_elite_8": {
 	"event_id": "evt_elite_8",
@@ -239,7 +260,8 @@
 	"enemy_type": "enm_teacher",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 9.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 9.0
   },
   "evt_zako_15": {
 	"event_id": "evt_zako_15",
@@ -250,7 +272,8 @@
 	"enemy_type": "enm_onibi",
 	"amount_parameter": 6,
 	"enemy_attribute_boost": 9.5,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 9.5
   },
   "evt_zako_16": {
 	"event_id": "evt_zako_16",
@@ -261,7 +284,8 @@
 	"enemy_type": "enm_book",
 	"amount_parameter": 6,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   },
   "evt_elite_9": {
 	"event_id": "evt_elite_9",
@@ -272,7 +296,8 @@
 	"enemy_type": "enm_memcolorful",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   },
   "evt_elite_10": {
 	"event_id": "evt_elite_10",
@@ -283,7 +308,8 @@
 	"enemy_type": "enm_eltkedama",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   },
   "evt_elite_11": {
 	"event_id": "evt_elite_11",
@@ -294,7 +320,8 @@
 	"enemy_type": "enm_teacher",
 	"amount_parameter": 1,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   },
   "evt_zako_17": {
 	"event_id": "evt_zako_17",
@@ -305,7 +332,8 @@
 	"enemy_type": "enm_boy",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   },
   "evt_zako_18": {
 	"event_id": "evt_zako_18",
@@ -316,6 +344,7 @@
 	"enemy_type": "enm_girl",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 10.0,
-	"enemy_barrage_boost": []
+	"enemy_barrage_boost": [],
+	"speed_boost": 10.0
   }
 }
