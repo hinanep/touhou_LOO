@@ -30,8 +30,7 @@ var mob_info = {
 @onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
 
 
-@onready var bullet_damage_area = $bullet_damage_area
-@onready var bullet_attack_cd = $bullet_damage_area/bullet_attack_cd
+
 #@onready var navi = $NavigationAgent2D
 var movement:Callable
 var creep_move:bool
@@ -48,11 +47,12 @@ var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未
 var shake_limit = 0.99
 var speed_sq = 0
 # 避障检测半径：只对进入这个半径的邻居做出反应
-var avoidance_radius: float = 40.0
+var avoidance_radius: float = 30.0
 # 避障力度：推开力的强度系数
-var avoidance_strength: float = 50.0
+var avoidance_strength: float = 160.0
 # 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
-var avoidance_neighbor_query_count: int = 2
+var avoidance_neighbor_query_count: int = 6
+const searching_time = 0.1
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	name = str(mob_id)
@@ -90,9 +90,12 @@ func _ready():
 	last_position = global_position
 	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
-
+var d = 0
 #根据表选择适当的移动函数（初始化时选择
-func _physics_process(_delta):
+func _physics_process(delta):
+	d+=delta
+
+
 	if moveable:
 		movement.call()
 	if not global_position.is_equal_approx(last_position):
@@ -102,39 +105,54 @@ func _physics_process(_delta):
 		# 更新上一帧的位置
 		last_position = global_position
 func get_desired_velocity():
-	return global_position.direction_to(player_node.global_position) * mob_info.speed
-
+	return Vector2.ZERO.move_toward(player_node.global_position-global_position,mob_info.speed)
+var neighbors: Array[Node]
 func compute_safevelocity(body=self,idea_velocity = 0):
-	if not is_inscreen:
-		body.velocity = idea_velocity
-		move_and_slide()
-		return
 
-	var avoidance_force: Vector2 = Vector2.ZERO
-	idea_velocity = get_desired_velocity()
-	$AnimatedSprite2D.flip_h = (idea_velocity.x > 0)
-		# 查找附近需要避开的邻居
-		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
-	var neighbors: Array[Node] = player_var.SpawnManager.find_closest_enemies(
+	#if not is_inscreen:
+		#idea_velocity = get_desired_velocity()
+		#body.velocity = idea_velocity
+		#move_and_slide()
+		#return
+	#if d<searching_time:
+		#move_and_slide()
+		#return
+	if d>searching_time:
+		d=0
+		neighbors = player_var.SpawnManager.find_closest_enemies(
 		global_position,
 		avoidance_neighbor_query_count,
 		avoidance_radius,
-		self # 排除自己
+		self, # 排除自己
+		true
 		)
+
+	var avoidance_force: Vector2 = Vector2.ZERO
+	idea_velocity = get_desired_velocity()
+	#避免贴近玩家
+	if(idea_velocity.length_squared()<speed_sq*shake_limit*0.1):
+		body.velocity = Vector2.ZERO
+		return
+	$AnimatedSprite2D.flip_h = (idea_velocity.x > 0)
+		# 查找附近需要避开的邻居
+		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
+
 	if neighbors.is_empty():
 		body.velocity = idea_velocity
 		move_and_slide()
 		return
 		# 遍历找到的邻居
 	for neighbor in neighbors:
-		if not is_instance_valid(neighbor): continue # 确保邻居仍然有效
+		if not is_instance_valid(neighbor):
+			continue # 确保邻居仍然有效
 
 		var to_neighbor: Vector2 = neighbor.global_position - global_position
 		var dist_sq: float = to_neighbor.length_squared()
 
 				# 计算远离邻居的方向向量 (单位向量)
 		var away_direction = -to_neighbor.normalized()
-
+		if(away_direction.dot(idea_velocity)<0):
+			away_direction *= 12
 				# 累加避障力
 		avoidance_force += away_direction * avoidance_strength * (1.0 - sqrt(dist_sq) / avoidance_radius)
 
@@ -146,8 +164,9 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 
 	final_velocity = final_velocity.limit_length(mob_info.speed)
 	#避免抖动
-	if(final_velocity.length_squared()<speed_sq*shake_limit):
+	if(final_velocity.length_squared()<speed_sq*shake_limit) or final_velocity.dot(idea_velocity)<0:
 		body.velocity = Vector2.ZERO
+
 		return
 
 	# 将最终计算的速度赋给 CharacterBody2D 的 velocity 属性
@@ -158,7 +177,7 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 #移动方式：走向玩家
 func move_to_target():
 
-	compute_safevelocity(self,global_position.direction_to(player_node.global_position) * mob_info.speed)
+	compute_safevelocity(self)
 
 
 
@@ -247,25 +266,12 @@ func melee_attack(body):
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
 func bullet_battle_ready(disable = false):
 	if disable:
-		$bullet_damage_area.queue_free()
-		return
-	bullet_damage_area.monitoring = true
-	bullet_damage_area.body_entered.connect(bullet_damage_area_body_entered)
-	bullet_damage_area.body_exited.connect(_on_bullet_damage_area_body_exited)
-	bullet_attack_cd.timeout.connect(bullet_attack_cd_timeout)
-
-
-func bullet_damage_area_body_entered(_body):
-	if not _body is player:
-		return
-	bullet_attack()
-	bullet_attack_cd.start()
-
-func _on_bullet_damage_area_body_exited(body):
-	if not body is player:
 		return
 
-	bullet_attack_cd.stop()
+
+
+
+
 
 #弹幕攻击方法，待实例实现
 func bullet_attack():

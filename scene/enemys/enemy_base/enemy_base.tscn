@@ -262,9 +262,10 @@ sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
 frame_progress = 0.533151
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="buff" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_itioj")
+script = ExtResource("4_2avwg")
 
 [node name="melee_damage_area" type="Area2D" parent="."]
 visible = false
@@ -276,17 +277,6 @@ monitorable = false
 shape = SubResource("CircleShape2D_v8ilp")
 
 [node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
-
-[node name="bullet_damage_area" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_damage_area"]
-shape = SubResource("CircleShape2D_v8ilp")
-
-[node name="bullet_attack_cd" type="Timer" parent="bullet_damage_area"]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
@@ -303,9 +293,6 @@ value = 100.0
 show_percentage = false
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[node name="buff" type="Node" parent="."]
-script = ExtResource("4_2avwg")
 
 [node name="DamageNum" parent="." instance=ExtResource("8_cu48r")]
 visible = false

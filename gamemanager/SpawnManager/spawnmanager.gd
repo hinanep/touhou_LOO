@@ -8,7 +8,7 @@ var spawner_pre
 
 var mob_dic:Dictionary
 var id = 0
-const GRID_CELL_SIZE = Vector2(100, 100)
+const GRID_CELL_SIZE = Vector2(50, 50)
 var spatial_grid: SpatialGrid
 var audit_timer = 0.0
 const AUDIT_INTERVAL = 15.0 # 每 15 秒检查一次
@@ -81,7 +81,7 @@ func clear():
 	mob_dic = {}
 # 寻找距离指定点最近的N个敌人 (优化版：逐层搜索网格)
 # ... (参数和返回说明同前) ...
-func find_closest_enemies(center_position: Vector2, count: int, max_radius: float, exclude_self: Node = null) -> Array[Node]:
+func find_closest_enemies(center_position: Vector2, count: int, max_radius: float, exclude_self: Node = null,simple = false) -> Array[Node]:
 	if not spatial_grid or not spatial_grid.cell_size: # 确保网格和cell_size有效
 		printerr("SpatialGrid not initialized or cell_size invalid.")
 		return []
@@ -114,6 +114,8 @@ func find_closest_enemies(center_position: Vector2, count: int, max_radius: floa
 		# 如果已经找到了足够的候选者，并且它们中的第 N 个比当前层所有单元格的最近距离还要近，
 		# 那么更外层的单元格必然更远，可以停止搜索。
 		if candidates.size() >= count:
+			if simple:
+				break
 			# 需要对现有候选者排序以找到第 N 个的距离
 			candidates.sort_custom(func(a, b): return a[0] < b[0])
 			var nth_dist_sq = candidates[count - 1][0]

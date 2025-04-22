@@ -44,7 +44,6 @@ script = ExtResource("1_y0rgb")
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_34uwu")]
 unique_name_in_owner = true
 process_mode = 1
-collision_mask = 48
 safe_margin = 1.0
 
 [node name="monster_spawn_line" type="Path2D" parent="player"]

@@ -4,7 +4,7 @@ class_name attack
 @export var level =0
 #击杀目标发出的信号
 signal kill(global_position)
-
+signal start
 
 @export var damage_source :String
 @export var attack_info = {
@@ -67,6 +67,7 @@ func _ready():
 
 	if node_active:
 		$duration_timer.start()
+		start.emit()
 		if attack_info.reference_system == 'world':
 			top_level = true
 		else:

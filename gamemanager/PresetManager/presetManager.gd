@@ -29,7 +29,7 @@ var preset_map = {
 	"music_sfx_explosion":"res://asset/music/sfx/explosion.wav",
 	"music_sfx_hurt":"res://asset/music/sfx/hurt.mp3",
 	"music_sfx_laser":"res://asset/music/sfx/laser.wav",
-	"music_sfx_masterspark":"res://asset/music/sfx/masterspark.mp3",
+	"music_sfx_masterspark":"res://asset/music/sfx/masterspark.wav",
 	"music_sfx_spellcard":"res://asset/music/sfx/spellcard.mp3",
 	"music_sfx_shoot":"res://asset/music/sfx/tap.wav",
 	"music_sfx_pickup":"res://asset/music/sfx/pickup.wav",

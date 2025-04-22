@@ -12,7 +12,7 @@ var player_hp=0:
 	get:
 		return player_hp
 	set(value):
-		player_hp = clamp(value,-1,player_hp_max)
+		player_hp = clamp(value,1,player_hp_max)
 var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
@@ -165,6 +165,21 @@ func level_up():
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
 
+func shake_screen(time,interval,intensity,speed,camera:Node2D=player_node.get_node('Camera2D')):
+	var offset
+	if camera == null:
+		return
+	var ct:Tween = camera.create_tween().set_speed_scale(speed)
+	while(time > 0):
+		ct.tween_property(camera,'position',Vector2.ZERO+Vector2(randf_range(-intensity,intensity),randf_range(-intensity,intensity)),interval)
+		time-=interval
+
+	ct.tween_property(camera,'position',Vector2.ZERO,interval)
+
+	#await  ct.finished
+	#print(time)
+	#var ctend = camera.create_tween().set_speed_scale(speed)
+	#ctend.tween_property(camera,'position',Vector2.ZERO,0.1)
 func ini():
 	var ini_list = initial_status.new().status
 	for property in ini_list:
