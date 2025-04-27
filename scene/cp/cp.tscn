@@ -13,6 +13,7 @@ region = Rect2(-5, 187, 260, 97)
 script = ExtResource("1_v20p2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PopupPanel" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8

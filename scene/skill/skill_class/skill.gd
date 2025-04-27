@@ -1,4 +1,5 @@
 class_name skill extends Node2D
+var active = true
 
 var skill_info = {
 	id = '',
@@ -23,7 +24,7 @@ func _ready():
 	add_to_group(skill_info.upgrade_group)
 	SignalBus.upgrade_group.connect(upgrade_skill)
 	SignalBus.del_skill.connect(destroy)
-	#SignalBus.del_skill.connect(destroy)
+
 	damage_source = skill_info.id
 	var cd_timer = $cd_timer
 	cd_timer.wait_time = skill_info.cd  / (1+player_var.colddown_reduce * skill_info.cd_reduction_efficicency)
@@ -54,6 +55,8 @@ func add_routine(id):
 
 
 func gen_routines():
+	if not active:
+		return
 	emit_signal("shoot")
 
 
@@ -76,7 +79,9 @@ func upgrade_skill(group):
 func destroy(id):
 	if skill_info.id != id:
 		return
+	active = false
 	for child in get_children():
 		if child.has_method('destroy'):
 			child.destroy()
+
 	queue_free()

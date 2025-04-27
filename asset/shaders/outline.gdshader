@@ -7,7 +7,7 @@ void fragment(){
     float size = width * 1.0 / float(textureSize(TEXTURE,0).x);
     vec4 sprite_color = texture(TEXTURE,UV);
 	float alpha;
-	if( sprite_color.a > 0.3)
+	if( sprite_color.a > 0.0)
     	alpha = -8.0 * 1.0;
 	else alpha = 0.0;
     alpha += texture(TEXTURE,UV + vec2(0.0,-size)).a;

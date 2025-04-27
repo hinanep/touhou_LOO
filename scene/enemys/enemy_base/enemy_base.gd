@@ -86,7 +86,7 @@ func _ready():
 	setbuff(multi,multi,multi,multi)
 
 
-	create_tween().tween_property($AnimatedSprite2D,'skew',0,1.5)
+
 	last_position = global_position
 	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
@@ -105,7 +105,7 @@ func _physics_process(delta):
 		# 更新上一帧的位置
 		last_position = global_position
 func get_desired_velocity():
-	return Vector2.ZERO.move_toward(player_node.global_position-global_position,mob_info.speed)
+	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)
 var neighbors: Array[Node]
 func compute_safevelocity(body=self,idea_velocity = 0):
 
@@ -216,10 +216,17 @@ func died(disppear = false):
 	invincible = true
 	atkable = false
 	set_physics_process(false)
-	create_tween().tween_property($AnimatedSprite2D,'skew',PI/2,0.5)
-	await get_tree().create_timer(0.5,false,true).timeout
-	queue_free()
+	if($AnimatedSprite2D.sprite_frames.has_animation('die')):
+		$AnimatedSprite2D.play('die')
+		await $AnimatedSprite2D.animation_finished
 
+
+	else:
+		var tween = create_tween().tween_property($AnimatedSprite2D,'skew',PI/2,0.5)
+		await tween.finished
+		#tween = null
+
+	queue_free()
 #掉落
 func drop():
 	SignalBus.drop.emit(drops_path,global_position,drop_num)

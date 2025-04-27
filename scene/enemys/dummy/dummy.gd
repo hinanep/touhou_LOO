@@ -16,16 +16,15 @@ func _physics_process(_delta):
 func mob_take_damage(damage):
 	if invincible:
 		return
-	damage_num_display(damage)
-	hp -= damage
-	if hp <= 0:
-		died()
-	progress_bar.value = hp/mob_info.health * 100
-	sumdamage += damage
-	$dps_reset.start()
-#体术攻击方法，可重新实现
-#func melee_attack(playernode):
-#	playernode.take_damage(player_var.enemy_make_damage(basic_melee_damage))
+	#damage_num_display(damage)
+	#hp -= damage
+	#if hp <= 0:
+		#died()
+	#progress_bar.value = hp/mob_info.health * 100
+	#sumdamage += damage
+	#$dps_reset.start()
+
+
 func died(disppear = false):
 	drop()
 

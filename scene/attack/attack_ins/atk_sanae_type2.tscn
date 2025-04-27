@@ -1,44 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx6yjilut3njj"]
+[gd_scene load_steps=7 format=3 uid="uid://cx6yjilut3njj"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_vgm1u"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lhhvw"]
 [ext_resource type="Texture2D" uid="uid://kflrfw01ftj8" path="res://asset/pic/bullet/中风1.png" id="3_oq3v0"]
 [ext_resource type="Texture2D" uid="uid://c4vi0pbvdkdn7" path="res://asset/pic/bullet/中风2.png" id="4_cfybf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wdgtq"]
-radius = 50.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n84xu"]
-atlas = ExtResource("3_oq3v0")
-region = Rect2(0, 0, 360, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_laqu1"]
-atlas = ExtResource("4_cfybf")
-region = Rect2(0, 0, 360, 360)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8n432"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0y0fc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n84xu")
+"texture": ExtResource("3_oq3v0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_laqu1")
+"texture": ExtResource("4_cfybf")
 }],
 "loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"name": &"default",
+"speed": 6.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdgtq"]
+radius = 50.0
 
 [node name="Attack" instance=ExtResource("1_vgm1u")]
 script = ExtResource("2_lhhvw")
 
+[node name="lock_component" parent="." index="1"]
+rotation = 0.0
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_0y0fc")
+frame_progress = 0.923031
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_wdgtq")
-
-[node name="texture" parent="." index="5"]
-rotation = 0.0
-scale = Vector2(0.14, 0.14)
-sprite_frames = SubResource("SpriteFrames_8n432")
-animation = &"new_animation"
-autoplay = ""

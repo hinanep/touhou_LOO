@@ -2,34 +2,31 @@ extends CharacterBody2D
 class_name player
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-
+var direction = Vector2(0,0)
 func _init():
 	player_var.player_node = $"."
 	player_var.player_hp = player_var.player_hp_max
 	pass
 func _ready():
 	SignalBus.player_invincible.connect(on_player_invincible)
-	await get_tree().create_timer(10).timeout
-	AudioManager.swap_backbgm('music_bgm_oldworld')
 
-func _input(event):
+
+func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("slow_mode"):
 		$CollisionShape2D/colli_point.set_visible(!$CollisionShape2D/colli_point.is_visible())
 
-func _enter_tree():
 
-	pass
 func _physics_process(_delta: float) -> void:
 	#移动
-
-	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
+	direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	if direction:
 		player_var.player_diretion_angle =Vector2(1,0).angle_to( direction)
-	velocity = direction * player_var.player_speed
 	if direction.x <0:
-		animated_sprite_2d.play("left")
+			animated_sprite_2d.play("left")
 	elif direction.x >0:
-		animated_sprite_2d.play("stay")
+			animated_sprite_2d.play("stay")
+	velocity = direction * player_var.player_speed
+
 
 	move_and_slide()
 

@@ -4,3 +4,4 @@ func _ready() -> void:
 	tween.set_loops()
 	tween.tween_property($Passive,'offset',Vector2.ZERO,0.5)
 	tween.tween_property($Passive,'offset',Vector2(0,-800),0.5)
+	tween = null

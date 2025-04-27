@@ -13,7 +13,7 @@ func on_unlocking():
 	if cp_info.has('giving_buff_moment'):
 		for i in range(cp_info.giving_buff_moment.size()):
 			if cp_info.giving_buff_moment[i]=='getting':
-				print('trigger')
+
 				trigger_buff(i)
 	$CanvasLayer/RichTextLabel.text = table.TID[cp_info.id][player_var.language]
 	$CanvasLayer/RichTextLabel/Sprite2D.set_texture(PresetManager.getpre('img_'+cp_info.id))
@@ -50,10 +50,11 @@ func destroy(desid):
 		SignalBus.player_del_buff_by_source.emit(cp_info.id)
 		queue_free()
 
+@onready var panel = $CanvasLayer/PopupPanel
+@onready var text = $CanvasLayer/RichTextLabel
 func popup() -> void:
 
-	var panel = $CanvasLayer/PopupPanel
-	var text = $CanvasLayer/RichTextLabel
+
 	$CanvasLayer.visible = true
 	var flush:Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
 
@@ -62,8 +63,10 @@ func popup() -> void:
 	flush.set_loops(3)
 
 
-	await get_tree().create_timer(0.1).timeout
-
+	var interval
+	print('flushover')
+	flush = null
+	print('expandstart')
 	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
@@ -72,11 +75,19 @@ func popup() -> void:
 
 	await  expand.finished
 
+	print('expandover')
+	expand = null
+	print('disstart')
 	var disappear = panel.create_tween()
 
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property(panel,'scale',Vector2(0.5,0),0.5)
 	disappear.set_parallel().tween_property(text,'scale',Vector2(0.3,0.3),0.5)
 	disappear.set_parallel().tween_property(text,'position',Vector2(400,0),0.5)
-	await get_tree().create_timer(3).timeout
+	disappear.tween_property(panel,'rotation',0,3.5)
+	await disappear.finished
+	print('disover')
+	disappear = null
+
+
 	$CanvasLayer.visible = false

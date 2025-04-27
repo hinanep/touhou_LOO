@@ -260,7 +260,6 @@ scale = Vector2(0.07, 0.07)
 skew = -0.0122173
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
-frame_progress = 0.533151
 
 [node name="buff" type="CollisionShape2D" parent="."]
 visible = false

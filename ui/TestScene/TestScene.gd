@@ -16,14 +16,19 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			Engine.time_scale = 0.1
 		else:
 			Engine.time_scale = 1.0
+		for i in  10:
+			var dummm = preload("res://scene/attack/attack_ins/atk_reimu.tscn").instantiate()
+			dummm.attack_info =table.Attack['atk_reimu'].duplicate()
+			dummm.position.x += 100
+			add_child(dummm)
 func _open():
 	player_var.new_scene()
-
+	player_var.SpawnManager = $SpawnManager
 	player_var.is_uping = false
 	for i in 1:
 		var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
-		dummm.position.x += 2*i
-		player_var.SpawnManager = $SpawnManager
+		dummm.position.x += 2*100
+
 
 		$SpawnManager.add_mob(dummm)
 	#for i in  10:

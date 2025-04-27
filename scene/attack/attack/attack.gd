@@ -25,8 +25,8 @@ var diretion_routine = Vector2(0,0)
 #dot开启状态
 var dot_on = false
 #组件
-var lock_compo : LockComponent
-var move_compo : MoveComponent
+var lock_compo
+var move_compo
 
 func first_init():
 	const cont = 2
@@ -41,8 +41,9 @@ func first_init():
 
 	kill.connect(on_kill,cont)
 	SignalBus.upgrade_group.connect(upgrade_attack,cont)
+	if not (attack_info.bullet_eraseing):
+		$bullet_erase_area.queue_free()
 
-	$bullet_erase_area.set_monitoring(attack_info.bullet_eraseing)
 	if attack_info.has('reflection'):
 		if attack_info.reflection.has('enemy'):
 			$".".collision_mask += 2
@@ -55,10 +56,15 @@ func first_init():
 
 #初始化
 func _ready():
-	if attack_info.has('duration_dependence'):
-		$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
-	else:
-		$duration_timer.wait_time = attack_info.duration
+	if attack_info.has('duration') and attack_info.duration>0.1:
+
+		if attack_info.has('duration_dependence') :
+
+				$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
+		else:
+
+				$duration_timer.wait_time = attack_info.duration
+
 
 	name = attack_info.id
 	#first_init()
@@ -73,12 +79,11 @@ func _ready():
 		else:
 			global_position = position
 
-	if attack_info.has('locking_type'):
-		lock_compo = LockComponent.new($".",attack_info.locking_type,lock_routine)
-	else:
-		lock_compo = LockComponent.new($".",null,lock_routine)
 
-	move_compo = MoveComponent.new($".",attack_info,lock_compo,diretion_routine)
+	lock_compo = $lock_component.init($".",attack_info.get('locking_type'),lock_routine)
+
+
+	move_compo = $move_component.init($".",attack_info,lock_compo,diretion_routine)
 
 
 
@@ -93,7 +98,7 @@ func set_shape(cshape):
 	var addi = 1
 	if attack_info.has('size_dependence'):
 		addi = player_var.dep.operate_dep(attack_info.size_dependence,addi)
-	var texture = $texture
+	var texture = $lock_component
 	match cshape:
 		'circle':
 			cshape = CircleShape2D.new()
@@ -104,7 +109,7 @@ func set_shape(cshape):
 			$VisibleOnScreenNotifier2D.scale = Vector2(1,1)* attack_info.size[0]
 			$damage_area/CollisionShape2D.position = Vector2(0,0)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,0)
-			$CollisionShape2D.position = Vector2(0,0)
+			$move_component.position = Vector2(0,0)
 		'rectangle_center':
 
 			cshape = RectangleShape2D.new()
@@ -119,13 +124,12 @@ func set_shape(cshape):
 			#矩形中心点
 			$damage_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
 			$bullet_erase_area/CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
-			$CollisionShape2D.position = Vector2(0,-attack_info.size[1]/2)
-			#print(texture.scale)
+			$move_component.position = Vector2(0,-attack_info.size[1]/2)
 			texture.scale *= Vector2(attack_info.size[0]/20,attack_info.size[1]/20)
 
 	$damage_area/CollisionShape2D.shape = cshape
 	$bullet_erase_area/CollisionShape2D.shape = cshape
-	$CollisionShape2D.shape = cshape
+	$move_component.shape = cshape
 
 	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
 	texture.scale *= player_var.range_add_ratio*addi
@@ -168,11 +172,12 @@ func set_active(active:bool):
 		timer.timeout.connect(dot)
 		timer.start()
 	visible = active
-	$texture.visible = active
+	$lock_component.visible = active
 	set_process(active)
 	set_physics_process(active)
 	$damage_area.monitoring = active
-	$bullet_erase_area.monitoring = active
+	if has_node('bullet_erase_area'):
+		$bullet_erase_area.monitoring = active
 
 
 #击中时触发器
@@ -193,15 +198,15 @@ func _on_damage_area_body_entered(body):
 		damage(body,attack_info.damage)
 		penetration += 1
 		if penetration > attack_info.penetration:
-			call_deferred("destroy", 'pene')
+			destroy('pene')
+			#call_deferred("destroy", 'pene')
 
 #摧毁本攻击
-func destroy(message:String):
+func destroy(message:String=''):
 
 	if attack_info.has('destroying_routine_creation'):
 		for destroy_gen in attack_info.destroying_routine_creation:
 			SignalBus.trigger_routine_by_id.emit(destroy_gen,true,global_position,rotation,null)
-
 	queue_free()
 
 ##激活cp效果 TODO：boost似乎还没有实现
@@ -242,7 +247,8 @@ func boost_active(cp_info,is_active:bool):
 		return
 	#TODO:改用信号系统
 	for node in get_parent().get_children():
-		node.recive_boost(attack_info,is_active)
+		if node.has_method('recive_boost'):
+			node.recive_boost(attack_info,is_active)
 
 #当本攻击接受到boost攻击发出的boost信号时触发
 func recive_boost(atk_info,is_active):
@@ -291,7 +297,7 @@ func upgrade_attack(group):
 		for i in attack_info.size:
 			i*=(1+ table.Upgrade[group].range_addition[level-1]) / (1+table.Upgrade[group].range_addition[level-2])
 
-#离开屏幕时触发，销毁攻击 TODO：或许可以计时销毁？
+#离开屏幕时触发，销毁攻击
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$exit_screen_timer.start()
 
@@ -300,4 +306,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 
 func _on_exit_screen_timer_timeout() -> void:
-	call_deferred("destroy", 'cannot vis')
+	queue_free()
+	#destroy('cannot vis')
+	#call_deferred("destroy", 'cannot vis')

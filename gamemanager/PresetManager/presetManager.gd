@@ -23,6 +23,8 @@ var preset_map = {
 
 	'enemy':"res://scene/enemys/enemy_base/enemy_base.tscn",
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
+	'enm_memhappy':"res://scene/enemys/enm_memhappy.tscn",
+	'enm_memsad':"res://scene/enemys/enm_memsad.tscn",
 
 	"music_sfx_cp":"res://asset/music/sfx/cp.wav",
 	"music_sfx_error":"res://asset/music/sfx/error.mp3",
@@ -93,6 +95,9 @@ var preset_map = {
 	'img_atk_wriggle':"res://asset/pic/bullet/firefly.png",
 	'img_atk_sekibanki':"res://asset/pic/bullet/头.png",
 	'img_atk_misumaru':"res://asset/pic/bullet/yinyangorb.png",
+
+	'root_menu':"res://ui/game.tscn",
+	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
 }
 
 

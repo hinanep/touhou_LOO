@@ -1,12 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=12 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="3_802rx"]
-[ext_resource type="Script" path="res://gamemanager/GameManager/game_manager.gd" id="3_ksuh1"]
 [ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
-[ext_resource type="Texture2D" uid="uid://wdbvsjpw6si4" path="res://asset/pic/map_green.png" id="4_r7dq7"]
-[ext_resource type="Texture2D" uid="uid://u7dm8domapu8" path="res://asset/pic/wall.png" id="5_6vlxu"]
 [ext_resource type="Script" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
 
@@ -59,154 +56,12 @@ scale = Vector2(2.8, 2.8)
 energy = 0.6
 texture = ExtResource("3_802rx")
 
-[node name="game_manager" type="Node" parent="." groups=["GameManager"]]
-process_mode = 3
-script = ExtResource("3_ksuh1")
-
 [node name="SpawnManager" type="Node2D" parent="." groups=["SpawnManager"]]
 process_mode = 1
 script = ExtResource("4_2ujjm")
 
 [node name="drops" type="Node2D" parent="SpawnManager"]
 script = ExtResource("5_7ehn4")
-
-[node name="map" type="Control" parent="."]
-visible = false
-z_index = -500
-z_as_relative = false
-anchors_preset = 0
-
-[node name="map" type="Control" parent="map"]
-z_index = -100
-anchors_preset = 0
-
-[node name="MapGreen" type="Sprite2D" parent="map/map"]
-position = Vector2(-1834, -984)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen2" type="Sprite2D" parent="map/map"]
-position = Vector2(-1834, 22)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen3" type="Sprite2D" parent="map/map"]
-position = Vector2(-1832, 974)
-rotation = -3.14159
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen4" type="Sprite2D" parent="map/map"]
-position = Vector2(2, -981)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen5" type="Sprite2D" parent="map/map"]
-position = Vector2(-25, -4)
-scale = Vector2(4, 4)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen6" type="Sprite2D" parent="map/map"]
-position = Vector2(-34, 974)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen7" type="Sprite2D" parent="map/map"]
-position = Vector2(1842, -984)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen8" type="Sprite2D" parent="map/map"]
-position = Vector2(1827.5, -6)
-scale = Vector2(1.01356, 1)
-texture = ExtResource("4_r7dq7")
-
-[node name="MapGreen9" type="Sprite2D" parent="map/map"]
-position = Vector2(1822, 975)
-scale = Vector2(1.02061, 1)
-texture = ExtResource("4_r7dq7")
-
-[node name="wall" type="Control" parent="map"]
-z_index = -100
-anchors_preset = 0
-
-[node name="Wall" type="Sprite2D" parent="map/wall"]
-position = Vector2(-2770, -971)
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall2" type="Sprite2D" parent="map/wall"]
-position = Vector2(-2769, 109)
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall4" type="Sprite2D" parent="map/wall"]
-position = Vector2(-2770, 963)
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall5" type="Sprite2D" parent="map/wall"]
-position = Vector2(-2218, 1491)
-rotation = 1.5708
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall6" type="Sprite2D" parent="map/wall"]
-position = Vector2(-1138, 1491)
-rotation = 1.5708
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall7" type="Sprite2D" parent="map/wall"]
-position = Vector2(-61, 1491)
-rotation = 1.57079
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall8" type="Sprite2D" parent="map/wall"]
-position = Vector2(1019, 1491)
-rotation = 1.57079
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall7" type="Sprite2D" parent="map/wall/Wall8"]
-position = Vector2(1.00244, -1075)
-rotation = 3.14159
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall7" type="Sprite2D" parent="map/wall/Wall8/Wall7"]
-position = Vector2(-1.00122, 153)
-rotation = 3.14159
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall9" type="Sprite2D" parent="map/wall"]
-position = Vector2(-2240, -1499.5)
-rotation = 1.5708
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall10" type="Sprite2D" parent="map/wall"]
-position = Vector2(-1160, -1499.5)
-rotation = 1.5708
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall11" type="Sprite2D" parent="map/wall"]
-position = Vector2(-84, -1501.5)
-rotation = 1.57079
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall12" type="Sprite2D" parent="map/wall"]
-position = Vector2(996, -1501.5)
-rotation = 1.57079
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall7" type="Sprite2D" parent="map/wall/Wall12"]
-position = Vector2(1.00244, -1075)
-rotation = 3.14159
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall7" type="Sprite2D" parent="map/wall/Wall12/Wall7"]
-position = Vector2(-1.00122, 153)
-rotation = 3.14159
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall3" type="Sprite2D" parent="map/wall"]
-position = Vector2(2775.5, -971)
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall13" type="Sprite2D" parent="map/wall"]
-position = Vector2(2776.5, 109)
-texture = ExtResource("5_6vlxu")
-
-[node name="Wall14" type="Sprite2D" parent="map/wall"]
-position = Vector2(2775.5, 963)
-texture = ExtResource("5_6vlxu")
 
 [node name="air_wall" type="StaticBody2D" parent="."]
 collision_layer = 0
@@ -230,7 +85,7 @@ shape = SubResource("WorldBoundaryShape2D_6actc")
 
 [node name="end_game" type="Timer" parent="."]
 process_mode = 1
-wait_time = 370.0
+wait_time = 360.0
 autostart = true
 
 [node name="WorldEnvironment" type="CanvasModulate" parent="."]

@@ -17,12 +17,12 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.0221239, 0.181416, 0.230089, 0.269911, 0.539823, 0.712389, 0.774336, 0.831858, 0.938053, 0.969027, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.462899, 0.569118, 0.64933, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.52549, 1, 0.47451, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 1, 0, 1, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8lm2o"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fo3fx"]
 gradient = SubResource("Gradient_dvp2e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lu5jp"]
 shader = ExtResource("1_uqn6h")
-shader_parameter/gradient_color = SubResource("GradientTexture1D_8lm2o")
+shader_parameter/gradient_color = SubResource("GradientTexture1D_fo3fx")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n2i1a"]
 viewport_path = NodePath("master/SubViewport")

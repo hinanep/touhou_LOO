@@ -23,7 +23,7 @@ func on_add_card(card_info):
 	add_child(cardpre)
 func card_select_change(bias):
 	cardnum_now = int(cardnum_now+bias)%cardnum_have
-func _input(event):
+func _unhandled_key_input(event: InputEvent) -> void:
 	if cardnum_have!=0:
 		if event.is_action_pressed("use_card"):
 			SignalBus.use_card.emit(card_arr[cardnum_now],1)

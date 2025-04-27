@@ -5,21 +5,21 @@
 [ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_od6hf"]
 [ext_resource type="PackedScene" uid="uid://jh25f6kbce2d" path="res://scene/particle/master_spark/master_spark2.tscn" id="4_qrg0o"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sgjwi"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tq8me"]
 
 [node name="Attack" instance=ExtResource("1_cci4r")]
 script = ExtResource("2_y2vk4")
 
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(0.05, 0.006)
+sprite_frames = SubResource("SpriteFrames_tq8me")
+autoplay = ""
+
+[node name="Node2D" parent="lock_component" index="0" instance=ExtResource("4_qrg0o")]
+position = Vector2(-20.1613, 7.91364e-05)
+scale = Vector2(4, 1)
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = ExtResource("3_od6hf")
 
-[node name="texture" parent="." index="5"]
-position = Vector2(-0.5, 0)
-scale = Vector2(0.045, 0.024)
-sprite_frames = SubResource("SpriteFrames_sgjwi")
-offset = Vector2(3000, 0)
-
-[node name="Node2D" parent="texture" index="0" instance=ExtResource("4_qrg0o")]
-position = Vector2(-1.90735e-06, -6.25)
-
-[connection signal="tree_exited" from="texture/Node2D" to="texture/Node2D" method="_on_tree_exited"]
+[connection signal="tree_exited" from="lock_component/Node2D" to="lock_component/Node2D" method="_on_tree_exited"]

@@ -12,7 +12,7 @@ var player_hp=0:
 	get:
 		return player_hp
 	set(value):
-		player_hp = clamp(value,1,player_hp_max)
+		player_hp = clamp(value,-1,player_hp_max)
 var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
@@ -66,7 +66,7 @@ var mana=0:
 		set(value):
 			mana = clamp(value,0,mana_max)
 var mana_cost
-var last_cardcost = 0
+var last_cardcost = 100
 var point:int:
 	set(value):
 		point = point + (value-point) *point_ratio
@@ -175,12 +175,10 @@ func shake_screen(time,interval,intensity,speed,camera:Node2D=player_node.get_no
 		time-=interval
 
 	ct.tween_property(camera,'position',Vector2.ZERO,interval)
+	ct = null
 
-	#await  ct.finished
-	#print(time)
-	#var ctend = camera.create_tween().set_speed_scale(speed)
-	#ctend.tween_property(camera,'position',Vector2.ZERO,0.1)
 func ini():
-	var ini_list = initial_status.new().status
-	for property in ini_list:
-		set(property,ini_list[property])
+	var ini_list = initial_status.new()
+	for property in ini_list.status:
+		set(property,ini_list.status[property])
+	ini_list = null

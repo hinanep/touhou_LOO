@@ -34,6 +34,7 @@ func _ready():
 				summons.append(sumnode)
 
 	if routine_info.interval > 0.01:
+		$interval_timer.wait_time = routine_info.interval
 		has_interval = true
 	#if routine_info.has("creating_attack"):
 		#for id in routine_info.creating_attack:
@@ -91,13 +92,15 @@ func called(routine_id,force_world_position,input_position,input_rotation,parent
 
 #生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
 func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,parent_node = $"."):
+	if not active:
+		return
 	AudioManager.play_sfx("music_sfx_shoot")
 	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
 		match routine_info.one_creating_type:
 			'single':
 					if has_interval:
-						await  get_tree().create_timer(routine_info.interval,false,true).timeout
+						await  $interval_timer.timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node)
 					single_summon(gen_position,gen_rotation)
@@ -105,14 +108,13 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 			'multi_together':
 				for j in range(routine_info.one_creating_parameter[0]):
 					if has_interval:
-						await  get_tree().create_timer(routine_info.interval,false,true).timeout
+						await  $interval_timer.timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node,j)
 					single_summon(gen_position,gen_rotation)
 
 #生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
 func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0):
-
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
@@ -144,7 +146,8 @@ func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0
 
 #生成单次召唤物 TODO：随机种类召唤物
 func single_summon(generate_position,generate_rotation):
-
+	if not active:
+		return
 	#if routine_info.has('special_creating_attack'):
 		#match routine_info.special_creating_attack:
 			#'probability':
@@ -155,16 +158,10 @@ func single_summon(generate_position,generate_rotation):
 				#$".".add_child(new_attack)
 #
 	#else:
-		for sumnode in summons:
+	for sumnode in summons:
 			var new_sum  = sumnode.duplicate()
 			new_sum.global_position = generate_position
 			$".".add_child(new_sum)
-		#for summon_id in summons:
-			#var new_summon = summons[summon_id].instantiate()
-			#new_summon.summon_info = table.Summoned[summon_id]
-			#new_summon.global_position = generate_position
-			##new_summon.rotation = generate_rotation
-			#$".".add_child(new_summon)
 
 #随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
 func select_from_luck():
@@ -196,8 +193,9 @@ func upgrade_routine(group):
 func add_attack(id):
 	var attack_info = table.Attack[id].duplicate()
 
-	#var attack_pre = PresetManager.getpre('attack').instantiate()
 
+	#print(Time.get_ticks_msec())
+	#print("res://scene/attack/attack_ins/"+id+".tscn")
 	var attack_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
 
 	attack_pre.attack_info = attack_info
@@ -223,7 +221,12 @@ func add_summon(id):
 
 #销毁所有子节点，销毁招式
 func destroy():
+	active = false
+	attack_nodes.clear()
+	summons.clear()
+	print('routine destroy')
+
 	for child in get_children():
-		if child.has_method('destroy'):
-			child.destroy('routine_destroy')
+
+			child.queue_free()
 	queue_free()

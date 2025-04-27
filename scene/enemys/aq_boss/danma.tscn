@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://57m0u0fv0sqs"]
+
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="1_qkas0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2axlt"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yimwa"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+angle_min = 720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 15.0
+flatness = 1.0
+initial_velocity_min = 333.33
+initial_velocity_max = 333.33
+gravity = Vector3(0, 0, 0)
+
+[node name="Danma" type="GPUParticles2D"]
+amount = 1
+sub_emitter = NodePath("GPUParticles2D")
+process_material = SubResource("ParticleProcessMaterial_2axlt")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_yimwa")
+texture = ExtResource("1_qkas0")

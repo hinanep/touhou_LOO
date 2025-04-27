@@ -4,8 +4,8 @@ extends BaseGUIView
 func _on_back_button_pressed():
 	#G.get_gui_view_manager().close_all_view()
 
-	G.get_gui_view_manager().open_view("StartMenu")
-	close_self()
+	G.get_gui_view_manager().clear_to_start()
+
 	pass # Replace with function body.
 
 func _open():

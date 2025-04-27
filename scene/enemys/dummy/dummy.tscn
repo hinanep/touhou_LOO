@@ -1,23 +1,237 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwjf4brydbran"]
+[gd_scene load_steps=64 format=3 uid="uid://cwjf4brydbran"]
 
 [ext_resource type="Script" path="res://scene/enemys/dummy/dummy.gd" id="1_8axhr"]
-[ext_resource type="Texture2D" uid="uid://xanlet1y82b0" path="res://asset/pic/enemy/kedamaD.png" id="2_amfcj"]
+[ext_resource type="Shader" path="res://asset/shaders/outline.gdshader" id="2_wltcd"]
+[ext_resource type="Texture2D" uid="uid://cuwo4qan271k" path="res://asset/pic/enemy/kedama/毛玉-animation_00.png" id="3_l5nnf"]
+[ext_resource type="Texture2D" uid="uid://dkyw7xnx8gxjq" path="res://asset/pic/enemy/kedama/毛玉-animation_01.png" id="4_3yvqi"]
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_whe7s"]
+[ext_resource type="Texture2D" uid="uid://c0wyggageaq3t" path="res://asset/pic/enemy/kedama/毛玉-animation_02.png" id="5_al2n5"]
 [ext_resource type="PackedScene" uid="uid://clvkueof1i4cp" path="res://scene/enemys/enemy_base/damageNum.tscn" id="5_yrgr4"]
+[ext_resource type="Texture2D" uid="uid://hw6h7tre1ns4" path="res://asset/pic/enemy/kedama/毛玉-animation_03.png" id="6_xobqk"]
+[ext_resource type="Texture2D" uid="uid://c847d1eeor1b3" path="res://asset/pic/enemy/kedama/毛玉-animation_04.png" id="7_u8clo"]
+[ext_resource type="Texture2D" uid="uid://bshcck75fycuj" path="res://asset/pic/enemy/kedama/毛玉-animation_05.png" id="8_6a42y"]
+[ext_resource type="Texture2D" uid="uid://w2hnylulpdil" path="res://asset/pic/enemy/kedama/毛玉-animation_06.png" id="9_xqbg5"]
+[ext_resource type="Texture2D" uid="uid://cigt2oh2emmxm" path="res://asset/pic/enemy/kedama/毛玉-animation_07.png" id="10_bfswk"]
+[ext_resource type="Texture2D" uid="uid://b4x748xg2utge" path="res://asset/pic/enemy/kedama/毛玉-animation_08.png" id="11_rt8xf"]
+[ext_resource type="Texture2D" uid="uid://bnaqvt7lgx3t1" path="res://asset/pic/enemy/kedama/毛玉-animation_09.png" id="12_564j8"]
+[ext_resource type="Texture2D" uid="uid://cupca5emxiygs" path="res://asset/pic/enemy/kedama/毛玉-animation_10.png" id="13_unwm5"]
+[ext_resource type="Texture2D" uid="uid://cnlry1kvxxb7g" path="res://asset/pic/enemy/kedama/毛玉-animation_11.png" id="14_om2d2"]
+[ext_resource type="Texture2D" uid="uid://d0ivds8wllppk" path="res://asset/pic/enemy/kedama/毛玉-animation_12.png" id="15_2h8ml"]
+[ext_resource type="Texture2D" uid="uid://gq85cco8lp7k" path="res://asset/pic/enemy/kedama/毛玉-animation_13.png" id="16_ktasv"]
+[ext_resource type="Texture2D" uid="uid://dr5hovg46dg7d" path="res://asset/pic/enemy/kedama/毛玉-animation_14.png" id="17_oml4w"]
+[ext_resource type="Texture2D" uid="uid://dgoei7gpywgpq" path="res://asset/pic/enemy/kedama/毛玉-animation_15.png" id="18_sbagd"]
+[ext_resource type="Texture2D" uid="uid://c8wibfod2qyg6" path="res://asset/pic/enemy/kedama/毛玉-animation_16.png" id="19_8tlg4"]
+[ext_resource type="Texture2D" uid="uid://c5xw04tq8rl6p" path="res://asset/pic/enemy/kedama/毛玉-animation_17.png" id="20_rkxni"]
+[ext_resource type="Texture2D" uid="uid://bhima72cawqb1" path="res://asset/pic/enemy/kedama/毛玉-animation_18.png" id="21_16ipb"]
+[ext_resource type="Texture2D" uid="uid://cc2ph54v7h3oc" path="res://asset/pic/enemy/kedama/毛玉-animation_19.png" id="22_cl0yj"]
+[ext_resource type="Texture2D" uid="uid://d2rcq8njsbjtw" path="res://asset/pic/enemy/kedama/毛玉-animation_20.png" id="23_synbn"]
+[ext_resource type="Texture2D" uid="uid://btgny7hdecj0t" path="res://asset/pic/enemy/kedama/毛玉-animation_21.png" id="24_wovhx"]
+[ext_resource type="Texture2D" uid="uid://dnu0isdc3ewv3" path="res://asset/pic/enemy/kedama/毛玉-animation_22.png" id="25_d4qb1"]
+[ext_resource type="Texture2D" uid="uid://cxysomt3enfqm" path="res://asset/pic/enemy/kedama/毛玉-animation_23.png" id="26_sldr7"]
+[ext_resource type="Texture2D" uid="uid://b13rrska2ieki" path="res://asset/pic/enemy/kedama/毛玉-animation_24.png" id="27_6y6rh"]
+[ext_resource type="Texture2D" uid="uid://c23a4jyt4g2cx" path="res://asset/pic/enemy/kedama/毛玉-animation_25.png" id="28_y43n2"]
+[ext_resource type="Texture2D" uid="uid://0738vanahwgl" path="res://asset/pic/enemy/kedama/毛玉-animation_26.png" id="29_288ax"]
+[ext_resource type="Texture2D" uid="uid://bi52v4yv2gs8b" path="res://asset/pic/enemy/kedama/毛玉-animation_27.png" id="30_5jmdy"]
+[ext_resource type="Texture2D" uid="uid://bl0jylwlrlo03" path="res://asset/pic/enemy/kedama/毛玉-animation_28.png" id="31_atdjk"]
+[ext_resource type="Texture2D" uid="uid://dkan234d54e2j" path="res://asset/pic/enemy/kedama/毛玉-animation_29.png" id="32_cdtyw"]
+[ext_resource type="Texture2D" uid="uid://6kip7aqexotk" path="res://asset/pic/enemy/kedama/毛玉-animation_30.png" id="33_aivr2"]
+[ext_resource type="Texture2D" uid="uid://b3v4ban8xnfmy" path="res://asset/pic/enemy/kedama/毛玉-animation_31.png" id="34_aiswx"]
+[ext_resource type="Texture2D" uid="uid://crkp7v48rxov0" path="res://asset/pic/enemy/kedama/毛玉-animation_32.png" id="35_mco81"]
+[ext_resource type="Texture2D" uid="uid://7625wnmnnw7u" path="res://asset/pic/enemy/kedama/毛玉-animation_33.png" id="36_caq4u"]
+[ext_resource type="Texture2D" uid="uid://bikxbgl0ddbux" path="res://asset/pic/enemy/kedama/毛玉-animation_34.png" id="37_j2uer"]
+[ext_resource type="Texture2D" uid="uid://b4seui8me71ko" path="res://asset/pic/enemy/kedama/毛玉-animation_35.png" id="38_b3ti0"]
+[ext_resource type="Texture2D" uid="uid://tq8no0jcvtq2" path="res://asset/pic/enemy/kedama/毛玉-animation_36.png" id="39_ay2l3"]
+[ext_resource type="Texture2D" uid="uid://bxx3eu0aww0gd" path="res://asset/pic/enemy/kedama/毛玉-animation_37.png" id="40_yb4vj"]
+[ext_resource type="Texture2D" uid="uid://crauv3f1ua3q4" path="res://asset/pic/enemy/kedama/毛玉-animation_38.png" id="41_sx3v4"]
+[ext_resource type="Texture2D" uid="uid://b7t57f4so2011" path="res://asset/pic/enemy/kedama/毛玉-animation_39.png" id="42_24pcu"]
+[ext_resource type="Texture2D" uid="uid://bty0mv1m0c6vh" path="res://asset/pic/enemy/kedama/毛玉-animation_40.png" id="43_42kqp"]
+[ext_resource type="Texture2D" uid="uid://bmtfoyhqddpec" path="res://asset/pic/enemy/kedama/毛玉-animation_41.png" id="44_0orr1"]
+[ext_resource type="Texture2D" uid="uid://pywpberew0yw" path="res://asset/pic/enemy/kedama/毛玉-animation_42.png" id="45_56l22"]
+[ext_resource type="Texture2D" uid="uid://db8uwncsdk38a" path="res://asset/pic/enemy/kedama/毛玉-animation_43.png" id="46_dk45a"]
+[ext_resource type="Texture2D" uid="uid://mo4h24dw6ve4" path="res://asset/pic/enemy/kedama/毛玉-animation_44.png" id="47_whplv"]
+[ext_resource type="Texture2D" uid="uid://dqjwi3q22qoto" path="res://asset/pic/enemy/kedama/毛玉-animation_45.png" id="48_cu1w7"]
+[ext_resource type="Texture2D" uid="uid://d1gl6n5nl4frf" path="res://asset/pic/enemy/kedama/毛玉-animation_46.png" id="49_8b076"]
+[ext_resource type="Texture2D" uid="uid://dbh6j7s16j8d2" path="res://asset/pic/enemy/kedama/毛玉-animation_47.png" id="50_4fjgi"]
+[ext_resource type="Texture2D" uid="uid://kfldlwwfnocq" path="res://asset/pic/enemy/kedama/毛玉-animation_48.png" id="51_pmup0"]
+[ext_resource type="Texture2D" uid="uid://b30a03n6gin2p" path="res://asset/pic/enemy/kedama/毛玉-animation_49.png" id="52_v1228"]
+[ext_resource type="Texture2D" uid="uid://br0bg81u2kcp3" path="res://asset/pic/enemy/kedama/毛玉-animation_50.png" id="53_pby06"]
+[ext_resource type="Texture2D" uid="uid://bjv3o752sdhho" path="res://asset/pic/enemy/kedama/毛玉-animation_51.png" id="54_rsfbs"]
+[ext_resource type="Texture2D" uid="uid://cgb1llwd3dq3f" path="res://asset/pic/enemy/kedama/毛玉-animation_52.png" id="55_nq8t7"]
+[ext_resource type="Texture2D" uid="uid://edtry01jjk83" path="res://asset/pic/enemy/kedama/毛玉-animation_53.png" id="56_p0gr7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpq08"]
-atlas = ExtResource("2_amfcj")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xq8b3"]
+shader = ExtResource("2_wltcd")
+shader_parameter/width = 11.155
+shader_parameter/outline_color = Color(0.752941, 0, 0, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wpq08")
+"texture": ExtResource("3_l5nnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3yvqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_al2n5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xobqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u8clo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6a42y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xqbg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bfswk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rt8xf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_564j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_unwm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_om2d2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2h8ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ktasv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_oml4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_sbagd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8tlg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rkxni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_16ipb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cl0yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_synbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_wovhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_d4qb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_sldr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_6y6rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_y43n2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_288ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_5jmdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_atdjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_cdtyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_aivr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_aiswx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_mco81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_caq4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_j2uer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_b3ti0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ay2l3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_yb4vj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_sx3v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_24pcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_42kqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_0orr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_56l22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_dk45a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_whplv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_cu1w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_8b076")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_4fjgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_pmup0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_v1228")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_pby06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_rsfbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_nq8t7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_p0gr7")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 24.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
@@ -36,7 +250,8 @@ safe_margin = 10.0
 script = ExtResource("1_8axhr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1875, 0.195313)
+material = SubResource("ShaderMaterial_xq8b3")
+scale = Vector2(0.07, 0.073)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 autoplay = "default"
 

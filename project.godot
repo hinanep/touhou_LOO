@@ -19,7 +19,10 @@ config/name="touhouSurvivors"
 run/main_scene="res://ui/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/flush_stdout_on_print.debug=false
+boot_splash/image="res://asset/pic/blue_plate.png"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
@@ -30,7 +33,6 @@ SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 player_var="*res://gamemanager/player_var.gd"
 G="*res://ui/Scripts/G.gd"
-GameManager="res://gamemanager/GameManager/game_manager.tscn"
 
 [debug]
 
@@ -44,9 +46,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
 window/size/transparent=true
-window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
 
 [editor]
@@ -177,11 +177,11 @@ common/physics_interpolation=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 textures/lossless_compression/force_png=true
-textures/default_filters/use_nearest_mipmap_filter=true
-textures/default_filters/texture_mipmap_bias=-0.345
 anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
 viewport/transparent_background=true
 viewport/hdr_2d=true
+anti_aliasing/quality/screen_space_aa=1
 2d/sdf/scale=0

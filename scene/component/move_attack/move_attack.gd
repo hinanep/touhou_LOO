@@ -1,4 +1,4 @@
-extends RefCounted
+extends Node
 class_name MoveComponent
 var move_type:Callable
 var rotate_type:Callable = move_stay
@@ -30,7 +30,7 @@ var diretions = {
 
 			random='random',
 }
-func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
+func init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 	body = B
 	attack_info = attack_in
 
@@ -85,7 +85,7 @@ func _init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 
 	max_rad_perframe = deg_to_rad(attack_info.omega) /Engine.physics_ticks_per_second
 
-
+	return $"."
 
 
 func update(delta):

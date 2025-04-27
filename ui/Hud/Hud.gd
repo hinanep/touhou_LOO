@@ -93,7 +93,7 @@ func on_add_card(card_info):
 	card_container.get_child(card_selecting).set_stretch_mode(4)
 
 func on_del_card(id):
-	await get_tree().create_timer(0.1,false,true).timeout
+
 	card_having = card_container.get_child_count()
 	if(card_having==0):
 		return

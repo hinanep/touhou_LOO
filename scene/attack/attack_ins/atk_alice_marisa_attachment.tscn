@@ -5,44 +5,44 @@
 [ext_resource type="Shader" path="res://scene/particle/master_spark/center_white.gdshader" id="3_xakbb"]
 [ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master_spark/master.tscn" id="4_05ogu"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyh1w"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pdc8n"]
-
-[sub_resource type="Gradient" id="Gradient_le8q4"]
+[sub_resource type="Gradient" id="Gradient_orl6i"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.0221239, 0.181416, 0.230089, 0.269911, 0.539823, 0.712389, 0.774336, 0.831858, 0.938053, 0.969027, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.462899, 0.569118, 0.64933, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.52549, 1, 0.47451, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 1, 0, 1, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8a4a"]
-gradient = SubResource("Gradient_le8q4")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8lm2o"]
+gradient = SubResource("Gradient_orl6i")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxkbp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4l8s"]
 shader = ExtResource("3_xakbb")
-shader_parameter/gradient_color = SubResource("GradientTexture1D_q8a4a")
+shader_parameter/gradient_color = SubResource("GradientTexture1D_8lm2o")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vxpc2"]
-viewport_path = NodePath("texture/master/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_b3lng"]
+viewport_path = NodePath("lock_component/master2/SubViewport")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
 [node name="Attack" instance=ExtResource("1_brahv")]
 script = ExtResource("2_ag7ab")
 
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("WorldBoundaryShape2D_74emn")
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(0.03, 0.04)
+sprite_frames = SubResource("SpriteFrames_hyh1w")
 
-[node name="texture" parent="." index="5"]
-rotation = 0.0
-scale = Vector2(0.2, 0.01)
-sprite_frames = SubResource("SpriteFrames_pdc8n")
-
-[node name="master" type="Sprite2D" parent="texture" index="0"]
+[node name="master2" type="Sprite2D" parent="lock_component" index="0"]
 z_index = 1
-material = SubResource("ShaderMaterial_hxkbp")
-position = Vector2(280, 0)
-scale = Vector2(1.1, 1.2)
-texture = SubResource("ViewportTexture_vxpc2")
+material = SubResource("ShaderMaterial_i4l8s")
+position = Vector2(-0.001629, -450)
+rotation = -1.5708
+scale = Vector2(1.91133, 2.08759)
+texture = SubResource("ViewportTexture_b3lng")
 
-[node name="SubViewport" type="SubViewport" parent="texture/master" index="0"]
+[node name="SubViewport" type="SubViewport" parent="lock_component/master2" index="0"]
 transparent_bg = true
 
-[node name="Master" parent="texture/master/SubViewport" index="0" instance=ExtResource("4_05ogu")]
+[node name="Master" parent="lock_component/master2/SubViewport" index="0" instance=ExtResource("4_05ogu")]
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("WorldBoundaryShape2D_74emn")
