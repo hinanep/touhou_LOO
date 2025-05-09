@@ -1,27 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj40hniolh5uv"]
+[gd_scene load_steps=5 format=3 uid="uid://cj40hniolh5uv"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_a2cdt"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_cju77"]
-[ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="3_2q6gt"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rt6se"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8r41p"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_2q6gt")
+"texture": null
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
 [node name="Attack" instance=ExtResource("1_a2cdt")]
 script = ExtResource("2_cju77")
 
+[node name="lock_component" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_8r41p")
+autoplay = ""
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
-
-[node name="texture" parent="." index="5"]
-sprite_frames = SubResource("SpriteFrames_rt6se")

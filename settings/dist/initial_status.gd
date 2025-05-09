@@ -1,3 +1,4 @@
+extends RefCounted
 class_name  initial_status
 var status = {
 	player_melee_damage_ratio = 1.0,#- 体术伤害倍率：影响体术类技能的伤害
@@ -29,7 +30,7 @@ var status = {
 	skill_level_max = 6,
 	skill_num_max = 6,
 	summon_level_max = 6,
-
+	last_cost = 100,
 	player_hp = 2000.0,
 	mana = 2000,
 	mana_cost= 1,
@@ -39,7 +40,7 @@ var status = {
 	is_invincible = false,
 	time_secs = 0,
 	player_diretion_angle = 0,
-
+	is_uping = false,
 	card_full = false,#没有能升级的符卡并且卡位满了
 	card_num_full = false,#卡位满了
 	card_level_max = 6,

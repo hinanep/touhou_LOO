@@ -4,6 +4,7 @@ class_name summon extends Node2D
   }
 signal shoot
 @export var level = 0
+
 var node_active = true
 var hp
 var target_location:Vector2
@@ -36,9 +37,12 @@ func _ready():
 		cd_timer.start()
 
 	var duration = $duration
-	duration.wait_time = summon_info.duration
-	duration.timeout.connect(destroy.bind(summon_info.id))
-	duration.start()
+	var dt = player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
+	if dt>0:
+		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
+
+		duration.timeout.connect(destroy.bind(summon_info.id))
+		duration.start()
 	top_level = true
 	global_position = position
 	var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
@@ -51,6 +55,7 @@ func _ready():
 	on_create()
 	if summon_info.has('movement'):
 		if summon_info.movement=='sandsoldier':
+			$rediretion.wait_time = summon_info.movement_parameter[0]
 			rediretion()
 
 
@@ -61,8 +66,7 @@ func _physics_process(delta: float) -> void:
 	$Line2D.set_point_position(1,player_var.player_node.global_position-global_position)
 
 func rediretion():
-	while(true):
-		await get_tree().create_timer(summon_info.movement_parameter[0],false,true).timeout
+
 		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
 
 		if not target.is_empty():
@@ -131,7 +135,7 @@ func recive_boost(sum_info,is_active):
 		return
 
 	for key in sum_info:
-		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition':
+		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition'or key =='upgrade_group':
 			continue
 		if sum_info[key] is bool:
 			continue

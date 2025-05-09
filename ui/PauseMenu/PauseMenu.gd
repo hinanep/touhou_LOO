@@ -2,8 +2,8 @@ extends BaseGUIView
 
 
 func _on_back_button_pressed():
-	G.get_gui_view_manager().close_all_view()
-	G.get_gui_view_manager().open_view("StartMenu")
+
+	G.get_gui_view_manager().clear_to_start()
 
 var is_pausing = false
 func _open():
@@ -12,7 +12,7 @@ func _open():
 	else:
 		get_tree().paused = true
 
-func _input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("pause"):
 		#event.pressed= false

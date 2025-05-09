@@ -1,5 +1,9 @@
 extends Object
 class_name CpManagers
+#locked:未解锁，需要满足某些解锁条件如成就、局外等，被ban的羁绊也在这
+#unlocked：已解锁，但尚未在局中满足激活条件
+#ready：已满足激活条件，可以在激活羁绊时随机激活
+#actived：已激活羁绊
 var cp_pool = {
 	locked={},
 	unlocked={},
@@ -7,29 +11,14 @@ var cp_pool = {
 	actived={}
 }
 var max_list = []
-#"cp_reimu_marisa": {
-	#"id": "cp_reimu_marisa",
-	#"partment": [
-	  #"ski_reimu",
-	  #"sc_marisa"
-	#],
-	#"creating_routine": [
-	  #"rou_reimu_marisa1_base",
-	  #"rou_reimu_marisa2_base"
-	#],
-	#"creating_routine_moment": [
-	  #"hurt"
-	#],
-	#"giving_buff": [],
-	#"giving_buff_moment": [],
-	#"buff_value_factor_depend": [],
-	#"buff_value_factor": [
-	  #1.0
-	#]
-  #}
+
+
 func _init():
+	#删除技能时，将其从（可能的）满级列表中移除
 	SignalBus.del_skill.connect(del_to_maxlist)
+	#技能升满时，将其加入满级列表
 	SignalBus.upgrade_max.connect(add_to_maxlist)
+	#删除cp时，调用
 	SignalBus.cp_del.connect(cp_del)
 	cp_pool.unlocked = table.Couple.duplicate()
 #当某个技能？升满，加入满级列表，留待羁绊解锁判断
@@ -90,7 +79,7 @@ func activate_cp(cp_array):
 func random_choose_cp():
 	if cp_pool.ready.is_empty():
 		return false
-	AudioManager.play_sfx("music_sfx_cp")
+
 	var cpid = cp_pool.ready.keys()[randi_range(0,cp_pool.ready.size()-1)]
 	add_cp(cpid)
 	return true
@@ -109,11 +98,12 @@ func add_cp(cpid):
 	SignalBus.cp_active.emit(cp_pool.actived[cpid])
 
 
-
+#如果待删除羁绊已激活，则将其打入已解锁 注：真正的删除羁绊操作在信号连接的cp实体处，这里只负责维护
 func cp_del(cpid):
 	if cp_pool.actived.has(cpid):
 		cp_pool.unlocked[cpid] = cp_pool.actived[cpid]
 		cp_pool.actived.erase(cpid)
+#
 func destroy():
 	SignalBus.del_skill.disconnect(del_to_maxlist)
 	SignalBus.upgrade_max.disconnect(add_to_maxlist)

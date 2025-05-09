@@ -37,16 +37,23 @@ func _get_view_instance(viewInstanceId:int) -> BaseGUIView:
 func  open_view(viewId:StringName):
 	var config := _get_view_config(viewId)
 	var viewInstanceId := _gen_new_view_instance_id()
-	print(viewId)
 	var prefab:PackedScene = config.prefab
 	var v = prefab.instantiate() as BaseGUIView
 
 	v.config = config
 	v.viewInstanceId = viewInstanceId
 	viewInstanceMap[viewInstanceId] = v
+
 	guiRoot.add_child(v)
 	v.open()
 	return viewInstanceId
+
+func clear_to_start():
+	close_all_view()
+
+	get_tree().change_scene_to_packed(PresetManager.getpre('root_menu'))
+
+
 
 
 func close_view(viewInstanceId:int):

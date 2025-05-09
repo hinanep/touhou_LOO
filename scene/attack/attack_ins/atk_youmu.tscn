@@ -1,19 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmppkk7xftxae"]
+[gd_scene load_steps=6 format=3 uid="uid://cmppkk7xftxae"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_ddg6b"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_dc43h"]
 [ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_368xe"]
 [ext_resource type="Texture2D" uid="uid://dmrwr5eax2jsm" path="res://asset/pic/bullet/剑气.png" id="4_t0x4p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3luem"]
-atlas = ExtResource("4_t0x4p")
-region = Rect2(0, 0, 850, 510)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wvqny"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jenui"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3luem")
+"texture": ExtResource("4_t0x4p")
 }],
 "loop": true,
 "name": &"default",
@@ -23,15 +19,11 @@ animations = [{
 [node name="Attack" instance=ExtResource("1_ddg6b")]
 script = ExtResource("2_dc43h")
 
+[node name="lock_component" parent="." index="1"]
+rotation = 0.0
+scale = Vector2(0.042, 0.023)
+sprite_frames = SubResource("SpriteFrames_jenui")
+offset = Vector2(400, 0)
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = ExtResource("3_368xe")
-
-[node name="CollisionShape2D" parent="." index="4"]
-disabled = true
-
-[node name="texture" parent="." index="5"]
-position = Vector2(250, 25)
-rotation = 0.0
-scale = Vector2(0.04, 0.02)
-sprite_frames = SubResource("SpriteFrames_wvqny")
-offset = Vector2(0, -50)

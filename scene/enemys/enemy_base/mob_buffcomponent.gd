@@ -6,12 +6,14 @@ var buff_list={
 		'slowdown'={
 			on_create=Callable(func(intensity,duration,source):
 			body.mob_info.speed *= 1-intensity
+			body.speed_sq *= (1-intensity)*(1-intensity)
 				),
 			on_update=Callable(func(intensity):
 			pass
 				),
 			on_destroy=Callable(func(intensity):
 			body.mob_info.speed /= 1-intensity
+			body.speed_sq /= (1-intensity)*(1-intensity)
 				),
 		},
 		'root'={

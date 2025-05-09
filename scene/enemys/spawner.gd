@@ -59,8 +59,9 @@ func spawn_mob():
 
 
 func _on_timer_timeout():
-	if SpawnManager.mob_dic.size()>300:
-		return
+	if SpawnManager.mob_dic.size()>1:
+		if spawn_list["spawn_type"] == 'zako':
+			return
 	for i in range(spawn_list["amount_parameter"]):
 		spawn_mob()
 

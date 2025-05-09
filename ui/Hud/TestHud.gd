@@ -95,13 +95,11 @@ func _on_delete_pressed():
 
 
 func _on_levelup_pressed():
-	GameManager.level_up()
-
-	pass # Replace with function body.
+	player_var.player_exp += player_var.exp_need
 
 
 func _on_moremana_pressed():
-	GameManager.add_mana(player_var.mana_max)
+	player_var.mana += (player_var.mana_max)
 	$testhud/Button.grab_focus()
 	pass # Replace with function body.
 

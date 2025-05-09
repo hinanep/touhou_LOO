@@ -9,12 +9,11 @@ var pause_id
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if get_tree()==null:
+		return
 	if event.is_action_pressed("pause"):
-		#if !pauseing:
 			pause_id = G.get_gui_view_manager().open_view("PauseMenu")
-		#else:
-			#G.get_gui_view_manager().close_view(pause_id)
-		#pauseing = !pauseing
+
 	if event.is_action_pressed("clockup"):
 		if Engine.time_scale <1.5:
 			Engine.time_scale = 2.0
@@ -32,6 +31,7 @@ func _open():
 func _close():
 	AudioManager.stop_background_bgm()
 	player_var.SpawnManager.clear()
+	print('clear')
 	pass
 
 
@@ -60,7 +60,14 @@ func scene_init():
 
 
 func _on_end_game_timeout() -> void:
-	AudioManager.play_sfx("music_sfx_clear")
-	await get_tree().create_timer(5.0,false,true).timeout
-	G.get_gui_view_manager().close_all_view()
-	G.get_gui_view_manager().open_view("ClearMenu")
+	while true:
+		var interval = get_tree().create_timer(0.1)
+		await interval.timeout
+		interval = null
+		if player_var.SpawnManager.mob_dic.is_empty():
+			AudioManager.play_sfx("music_sfx_clear")
+			interval = get_tree().create_timer(5)
+			await interval.timeout
+			interval = null
+			G.get_gui_view_manager().close_all_view()
+			G.get_gui_view_manager().open_view("ClearMenu")

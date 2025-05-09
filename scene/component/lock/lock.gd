@@ -1,11 +1,11 @@
-extends RefCounted
+extends Node
 class_name LockComponent
 var lock_func:Callable
 var lock_target = null
 var lock_position = null
 var body
 var SpawnManager = player_var.SpawnManager
-func _init(B,locking_type,lock_routine = null):
+func init(B,locking_type,lock_routine = null):
 	body = B
 
 	match locking_type:
@@ -20,7 +20,7 @@ func _init(B,locking_type,lock_routine = null):
 			lock_func = find_front_target
 		null:
 			lock_func = find_null_target
-
+	return $"."
 
 func find_nearest_target():
 	var target_array:Array =  SpawnManager.find_closest_enemies(body.global_position,1,1000,null)

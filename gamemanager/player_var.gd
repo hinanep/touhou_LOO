@@ -35,7 +35,7 @@ var invincible_time  #- 受伤后无敌时间：受到伤害后的无敌时间
 var range_pick #- 拾取范围：拾取记忆碎片的最大距离
 var luck  #- 幸运：影响各种与概率相关的东西
 var experience_ratio  #- 经验倍率：影响每一记忆碎片增加多少经验
-var point_ratio #- 得点倍率：影响每一记忆碎片增加多少分数
+var point_ratio=1 #- 得点倍率：影响每一记忆碎片增加多少分数
 var mana_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times #- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse  #- 诅咒：增加敌人的各属性和刷新率
@@ -66,9 +66,21 @@ var mana=0:
 		set(value):
 			mana = clamp(value,0,mana_max)
 var mana_cost
-var point:int
-var player_exp
-var level
+var last_cardcost = 100
+var point:int:
+	set(value):
+		point = point + (value-point) *point_ratio
+var is_uping = false
+var player_exp=0:
+	set(value):
+
+		if value - player_exp > 0:
+			AudioManager.play_sfx("music_sfx_pickup")
+		player_exp = value
+		if is_uping!=true and player_var.player_exp >= player_var.exp_need:
+			is_uping = true
+			level_up()
+var level=0
 var is_invincible
 var time_secs
 var player_diretion_angle
@@ -135,20 +147,38 @@ func enemy_make_damage(basic_damage):
 
 
 #玩家受到伤害公式
-func player_take_melee_damage(player_ins,damage):
+func player_take_melee_damage(damage):
+	return damage /( 1 + defence_melee)
 
-	damage = damage * 10.0
-	damage /= 10 + defence_melee
-	player_ins.player_take_damage(damage)
 
-func player_take_bullet_damage(player_ins,damage):
-	player_ins.player_take_damage(damage * 10 / (10 + defence_bullet))
+func player_take_danma_damage(damage):
+	return damage /( 1 + defence_bullet)
 
 func player_get_heal(heal):
 	player_hp += heal
 	player_hp = min(player_hp,player_hp_max)
 
+func level_up():
+
+	AudioManager.play_sfx("music_sfx_levelup")
+	player_var.player_exp -= player_var.exp_need
+	player_var.level += 1
+	G.get_gui_view_manager().open_view("LevelUp")
+
+func shake_screen(time,interval,intensity,speed,camera:Node2D=player_node.get_node('Camera2D')):
+	var offset
+	if camera == null:
+		return
+	var ct:Tween = camera.create_tween().set_speed_scale(speed)
+	while(time > 0):
+		ct.tween_property(camera,'position',Vector2.ZERO+Vector2(randf_range(-intensity,intensity),randf_range(-intensity,intensity)),interval)
+		time-=interval
+
+	ct.tween_property(camera,'position',Vector2.ZERO,interval)
+	ct = null
+
 func ini():
-	var ini_list = initial_status.new().status
-	for property in ini_list:
-		set(property,ini_list[property])
+	var ini_list = initial_status.new()
+	for property in ini_list.status:
+		set(property,ini_list.status[property])
+	ini_list = null

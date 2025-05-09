@@ -84,7 +84,7 @@
 	"type": "base",
 	"effective_condition": "",
 	"duration": 1.0,
-	"dependence": "sumdep_marisa_alice_duration",
+	"dependence": "atkdep_marisa_alice_duration",
 	"can_be_hited": false,
 	"initial_hp": 1.0,
 	"automatic_routine": [],

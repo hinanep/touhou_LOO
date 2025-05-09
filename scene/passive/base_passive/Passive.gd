@@ -16,7 +16,7 @@ var level = 0
 var max_level
 func _ready():
 	SignalBus.upgrade_group.connect(upgrade_passive)
-
+	SignalBus.del_passive.connect(del)
 	max_level = table.Upgrade[psv_info.upgrade_group].level
 func upgrade_passive(group):
 	if group != psv_info.upgrade_group:
@@ -27,9 +27,10 @@ func upgrade_passive(group):
 
 	if(level == max_level):
 		SignalBus.upgrade_max.emit(psv_info.id)
-func del():
-	SignalBus.player_del_buff_by_source.emit(psv_info.id)
-	queue_free()
+func del(id):
+	if id == psv_info.id:
+		SignalBus.player_del_buff_by_source.emit(psv_info.id)
+		queue_free()
 
 func trigger_buff(intensity):
 	for i in range(psv_info.buff.size()):

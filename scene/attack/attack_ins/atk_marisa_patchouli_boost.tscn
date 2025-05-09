@@ -1,5 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b84qs45wwa3qu"]
+[gd_scene load_steps=3 format=3 uid="uid://b84qs45wwa3qu"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_58ra8"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_fml4o"]
+
 [node name="Attack" instance=ExtResource("1_58ra8")]
+
+[node name="lock_component" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_fml4o")
+autoplay = ""

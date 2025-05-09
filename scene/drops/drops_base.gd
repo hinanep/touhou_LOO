@@ -18,10 +18,10 @@ func _physics_process(delta):
 		position +=  global_position.direction_to(player_node.global_position) * delta * speed_ratio
 
 func _on_body_entered(_body):
-
-	game_manager.add_exp(experience*value)
-	game_manager.add_score(score*value)
-	game_manager.add_mana(mana*value)
+	AudioManager.play_sfx("music_sfx_pickup")
+	player_var.player_exp += (experience*value)
+	player_var.point += (score*value)
+	player_var.mana += (mana*value)
 	if point_ratio:
 		player_var.point_ratio += 0.01
 	queue_free()

@@ -5,7 +5,7 @@ var preset_map = {
 
 
 	"drops_p":"res://scene/drops/exp_1.tscn",
-	"drops_plate":"res://scene/drops/plate_1.tscn",
+	"drops_plate":"res://scene/drops/plate/plate_1.tscn",
 	'drops_mana':"res://scene/drops/mana.tscn",
 
 	'skill':"res://scene/skill/skill_class/skill.tscn",
@@ -23,13 +23,15 @@ var preset_map = {
 
 	'enemy':"res://scene/enemys/enemy_base/enemy_base.tscn",
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
+	'enm_memhappy':"res://scene/enemys/enm_memhappy.tscn",
+	'enm_memsad':"res://scene/enemys/enm_memsad.tscn",
 
 	"music_sfx_cp":"res://asset/music/sfx/cp.wav",
 	"music_sfx_error":"res://asset/music/sfx/error.mp3",
 	"music_sfx_explosion":"res://asset/music/sfx/explosion.wav",
 	"music_sfx_hurt":"res://asset/music/sfx/hurt.mp3",
 	"music_sfx_laser":"res://asset/music/sfx/laser.wav",
-	"music_sfx_masterspark":"res://asset/music/sfx/masterspark.mp3",
+	"music_sfx_masterspark":"res://asset/music/sfx/masterspark.wav",
 	"music_sfx_spellcard":"res://asset/music/sfx/spellcard.mp3",
 	"music_sfx_shoot":"res://asset/music/sfx/tap.wav",
 	"music_sfx_pickup":"res://asset/music/sfx/pickup.wav",
@@ -93,6 +95,9 @@ var preset_map = {
 	'img_atk_wriggle':"res://asset/pic/bullet/firefly.png",
 	'img_atk_sekibanki':"res://asset/pic/bullet/头.png",
 	'img_atk_misumaru':"res://asset/pic/bullet/yinyangorb.png",
+
+	'root_menu':"res://ui/game.tscn",
+	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
 }
 
 

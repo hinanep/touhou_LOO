@@ -20,10 +20,10 @@ animations = [{
 }]
 
 [node name="DropsBase" instance=ExtResource("1_mpm0o")]
-visible = false
 monitoring = true
 script = ExtResource("1_cpuj4")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_v3q6v")
 frame_progress = 0.0

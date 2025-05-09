@@ -1,35 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmwaholxl4co8"]
+[gd_scene load_steps=6 format=3 uid="uid://dmwaholxl4co8"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_l4wq1"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_2eiqs"]
 [ext_resource type="Texture2D" uid="uid://codqxumsb5kbf" path="res://asset/pic/bullet/月符.png" id="3_n2gkk"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nlfs"]
-atlas = ExtResource("3_n2gkk")
-region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vurvi"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lljky"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nlfs")
+"texture": ExtResource("3_n2gkk")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
 [node name="Attack" instance=ExtResource("1_l4wq1")]
 script = ExtResource("2_2eiqs")
 
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_lljky")
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
-
-[node name="texture" parent="." index="5"]
-modulate = Color(1, 1, 1, 0.247059)
-position = Vector2(-0.22, -3)
-rotation = 0.0
-scale = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_vurvi")

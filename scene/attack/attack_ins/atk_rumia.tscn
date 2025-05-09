@@ -1,65 +1,43 @@
-[gd_scene load_steps=13 format=3 uid="uid://o4yslgmrf8td"]
+[gd_scene load_steps=11 format=3 uid="uid://o4yslgmrf8td"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_wq5qk"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_57lmb"]
-[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="2_jq27m"]
-[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_6i6rb"]
+[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="3_7l6of"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="4_p60xu"]
+
+[sub_resource type="Gradient" id="Gradient_c7yuj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uoxij"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeq53"]
+color_ramp = SubResource("Gradient_c7yuj")
+noise = SubResource("FastNoiseLite_uoxij")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bty1h"]
+shader = ExtResource("3_7l6of")
+shader_parameter/distor_modi = 0.01
+shader_parameter/mainTexture = SubResource("NoiseTexture2D_aeq53")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wkt7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
 
-[sub_resource type="Gradient" id="Gradient_xeyun"]
-offsets = PackedFloat32Array(0.0117647, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5jrwj"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3y687"]
-color_ramp = SubResource("Gradient_xeyun")
-noise = SubResource("FastNoiseLite_5jrwj")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbf28"]
-shader = ExtResource("2_jq27m")
-shader_parameter/distor_modi = 0.123
-shader_parameter/mainTexture = SubResource("NoiseTexture2D_3y687")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6fq0"]
-atlas = ExtResource("4_6i6rb")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4pqui"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 30.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6fq0")
-}],
-"loop": true,
-"name": &"ou",
-"speed": 5.0
-}]
-
 [node name="Attack" instance=ExtResource("1_wq5qk")]
 script = ExtResource("2_57lmb")
 
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("CircleShape2D_7lt5v")
-
-[node name="texture" parent="." index="5"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(1, 1, 1, 0.941176)
-material = SubResource("ShaderMaterial_hbf28")
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_4pqui")
-animation = &"new_animation"
+[node name="lock_component" parent="." index="1"]
+material = SubResource("ShaderMaterial_bty1h")
+sprite_frames = SubResource("SpriteFrames_6wkt7")
 autoplay = ""
 
-[node name="PointLight2D" type="PointLight2D" parent="texture" index="0"]
-rotation = -1.5708
-scale = Vector2(0.2, 0.2)
+[node name="texture#PointLight2D" type="PointLight2D" parent="lock_component" index="0"]
+rotation = 3.14159
+scale = Vector2(0.645161, 0.645161)
+color = Color(0.709804, 0.807843, 0.835294, 1)
+energy = 0.7
 blend_mode = 1
 texture = ExtResource("4_p60xu")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_7lt5v")

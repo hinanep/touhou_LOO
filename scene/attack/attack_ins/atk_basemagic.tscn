@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_r4p3p"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_nwwb0"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_muydf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqk1b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -18,6 +18,6 @@ animations = [{
 [node name="Attack" instance=ExtResource("1_ktam7")]
 script = ExtResource("2_r4p3p")
 
-[node name="texture" parent="." index="5"]
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_muydf")
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_dqk1b")
