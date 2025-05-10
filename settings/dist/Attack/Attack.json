@@ -111,7 +111,7 @@
 	"damage_times": "single",
 	"damage_type": "danma",
 	"damage": 25.0,
-	"duration": 10.0,
+	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [],
 	"debuff_intensity": [],

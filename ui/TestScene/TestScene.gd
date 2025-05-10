@@ -17,10 +17,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		else:
 			Engine.time_scale = 1.0
 		for i in  10:
-			var dummm = preload("res://scene/attack/attack_ins/atk_reimu.tscn").instantiate()
-			dummm.attack_info =table.Attack['atk_reimu'].duplicate()
-			dummm.position.x += 100
-			add_child(dummm)
+			var tween = create_tween().tween_property($".",'position',Vector2(0,0),5)
 func _open():
 	player_var.new_scene()
 	player_var.SpawnManager = $SpawnManager
