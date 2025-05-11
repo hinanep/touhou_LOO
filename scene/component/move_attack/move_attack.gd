@@ -8,6 +8,7 @@ var acc = 0
 var body:CharacterBody2D
 var polar_len = 0
 var polar_angle = 0
+var next_found_counter = 0
 var attack_info
 var lock :LockComponent
 var ref = false
@@ -60,7 +61,7 @@ func init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 				move_type = Callable(move_straight)
 			moving_rule.trail:
 				move_type = Callable(move_trace_target)
-				velocity = attack_info.moving_parameter[0] * diretion * 10
+				velocity = attack_info.moving_parameter[0] * diretion
 			moving_rule.sekibanki:
 				move_type = Callable(move_sekibanki)
 				body.top_level = true
@@ -103,12 +104,15 @@ func update(delta):
 	rotate_type.call(delta)
 
 func move_trace_target(delta):
-	if lock.lock_target == null:
-
+	if lock.lock_target == null :
+		if next_found_counter >0:
+			next_found_counter-=1
+			return body.move_and_collide(velocity * delta)
+		next_found_counter = 30
 		body.position += velocity  * delta
 
 		lock.find_next_target()
-		return
+		return body.move_and_collide(velocity * delta)
 
 	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]* player_var.bullet_speed_ratio
 	velocity += acc*delta

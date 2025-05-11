@@ -12,7 +12,7 @@ func set_skill(skill_info):
 		upgrade_group = skill_info.upgrade_group
 
 		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text = selfname
+		$RichTextLabel.text ='[center]'+ selfname
 
 		SignalBus.del_skill.connect(destroy)
 		SignalBus.cp_del.connect(destroy)
@@ -25,7 +25,7 @@ func set_cp(cp_info):
 		selfname = table.TID[id][player_var.language]
 		upgrade_group =null
 		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text = selfname
+		$RichTextLabel.text ='[center]'+ selfname
 		SignalBus.cp_del.connect(destroy)
 
 func set_psv(psv_info):
@@ -35,7 +35,7 @@ func set_psv(psv_info):
 		upgrade_group = psv_info.upgrade_group
 
 		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text = selfname
+		$RichTextLabel.text ='[center]'+ selfname
 
 		SignalBus.del_passive.connect(destroy)
 		SignalBus.upgrade_group.connect(upgrade)
@@ -48,4 +48,4 @@ func destroy(did):
 func upgrade(upname):
 	if upgrade_group == upname:
 		level += 1
-		$RichTextLabel.text = selfname + '\nLV.' + str(level)
+		$RichTextLabel.text ='[center]'+ selfname + '\nLV.' + str(level)

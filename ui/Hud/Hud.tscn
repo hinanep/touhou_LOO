@@ -1,20 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=14 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
 [ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
-[ext_resource type="Texture2D" uid="uid://qen3wyqmellb" path="res://asset/pic/crystal/ALICE.png" id="4_hlij1"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
-[ext_resource type="Texture2D" uid="uid://drlyf6frseiel" path="res://asset/pic/crystal/ALICE_resize.png" id="5_d5ncu"]
-[ext_resource type="Texture2D" uid="uid://cnynfx6epoq7s" path="res://asset/pic/crystal/ALICE_600_300.png" id="6_fvbhm"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
 [ext_resource type="Script" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
-[ext_resource type="Texture2D" uid="uid://ben6tp2dop633" path="res://asset/pic/crystal/ALICE_400_600_2sharp.png" id="7_rtka7"]
-[ext_resource type="Texture2D" uid="uid://doifliaq5my8s" path="res://asset/pic/crystal/ALICE_400_600_2sss.png" id="8_bxxbw"]
-[ext_resource type="Texture2D" uid="uid://wpg4ctl7qwsc" path="res://asset/pic/crystal/ALICE_400_600_a6.png" id="9_b3u03"]
-[ext_resource type="Texture2D" uid="uid://dcwkscyb5t5k1" path="res://asset/pic/crystal/ALICE_auto_k.png" id="10_13jle"]
-[ext_resource type="Texture2D" uid="uid://duts4x4vb162" path="res://asset/pic/crystal/YZMXW.png" id="11_frkfg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jvsk6"]
 
@@ -210,53 +202,11 @@ scale = Vector2(0.08, 0.08)
 alignment = 1
 
 [node name="skill_container" type="HBoxContainer" parent="hud"]
-offset_left = 115.0
-offset_top = 944.0
-offset_right = 1735.0
-offset_bottom = 1064.0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="hud/skill_container"]
-texture_filter = 2
-layout_mode = 2
-texture = ExtResource("4_hlij1")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="TextureRect2" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("5_d5ncu")
-expand_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("6_fvbhm")
-expand_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("7_rtka7")
-expand_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("8_bxxbw")
-expand_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("9_b3u03")
-expand_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("10_13jle")
-expand_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="hud/skill_container"]
-layout_mode = 2
-texture = ExtResource("11_frkfg")
-expand_mode = 2
+offset_left = 400.0
+offset_top = 965.0
+offset_right = 1626.0
+offset_bottom = 1065.0
+theme_override_constants/separation = 0
 
 [node name="cp_container" type="HBoxContainer" parent="hud"]
 offset_left = 40.0

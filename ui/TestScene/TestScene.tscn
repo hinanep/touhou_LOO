@@ -84,4 +84,3 @@ color = Color(0.709804, 0.807843, 0.835294, 1)
 z_index = -500
 z_as_relative = false
 position = Vector2(0, -1000)
-scale = Vector2(0.5, 0.5)
