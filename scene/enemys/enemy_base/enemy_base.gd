@@ -12,16 +12,14 @@ var drop_num = 1.0
 signal die(id)
 var is_inscreen:bool = false
 var mob_info = {
-	"id": "enm_mempeace",
+	"id": "enm_keine_ns1_1",
 	"type": "zako",
-	"movement": "default",
-	"danma": "",
-	"barrage_parameter": [],
-	"shoot_interval": 0.0,
+	"movement": "static",
+	"danmaku_creator": "dcrt_keine_ns2_1",
 	"physical_damage": 5.0,
-	"magical_damage": 0.0,
-	"health": 100.0,
-	"speed": 50.0
+	"magical_damage": 30.0,
+	"health": 250.0,
+	"speed": 0.0
   }
 
 @onready var progress_bar = $ProgressBar
@@ -68,7 +66,7 @@ func _ready():
 	collision_mask = 0
 
 	melee_battle_ready(mob_info.physical_damage == 0)
-	bullet_battle_ready(mob_info.magical_damage == 0)
+
 	match mob_info.movement:
 		'default':
 			movement = move_to_target
@@ -82,11 +80,16 @@ func _ready():
 			)
 			add_child(creeptimer)
 			creeptimer.start()
+		'static':
+			movement = stay
 
 	setbuff(multi,multi,multi,multi)
 
-
-
+	if mob_info.has('danmaku_creator'):
+		SignalBus.d4c_create.emit(mob_info.danmaku_creator,global_position,$".",mob_info.magical_damage)
+	if not mob_info.has('boss'):
+		SignalBus.clear_enemy.connect(died)
+		bullet_battle_ready(mob_info.magical_damage == 0)
 	last_position = global_position
 	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
@@ -179,7 +182,8 @@ func move_to_target():
 
 	compute_safevelocity(self)
 
-
+func stay():
+	pass
 
 #移动方式：蛄蛹（初始化时设置了定时反转creep_move变量）
 func creep():
@@ -202,7 +206,6 @@ func mob_take_damage(damage):
 	progress_bar.value = hp/mob_info.health * 100
 	if hp <= 0:
 		died()
-		#call_deferred("died")
 
 
 #似了
@@ -309,7 +312,8 @@ func setbuff(hpm,melee_damage,danma_damage,speed):
 	mob_info.health *= hpm
 	hp *= hpm
 	mob_info.physical_damage *= melee_damage
-	mob_info.magical_damage *= danma_damage
+	if mob_info.has('magical_damage'):
+		mob_info.magical_damage *= danma_damage
 	#mob_info.speed *= speed
 
 #得到了debuff

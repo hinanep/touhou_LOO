@@ -8,10 +8,10 @@
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
 [ext_resource type="Script" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_jvsk6"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_o2qmu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nrydv"]
-texture = SubResource("CanvasTexture_jvsk6")
+texture = SubResource("CanvasTexture_o2qmu")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxoq7"]
 bg_color = Color(1, 1, 1, 1)

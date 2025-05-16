@@ -21,10 +21,17 @@ static func loader(path:String):
 
 	return data
 
+
+
 var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
 var Attack = loader('res://settings/dist/Attack/Attack.json')
+var keine = loader('res://settings/dist/BossProcess/keine.json')
+var keine_routine = loader('res://settings/dist/BossRoutine/keine_routine.json')
 var Buff = loader('res://settings/dist/Buff/Buff.json')
 var Couple = loader('res://settings/dist/Couple/Couple.json')
+var danma = loader('res://settings/dist/Danmaku/danma.json')
+var d4c = loader('res://settings/dist/DanmakuCreator/d4c.json')
+var dialog_s1 = loader('res://settings/dist/Dialog/dialog_s1.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
 var Passive = loader('res://settings/dist/Passive/Passive.json')
 var Routine = loader('res://settings/dist/Routine/Routine.json')
@@ -35,8 +42,6 @@ var Sum_Dependence = loader('res://settings/dist/SumDependence/Sum_Dependence.js
 var Summoned = loader('res://settings/dist/Summoned/Summoned.json')
 var TID = loader('res://settings/dist/TID/TID.json')
 var Upgrade = loader('res://settings/dist/Upgrade/Upgrade.json')
-
-
 
 
 static func is_null(datax):

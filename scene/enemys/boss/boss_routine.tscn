@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://yxfp21sr1yru"]
+
+[ext_resource type="Script" path="res://scene/enemys/boss/boss_routine.gd" id="1_g1ef5"]
+
+[node name="boss_routine" type="Node2D"]
+script = ExtResource("1_g1ef5")
+
+[node name="auto_emit" type="Timer" parent="."]
+
+[node name="end_time" type="Timer" parent="."]
+
+[connection signal="timeout" from="auto_emit" to="." method="_on_auto_emit_timeout"]
+[connection signal="timeout" from="end_time" to="." method="_on_end_time_timeout"]

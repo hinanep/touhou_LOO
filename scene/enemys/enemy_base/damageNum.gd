@@ -5,7 +5,7 @@ func showdamage(num):
 
 	visible = true
 	$damage.text = String.num_int64(sum_damage)
-	scale = Vector2(0.3,0.3) * clamp(log(sum_damage)/log(10),0.6,3)
+	scale = Vector2(0.3,0.3) * clamp(log(sum_damage)/log(10),0.6,2)
 	position = Vector2(2*randf()-1.5,randf()-1)*8
 	$damage.set_modulate(modulate-Color(0, 1, 1, 0)*clamp(log(sum_damage)/4,0.5,5))
 	$AnimationPlayer.play("new_animation")

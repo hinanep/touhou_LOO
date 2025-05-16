@@ -6,6 +6,7 @@ var startTimer
 var endTimer
 var mob_pre
 var SpawnManager
+var mob_info
 var spawn_list = {
 	"enemy_type":"",
 	"spawn_type":"once",
@@ -38,20 +39,23 @@ func spawner_init(spawner_initlist,parent):
 			endTimer.wait_time = startTimer.wait_time + 1
 			endTimer.start()
 	mob_pre = PresetManager.getpre(spawn_list["enemy_type"])
-
+	mob_info = table.Enemy[spawn_list["enemy_type"]]
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
+
+func _ready() -> void:
+	SignalBus.pause_spawner.connect(change_pause)
 func spawn_mob():
 
 	if path_follow_2d!=null:
 		path_follow_2d.progress_ratio = randf()
 	var mob = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
-	mob.mob_info = table.Enemy[spawn_list["enemy_type"]].duplicate()
+	mob.mob_info = mob_info.duplicate()
 	mob.multi = (spawn_list['enemy_attribute_boost'])
 	if spawn_list["spawn_type"] == 'elite':
 		mob.drops_path = "drops_plate"
 		mob.set_scale(Vector2(4,4))
-	#instantiate()
+
 	mob.drop_num = 1.0
 
 	SpawnManager.add_mob(mob)
@@ -75,9 +79,7 @@ func _on_end_timer_timeout():
 	spawnTimer.stop()
 	queue_free()
 
-func change_pause():
+func change_pause(is_pause):
 
-	if spawnTimer.is_paused() == true:
-		spawnTimer.set_paused(false)
-	else:
-		spawnTimer.set_paused(true)
+
+	spawnTimer.set_paused(is_pause)

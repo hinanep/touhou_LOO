@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=13 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="3_802rx"]
 [ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
 [ext_resource type="Script" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
+[ext_resource type="Script" path="res://ui/InGame/d4c.gd" id="6_fs76o"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
@@ -63,29 +64,33 @@ script = ExtResource("4_2ujjm")
 [node name="drops" type="Node2D" parent="SpawnManager"]
 script = ExtResource("5_7ehn4")
 
+[node name="d4c" type="Node2D" parent="SpawnManager"]
+script = ExtResource("6_fs76o")
+
 [node name="air_wall" type="StaticBody2D" parent="."]
-collision_layer = 0
+collision_layer = 32
 collision_mask = 0
 
 [node name="left" type="CollisionShape2D" parent="air_wall"]
-position = Vector2(-2753, 2)
+position = Vector2(-1321, 0)
 shape = SubResource("WorldBoundaryShape2D_281ib")
 
 [node name="top" type="CollisionShape2D" parent="air_wall"]
-position = Vector2(1, -1491)
+position = Vector2(0, -1800)
 shape = SubResource("WorldBoundaryShape2D_vpjx8")
 
 [node name="down" type="CollisionShape2D" parent="air_wall"]
-position = Vector2(-3, 1475)
+position = Vector2(0, 1050)
 shape = SubResource("WorldBoundaryShape2D_dbslg")
 
 [node name="right" type="CollisionShape2D" parent="air_wall"]
-position = Vector2(2763, -2)
+position = Vector2(1377, -6)
 shape = SubResource("WorldBoundaryShape2D_6actc")
 
 [node name="end_game" type="Timer" parent="."]
 process_mode = 1
-wait_time = 360.0
+wait_time = 365.0
+one_shot = true
 autostart = true
 
 [node name="WorldEnvironment" type="CanvasModulate" parent="."]

@@ -1,9 +1,171 @@
 {
-  "ui_upgrade": {
-	"Id": "ui_upgrade",
-	"CHS": "升级",
-	"JP": "アップグレード",
-	"ENG": "upgrade"
+  "cp_reimu_marisa": {
+	"Id": "cp_reimu_marisa",
+	"CHS": "灵梦×魔理沙",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_reimu_sanae": {
+	"Id": "cp_reimu_sanae",
+	"CHS": "灵梦×早苗",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_reimu_misumaru": {
+	"Id": "cp_reimu_misumaru",
+	"CHS": "灵梦×魅须丸",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_alice": {
+	"Id": "cp_marisa_alice",
+	"CHS": "魔理沙×爱丽丝",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_patchouli": {
+	"Id": "cp_marisa_patchouli",
+	"CHS": "魔理沙×帕秋莉",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_alice_patchouli": {
+	"Id": "cp_alice_patchouli",
+	"CHS": "爱丽丝×帕秋莉",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_alice_patchouli": {
+	"Id": "cp_marisa_alice_patchouli",
+	"CHS": "魔女的夜宴",
+	"JP": "",
+	"ENG": ""
+  },
+  "cp_marisa_narumi": {
+	"Id": "cp_marisa_narumi",
+	"CHS": "魔理沙×成美",
+	"JP": "",
+	"ENG": ""
+  },
+  "esc_keine_1": {
+	"Id": "esc_keine_1",
+	"CHS": "数符「直线、射线、线段」",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_patchouli": {
+	"Id": "psv_patchouli",
+	"CHS": "帕秋莉",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_saki": {
+	"Id": "psv_saki",
+	"CHS": "骊驹早鬼",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_narumi": {
+	"Id": "psv_narumi",
+	"CHS": "矢田寺成美",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_junko": {
+	"Id": "psv_junko",
+	"CHS": "纯狐",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_kisumi": {
+	"Id": "psv_kisumi",
+	"CHS": "琪斯美",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_momoyo": {
+	"Id": "psv_momoyo",
+	"CHS": "姬虫百百世",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_patchouli_dsc": {
+	"Id": "psv_patchouli_dsc",
+	"CHS": "增加符力存储上限",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_saki_dsc": {
+	"Id": "psv_saki_dsc",
+	"CHS": "增加弹幕速度",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_narumi_dsc": {
+	"Id": "psv_narumi_dsc",
+	"CHS": "增加残机",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_junko_dsc": {
+	"Id": "psv_junko_dsc",
+	"CHS": "增加发射数量",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_kisumi_dsc": {
+	"Id": "psv_kisumi_dsc",
+	"CHS": "增加体术抗性",
+	"JP": "",
+	"ENG": ""
+  },
+  "psv_momoyo_dsc": {
+	"Id": "psv_momoyo_dsc",
+	"CHS": "增加弹幕伤害倍率",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_marisa": {
+	"Id": "sc_marisa",
+	"CHS": "雾雨魔理沙",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_youmu": {
+	"Id": "sc_youmu",
+	"CHS": "魂魄妖梦",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_daiyousei_name": {
+	"Id": "sc_daiyousei_name",
+	"CHS": "治愈「繁茂微风」",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_marisa_name": {
+	"Id": "sc_marisa_name",
+	"CHS": "记忆「Master Spark」",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_youmu_name": {
+	"Id": "sc_youmu_name",
+	"CHS": "记忆「现世斩」",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_marisa_dsc": {
+	"Id": "sc_marisa_dsc",
+	"CHS": "释放强大的魔炮",
+	"JP": "",
+	"ENG": ""
+  },
+  "sc_youmu_dsc": {
+	"Id": "sc_youmu_dsc",
+	"CHS": "自机向前方冲刺，并伤害路径上的敌人",
+	"JP": "",
+	"ENG": ""
   },
   "ski_reimu": {
 	"Id": "ski_reimu",
@@ -50,72 +212,6 @@
   "ski_sakuya": {
 	"Id": "ski_sakuya",
 	"CHS": "十六夜咲夜",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_patchouli": {
-	"Id": "psv_patchouli",
-	"CHS": "帕秋莉",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_saki": {
-	"Id": "psv_saki",
-	"CHS": "骊驹早鬼",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_narumi": {
-	"Id": "psv_narumi",
-	"CHS": "矢田寺成美",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_junko": {
-	"Id": "psv_junko",
-	"CHS": "纯狐",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_kisumi": {
-	"Id": "psv_kisumi",
-	"CHS": "琪斯美",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_momoyo": {
-	"Id": "psv_momoyo",
-	"CHS": "姬虫百百世",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_marisa": {
-	"Id": "sc_marisa",
-	"CHS": "雾雨魔理沙",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_youmu": {
-	"Id": "sc_youmu",
-	"CHS": "魂魄妖梦",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_daiyousei_name": {
-	"Id": "sc_daiyousei_name",
-	"CHS": "治愈「繁茂微风」",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_marisa_name": {
-	"Id": "sc_marisa_name",
-	"CHS": "记忆「Master Spark」",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_youmu_name": {
-	"Id": "sc_youmu_name",
-	"CHS": "记忆「现世斩」",
 	"JP": "",
 	"ENG": ""
   },
@@ -167,53 +263,23 @@
 	"JP": "",
 	"ENG": ""
   },
-  "psv_patchouli_dsc": {
-	"Id": "psv_patchouli_dsc",
-	"CHS": "增加符力存储上限",
+  "ski_basemagic": {
+	"Id": "ski_basemagic",
+	"CHS": "基础弹幕",
 	"JP": "",
 	"ENG": ""
   },
-  "psv_saki_dsc": {
-	"Id": "psv_saki_dsc",
-	"CHS": "增加弹幕速度",
+  "ski_basephysics": {
+	"Id": "ski_basephysics",
+	"CHS": "基础近战",
 	"JP": "",
 	"ENG": ""
   },
-  "psv_narumi_dsc": {
-	"Id": "psv_narumi_dsc",
-	"CHS": "增加残机",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_junko_dsc": {
-	"Id": "psv_junko_dsc",
-	"CHS": "增加发射数量",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_kisumi_dsc": {
-	"Id": "psv_kisumi_dsc",
-	"CHS": "增加体术抗性",
-	"JP": "",
-	"ENG": ""
-  },
-  "psv_momoyo_dsc": {
-	"Id": "psv_momoyo_dsc",
-	"CHS": "增加弹幕伤害倍率",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_marisa_dsc": {
-	"Id": "sc_marisa_dsc",
-	"CHS": "释放强大的魔炮",
-	"JP": "",
-	"ENG": ""
-  },
-  "sc_youmu_dsc": {
-	"Id": "sc_youmu_dsc",
-	"CHS": "自机向前方冲刺，并伤害路径上的敌人",
-	"JP": "",
-	"ENG": ""
+  "ui_upgrade": {
+	"Id": "ui_upgrade",
+	"CHS": "升级",
+	"JP": "アップグレード",
+	"ENG": "upgrade"
   },
   "damage_addition": {
 	"Id": "damage_addition",
@@ -254,66 +320,6 @@
   "cd_reduction": {
 	"Id": "cd_reduction",
 	"CHS": "额外冷却时间缩减",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_reimu_marisa": {
-	"Id": "cp_reimu_marisa",
-	"CHS": "灵梦×魔理沙",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_reimu_sanae": {
-	"Id": "cp_reimu_sanae",
-	"CHS": "灵梦×早苗",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_reimu_misumaru": {
-	"Id": "cp_reimu_misumaru",
-	"CHS": "灵梦×魅须丸",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_marisa_alice": {
-	"Id": "cp_marisa_alice",
-	"CHS": "魔理沙×爱丽丝",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_marisa_patchouli": {
-	"Id": "cp_marisa_patchouli",
-	"CHS": "魔理沙×帕秋莉",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_alice_patchouli": {
-	"Id": "cp_alice_patchouli",
-	"CHS": "爱丽丝×帕秋莉",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_marisa_alice_patchouli": {
-	"Id": "cp_marisa_alice_patchouli",
-	"CHS": "魔女的夜宴",
-	"JP": "",
-	"ENG": ""
-  },
-  "cp_marisa_narumi": {
-	"Id": "cp_marisa_narumi",
-	"CHS": "魔理沙×成美",
-	"JP": "",
-	"ENG": ""
-  },
-  "ski_basemagic": {
-	"Id": "ski_basemagic",
-	"CHS": "基础弹幕",
-	"JP": "",
-	"ENG": ""
-  },
-  "ski_basephysics": {
-	"Id": "ski_basephysics",
-	"CHS": "基础近战",
 	"JP": "",
 	"ENG": ""
   }

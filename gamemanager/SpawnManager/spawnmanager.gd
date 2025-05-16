@@ -15,7 +15,7 @@ const AUDIT_INTERVAL = 15.0 # 每 15 秒检查一次
 func _ready() -> void:
 	spatial_grid =SpatialGrid.new(GRID_CELL_SIZE)
 
-
+	SignalBus.add_mob_to_manager.connect(add_mob)
 
 
 
