@@ -38,6 +38,13 @@ func spawner_init(spawner_initlist,parent):
 			spawnTimer.set_one_shot(true)
 			endTimer.wait_time = startTimer.wait_time + 1
 			endTimer.start()
+		'boss':
+			startTimer.wait_time =   maxf(spawn_list["start_time"] - player_var.time_secs,0.1)
+			startTimer.start()
+			spawnTimer.set_one_shot(true)
+			endTimer.wait_time = startTimer.wait_time + 1
+			endTimer.start()
+			return
 	mob_pre = PresetManager.getpre(spawn_list["enemy_type"])
 	mob_info = table.Enemy[spawn_list["enemy_type"]]
 	path_follow_2d = player_var.player_node.get_node("monster_spawn_line").get_node("PathFollow2D")
@@ -63,7 +70,10 @@ func spawn_mob():
 
 
 func _on_timer_timeout():
-	if SpawnManager.mob_dic.size()>1:
+	if spawn_list["spawn_type"] == 'boss':
+			player_var.boss_coming('keine')
+			return
+	if SpawnManager.mob_dic.size()>300:
 		if spawn_list["spawn_type"] == 'zako':
 			return
 	for i in range(spawn_list["amount_parameter"]):

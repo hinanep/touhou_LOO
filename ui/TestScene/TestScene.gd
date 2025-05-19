@@ -4,6 +4,7 @@ func _ready():
 	G.get_gui_view_manager().open_view("TestHud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
 	#$Spawner.spawn_list.pre = PresetManager.getpre("enemy_boss_aq")
+	player_var.tmp_scene = $"."
 var pauseing = false
 var pause_id
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -26,7 +27,7 @@ func _open():
 		var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 		dummm.position.x += 2*100
 		$SpawnManager.add_mob(dummm)
-	create_boss()
+	player_var.boss_coming('keine')
 
 	#for i in  10:
 		#dummm = preload("res://scene/enemys/enemy_base/enemy_base.tscn").instantiate()
