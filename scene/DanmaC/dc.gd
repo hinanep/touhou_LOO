@@ -118,7 +118,7 @@ func get_from_pool():
 		obj = danma_pre.instantiate()
 		obj.destroy.connect(add_to_pool)
 	else:
-		obj = danma_pool.pop_back()
+		obj =  danma_pool.pop_back()
 	if obj == null:
 		obj = danma_pre.instantiate()
 		obj.destroy.connect(add_to_pool)
@@ -153,14 +153,16 @@ func rot_discrete_uniform(delta):
 var rot_times = 0
 var shoot_times :int= 0
 func _on_shoot_interval_timeout() -> void:
-
+	if shoot_times >= d4c_info.max_create_times:
+		if get_child_count() == 2:
+			destroy(false)
+		return
 	progress_check()
 	if d4c_info.create_front == 'character' and d4c_info.is_follow:
 		zero_diretion =global_position.direction_to(player_var.player_node.global_position)
 	shoot_func.call()
 	shoot_times+=1
-	if shoot_times >= d4c_info.max_create_times:
-		$shoot_interval.stop()
+
 
 
 var progress_p = 0

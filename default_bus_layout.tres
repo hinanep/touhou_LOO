@@ -1,22 +1,22 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://dowdmt175w4k3"]
 
 [resource]
-bus/0/volume_db = -80.0
+bus/0/volume_db = -6.25101
 bus/1/name = &"bgm"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -0.528235
+bus/1/volume_db = -6.57885
 bus/1/send = &"Master"
 bus/2/name = &"sfx"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -3.32682
+bus/2/volume_db = -1.12151
 bus/2/send = &"Master"
 bus/3/name = &"background"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -0.330477
+bus/3/volume_db = -7.63072
 bus/3/send = &"bgm"

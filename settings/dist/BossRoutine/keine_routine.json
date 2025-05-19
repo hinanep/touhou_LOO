@@ -63,17 +63,17 @@
 	"boss": "bprc_keine_sc1",
 	"phase_number": 1,
 	"is_auto": true,
-	"auto_interval": 6.0,
+	"auto_interval": 12.0,
 	"first_use_time": 1.0,
 	"end_time": 99.0,
 	"type": "dcreator",
 	"create_rule": "screen_line",
 	"create_parameter": [
 	  0,
-	  720,
+	  540,
 	  1920,
-	  720,
-	  6
+	  540,
+	  7
 	],
 	"creature_id": "dcrt_keine_sc1_1",
 	"danmaku_damage": 30.0,
@@ -85,6 +85,29 @@
 	"id": "brou_keine_sc1_2",
 	"boss": "bprc_keine_sc1",
 	"phase_number": 2,
+	"is_auto": true,
+	"auto_interval": 12.0,
+	"first_use_time": 7.0,
+	"end_time": 99.0,
+	"type": "dcreator",
+	"create_rule": "screen_line",
+	"create_parameter": [
+	  160,
+	  540,
+	  1760,
+	  540,
+	  6
+	],
+	"creature_id": "dcrt_keine_sc1_1",
+	"danmaku_damage": 30.0,
+	"physical_rule": "",
+	"physical_parameter": [],
+	"followup": ""
+  },
+  "brou_keine_sc1_3": {
+	"id": "brou_keine_sc1_3",
+	"boss": "bprc_keine_sc1",
+	"phase_number": 3,
 	"is_auto": true,
 	"auto_interval": 5.0,
 	"first_use_time": 1.0,
@@ -98,12 +121,12 @@
 	"physical_parameter": [],
 	"followup": ""
   },
-  "brou_keine_sc1_3": {
-	"id": "brou_keine_sc1_3",
+  "brou_keine_sc1_4": {
+	"id": "brou_keine_sc1_4",
 	"boss": "bprc_keine_sc1",
-	"phase_number": 3,
+	"phase_number": 4,
 	"is_auto": true,
-	"auto_interval": 7.5,
+	"auto_interval": 15.0,
 	"first_use_time": 1.0,
 	"end_time": 99.0,
 	"type": "enemy",
@@ -119,12 +142,12 @@
 	"physical_parameter": [],
 	"followup": ""
   },
-  "brou_keine_sc1_4": {
-	"id": "brou_keine_sc1_4",
+  "brou_keine_sc1_5": {
+	"id": "brou_keine_sc1_5",
 	"boss": "bprc_keine_sc1",
-	"phase_number": 4,
+	"phase_number": 5,
 	"is_auto": true,
-	"auto_interval": 7.5,
+	"auto_interval": 15.0,
 	"first_use_time": 1.0,
 	"end_time": 99.0,
 	"type": "enemy",
@@ -155,7 +178,7 @@
 	"danmaku_damage": 0.0,
 	"physical_rule": "aimed_charge",
 	"physical_parameter": [
-	  500,
+	  10000,
 	  999,
 	  1
 	],

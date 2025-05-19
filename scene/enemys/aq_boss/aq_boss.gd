@@ -1,5 +1,5 @@
 extends enemy_base
-var stage = table.keine.keys().size()
+var stage = table.keine.keys().size()-1
 var tmp_stage = 0
 var reincarnation = false
 var boss_info:Dictionary
@@ -57,6 +57,7 @@ func died(disppear = false):
 	drop()
 
 	$AnimatedSprite2D.play("die")
+	AudioManager.play_sfx('music_sfx_break')
 	await  get_tree().create_timer(6,false,true).timeout
 	AudioManager.bgm_over()
 	queue_free()
@@ -64,8 +65,10 @@ func died(disppear = false):
 	G.get_gui_view_manager().open_view("ClearMenu")
 
 func move_dush(delta):
-	var colli_info:KinematicCollision2D = move_and_collide(diretion * 200 * delta)
+	$"轨迹".visible = true
+	var colli_info:KinematicCollision2D = move_and_collide(diretion * 300 * delta)
 	if colli_info is KinematicCollision2D:
+		$"轨迹".visible = false
 		trigger.emit('brou_keine_ns2_2')
 		move_func = move_stay
 var v = 0
@@ -95,7 +98,7 @@ func start_progess(phase:int):
 	atkable = false
 	progress_time = 0
 	$progress_timer.stop()
-	AudioManager.play_bgm("music_bgm_ff")
+
 	if mob_info.is_sc:
 		pass
 
@@ -146,9 +149,10 @@ func reincarnation_over():
 
 
 func spellcard_timeover():
-
+	AudioManager.play_sfx('music_sfx_break')
 	died()
 func spellcard_break():
+	AudioManager.play_sfx('music_sfx_break')
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate
 
 

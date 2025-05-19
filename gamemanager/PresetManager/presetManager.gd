@@ -46,7 +46,7 @@ var preset_map = {
 	"music_sfx_levelup":"res://asset/music/sfx/levelup.wav",
 	"music_sfx_clear":"res://asset/music/sfx/clear.wav",
 	"music_sfx_die":"res://asset/music/sfx/dead.wav",
-
+	'music_sfx_break':"res://asset/music/sfx/break.wav",
 
 	"music_bgm_saga":"res://asset/music/Japanese Saga.mp3",
 	"music_bgm_oldworld":"res://asset/music/ChillKeine.wav",

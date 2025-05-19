@@ -53,7 +53,7 @@ position = Vector2(240, 142)
 rotation = -3.13635
 
 [node name="air_wall" type="StaticBody2D" parent="."]
-collision_layer = 32
+collision_layer = 36
 collision_mask = 0
 
 [node name="left" type="CollisionShape2D" parent="air_wall"]

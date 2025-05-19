@@ -327,7 +327,7 @@
 	"event_id": "evt_zako_17",
 	"spawn_type": "zako",
 	"start_time": 270,
-	"end_time": 360,
+	"end_time": 350,
 	"tick_time": 1.0,
 	"enemy_type": "enm_boy",
 	"amount_parameter": 8,
@@ -339,12 +339,24 @@
 	"event_id": "evt_zako_18",
 	"spawn_type": "zako",
 	"start_time": 270,
-	"end_time": 360,
+	"end_time": 350,
 	"tick_time": 1.0,
 	"enemy_type": "enm_girl",
 	"amount_parameter": 8,
 	"enemy_attribute_boost": 10.0,
 	"enemy_barrage_boost": [],
 	"speed_boost": 10.0
+  },
+  " ": {
+	"event_id": " ",
+	"spawn_type": "boss",
+	"start_time": 360,
+	"end_time": 0,
+	"tick_time": 0.0,
+	"enemy_type": "",
+	"amount_parameter": 0,
+	"enemy_attribute_boost": 0.0,
+	"enemy_barrage_boost": [],
+	"speed_boost": 0.0
   }
 }

@@ -1,90 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=13 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" path="res://scene/enemys/aq_boss/aq_boss.gd" id="1_w6a4s"]
-[ext_resource type="Texture2D" uid="uid://drqcre2ub8wa6" path="res://asset/pic/enemy/20241105-183128.png" id="3_2gld5"]
+[ext_resource type="Texture2D" uid="uid://qjkqd4eo88sb" path="res://asset/pic/enemy/白泽球.png" id="2_ndu7c"]
 [ext_resource type="PackedScene" uid="uid://clvkueof1i4cp" path="res://scene/enemys/enemy_base/damageNum.tscn" id="3_rrecl"]
 [ext_resource type="Script" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_v0bqg"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="5_3pgrx"]
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="5_kqtkm"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sodxg"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nhq6"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(84, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_52cde"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(168, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wdest"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(252, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_blygh"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vdayk"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 84, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ehif4"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 252, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i6rd"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 168, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5bbf1"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(168, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxv2o"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(168, 84, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_njprq"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(168, 252, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8n8k7"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(168, 168, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u5kdq"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 0, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tpu5"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 84, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_av2r0"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 252, 84, 84)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xrii"]
-atlas = ExtResource("3_2gld5")
-region = Rect2(0, 168, 84, 84)
+[ext_resource type="Texture2D" uid="uid://b23e7p8e7fa7h" path="res://asset/pic/bullet/轨迹.png" id="8_ko4ll"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sodxg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5nhq6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_52cde")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wdest")
+"texture": ExtResource("2_ndu7c")
 }],
 "loop": true,
 "name": &"default",
@@ -92,43 +20,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_blygh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vdayk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ehif4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5i6rd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5bbf1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xxv2o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_njprq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8n8k7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u5kdq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tpu5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_av2r0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2xrii")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_blygh")
+"texture": ExtResource("2_ndu7c")
 }],
 "loop": false,
 "name": &"die",
@@ -152,7 +44,6 @@ region = Rect2(-5, 187, 260, 97)
 process_mode = 1
 z_index = 1
 z_as_relative = false
-scale = Vector2(0.6, 0.6)
 collision_layer = 2
 collision_mask = 32
 motion_mode = 1
@@ -162,7 +53,9 @@ script = ExtResource("1_w6a4s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 15
 position = Vector2(0, -6)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_4gakf")
+animation = &"die"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -170,6 +63,7 @@ z_index = 15
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="melee_damage_area" type="Area2D" parent="."]
+scale = Vector2(50, 50)
 monitoring = false
 monitorable = false
 
@@ -252,6 +146,11 @@ theme_override_font_sizes/font_size = 200
 text = "数符「直线、射线、线段」"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="轨迹" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2.5, 0.5)
+texture = ExtResource("8_ko4ll")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

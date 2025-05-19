@@ -12,7 +12,7 @@ var player_hp=0:
 	get:
 		return player_hp
 	set(value):
-		player_hp = clamp(value,1,player_hp_max)
+		player_hp = clamp(value,-1,player_hp_max)
 var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent

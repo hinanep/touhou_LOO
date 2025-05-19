@@ -63,6 +63,7 @@ func close_view(viewInstanceId:int):
 	v.queue_free()
 
 func close_all_view():
+	AudioManager.bgm_over()
 	for viewID in viewInstanceMap.keys():
 
 		var v := _get_view_instance(viewID)

@@ -4,7 +4,7 @@
 	"danmaku_type": "dmk_rice",
 	"create_rule": "circle",
 	"create_parameter": [
-	  100,
+	  200,
 	  0
 	],
 	"create_amount": 8,
@@ -12,7 +12,7 @@
 	"is_follow": true,
 	"rotate_rule": "static",
 	"rotate_parameter": [],
-	"create_interval": 2.0,
+	"create_interval": 1.5,
 	"max_create_times": 999999,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
@@ -38,7 +38,7 @@
 	"danmaku_type": "dmk_ball",
 	"create_rule": "circle",
 	"create_parameter": [
-	  100,
+	  120,
 	  0
 	],
 	"create_amount": 4,
@@ -49,7 +49,7 @@
 	  1,
 	  60
 	],
-	"create_interval": 0.2,
+	"create_interval": 0.4,
 	"max_create_times": 999999,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
@@ -75,7 +75,7 @@
 	"danmaku_type": "dmk_ball",
 	"create_rule": "circle",
 	"create_parameter": [
-	  100,
+	  120,
 	  0
 	],
 	"create_amount": 4,
@@ -86,7 +86,7 @@
 	  1,
 	  -60
 	],
-	"create_interval": 0.2,
+	"create_interval": 0.4,
 	"max_create_times": 999999,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
@@ -120,8 +120,8 @@
 	"is_follow": false,
 	"rotate_rule": "static",
 	"rotate_parameter": [],
-	"create_interval": 0.02,
-	"max_create_times": 300,
+	"create_interval": 0.05,
+	"max_create_times": 120,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
 	"moving_rule": "static",
@@ -160,8 +160,8 @@
 	"is_follow": false,
 	"rotate_rule": "static",
 	"rotate_parameter": [],
-	"create_interval": 0.02,
-	"max_create_times": 150,
+	"create_interval": 0.05,
+	"max_create_times": 60,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
 	"moving_rule": "static",
@@ -203,8 +203,45 @@
 	  0.5,
 	  30
 	],
-	"create_interval": 0.02,
-	"max_create_times": 100,
+	"create_interval": 0.05,
+	"max_create_times": 999999,
+	"is_destroy_with_parent": true,
+	"moving_system": "parent",
+	"moving_rule": "static",
+	"moving_parameter": [],
+	"danmaku_moving_rule": "straight",
+	"danmaku_moving_parameter": [
+	  0,
+	  999999
+	],
+	"danmaku_damage": 30.0,
+	"creator_apart_rule": "",
+	"creator_apart_var": [],
+	"creator_apart_point": [],
+	"creator_apart_parameter": [],
+	"danmaku_apart_rule": "",
+	"danmaku_apart_var": [],
+	"danmaku_apart_point": [],
+	"danmaku_apart_parameter": []
+  },
+  "dcrt_keine_sc1_4": {
+	"Id": "dcrt_keine_sc1_4",
+	"danmaku_type": "dmk_laser",
+	"create_rule": "circle",
+	"create_parameter": [
+	  200,
+	  0
+	],
+	"create_amount": 2,
+	"create_front": "world",
+	"is_follow": false,
+	"rotate_rule": "discrete_uniform",
+	"rotate_parameter": [
+	  0.5,
+	  -30
+	],
+	"create_interval": 0.05,
+	"max_create_times": 999999,
 	"is_destroy_with_parent": true,
 	"moving_system": "parent",
 	"moving_rule": "static",
@@ -231,17 +268,17 @@
 	"create_parameter": [
 	  0,
 	  360,
-	  100,
-	  120
+	  20,
+	  160
 	],
 	"create_amount": 5,
 	"create_front": "world",
 	"is_follow": false,
 	"rotate_rule": "static",
 	"rotate_parameter": [],
-	"create_interval": 0.2,
-	"max_create_times": 5,
-	"is_destroy_with_parent": false,
+	"create_interval": 0.1,
+	"max_create_times": 16,
+	"is_destroy_with_parent": true,
 	"moving_system": "world",
 	"moving_rule": "static",
 	"moving_parameter": [],

@@ -264,11 +264,10 @@ text = "符力消耗"
 fit_content = true
 
 [node name="psv_container" type="HBoxContainer" parent="hud"]
-offset_left = 1508.0
+offset_left = 1435.0
 offset_top = 138.0
-offset_right = 5398.0
-offset_bottom = 1108.0
-scale = Vector2(0.1, 0.1)
+offset_right = 1791.0
+offset_bottom = 238.0
 alignment = 2
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]

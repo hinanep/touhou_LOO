@@ -104,6 +104,7 @@ shape = SubResource("CircleShape2D_kq405")
 [node name="colli_point" type="Sprite2D" parent="CollisionShape2D"]
 visible = false
 z_index = 500
+z_as_relative = false
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("3_g1rlb")
 

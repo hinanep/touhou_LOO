@@ -65,8 +65,8 @@ func change_type_to(type: String):
 			$texture.set_texture(PresetManager.getpre('img_laserpre'))
 			$texture.rotation = -PI/2
 			$texture.offset.y=16
-
-			var sizex = 20
+			$texture.modulate = Color(0.3,1,1,1)
+			var sizex = 50
 			var sizey = 1
 			$texture.scale = Vector2(0.15,0.03)
 			$".".scale = Vector2(sizex,sizey)
@@ -83,7 +83,8 @@ func change_type_to(type: String):
 			$colli_area.position.x=0.5
 			$damage_area/colli_da.position.x=0.5
 			$texture.offset.y=16
-			var sizex = 20
+			$texture.modulate = Color(0.3,1,1,1)
+			var sizex = 50
 			var sizey = 6
 			$texture.scale = Vector2(0.03,0.03)
 			$".".scale = Vector2(sizex,sizey)

@@ -28,6 +28,8 @@ monitorable = false
 shape = SubResource("RectangleShape2D_n623u")
 
 [node name="texture" type="Sprite2D" parent="."]
+z_index = 500
+z_as_relative = false
 rotation = -1.5708
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("2_wxdkc")
