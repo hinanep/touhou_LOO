@@ -1,12 +1,12 @@
 {
   "atkdep_marisa_alice_duration": {
-	"id": "atkdep_marisa_alice_duration",
-	"attribute": "last_cardcost",
-	"calculation": "linear",
-	"calculation_parameter": [
-	  0.0025,
-	  0
-	],
-	"relationship": "multiply"
+    "id": "atkdep_marisa_alice_duration",
+    "attribute": "last_cardcost",
+    "calculation": "linear",
+    "calculation_parameter": [
+      0.0025,
+      0
+    ],
+    "relationship": "multiply"
   }
 }
