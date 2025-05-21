@@ -17,8 +17,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			Engine.time_scale = 0.1
 		else:
 			Engine.time_scale = 1.0
-		for i in  10:
-			var tween = create_tween().tween_property($".",'position',Vector2(0,0),5)
+
 func _open():
 	player_var.new_scene()
 	player_var.SpawnManager = $SpawnManager

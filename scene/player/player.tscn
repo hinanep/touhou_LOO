@@ -158,8 +158,11 @@ position = Vector2(478, 1)
 shape = SubResource("WorldBoundaryShape2D_25blp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
 zoom = Vector2(2, 2)
 position_smoothing_speed = 500.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 10.0
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]

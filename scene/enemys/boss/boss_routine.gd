@@ -105,13 +105,8 @@ func shoot():
 				rush(get_parent().get_parent())
 func screen_to_world(p:Vector2):
 	viewport_size = Vector2(1920,1080)
-	var ans =  ( p-viewport_size/2)/2
-	#print('center'+str(camera.get_screen_center_position()))
-	#print(camera.get_screen_center_position())
-	#print('view'+str(viewport_size))
-	#print(viewport_size)
-	#print('p'+str(p))
-	#print('ans'+str(ans))
+
+
 	return camera.get_screen_center_position() + ( p-viewport_size/2)/2
 
 func _on_auto_emit_timeout() -> void:

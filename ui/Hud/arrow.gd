@@ -106,7 +106,7 @@ func _process(delta):
 			# --- 行为：宝箱在屏幕外 ---
 			var direction = chest_world_pos - cam_global_pos
 			arrow_instance.rotation = direction.angle()
-			var projected_pos = direction
+
 
 			arrow_instance.position = intersect_center_ray_rect_min_t(direction,safe_rect)* cam_zoom+viewport_size/2
 

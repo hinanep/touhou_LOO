@@ -18,13 +18,12 @@ func _ready():
 	AudioManager.play_bgm("music_bgm_saga")
 
 	$buff.brittle_modify = 0
-	melee_battle_ready()
 	super._ready()
 
 	collision_mask = 32
 	SignalBus.clear_enemy.emit(true)
 	SignalBus.pause_spawner.emit(true)
-
+	velocity = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
 	if not global_position.is_equal_approx(last_position):
@@ -72,11 +71,22 @@ func move_dush(delta):
 		trigger.emit('brou_keine_ns2_2')
 		move_func = move_stay
 var v = 0
+var stan = 2
+var move = 1
+var mode = 0
 func move_random(delta):
 	v+=delta
-	if v>1:
-		v=0
-		velocity = mob_info.speed * Vector2.from_angle(randf()*2*PI) + 0.5*global_position.distance_to(Vector2(300,0))*global_position.direction_to(Vector2(300,0))
+	if mode == 0:
+		if v > stan:
+			mode = 1
+			v = 0
+			velocity = mob_info.speed * Vector2.from_angle(randf()*2*PI) + 0.5*global_position.distance_to(Vector2(300,0))*global_position.direction_to(Vector2(300,0))
+	if mode == 1:
+		if v > move:
+			mode = 0
+			v = 0
+			velocity = Vector2.ZERO
+
 
 	move_and_slide()
 
@@ -183,8 +193,6 @@ func popup() -> void:
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
 
-
-	var interval
 	print('flushover')
 	flush = null
 	print('expandstart')

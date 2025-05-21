@@ -225,7 +225,8 @@ func give_debuff(body):
 func _on_bullet_erase_area_body_entered(body):
 	body.destroy.emit(body)
 	if attack_info.has('eraseing_item_creation'):
-		drop_item(attack_info.eraseing_item_creation,attack_info.eraseing_item_creation_value,body.global_position)
+		for item in attack_info.eraseing_item_creation:
+			drop_item(item,attack_info.eraseing_item_creation_value,body.global_position)
 
 #击杀时触发器
 func on_kill(target_position):

@@ -63,7 +63,6 @@ func popup() -> void:
 	flush.set_loops(3)
 
 
-	var interval
 	print('flushover')
 	flush = null
 	print('expandstart')

@@ -197,9 +197,6 @@ func audit_spatial_grid():
 	for cell_coords in spatial_grid.grid.keys().duplicate():
 		var cell_array = spatial_grid.grid[cell_coords]
 
-		# 使用反向循环或创建一个新数组来安全地移除元素
-		var cleaned_array = []
-
 		for i in range(cell_array.size() - 1, -1, -1):
 			if not is_instance_valid(cell_array[i]):
 

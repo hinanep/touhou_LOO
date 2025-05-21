@@ -9,7 +9,7 @@ func _init():
 	pass
 func _ready():
 	SignalBus.player_invincible.connect(on_player_invincible)
-
+	player_var.camera =get_viewport().get_camera_2d()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("slow_mode"):

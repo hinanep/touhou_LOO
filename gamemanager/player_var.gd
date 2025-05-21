@@ -107,7 +107,10 @@ var damage_sum
 
 func _ready() -> void:
 	ini()
-	pass
+func _physics_process(delta: float) -> void:
+	if shake_damage > 0:
+		shake_damage -= delta
+		shake_screen_damage(shake_damage)
 func new_scene():
 	if SkillManager!=null:
 		SkillManager.destroy()
@@ -166,34 +169,53 @@ func level_up():
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
 
-func shake_screen(time,interval,intensity,speed,camera:Node2D=player_node.get_node('Camera2D')):
-	var offset
-	if camera == null:
-		return
-	var ct:Tween = camera.create_tween().set_speed_scale(speed)
-	while(time > 0):
-		ct.tween_property(camera,'position',Vector2.ZERO+Vector2(randf_range(-intensity,intensity),randf_range(-intensity,intensity)),interval)
-		time-=interval
 
-	ct.tween_property(camera,'position',Vector2.ZERO,interval)
+var shake_damage = 0:
+	set(value):
+		shake_damage = clamp(value,0,1)
+var noise = FastNoiseLite.new()
+var camera:Camera2D
+func shake_screen_damage(damage):
+
+	noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise.frequency = 0.01
+	noise.seed = 420
+
+	var shakei_offsetx = 15 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec())
+	var shakei_offsety = 15 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+1)
+	var shakei_angle = 0.3 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+2)
+	camera.position = Vector2(shakei_offsetx,shakei_offsety)
+	camera.rotation = shakei_angle
+
+func shake_screen(time,interval,intensity):
+
+	var ct:Tween = camera.create_tween().set_loops(time/interval)
+
+	ct.tween_callback(func():
+		shake_damage+=intensity
+		).set_delay(interval)
+
 	ct = null
+
 func boss_coming(id:String):
 			var mv :Tween= player_var.player_node.create_tween()
 			var camera:Camera2D = get_viewport().get_camera_2d()
+			camera.top_level = true
 			mv.set_parallel()
 
 			mv.tween_property(player_var.player_node,'global_position',Vector2(-200,0),1)
 			mv.tween_property(camera,'global_position',Vector2(0,0),1)
+			var viewport_size = Vector2(1920,1080)
 			await mv.finished
-			player_var.air_wall_bottom = 270
-			player_var.air_wall_top = -270
-			player_var.air_wall_left = -480
-			player_var.air_wall_right = 480
+			player_var.air_wall_bottom = viewport_size.y/4
+			player_var.air_wall_top = -viewport_size.y/4
+			player_var.air_wall_left = -viewport_size.x/4
+			player_var.air_wall_right = viewport_size.x/4
 
-			tmp_scene.get_node('air_wall/left').position.x = -480
-			tmp_scene.get_node('air_wall/right').position.x = 480
-			tmp_scene.get_node('air_wall/top').position.y = -270
-			tmp_scene.get_node('air_wall/down').position.y = 270
+			tmp_scene.get_node('air_wall/left').position.x = -viewport_size.x/4
+			tmp_scene.get_node('air_wall/right').position.x = viewport_size.x/4
+			tmp_scene.get_node('air_wall/top').position.y = -viewport_size.y/4
+			tmp_scene.get_node('air_wall/down').position.y = viewport_size.y/4
 			lock_camera()
 
 			var boss = PresetManager.getpre(id).instantiate()
@@ -209,10 +231,11 @@ func boss_coming(id:String):
 func lock_camera():
 	var camera:Camera2D = get_viewport().get_camera_2d()
 	#camera.position_smoothing_enabled = true
-	camera.limit_bottom = player_var.air_wall_bottom
-	camera.limit_left = player_var.air_wall_left
-	camera.limit_right = player_var.air_wall_right
-	camera.limit_top = player_var.air_wall_top
+	camera.limit_bottom = player_var.air_wall_bottom*2
+	camera.limit_left = player_var.air_wall_left*2
+	camera.limit_right = player_var.air_wall_right*2
+	camera.limit_top = player_var.air_wall_top*2
+
 
 func ini():
 	var ini_list = initial_status.new()
