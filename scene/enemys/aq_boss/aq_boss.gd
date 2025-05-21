@@ -63,12 +63,30 @@ func died(disppear = false):
 	G.get_gui_view_manager().close_all_view()
 	G.get_gui_view_manager().open_view("ClearMenu")
 
-func move_dush(delta):
+var dush_speed = 0
+var colli = false
+@onready var time_tween:Tween
+func dush(speed,time,charge_time):
 	$"轨迹".visible = true
-	var colli_info:KinematicCollision2D = move_and_collide(diretion * 300 * delta)
+	await get_tree().create_timer(charge_time).timeout
+	diretion = global_position.direction_to(player_var.player_node.global_position)
+	dush_speed = speed
+	move_func = move_dush
+
+	time_tween = create_tween()
+	time_tween.tween_interval(time)
+	time_tween.tween_callback(func():
+		move_func = move_stay
+		)
+
+func move_dush(delta):
+
+	var colli_info:KinematicCollision2D = move_and_collide(diretion * dush_speed * delta)
 	if colli_info is KinematicCollision2D:
 		$"轨迹".visible = false
 		trigger.emit('brou_keine_ns2_2')
+		if time_tween.is_valid():
+			time_tween.kill()
 		move_func = move_stay
 var v = 0
 var stan = 2

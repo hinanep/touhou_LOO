@@ -120,6 +120,6 @@ func _on_end_time_timeout() -> void:
 	destroy()
 
 func rush(body:CharacterBody2D):
-	body.diretion = body.global_position.direction_to(player_var.player_node.global_position)
-	body.move_func = body.move_dush
+
+	body.dush(boss_routine_info['physical_parameter'][0],boss_routine_info['physical_parameter'][1],boss_routine_info['physical_parameter'][2])
 	pass
