@@ -22,7 +22,7 @@ func _ready():
 		var cps = table.Couple[uccp]
 		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/cp_container.add_child(cp_button)
-		#cp_button.set_texture('img_'+cps.id)
+		cp_button.set_texture('img_'+cps.id)
 		cp_button.set_tooltip_text(cps.id)
 		cp_button.selected.connect(on_cpbutton_select.bind(cps.id))
 
@@ -30,6 +30,7 @@ func _ready():
 		var psv_info = table.Passive[psv]
 		var psv_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$testhud/psv_container.add_child(psv_button)
+		psv_button.set_texture('img_'+psv_info.id)
 		psv_button.set_tooltip_text(psv_info.id)
 		psv_button.selected.connect(on_psvbutton_select.bind(psv_info.id))
 

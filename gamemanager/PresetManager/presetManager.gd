@@ -79,7 +79,7 @@ var preset_map = {
 	"img_ski_sekibanki":"res://asset/pic/crystal/主动技能/赤蛮奇.png",
 	"img_ski_wriggle":"res://asset/pic/crystal/主动技能/莉格露.png",
 	"img_ski_rumia":"res://asset/pic/crystal/主动技能/露米娅.png",
-	"img_ski_sanae":"res://asset/pic/crystal/早苗.png",
+	"img_ski_sanae":"res://asset/pic/crystal/主动技能/东风谷早苗.png",
 	"img_ski_sakuya":"res://asset/pic/crystal/主动技能/十六夜咲夜.png",
 	"img_ski_misumaru":"res://asset/pic/crystal/主动技能/玉造魅须丸.png",
 

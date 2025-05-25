@@ -16,13 +16,13 @@ func _physics_process(_delta):
 func mob_take_damage(damage):
 	if invincible:
 		return
-	#damage_num_display(damage)
-	#hp -= damage
-	#if hp <= 0:
-		#died()
-	#progress_bar.value = hp/mob_info.health * 100
-	#sumdamage += damage
-	#$dps_reset.start()
+	damage_num_display(damage)
+	hp -= damage
+	if hp <= 0:
+		died()
+	progress_bar.value = hp/mob_info.health * 100
+	sumdamage += damage
+	$dps_reset.start()
 
 
 func died(disppear = false):

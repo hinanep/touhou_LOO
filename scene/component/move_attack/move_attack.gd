@@ -102,8 +102,9 @@ func update(delta):
 			velocity = attack_info.moving_parameter[0]
 
 	rotate_type.call(delta)
-
+var exist_time = 0
 func move_trace_target(delta):
+
 	if lock.lock_target == null :
 		if next_found_counter >0:
 			next_found_counter-=1
@@ -113,9 +114,11 @@ func move_trace_target(delta):
 
 		lock.find_next_target()
 		return body.move_and_collide(velocity * delta)
-
+	exist_time += delta
 	acc = body.global_position.direction_to(lock.lock_target.global_position) * attack_info.moving_parameter[1]* player_var.bullet_speed_ratio
-	velocity += acc*delta
+	velocity += acc*delta*(0.1+2*exist_time)
+	#velocity += acc*delta
+
 	diretion = velocity.normalized()
 	velocity = diretion * min(velocity.length(),attack_info.moving_parameter[2]* player_var.bullet_speed_ratio) * attack_info.speed_efficiency
 

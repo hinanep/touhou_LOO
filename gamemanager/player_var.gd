@@ -181,8 +181,8 @@ func shake_screen_damage(damage):
 	noise.frequency = 0.01
 	noise.seed = 420
 
-	var shakei_offsetx = 15 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec())
-	var shakei_offsety = 15 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+1)
+	var shakei_offsetx = 30 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec())
+	var shakei_offsety = 30 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+1)
 	var shakei_angle = 0.3 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+2)
 	camera.position = Vector2(shakei_offsetx,shakei_offsety)
 	camera.rotation = shakei_angle
