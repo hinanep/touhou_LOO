@@ -198,43 +198,44 @@ func shake_screen(time,interval,intensity):
 	ct = null
 
 func boss_coming(id:String):
+			SignalBus.kill_all.emit()
 			var mv :Tween= player_var.player_node.create_tween()
-			var camera:Camera2D = get_viewport().get_camera_2d()
-			camera.top_level = true
+			var tmpcamera:Camera2D = get_viewport().get_camera_2d()
+			tmpcamera.top_level = true
 			mv.set_parallel()
 
-			mv.tween_property(player_var.player_node,'global_position',Vector2(-200,0),1)
-			mv.tween_property(camera,'global_position',Vector2(0,0),1)
+			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),1)
+			mv.tween_property(tmpcamera,'global_position',Vector2(0,0),1)
 			var viewport_size = Vector2(1920,1080)
 			await mv.finished
-			player_var.air_wall_bottom = viewport_size.y/4
-			player_var.air_wall_top = -viewport_size.y/4
-			player_var.air_wall_left = -viewport_size.x/4
-			player_var.air_wall_right = viewport_size.x/4
+			player_var.air_wall_bottom = viewport_size.y/2
+			player_var.air_wall_top = -viewport_size.y/2
+			player_var.air_wall_left = -viewport_size.x/2
+			player_var.air_wall_right = viewport_size.x/2
 
-			tmp_scene.get_node('air_wall/left').position.x = -viewport_size.x/4
-			tmp_scene.get_node('air_wall/right').position.x = viewport_size.x/4
-			tmp_scene.get_node('air_wall/top').position.y = -viewport_size.y/4
-			tmp_scene.get_node('air_wall/down').position.y = viewport_size.y/4
+			tmp_scene.get_node('air_wall/left').position.x = -viewport_size.x/2
+			tmp_scene.get_node('air_wall/right').position.x = viewport_size.x/2
+			tmp_scene.get_node('air_wall/top').position.y = -viewport_size.y/2
+			tmp_scene.get_node('air_wall/down').position.y = viewport_size.y/2
 			lock_camera()
 
 			var boss = PresetManager.getpre(id).instantiate()
 
 			boss.boss_init(id)
-			boss.position = Vector2(1000,500)
+			boss.position = Vector2(2000,1000)
 			tmp_scene.get_node('SpawnManager').add_mob(boss)
 			mv = boss.create_tween()
-			mv.tween_property(boss,'global_position',Vector2(300,0),3)
+			mv.tween_property(boss,'global_position',Vector2(600,0),3)
 			await mv.finished
 			boss.fight_begin()
 			return
 func lock_camera():
-	var camera:Camera2D = get_viewport().get_camera_2d()
+	var tmpcamera:Camera2D = get_viewport().get_camera_2d()
 	#camera.position_smoothing_enabled = true
-	camera.limit_bottom = player_var.air_wall_bottom*2
-	camera.limit_left = player_var.air_wall_left*2
-	camera.limit_right = player_var.air_wall_right*2
-	camera.limit_top = player_var.air_wall_top*2
+	tmpcamera.limit_bottom = player_var.air_wall_bottom*2
+	tmpcamera.limit_left = player_var.air_wall_left*2
+	tmpcamera.limit_right = player_var.air_wall_right*2
+	tmpcamera.limit_top = player_var.air_wall_top*2
 
 
 func ini():

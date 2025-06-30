@@ -15,7 +15,7 @@ var boss_routine_info = {
 	"followup": ""
   }
 signal end()
-
+var num_limit = 1
 var viewport_size:Vector2
 func br_init(br_info):
 	boss_routine_info = br_info
@@ -41,7 +41,9 @@ func get_triggered(id:String):
 	if id == boss_routine_info.id:
 		shoot()
 func shoot():
-
+	if num_limit < 1:
+		return
+	num_limit -= 1
 	match boss_routine_info.type:
 		'enemy':
 			var gen_position:Vector2 = Vector2.ZERO
@@ -56,6 +58,7 @@ func shoot():
 					ne.mob_info = mob_info.duplicate()
 					gen_position = global_position
 					ne.global_position = gen_position
+					ne.die.connect(release)
 					SignalBus.add_mob_to_manager.emit(ne)
 				'circle':
 					var gen_angle = boss_routine_info.create_parameter[2]*PI/180
@@ -66,6 +69,7 @@ func shoot():
 						ne = enemy_pre.instantiate()
 						ne.mob_info = mob_info.duplicate()
 						ne.global_position = gen_position
+						ne.die.connect(release)
 						SignalBus.add_mob_to_manager.emit(ne)
 				'screen_line':
 					var bias = Vector2(boss_routine_info.create_parameter[2]-boss_routine_info.create_parameter[0],boss_routine_info.create_parameter[3]-boss_routine_info.create_parameter[1])/(boss_routine_info.create_parameter[4]-1)
@@ -74,6 +78,7 @@ func shoot():
 					for i in boss_routine_info.create_parameter[4]:
 						ne = enemy_pre.instantiate()
 						ne.mob_info = mob_info.duplicate()
+						ne.die.connect(release)
 						ne.global_position = screen_to_world(gen_position)
 						SignalBus.add_mob_to_manager.emit(ne)
 
@@ -103,11 +108,12 @@ func shoot():
 		'physical':
 			if boss_routine_info.physical_rule =='aimed_charge':
 				rush(get_parent().get_parent())
+				release('rush')
 func screen_to_world(p:Vector2):
 	viewport_size = Vector2(1920,1080)
 
 
-	return camera.get_screen_center_position() + ( p-viewport_size/2)/2
+	return camera.get_screen_center_position() + ( p-viewport_size/2)
 
 func _on_auto_emit_timeout() -> void:
 	if get_parent().get_parent().atkable:
@@ -122,4 +128,6 @@ func _on_end_time_timeout() -> void:
 func rush(body:CharacterBody2D):
 
 	body.dush(boss_routine_info['physical_parameter'][0],boss_routine_info['physical_parameter'][1],boss_routine_info['physical_parameter'][2])
-	pass
+
+func release(_id):
+	num_limit+=1;

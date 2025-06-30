@@ -48,6 +48,7 @@ var rot_func:Callable=stay
 var exist_time = 0
 var parent_die_signal:Signal
 #todo
+signal die(id)
 var damage = 10
 var gen_position:Vector2 = Vector2.ZERO
 func d4c_init(id:String,parent):
@@ -169,6 +170,7 @@ var progress_p = 0
 var progress_dc = 0
 var next_checkpoint = -1
 func destroy(is_drop):
+	emit_signal('die',name)
 	queue_free()
 func progress_check():
 	if d4c_info.get('creator_apart_rule')=='' or d4c_info.get('creator_apart_rule')==null:

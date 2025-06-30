@@ -1,6 +1,7 @@
 extends TextureButton
 
 signal selected
+var point
 #func set_upgrade_text(upgrage):
 	#$weapon.text = upgrage
 #func set_describe_text(describe):
@@ -8,10 +9,11 @@ signal selected
 func set_texture(image):
 	if image!=null:
 		set_texture_normal(PresetManager.getpre(image))
+	size = Vector2(1400,1400)
 
 func _on_button_up():
 	emit_signal("selected")
-	get_parent().get_parent().get_child(0).global_position = global_position
+	point.global_position = global_position
 
 
 

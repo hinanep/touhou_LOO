@@ -27,10 +27,10 @@ var preset_map = {
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
 	'enm_memhappy':"res://scene/enemys/enm_memhappy.tscn",
 	'enm_memsad':"res://scene/enemys/enm_memsad.tscn",
-	'enm_keine_ns1_1':"res://scene/enemys/enm_keine_ns1_1.tscn",
-	'enm_keine_ns1_2':"res://scene/enemys/enm_keine_ns1_2.tscn",
-	'enm_keine_sc1':"res://scene/enemys/enm_keine_sc1.tscn",
-	'keine':"res://scene/enemys/aq_boss/aq_boss.tscn",
+	'enm_keine_ns1_1':"res://scene/enemys/boss/keine/enm_keine_ns1_1.tscn",
+	'enm_keine_ns1_2':"res://scene/enemys/boss/keine/enm_keine_ns1_2.tscn",
+	'enm_keine_sc1':"res://scene/enemys/boss/keine/enm_keine_sc1.tscn",
+	'keine':"res://scene/enemys/boss/keine/keine.tscn",
 	'd4c':"res://scene/DanmaC/DC.tscn",
 	'danma':"res://scene/DanmaC/danma/danma.tscn",
 
@@ -111,6 +111,10 @@ var preset_map = {
 	'img_atk_sekibanki':"res://asset/pic/bullet/头.png",
 	'img_atk_misumaru':"res://asset/pic/bullet/yinyangorb.png",
 
+	'img_enm_memhappy':"res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png",
+	'img_enm_mempeace':"res://asset/pic/enemy/bluerock/moving/bm_000.png",
+	'img_enm_memsad':"res://asset/pic/enemy/redrock/moving/rm_000.png",
+	'img_enm_kedama':"res://asset/pic/enemy/kedama/毛玉-animation_00.png",
 	'root_menu':"res://ui/game.tscn",
 	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
 }
@@ -129,16 +133,19 @@ func _process(delta: float) -> void:
 
 func getpre(prename : String):
 	if preset_map.has(prename) :
-	#	return ResourceLoader.load_threaded_get(preset_map[prename])
-		return preset_map[prename]
-	if(prename.contains('enm')):
-		print('pre  '+prename+'  not found!')
-		return preset_map.enemy
+		if preset_map[prename]==null:
+			pass
+		else:
+			return preset_map[prename]
 	if(prename.contains('img')):
-		print('pre  '+prename+'  not found!')
+		print('img  '+prename+'  not found!')
 		return preset_map.img_p
+	if(prename.contains('enm')):
+		print('enm  '+prename+'  not found!')
+		return preset_map.enemy
+
 	if(prename.contains('sum')):
-		print('pre  '+prename+'  not found!')
+		print('sum  '+prename+'  not found!')
 		return preset_map.summon
 
 	print('pre  '+prename+'  not found!')

@@ -1,24 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://o4yslgmrf8td"]
+[gd_scene load_steps=6 format=3 uid="uid://o4yslgmrf8td"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_wq5qk"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_57lmb"]
-[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="3_7l6of"]
-[ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="4_p60xu"]
-
-[sub_resource type="Gradient" id="Gradient_c7yuj"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uoxij"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeq53"]
-color_ramp = SubResource("Gradient_c7yuj")
-noise = SubResource("FastNoiseLite_uoxij")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bty1h"]
-shader = ExtResource("3_7l6of")
-shader_parameter/distor_modi = 0.01
-shader_parameter/mainTexture = SubResource("NoiseTexture2D_aeq53")
+[ext_resource type="Texture2D" uid="uid://c4tasudhxp6s1" path="res://asset/pic/texture/bh-2.png" id="3_ot8my"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wkt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ot8my")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
@@ -27,17 +22,11 @@ radius = 20.0
 script = ExtResource("2_57lmb")
 
 [node name="lock_component" parent="." index="1"]
-material = SubResource("ShaderMaterial_bty1h")
+modulate = Color(0.370364, 0.370364, 0.370364, 0.745098)
+scale = Vector2(0.16, 0.16)
 sprite_frames = SubResource("SpriteFrames_6wkt7")
 autoplay = ""
 
-[node name="texture#PointLight2D" type="PointLight2D" parent="lock_component" index="0"]
-rotation = 3.14159
-scale = Vector2(0.645161, 0.645161)
-color = Color(0.709804, 0.807843, 0.835294, 1)
-energy = 0.7
-blend_mode = 1
-texture = ExtResource("4_p60xu")
-
 [node name="CollisionShape2D" parent="damage_area" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_7lt5v")

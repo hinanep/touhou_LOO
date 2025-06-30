@@ -42,20 +42,20 @@ func change_type_to(type: String):
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.offset.y=0
 
-			change_size_to(10)
+			change_size_to(20)
 
 		'dmk_rice':
 			cshape = CircleShape2D.new()
 			cshape.radius = 1
 			$texture.set_texture(PresetManager.getpre('img_rice'))
 			$texture.offset.y=0
-			change_size_to(6)
+			change_size_to(12)
 		'dmk_mentos':
 			cshape = CircleShape2D.new()
 			cshape.radius = 1
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.offset.y=0
-			change_size_to(20)
+			change_size_to(40)
 		'dmk_laserpre':
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(1,0)
@@ -66,8 +66,8 @@ func change_type_to(type: String):
 			$texture.rotation = -PI/2
 			$texture.offset.y=16
 			$texture.modulate = Color(0.3,1,1,1)
-			var sizex = 50
-			var sizey = 1
+			var sizex = 100
+			var sizey = 2
 			$texture.scale = Vector2(0.15,0.03)
 			$".".scale = Vector2(sizex,sizey)
 			#$damage_area.scale =Vector2(sizex,sizey)
@@ -84,8 +84,8 @@ func change_type_to(type: String):
 			$damage_area/colli_da.position.x=0.5
 			$texture.offset.y=16
 			$texture.modulate = Color(0.3,1,1,1)
-			var sizex = 50
-			var sizey = 6
+			var sizex = 100
+			var sizey = 12
 			$texture.scale = Vector2(0.03,0.03)
 			$".".scale = Vector2(sizex,sizey)
 			#$damage_area.scale =Vector2(sizex,sizey)

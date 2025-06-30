@@ -80,27 +80,27 @@ func _on_end_game_timeout() -> void:
 			var camera:Camera2D = get_viewport().get_camera_2d()
 			mv.set_parallel()
 
-			mv.tween_property(player_var.player_node,'global_position',Vector2(-200,0),1)
+			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),1)
 			mv.tween_property(camera,'global_position',Vector2(0,0),1)
 			await mv.finished
-			player_var.air_wall_bottom = 270
-			player_var.air_wall_top = -270
-			player_var.air_wall_left = -480
-			player_var.air_wall_right = 480
+			player_var.air_wall_bottom = 540
+			player_var.air_wall_top = -540
+			player_var.air_wall_left = -960
+			player_var.air_wall_right = 960
 
-			$air_wall/left.position.x = -480
-			$air_wall/right.position.x = 480
-			$air_wall/top.position.y = -270
-			$air_wall/down.position.y = 270
+			$air_wall/left.position.x = -960
+			$air_wall/right.position.x = 960
+			$air_wall/top.position.y = -540
+			$air_wall/down.position.y = 540
 			lock_camera()
 
 			var boss = PresetManager.getpre('keine').instantiate()
 
 			boss.boss_init('keine')
-			boss.position = Vector2(1000,500)
+			boss.position = Vector2(2000,1000)
 			$SpawnManager.add_mob(boss)
 			mv = boss.create_tween()
-			mv.tween_property(boss,'global_position',Vector2(300,0),3)
+			mv.tween_property(boss,'global_position',Vector2(600,0),3)
 			await mv.finished
 			boss.fight_begin()
 			return

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://de8yminkavjsp"]
 
-[ext_resource type="Script" path="res://gamemanager/PresetManager/presetManager.gd" id="1_6xsb2"]
+[ext_resource type="Script" uid="uid://bj8ml361vliok" path="res://gamemanager/PresetManager/presetManager.gd" id="1_6xsb2"]
 
 [node name="PresetManaget" type="Node2D"]
 script = ExtResource("1_6xsb2")

@@ -12,14 +12,14 @@ var drop_num = 1.0
 signal die(id)
 var is_inscreen:bool = false
 var mob_info = {
-	"id": "enm_keine_ns1_1",
+	"id": "enm_undefined",
 	"type": "zako",
-	"movement": "static",
-	"danmaku_creator": "dcrt_keine_ns2_1",
+	"movement": "default",
+	"danmaku_creator": "",
 	"physical_damage": 5.0,
-	"magical_damage": 30.0,
-	"health": 250.0,
-	"speed": 0.0
+	"magical_damage": 0.0,
+	"health": 100.0,
+	"speed": 50.0
   }
 
 @onready var progress_bar = $ProgressBar
@@ -45,9 +45,9 @@ var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未
 var shake_limit = 0.99
 var speed_sq = 0
 # 避障检测半径：只对进入这个半径的邻居做出反应
-var avoidance_radius: float = 30.0
+var avoidance_radius: float = 120
 # 避障力度：推开力的强度系数
-var avoidance_strength: float = 160.0
+var avoidance_strength: float = 320.0
 # 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
 var avoidance_neighbor_query_count: int = 6
 const searching_time = 0.1
@@ -89,7 +89,11 @@ func _ready():
 		SignalBus.d4c_create.emit(mob_info.danmaku_creator,global_position,$".",mob_info.magical_damage)
 	if not mob_info.has('boss'):
 		SignalBus.clear_enemy.connect(died)
+		SignalBus.kill_all.connect(died.bind(true))
 		bullet_battle_ready(mob_info.magical_damage == 0)
+
+
+
 	last_position = global_position
 	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed

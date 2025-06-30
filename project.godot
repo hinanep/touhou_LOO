@@ -17,10 +17,10 @@ cmd_path="res://addons/GDExcelExporter/ee.exe"
 
 config/name="touhouSurvivors"
 run/main_scene="res://ui/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 run/flush_stdout_on_print.debug=false
-boot_splash/image="res://asset/pic/blue_plate.png"
 boot_splash/fullsize=false
+boot_splash/image="res://asset/pic/blue_plate.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
 
@@ -179,7 +179,7 @@ common/physics_interpolation=true
 
 textures/canvas_textures/default_texture_filter=2
 textures/default_filters/anisotropic_filtering_level=4
-viewport/transparent_background=true
 viewport/hdr_2d=true
+viewport/transparent_background=true
 anti_aliasing/quality/screen_space_aa=1
 2d/sdf/scale=0

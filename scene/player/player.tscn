@@ -12,10 +12,10 @@
 [ext_resource type="Shader" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
-radius = 8.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_keelo"]
-radius = 43.0
+radius = 86.0
 
 [sub_resource type="Animation" id="Animation_3lp87"]
 resource_name = "hurt"
@@ -105,14 +105,13 @@ shape = SubResource("CircleShape2D_kq405")
 visible = false
 z_index = 500
 z_as_relative = false
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_g1rlb")
 
 [node name="invincible_time" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="pickup_area" type="Area2D" parent="."]
-position = Vector2(0, 4)
 collision_layer = 0
 collision_mask = 16
 monitorable = false
@@ -132,7 +131,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_7menj")
 position = Vector2(-1, 6.77626e-21)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
 animation = &"left"
 autoplay = "stay"
@@ -142,24 +141,23 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="left" type="CollisionShape2D" parent="reflect"]
-position = Vector2(-480, 2)
+position = Vector2(-960, 2)
 shape = SubResource("WorldBoundaryShape2D_xlgpr")
 
 [node name="top" type="CollisionShape2D" parent="reflect"]
-position = Vector2(-2, -266)
+position = Vector2(-2, -540)
 shape = SubResource("WorldBoundaryShape2D_nv7q1")
 
 [node name="down" type="CollisionShape2D" parent="reflect"]
-position = Vector2(0, 271)
+position = Vector2(0, 540)
 shape = SubResource("WorldBoundaryShape2D_doahy")
 
 [node name="right" type="CollisionShape2D" parent="reflect"]
-position = Vector2(478, 1)
+position = Vector2(960, 1)
 shape = SubResource("WorldBoundaryShape2D_25blp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(2, 2)
 position_smoothing_speed = 500.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0

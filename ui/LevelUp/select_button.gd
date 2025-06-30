@@ -4,23 +4,23 @@ signal upgrade_selected
 func _ready() -> void:
 	pass
 func set_text(type,id):
-	var newlevel
+	var newlevel:int
 	var upgroup
 	$describe.text = "[color=white]"
 	match type:
 		'skill':
 			newlevel = player_var.SkillManager.get_skill_level(id)+1
 			upgroup = table.Skill[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+String.num(newlevel )
+			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
 
 		'card':
 			newlevel = player_var.CardManager.get_card_level(id)+1
 			upgroup = table.SpellCard[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+String.num(newlevel )
+			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
 		'passive':
 			newlevel = player_var.PassiveManager.get_passive_level(id)+1
 			upgroup = table.Passive[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+String.num(newlevel )
+			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
 	if newlevel == 1:
 		$describe.text += table.TID[id+'_dsc'][player_var.language]
 	for upkey in table.Upgrade[upgroup]:

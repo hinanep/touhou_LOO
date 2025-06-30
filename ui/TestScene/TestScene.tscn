@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://dsmua8weisch7"]
 
-[ext_resource type="Script" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
+[ext_resource type="Script" uid="uid://tbsm0kj0lheg" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="5_ep1gx"]
-[ext_resource type="Script" path="res://ui/InGame/d4c.gd" id="5_pafhp"]
+[ext_resource type="Script" uid="uid://bfglv8fvpyl4j" path="res://ui/InGame/d4c.gd" id="5_pafhp"]
 [ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
-[ext_resource type="Script" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
+[ext_resource type="Script" uid="uid://dh17e78nirbh0" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
@@ -50,7 +50,7 @@ curve = SubResource("Curve2D_wc05l")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
 position = Vector2(240, 142)
-rotation = -3.13635
+rotation = -3.1363516
 
 [node name="air_wall" type="StaticBody2D" parent="."]
 collision_layer = 36

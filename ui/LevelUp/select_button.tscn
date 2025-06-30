@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cwppujyrfed45"]
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_0h5rc"]
-[ext_resource type="Script" path="res://ui/LevelUp/select_button.gd" id="2_n5vdr"]
+[ext_resource type="Script" uid="uid://x1jvub1bdeoy" path="res://ui/LevelUp/select_button.gd" id="2_n5vdr"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_cd0xr"]
 [ext_resource type="Texture2D" uid="uid://bcmjc1maua1pv" path="res://asset/pic/ui/skill.png" id="4_jvg3u"]
 

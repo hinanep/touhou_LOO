@@ -12,5 +12,7 @@ func new_d4c(id,g_position,parent:Node2D,damage):
 		parent.add_child(nd4c)
 	else:
 		add_child(nd4c)
+	if parent.has_method('release'):
+		nd4c.die.connect(parent.release)
 	nd4c.global_position = g_position
 	nd4c = null

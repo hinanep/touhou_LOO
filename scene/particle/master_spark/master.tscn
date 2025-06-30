@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cinuqkkm2arnk"]
 
-[ext_resource type="Shader" path="res://scene/particle/master_spark/master.gdshader" id="1_uma1c"]
+[ext_resource type="Shader" path="res://asset/shaders/master.gdshader" id="1_uma1c"]
 
 [sub_resource type="Curve" id="Curve_2jy5x"]
 max_value = 3.0

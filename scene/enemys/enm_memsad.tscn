@@ -706,16 +706,14 @@ animations = [{
 }]
 
 [node name="enemy_base" instance=ExtResource("1_4mj1f")]
+process_mode = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+process_mode = 1
 material = SubResource("CanvasItemMaterial_6411r")
 position = Vector2(0, -13)
-scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_lppg4")
 animation = &"die"
-
-[node name="melee_damage_area" parent="." index="2"]
-visible = true
 
 [node name="ProgressBar" parent="." index="3"]
 offset_top = -27.0

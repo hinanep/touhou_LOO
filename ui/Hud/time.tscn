@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlwk4q8jl4cbx"]
 
-[ext_resource type="Script" path="res://gamemanager/time_manager.gd" id="1_qyx6y"]
+[ext_resource type="Script" uid="uid://bpiiuqa0ye3ne" path="res://gamemanager/time_manager.gd" id="1_qyx6y"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="2_4swgu"]
 
 [node name="time" type="Node"]

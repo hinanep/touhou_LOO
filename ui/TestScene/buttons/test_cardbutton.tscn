@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkfj3fc0482bu"]
+[gd_scene load_steps=11 format=3 uid="uid://dkfj3fc0482bu"]
 
-[ext_resource type="Texture2D" uid="uid://d10hvbd5ft6im" path="res://asset/pic/crystal/灵梦.png" id="1_vocjk"]
 [ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_a8kcl"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="3_pdduc"]
 [ext_resource type="Script" path="res://ui/TestScene/buttons/test_cardbutton.gd" id="4_80u4i"]
@@ -44,7 +43,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "tooltip["
 shortcut = SubResource("Shortcut_siojg")
-texture_normal = ExtResource("1_vocjk")
 texture_pressed = ExtResource("2_a8kcl")
 texture_focused = ExtResource("3_pdduc")
 stretch_mode = 0

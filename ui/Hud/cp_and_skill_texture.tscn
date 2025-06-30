@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://dalot4hpwth2w"]
+[gd_scene load_steps=3 format=3 uid="uid://dalot4hpwth2w"]
 
-[ext_resource type="Texture2D" uid="uid://bgwbvmlvrp21y" path="res://asset/pic/crystal/爱丽丝×魔理沙.png" id="1_rxrsf"]
 [ext_resource type="Script" path="res://ui/Hud/cp_and_skill_texture.gd" id="2_pvgmu"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_nig1a"]
 
@@ -9,7 +8,6 @@ custom_minimum_size = Vector2(1, 0)
 offset_right = 120.0
 offset_bottom = 120.0
 size_flags_stretch_ratio = 3.0
-texture = ExtResource("1_rxrsf")
 expand_mode = 2
 script = ExtResource("2_pvgmu")
 

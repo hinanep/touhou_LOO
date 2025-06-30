@@ -706,12 +706,9 @@ animations = [{
 }]
 
 [node name="enemy_base" instance=ExtResource("1_y78b6")]
+process_mode = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_5m4g8")
-scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_5im3c")
 frame_progress = 0.1038
-
-[node name="melee_damage_area" parent="." index="2"]
-visible = true

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_brahv"]
 [ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ag7ab"]
-[ext_resource type="Shader" path="res://scene/particle/master_spark/center_white.gdshader" id="3_xakbb"]
+[ext_resource type="Shader" path="res://asset/shaders/center_white.gdshader" id="3_xakbb"]
 [ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master_spark/master.tscn" id="4_05ogu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hyh1w"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master_spark/charging.tscn" id="1_oc2ru"]
 [ext_resource type="Script" path="res://scene/particle/master_spark/master_spark_2.gd" id="1_qbugc"]
-[ext_resource type="Shader" path="res://scene/particle/master_spark/center_white.gdshader" id="1_uqn6h"]
+[ext_resource type="Shader" path="res://asset/shaders/center_white.gdshader" id="1_uqn6h"]
 [ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master_spark/master.tscn" id="2_3lh6v"]
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="5_so7lh"]
 

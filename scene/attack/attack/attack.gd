@@ -131,7 +131,7 @@ func set_shape(cshape):
 	$bullet_erase_area/CollisionShape2D.shape = cshape
 	$move_component.shape = cshape
 
-	set_scale(Vector2(1,1) * player_var.range_add_ratio*addi)
+	set_scale(Vector2(2,2) * player_var.range_add_ratio*addi)
 	texture.scale *= player_var.range_add_ratio*addi
 
 #dot伤害
