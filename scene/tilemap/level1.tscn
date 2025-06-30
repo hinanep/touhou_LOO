@@ -40,7 +40,8 @@ tile_map_data = PackedByteArray("AADz/w0AAAADAAAAAAD0/w0AAAADAAAAAAD1/w0AAAADAAA
 tile_set = ExtResource("1_ew2bt")
 
 [node name="Terakoya" type="Sprite2D" parent="Node"]
-position = Vector2(197, -943)
+position = Vector2(259, -875)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_jxhwj")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Node"]
