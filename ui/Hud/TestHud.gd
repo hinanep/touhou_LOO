@@ -164,7 +164,10 @@ func _on_summon_layer_vis_pressed() -> void:
 
 func _on_summon_pressed() -> void:
 
-	var mob = PresetManager.getpre(tname).instantiate()
+	var mob = PresetManager.getpre(tname)
+	if mob == null:
+		return
+	mob = mob.instantiate()
 	mob.global_position = Vector2(200,0)
 	mob.mob_info = table.Enemy[tname].duplicate()
 

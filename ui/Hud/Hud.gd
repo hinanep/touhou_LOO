@@ -76,7 +76,12 @@ func card_display(bias):
 		$hud/card_now/crystal.set_texture(card_container.get_child(card_selecting).card_texture)
 
 	$hud/card_now/cardid.text = card_container.get_child(card_selecting).describe
-	$hud/card_now/manacost.text = '符力消耗：' + str(card_container.get_child(card_selecting).manacost/player_var.mana_cost)
+	#TODO:多语言
+	if player_var.free_card > 0:
+		$hud/card_now/manacost.text = '符力消耗：0!'
+	else:
+		$hud/card_now/manacost.text = '符力消耗：' + str(card_container.get_child(card_selecting).manacost/player_var.mana_cost)
+
 func on_add_card(card_info):
 
 	var newcard = card_tex_pre.instantiate()

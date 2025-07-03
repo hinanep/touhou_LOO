@@ -51,7 +51,7 @@ var status = {
 	air_wall_left = -10000,
 	air_wall_right = 10000,
 
-
+	free_card = 0,
 
 	passive_num_max = 3,
 

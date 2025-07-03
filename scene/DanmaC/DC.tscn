@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl0uvfapmgq0j"]
 
-[ext_resource type="Script" path="res://scene/DanmaC/dc.gd" id="1_2hg6j"]
+[ext_resource type="Script" uid="uid://bxdqxgu864efv" path="res://scene/DanmaC/dc.gd" id="1_2hg6j"]
 [ext_resource type="Texture2D" uid="uid://ctx4yov5h08nk" path="res://asset/pic/blue_plate.png" id="2_rwh2m"]
 
 [node name="Dc" type="Node2D"]

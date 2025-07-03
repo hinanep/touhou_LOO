@@ -24,11 +24,13 @@ func _ready() -> void:
 func on_use_card(id,cost_rate):
 	if id != card_info.id:
 		return
-	if player_var.mana<card_info.mana/player_var.mana_cost*cost_rate:
+	if player_var.mana<card_info.mana/player_var.mana_cost*cost_rate and player_var.free_card < 1:
 		AudioManager.play_sfx('music_sfx_error')
 		return
-
-	player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
+	if player_var.free_card > 0:
+		player_var.free_card -= 1
+	else:
+		player_var.mana-=card_info.mana/player_var.mana_cost*cost_rate
 	player_var.last_cardcost = card_info.mana/player_var.mana_cost*cost_rate
 	SignalBus.player_invincible.emit(card_info.invincible_time)
 	SignalBus.true_use_card.emit(card_info.id)

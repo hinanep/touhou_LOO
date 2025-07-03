@@ -347,8 +347,8 @@
 	"enemy_barrage_boost": [],
 	"speed_boost": 10.0
   },
-  " ": {
-	"event_id": " ",
+  "evt_boss": {
+	"event_id": "evt_boss",
 	"spawn_type": "boss",
 	"start_time": 360,
 	"end_time": 0,

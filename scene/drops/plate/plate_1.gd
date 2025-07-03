@@ -28,17 +28,17 @@ func _on_body_entered(_body):
 		#red
 		1:
 			SignalBus.fly_to_player.emit(2,1,1,false)
-			#get_tree().call_group("drop","fly_to_player",2,1,1)
+
 			player_var.player_exp += player_var.exp_need
 		#green
 		2:
 			SignalBus.fly_to_player.emit(1,2,1,false)
-			#get_tree().call_group("drop","fly_to_player",1,2,1)
-			SignalBus.plate_use_card.emit()
+
+			player_var.free_card += 1
 		#blue
 		3:
 			SignalBus.fly_to_player.emit(1,1,2,true)
-			#get_tree().call_group("drop","fly_to_player",1,1,2,true)
+
 
 	queue_free()
 #@brief: 随机升级，对已拥有技能、符卡、被动随机选择一个可升级的进行升级

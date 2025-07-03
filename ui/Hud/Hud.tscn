@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://bfbx4h1lccqnn"]
 
-[ext_resource type="Script" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
+[ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
 [ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
-[ext_resource type="Script" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
+[ext_resource type="Script" uid="uid://pwiu7nfo2w0b" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_o2qmu"]
 

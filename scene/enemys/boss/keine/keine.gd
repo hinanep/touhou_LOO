@@ -69,8 +69,9 @@ var colli = false
 @onready var time_tween:Tween
 func dush(speed,time,charge_time):
 	$"轨迹".visible = true
-	await get_tree().create_timer(charge_time).timeout
 	diretion = global_position.direction_to(player_var.player_node.global_position)
+	await get_tree().create_timer(charge_time).timeout
+
 	dush_speed = speed
 	move_func = move_dush
 

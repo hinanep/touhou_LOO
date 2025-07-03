@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfhi4nkej810f"]
 
-[ext_resource type="Script" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
+[ext_resource type="Script" uid="uid://dxl3w2m0a7kr7" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
 [ext_resource type="Texture2D" uid="uid://cq3udibbkhx3w" path="res://asset/pic/bullet/enemy/激光.png" id="2_wxdkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_al86q"]

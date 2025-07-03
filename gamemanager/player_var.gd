@@ -67,6 +67,7 @@ var mana=0:
 			mana = clamp(value,0,mana_max)
 var mana_cost
 var last_cardcost = 100
+var max_point
 var point:int:
 	set(value):
 		point = point + (value-point) *point_ratio
@@ -94,6 +95,7 @@ var summon_level_max
 
 var tmp_scene
 
+var free_card
 
 var passive_num_max
 

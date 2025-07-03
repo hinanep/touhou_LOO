@@ -1,2 +1,2 @@
-ee gen-all
+G:\ee.exe gen-all
 pause

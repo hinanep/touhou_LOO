@@ -167,7 +167,7 @@
 	"duration": 0.0,
 	"duration_dependence": "",
 	"debuff": [
-	  "root"
+      "root"
 	],
 	"debuff_intensity": [
 	  1.0
@@ -220,7 +220,7 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [
-	  "root"
+      "root"
 	],
 	"debuff_intensity": [
 	  1.0
@@ -279,7 +279,7 @@
 	"duration": 999999.0,
 	"duration_dependence": "",
 	"debuff": [
-	  "airborne"
+      "airborne"
 	],
 	"debuff_intensity": [
 	  5.0
@@ -338,7 +338,7 @@
 	"duration": 1.0,
 	"duration_dependence": "",
 	"debuff": [
-	  "airborne"
+      "airborne"
 	],
 	"debuff_intensity": [
 	  2.0
@@ -398,7 +398,7 @@
 	"buff": [],
 	"buff_value_factor": [],
 	"hitting_routine_creation": [
-	  "rou_rumia_attachment"
+      "rou_rumia_attachment"
 	],
 	"destroying_routine_creation": [],
 	"bullet_eraseing": false,
@@ -448,7 +448,7 @@
 	"duration": 3.0,
 	"duration_dependence": "",
 	"debuff": [
-	  "slowdown"
+      "slowdown"
 	],
 	"debuff_intensity": [
 	  0.2
@@ -663,11 +663,11 @@
 	"destroying_routine_creation": [],
 	"bullet_eraseing": false,
 	"defeating_item_creation": [
-	  "mana"
+      "mana"
 	],
 	"defeating_item_creation_value": 3.0,
 	"eraseing_item_creation": [
-	  "mana"
+      "mana"
 	],
 	"eraseing_item_creation_value": 3.0,
 	"penetration": 0,
@@ -758,7 +758,7 @@
 	"debuff_intensity": [],
 	"debuff_duration": [],
 	"buff": [
-	  "buff_mana_disposable"
+      "buff_mana_disposable"
 	],
 	"buff_value_factor": [
 	  1.0
@@ -893,7 +893,7 @@
 	"rotation_rule": "uniform",
 	"omega": 30.0,
 	"reflection": [
-	  "enemy"
+      "enemy"
 	],
 	"physical_addition_efficiency": 0.0,
 	"magical_addition_efficiency": 1.0,
@@ -920,7 +920,7 @@
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
 	"destroying_routine_creation": [
-	  "rou_misumaru_reimu_attachment"
+      "rou_misumaru_reimu_attachment"
 	],
 	"bullet_eraseing": false,
 	"defeating_item_creation": [],
@@ -1018,7 +1018,7 @@
 	"buff_value_factor": [],
 	"hitting_routine_creation": [],
 	"destroying_routine_creation": [
-	  "rou_sakuya_attachment"
+      "rou_sakuya_attachment"
 	],
 	"bullet_eraseing": false,
 	"defeating_item_creation": [],
@@ -1178,11 +1178,11 @@
 	"destroying_routine_creation": [],
 	"bullet_eraseing": false,
 	"defeating_item_creation": [
-	  "mana"
+      "mana"
 	],
 	"defeating_item_creation_value": 3.0,
 	"eraseing_item_creation": [
-	  "mana"
+      "mana"
 	],
 	"eraseing_item_creation_value": 3.0,
 	"penetration": 0,
@@ -1271,7 +1271,7 @@
 	"duration": 0.5,
 	"duration_dependence": "",
 	"debuff": [
-	  "airborne"
+      "airborne"
 	],
 	"debuff_intensity": [
 	  18.0

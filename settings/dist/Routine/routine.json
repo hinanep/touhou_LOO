@@ -10,7 +10,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_basemagic"
+      "atk_basemagic"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -43,7 +43,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_basephysics"
+      "atk_basephysics"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -76,7 +76,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_reimu"
+      "atk_reimu"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -118,7 +118,7 @@
 	"creating_attack": [
 	  "atk_sanae_type1",
 	  "atk_sanae_type2",
-	  "atk_sanae_type3"
+      "atk_sanae_type3"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -151,7 +151,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_rumia"
+      "atk_rumia"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -184,7 +184,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_rumia_attachment"
+      "atk_rumia_attachment"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -217,7 +217,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_wriggle"
+      "atk_wriggle"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -253,7 +253,7 @@
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [
-	  "sum_alice"
+      "sum_alice"
 	],
 	"special_creating": "",
 	"one_creating_type": "single",
@@ -283,7 +283,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_alice_attachment"
+      "atk_alice_attachment"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -319,7 +319,7 @@
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [
-	  "sum_alice_marisa_attachment1"
+      "sum_alice_marisa_attachment1"
 	],
 	"special_creating": "",
 	"one_creating_type": "single",
@@ -349,7 +349,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_alice_marisa_attachment"
+      "atk_alice_marisa_attachment"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -385,7 +385,7 @@
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
 	"creating_summoned": [
-	  "sum_alice"
+      "sum_alice"
 	],
 	"special_creating": "",
 	"one_creating_type": "single",
@@ -415,7 +415,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_alice_patchouli_attachment1"
+      "atk_alice_patchouli_attachment1"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -448,7 +448,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_alice_patchouli_attachment2"
+      "atk_alice_patchouli_attachment2"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -481,7 +481,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_sekibanki"
+      "atk_sekibanki"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -514,7 +514,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_misumaru"
+      "atk_misumaru"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -547,7 +547,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_misumaru_reimu_attachment"
+      "atk_misumaru_reimu_attachment"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -580,7 +580,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_sakuya"
+      "atk_sakuya"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -615,7 +615,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_sakuya_attachment"
+      "atk_sakuya_attachment"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -648,7 +648,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_marisa"
+      "atk_marisa"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -681,7 +681,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_youmu"
+      "atk_youmu"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -714,7 +714,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_reimu_marisa_attachment1"
+      "atk_reimu_marisa_attachment1"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],
@@ -747,7 +747,7 @@
 	"special_creating_attack": "",
 	"special_creating_attack_parameter": [],
 	"creating_attack": [
-	  "atk_reimu_marisa_attachment2"
+      "atk_reimu_marisa_attachment2"
 	],
 	"special_creating_summoned": "",
 	"special_creating_summoned_parameter": [],

@@ -3,7 +3,7 @@
 	"id": "sum_alice",
 	"routine_group": [
 	  "rou_alice",
-	  "rou_alice_marisa_attachment3"
+      "rou_alice_marisa_attachment3"
 	],
 	"upgrade_group": "upg_alice",
 	"type": "base",
@@ -13,7 +13,7 @@
 	"can_be_hited": false,
 	"initial_hp": 1.0,
 	"automatic_routine": [
-	  "rou_alice_attachment"
+      "rou_alice_attachment"
 	],
 	"cd": 0.5,
 	"movement": "sandsoldier",
@@ -28,7 +28,7 @@
   "sum_alice_marisa": {
 	"id": "sum_alice_marisa",
 	"routine_group": [
-	  "rou_alice"
+      "rou_alice"
 	],
 	"upgrade_group": "none",
 	"type": "boost",
@@ -44,16 +44,16 @@
 	"creating_routine": [],
 	"destroying_routine": [],
 	"special": [
-	  "scdestroy"
+      "scdestroy"
 	],
 	"special_routine": [
-	  "rou_alice_marisa_attachment1"
+      "rou_alice_marisa_attachment1"
 	]
   },
   "sum_alice_patchouli": {
 	"id": "sum_alice_patchouli",
 	"routine_group": [
-	  "rou_alice"
+      "rou_alice"
 	],
 	"upgrade_group": "none",
 	"type": "boost",
@@ -67,10 +67,10 @@
 	"movement": "",
 	"movement_parameter": [],
 	"creating_routine": [
-	  "rou_alice_ptchouli_attachment1"
+      "rou_alice_ptchouli_attachment1"
 	],
 	"destroying_routine": [
-	  "rou_alice_ptchouli_attachment2"
+      "rou_alice_ptchouli_attachment2"
 	],
 	"special": [],
 	"special_routine": []
@@ -78,7 +78,7 @@
   "sum_alice_marisa_attachment1": {
 	"id": "sum_alice_marisa_attachment1",
 	"routine_group": [
-	  "rou_alice_marisa_attachment1"
+      "rou_alice_marisa_attachment1"
 	],
 	"upgrade_group": "none",
 	"type": "base",
@@ -92,10 +92,10 @@
 	"movement": "none",
 	"movement_parameter": [],
 	"creating_routine": [
-	  "rou_alice_marisa_attachment2"
+      "rou_alice_marisa_attachment2"
 	],
 	"destroying_routine": [
-	  "rou_alice_marisa_attachment3"
+      "rou_alice_marisa_attachment3"
 	],
 	"special": [],
 	"special_routine": []

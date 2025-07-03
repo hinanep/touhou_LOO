@@ -51,6 +51,7 @@ var parent_die_signal:Signal
 signal die(id)
 var damage = 10
 var gen_position:Vector2 = Vector2.ZERO
+var danma_color = Color(1,1,1,1)
 func d4c_init(id:String,parent):
 
 	d4c_info = table.d4c[id].duplicate()
@@ -81,6 +82,12 @@ func _ready() -> void:
 			rot_func = rot_delay_uniform
 		'discrete_uniform':
 			rot_func = rot_discrete_uniform
+	match d4c_info.danmaku_color_rule:
+		'single':
+			danma_color.r8 = d4c_info.danmaku_color[0]
+			danma_color.g8 = d4c_info.danmaku_color[1]
+			danma_color.b8 = d4c_info.danmaku_color[2]
+
 	if d4c_info.moving_system == 'world':
 		top_level = true
 
@@ -133,7 +140,7 @@ func shoot(v,d):
 	newd.danma_init(d4c_info)
 	newd.damage = damage
 	newd.global_position = global_position
-
+	newd.modulate = danma_color
 
 	add_child(newd)
 

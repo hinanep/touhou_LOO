@@ -24,6 +24,12 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
@@ -61,6 +67,12 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
@@ -98,6 +110,12 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
@@ -132,15 +150,21 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "time",
 	"creator_apart_var": [
-	  "type"
+      "type"
 	],
 	"creator_apart_point": [
 	  1.0
 	],
 	"creator_apart_parameter": [
-	  "dmk_laser"
+      "dmk_laser"
 	],
 	"danmaku_apart_rule": "",
 	"danmaku_apart_var": [],
@@ -172,15 +196,21 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "time",
 	"creator_apart_var": [
-	  "type"
+      "type"
 	],
 	"creator_apart_point": [
 	  1.0
 	],
 	"creator_apart_parameter": [
-	  "dmk_laser"
+      "dmk_laser"
 	],
 	"danmaku_apart_rule": "",
 	"danmaku_apart_var": [],
@@ -215,6 +245,12 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
@@ -252,6 +288,12 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
@@ -288,19 +330,107 @@
 	  999999
 	],
 	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
 	"creator_apart_rule": "",
 	"creator_apart_var": [],
 	"creator_apart_point": [],
 	"creator_apart_parameter": [],
 	"danmaku_apart_rule": "time",
 	"danmaku_apart_var": [
-	  "type"
+      "type"
 	],
 	"danmaku_apart_point": [
 	  1.0
 	],
 	"danmaku_apart_parameter": [
-	  "dmk_ball"
+      "dmk_ball"
 	]
+  },
+  "dcrt_keine_sc2_1": {
+	"Id": "dcrt_keine_sc2_1",
+	"danmaku_type": "dmk_fire_special",
+	"create_rule": "circle",
+	"create_parameter": [
+	  100,
+	  0
+	],
+	"create_amount": 12,
+	"create_front": "world",
+	"is_follow": false,
+	"rotate_rule": "static",
+	"rotate_parameter": [],
+	"create_interval": 999999.0,
+	"max_create_times": 1,
+	"is_destroy_with_parent": true,
+	"moving_system": "world",
+	"moving_rule": "static",
+	"moving_parameter": [],
+	"danmaku_moving_rule": "straight",
+	"danmaku_moving_parameter": [
+	  0,
+	  999999
+	],
+	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
+	"creator_apart_rule": "",
+	"creator_apart_var": [],
+	"creator_apart_point": [],
+	"creator_apart_parameter": [],
+	"danmaku_apart_rule": "",
+	"danmaku_apart_var": [],
+	"danmaku_apart_point": [],
+	"danmaku_apart_parameter": []
+  },
+  "dcrt_keine_sc2_2": {
+	"Id": "dcrt_keine_sc2_2",
+	"danmaku_type": "dmk_ball",
+	"create_rule": "random",
+	"create_parameter": [
+	  0,
+	  360,
+	  60,
+	  120
+	],
+	"create_amount": 5,
+	"create_front": "world",
+	"is_follow": false,
+	"rotate_rule": "static",
+	"rotate_parameter": [],
+	"create_interval": 999999.0,
+	"max_create_times": 1,
+	"is_destroy_with_parent": true,
+	"moving_system": "world",
+	"moving_rule": "static",
+	"moving_parameter": [],
+	"danmaku_moving_rule": "straight",
+	"danmaku_moving_parameter": [
+	  0,
+	  999999
+	],
+	"danmaku_damage": 30.0,
+	"danmaku_color_rule": "single",
+	"danmaku_color": [
+	  95,
+	  214,
+	  213
+	],
+	"creator_apart_rule": "",
+	"creator_apart_var": [],
+	"creator_apart_point": [],
+	"creator_apart_parameter": [],
+	"danmaku_apart_rule": "",
+	"danmaku_apart_var": [],
+	"danmaku_apart_point": [],
+	"danmaku_apart_parameter": []
   }
 }

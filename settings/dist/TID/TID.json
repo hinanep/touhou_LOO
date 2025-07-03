@@ -49,7 +49,13 @@
   },
   "esc_keine_1": {
 	"Id": "esc_keine_1",
-	"CHS": "数符「平面几何初步」",
+	"CHS": "数符「直线、射线、线段」",
+	"JP": "",
+	"ENG": ""
+  },
+  "esc_keine_2": {
+	"Id": "esc_keine_2",
+	"CHS": "史符「赤壁业炎」",
 	"JP": "",
 	"ENG": ""
   },
@@ -320,6 +326,216 @@
   "cd_reduction": {
 	"Id": "cd_reduction",
 	"CHS": "额外冷却时间缩减",
+	"JP": "",
+	"ENG": ""
+  },
+  "name_daiyousei": {
+	"Id": "name_daiyousei",
+	"CHS": "",
+	"JP": "",
+	"ENG": ""
+  },
+  "name_keine": {
+	"Id": "name_keine",
+	"CHS": "上白泽慧音",
+	"JP": "",
+	"ENG": ""
+  },
+  "title_keine": {
+	"Id": "title_keine",
+	"CHS": "铭刻历史的半兽教师",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_1": {
+	"Id": "dialog_stg1before_1",
+	"CHS": "诶，这不是咱们上次考试的状元嘛。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_2": {
+	"Id": "dialog_stg1before_2",
+	"CHS": "今天怎么才来呢，是身体不舒服吗？",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_3": {
+	"Id": "dialog_stg1before_3",
+	"CHS": "上白泽老师！",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_4": {
+	"Id": "dialog_stg1before_4",
+	"CHS": "那…那个，不好意思老师，我这边今天遇到了很奇怪的事情……",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_5": {
+	"Id": "dialog_stg1before_5",
+	"CHS": "现在可能是有点，嗯，不太安全。老师您能不能帮帮我呜——",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_6": {
+	"Id": "dialog_stg1before_6",
+	"CHS": "好啦好啦别着急，是遇到了怎样的危险呢，可以和老师讲讲吗？",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_7": {
+	"Id": "dialog_stg1before_7",
+	"CHS": "呼……嗯，应该是从今天早上开始的，我见到的每一个人都会完全无视我。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_8": {
+	"Id": "dialog_stg1before_8",
+	"CHS": "不管我说什么做什么，大家都没有任何回应。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_9": {
+	"Id": "dialog_stg1before_9",
+	"CHS": "现在这还是我今天第一次和别人说话呜呜……",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_10": {
+	"Id": "dialog_stg1before_10",
+	"CHS": "太久没法与人交流的话确实是会很难受呢。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_11": {
+	"Id": "dialog_stg1before_11",
+	"CHS": "不过干着急也不是办法，现在当务之急是搞清楚问题所在，之后尽快想办法去解决。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_12": {
+	"Id": "dialog_stg1before_12",
+	"CHS": "老师这边能看出来一点线索：你的「历史」正在消失。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_13": {
+	"Id": "dialog_stg1before_13",
+	"CHS": "……历史？消失？",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_14": {
+	"Id": "dialog_stg1before_14",
+	"CHS": "所谓历史，是对发生过的事件的记载。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_15": {
+	"Id": "dialog_stg1before_15",
+	"CHS": "如果某一历史消失了，那就再不会有人知道对应的事件曾实际发生过。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_16": {
+	"Id": "dialog_stg1before_16",
+	"CHS": "现在的情况是与你有关的历史正在以不正常的速度快速消失。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_17": {
+	"Id": "dialog_stg1before_17",
+	"CHS": "这种情况老师也从来没有见过，你可以去请教一下稗田阿求老师，她应该对此有更多了解。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_18": {
+	"Id": "dialog_stg1before_18",
+	"CHS": "诶，要去稗田老师家里找她吗？呜……",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_19": {
+	"Id": "dialog_stg1before_19",
+	"CHS": "不用紧张，大家人都很好的。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_20": {
+	"Id": "dialog_stg1before_20",
+	"CHS": "老师这边没办法帮到你太多，但有个缓兵之计。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_21": {
+	"Id": "dialog_stg1before_21",
+	"CHS": "咱们可以来创造新的历史，从而相对延缓你历史消失的速度。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1before_22": {
+	"Id": "dialog_stg1before_22",
+	"CHS": "那就多谢老师了！……诶老师您为什么要拿课本出来呀？！",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg1after_1": {
+	"Id": "dialog_stg1after_1",
+	"CHS": "“某年月日，上白泽慧音与学生战斗，败北。”就先这么写好了~",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg2after_2": {
+	"Id": "dialog_stg2after_2",
+	"CHS": "呜，老师您不是可以直接创造历史嘛，为什么还要打一架呢？",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg3after_3": {
+	"Id": "dialog_stg3after_3",
+	"CHS": "这种事只有满月时候才能做到啦。这还正好把今天的课补上了，挺好的嘛。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg4after_4": {
+	"Id": "dialog_stg4after_4",
+	"CHS": "那头槌那部分算什么啦——",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg5after_5": {
+	"Id": "dialog_stg5after_5",
+	"CHS": "老师能帮你的就这么多了。要加油哦，老师等着你早点解决危机回来上课呢。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg6after_6": {
+	"Id": "dialog_stg6after_6",
+	"CHS": "班上其他妖精都太不让人省心了……",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg7after_7": {
+	"Id": "dialog_stg7after_7",
+	"CHS": "诶嘿~谢谢老师！",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg8after_8": {
+	"Id": "dialog_stg8after_8",
+	"CHS": "另外这是今天新发的练习册，开学前要完成前20页。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg9after_9": {
+	"Id": "dialog_stg9after_9",
+	"CHS": "你的话前面的题挑着做就可以，但大题还是要认真做完哦。",
+	"JP": "",
+	"ENG": ""
+  },
+  "dialog_stg10after_10": {
+	"Id": "dialog_stg10after_10",
+	"CHS": "呜啊—谢谢老师！",
 	"JP": "",
 	"ENG": ""
   }

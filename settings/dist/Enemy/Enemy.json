@@ -158,5 +158,15 @@
 	"magical_damage": 30.0,
 	"health": 1000.0,
 	"speed": 0.0
+  },
+  "enm_keine_sc2": {
+	"id": "enm_keine_sc2",
+	"type": "zako",
+	"movement": "static",
+	"danmaku_creator": "",
+	"physical_damage": 5.0,
+	"magical_damage": 0.0,
+	"health": 1000.0,
+	"speed": 0.0
   }
 }
