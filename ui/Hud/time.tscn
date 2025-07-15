@@ -9,33 +9,41 @@ script = ExtResource("1_qyx6y")
 [node name="time_ui" type="CanvasLayer" parent="."]
 
 [node name="timetext" type="Node2D" parent="time_ui"]
+position = Vector2(867, 55)
+scale = Vector2(3, 3)
 
 [node name="first" type="RichTextLabel" parent="time_ui/timetext"]
 clip_contents = false
-offset_left = 972.0
-offset_top = 20.0
-offset_right = 1104.0
-offset_bottom = 60.0
+layout_direction = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -31.666718
+offset_top = 1.666666
+offset_right = 0.666626
+offset_bottom = 41.666664
+grow_horizontal = 0
 theme_override_fonts/normal_font = ExtResource("2_4swgu")
-text = "60"
+text = "60
+"
 fit_content = true
+horizontal_alignment = 2
 
 [node name="mid" type="RichTextLabel" parent="time_ui/timetext"]
 clip_contents = false
-offset_left = 1000.0
-offset_top = 18.0
-offset_right = 1017.0
-offset_bottom = 58.0
+offset_left = 30.0
+offset_right = 47.0
+offset_bottom = 40.0
 theme_override_fonts/normal_font = ExtResource("2_4swgu")
 text = ":"
 fit_content = true
 
 [node name="second" type="RichTextLabel" parent="time_ui/timetext"]
 clip_contents = false
-offset_left = 1009.0
-offset_top = 20.0
-offset_right = 1141.0
-offset_bottom = 60.0
+offset_left = 40.333435
+offset_top = 2.333334
+offset_right = 172.33344
+offset_bottom = 42.333336
 theme_override_fonts/normal_font = ExtResource("2_4swgu")
 text = "60"
 fit_content = true

@@ -6,8 +6,8 @@ extends Node
 var seconds :int= 0
 var minutes :int= 0
 #func _process(_delta):
-var boss_seconds = 0
-var boss_miliseconds = 0
+var boss_seconds:int = 0
+var boss_miliseconds:int = 0
 var boss_cardtime = 0
 #func get_time_passed():
 var display = null
@@ -24,7 +24,7 @@ func format_display(first,second):
 	secondtext.text = "%02d" % second
 
 func format_boss_display():
-	firsttext.text = str(boss_cardtime-boss_seconds)
+	firsttext.text = "%02d" % (boss_cardtime-boss_seconds)
 	secondtext.text = "%02d" % boss_miliseconds
 
 func set_boss_timer(card_time):
