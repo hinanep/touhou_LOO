@@ -181,7 +181,9 @@ func reincarnation_over():
 			$danma.add_child(nbr)
 
 			progress_routine[key] = rt[key]
+	SignalBus.set_bosstimer.emit(mob_info.time)
 	$progress_timer.start()
+
 
 
 func spellcard_timeover():

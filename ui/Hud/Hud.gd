@@ -17,6 +17,7 @@ extends BaseGUIView
 @onready var skill_container = $hud/skill_container
 @onready var cp_container = $hud/cp_container
 @onready var psv_container = $hud/psv_container
+
 func _ready():
 
 	SignalBus.add_skill.connect(add_skill)
@@ -28,7 +29,7 @@ func _ready():
 	SignalBus.card_select_next.connect(card_display)
 	SignalBus.cp_active.connect(add_cp)
 
-
+	SignalBus.set_bosstimer.connect(set_boss_timer)
 
 func hp_display():
 
