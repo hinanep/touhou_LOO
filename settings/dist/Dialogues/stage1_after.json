@@ -1,0 +1,102 @@
+{
+  "1": {
+    "i": 1,
+    "position": "right",
+    "content": "dialog_stg1after_1",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "2": {
+    "i": 2,
+    "position": "left",
+    "content": "dialog_stg1after_2",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "3": {
+    "i": 3,
+    "position": "right",
+    "content": "dialog_stg1after_3",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "4": {
+    "i": 4,
+    "position": "left",
+    "content": "dialog_stg1after_4",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": "STOP"
+  },
+  "5": {
+    "i": 5,
+    "position": "right",
+    "content": "dialog_stg1after_5",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "6": {
+    "i": 6,
+    "position": "right",
+    "content": "dialog_stg1after_6",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "7": {
+    "i": 7,
+    "position": "left",
+    "content": "dialog_stg1after_7",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "8": {
+    "i": 8,
+    "position": "right",
+    "content": "dialog_stg1after_8",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "9": {
+    "i": 9,
+    "position": "right",
+    "content": "dialog_stg1after_9",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  },
+  "10": {
+    "i": 10,
+    "position": "left",
+    "content": "dialog_stg1after_10",
+    "left_tachie": "img_BTO",
+    "right_tachie": "img_enm_whitetheball",
+    "character": "",
+    "title": "",
+    "bgm": ""
+  }
+}

@@ -50,6 +50,7 @@ var preset_map = {
 
 	"music_bgm_saga":"res://asset/music/Japanese Saga.mp3",
 	"music_bgm_oldworld":"res://asset/music/ChillKeine.wav",
+	"music_bgm_dog":"res://asset/music/Dog.mp3",
 
 
 	"ui_select_button":"res://ui/LevelUp/select_button.tscn",
@@ -115,6 +116,8 @@ var preset_map = {
 	'img_enm_mempeace':"res://asset/pic/enemy/bluerock/moving/bm_000.png",
 	'img_enm_memsad':"res://asset/pic/enemy/redrock/moving/rm_000.png",
 	'img_enm_kedama':"res://asset/pic/enemy/kedama/毛玉-animation_00.png",
+	'img_enm_whitetheball':'res://asset/pic/enemy/白泽球.png',
+	'img_BTO':'res://asset/pic/BTO.png',
 	'root_menu':"res://ui/game.tscn",
 	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
 }

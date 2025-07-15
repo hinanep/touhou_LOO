@@ -1,26 +1,26 @@
 {
   "dmk_ball": {
-	"id": "dmk_ball",
-	"radius": 10.0
+    "id": "dmk_ball",
+    "radius": 10.0
   },
   "dmk_rice": {
-	"id": "dmk_rice",
-	"radius": 6.0
+    "id": "dmk_rice",
+    "radius": 6.0
   },
   "dmk_mentos": {
-	"id": "dmk_mentos",
-	"radius": 20.0
+    "id": "dmk_mentos",
+    "radius": 20.0
   },
   "dmk_laserpre": {
-	"id": "dmk_laserpre",
-	"radius": 0.0
+    "id": "dmk_laserpre",
+    "radius": 0.0
   },
   "dmk_laser": {
-	"id": "dmk_laser",
-	"radius": 6.0
+    "id": "dmk_laser",
+    "radius": 6.0
   },
   "dmk_fire_special": {
-	"id": "dmk_fire_special",
-	"radius": 20.0
+    "id": "dmk_fire_special",
+    "radius": 20.0
   }
 }

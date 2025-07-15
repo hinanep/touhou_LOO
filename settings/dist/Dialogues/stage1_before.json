@@ -1,0 +1,222 @@
+{
+  "1": {
+	"i": 1,
+	"position": "right",
+	"content": "dialog_stg1before_1",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "name_keine",
+	"title": "title_keine",
+	"bgm": ""
+  },
+  "2": {
+	"i": 2,
+	"position": "right",
+	"content": "dialog_stg1before_2",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "name_keine",
+	"title": "title_keine",
+	"bgm": ""
+  },
+  "3": {
+	"i": 3,
+	"position": "left",
+	"content": "dialog_stg1before_3",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "4": {
+	"i": 4,
+	"position": "left",
+	"content": "dialog_stg1before_4",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "5": {
+	"i": 5,
+	"position": "left",
+	"content": "dialog_stg1before_5",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "6": {
+	"i": 6,
+	"position": "right",
+	"content": "dialog_stg1before_6",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "7": {
+	"i": 7,
+	"position": "left",
+	"content": "dialog_stg1before_7",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "8": {
+	"i": 8,
+	"position": "left",
+	"content": "dialog_stg1before_8",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "9": {
+	"i": 9,
+	"position": "left",
+	"content": "dialog_stg1before_9",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "10": {
+	"i": 10,
+	"position": "right",
+	"content": "dialog_stg1before_10",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "11": {
+	"i": 11,
+	"position": "right",
+	"content": "dialog_stg1before_11",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "12": {
+	"i": 12,
+	"position": "right",
+	"content": "dialog_stg1before_12",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "13": {
+	"i": 13,
+	"position": "left",
+	"content": "dialog_stg1before_13",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "14": {
+	"i": 14,
+	"position": "right",
+	"content": "dialog_stg1before_14",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "15": {
+	"i": 15,
+	"position": "right",
+	"content": "dialog_stg1before_15",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "16": {
+	"i": 16,
+	"position": "right",
+	"content": "dialog_stg1before_16",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "17": {
+	"i": 17,
+	"position": "right",
+	"content": "dialog_stg1before_17",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "18": {
+	"i": 18,
+	"position": "left",
+	"content": "dialog_stg1before_18",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "19": {
+	"i": 19,
+	"position": "right",
+	"content": "dialog_stg1before_19",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "20": {
+	"i": 20,
+	"position": "right",
+	"content": "dialog_stg1before_20",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "21": {
+	"i": 21,
+	"position": "right",
+	"content": "dialog_stg1before_21",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": ""
+  },
+  "22": {
+	"i": 22,
+	"position": "left",
+	"content": "dialog_stg1before_22",
+	"left_tachie": "img_BTO",
+	"right_tachie": "img_enm_whitetheball",
+	"character": "",
+	"title": "",
+	"bgm": "music_bgm_dog"
+  }
+}
