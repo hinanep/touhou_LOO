@@ -6,3 +6,6 @@
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 process_mode = 1
+
+[node name="buff" parent="." index="1"]
+visible = true

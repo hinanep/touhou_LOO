@@ -1,10 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://jh25f6kbce2d"]
+[gd_scene load_steps=17 format=3 uid="uid://jh25f6kbce2d"]
 
+[ext_resource type="Shader" uid="uid://cqcuntnrfokvg" path="res://asset/shaders/glow.gdshader" id="1_f6n6m"]
 [ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master_spark/charging.tscn" id="1_oc2ru"]
-[ext_resource type="Script" path="res://scene/particle/master_spark/master_spark_2.gd" id="1_qbugc"]
-[ext_resource type="Shader" path="res://asset/shaders/center_white.gdshader" id="1_uqn6h"]
+[ext_resource type="Script" uid="uid://cevwcqee07ff0" path="res://scene/particle/master_spark/master_spark_2.gd" id="1_qbugc"]
+[ext_resource type="Shader" uid="uid://bb85l1f7dxqpq" path="res://asset/shaders/center_white.gdshader" id="1_uqn6h"]
 [ext_resource type="PackedScene" uid="uid://cinuqkkm2arnk" path="res://scene/particle/master_spark/master.tscn" id="2_3lh6v"]
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="5_so7lh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_527pc"]
+shader = ExtResource("1_f6n6m")
+shader_parameter/radius = 0.5
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3
+shader_parameter/brightness = 0.5
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7iy1l"]
 light_mode = 1
@@ -14,8 +22,9 @@ viewport_path = NodePath("master_spark/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_dvp2e"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0221239, 0.181416, 0.230089, 0.269911, 0.539823, 0.712389, 0.774336, 0.831858, 0.938053, 0.969027, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.462899, 0.569118, 0.64933, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.52549, 1, 0.47451, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 1, 0, 1, 1, 1, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.030973017, 0.061946988, 0.16814202, 0.22566402, 0.287611, 0.460177, 0.730089, 0.769911, 0.81858397, 0.9778761, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 1, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.52549, 1, 0.47451, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 0.462899, 0.569118, 0.64933, 1, 0.964706, 1, 0.341176, 1, 0.964706, 1, 0.341176, 1, 1, 0, 0, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fo3fx"]
 gradient = SubResource("Gradient_dvp2e")
@@ -37,16 +46,24 @@ colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800
 
 [sub_resource type="Environment" id="Environment_xklsl"]
 background_mode = 3
-glow_intensity = 1.17
-glow_strength = 1.22
+glow_enabled = true
+glow_levels/3 = 0.0
+glow_levels/5 = 0.5
+glow_levels/6 = 0.5
+glow_levels/7 = 0.1
+glow_intensity = 3.85
+glow_strength = 1.07
 glow_bloom = 0.01
-glow_blend_mode = 1
-glow_hdr_threshold = 0.89
-glow_hdr_scale = 0.85
-glow_hdr_luminance_cap = 11.75
+glow_blend_mode = 0
+glow_hdr_threshold = 0.88
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 1.0
+adjustment_enabled = true
 
 [node name="Node2D" type="Node2D"]
-modulate = Color(1, 1, 1, 0.811765)
+modulate = Color(1, 1, 1, 0.84313726)
+material = SubResource("ShaderMaterial_527pc")
+position = Vector2(0, -38)
 rotation = -1.5708
 script = ExtResource("1_qbugc")
 
@@ -65,7 +82,7 @@ transparent_bg = true
 z_index = 1
 material = SubResource("ShaderMaterial_lu5jp")
 position = Vector2(424.807, 0.29216)
-scale = Vector2(1.91133, 2.08759)
+scale = Vector2(2, 2.2)
 texture = SubResource("ViewportTexture_n2i1a")
 
 [node name="SubViewport" type="SubViewport" parent="master"]
@@ -77,11 +94,11 @@ transparent_bg = true
 modulate = Color(1, 1, 1, 0.686275)
 z_index = 3
 amount = 5
+texture = ExtResource("5_so7lh")
 lifetime = 10.0
 preprocess = 3.0
 speed_scale = 5.0
 local_coords = true
-texture = ExtResource("5_so7lh")
 spread = 0.0
 gravity = Vector2(10, 0)
 initial_velocity_min = 50.0

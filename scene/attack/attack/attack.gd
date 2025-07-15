@@ -173,6 +173,8 @@ func set_active(active:bool):
 		timer.start()
 	visible = active
 	$lock_component.visible = active
+	for child in $lock_component.get_children():
+		child.visible = active
 	set_process(active)
 	set_physics_process(active)
 	$damage_area.monitoring = active

@@ -16,6 +16,7 @@ var boss_routine_info = {
   }
 signal end()
 var num_limit = 1
+
 var viewport_size:Vector2
 func br_init(br_info):
 	boss_routine_info = br_info
@@ -43,7 +44,8 @@ func get_triggered(id:String):
 func shoot():
 	if num_limit < 1:
 		return
-	num_limit -= 1
+	if boss_routine_info.is_auto:
+		num_limit -= 1
 	match boss_routine_info.type:
 		'enemy':
 			var gen_position:Vector2 = Vector2.ZERO

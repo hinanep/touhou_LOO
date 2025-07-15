@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b423fr4pl50lx"]
+[gd_scene load_steps=5 format=3 uid="uid://b423fr4pl50lx"]
 
 [ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="1_pxaq0"]
-[ext_resource type="Script" path="res://ui/Hud/card_texture.gd" id="2_d07md"]
+[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="1_uyih8"]
+[ext_resource type="Script" uid="uid://cq22m7nf22ekr" path="res://ui/Hud/card_texture.gd" id="2_d07md"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j45h"]
+shader = ExtResource("1_uyih8")
+shader_parameter/radius = 2.0
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3150000149625
 
 [node name="card_texture" type="TextureRect"]
+material = SubResource("ShaderMaterial_1j45h")
+instance_shader_parameters/brightness = 0.0
 custom_minimum_size = Vector2(1, 0)
 pivot_offset = Vector2(400, 400)
 texture = ExtResource("1_pxaq0")

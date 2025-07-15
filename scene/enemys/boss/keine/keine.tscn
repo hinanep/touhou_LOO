@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=18 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
 [ext_resource type="Texture2D" uid="uid://qjkqd4eo88sb" path="res://asset/pic/enemy/白泽球.png" id="2_ndu7c"]
@@ -7,6 +7,11 @@
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="5_3pgrx"]
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="5_kqtkm"]
 [ext_resource type="Texture2D" uid="uid://b23e7p8e7fa7h" path="res://asset/pic/bullet/轨迹.png" id="8_ko4ll"]
+[ext_resource type="Texture2D" uid="uid://crd3ovmlyuume" path="res://asset/pic/ui/HUD/BOSS血条（时符）填充.png" id="8_rmmu3"]
+[ext_resource type="Texture2D" uid="uid://vonpqxbjfktq" path="res://asset/pic/ui/HUD/BOSS血条（符卡）.png" id="9_fav7k"]
+[ext_resource type="Texture2D" uid="uid://qs16yps0n7e2" path="res://asset/pic/ui/HUD/BOSS血条（符卡）填充.png" id="10_i8gk4"]
+[ext_resource type="Texture2D" uid="uid://2x1qvc7ql60h" path="res://asset/pic/ui/HUD/BOSS血条（非符+符卡）.png" id="11_m8gjf"]
+[ext_resource type="Texture2D" uid="uid://c6hvvw2nfv422" path="res://asset/pic/ui/HUD/BOSS血条（非符+符卡）填充.png" id="12_i4kq0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
@@ -52,17 +57,19 @@ script = ExtResource("1_w6a4s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 15
-position = Vector2(0, -6)
-scale = Vector2(0.4, 0.4)
+position = Vector2(0, -4.9999895)
+scale = Vector2(0.4, 0.39493674)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 animation = &"die"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 15
 shape = SubResource("CircleShape2D_itioj")
 
 [node name="melee_damage_area" type="Area2D" parent="."]
+visible = false
 scale = Vector2(50, 50)
 monitoring = false
 monitorable = false
@@ -148,10 +155,32 @@ text = "数符「直线、射线、线段」"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="carding" type="Node2D" parent="hud"]
+
+[node name="Boss血条（符卡）" type="Sprite2D" parent="hud/carding"]
+position = Vector2(1245, 589)
+texture = ExtResource("9_fav7k")
+
+[node name="Boss血条（时符）填充" type="Sprite2D" parent="hud/carding/Boss血条（符卡）"]
+position = Vector2(299, -42)
+texture = ExtResource("8_rmmu3")
+
+[node name="Boss血条（符卡）填充" type="Sprite2D" parent="hud/carding/Boss血条（符卡）"]
+position = Vector2(-222, -39)
+texture = ExtResource("10_i8gk4")
+
 [node name="轨迹" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(2.5, 0.5)
 texture = ExtResource("8_ko4ll")
+
+[node name="Boss血条（非符+符卡）" type="Sprite2D" parent="."]
+position = Vector2(828, 613)
+texture = ExtResource("11_m8gjf")
+
+[node name="Boss血条（非符+符卡）填充" type="Sprite2D" parent="."]
+position = Vector2(637, 591)
+texture = ExtResource("12_i4kq0")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

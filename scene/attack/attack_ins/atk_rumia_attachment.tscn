@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://def8milxirujq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_h12sq"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
-[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
+[ext_resource type="Shader" uid="uid://dhxpb1iq2snv8" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
 [ext_resource type="Texture2D" uid="uid://uvpx40wiwo0b" path="res://asset/pic/texture/whitehole.png" id="4_c3m70"]
 [ext_resource type="Texture2D" uid="uid://b4vdl2oub648v" path="res://asset/pic/texture/bh-3.png" id="5_7cdwn"]
 
@@ -31,8 +31,8 @@ noise = SubResource("FastNoiseLite_uoxij")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bty1h"]
 shader = ExtResource("3_q4l1o")
-shader_parameter/distor_modi = 0.01
 shader_parameter/mainTexture = SubResource("NoiseTexture2D_aeq53")
+shader_parameter/distor_modi = 0.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm7v0"]
 radius = 100.0

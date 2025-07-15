@@ -174,7 +174,7 @@
 	"danmaku_damage": 0.0,
 	"physical_rule": "aimed_charge",
 	"physical_parameter": [
-	  10000,
+	  500,
 	  999,
 	  1
 	],

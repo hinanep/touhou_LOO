@@ -61,7 +61,7 @@ func spawn_mob():
 	mob.multi = (spawn_list['enemy_attribute_boost'])
 	if spawn_list["spawn_type"] == 'elite':
 		mob.drops_path = "drops_plate"
-		mob.set_scale(Vector2(4,4))
+		mob.set_scale(Vector2(2,2))
 
 	mob.drop_num = 1.0
 
