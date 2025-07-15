@@ -152,6 +152,8 @@ func add_passive(psv_info):
 
 		psv_container.add_child(newpsv)
 
+func set_boss_timer(card_time:float):
+	$time.set_boss_timer(card_time)
 
 func _on_renew_timer_timeout():
 	hp_display()

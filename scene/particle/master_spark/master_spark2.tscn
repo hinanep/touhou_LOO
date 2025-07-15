@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://jh25f6kbce2d"]
 
-[ext_resource type="Shader" uid="uid://cqcuntnrfokvg" path="res://asset/shaders/glow.gdshader" id="1_f6n6m"]
+[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="1_f6n6m"]
 [ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master_spark/charging.tscn" id="1_oc2ru"]
 [ext_resource type="Script" uid="uid://cevwcqee07ff0" path="res://scene/particle/master_spark/master_spark_2.gd" id="1_qbugc"]
 [ext_resource type="Shader" uid="uid://bb85l1f7dxqpq" path="res://asset/shaders/center_white.gdshader" id="1_uqn6h"]
@@ -12,7 +12,6 @@ shader = ExtResource("1_f6n6m")
 shader_parameter/radius = 0.5
 shader_parameter/sampleCount = 4
 shader_parameter/grayLimit = 0.3
-shader_parameter/brightness = 0.5
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7iy1l"]
 light_mode = 1

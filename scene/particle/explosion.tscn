@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfemna5foutgu"]
 
-[ext_resource type="Script" path="res://scene/particle/explosion.gd" id="1_cbnio"]
+[ext_resource type="Script" uid="uid://cnm4huawk4lpu" path="res://scene/particle/explosion.gd" id="1_cbnio"]
 
 [sub_resource type="Curve" id="Curve_i0nhr"]
 _data = [Vector2(0.00772201, 1), 0.0, 0.0, 0, 0, Vector2(0.994208, 0.243214), 0.0, 0.0, 0, 0]
@@ -8,9 +8,7 @@ point_count = 2
 
 [node name="Explosion" type="CPUParticles2D"]
 top_level = true
-emitting = false
 amount = 60
-one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0

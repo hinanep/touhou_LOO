@@ -14,10 +14,14 @@ func format_display():
 		var sec :int= floor(seconds - 60 * minutes)
 		rich_text_label.text = str(minutes) + ":" + ("%02d" % sec)
 
-
+func set_boss_timer(card_time):
+	timer.stop()
+	timer.wait_time = card_time
+	timer.start()
 func _on_timer_timeout():
 	seconds += 1
 	player_var.time_secs = seconds
 	minutes = floor(seconds/60.0)
 	format_display()
-	pass # Replace with function body.
+func _on_boss_timer_timeout():
+	pass

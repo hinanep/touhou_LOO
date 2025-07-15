@@ -16,7 +16,8 @@ instance_shader_parameters/brightness = 0.0
 custom_minimum_size = Vector2(1, 0)
 pivot_offset = Vector2(400, 400)
 texture = ExtResource("1_pxaq0")
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 4
 script = ExtResource("2_d07md")
 
 [node name="cn" type="RichTextLabel" parent="."]

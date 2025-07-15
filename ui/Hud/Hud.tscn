@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=27 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://cdv853opb5hr6" path="res://asset/pic/ui/HUD/血条填充.png" id="3_kbjvd"]
@@ -6,10 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
 [ext_resource type="Texture2D" uid="uid://d12nhv4wt0lnp" path="res://asset/pic/ui/HUD/符力条.png" id="5_xs3el"]
 [ext_resource type="Texture2D" uid="uid://bb2os5wgmj3oc" path="res://asset/pic/ui/HUD/血条.png" id="6_7ncbm"]
+[ext_resource type="Texture2D" uid="uid://bqqgbyv81gktt" path="res://asset/pic/ui/HUD/自机血条头像.png" id="6_e8oks"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
 [ext_resource type="Texture2D" uid="uid://beykdon3f3y4n" path="res://asset/pic/ui/HUD/符力条填充.png" id="6_pjubw"]
 [ext_resource type="Script" uid="uid://pwiu7nfo2w0b" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
 [ext_resource type="Texture2D" uid="uid://btvijlv3rj6ut" path="res://asset/pic/ui/HUD/经验条填充.png" id="8_h7ufx"]
+[ext_resource type="Shader" uid="uid://cm31jdbaq2nwf" path="res://asset/shaders/fade.gdshader" id="10_7u03l"]
+[ext_resource type="Texture2D" uid="uid://cm7agolknpfi7" path="res://asset/pic/ui/HUD/记忆结晶底纹.png" id="10_754lx"]
 [ext_resource type="Texture2D" uid="uid://bnsff70wi6awc" path="res://asset/pic/ui/HUD/自机符卡信息.png" id="10_b8std"]
 [ext_resource type="Texture2D" uid="uid://dqv38mj8vnmn4" path="res://asset/pic/ui/HUD/符卡.png" id="11_agwl7"]
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="11_stodd"]
@@ -18,10 +21,30 @@
 [ext_resource type="Texture2D" uid="uid://b3en22kbxi8ae" path="res://asset/pic/ui/HUD/经验条.png" id="12_ynj7b"]
 [ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="13_tr6ke"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7u03l"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.04800000228
+shader_parameter/fade_from_right = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuorb"]
+
 [sub_resource type="Theme" id="Theme_08wx8"]
 default_base_scale = 0.5
 default_font = ExtResource("3_o5w7m")
 default_font_size = 60
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8oks"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.10600000503500001
+shader_parameter/fade_from_right = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfyr4"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.23600001121
+shader_parameter/fade_from_right = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_754lx"]
 shader = ExtResource("11_stodd")
@@ -46,6 +69,7 @@ script = ExtResource("1_fpogy")
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="hp" type="Sprite2D" parent="hud"]
+material = SubResource("ShaderMaterial_7u03l")
 position = Vector2(203, 80)
 texture = ExtResource("6_7ncbm")
 
@@ -54,12 +78,13 @@ z_index = -1
 clip_contents = true
 offset_left = -127.0
 offset_top = -20.0
-offset_right = 201.0
+offset_right = 197.0
 offset_bottom = 47.0
 border_color = Color(1, 0, 0, 0)
 
 [node name="hp_cont" type="Sprite2D" parent="hud/hp/hp_mask"]
 modulate = Color(1, 0.58000004, 0.58000004, 1)
+material = SubResource("ShaderMaterial_uuorb")
 position = Vector2(163, 37)
 scale = Vector2(0.9969512, 1)
 texture = ExtResource("3_kbjvd")
@@ -76,6 +101,11 @@ theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
 horizontal_alignment = 1
+
+[node name="自机血条头像" type="Sprite2D" parent="hud/hp"]
+position = Vector2(-122.00001, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_e8oks")
 
 [node name="mana" type="Sprite2D" parent="hud"]
 position = Vector2(219, 176)
@@ -159,7 +189,7 @@ offset_bottom = 36.0
 scale = Vector2(2, 2)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 15
-text = "lv."
+text = "Lv."
 
 [node name="level_text" type="RichTextLabel" parent="hud/exp"]
 modulate = Color(0.98048526, 0.6001637, 0.7718603, 1)
@@ -198,10 +228,10 @@ text = "0"
 
 [node name="fps" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345098, 0.901961, 1, 1)
-offset_left = 1640.0
-offset_top = 1026.0
-offset_right = 2284.0
-offset_bottom = 1116.0
+offset_left = 1594.0
+offset_top = 124.0
+offset_right = 2238.0
+offset_bottom = 214.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 60
@@ -211,9 +241,9 @@ text = "FPS："
 clip_contents = false
 layout_mode = 0
 offset_left = 208.0
-offset_top = 14.0
+offset_top = 10.0
 offset_right = 616.0
-offset_bottom = 96.0
+offset_bottom = 92.0
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 60
 text = "0"
@@ -243,26 +273,25 @@ text = "0"
 [node name="cards" type="Node" parent="hud"]
 
 [node name="skill_container" type="HBoxContainer" parent="hud"]
-offset_left = 5.0
-offset_top = 697.0
-offset_right = 541.0
-offset_bottom = 785.0
+offset_left = 30.0
+offset_top = 782.0
+offset_right = 530.0
+offset_bottom = 842.0
 theme_override_constants/separation = 0
 
 [node name="card_container" type="HBoxContainer" parent="hud"]
-offset_left = 5.0
-offset_top = 881.0
-offset_right = 6267.5
-offset_bottom = 2143.5
-scale = Vector2(0.08, 0.08)
-alignment = 1
+offset_left = 30.0
+offset_top = 911.0
+offset_right = 530.0
+offset_bottom = 971.0
+theme_override_constants/separation = 0
 
 [node name="psv_container" type="HBoxContainer" parent="hud"]
-offset_left = 5.0
-offset_top = 787.0
-offset_right = 361.0
-offset_bottom = 887.0
-alignment = 2
+offset_left = 30.0
+offset_top = 847.0
+offset_right = 530.0
+offset_bottom = 907.0
+theme_override_constants/separation = 0
 
 [node name="cp_container" type="HBoxContainer" parent="hud"]
 visible = false
@@ -274,7 +303,14 @@ scale = Vector2(0.07, 0.07)
 theme_override_constants/separation = 100
 alignment = 1
 
+[node name="记忆结晶底纹" type="Sprite2D" parent="hud"]
+z_index = -1
+material = SubResource("ShaderMaterial_e8oks")
+position = Vector2(211, 876)
+texture = ExtResource("10_754lx")
+
 [node name="card_now" type="Sprite2D" parent="hud"]
+material = SubResource("ShaderMaterial_mfyr4")
 position = Vector2(174, 1023)
 texture = ExtResource("10_b8std")
 

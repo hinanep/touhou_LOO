@@ -48,6 +48,9 @@ col+=limitGrayColor(
 texture(TEXTURE,UV + vec2(-radius,-radius)*ps*float(i)),grayLimit);}
 
 col/=(8.0*float(sampleCount));
-COLOR = col*brightness+texture(TEXTURE,UV);
+vec4 effect_color = col * brightness + texture(TEXTURE, UV);
+
+COLOR.rgb = effect_color.rgb;
+
 
 }
