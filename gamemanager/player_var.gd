@@ -206,8 +206,8 @@ func boss_coming(id:String):
 			tmpcamera.top_level = true
 			mv.set_parallel()
 
-			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),1)
-			mv.tween_property(tmpcamera,'global_position',Vector2(0,0),1)
+			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),0.1)
+			mv.tween_property(tmpcamera,'global_position',Vector2(0,0),0.1)
 			var viewport_size = Vector2(1920,1080)
 			await mv.finished
 			player_var.air_wall_bottom = viewport_size.y/2

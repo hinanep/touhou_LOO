@@ -12,36 +12,35 @@ var fragments = []
 var polys = []
 var center = []
 var diretion = []
+var viewport_size = Vector2(1920,1080)
 func _ready():
 	print("ShatterEffect 初始化完成")
 
-	# 为了演示，我们在这里创建一个按钮来触发效果
-	var button = Button.new()
-	button.text = "Shatter!"
-	button.position = Vector2(50, 50)
-	add_child(button)
-	button.pressed.connect(start_shatter_effect)
-
+	SignalBus.shutter.connect(start_shatter_effect)
 	fragments = []
 	for fra in fragment_container.get_children():
 		fragments.push_back(fra)
 		var poly2D:Polygon2D = fra.get_child(0)
 		polys.push_back(poly2D)
 
+		viewport_size = get_viewport().get_visible_rect().size
 		var centerp = Vector2.ZERO
 		for point in poly2D.polygon:
 			centerp += point
 		centerp /= poly2D.polygon.size()
 		center.push_back(centerp)
 
-		var screen_center = Vector2(960,540)
+		var screen_center = viewport_size/2
 		var diretionp = (centerp - screen_center).normalized()
 
-		# 如果碎片在屏幕中心，给一个随机方向
-		#if directionp.length() < 1.0:
-			#directionp = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+
 		diretion.push_back(diretionp* explosion_force)
 
+		viewport_size = get_viewport().get_visible_rect().size
+		#get_viewport().size_changed.connect(_on_viewport_size_changed)
+
+func _on_viewport_size_changed():
+	viewport_size = get_viewport().get_visible_rect().size
 # 主要的碎裂效果函数
 func start_shatter_effect():
 	print("=== 开始碎裂效果 ===")
@@ -55,20 +54,30 @@ func start_shatter_effect():
 	else:
 		print("错误: 无法获取屏幕纹理!")
 		return
-	var screen_size = get_viewport().get_visible_rect().size
-	print("屏幕尺寸: ", screen_size)
+
+	print("屏幕尺寸: ", viewport_size)
+
+	for i in fragments.size():
+		polys[i].set_texture(screen_texture)
+
+	fragment_container.visible = true
+
 	$Maskalp.material.set_shader_parameter('begin',true)
 	var tween = create_tween()
-
-	tween.tween_method(set_shader_phase,3.15,-1.0,0.6)
-	tween.tween_interval(0.1)
+	#tween.tween_interval(2.0)
+	tween.tween_method(set_shader_phase,4.15,-1.0,0.5)
 	await tween.finished
 	$Maskalp.material.set_shader_parameter('begin',false)
 	set_shader_phase(0.0)
+
 	for i in fragments.size():
-		polys[i].set_texture(screen_texture)
 		tween_fragment(i)
-	fragment_container.visible = true
+
+
+
+
+
+
 func set_shader_phase(p):
 	print('set to' + str(p))
 	$Maskalp.material.set_shader_parameter('phase',p)
@@ -80,8 +89,8 @@ func get_screen_texture_safe() -> Texture2D:
 	print("主视口路径: ", main_viewport.get_path())
 
 	#await RenderingServer.frame_post_draw
-	var imagetmp = main_viewport.get_texture().get_image()
-
+	var imagetmp:Image = main_viewport.get_texture().get_image()
+	imagetmp.resize(viewport_size.x,viewport_size.y)
 	var tex = ImageTexture.create_from_image(imagetmp)
 
 	return tex
@@ -100,8 +109,10 @@ func tween_fragment(index:int):
 
 	fragments[index].rotation = 0
 	fragments[index].modulate.a = 1.0
+
 	# 创建动画来模拟爆炸效果
 	var tween = create_tween()
+	tween.tween_interval(1.5)
 	tween.set_parallel(true)
 
 	# 移动动画

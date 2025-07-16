@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=21 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" uid="uid://cr1hm1rqq35i" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -9,6 +9,10 @@
 [ext_resource type="Shader" uid="uid://dyf2o5vpbti4y" path="res://ui/InGame/bara.gdshader" id="8_mw3nd"]
 [ext_resource type="Texture2D" uid="uid://d4jrxtjuudd5v" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png" id="9_3sgji"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
+[ext_resource type="Script" uid="uid://dbm3kll2vedrc" path="res://ui/TestScene/shatter.gd" id="10_1xypp"]
+[ext_resource type="PackedScene" uid="uid://dl15bichusdko" path="res://scene/FragmentContainer.tscn" id="11_v3t2b"]
+[ext_resource type="Shader" uid="uid://yt0da0noecjg" path="res://ui/TestScene/uptodownfade.gdshader" id="12_5kc7y"]
+[ext_resource type="Texture2D" uid="uid://456sgmno5a88" path="res://asset/pic/texture/maskalp.png" id="13_83w4i"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
@@ -47,6 +51,14 @@ shader_parameter/expand_factor = Vector2(4, 4)
 shader_parameter/expand_offset = Vector2(-1.5, -1.5)
 shader_parameter/bounce_thresh = 0.0
 shader_parameter/bounce_factor = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_so81o"]
+shader = ExtResource("12_5kc7y")
+shader_parameter/radius = 2.0
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.0
+shader_parameter/phase = -1.0
+shader_parameter/begin = true
 
 [node name="InGame" type="Control"]
 process_mode = 3
@@ -112,7 +124,7 @@ shape = SubResource("WorldBoundaryShape2D_6actc")
 
 [node name="end_game" type="Timer" parent="."]
 process_mode = 1
-wait_time = 365.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
@@ -127,5 +139,19 @@ texture = ExtResource("9_3sgji")
 
 [node name="Node2D2" parent="." instance=ExtResource("9_7xnml")]
 position = Vector2(11, -4)
+
+[node name="shatter" type="CanvasLayer" parent="."]
+layer = 1000
+script = ExtResource("10_1xypp")
+
+[node name="FragmentContainer" parent="shatter" instance=ExtResource("11_v3t2b")]
+visible = false
+z_index = 1000
+
+[node name="Maskalp" type="Sprite2D" parent="shatter"]
+material = SubResource("ShaderMaterial_so81o")
+instance_shader_parameters/brightness = 1.0
+position = Vector2(960, 540)
+texture = ExtResource("13_83w4i")
 
 [connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]
