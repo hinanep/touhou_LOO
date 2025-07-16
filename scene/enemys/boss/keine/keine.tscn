@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=21 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
 [ext_resource type="Texture2D" uid="uid://qjkqd4eo88sb" path="res://asset/pic/enemy/白泽球.png" id="2_ndu7c"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://2x1qvc7ql60h" path="res://asset/pic/ui/HUD/BOSS血条（非符+符卡）.png" id="11_m8gjf"]
 [ext_resource type="Texture2D" uid="uid://c3cob7ohv4aoi" path="res://asset/pic/ui/HUD/BOSS血条（非符）填充.png" id="12_fav7k"]
 [ext_resource type="Texture2D" uid="uid://tba5oo3powgg" path="res://asset/pic/ui/HUD/BOSS血条头像.png" id="12_i8gk4"]
+[ext_resource type="Texture2D" uid="uid://bxuy0w1eqq10g" path="res://asset/pic/ui/HUD/残机（灰）.png" id="13_m8gjf"]
+[ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="14_i4kq0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
@@ -238,6 +240,25 @@ texture = ExtResource("10_i8gk4")
 position = Vector2(1812, 992)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_i8gk4")
+
+[node name="life" type="Node2D" parent="hud/hp"]
+position = Vector2(44, -48)
+
+[node name="space" type="Sprite2D" parent="hud/hp/life"]
+position = Vector2(1722, 898)
+texture = ExtResource("13_m8gjf")
+
+[node name="space2" type="Sprite2D" parent="hud/hp/life"]
+position = Vector2(1723, 946.5)
+texture = ExtResource("13_m8gjf")
+
+[node name="life1" type="Sprite2D" parent="hud/hp/life"]
+position = Vector2(1722, 899)
+texture = ExtResource("14_i4kq0")
+
+[node name="life2" type="Sprite2D" parent="hud/hp/life"]
+position = Vector2(1722, 947.5)
+texture = ExtResource("14_i4kq0")
 
 [node name="轨迹" type="Sprite2D" parent="."]
 visible = false

@@ -37,7 +37,7 @@ default_font_size = 60
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e8oks"]
 shader = ExtResource("10_7u03l")
 shader_parameter/start_alpha = 1.0
-shader_parameter/end_alpha = 0.10600000503500001
+shader_parameter/end_alpha = 0.106000005035
 shader_parameter/fade_from_right = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mfyr4"]

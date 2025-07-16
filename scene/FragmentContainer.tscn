@@ -1,0 +1,131 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl15bichusdko"]
+
+[ext_resource type="Texture2D" uid="uid://vnq60mmtf437" path="res://asset/pic/texture/screentest.tres" id="3_fcixg"]
+
+[node name="FragmentContainer" type="Node2D"]
+
+[node name="_Node2D_124" type="Node2D" parent="."]
+
+[node name="_Polygon2D_125" type="Polygon2D" parent="_Node2D_124"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(0, 75, 210, 240, 260, 1, 0, 0)
+
+[node name="_Node2D_126" type="Node2D" parent="."]
+
+[node name="_Polygon2D_127" type="Polygon2D" parent="_Node2D_126"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(263, 1, 243, 108, 556, 137, 541, 0)
+
+[node name="_Node2D_128" type="Node2D" parent="."]
+
+[node name="_Polygon2D_129" type="Polygon2D" parent="_Node2D_128"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(546, 2, 563, 139, 606, 555, 724, 648, 1043, 1)
+
+[node name="_Node2D_130" type="Node2D" parent="."]
+
+[node name="_Polygon2D_131" type="Polygon2D" parent="_Node2D_130"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1048, 3, 772, 572, 1027, 510, 1077, 1)
+
+[node name="_Node2D_134" type="Node2D" parent="."]
+
+[node name="_Polygon2D_135" type="Polygon2D" parent="_Node2D_134"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1080, 1, 1075, 64, 1198, 381, 1709, 1)
+
+[node name="_Node2D_136" type="Node2D" parent="."]
+
+[node name="_Polygon2D_137" type="Polygon2D" parent="_Node2D_136"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1712, 1, 1510, 156, 1920, 146, 1920, 0)
+
+[node name="_Node2D_138" type="Node2D" parent="."]
+
+[node name="_Polygon2D_139" type="Polygon2D" parent="_Node2D_138"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1074, 81, 1032, 506, 1194, 385)
+
+[node name="_Node2D_140" type="Node2D" parent="."]
+
+[node name="_Polygon2D_141" type="Polygon2D" parent="_Node2D_140"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(0, 680, 406, 403, 0, 81)
+
+[node name="_Node2D_142" type="Node2D" parent="."]
+
+[node name="_Polygon2D_143" type="Polygon2D" parent="_Node2D_142"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(242, 114, 215, 245, 602, 551, 557, 143)
+
+[node name="_Node2D_144" type="Node2D" parent="."]
+
+[node name="_Polygon2D_145" type="Polygon2D" parent="_Node2D_144"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1507, 161, 1920, 532, 1920, 151)
+
+[node name="_Node2D_146" type="Node2D" parent="."]
+
+[node name="_Polygon2D_147" type="Polygon2D" parent="_Node2D_146"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1499, 164, 1368, 262, 1920, 823, 1920, 537)
+
+[node name="_Node2D_148" type="Node2D" parent="."]
+
+[node name="_Polygon2D_149" type="Polygon2D" parent="_Node2D_148"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1361, 267, 1032, 512, 1230, 688, 1379, 523)
+
+[node name="_Node2D_150" type="Node2D" parent="."]
+
+[node name="_Polygon2D_151" type="Polygon2D" parent="_Node2D_150"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1368, 283, 1421, 1080, 1920, 1080, 1920, 830)
+
+[node name="_Node2D_152" type="Node2D" parent="."]
+
+[node name="_Polygon2D_153" type="Polygon2D" parent="_Node2D_152"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(410, 407, 372, 433, 363, 718, 660, 777, 722, 653)
+
+[node name="_Node2D_154" type="Node2D" parent="."]
+
+[node name="_Polygon2D_155" type="Polygon2D" parent="_Node2D_154"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(366, 437, 88, 627, 212, 1080, 346, 1080)
+
+[node name="_Node2D_156" type="Node2D" parent="."]
+
+[node name="_Polygon2D_157" type="Polygon2D" parent="_Node2D_156"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1027, 516, 764, 579, 670, 771, 1224, 692)
+
+[node name="_Node2D_158" type="Node2D" parent="."]
+
+[node name="_Polygon2D_159" type="Polygon2D" parent="_Node2D_158"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1380, 529, 1234, 690, 1226, 809, 1406, 916)
+
+[node name="_Node2D_160" type="Node2D" parent="."]
+
+[node name="_Polygon2D_161" type="Polygon2D" parent="_Node2D_160"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(80, 632, 0, 683, 0, 1080, 207, 1080)
+
+[node name="_Node2D_162" type="Node2D" parent="."]
+
+[node name="_Polygon2D_163" type="Polygon2D" parent="_Node2D_162"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(518, 1077, 658, 781, 363, 723, 351, 1080)
+
+[node name="_Node2D_164" type="Node2D" parent="."]
+
+[node name="_Polygon2D_165" type="Polygon2D" parent="_Node2D_164"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(1208, 1080, 1416, 1080, 1406, 923, 1226, 816)
+
+[node name="_Node2D_163" type="Node2D" parent="."]
+
+[node name="_Polygon2D_163" type="Polygon2D" parent="_Node2D_163"]
+texture = ExtResource("3_fcixg")
+polygon = PackedVector2Array(665, 779, 518, 1078, 1205, 1080, 1229, 699)
