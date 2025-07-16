@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsmua8weisch7"]
+
+[ext_resource type="Script" uid="uid://tbsm0kj0lheg" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
+[ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
+[ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="5_ep1gx"]
+[ext_resource type="Script" uid="uid://bfglv8fvpyl4j" path="res://ui/InGame/d4c.gd" id="5_pafhp"]
+[ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
+[ext_resource type="Script" uid="uid://dh17e78nirbh0" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
+
+[sub_resource type="Curve2D" id="Curve2D_wc05l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 240, 142, 0, 0, 0, 0, -237, 139.5, 0, 0, 0, 0, -238, -133.5, 0, 0, 0, 0, 239, -135, 0, 0, 0, 0, 240, 142.5)
+}
+point_count = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n5tmk"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r5a1a"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ool2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3l2uj"]
+normal = Vector2(-1, 0)
+
+[node name="TestScene" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 470.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rc87f")
+
+[node name="player" parent="." groups=["player"] instance=ExtResource("2_1q6uy")]
+unique_name_in_owner = true
+process_mode = 1
+collision_mask = 51
+safe_margin = 1.0
+
+[node name="monster_spawn_line" type="Path2D" parent="player"]
+scale = Vector2(1.1, 1.1)
+curve = SubResource("Curve2D_wc05l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
+position = Vector2(240, 142)
+rotation = -3.1363516
+
+[node name="air_wall" type="StaticBody2D" parent="."]
+collision_layer = 36
+collision_mask = 0
+
+[node name="left" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(-1321, 0)
+shape = SubResource("WorldBoundaryShape2D_n5tmk")
+
+[node name="top" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(0, -1800)
+shape = SubResource("WorldBoundaryShape2D_r5a1a")
+
+[node name="down" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(0, 1050)
+shape = SubResource("WorldBoundaryShape2D_3ool2")
+
+[node name="right" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(1377, -6)
+shape = SubResource("WorldBoundaryShape2D_3l2uj")
+
+[node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
+
+[node name="drops" type="Node2D" parent="SpawnManager"]
+script = ExtResource("7_7uj5j")
+
+[node name="d4c" type="Node2D" parent="SpawnManager"]
+script = ExtResource("5_pafhp")
+
+[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+color = Color(0.709804, 0.807843, 0.835294, 1)
+
+[node name="Node2D" parent="." instance=ExtResource("5_ep1gx")]
+z_index = -500
+z_as_relative = false
+position = Vector2(0, -1000)

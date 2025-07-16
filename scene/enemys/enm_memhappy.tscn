@@ -1,0 +1,714 @@
+[gd_scene load_steps=176 format=3 uid="uid://bjbkbdigg5qvu"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_y78b6"]
+[ext_resource type="Texture2D" uid="uid://d4jrxtjuudd5v" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png" id="2_14y0p"]
+[ext_resource type="Texture2D" uid="uid://cpoj4rs46awkl" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_001.png" id="3_tkdfc"]
+[ext_resource type="Texture2D" uid="uid://d1t5jx2yw2cwc" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_002.png" id="4_cjtj5"]
+[ext_resource type="Texture2D" uid="uid://ohnyv12pnne3" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_003.png" id="5_71433"]
+[ext_resource type="Texture2D" uid="uid://v4xwah00mtck" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_004.png" id="6_0t8c2"]
+[ext_resource type="Texture2D" uid="uid://bvh6qmqvdn7hw" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_005.png" id="7_xywuf"]
+[ext_resource type="Texture2D" uid="uid://bx665o5dap6bq" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_006.png" id="8_qcc3g"]
+[ext_resource type="Texture2D" uid="uid://baviquqm4u3dg" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_007.png" id="9_vda15"]
+[ext_resource type="Texture2D" uid="uid://hovoawvtnr6t" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_008.png" id="10_bw1op"]
+[ext_resource type="Texture2D" uid="uid://cn6m851nk5htf" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_009.png" id="11_ixn7s"]
+[ext_resource type="Texture2D" uid="uid://dwtem7jvhdt1n" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_010.png" id="12_7542c"]
+[ext_resource type="Texture2D" uid="uid://sjblwrbtnft6" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_011.png" id="13_6fxjh"]
+[ext_resource type="Texture2D" uid="uid://dvg5006sft5eq" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_012.png" id="14_ycvcw"]
+[ext_resource type="Texture2D" uid="uid://cauufoesdhk3r" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_013.png" id="15_10toq"]
+[ext_resource type="Texture2D" uid="uid://c11wlakhgo6bk" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_014.png" id="16_w8d03"]
+[ext_resource type="Texture2D" uid="uid://c83ipdfqu6fw" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_015.png" id="17_fj04c"]
+[ext_resource type="Texture2D" uid="uid://dssgwrf0fcot8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_016.png" id="18_fuj38"]
+[ext_resource type="Texture2D" uid="uid://bxdohrr7bpr25" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_017.png" id="19_7e84b"]
+[ext_resource type="Texture2D" uid="uid://dpounxtxujbgv" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_018.png" id="20_gyop1"]
+[ext_resource type="Texture2D" uid="uid://c852tfys837dm" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_019.png" id="21_5a52m"]
+[ext_resource type="Texture2D" uid="uid://bg0gohoioy0n7" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_020.png" id="22_62as3"]
+[ext_resource type="Texture2D" uid="uid://dpj01887g6h43" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_021.png" id="23_s0ibw"]
+[ext_resource type="Texture2D" uid="uid://ds21es5jyievl" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_022.png" id="24_5wwvi"]
+[ext_resource type="Texture2D" uid="uid://bnel5pin8sevk" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_023.png" id="25_u21kn"]
+[ext_resource type="Texture2D" uid="uid://da25x15dyti38" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_024.png" id="26_apmju"]
+[ext_resource type="Texture2D" uid="uid://b75jcwsi5tm62" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_025.png" id="27_w35b3"]
+[ext_resource type="Texture2D" uid="uid://bj2ed40loprrp" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_026.png" id="28_j7gcs"]
+[ext_resource type="Texture2D" uid="uid://dk0w76gl7c4l5" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_027.png" id="29_ww180"]
+[ext_resource type="Texture2D" uid="uid://bp84oqunb34xj" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_028.png" id="30_yn8eh"]
+[ext_resource type="Texture2D" uid="uid://5ju8v004f8x1" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_029.png" id="31_elqty"]
+[ext_resource type="Texture2D" uid="uid://usac2lh5s08i" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_030.png" id="32_sjg2p"]
+[ext_resource type="Texture2D" uid="uid://dc0f8wj0aj2fd" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_031.png" id="33_bcdrf"]
+[ext_resource type="Texture2D" uid="uid://cn1p8jes2kypw" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_032.png" id="34_rta7w"]
+[ext_resource type="Texture2D" uid="uid://c13kyvbidji5f" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_033.png" id="35_gokkq"]
+[ext_resource type="Texture2D" uid="uid://ddpinchk4hl2p" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_034.png" id="36_mimoc"]
+[ext_resource type="Texture2D" uid="uid://dq5h6vdwtiupl" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_035.png" id="37_2t6qv"]
+[ext_resource type="Texture2D" uid="uid://dk277u05u8qv4" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_036.png" id="38_eu08j"]
+[ext_resource type="Texture2D" uid="uid://ccso58yn8k3is" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_037.png" id="39_im8ka"]
+[ext_resource type="Texture2D" uid="uid://cbdo5xtu8uwsc" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_038.png" id="40_wocua"]
+[ext_resource type="Texture2D" uid="uid://d28xsqytpsrav" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_039.png" id="41_0hyoa"]
+[ext_resource type="Texture2D" uid="uid://bubjdg2ms32nb" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_040.png" id="42_jqcm6"]
+[ext_resource type="Texture2D" uid="uid://c74dfvgvoumoc" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_041.png" id="43_rlj14"]
+[ext_resource type="Texture2D" uid="uid://dkkb48pjw0apn" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_042.png" id="44_6d7ly"]
+[ext_resource type="Texture2D" uid="uid://lvublk7swxeg" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_043.png" id="45_4p8dp"]
+[ext_resource type="Texture2D" uid="uid://cq2owkwtdkegj" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_044.png" id="46_nvpud"]
+[ext_resource type="Texture2D" uid="uid://vaccfr13goi1" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_045.png" id="47_qlcso"]
+[ext_resource type="Texture2D" uid="uid://d2qgh2qiljvto" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_046.png" id="48_2i1ps"]
+[ext_resource type="Texture2D" uid="uid://dba2o55ffxlr5" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_047.png" id="49_bqty4"]
+[ext_resource type="Texture2D" uid="uid://raokuhq6vs2a" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_048.png" id="50_h4df3"]
+[ext_resource type="Texture2D" uid="uid://3lio3v28cse8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_049.png" id="51_5qhvi"]
+[ext_resource type="Texture2D" uid="uid://x57kt4i5xklg" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_050.png" id="52_npxnr"]
+[ext_resource type="Texture2D" uid="uid://dkk3qqmt7peit" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_051.png" id="53_4c5wl"]
+[ext_resource type="Texture2D" uid="uid://c2o6f7uyblwph" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_052.png" id="54_l433k"]
+[ext_resource type="Texture2D" uid="uid://bv1x3yh4aiy24" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_053.png" id="55_qyaib"]
+[ext_resource type="Texture2D" uid="uid://ewuxymqrbf4b" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_054.png" id="56_vfdql"]
+[ext_resource type="Texture2D" uid="uid://hc2s4651pm73" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_055.png" id="57_lf75r"]
+[ext_resource type="Texture2D" uid="uid://bqja4dgyei3vi" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_056.png" id="58_sf5sr"]
+[ext_resource type="Texture2D" uid="uid://ck6c5jxrcc58s" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_057.png" id="59_0hv4r"]
+[ext_resource type="Texture2D" uid="uid://d223kcex6kmvm" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_058.png" id="60_lj7h3"]
+[ext_resource type="Texture2D" uid="uid://c22f4b1ccjd7y" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_059.png" id="61_8fwu4"]
+[ext_resource type="Texture2D" uid="uid://dw77lvtmp61un" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_060.png" id="62_32uwf"]
+[ext_resource type="Texture2D" uid="uid://drq2vpwmj62gm" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_061.png" id="63_cqspc"]
+[ext_resource type="Texture2D" uid="uid://boxxu0hfvnkjf" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_062.png" id="64_xp14n"]
+[ext_resource type="Texture2D" uid="uid://spibawnjg6gg" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_063.png" id="65_5gllb"]
+[ext_resource type="Texture2D" uid="uid://5vpav130e77o" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_064.png" id="66_vnd85"]
+[ext_resource type="Texture2D" uid="uid://buab53uao0u48" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_065.png" id="67_oi0uq"]
+[ext_resource type="Texture2D" uid="uid://biqd6xwjae7m8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_066.png" id="68_mars7"]
+[ext_resource type="Texture2D" uid="uid://bp0qeskpugcds" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_067.png" id="69_uejiu"]
+[ext_resource type="Texture2D" uid="uid://cwxgms33s3c4o" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_068.png" id="70_aq77x"]
+[ext_resource type="Texture2D" uid="uid://c8n62kmvdnb6r" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_069.png" id="71_cskat"]
+[ext_resource type="Texture2D" uid="uid://c5kdpcc1lkkjq" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_070.png" id="72_ehwny"]
+[ext_resource type="Texture2D" uid="uid://cws5krpvgxxf" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_071.png" id="73_vmm10"]
+[ext_resource type="Texture2D" uid="uid://dniqg2der80xh" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_072.png" id="74_kntt0"]
+[ext_resource type="Texture2D" uid="uid://vt7ci67nxkt8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_073.png" id="75_exqh7"]
+[ext_resource type="Texture2D" uid="uid://cognhxgkekc5p" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_074.png" id="76_3qmre"]
+[ext_resource type="Texture2D" uid="uid://daubgfphlblb" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_075.png" id="77_dfdwd"]
+[ext_resource type="Texture2D" uid="uid://chkjdnnbm48ol" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_076.png" id="78_fa8sy"]
+[ext_resource type="Texture2D" uid="uid://bf3s7lvxm6l5x" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_077.png" id="79_5dofh"]
+[ext_resource type="Texture2D" uid="uid://ghk82bbyat8x" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_078.png" id="80_mj6t0"]
+[ext_resource type="Texture2D" uid="uid://coo7qmj8ksrus" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_079.png" id="81_fnlpa"]
+[ext_resource type="Texture2D" uid="uid://5gsr6ui3uhkx" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_080.png" id="82_p2kib"]
+[ext_resource type="Texture2D" uid="uid://bnkc2w2ljxyng" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_081.png" id="83_o70pp"]
+[ext_resource type="Texture2D" uid="uid://duuw361vtgyyj" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_082.png" id="84_28m2l"]
+[ext_resource type="Texture2D" uid="uid://bhbinnt8e583x" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_083.png" id="85_yprjr"]
+[ext_resource type="Texture2D" uid="uid://ll4r8u25k14h" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_084.png" id="86_7lyfw"]
+[ext_resource type="Texture2D" uid="uid://bn1avcivldtli" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_085.png" id="87_fr3od"]
+[ext_resource type="Texture2D" uid="uid://cqwrhqallk1v6" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_086.png" id="88_ff4hy"]
+[ext_resource type="Texture2D" uid="uid://b3227k3rabkbf" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_087.png" id="89_lalhw"]
+[ext_resource type="Texture2D" uid="uid://balaxc3mb4d0j" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_088.png" id="90_kxdtw"]
+[ext_resource type="Texture2D" uid="uid://dekociuprhug5" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_089.png" id="91_54txv"]
+[ext_resource type="Texture2D" uid="uid://bcf8deb6avlxd" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_090.png" id="92_ifve6"]
+[ext_resource type="Texture2D" uid="uid://b8nsvm6u5ve5b" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_091.png" id="93_pwkj7"]
+[ext_resource type="Texture2D" uid="uid://dltu62ce8ovni" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_092.png" id="94_yf3kt"]
+[ext_resource type="Texture2D" uid="uid://chdxe2g0l71vj" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_093.png" id="95_jy26t"]
+[ext_resource type="Texture2D" uid="uid://bvg1r1ckiq8yx" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_094.png" id="96_jm72u"]
+[ext_resource type="Texture2D" uid="uid://cyt6tl4onm0ka" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_095.png" id="97_5itt0"]
+[ext_resource type="Texture2D" uid="uid://dhd68kmhngkdk" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_096.png" id="98_8t434"]
+[ext_resource type="Texture2D" uid="uid://ckeh1ptt312gm" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_097.png" id="99_6hqc1"]
+[ext_resource type="Texture2D" uid="uid://c3r3m0mnyw83b" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_098.png" id="100_j4pds"]
+[ext_resource type="Texture2D" uid="uid://27f6l7o8f6p6" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_099.png" id="101_saiva"]
+[ext_resource type="Texture2D" uid="uid://bribe2kdkjufa" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_100.png" id="102_xgx7s"]
+[ext_resource type="Texture2D" uid="uid://lbem3pglemsa" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_101.png" id="103_2lu1a"]
+[ext_resource type="Texture2D" uid="uid://b4ghx7adpq7tr" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_102.png" id="104_ll874"]
+[ext_resource type="Texture2D" uid="uid://bt76bc0l31ls1" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_103.png" id="105_yl3ba"]
+[ext_resource type="Texture2D" uid="uid://y56x21lgcjr0" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_104.png" id="106_1avhl"]
+[ext_resource type="Texture2D" uid="uid://bi4yyptto8p25" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_105.png" id="107_42p44"]
+[ext_resource type="Texture2D" uid="uid://cmc8ahrwk11t" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_106.png" id="108_lc0ij"]
+[ext_resource type="Texture2D" uid="uid://bgwrkl12xy8ae" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_107.png" id="109_er4sb"]
+[ext_resource type="Texture2D" uid="uid://c82pm043qevpa" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_108.png" id="110_21hgm"]
+[ext_resource type="Texture2D" uid="uid://euiq0fhx2161" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_109.png" id="111_4hb8q"]
+[ext_resource type="Texture2D" uid="uid://cjfbhpekuk0x8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_110.png" id="112_3wyrn"]
+[ext_resource type="Texture2D" uid="uid://b1u7813o2h5f" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_111.png" id="113_lwyrx"]
+[ext_resource type="Texture2D" uid="uid://bcrtcgav5amk1" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_112.png" id="114_jljgy"]
+[ext_resource type="Texture2D" uid="uid://dpjadhw60qel5" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_113.png" id="115_6bo6q"]
+[ext_resource type="Texture2D" uid="uid://cwvri6o0qi1cb" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_114.png" id="116_ayexk"]
+[ext_resource type="Texture2D" uid="uid://d1d0afhy5de4q" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_115.png" id="117_0d65r"]
+[ext_resource type="Texture2D" uid="uid://dlmf6gax38vst" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_116.png" id="118_qqprv"]
+[ext_resource type="Texture2D" uid="uid://h6wqqw6v6v17" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_117.png" id="119_csg8o"]
+[ext_resource type="Texture2D" uid="uid://bwj080gldpd7x" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_118.png" id="120_k4obn"]
+[ext_resource type="Texture2D" uid="uid://d0cejjyauu3lw" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_119.png" id="121_whqps"]
+[ext_resource type="Texture2D" uid="uid://bdnf4x24rmc6g" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_120.png" id="122_ljqm7"]
+[ext_resource type="Texture2D" uid="uid://iba7du5td1h0" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_121.png" id="123_pm3ty"]
+[ext_resource type="Texture2D" uid="uid://doensoy10y6dy" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_122.png" id="124_xav7k"]
+[ext_resource type="Texture2D" uid="uid://c00brng51hky8" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_123.png" id="125_mc5i0"]
+[ext_resource type="Texture2D" uid="uid://diiitstjiwv85" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_124.png" id="126_fshj2"]
+[ext_resource type="Texture2D" uid="uid://cigiiiu0qrjle" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_125.png" id="127_cahxi"]
+[ext_resource type="Texture2D" uid="uid://crfns5w3crbr2" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_126.png" id="128_aqsny"]
+[ext_resource type="Texture2D" uid="uid://c4wyhba1v7lmj" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_127.png" id="129_wh3cq"]
+[ext_resource type="Texture2D" uid="uid://ckgoqmk2370lr" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_128.png" id="130_ygps5"]
+[ext_resource type="Texture2D" uid="uid://mm4th3rhb5pd" path="res://asset/pic/enemy/greenrock/dying/gd_14.png" id="145_qxs6v"]
+[ext_resource type="Texture2D" uid="uid://l716h40sot2j" path="res://asset/pic/enemy/greenrock/dying/gd_15.png" id="146_y4bfu"]
+[ext_resource type="Texture2D" uid="uid://d2fy6a22gjryx" path="res://asset/pic/enemy/greenrock/dying/gd_16.png" id="147_dl1gs"]
+[ext_resource type="Texture2D" uid="uid://dk3rs13f0ef5x" path="res://asset/pic/enemy/greenrock/dying/gd_17.png" id="148_ntysd"]
+[ext_resource type="Texture2D" uid="uid://cthcn88nbpc5e" path="res://asset/pic/enemy/greenrock/dying/gd_18.png" id="149_7n5un"]
+[ext_resource type="Texture2D" uid="uid://b5vbm72xmpum5" path="res://asset/pic/enemy/greenrock/dying/gd_19.png" id="150_q4luw"]
+[ext_resource type="Texture2D" uid="uid://cobadl5a8pajy" path="res://asset/pic/enemy/greenrock/dying/gd_20.png" id="151_cihe7"]
+[ext_resource type="Texture2D" uid="uid://dn3sf1nfbro60" path="res://asset/pic/enemy/greenrock/dying/gd_21.png" id="152_nxpqd"]
+[ext_resource type="Texture2D" uid="uid://bpnqxfmorbgbs" path="res://asset/pic/enemy/greenrock/dying/gd_22.png" id="153_nqodk"]
+[ext_resource type="Texture2D" uid="uid://og3uvos58pci" path="res://asset/pic/enemy/greenrock/dying/gd_23.png" id="154_u2b0c"]
+[ext_resource type="Texture2D" uid="uid://cigfm0jshxt28" path="res://asset/pic/enemy/greenrock/dying/gd_24.png" id="155_mx7fc"]
+[ext_resource type="Texture2D" uid="uid://bbq4fcn6t76sk" path="res://asset/pic/enemy/greenrock/dying/gd_25.png" id="156_62scm"]
+[ext_resource type="Texture2D" uid="uid://cufto713bmycj" path="res://asset/pic/enemy/greenrock/dying/gd_26.png" id="157_go7rh"]
+[ext_resource type="Texture2D" uid="uid://cu2opihgubyau" path="res://asset/pic/enemy/greenrock/dying/gd_27.png" id="158_h7dk7"]
+[ext_resource type="Texture2D" uid="uid://vq227bul3ugk" path="res://asset/pic/enemy/greenrock/dying/gd_28.png" id="159_mgss1"]
+[ext_resource type="Texture2D" uid="uid://cu341kab6yxod" path="res://asset/pic/enemy/greenrock/dying/gd_29.png" id="160_1ms5o"]
+[ext_resource type="Texture2D" uid="uid://bvqy4icgf2agy" path="res://asset/pic/enemy/greenrock/dying/gd_30.png" id="161_4aldi"]
+[ext_resource type="Texture2D" uid="uid://yysba5r10slo" path="res://asset/pic/enemy/greenrock/dying/gd_31.png" id="162_2louk"]
+[ext_resource type="Texture2D" uid="uid://cypu4p6ix81xy" path="res://asset/pic/enemy/greenrock/dying/gd_32.png" id="163_hhbu1"]
+[ext_resource type="Texture2D" uid="uid://crhdolyptyopa" path="res://asset/pic/enemy/greenrock/dying/gd_33.png" id="164_4lu4y"]
+[ext_resource type="Texture2D" uid="uid://djiy53byu3nu1" path="res://asset/pic/enemy/greenrock/dying/gd_34.png" id="165_jkuye"]
+[ext_resource type="Texture2D" uid="uid://dy6nxop1sugyq" path="res://asset/pic/enemy/greenrock/dying/gd_35.png" id="166_8d36t"]
+[ext_resource type="Texture2D" uid="uid://cdx4886otme6i" path="res://asset/pic/enemy/greenrock/dying/gd_36.png" id="167_rvfiy"]
+[ext_resource type="Texture2D" uid="uid://bvhhjdqxw8umk" path="res://asset/pic/enemy/greenrock/dying/gd_37.png" id="168_c76yo"]
+[ext_resource type="Texture2D" uid="uid://di2u7jkkvr8wh" path="res://asset/pic/enemy/greenrock/dying/gd_38.png" id="169_ko0la"]
+[ext_resource type="Texture2D" uid="uid://dq8wmkfvteifo" path="res://asset/pic/enemy/greenrock/dying/gd_39.png" id="170_f8ces"]
+[ext_resource type="Texture2D" uid="uid://bevlbksah02uj" path="res://asset/pic/enemy/greenrock/dying/gd_40.png" id="171_icsej"]
+[ext_resource type="Texture2D" uid="uid://cp0prjacdxjmq" path="res://asset/pic/enemy/greenrock/dying/gd_41.png" id="172_pe03d"]
+[ext_resource type="Texture2D" uid="uid://dux6otc8qqvpt" path="res://asset/pic/enemy/greenrock/dying/gd_42.png" id="173_ftnml"]
+[ext_resource type="Texture2D" uid="uid://bclbc3l0apjy7" path="res://asset/pic/enemy/greenrock/dying/gd_43.png" id="174_6qyjm"]
+[ext_resource type="Texture2D" uid="uid://df27e1qfw7xy" path="res://asset/pic/enemy/greenrock/dying/gd_44.png" id="175_dbans"]
+[ext_resource type="Texture2D" uid="uid://c4ixp1uj1fhaa" path="res://asset/pic/enemy/greenrock/dying/gd_45.png" id="176_2yj0x"]
+[ext_resource type="Texture2D" uid="uid://n614leo3d87w" path="res://asset/pic/enemy/greenrock/dying/gd_46.png" id="177_extsw"]
+[ext_resource type="Texture2D" uid="uid://barbschbyw8tl" path="res://asset/pic/enemy/greenrock/dying/gd_47.png" id="178_thgys"]
+[ext_resource type="Texture2D" uid="uid://cg4b3q2c45h5w" path="res://asset/pic/enemy/greenrock/dying/gd_48.png" id="179_63xxk"]
+[ext_resource type="Texture2D" uid="uid://coiy5vmtvgdhe" path="res://asset/pic/enemy/greenrock/dying/gd_49.png" id="180_4fyi0"]
+[ext_resource type="Texture2D" uid="uid://k6j4u1bjoxj2" path="res://asset/pic/enemy/greenrock/dying/gd_50.png" id="181_d4ujf"]
+[ext_resource type="Texture2D" uid="uid://deug0gmb4sxsq" path="res://asset/pic/enemy/greenrock/dying/gd_51.png" id="182_xcjy0"]
+[ext_resource type="Texture2D" uid="uid://bshpo351yj6k8" path="res://asset/pic/enemy/greenrock/dying/gd_52.png" id="183_8fsr2"]
+[ext_resource type="Texture2D" uid="uid://bor3scxfhudun" path="res://asset/pic/enemy/greenrock/dying/gd_53.png" id="184_15akg"]
+[ext_resource type="Texture2D" uid="uid://cfeoos70mbvkk" path="res://asset/pic/enemy/greenrock/dying/gd_54.png" id="185_hnqna"]
+[ext_resource type="Texture2D" uid="uid://dlp757wgtsg2o" path="res://asset/pic/enemy/greenrock/dying/gd_55.png" id="186_av13u"]
+[ext_resource type="Texture2D" uid="uid://rnjtc5vm78dg" path="res://asset/pic/enemy/greenrock/dying/gd_56.png" id="187_q1ivw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m4g8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5im3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_14y0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tkdfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cjtj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_71433")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0t8c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xywuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qcc3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vda15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bw1op")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ixn7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7542c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6fxjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ycvcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_10toq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_w8d03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fj04c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fuj38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_7e84b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gyop1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5a52m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_62as3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_s0ibw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5wwvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_u21kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_apmju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_w35b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_j7gcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ww180")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_yn8eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_elqty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_sjg2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_bcdrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_rta7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_gokkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_mimoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_2t6qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_eu08j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_im8ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_wocua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_0hyoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_jqcm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_rlj14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_6d7ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_4p8dp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_nvpud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_qlcso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_2i1ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_bqty4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_h4df3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_5qhvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_npxnr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_4c5wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_l433k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_qyaib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_vfdql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_lf75r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_sf5sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_0hv4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_lj7h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_8fwu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_32uwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_cqspc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_xp14n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_5gllb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_vnd85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_oi0uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_mars7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_uejiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_aq77x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_cskat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_ehwny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_vmm10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_kntt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_exqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_3qmre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_dfdwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_fa8sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_5dofh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_mj6t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_fnlpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_p2kib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_o70pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_28m2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_yprjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_7lyfw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_fr3od")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_ff4hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_lalhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_kxdtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_54txv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_ifve6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_pwkj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_yf3kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_jy26t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_jm72u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_5itt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_8t434")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_6hqc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_j4pds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_saiva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_xgx7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_2lu1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ll874")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_yl3ba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_1avhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_42p44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_lc0ij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_er4sb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_21hgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_4hb8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_3wyrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_lwyrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_jljgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_6bo6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_ayexk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_0d65r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_qqprv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_csg8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_k4obn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_whqps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_ljqm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_pm3ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_xav7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_mc5i0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_fshj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_cahxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_aqsny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_wh3cq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_ygps5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("145_qxs6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_y4bfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_dl1gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_ntysd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_7n5un")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_q4luw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_cihe7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_nxpqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_nqodk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_u2b0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_mx7fc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_62scm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_go7rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_h7dk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_mgss1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_1ms5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_4aldi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_2louk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_hhbu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_4lu4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_jkuye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_8d36t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_rvfiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_c76yo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_ko0la")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_f8ces")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_icsej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_pe03d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_ftnml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_6qyjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_dbans")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_2yj0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_extsw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_thgys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_63xxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_4fyi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_d4ujf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_xcjy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_8fsr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_15akg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_hnqna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_av13u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_q1ivw")
+}],
+"loop": false,
+"name": &"die",
+"speed": 90.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_y78b6")]
+process_mode = 1
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_5m4g8")
+sprite_frames = SubResource("SpriteFrames_5im3c")
+frame_progress = 0.1038

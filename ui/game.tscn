@@ -1,0 +1,100 @@
+[gd_scene load_steps=30 format=3 uid="uid://pgotpk8ugeqs"]
+
+[ext_resource type="PackedScene" uid="uid://hstbyppinrro" path="res://ui/Scripts/Core/GUI/GUIViewManager.tscn" id="1_7pgd6"]
+[ext_resource type="PackedScene" uid="uid://q1xbyvts1yk4" path="res://ui/StartMenu/StartMenu.tscn" id="2_lroyr"]
+[ext_resource type="Script" path="res://ui/Scripts/Core/GUI/GUIViewConfig.gd" id="3_btr1i"]
+[ext_resource type="PackedScene" uid="uid://c1ccewwn1rfql" path="res://ui/SettingsMenu/SettingsMenu.tscn" id="4_m54sr"]
+[ext_resource type="PackedScene" uid="uid://daklkj46c774t" path="res://ui/ShopMenu/ShopMenu.tscn" id="5_mq2v4"]
+[ext_resource type="PackedScene" uid="uid://cnniu3dbjynwk" path="res://ui/StoryModeMenu/StoryModeMenu.tscn" id="6_f1l43"]
+[ext_resource type="PackedScene" uid="uid://bmdsmpxllgl75" path="res://ui/WikiMenu/WikiMenu.tscn" id="7_koyci"]
+[ext_resource type="PackedScene" uid="uid://duui0qg20kcrv" path="res://ui/InGame/InGame.tscn" id="8_k4et6"]
+[ext_resource type="PackedScene" uid="uid://buapai5om3oao" path="res://ui/LevelUp/LevelUp.tscn" id="9_5knof"]
+[ext_resource type="PackedScene" uid="uid://bfbx4h1lccqnn" path="res://ui/Hud/Hud.tscn" id="10_ls4hx"]
+[ext_resource type="PackedScene" uid="uid://7oqb4rblvirf" path="res://ui/PauseMenu/PauseMenu.tscn" id="11_but3r"]
+[ext_resource type="PackedScene" uid="uid://bxhe0o8utfl7j" path="res://ui/ClearMenu/ClearMenu.tscn" id="12_y7uxi"]
+[ext_resource type="PackedScene" uid="uid://ckywbpd3lrj8e" path="res://ui/Hud/TestHud.tscn" id="13_jkha8"]
+[ext_resource type="Script" path="res://ui/Scripts/Core/LaunchGame.gd" id="13_ntjm4"]
+[ext_resource type="PackedScene" uid="uid://dsmua8weisch7" path="res://ui/TestScene/TestScene.tscn" id="14_vf552"]
+[ext_resource type="PackedScene" uid="uid://tdm0tp1oy2j1" path="res://Dialogue/ui/DialogueMenu.tscn" id="15_u3f4g"]
+
+[sub_resource type="Resource" id="Resource_67yjm"]
+script = ExtResource("3_btr1i")
+id = &"StartMenu"
+prefab = ExtResource("2_lroyr")
+
+[sub_resource type="Resource" id="Resource_4b63o"]
+script = ExtResource("3_btr1i")
+id = &"SettingsMenu"
+prefab = ExtResource("4_m54sr")
+
+[sub_resource type="Resource" id="Resource_bthkb"]
+script = ExtResource("3_btr1i")
+id = &"ShopMenu"
+prefab = ExtResource("5_mq2v4")
+
+[sub_resource type="Resource" id="Resource_brtjf"]
+script = ExtResource("3_btr1i")
+id = &"StoryModeMenu"
+prefab = ExtResource("6_f1l43")
+
+[sub_resource type="Resource" id="Resource_rhlkv"]
+script = ExtResource("3_btr1i")
+id = &"WikiMenu"
+prefab = ExtResource("7_koyci")
+
+[sub_resource type="Resource" id="Resource_cwwhc"]
+script = ExtResource("3_btr1i")
+id = &"InGame"
+prefab = ExtResource("8_k4et6")
+
+[sub_resource type="Resource" id="Resource_0lsog"]
+script = ExtResource("3_btr1i")
+id = &"LevelUp"
+prefab = ExtResource("9_5knof")
+
+[sub_resource type="Resource" id="Resource_qempm"]
+script = ExtResource("3_btr1i")
+id = &"Hud"
+prefab = ExtResource("10_ls4hx")
+
+[sub_resource type="Resource" id="Resource_64v6i"]
+script = ExtResource("3_btr1i")
+id = &"PauseMenu"
+prefab = ExtResource("11_but3r")
+
+[sub_resource type="Resource" id="Resource_q4e2n"]
+script = ExtResource("3_btr1i")
+id = &"ClearMenu"
+prefab = ExtResource("12_y7uxi")
+
+[sub_resource type="Resource" id="Resource_h4njv"]
+script = ExtResource("3_btr1i")
+id = &"TestHud"
+prefab = ExtResource("13_jkha8")
+
+[sub_resource type="Resource" id="Resource_4xga7"]
+script = ExtResource("3_btr1i")
+id = &"TestScene"
+prefab = ExtResource("14_vf552")
+
+[sub_resource type="Resource" id="Resource_hlmya"]
+script = ExtResource("3_btr1i")
+id = &"DialogueMenu"
+prefab = ExtResource("15_u3f4g")
+
+[node name="Game" type="Node"]
+
+[node name="GUIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuiViewManager" parent="." node_paths=PackedStringArray("guiRoot") instance=ExtResource("1_7pgd6")]
+viewConfigList = Array[ExtResource("3_btr1i")]([SubResource("Resource_67yjm"), SubResource("Resource_4b63o"), SubResource("Resource_bthkb"), SubResource("Resource_brtjf"), SubResource("Resource_rhlkv"), SubResource("Resource_cwwhc"), SubResource("Resource_0lsog"), SubResource("Resource_qempm"), SubResource("Resource_64v6i"), SubResource("Resource_q4e2n"), SubResource("Resource_h4njv"), SubResource("Resource_4xga7"), SubResource("Resource_hlmya")])
+guiRoot = NodePath("../GUIRoot")
+
+[node name="LaunchGame" type="Node" parent="."]
+script = ExtResource("13_ntjm4")

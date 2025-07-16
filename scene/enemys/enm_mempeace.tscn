@@ -1,0 +1,719 @@
+[gd_scene load_steps=176 format=3 uid="uid://c664ooja3c2tc"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_3tqw3"]
+[ext_resource type="Texture2D" uid="uid://ctnyl5vqgsncm" path="res://asset/pic/enemy/bluerock/moving/bm_000.png" id="2_67xrb"]
+[ext_resource type="Texture2D" uid="uid://b745yxgit8yni" path="res://asset/pic/enemy/bluerock/moving/bm_001.png" id="3_prn8i"]
+[ext_resource type="Texture2D" uid="uid://tpuco3467vh2" path="res://asset/pic/enemy/bluerock/moving/bm_002.png" id="4_01sw3"]
+[ext_resource type="Texture2D" uid="uid://df3rixctguw0h" path="res://asset/pic/enemy/bluerock/moving/bm_003.png" id="5_pohr2"]
+[ext_resource type="Texture2D" uid="uid://c48v2nopmrkqn" path="res://asset/pic/enemy/bluerock/moving/bm_004.png" id="6_0tmoi"]
+[ext_resource type="Texture2D" uid="uid://dfi4euvjsa72" path="res://asset/pic/enemy/bluerock/moving/bm_005.png" id="7_iktky"]
+[ext_resource type="Texture2D" uid="uid://b46qil6w1e2ye" path="res://asset/pic/enemy/bluerock/moving/bm_006.png" id="8_nek2y"]
+[ext_resource type="Texture2D" uid="uid://vmvd3fa6gtf6" path="res://asset/pic/enemy/bluerock/moving/bm_007.png" id="9_tk0sa"]
+[ext_resource type="Texture2D" uid="uid://0kdocd5kqi0j" path="res://asset/pic/enemy/bluerock/moving/bm_008.png" id="10_20vjr"]
+[ext_resource type="Texture2D" uid="uid://burv4ke74im74" path="res://asset/pic/enemy/bluerock/moving/bm_009.png" id="11_k2mjs"]
+[ext_resource type="Texture2D" uid="uid://br1kd408ljm7p" path="res://asset/pic/enemy/bluerock/moving/bm_010.png" id="12_sybvp"]
+[ext_resource type="Texture2D" uid="uid://b80t8kumwxhje" path="res://asset/pic/enemy/bluerock/moving/bm_011.png" id="13_ncxuh"]
+[ext_resource type="Texture2D" uid="uid://dq2p6o7f540xs" path="res://asset/pic/enemy/bluerock/moving/bm_012.png" id="14_0h0py"]
+[ext_resource type="Texture2D" uid="uid://dl6qp0nd5sjth" path="res://asset/pic/enemy/bluerock/moving/bm_013.png" id="15_i0pml"]
+[ext_resource type="Texture2D" uid="uid://beh6c4jfsnux5" path="res://asset/pic/enemy/bluerock/moving/bm_014.png" id="16_0dq2c"]
+[ext_resource type="Texture2D" uid="uid://bwfjh1acbmumf" path="res://asset/pic/enemy/bluerock/moving/bm_015.png" id="17_mrboc"]
+[ext_resource type="Texture2D" uid="uid://bpi7ml6351tgq" path="res://asset/pic/enemy/bluerock/moving/bm_016.png" id="18_twwjm"]
+[ext_resource type="Texture2D" uid="uid://bfxyqdnlqjk4j" path="res://asset/pic/enemy/bluerock/moving/bm_017.png" id="19_od28k"]
+[ext_resource type="Texture2D" uid="uid://cdiox4oxrn4v5" path="res://asset/pic/enemy/bluerock/moving/bm_018.png" id="20_qvnvd"]
+[ext_resource type="Texture2D" uid="uid://4rjv671qssfg" path="res://asset/pic/enemy/bluerock/moving/bm_019.png" id="21_kh3nu"]
+[ext_resource type="Texture2D" uid="uid://de3ict0lp1y3w" path="res://asset/pic/enemy/bluerock/moving/bm_020.png" id="22_7eutp"]
+[ext_resource type="Texture2D" uid="uid://d3nmlke5316pf" path="res://asset/pic/enemy/bluerock/moving/bm_021.png" id="23_dtenu"]
+[ext_resource type="Texture2D" uid="uid://i2tymgajm4tw" path="res://asset/pic/enemy/bluerock/moving/bm_022.png" id="24_le7jk"]
+[ext_resource type="Texture2D" uid="uid://7svxj6os5um4" path="res://asset/pic/enemy/bluerock/moving/bm_023.png" id="25_v1cej"]
+[ext_resource type="Texture2D" uid="uid://crqwx4kjsb2y5" path="res://asset/pic/enemy/bluerock/moving/bm_024.png" id="26_gnab1"]
+[ext_resource type="Texture2D" uid="uid://cnrflyhlegimg" path="res://asset/pic/enemy/bluerock/moving/bm_025.png" id="27_fl6m5"]
+[ext_resource type="Texture2D" uid="uid://mprjaks2uuax" path="res://asset/pic/enemy/bluerock/moving/bm_026.png" id="28_tael0"]
+[ext_resource type="Texture2D" uid="uid://p5cgp2v3s5wb" path="res://asset/pic/enemy/bluerock/moving/bm_027.png" id="29_3kusa"]
+[ext_resource type="Texture2D" uid="uid://du0rgpuiugt0o" path="res://asset/pic/enemy/bluerock/moving/bm_028.png" id="30_xyedi"]
+[ext_resource type="Texture2D" uid="uid://dbn48t82fwhf" path="res://asset/pic/enemy/bluerock/moving/bm_029.png" id="31_ucct2"]
+[ext_resource type="Texture2D" uid="uid://bomqach6ubicm" path="res://asset/pic/enemy/bluerock/moving/bm_030.png" id="32_tc2um"]
+[ext_resource type="Texture2D" uid="uid://urejscq0bvr6" path="res://asset/pic/enemy/bluerock/moving/bm_031.png" id="33_q7it2"]
+[ext_resource type="Texture2D" uid="uid://blnbytygms8yo" path="res://asset/pic/enemy/bluerock/moving/bm_032.png" id="34_nndkn"]
+[ext_resource type="Texture2D" uid="uid://ra2xpetvhc82" path="res://asset/pic/enemy/bluerock/moving/bm_033.png" id="35_pixug"]
+[ext_resource type="Texture2D" uid="uid://dwgjmv1ukniqt" path="res://asset/pic/enemy/bluerock/moving/bm_034.png" id="36_qicn0"]
+[ext_resource type="Texture2D" uid="uid://h28swfch4ob5" path="res://asset/pic/enemy/bluerock/moving/bm_035.png" id="37_x4840"]
+[ext_resource type="Texture2D" uid="uid://bm623htkufsv7" path="res://asset/pic/enemy/bluerock/moving/bm_036.png" id="38_ec2jy"]
+[ext_resource type="Texture2D" uid="uid://b7f5y2vn3r2u0" path="res://asset/pic/enemy/bluerock/moving/bm_037.png" id="39_7omhb"]
+[ext_resource type="Texture2D" uid="uid://dlao2c0ixafqt" path="res://asset/pic/enemy/bluerock/moving/bm_038.png" id="40_dtfgn"]
+[ext_resource type="Texture2D" uid="uid://pnccc2mg2p4c" path="res://asset/pic/enemy/bluerock/moving/bm_039.png" id="41_ur452"]
+[ext_resource type="Texture2D" uid="uid://brhq5adhovola" path="res://asset/pic/enemy/bluerock/moving/bm_040.png" id="42_vndts"]
+[ext_resource type="Texture2D" uid="uid://cpbfdicfruqou" path="res://asset/pic/enemy/bluerock/moving/bm_041.png" id="43_gmhjd"]
+[ext_resource type="Texture2D" uid="uid://cqpuwv7ci02io" path="res://asset/pic/enemy/bluerock/moving/bm_042.png" id="44_q7m56"]
+[ext_resource type="Texture2D" uid="uid://b1wfiuyjoyjfd" path="res://asset/pic/enemy/bluerock/moving/bm_043.png" id="45_ctt8k"]
+[ext_resource type="Texture2D" uid="uid://banrjisu1fpk4" path="res://asset/pic/enemy/bluerock/moving/bm_044.png" id="46_wupj3"]
+[ext_resource type="Texture2D" uid="uid://by8a2okota6u8" path="res://asset/pic/enemy/bluerock/moving/bm_045.png" id="47_i6r5q"]
+[ext_resource type="Texture2D" uid="uid://b3mkv2y88m1wi" path="res://asset/pic/enemy/bluerock/moving/bm_046.png" id="48_acqx4"]
+[ext_resource type="Texture2D" uid="uid://bvc77o138gh17" path="res://asset/pic/enemy/bluerock/moving/bm_047.png" id="49_o6bjy"]
+[ext_resource type="Texture2D" uid="uid://diqwsgssqo5p" path="res://asset/pic/enemy/bluerock/moving/bm_048.png" id="50_vjwq8"]
+[ext_resource type="Texture2D" uid="uid://cnbce3lf8rd77" path="res://asset/pic/enemy/bluerock/moving/bm_049.png" id="51_jqmyt"]
+[ext_resource type="Texture2D" uid="uid://dxsxd4vojalmt" path="res://asset/pic/enemy/bluerock/moving/bm_050.png" id="52_14ct6"]
+[ext_resource type="Texture2D" uid="uid://cmban8m0ap2fl" path="res://asset/pic/enemy/bluerock/moving/bm_051.png" id="53_f1aqd"]
+[ext_resource type="Texture2D" uid="uid://dbbmi4mrq06uo" path="res://asset/pic/enemy/bluerock/moving/bm_052.png" id="54_86qty"]
+[ext_resource type="Texture2D" uid="uid://bcb4wwexam5f8" path="res://asset/pic/enemy/bluerock/moving/bm_053.png" id="55_4p27k"]
+[ext_resource type="Texture2D" uid="uid://cf7jrchng0vg" path="res://asset/pic/enemy/bluerock/moving/bm_054.png" id="56_frsjl"]
+[ext_resource type="Texture2D" uid="uid://dhpkypp7mmidd" path="res://asset/pic/enemy/bluerock/moving/bm_055.png" id="57_d6aqh"]
+[ext_resource type="Texture2D" uid="uid://1swpi1f3bff" path="res://asset/pic/enemy/bluerock/moving/bm_056.png" id="58_7ore8"]
+[ext_resource type="Texture2D" uid="uid://dy1f3nelc86vs" path="res://asset/pic/enemy/bluerock/moving/bm_057.png" id="59_ykeyj"]
+[ext_resource type="Texture2D" uid="uid://cu7kaam2mmkuj" path="res://asset/pic/enemy/bluerock/moving/bm_058.png" id="60_p5h7t"]
+[ext_resource type="Texture2D" uid="uid://c4cei0uxixbru" path="res://asset/pic/enemy/bluerock/moving/bm_059.png" id="61_jy1fw"]
+[ext_resource type="Texture2D" uid="uid://bo5ldtomqhofb" path="res://asset/pic/enemy/bluerock/moving/bm_060.png" id="62_76hmy"]
+[ext_resource type="Texture2D" uid="uid://c10u6n52l03os" path="res://asset/pic/enemy/bluerock/moving/bm_061.png" id="63_qorqr"]
+[ext_resource type="Texture2D" uid="uid://dplhu8tpymvm" path="res://asset/pic/enemy/bluerock/moving/bm_062.png" id="64_u18og"]
+[ext_resource type="Texture2D" uid="uid://cxo2eg4hl0brd" path="res://asset/pic/enemy/bluerock/moving/bm_063.png" id="65_hiq6d"]
+[ext_resource type="Texture2D" uid="uid://ghm5ac4hyeai" path="res://asset/pic/enemy/bluerock/moving/bm_064.png" id="66_t2t4o"]
+[ext_resource type="Texture2D" uid="uid://cqm25ygk8w3qu" path="res://asset/pic/enemy/bluerock/moving/bm_065.png" id="67_qk2gd"]
+[ext_resource type="Texture2D" uid="uid://c2aphkuh5tiie" path="res://asset/pic/enemy/bluerock/moving/bm_066.png" id="68_j7cpp"]
+[ext_resource type="Texture2D" uid="uid://v6kv0ehdsau1" path="res://asset/pic/enemy/bluerock/moving/bm_067.png" id="69_wcd26"]
+[ext_resource type="Texture2D" uid="uid://ceo5f0go08cy2" path="res://asset/pic/enemy/bluerock/moving/bm_068.png" id="70_3437j"]
+[ext_resource type="Texture2D" uid="uid://o8rl0iue2q5r" path="res://asset/pic/enemy/bluerock/moving/bm_069.png" id="71_cdpd2"]
+[ext_resource type="Texture2D" uid="uid://cvir6phi4tef7" path="res://asset/pic/enemy/bluerock/moving/bm_070.png" id="72_aphjp"]
+[ext_resource type="Texture2D" uid="uid://bprtygb6pfjgb" path="res://asset/pic/enemy/bluerock/moving/bm_071.png" id="73_yhrnd"]
+[ext_resource type="Texture2D" uid="uid://ocdl3xs5w162" path="res://asset/pic/enemy/bluerock/moving/bm_072.png" id="74_76a7y"]
+[ext_resource type="Texture2D" uid="uid://bfnr16707h4cb" path="res://asset/pic/enemy/bluerock/moving/bm_073.png" id="75_d4h0v"]
+[ext_resource type="Texture2D" uid="uid://5tsqyv6nacg7" path="res://asset/pic/enemy/bluerock/moving/bm_074.png" id="76_uqhgi"]
+[ext_resource type="Texture2D" uid="uid://cbaiarb3diqv2" path="res://asset/pic/enemy/bluerock/moving/bm_075.png" id="77_p03cg"]
+[ext_resource type="Texture2D" uid="uid://3643fkkdt3ww" path="res://asset/pic/enemy/bluerock/moving/bm_076.png" id="78_egnal"]
+[ext_resource type="Texture2D" uid="uid://b5w85jebn7oaa" path="res://asset/pic/enemy/bluerock/moving/bm_077.png" id="79_fisre"]
+[ext_resource type="Texture2D" uid="uid://cffepi51xu1vw" path="res://asset/pic/enemy/bluerock/moving/bm_078.png" id="80_k8ovr"]
+[ext_resource type="Texture2D" uid="uid://cmm6tqtdu3l2s" path="res://asset/pic/enemy/bluerock/moving/bm_079.png" id="81_3gr30"]
+[ext_resource type="Texture2D" uid="uid://b8dpsdb4balwe" path="res://asset/pic/enemy/bluerock/moving/bm_080.png" id="82_12pdh"]
+[ext_resource type="Texture2D" uid="uid://d37b5m2nc8uot" path="res://asset/pic/enemy/bluerock/moving/bm_081.png" id="83_1xlvr"]
+[ext_resource type="Texture2D" uid="uid://1rpwypdbcijs" path="res://asset/pic/enemy/bluerock/moving/bm_082.png" id="84_mqniy"]
+[ext_resource type="Texture2D" uid="uid://cetil4i7ucw1d" path="res://asset/pic/enemy/bluerock/moving/bm_083.png" id="85_twsvk"]
+[ext_resource type="Texture2D" uid="uid://dlgg08gyhisfy" path="res://asset/pic/enemy/bluerock/moving/bm_084.png" id="86_3838c"]
+[ext_resource type="Texture2D" uid="uid://bvw2icyetrle8" path="res://asset/pic/enemy/bluerock/moving/bm_085.png" id="87_nv57g"]
+[ext_resource type="Texture2D" uid="uid://c2g3qcqcxs6xb" path="res://asset/pic/enemy/bluerock/moving/bm_086.png" id="88_70fsf"]
+[ext_resource type="Texture2D" uid="uid://bbcm5wtot5310" path="res://asset/pic/enemy/bluerock/moving/bm_087.png" id="89_p33lr"]
+[ext_resource type="Texture2D" uid="uid://mkfjt2o44j2c" path="res://asset/pic/enemy/bluerock/moving/bm_088.png" id="90_r0p8p"]
+[ext_resource type="Texture2D" uid="uid://bfm72sjl2rvsr" path="res://asset/pic/enemy/bluerock/moving/bm_089.png" id="91_fgy4b"]
+[ext_resource type="Texture2D" uid="uid://b7dxy35h432ah" path="res://asset/pic/enemy/bluerock/moving/bm_090.png" id="92_64dli"]
+[ext_resource type="Texture2D" uid="uid://dvdhw1oq5kmfs" path="res://asset/pic/enemy/bluerock/moving/bm_091.png" id="93_hhcwb"]
+[ext_resource type="Texture2D" uid="uid://c72bp3ef2c171" path="res://asset/pic/enemy/bluerock/moving/bm_092.png" id="94_qdi62"]
+[ext_resource type="Texture2D" uid="uid://cqg7xwgtioi2k" path="res://asset/pic/enemy/bluerock/moving/bm_093.png" id="95_nipql"]
+[ext_resource type="Texture2D" uid="uid://o6lphwghfc6i" path="res://asset/pic/enemy/bluerock/moving/bm_094.png" id="96_78pmy"]
+[ext_resource type="Texture2D" uid="uid://bxaimx6v03jjt" path="res://asset/pic/enemy/bluerock/moving/bm_095.png" id="97_gfrsn"]
+[ext_resource type="Texture2D" uid="uid://taijm0chbm1y" path="res://asset/pic/enemy/bluerock/moving/bm_096.png" id="98_dmmph"]
+[ext_resource type="Texture2D" uid="uid://bibu01do7r7ix" path="res://asset/pic/enemy/bluerock/moving/bm_097.png" id="99_xph3k"]
+[ext_resource type="Texture2D" uid="uid://bfxvdyeksq11" path="res://asset/pic/enemy/bluerock/moving/bm_098.png" id="100_e8htn"]
+[ext_resource type="Texture2D" uid="uid://b526uchg0l26u" path="res://asset/pic/enemy/bluerock/moving/bm_099.png" id="101_6vnhk"]
+[ext_resource type="Texture2D" uid="uid://emiuuwrydk37" path="res://asset/pic/enemy/bluerock/moving/bm_100.png" id="102_qxe32"]
+[ext_resource type="Texture2D" uid="uid://pja7am5csn8q" path="res://asset/pic/enemy/bluerock/moving/bm_101.png" id="103_kgjtv"]
+[ext_resource type="Texture2D" uid="uid://mpjcpkpi10lc" path="res://asset/pic/enemy/bluerock/moving/bm_102.png" id="104_k5vu7"]
+[ext_resource type="Texture2D" uid="uid://bs3p88qtc34q4" path="res://asset/pic/enemy/bluerock/moving/bm_103.png" id="105_jiiqr"]
+[ext_resource type="Texture2D" uid="uid://captpmv3ut520" path="res://asset/pic/enemy/bluerock/moving/bm_104.png" id="106_682au"]
+[ext_resource type="Texture2D" uid="uid://m4sa2i3j1yjf" path="res://asset/pic/enemy/bluerock/moving/bm_105.png" id="107_ok18g"]
+[ext_resource type="Texture2D" uid="uid://bwx4prlofg5vk" path="res://asset/pic/enemy/bluerock/moving/bm_106.png" id="108_tgfxc"]
+[ext_resource type="Texture2D" uid="uid://mvucokviprjx" path="res://asset/pic/enemy/bluerock/moving/bm_107.png" id="109_qe7oy"]
+[ext_resource type="Texture2D" uid="uid://c77bg2ieabev" path="res://asset/pic/enemy/bluerock/moving/bm_108.png" id="110_jgt8y"]
+[ext_resource type="Texture2D" uid="uid://76rmo7mqu5lu" path="res://asset/pic/enemy/bluerock/moving/bm_109.png" id="111_xeyod"]
+[ext_resource type="Texture2D" uid="uid://dv0eb40u2te1" path="res://asset/pic/enemy/bluerock/moving/bm_110.png" id="112_jrvyc"]
+[ext_resource type="Texture2D" uid="uid://6ah2nl77ccqq" path="res://asset/pic/enemy/bluerock/moving/bm_111.png" id="113_wt73t"]
+[ext_resource type="Texture2D" uid="uid://c374575qxx35o" path="res://asset/pic/enemy/bluerock/moving/bm_112.png" id="114_jcvoa"]
+[ext_resource type="Texture2D" uid="uid://c14u14f62x2r6" path="res://asset/pic/enemy/bluerock/moving/bm_113.png" id="115_imogd"]
+[ext_resource type="Texture2D" uid="uid://vifjumt2sao2" path="res://asset/pic/enemy/bluerock/moving/bm_114.png" id="116_ggtqa"]
+[ext_resource type="Texture2D" uid="uid://f718ot3yht68" path="res://asset/pic/enemy/bluerock/moving/bm_115.png" id="117_0uk1i"]
+[ext_resource type="Texture2D" uid="uid://bx0k8rfl0ffml" path="res://asset/pic/enemy/bluerock/moving/bm_116.png" id="118_ohwtn"]
+[ext_resource type="Texture2D" uid="uid://ma8rq5hbvm0g" path="res://asset/pic/enemy/bluerock/moving/bm_117.png" id="119_2aryw"]
+[ext_resource type="Texture2D" uid="uid://fxuqpqwsuine" path="res://asset/pic/enemy/bluerock/moving/bm_118.png" id="120_iqcrr"]
+[ext_resource type="Texture2D" uid="uid://coryg0bfpjit0" path="res://asset/pic/enemy/bluerock/moving/bm_119.png" id="121_5qjt2"]
+[ext_resource type="Texture2D" uid="uid://v2nq6l6dvshu" path="res://asset/pic/enemy/bluerock/moving/bm_120.png" id="122_4oqpk"]
+[ext_resource type="Texture2D" uid="uid://lmlwkg8jg3hu" path="res://asset/pic/enemy/bluerock/moving/bm_121.png" id="123_i4hpg"]
+[ext_resource type="Texture2D" uid="uid://du4xtlmn0ystg" path="res://asset/pic/enemy/bluerock/moving/bm_122.png" id="124_otybh"]
+[ext_resource type="Texture2D" uid="uid://xykjoyiq2crx" path="res://asset/pic/enemy/bluerock/moving/bm_123.png" id="125_i1lwu"]
+[ext_resource type="Texture2D" uid="uid://bvpwx4p7m77g" path="res://asset/pic/enemy/bluerock/moving/bm_124.png" id="126_cs4q4"]
+[ext_resource type="Texture2D" uid="uid://dno4ll371gd4r" path="res://asset/pic/enemy/bluerock/moving/bm_125.png" id="127_j4aur"]
+[ext_resource type="Texture2D" uid="uid://cygf7cr335wdw" path="res://asset/pic/enemy/bluerock/moving/bm_126.png" id="128_w1hn4"]
+[ext_resource type="Texture2D" uid="uid://digajr1e1ls22" path="res://asset/pic/enemy/bluerock/moving/bm_127.png" id="129_bsc4k"]
+[ext_resource type="Texture2D" uid="uid://dlm7unbm3s85v" path="res://asset/pic/enemy/bluerock/moving/bm_128.png" id="130_lt8ox"]
+[ext_resource type="Texture2D" uid="uid://c322ijdkvbxkh" path="res://asset/pic/enemy/bluerock/dying/bd_14.png" id="145_cjob5"]
+[ext_resource type="Texture2D" uid="uid://bpeyr6qiqkj2u" path="res://asset/pic/enemy/bluerock/dying/bd_15.png" id="146_nlrt6"]
+[ext_resource type="Texture2D" uid="uid://gt5xmyk1hio2" path="res://asset/pic/enemy/bluerock/dying/bd_16.png" id="147_uslw4"]
+[ext_resource type="Texture2D" uid="uid://cg84f6f3d7oye" path="res://asset/pic/enemy/bluerock/dying/bd_17.png" id="148_807gx"]
+[ext_resource type="Texture2D" uid="uid://0b13ivpqgrxm" path="res://asset/pic/enemy/bluerock/dying/bd_18.png" id="149_1xmca"]
+[ext_resource type="Texture2D" uid="uid://dufy67ijol8q8" path="res://asset/pic/enemy/bluerock/dying/bd_19.png" id="150_31u2m"]
+[ext_resource type="Texture2D" uid="uid://b0iu3p1oaa1wu" path="res://asset/pic/enemy/bluerock/dying/bd_20.png" id="151_672yx"]
+[ext_resource type="Texture2D" uid="uid://df6q2e5aeycor" path="res://asset/pic/enemy/bluerock/dying/bd_21.png" id="152_qw0bw"]
+[ext_resource type="Texture2D" uid="uid://dmihxt1bijea2" path="res://asset/pic/enemy/bluerock/dying/bd_22.png" id="153_ncerx"]
+[ext_resource type="Texture2D" uid="uid://bgvw48nsx8v4c" path="res://asset/pic/enemy/bluerock/dying/bd_23.png" id="154_ha5q6"]
+[ext_resource type="Texture2D" uid="uid://sv0t4qbmon36" path="res://asset/pic/enemy/bluerock/dying/bd_24.png" id="155_rh6jn"]
+[ext_resource type="Texture2D" uid="uid://b1e61x63d81uv" path="res://asset/pic/enemy/bluerock/dying/bd_25.png" id="156_kirvw"]
+[ext_resource type="Texture2D" uid="uid://dl72ey28umcnm" path="res://asset/pic/enemy/bluerock/dying/bd_26.png" id="157_ka3cd"]
+[ext_resource type="Texture2D" uid="uid://d0pdgggplhf5c" path="res://asset/pic/enemy/bluerock/dying/bd_27.png" id="158_ayo6l"]
+[ext_resource type="Texture2D" uid="uid://b0lwsechcgvcl" path="res://asset/pic/enemy/bluerock/dying/bd_28.png" id="159_bs6v4"]
+[ext_resource type="Texture2D" uid="uid://dw8k6gadl3igp" path="res://asset/pic/enemy/bluerock/dying/bd_29.png" id="160_1fg5c"]
+[ext_resource type="Texture2D" uid="uid://d07efuc1rf4h1" path="res://asset/pic/enemy/bluerock/dying/bd_30.png" id="161_amqid"]
+[ext_resource type="Texture2D" uid="uid://dg3xpxnjwl8wc" path="res://asset/pic/enemy/bluerock/dying/bd_31.png" id="162_cx87a"]
+[ext_resource type="Texture2D" uid="uid://du78xpno7tbq3" path="res://asset/pic/enemy/bluerock/dying/bd_32.png" id="163_3c3yx"]
+[ext_resource type="Texture2D" uid="uid://4uf2hnpjoctj" path="res://asset/pic/enemy/bluerock/dying/bd_33.png" id="164_x2ahf"]
+[ext_resource type="Texture2D" uid="uid://cuoaoh4btn5xc" path="res://asset/pic/enemy/bluerock/dying/bd_34.png" id="165_n60bd"]
+[ext_resource type="Texture2D" uid="uid://ddrun8ugrgx1t" path="res://asset/pic/enemy/bluerock/dying/bd_35.png" id="166_t5ynu"]
+[ext_resource type="Texture2D" uid="uid://l708sp8ap3nk" path="res://asset/pic/enemy/bluerock/dying/bd_36.png" id="167_544mw"]
+[ext_resource type="Texture2D" uid="uid://cimic2da14pmi" path="res://asset/pic/enemy/bluerock/dying/bd_37.png" id="168_v532k"]
+[ext_resource type="Texture2D" uid="uid://b2qrugx8mee1u" path="res://asset/pic/enemy/bluerock/dying/bd_38.png" id="169_5fg1v"]
+[ext_resource type="Texture2D" uid="uid://dda2h5k61754g" path="res://asset/pic/enemy/bluerock/dying/bd_39.png" id="170_m6j1h"]
+[ext_resource type="Texture2D" uid="uid://c6y80xrktax04" path="res://asset/pic/enemy/bluerock/dying/bd_40.png" id="171_mvufd"]
+[ext_resource type="Texture2D" uid="uid://tw3p3eio7dpm" path="res://asset/pic/enemy/bluerock/dying/bd_41.png" id="172_any1g"]
+[ext_resource type="Texture2D" uid="uid://c74q1dls6gq5j" path="res://asset/pic/enemy/bluerock/dying/bd_42.png" id="173_ompel"]
+[ext_resource type="Texture2D" uid="uid://bfix6golpkj6h" path="res://asset/pic/enemy/bluerock/dying/bd_43.png" id="174_5uqx4"]
+[ext_resource type="Texture2D" uid="uid://p2eeuwwldhyh" path="res://asset/pic/enemy/bluerock/dying/bd_44.png" id="175_aiwwx"]
+[ext_resource type="Texture2D" uid="uid://c2qafr6otn1t3" path="res://asset/pic/enemy/bluerock/dying/bd_45.png" id="176_uu7g3"]
+[ext_resource type="Texture2D" uid="uid://bumqt8lug3gv3" path="res://asset/pic/enemy/bluerock/dying/bd_46.png" id="177_lwmbp"]
+[ext_resource type="Texture2D" uid="uid://bs5dtytvtuj4r" path="res://asset/pic/enemy/bluerock/dying/bd_47.png" id="178_5j8p0"]
+[ext_resource type="Texture2D" uid="uid://dvngxi6mkscip" path="res://asset/pic/enemy/bluerock/dying/bd_48.png" id="179_7bsf6"]
+[ext_resource type="Texture2D" uid="uid://b5pyispnynk6h" path="res://asset/pic/enemy/bluerock/dying/bd_49.png" id="180_00xb1"]
+[ext_resource type="Texture2D" uid="uid://b33nfr34dvsom" path="res://asset/pic/enemy/bluerock/dying/bd_50.png" id="181_drcfu"]
+[ext_resource type="Texture2D" uid="uid://pqffbst2t1w5" path="res://asset/pic/enemy/bluerock/dying/bd_51.png" id="182_u1167"]
+[ext_resource type="Texture2D" uid="uid://cne8vnkl6i7tx" path="res://asset/pic/enemy/bluerock/dying/bd_52.png" id="183_s7srn"]
+[ext_resource type="Texture2D" uid="uid://7pqobt81mdym" path="res://asset/pic/enemy/bluerock/dying/bd_53.png" id="184_imcc5"]
+[ext_resource type="Texture2D" uid="uid://djjlut0dl4lbc" path="res://asset/pic/enemy/bluerock/dying/bd_54.png" id="185_jh3x5"]
+[ext_resource type="Texture2D" uid="uid://c71t40mi5nuim" path="res://asset/pic/enemy/bluerock/dying/bd_55.png" id="186_ffs8n"]
+[ext_resource type="Texture2D" uid="uid://bup26q5nr2x6b" path="res://asset/pic/enemy/bluerock/dying/bd_56.png" id="187_g86h8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6411r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lppg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_67xrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_prn8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_01sw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pohr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0tmoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_iktky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nek2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tk0sa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_20vjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k2mjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_sybvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ncxuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0h0py")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_i0pml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0dq2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_mrboc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_twwjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_od28k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_qvnvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_kh3nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7eutp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_dtenu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_le7jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_v1cej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_gnab1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_fl6m5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_tael0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_3kusa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xyedi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ucct2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_tc2um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_q7it2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_nndkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_pixug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_qicn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_x4840")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ec2jy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_7omhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_dtfgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_ur452")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_vndts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_gmhjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_q7m56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_ctt8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_wupj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_i6r5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_acqx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_o6bjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_vjwq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_jqmyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_14ct6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_f1aqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_86qty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_4p27k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_frsjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_d6aqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_7ore8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ykeyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_p5h7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_jy1fw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_76hmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_qorqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_u18og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_hiq6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_t2t4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_qk2gd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_j7cpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_wcd26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_3437j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_cdpd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_aphjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_yhrnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_76a7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_d4h0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_uqhgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_p03cg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_egnal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_fisre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_k8ovr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_3gr30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_12pdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_1xlvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_mqniy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_twsvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_3838c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_nv57g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_70fsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_p33lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_r0p8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_fgy4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_64dli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_hhcwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_qdi62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_nipql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_78pmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_gfrsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_dmmph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_xph3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_e8htn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_6vnhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_qxe32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_kgjtv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_k5vu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_jiiqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_682au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_ok18g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_tgfxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_qe7oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_jgt8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_xeyod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_jrvyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_wt73t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_jcvoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_imogd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_ggtqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_0uk1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_ohwtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_2aryw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_iqcrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_5qjt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_4oqpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_i4hpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_otybh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_i1lwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_cs4q4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_j4aur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_w1hn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_bsc4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_lt8ox")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("145_cjob5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_nlrt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_uslw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_807gx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_1xmca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_31u2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_672yx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_qw0bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_ncerx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_ha5q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_rh6jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_kirvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_ka3cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_ayo6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_bs6v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_1fg5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_amqid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_cx87a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_3c3yx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_x2ahf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_n60bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_t5ynu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_544mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_v532k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_5fg1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_m6j1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_mvufd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_any1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_ompel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_5uqx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_aiwwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_uu7g3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_lwmbp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_5j8p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_7bsf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_00xb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_drcfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_u1167")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_s7srn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_imcc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_jh3x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_ffs8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_g86h8")
+}],
+"loop": false,
+"name": &"die",
+"speed": 90.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_3tqw3")]
+process_mode = 1
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("CanvasItemMaterial_6411r")
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_lppg4")
+animation = &"die"
+
+[node name="ProgressBar" parent="." index="3"]
+offset_top = -27.0
+offset_bottom = -7.0

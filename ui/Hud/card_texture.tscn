@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b423fr4pl50lx"]
+
+[ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="1_pxaq0"]
+[ext_resource type="Script" path="res://ui/Hud/card_texture.gd" id="2_d07md"]
+
+[node name="card_texture" type="TextureRect"]
+custom_minimum_size = Vector2(1, 0)
+pivot_offset = Vector2(400, 400)
+texture = ExtResource("1_pxaq0")
+stretch_mode = 3
+script = ExtResource("2_d07md")
+
+[node name="cn" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -13.0
+offset_top = -299.0
+offset_right = 796.0
+offset_bottom = -107.0
+theme_override_font_sizes/normal_font_size = 150
+text = "魔理沙"
+fit_content = true

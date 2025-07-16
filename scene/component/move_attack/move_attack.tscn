@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://erqlfgsjsgne"]
+
+[ext_resource type="Script" path="res://scene/component/move_attack/move_attack.gd" id="1_qrp53"]
+
+[node name="Move" type="Node2D"]
+script = ExtResource("1_qrp53")

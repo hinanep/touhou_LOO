@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://clmx1f2x0jsxs"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_bg30o"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_aflkx"]
+[ext_resource type="Texture2D" uid="uid://cp4u0gu7at4am" path="res://asset/pic/bullet/日符.png" id="3_vkqjo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0ct6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vkqjo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[node name="Attack" instance=ExtResource("1_bg30o")]
+script = ExtResource("2_aflkx")
+
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_j0ct6")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("WorldBoundaryShape2D_74emn")

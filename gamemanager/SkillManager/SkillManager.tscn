@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3t31ldr8ounp"]
+
+[ext_resource type="Script" path="res://gamemanager/SkillManager/SkillManager.gd" id="1_ldvv3"]
+
+[node name="SkillManager" type="Node"]
+script = ExtResource("1_ldvv3")

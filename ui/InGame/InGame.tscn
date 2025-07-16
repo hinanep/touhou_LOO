@@ -1,0 +1,136 @@
+[gd_scene load_steps=17 format=3 uid="uid://duui0qg20kcrv"]
+
+[ext_resource type="Script" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
+[ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
+[ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="3_802rx"]
+[ext_resource type="Script" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
+[ext_resource type="Script" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
+[ext_resource type="Script" path="res://ui/InGame/d4c.gd" id="6_fs76o"]
+[ext_resource type="Shader" path="res://ui/InGame/bara.gdshader" id="8_mw3nd"]
+[ext_resource type="Texture2D" uid="uid://d4jrxtjuudd5v" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png" id="9_3sgji"]
+[ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
+
+[sub_resource type="Curve2D" id="Curve2D_wc05l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 240, 142, 0, 0, 0, 0, -237, 139.5, 0, 0, 0, 0, -238, -133.5, 0, 0, 0, 0, 239, -135, 0, 0, 0, 0, 240, 142.5)
+}
+point_count = 5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_281ib"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpjx8"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dbslg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6actc"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j32mr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uwby5"]
+shader = ExtResource("8_mw3nd")
+shader_parameter/time_factor = 1.058
+shader_parameter/progress = 0.0
+shader_parameter/oneshot = false
+shader_parameter/init_size = 0.1
+shader_parameter/init_interval = 0.2
+shader_parameter/init_offset = 0.1
+shader_parameter/init_num = 5.0
+shader_parameter/init_direction = Vector2(0, 0)
+shader_parameter/rnd_direction_factor = Vector2(1, 1)
+shader_parameter/rnd_size_factor = Vector2(0, 0)
+shader_parameter/rnd_rotate_factor = 20.0
+shader_parameter/rnd_rotate_offset = 0.0
+shader_parameter/angle_velocity_min = 0.0
+shader_parameter/angle_velocity_max = 0.0
+shader_parameter/expand_factor = Vector2(4, 4)
+shader_parameter/expand_offset = Vector2(-1.5, -1.5)
+shader_parameter/bounce_thresh = 0.0
+shader_parameter/bounce_factor = 1.0
+
+[node name="InGame" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 470.0
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y0rgb")
+
+[node name="player" parent="." groups=["player"] instance=ExtResource("2_34uwu")]
+unique_name_in_owner = true
+process_mode = 1
+safe_margin = 1.0
+
+[node name="monster_spawn_line" type="Path2D" parent="player"]
+scale = Vector2(4, 4)
+curve = SubResource("Curve2D_wc05l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
+position = Vector2(240, 142)
+rotation = -3.13635
+
+[node name="PointLight2D" type="PointLight2D" parent="player"]
+scale = Vector2(5.6, 5.6)
+energy = 0.91
+texture = ExtResource("3_802rx")
+
+[node name="SpawnManager" type="Node2D" parent="." groups=["SpawnManager"]]
+process_mode = 1
+script = ExtResource("4_2ujjm")
+
+[node name="drops" type="Node2D" parent="SpawnManager"]
+script = ExtResource("5_7ehn4")
+
+[node name="d4c" type="Node2D" parent="SpawnManager"]
+script = ExtResource("6_fs76o")
+
+[node name="air_wall" type="StaticBody2D" parent="."]
+collision_layer = 36
+collision_mask = 0
+
+[node name="left" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(-1321, 0)
+shape = SubResource("WorldBoundaryShape2D_281ib")
+
+[node name="top" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(0, -1800)
+shape = SubResource("WorldBoundaryShape2D_vpjx8")
+
+[node name="down" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(0, 1050)
+shape = SubResource("WorldBoundaryShape2D_dbslg")
+
+[node name="right" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(1377, -6)
+shape = SubResource("WorldBoundaryShape2D_6actc")
+
+[node name="end_game" type="Timer" parent="."]
+process_mode = 1
+wait_time = 365.0
+one_shot = true
+autostart = true
+
+[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+color = Color(0.709804, 0.807843, 0.835294, 1)
+
+[node name="Node2D" parent="." instance=ExtResource("9_7xnml")]
+z_index = -500
+z_as_relative = false
+material = SubResource("ShaderMaterial_j32mr")
+position = Vector2(0, -200)
+
+[node name="记忆幻影-alllllllll000" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_uwby5")
+position = Vector2(606, 135)
+texture = ExtResource("9_3sgji")
+
+[connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]

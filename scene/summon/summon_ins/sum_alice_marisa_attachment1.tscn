@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://xl116nrs0eme"]
+
+[ext_resource type="PackedScene" uid="uid://xgi6s0ewkkow" path="res://scene/summon/summon.tscn" id="1_63xra"]
+[ext_resource type="Texture2D" uid="uid://ct5fpqgultvns" path="res://asset/pic/bullet/人形.png" id="2_txixn"]
+[ext_resource type="Texture2D" uid="uid://cu85o2uhx1ghh" path="res://asset/pic/bullet/人形(镜像.png" id="3_p1m5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy0ip"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv1ll"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2jt6"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1ove"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iuts"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m33h"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv730"]
+atlas = ExtResource("2_txixn")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gger"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt4uq"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgpg7"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omf05"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cuph"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd3au"]
+atlas = ExtResource("3_p1m5j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_px1a4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy0ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv1ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2jt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1ove")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iuts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m33h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv730")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gger")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt4uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgpg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omf05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cuph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd3au")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"rush",
+"speed": 5.0
+}]
+
+[node name="Summon" instance=ExtResource("1_63xra")]
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_px1a4")

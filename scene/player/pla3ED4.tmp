@@ -1,0 +1,130 @@
+[gd_scene load_steps=19 format=3 uid="uid://c0o2d1rqeugpm"]
+
+[ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
+[ext_resource type="PackedScene" uid="uid://clsoje0yt1dit" path="res://scene/component/skill/SkillComponent.tscn" id="2_20a0v"]
+[ext_resource type="PackedScene" uid="uid://fec4arl424pc" path="res://scene/component/card/CardComponent.tscn" id="3_astcg"]
+[ext_resource type="Texture2D" uid="uid://d111f1mjv8x4c" path="res://asset/pic/fairy/left.png" id="3_bbt5x"]
+[ext_resource type="Texture2D" uid="uid://rgktqsf1iapd" path="res://asset/pic/fairy/point.png" id="3_g1rlb"]
+[ext_resource type="PackedScene" uid="uid://daqfogwcp42va" path="res://scene/component/passive/PassiveComponent.tscn" id="4_0k654"]
+[ext_resource type="PackedScene" uid="uid://cw4f8v0lfq8dq" path="res://scene/component/buff/BuffComponent.tscn" id="4_54cbq"]
+[ext_resource type="Texture2D" uid="uid://c7dk0w5s7aqfj" path="res://asset/pic/fairy/20241105-223621.png" id="5_3pdok"]
+[ext_resource type="PackedScene" uid="uid://bn82kepgtwd7v" path="res://scene/component/cp/CpComponent.tscn" id="5_fov64"]
+[ext_resource type="Shader" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_keelo"]
+radius = 43.0
+
+[sub_resource type="Animation" id="Animation_3lp87"]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.25, 0.5, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hargt"]
+_data = {
+"hurt": SubResource("Animation_3lp87")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7menj"]
+shader = ExtResource("7_n3i7f")
+shader_parameter/target_color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdhb2"]
+atlas = ExtResource("3_bbt5x")
+region = Rect2(0, 0, 182, 202)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7bnf"]
+atlas = ExtResource("5_3pdok")
+region = Rect2(0, 0, 182, 202)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ocn4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdhb2")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7bnf")
+}],
+"loop": true,
+"name": &"stay",
+"speed": 1.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+collision_mask = 19
+motion_mode = 1
+script = ExtResource("1_eqxiv")
+
+[node name="skill" parent="." instance=ExtResource("2_20a0v")]
+
+[node name="card" parent="." instance=ExtResource("3_astcg")]
+
+[node name="passive" parent="." instance=ExtResource("4_0k654")]
+
+[node name="CpComponent" parent="." instance=ExtResource("5_fov64")]
+
+[node name="BuffComponent" parent="." instance=ExtResource("4_54cbq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kq405")
+
+[node name="colli_point" type="Sprite2D" parent="CollisionShape2D"]
+visible = false
+z_index = 500
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_g1rlb")
+
+[node name="invincible_time" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="pickup_area" type="Area2D" parent="."]
+position = Vector2(0, 4)
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="pickup_shape" type="CollisionShape2D" parent="pickup_area"]
+shape = SubResource("CircleShape2D_keelo")
+
+[node name="CardManager" type="Node2D" parent="."]
+
+[node name="buffManager" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hargt")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_7menj")
+position = Vector2(-1, 6.77626e-21)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_8ocn4")
+animation = &"left"
+autoplay = "stay"
+
+[connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
+[connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]
+[connection signal="body_entered" from="pickup_area" to="." method="_on_pickup_area_body_entered"]

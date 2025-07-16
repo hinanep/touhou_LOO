@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhuakpdjsihip"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_c4ica"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
+[ext_resource type="Texture2D" uid="uid://8q826ubgnjw3" path="res://asset/pic/bullet/大风.png" id="3_7fdd0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fscg0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7fdd0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
+radius = 250.0
+
+[node name="Attack" instance=ExtResource("1_c4ica")]
+script = ExtResource("2_ryf0y")
+
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_fscg0")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_beisj")

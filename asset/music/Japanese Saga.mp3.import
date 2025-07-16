@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dw4nijh8u3b18"
+path="res://.godot/imported/Japanese Saga.mp3-d3443adfdc813e3b0c04afe9433e31a3.mp3str"
+
+[deps]
+
+source_file="res://asset/music/Japanese Saga.mp3"
+dest_files=["res://.godot/imported/Japanese Saga.mp3-d3443adfdc813e3b0c04afe9433e31a3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

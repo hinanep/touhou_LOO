@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5wosd6tpxr6w"]
+
+[ext_resource type="Texture2D" uid="uid://72xiojvlc8d6" path="res://asset/pic/green_plate.png" id="1_tl2ir"]
+[ext_resource type="Script" uid="uid://ch67fm4dts4pv" path="res://ui/TestScene/buttons/test_skillbutton.gd" id="2_dt0ei"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_siojg"]
+events = [SubResource("InputEventKey_1hpiu")]
+
+[node name="test_wazabutton" type="TextureButton"]
+offset_right = 400.0
+offset_bottom = 400.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "tooltip["
+focus_mode = 1
+shortcut = SubResource("Shortcut_siojg")
+texture_normal = ExtResource("1_tl2ir")
+stretch_mode = 0
+script = ExtResource("2_dt0ei")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

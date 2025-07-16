@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=9 format=3 uid="uid://bf0mkswsxuyrg"]
+
+[ext_resource type="Script" uid="uid://dnbktd8tn8et4" path="res://Dialogue/script/Dialogue.gd" id="1_5gi43"]
+[ext_resource type="Script" uid="uid://cdllb7jyoo3gp" path="res://Dialogue/script/DialogueGroup.gd" id="2_7h6qp"]
+[ext_resource type="Texture2D" uid="uid://iny3sg54p3mb" path="res://asset/pic/bigyaojing.png" id="2_u1fwy"]
+[ext_resource type="Texture2D" uid="uid://ctx4yov5h08nk" path="res://asset/pic/blue_plate.png" id="3_85wqi"]
+[ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="4_hi584"]
+
+[sub_resource type="Resource" id="Resource_y8203"]
+script = ExtResource("1_5gi43")
+avatar = ExtResource("2_u1fwy")
+nickname = " 笨蛋"
+name = "BTO"
+content = "呜呜呜克总我错了我再也不玩神之天平了你不要不理我好不好"
+
+[sub_resource type="Resource" id="Resource_ia4e5"]
+script = ExtResource("1_5gi43")
+right = true
+avatar = ExtResource("3_85wqi")
+name = "克总"
+content = "唉唉"
+stop = true
+
+[sub_resource type="Resource" id="Resource_kmnnh"]
+script = ExtResource("1_5gi43")
+right = true
+avatar = ExtResource("4_hi584")
+nickname = "鼻涕哦大跌（雾"
+name = "克总"
+content = "你这个人，真的是满脑子神之天平呢"
+bgm = "music_bgm_saga"
+
+[resource]
+script = ExtResource("2_7h6qp")
+group = Array[ExtResource("1_5gi43")]([SubResource("Resource_y8203"), SubResource("Resource_ia4e5"), SubResource("Resource_kmnnh")])
+bgm = "music_bgm_ff"

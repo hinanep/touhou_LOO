@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp52o3ggs3agk"]
+
+[ext_resource type="Script" path="res://scene/enemys/spawner.gd" id="1_2dtrt"]
+
+[node name="Spawner" type="Node2D" groups=["spawner"]]
+script = ExtResource("1_2dtrt")
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="startTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="endTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="endTimer" to="." method="_on_end_timer_timeout"]

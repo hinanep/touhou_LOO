@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://b13hrap262drc"]
+
+[ext_resource type="Script" path="res://scene/attack/attack/attack.gd" id="1_awf6h"]
+[ext_resource type="Shape2D" uid="uid://dyj8le51dtysy" path="res://scene/attack/attack/attack_shape/circle.tres" id="2_43jrx"]
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="3_3b566"]
+[ext_resource type="Script" path="res://scene/component/move_attack/move_attack.gd" id="3_qwaq3"]
+[ext_resource type="Script" path="res://scene/component/lock/lock.gd" id="5_x7ysv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3rfkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3b566")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Attack" type="CharacterBody2D"]
+process_mode = 1
+z_index = 5
+z_as_relative = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_awf6h")
+
+[node name="move_component" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -0.5)
+rotation = 1.5708
+scale = Vector2(0.9, 0.9)
+shape = ExtResource("2_43jrx")
+script = ExtResource("3_qwaq3")
+
+[node name="lock_component" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.745098)
+texture_repeat = 1
+rotation = 1.5708
+scale = Vector2(0.31, 0.31)
+sprite_frames = SubResource("SpriteFrames_3rfkp")
+autoplay = "default"
+script = ExtResource("5_x7ysv")
+
+[node name="damage_area" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+shape = ExtResource("2_43jrx")
+
+[node name="bullet_erase_area" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_erase_area"]
+
+[node name="duration_timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-1, -1, 2, 2)
+
+[node name="exit_screen_timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="bullet_erase_area" to="." method="_on_bullet_erase_area_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="exit_screen_timer" to="." method="_on_exit_screen_timer_timeout"]

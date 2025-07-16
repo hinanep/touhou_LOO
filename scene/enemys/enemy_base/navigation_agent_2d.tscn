@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ldbefuo07loe"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D"]
+navigation_layers = 0
+simplify_path = true
+avoidance_enabled = true
+neighbor_distance = 30.0

@@ -1,0 +1,474 @@
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-01-28 16:39+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../scene/enemys/enemy_base/damageNum.tscn:79
+msgid "50"
+msgstr ""
+
+#: ../scene/ui/ClearMenu/ClearMenu.tscn:41
+msgid "YOU  WIN！！"
+msgstr ""
+
+#: ../scene/ui/ClearMenu/ClearMenu.tscn:57
+#: ../scene/ui/PauseMenu/PauseMenu.tscn:58
+msgid "返回主菜单"
+msgstr ""
+
+#: ../scene/ui/PauseMenu/PauseMenu.tscn:42
+msgid "暂停界面"
+msgstr ""
+
+#: ../scene/ui/SettingsMenu/SettingsMenu.tscn:35
+msgid "设置菜单"
+msgstr ""
+
+#: ../scene/ui/SettingsMenu/SettingsMenu.tscn:51
+#: ../scene/ui/ShopMenu/ShopMenu.tscn:50 ../scene/ui/WikiMenu/WikiMenu.tscn:38
+msgid "返回"
+msgstr ""
+
+#: ../scene/ui/ShopMenu/ShopMenu.tscn:34
+msgid "商店界面"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:35
+msgid "主界面"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:55
+msgid "故事模式\n"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:60
+msgid "图鉴"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:64
+msgid "局外成长"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:68
+msgid "设置"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:72
+msgid "退出游戏"
+msgstr ""
+
+#: ../scene/ui/StartMenu/StartMenu.tscn:76
+msgid "测试"
+msgstr ""
+
+#: ../scene/ui/StoryModeMenu/StoryModeMenu.tscn:34
+msgid "故事模式游戏界面"
+msgstr ""
+
+#: ../scene/ui/StoryModeMenu/StoryModeMenu.tscn:45
+msgid "设定"
+msgstr ""
+
+#: ../scene/ui/WikiMenu/WikiMenu.tscn:49
+msgid "图鉴界面"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:3
+msgid "atk_basemagic_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:4
+#: ../settings/dist/Attack/attack_skill.json:55
+#: ../settings/dist/Attack/attack_skill.json:153
+#: ../settings/dist/Attack/attack_skill.json:665
+#: ../settings/dist/Attack/attack_skill.json:710
+#: ../settings/dist/Attack/attack_skill.json:907
+#: ../settings/dist/Attack/attack_skill.json:1001
+#: ../settings/dist/Attack/attack_skill.json:1052
+#: ../settings/dist/Attack/attack_skill.json:1099
+#: ../settings/dist/Attack/attack_skill.json:1146
+#: ../settings/dist/Attack/attack_skill.json:1193
+#: ../settings/dist/Attack/attack_skill.json:1240
+#: ../settings/dist/Routine/routine.json:5
+#: ../settings/dist/Routine/routine.json:41
+#: ../settings/dist/Routine/routine.json:412
+#: ../settings/dist/Routine/routine.json:594
+#: ../settings/dist/Routine/routine.json:630
+#: ../settings/dist/Routine/routine.json:666
+#: ../settings/dist/Routine/routine.json:702
+#: ../settings/dist/Routine/routine.json:738
+#: ../settings/dist/Skill/skill.json:4 ../settings/dist/Skill/skill.json:13
+msgid "none"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:54
+msgid "atk_basephysics_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:101
+msgid "atk_reimu_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:102
+#: ../settings/dist/Routine/routine.json:77
+#: ../settings/dist/Skill/skill.json:22
+msgid "upg_reimu"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:152
+msgid "atk_reimu_sanae"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:199
+msgid "atk_sanae_type1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:200
+#: ../settings/dist/Attack/attack_skill.json:255
+#: ../settings/dist/Attack/attack_skill.json:310
+#: ../settings/dist/Routine/routine.json:113
+#: ../settings/dist/Skill/skill.json:31
+msgid "upg_sanae"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:254
+msgid "atk_sanae_type2_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:309
+msgid "atk_sanae_type3_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:360
+msgid "atk_rumia_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:361
+#: ../settings/dist/Attack/attack_skill.json:414
+#: ../settings/dist/Routine/routine.json:158
+#: ../settings/dist/Routine/routine.json:194
+#: ../settings/dist/Skill/skill.json:40
+msgid "upg_rumia"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:413
+msgid "atk_rumia_attachment1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:464
+msgid "atk_wriggle_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:465
+#: ../settings/dist/Routine/routine.json:230
+#: ../settings/dist/Skill/skill.json:49
+msgid "upg_wriggle"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:515
+msgid "atk_alice_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:516
+#: ../settings/dist/Routine/routine.json:266
+#: ../settings/dist/Routine/routine.json:304
+#: ../settings/dist/Skill/skill.json:58
+msgid "upg_alice"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:562
+msgid "atk_sekibanki_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:563
+#: ../settings/dist/Routine/routine.json:340
+#: ../settings/dist/Skill/skill.json:67
+msgid "upg_sekibanki"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:611
+msgid "atk_misumaru_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:612
+#: ../settings/dist/Routine/routine.json:376
+#: ../settings/dist/Skill/skill.json:76
+msgid "upg_misumaru"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:664
+msgid "atk_misumaru_reimu"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:709
+msgid "atk_misumaru_attachment1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:756
+msgid "atk_sakuya_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:757
+#: ../settings/dist/Attack/attack_skill.json:809
+#: ../settings/dist/Routine/routine.json:448
+#: ../settings/dist/Routine/routine.json:486
+msgid "upg_sakuya"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:808
+msgid "atk_sakuya_attachment1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:859
+msgid "atk_marisa_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:860
+#: ../settings/dist/Routine/routine.json:522
+msgid "upg_marisa"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:906
+msgid "atk_marisa_patchouli"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:953
+msgid "atk_youmu_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:954
+#: ../settings/dist/Routine/routine.json:558
+msgid "upg_youmu"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1000
+msgid "atk_reimu_marisa1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1051
+msgid "atk_reimu_marisa2_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1098
+msgid "atk_marisa_alice_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1145
+msgid "atk_marisa_alice_patchouli"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1192
+msgid "atk_alice_patchouli1_base"
+msgstr ""
+
+#: ../settings/dist/Attack/attack_skill.json:1239
+msgid "atk_alice_patchouli2_base"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:3
+#: ../settings/dist/Routine/routine.json:4 ../settings/dist/Skill/skill.json:6
+msgid "rou_basemagic"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:39
+#: ../settings/dist/Routine/routine.json:40
+#: ../settings/dist/Skill/skill.json:15
+msgid "rou_basephysics"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:75
+#: ../settings/dist/Routine/routine.json:76
+#: ../settings/dist/Skill/skill.json:24
+msgid "rou_reimu"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:111
+#: ../settings/dist/Routine/routine.json:112
+#: ../settings/dist/Skill/skill.json:33
+msgid "rou_sanae"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:156
+#: ../settings/dist/Routine/routine.json:157
+#: ../settings/dist/Skill/skill.json:42
+msgid "rou_rumia"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:192
+#: ../settings/dist/Routine/routine.json:193
+msgid "rou_rumia_attachment1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:228
+#: ../settings/dist/Routine/routine.json:229
+#: ../settings/dist/Skill/skill.json:51
+msgid "rou_wriggle"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:264
+#: ../settings/dist/Routine/routine.json:265
+#: ../settings/dist/Skill/skill.json:60
+msgid "rou_alice"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:302
+#: ../settings/dist/Routine/routine.json:303
+msgid "rou_alice_attachment1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:338
+#: ../settings/dist/Routine/routine.json:339
+#: ../settings/dist/Skill/skill.json:69
+msgid "rou_sekibanki"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:374
+#: ../settings/dist/Routine/routine.json:375
+#: ../settings/dist/Skill/skill.json:78
+msgid "rou_misumaru"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:410
+#: ../settings/dist/Routine/routine.json:411
+msgid "rou_misumaru_attachment1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:446
+#: ../settings/dist/Routine/routine.json:447
+msgid "rou_sakuya"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:484
+#: ../settings/dist/Routine/routine.json:485
+msgid "rou_sakuya_attachment1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:520
+#: ../settings/dist/Routine/routine.json:521
+msgid "rou_marisa"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:556
+#: ../settings/dist/Routine/routine.json:557
+msgid "rou_youmu"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:592
+#: ../settings/dist/Routine/routine.json:593
+msgid "rou_reimu_marisa1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:628
+#: ../settings/dist/Routine/routine.json:629
+msgid "rou_reimu_marisa2"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:664
+#: ../settings/dist/Routine/routine.json:665
+msgid "rou_marisa_alice"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:700
+#: ../settings/dist/Routine/routine.json:701
+msgid "rou_alice_ptchouli1"
+msgstr ""
+
+#: ../settings/dist/Routine/routine.json:736
+#: ../settings/dist/Routine/routine.json:737
+msgid "rou_alice_ptchouli2"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:3
+msgid "ski_basemagic"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:8 ../settings/dist/Skill/skill.json:17
+#: ../settings/dist/Skill/skill.json:26 ../settings/dist/Skill/skill.json:35
+#: ../settings/dist/Skill/skill.json:44 ../settings/dist/Skill/skill.json:53
+#: ../settings/dist/Skill/skill.json:62 ../settings/dist/Skill/skill.json:71
+#: ../settings/dist/Skill/skill.json:80
+msgid "cd"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:9 ../settings/dist/Skill/skill.json:18
+#: ../settings/dist/Skill/skill.json:27 ../settings/dist/Skill/skill.json:36
+#: ../settings/dist/Skill/skill.json:45 ../settings/dist/Skill/skill.json:54
+#: ../settings/dist/Skill/skill.json:63 ../settings/dist/Skill/skill.json:72
+#: ../settings/dist/Skill/skill.json:81
+msgid "cd_reduction_efficicency"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:12
+msgid "ski_basephysics"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:21
+msgid "ski_reimu"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:30
+msgid "ski_sanae"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:39
+msgid "ski_rumia"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:48
+msgid "ski_wriggle"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:57
+msgid "ski_alice"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:66
+msgid "ski_sekibanki"
+msgstr ""
+
+#: ../settings/dist/Skill/skill.json:75
+msgid "ski_misumaru"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:3
+msgid "UI_001"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:4
+msgid "升级"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:5
+msgid "アップグレード"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:6
+msgid "upgrade"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:9
+msgid "CHARACTER_001"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:10 ../settings/dist/TID/Sheet1.json:11
+msgid "大妖精"
+msgstr ""
+
+#: ../settings/dist/TID/Sheet1.json:12
+msgid "Daiyousei"
+msgstr ""
+

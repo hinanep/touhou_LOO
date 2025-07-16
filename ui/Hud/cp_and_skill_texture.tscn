@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dalot4hpwth2w"]
+
+[ext_resource type="Script" path="res://ui/Hud/cp_and_skill_texture.gd" id="2_pvgmu"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_nig1a"]
+
+[node name="card_texture" type="TextureRect"]
+custom_minimum_size = Vector2(1, 0)
+offset_right = 120.0
+offset_bottom = 120.0
+size_flags_stretch_ratio = 3.0
+expand_mode = 2
+script = ExtResource("2_pvgmu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -51.0
+offset_right = 990.0
+offset_bottom = 383.0
+scale = Vector2(0.12, 0.12)
+theme = ExtResource("3_nig1a")
+theme_override_font_sizes/normal_font_size = 180
+bbcode_enabled = true
+text = "[center]魔理沙
+LV.1"
+fit_content = true

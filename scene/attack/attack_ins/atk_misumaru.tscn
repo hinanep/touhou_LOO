@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3ddyv5v02u2v"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_bqebr"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_qqp3b"]
+[ext_resource type="Texture2D" uid="uid://bob0u3cbl1qh6" path="res://asset/pic/bullet/yinyangorb.png" id="4_yom51"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_so4me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yom51")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ok0vd"]
+radius = 20.0
+
+[node name="Attack" instance=ExtResource("1_bqebr")]
+script = ExtResource("2_qqp3b")
+
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(0.38, 0.38)
+sprite_frames = SubResource("SpriteFrames_so4me")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_ok0vd")

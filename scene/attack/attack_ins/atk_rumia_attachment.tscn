@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://def8milxirujq"]
+
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_h12sq"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
+[ext_resource type="Shader" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
+[ext_resource type="Texture2D" uid="uid://uvpx40wiwo0b" path="res://asset/pic/texture/whitehole.png" id="4_c3m70"]
+[ext_resource type="Texture2D" uid="uid://b4vdl2oub648v" path="res://asset/pic/texture/bh-3.png" id="5_7cdwn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcw58"]
+atlas = ExtResource("5_7cdwn")
+region = Rect2(10, 0, 490, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3dk1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcw58")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_c7yuj"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uoxij"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeq53"]
+color_ramp = SubResource("Gradient_c7yuj")
+noise = SubResource("FastNoiseLite_uoxij")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bty1h"]
+shader = ExtResource("3_q4l1o")
+shader_parameter/distor_modi = 0.01
+shader_parameter/mainTexture = SubResource("NoiseTexture2D_aeq53")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm7v0"]
+radius = 100.0
+
+[node name="Attack" instance=ExtResource("1_h12sq")]
+z_index = 6
+script = ExtResource("2_pp31y")
+
+[node name="lock_component" parent="." index="1"]
+modulate = Color(0.295867, 0.295866, 0.295866, 0.956863)
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_x3dk1")
+frame_progress = 1.0
+offset = Vector2(-1, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="lock_component" index="0"]
+material = SubResource("ShaderMaterial_bty1h")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_c3m70")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_tm7v0")

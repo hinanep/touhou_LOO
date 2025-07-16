@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi4f3b7qk68ct"]
+
+[ext_resource type="FontFile" uid="uid://bok6715y01uwt" path="res://asset/fonts/DreamHanSansCN-W24.ttf" id="1_b7i13"]
+
+[resource]
+default_font = ExtResource("1_b7i13")

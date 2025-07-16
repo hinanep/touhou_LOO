@@ -1,0 +1,720 @@
+[gd_scene load_steps=176 format=3 uid="uid://bhijqacoflcf0"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_4mj1f"]
+[ext_resource type="Texture2D" uid="uid://bgvxhnqni600n" path="res://asset/pic/enemy/redrock/moving/rm_000.png" id="2_o7as8"]
+[ext_resource type="Texture2D" uid="uid://c6bag5jfgnqlf" path="res://asset/pic/enemy/redrock/moving/rm_001.png" id="3_6r21n"]
+[ext_resource type="Texture2D" uid="uid://qxo5dbikkn36" path="res://asset/pic/enemy/redrock/moving/rm_002.png" id="4_ut5wo"]
+[ext_resource type="Texture2D" uid="uid://cpiwmau7r2wm2" path="res://asset/pic/enemy/redrock/moving/rm_003.png" id="5_mjuk1"]
+[ext_resource type="Texture2D" uid="uid://c0qoff5savpgi" path="res://asset/pic/enemy/redrock/moving/rm_004.png" id="6_anf5v"]
+[ext_resource type="Texture2D" uid="uid://b35gwmvqfwfwh" path="res://asset/pic/enemy/redrock/moving/rm_005.png" id="7_xb0py"]
+[ext_resource type="Texture2D" uid="uid://dk0wylay77olo" path="res://asset/pic/enemy/redrock/moving/rm_006.png" id="8_m0ky1"]
+[ext_resource type="Texture2D" uid="uid://dd3tqilm7yco1" path="res://asset/pic/enemy/redrock/moving/rm_007.png" id="9_1dnp5"]
+[ext_resource type="Texture2D" uid="uid://cayk8lu51mhy0" path="res://asset/pic/enemy/redrock/moving/rm_008.png" id="10_fb8ge"]
+[ext_resource type="Texture2D" uid="uid://cm60s1iig36h1" path="res://asset/pic/enemy/redrock/moving/rm_009.png" id="11_b35kp"]
+[ext_resource type="Texture2D" uid="uid://ccgabclp4f2wo" path="res://asset/pic/enemy/redrock/moving/rm_010.png" id="12_qe8w3"]
+[ext_resource type="Texture2D" uid="uid://dujkns4d55smn" path="res://asset/pic/enemy/redrock/moving/rm_011.png" id="13_sxftr"]
+[ext_resource type="Texture2D" uid="uid://b6qssm7r6rq5" path="res://asset/pic/enemy/redrock/moving/rm_012.png" id="14_h436p"]
+[ext_resource type="Texture2D" uid="uid://724vtm23wubd" path="res://asset/pic/enemy/redrock/moving/rm_013.png" id="15_cqxni"]
+[ext_resource type="Texture2D" uid="uid://cecw1kiya1vpb" path="res://asset/pic/enemy/redrock/moving/rm_014.png" id="16_nm2jh"]
+[ext_resource type="Texture2D" uid="uid://d3s5komwgndo8" path="res://asset/pic/enemy/redrock/moving/rm_015.png" id="17_n0s2u"]
+[ext_resource type="Texture2D" uid="uid://dqsokup4y5lmh" path="res://asset/pic/enemy/redrock/moving/rm_016.png" id="18_5hjwn"]
+[ext_resource type="Texture2D" uid="uid://njt0qldeykei" path="res://asset/pic/enemy/redrock/moving/rm_017.png" id="19_q121c"]
+[ext_resource type="Texture2D" uid="uid://2acosnyhnn7n" path="res://asset/pic/enemy/redrock/moving/rm_018.png" id="20_ye5tg"]
+[ext_resource type="Texture2D" uid="uid://cf8segrthlti8" path="res://asset/pic/enemy/redrock/moving/rm_019.png" id="21_gspnq"]
+[ext_resource type="Texture2D" uid="uid://burxk2rqv3hrl" path="res://asset/pic/enemy/redrock/moving/rm_020.png" id="22_syxxy"]
+[ext_resource type="Texture2D" uid="uid://d4l0oara1cikk" path="res://asset/pic/enemy/redrock/moving/rm_021.png" id="23_aywek"]
+[ext_resource type="Texture2D" uid="uid://dn3taa20kkgk1" path="res://asset/pic/enemy/redrock/moving/rm_022.png" id="24_18n17"]
+[ext_resource type="Texture2D" uid="uid://qcx6qc2jlkyd" path="res://asset/pic/enemy/redrock/moving/rm_023.png" id="25_m23hv"]
+[ext_resource type="Texture2D" uid="uid://jf1ofv5gy8id" path="res://asset/pic/enemy/redrock/moving/rm_024.png" id="26_5phkv"]
+[ext_resource type="Texture2D" uid="uid://b2wjw14euxsi8" path="res://asset/pic/enemy/redrock/moving/rm_025.png" id="27_kpdus"]
+[ext_resource type="Texture2D" uid="uid://bkpmgeiept5pn" path="res://asset/pic/enemy/redrock/moving/rm_026.png" id="28_8eaxa"]
+[ext_resource type="Texture2D" uid="uid://yf8aj6k3ethx" path="res://asset/pic/enemy/redrock/moving/rm_027.png" id="29_dxn7m"]
+[ext_resource type="Texture2D" uid="uid://blgv2sa6lo1xx" path="res://asset/pic/enemy/redrock/moving/rm_028.png" id="30_8cw2j"]
+[ext_resource type="Texture2D" uid="uid://dauhsg168m0xv" path="res://asset/pic/enemy/redrock/moving/rm_029.png" id="31_2qjvh"]
+[ext_resource type="Texture2D" uid="uid://bx46scvsthoub" path="res://asset/pic/enemy/redrock/moving/rm_030.png" id="32_1uk3w"]
+[ext_resource type="Texture2D" uid="uid://dfmvbwk0sx2yj" path="res://asset/pic/enemy/redrock/moving/rm_031.png" id="33_q6mrg"]
+[ext_resource type="Texture2D" uid="uid://dh6xjsnwakeja" path="res://asset/pic/enemy/redrock/moving/rm_032.png" id="34_ilb2u"]
+[ext_resource type="Texture2D" uid="uid://dyirsp7n5647l" path="res://asset/pic/enemy/redrock/moving/rm_033.png" id="35_0od2s"]
+[ext_resource type="Texture2D" uid="uid://dp1eow6gnovd0" path="res://asset/pic/enemy/redrock/moving/rm_034.png" id="36_2uoi2"]
+[ext_resource type="Texture2D" uid="uid://o3n60aohp06h" path="res://asset/pic/enemy/redrock/moving/rm_035.png" id="37_k8qo7"]
+[ext_resource type="Texture2D" uid="uid://jeev6t4qilhy" path="res://asset/pic/enemy/redrock/moving/rm_036.png" id="38_wqrrc"]
+[ext_resource type="Texture2D" uid="uid://o6dhxspstbm" path="res://asset/pic/enemy/redrock/moving/rm_037.png" id="39_jyi8e"]
+[ext_resource type="Texture2D" uid="uid://snxu13wglu00" path="res://asset/pic/enemy/redrock/moving/rm_038.png" id="40_cp6af"]
+[ext_resource type="Texture2D" uid="uid://cdubarf7vo2od" path="res://asset/pic/enemy/redrock/moving/rm_039.png" id="41_cfitc"]
+[ext_resource type="Texture2D" uid="uid://e1maqjao1021" path="res://asset/pic/enemy/redrock/moving/rm_040.png" id="42_x5tca"]
+[ext_resource type="Texture2D" uid="uid://hyv8l44y5j74" path="res://asset/pic/enemy/redrock/moving/rm_041.png" id="43_0sdcx"]
+[ext_resource type="Texture2D" uid="uid://ct8rvrpphjpqq" path="res://asset/pic/enemy/redrock/moving/rm_042.png" id="44_ai45t"]
+[ext_resource type="Texture2D" uid="uid://cw8sqqje7jq1n" path="res://asset/pic/enemy/redrock/moving/rm_043.png" id="45_raoqb"]
+[ext_resource type="Texture2D" uid="uid://bmmadvrp2vloe" path="res://asset/pic/enemy/redrock/moving/rm_044.png" id="46_sm26g"]
+[ext_resource type="Texture2D" uid="uid://cevum4flutf0g" path="res://asset/pic/enemy/redrock/moving/rm_045.png" id="47_21unr"]
+[ext_resource type="Texture2D" uid="uid://dq57jhdb6j6c8" path="res://asset/pic/enemy/redrock/moving/rm_046.png" id="48_eildx"]
+[ext_resource type="Texture2D" uid="uid://f3yrxj2qru4m" path="res://asset/pic/enemy/redrock/moving/rm_047.png" id="49_0cm06"]
+[ext_resource type="Texture2D" uid="uid://dbs01imlx2i6h" path="res://asset/pic/enemy/redrock/moving/rm_048.png" id="50_f1ep8"]
+[ext_resource type="Texture2D" uid="uid://dnqaf1uwvswgx" path="res://asset/pic/enemy/redrock/moving/rm_049.png" id="51_eygbl"]
+[ext_resource type="Texture2D" uid="uid://dhmexd1kgfshv" path="res://asset/pic/enemy/redrock/moving/rm_050.png" id="52_2ydex"]
+[ext_resource type="Texture2D" uid="uid://cio2r0cvjxggd" path="res://asset/pic/enemy/redrock/moving/rm_051.png" id="53_viy5u"]
+[ext_resource type="Texture2D" uid="uid://h4h47d7ufb3r" path="res://asset/pic/enemy/redrock/moving/rm_052.png" id="54_0i2v8"]
+[ext_resource type="Texture2D" uid="uid://cl82qhwfahn1t" path="res://asset/pic/enemy/redrock/moving/rm_053.png" id="55_o1dni"]
+[ext_resource type="Texture2D" uid="uid://cwp4w7tkbtmtu" path="res://asset/pic/enemy/redrock/moving/rm_054.png" id="56_v4u2v"]
+[ext_resource type="Texture2D" uid="uid://eiewkf4wn6u7" path="res://asset/pic/enemy/redrock/moving/rm_055.png" id="57_tl8p3"]
+[ext_resource type="Texture2D" uid="uid://cucb4rcdyk8k" path="res://asset/pic/enemy/redrock/moving/rm_056.png" id="58_nd254"]
+[ext_resource type="Texture2D" uid="uid://b8p5k11b3qbuc" path="res://asset/pic/enemy/redrock/moving/rm_057.png" id="59_snxqm"]
+[ext_resource type="Texture2D" uid="uid://cc3grbgeqqdr7" path="res://asset/pic/enemy/redrock/moving/rm_058.png" id="60_hycbj"]
+[ext_resource type="Texture2D" uid="uid://711bjav0y3rx" path="res://asset/pic/enemy/redrock/moving/rm_059.png" id="61_mehd3"]
+[ext_resource type="Texture2D" uid="uid://ddtkcu0lat8jj" path="res://asset/pic/enemy/redrock/moving/rm_060.png" id="62_netud"]
+[ext_resource type="Texture2D" uid="uid://bt4e7ky6ocmsx" path="res://asset/pic/enemy/redrock/moving/rm_061.png" id="63_03b1b"]
+[ext_resource type="Texture2D" uid="uid://bypbftbu22f5u" path="res://asset/pic/enemy/redrock/moving/rm_062.png" id="64_nmq1i"]
+[ext_resource type="Texture2D" uid="uid://r002fj21yqhh" path="res://asset/pic/enemy/redrock/moving/rm_063.png" id="65_whjxy"]
+[ext_resource type="Texture2D" uid="uid://ckm1s4niujvo1" path="res://asset/pic/enemy/redrock/moving/rm_064.png" id="66_42sor"]
+[ext_resource type="Texture2D" uid="uid://di2v3rogfbvhn" path="res://asset/pic/enemy/redrock/moving/rm_065.png" id="67_82fvl"]
+[ext_resource type="Texture2D" uid="uid://dpn18lgntfmak" path="res://asset/pic/enemy/redrock/moving/rm_066.png" id="68_g0ewx"]
+[ext_resource type="Texture2D" uid="uid://bblwhh1ia6api" path="res://asset/pic/enemy/redrock/moving/rm_067.png" id="69_u4v30"]
+[ext_resource type="Texture2D" uid="uid://wj1e5hq3h6kp" path="res://asset/pic/enemy/redrock/moving/rm_068.png" id="70_ng8oo"]
+[ext_resource type="Texture2D" uid="uid://ril4anxhh0il" path="res://asset/pic/enemy/redrock/moving/rm_069.png" id="71_viqoa"]
+[ext_resource type="Texture2D" uid="uid://cq0dxpqxsf3ar" path="res://asset/pic/enemy/redrock/moving/rm_070.png" id="72_thcmi"]
+[ext_resource type="Texture2D" uid="uid://d255w1vjgdye2" path="res://asset/pic/enemy/redrock/moving/rm_071.png" id="73_chpud"]
+[ext_resource type="Texture2D" uid="uid://d25sgvhvjq8nm" path="res://asset/pic/enemy/redrock/moving/rm_072.png" id="74_3anpl"]
+[ext_resource type="Texture2D" uid="uid://t7fbvdmat44j" path="res://asset/pic/enemy/redrock/moving/rm_073.png" id="75_d2v2m"]
+[ext_resource type="Texture2D" uid="uid://bvls1ycvxc1u7" path="res://asset/pic/enemy/redrock/moving/rm_074.png" id="76_xc78q"]
+[ext_resource type="Texture2D" uid="uid://b78hdpwkc0ngo" path="res://asset/pic/enemy/redrock/moving/rm_075.png" id="77_p2qwc"]
+[ext_resource type="Texture2D" uid="uid://d2trbk1n17epx" path="res://asset/pic/enemy/redrock/moving/rm_076.png" id="78_edkni"]
+[ext_resource type="Texture2D" uid="uid://kmre3ge5jtha" path="res://asset/pic/enemy/redrock/moving/rm_077.png" id="79_pctlx"]
+[ext_resource type="Texture2D" uid="uid://cia68vlcbn6e2" path="res://asset/pic/enemy/redrock/moving/rm_078.png" id="80_3e4f1"]
+[ext_resource type="Texture2D" uid="uid://br1n0fnav6i5e" path="res://asset/pic/enemy/redrock/moving/rm_079.png" id="81_knwf8"]
+[ext_resource type="Texture2D" uid="uid://bw4fe8g5mhqls" path="res://asset/pic/enemy/redrock/moving/rm_080.png" id="82_6vlf3"]
+[ext_resource type="Texture2D" uid="uid://mivlpqil0q7v" path="res://asset/pic/enemy/redrock/moving/rm_081.png" id="83_lualm"]
+[ext_resource type="Texture2D" uid="uid://v3fde4krj8np" path="res://asset/pic/enemy/redrock/moving/rm_082.png" id="84_i12qj"]
+[ext_resource type="Texture2D" uid="uid://caqhvhpvst7gn" path="res://asset/pic/enemy/redrock/moving/rm_083.png" id="85_f6lhh"]
+[ext_resource type="Texture2D" uid="uid://gtu7yeg8t3dy" path="res://asset/pic/enemy/redrock/moving/rm_084.png" id="86_mr401"]
+[ext_resource type="Texture2D" uid="uid://2010xf4xuki3" path="res://asset/pic/enemy/redrock/moving/rm_085.png" id="87_ft204"]
+[ext_resource type="Texture2D" uid="uid://53avgbutyypp" path="res://asset/pic/enemy/redrock/moving/rm_086.png" id="88_7xfft"]
+[ext_resource type="Texture2D" uid="uid://cddyl3u3g53vj" path="res://asset/pic/enemy/redrock/moving/rm_087.png" id="89_1rpag"]
+[ext_resource type="Texture2D" uid="uid://bocdkaoxt5kjs" path="res://asset/pic/enemy/redrock/moving/rm_088.png" id="90_p857r"]
+[ext_resource type="Texture2D" uid="uid://dds621xld4hu7" path="res://asset/pic/enemy/redrock/moving/rm_089.png" id="91_m1fud"]
+[ext_resource type="Texture2D" uid="uid://dhc8vpdhfu38r" path="res://asset/pic/enemy/redrock/moving/rm_090.png" id="92_csykw"]
+[ext_resource type="Texture2D" uid="uid://dhvej1470gppp" path="res://asset/pic/enemy/redrock/moving/rm_091.png" id="93_c27ti"]
+[ext_resource type="Texture2D" uid="uid://w0qytfm7mvhr" path="res://asset/pic/enemy/redrock/moving/rm_092.png" id="94_62de4"]
+[ext_resource type="Texture2D" uid="uid://ca14o2k0jinr7" path="res://asset/pic/enemy/redrock/moving/rm_093.png" id="95_6b5eb"]
+[ext_resource type="Texture2D" uid="uid://6ni5v15yp23l" path="res://asset/pic/enemy/redrock/moving/rm_094.png" id="96_qo0xi"]
+[ext_resource type="Texture2D" uid="uid://w2bklhhp4vaw" path="res://asset/pic/enemy/redrock/moving/rm_095.png" id="97_ij43j"]
+[ext_resource type="Texture2D" uid="uid://08lm247otry2" path="res://asset/pic/enemy/redrock/moving/rm_096.png" id="98_ns6bq"]
+[ext_resource type="Texture2D" uid="uid://bl45t633cifwv" path="res://asset/pic/enemy/redrock/moving/rm_097.png" id="99_y3ujs"]
+[ext_resource type="Texture2D" uid="uid://iy2g03qcsa6g" path="res://asset/pic/enemy/redrock/moving/rm_098.png" id="100_l1xss"]
+[ext_resource type="Texture2D" uid="uid://c1ktwgvlan8ai" path="res://asset/pic/enemy/redrock/moving/rm_099.png" id="101_3wxp2"]
+[ext_resource type="Texture2D" uid="uid://baet4td4ekrb4" path="res://asset/pic/enemy/redrock/moving/rm_100.png" id="102_4mbrd"]
+[ext_resource type="Texture2D" uid="uid://dlwcg0857wmu3" path="res://asset/pic/enemy/redrock/moving/rm_101.png" id="103_3o1jg"]
+[ext_resource type="Texture2D" uid="uid://bwube6k0yax45" path="res://asset/pic/enemy/redrock/moving/rm_102.png" id="104_j3kcy"]
+[ext_resource type="Texture2D" uid="uid://d2eg7ch6va3ct" path="res://asset/pic/enemy/redrock/moving/rm_103.png" id="105_ofoc3"]
+[ext_resource type="Texture2D" uid="uid://cdqau8e8f514" path="res://asset/pic/enemy/redrock/moving/rm_104.png" id="106_av7uf"]
+[ext_resource type="Texture2D" uid="uid://cgksh6gami7af" path="res://asset/pic/enemy/redrock/moving/rm_105.png" id="107_jh5no"]
+[ext_resource type="Texture2D" uid="uid://vbmymxlw8k12" path="res://asset/pic/enemy/redrock/moving/rm_106.png" id="108_n1s75"]
+[ext_resource type="Texture2D" uid="uid://48pjnb5mv8x" path="res://asset/pic/enemy/redrock/moving/rm_107.png" id="109_x6pv5"]
+[ext_resource type="Texture2D" uid="uid://bg4h0a784q3g4" path="res://asset/pic/enemy/redrock/moving/rm_108.png" id="110_th2m0"]
+[ext_resource type="Texture2D" uid="uid://bi28mon4xvgh2" path="res://asset/pic/enemy/redrock/moving/rm_109.png" id="111_ct7t2"]
+[ext_resource type="Texture2D" uid="uid://bwwxpg0a7ov1s" path="res://asset/pic/enemy/redrock/moving/rm_110.png" id="112_a2ay5"]
+[ext_resource type="Texture2D" uid="uid://ccdtakoeqpp7a" path="res://asset/pic/enemy/redrock/moving/rm_111.png" id="113_2by5d"]
+[ext_resource type="Texture2D" uid="uid://00ec7j8na4hv" path="res://asset/pic/enemy/redrock/moving/rm_112.png" id="114_qmro5"]
+[ext_resource type="Texture2D" uid="uid://bqe7aaq6nrfq0" path="res://asset/pic/enemy/redrock/moving/rm_113.png" id="115_ju4ec"]
+[ext_resource type="Texture2D" uid="uid://syh2p3lccxht" path="res://asset/pic/enemy/redrock/moving/rm_114.png" id="116_1u07h"]
+[ext_resource type="Texture2D" uid="uid://crtjffiqunbdi" path="res://asset/pic/enemy/redrock/moving/rm_115.png" id="117_nuiw1"]
+[ext_resource type="Texture2D" uid="uid://c2nopnvum6enm" path="res://asset/pic/enemy/redrock/moving/rm_116.png" id="118_wjjeg"]
+[ext_resource type="Texture2D" uid="uid://c8wsyrjym15wa" path="res://asset/pic/enemy/redrock/moving/rm_117.png" id="119_lvy1p"]
+[ext_resource type="Texture2D" uid="uid://bri3734f7t64y" path="res://asset/pic/enemy/redrock/moving/rm_118.png" id="120_rbn6h"]
+[ext_resource type="Texture2D" uid="uid://dtdilijfi1obf" path="res://asset/pic/enemy/redrock/moving/rm_119.png" id="121_ekl6k"]
+[ext_resource type="Texture2D" uid="uid://djqfaaiynlama" path="res://asset/pic/enemy/redrock/moving/rm_120.png" id="122_1yy5y"]
+[ext_resource type="Texture2D" uid="uid://dhtdtxh1sfaah" path="res://asset/pic/enemy/redrock/moving/rm_121.png" id="123_kobky"]
+[ext_resource type="Texture2D" uid="uid://bhft1fllx4fa8" path="res://asset/pic/enemy/redrock/moving/rm_122.png" id="124_nlrlq"]
+[ext_resource type="Texture2D" uid="uid://dibk6j7lm12wx" path="res://asset/pic/enemy/redrock/moving/rm_123.png" id="125_7yfho"]
+[ext_resource type="Texture2D" uid="uid://ueyckr7gc0of" path="res://asset/pic/enemy/redrock/moving/rm_124.png" id="126_tnl1s"]
+[ext_resource type="Texture2D" uid="uid://b4db1tav1rgnu" path="res://asset/pic/enemy/redrock/moving/rm_125.png" id="127_r5o7g"]
+[ext_resource type="Texture2D" uid="uid://c6fsahev6fd41" path="res://asset/pic/enemy/redrock/moving/rm_126.png" id="128_8mqs0"]
+[ext_resource type="Texture2D" uid="uid://8v5bmfcdmwqj" path="res://asset/pic/enemy/redrock/moving/rm_127.png" id="129_uj3em"]
+[ext_resource type="Texture2D" uid="uid://cjj88ucehu54" path="res://asset/pic/enemy/redrock/moving/rm_128.png" id="130_tqp51"]
+[ext_resource type="Texture2D" uid="uid://bhh3lafwlysf4" path="res://asset/pic/enemy/redrock/dying/rd_14.png" id="145_7ca0d"]
+[ext_resource type="Texture2D" uid="uid://cpi3xu77klblk" path="res://asset/pic/enemy/redrock/dying/rd_15.png" id="146_dr58t"]
+[ext_resource type="Texture2D" uid="uid://dr8eh65534y5w" path="res://asset/pic/enemy/redrock/dying/rd_16.png" id="147_6g8xt"]
+[ext_resource type="Texture2D" uid="uid://3o3vsvspi74a" path="res://asset/pic/enemy/redrock/dying/rd_17.png" id="148_l3c3p"]
+[ext_resource type="Texture2D" uid="uid://cn03odnac7v46" path="res://asset/pic/enemy/redrock/dying/rd_18.png" id="149_8hami"]
+[ext_resource type="Texture2D" uid="uid://b4742cp3n4xg1" path="res://asset/pic/enemy/redrock/dying/rd_19.png" id="150_2okui"]
+[ext_resource type="Texture2D" uid="uid://sr4vl1wde6xv" path="res://asset/pic/enemy/redrock/dying/rd_20.png" id="151_nngb6"]
+[ext_resource type="Texture2D" uid="uid://c3fbj5p7rem2o" path="res://asset/pic/enemy/redrock/dying/rd_21.png" id="152_ox3w0"]
+[ext_resource type="Texture2D" uid="uid://wbuhiptlnyms" path="res://asset/pic/enemy/redrock/dying/rd_22.png" id="153_sbkpk"]
+[ext_resource type="Texture2D" uid="uid://bllqfl8yie0fy" path="res://asset/pic/enemy/redrock/dying/rd_23.png" id="154_nb8mg"]
+[ext_resource type="Texture2D" uid="uid://cad7ypowi6s2r" path="res://asset/pic/enemy/redrock/dying/rd_24.png" id="155_bsdga"]
+[ext_resource type="Texture2D" uid="uid://cvlgylm3yfuwy" path="res://asset/pic/enemy/redrock/dying/rd_25.png" id="156_jwaa2"]
+[ext_resource type="Texture2D" uid="uid://ba7ssiti1tqmy" path="res://asset/pic/enemy/redrock/dying/rd_26.png" id="157_xvpr1"]
+[ext_resource type="Texture2D" uid="uid://btc6v7ebcppgb" path="res://asset/pic/enemy/redrock/dying/rd_27.png" id="158_72hmd"]
+[ext_resource type="Texture2D" uid="uid://wkd533jagf6c" path="res://asset/pic/enemy/redrock/dying/rd_28.png" id="159_u5jao"]
+[ext_resource type="Texture2D" uid="uid://bodh5l5btx208" path="res://asset/pic/enemy/redrock/dying/rd_29.png" id="160_pnk3w"]
+[ext_resource type="Texture2D" uid="uid://bnqfulchpsrv2" path="res://asset/pic/enemy/redrock/dying/rd_30.png" id="161_xxi1h"]
+[ext_resource type="Texture2D" uid="uid://btxkkx1ywmxan" path="res://asset/pic/enemy/redrock/dying/rd_31.png" id="162_m7e4l"]
+[ext_resource type="Texture2D" uid="uid://calt1i8hdrh20" path="res://asset/pic/enemy/redrock/dying/rd_32.png" id="163_gnkgf"]
+[ext_resource type="Texture2D" uid="uid://cv4p8d7bxqt3h" path="res://asset/pic/enemy/redrock/dying/rd_33.png" id="164_xjkoe"]
+[ext_resource type="Texture2D" uid="uid://dxdg7w6gnlagn" path="res://asset/pic/enemy/redrock/dying/rd_34.png" id="165_mjyah"]
+[ext_resource type="Texture2D" uid="uid://lud3pbti11o" path="res://asset/pic/enemy/redrock/dying/rd_35.png" id="166_gdfn0"]
+[ext_resource type="Texture2D" uid="uid://ccrnoy67q8rwj" path="res://asset/pic/enemy/redrock/dying/rd_36.png" id="167_4qswp"]
+[ext_resource type="Texture2D" uid="uid://b0mt846p52guw" path="res://asset/pic/enemy/redrock/dying/rd_37.png" id="168_h3p33"]
+[ext_resource type="Texture2D" uid="uid://br3eb1psqafiw" path="res://asset/pic/enemy/redrock/dying/rd_38.png" id="169_0at8n"]
+[ext_resource type="Texture2D" uid="uid://egncmelav4xm" path="res://asset/pic/enemy/redrock/dying/rd_39.png" id="170_oftt2"]
+[ext_resource type="Texture2D" uid="uid://c3nj0h5dq2wx0" path="res://asset/pic/enemy/redrock/dying/rd_40.png" id="171_ds75y"]
+[ext_resource type="Texture2D" uid="uid://npu8dyiah8s2" path="res://asset/pic/enemy/redrock/dying/rd_41.png" id="172_duc03"]
+[ext_resource type="Texture2D" uid="uid://carwlfpcrybh" path="res://asset/pic/enemy/redrock/dying/rd_42.png" id="173_ho74x"]
+[ext_resource type="Texture2D" uid="uid://pp03g0rvbb30" path="res://asset/pic/enemy/redrock/dying/rd_43.png" id="174_7judu"]
+[ext_resource type="Texture2D" uid="uid://bva5vc42rhwfq" path="res://asset/pic/enemy/redrock/dying/rd_44.png" id="175_eqoq2"]
+[ext_resource type="Texture2D" uid="uid://slxoussdct2h" path="res://asset/pic/enemy/redrock/dying/rd_45.png" id="176_bgey7"]
+[ext_resource type="Texture2D" uid="uid://kj6k2o4urvof" path="res://asset/pic/enemy/redrock/dying/rd_46.png" id="177_3vv8i"]
+[ext_resource type="Texture2D" uid="uid://bdryq2fhqpjda" path="res://asset/pic/enemy/redrock/dying/rd_47.png" id="178_deau6"]
+[ext_resource type="Texture2D" uid="uid://b7bxgxixeysxk" path="res://asset/pic/enemy/redrock/dying/rd_48.png" id="179_n8sov"]
+[ext_resource type="Texture2D" uid="uid://dgsjjxwc3xyhk" path="res://asset/pic/enemy/redrock/dying/rd_49.png" id="180_qsjx4"]
+[ext_resource type="Texture2D" uid="uid://m2dxjlg3yqgr" path="res://asset/pic/enemy/redrock/dying/rd_50.png" id="181_ibeiw"]
+[ext_resource type="Texture2D" uid="uid://bb33fc002g0fo" path="res://asset/pic/enemy/redrock/dying/rd_51.png" id="182_akp8d"]
+[ext_resource type="Texture2D" uid="uid://bxvxyxtwe4n6v" path="res://asset/pic/enemy/redrock/dying/rd_52.png" id="183_cy0dj"]
+[ext_resource type="Texture2D" uid="uid://yvy8oq53inei" path="res://asset/pic/enemy/redrock/dying/rd_53.png" id="184_hmsh3"]
+[ext_resource type="Texture2D" uid="uid://deo3v6xwal8oy" path="res://asset/pic/enemy/redrock/dying/rd_54.png" id="185_eevki"]
+[ext_resource type="Texture2D" uid="uid://do63hmt5upjh0" path="res://asset/pic/enemy/redrock/dying/rd_55.png" id="186_6m37u"]
+[ext_resource type="Texture2D" uid="uid://cn5ar1hd33xge" path="res://asset/pic/enemy/redrock/dying/rd_56.png" id="187_fqukx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6411r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lppg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o7as8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6r21n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ut5wo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mjuk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_anf5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xb0py")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m0ky1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1dnp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fb8ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b35kp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qe8w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_sxftr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_h436p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_cqxni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nm2jh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_n0s2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5hjwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_q121c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ye5tg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gspnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_syxxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_aywek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_18n17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_m23hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_5phkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_kpdus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8eaxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_dxn7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_8cw2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_2qjvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_1uk3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_q6mrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ilb2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_0od2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_2uoi2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_k8qo7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_wqrrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_jyi8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_cp6af")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_cfitc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_x5tca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_0sdcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ai45t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_raoqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_sm26g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_21unr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_eildx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_0cm06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_f1ep8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_eygbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_2ydex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_viy5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_0i2v8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_o1dni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_v4u2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_tl8p3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_nd254")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_snxqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_hycbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_mehd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_netud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_03b1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_nmq1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_whjxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_42sor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_82fvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_g0ewx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_u4v30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_ng8oo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_viqoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_thcmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_chpud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_3anpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_d2v2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_xc78q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_p2qwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_edkni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_pctlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_3e4f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_knwf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_6vlf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_lualm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_i12qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_f6lhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_mr401")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_ft204")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_7xfft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_1rpag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_p857r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_m1fud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_csykw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_c27ti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_62de4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_6b5eb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_qo0xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_ij43j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_ns6bq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_y3ujs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_l1xss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_3wxp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_4mbrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_3o1jg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_j3kcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_ofoc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_av7uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_jh5no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_n1s75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_x6pv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_th2m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_ct7t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_a2ay5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_2by5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_qmro5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_ju4ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_1u07h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_nuiw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_wjjeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_lvy1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_rbn6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_ekl6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_1yy5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_kobky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_nlrlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_7yfho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_tnl1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_r5o7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_8mqs0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_uj3em")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_tqp51")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("145_7ca0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_dr58t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_6g8xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_l3c3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_8hami")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_2okui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_nngb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_ox3w0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_sbkpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_nb8mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_bsdga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_jwaa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_xvpr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_72hmd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_u5jao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_pnk3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_xxi1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_m7e4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_gnkgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_xjkoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_mjyah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_gdfn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_4qswp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_h3p33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_0at8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_oftt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_ds75y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_duc03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_ho74x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_7judu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_eqoq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_bgey7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_3vv8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_deau6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_n8sov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_qsjx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_ibeiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_akp8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_cy0dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_hmsh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_eevki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_6m37u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_fqukx")
+}],
+"loop": false,
+"name": &"die",
+"speed": 90.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_4mj1f")]
+process_mode = 1
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+process_mode = 1
+material = SubResource("CanvasItemMaterial_6411r")
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_lppg4")
+animation = &"die"
+
+[node name="ProgressBar" parent="." index="3"]
+offset_top = -27.0
+offset_bottom = -7.0

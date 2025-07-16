@@ -1,0 +1,12 @@
+{
+  "sumdep_marisa_alice_duration": {
+    "id": "sumdep_marisa_alice_duration",
+    "attribute": "mana",
+    "calculation": "linear",
+    "calculation_parameter": [
+      0.0025,
+      0
+    ],
+    "relationship": "multiply"
+  }
+}
