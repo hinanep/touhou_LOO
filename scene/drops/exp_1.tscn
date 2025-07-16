@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cavm07fciqflj"]
 
-[ext_resource type="Script" path="res://scene/drops/exp_1.gd" id="1_cpuj4"]
+[ext_resource type="Script" uid="uid://baak5dj1k51yo" path="res://scene/drops/exp_1.gd" id="1_cpuj4"]
 [ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_mpm0o"]
 [ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="2_xbr8h"]
 
@@ -24,6 +24,6 @@ monitoring = true
 script = ExtResource("1_cpuj4")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_v3q6v")
 frame_progress = 0.0

@@ -189,10 +189,13 @@ func reincarnation_over():
 func spellcard_timeover():
 	AudioManager.play_sfx('music_sfx_break')
 	died()
+
 func spellcard_break():
 	AudioManager.play_sfx('music_sfx_break')
+	SignalBus.disbullet.emit(true)
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate
-
+	await get_tree().create_timer(.2).timeout
+	SignalBus.fly_to_player.emit(1,1,1,1)
 
 func _on_animated_sprite_2d_animation_finished():
 	pass

@@ -10,13 +10,18 @@ font_size = 72
 process_mode = 2
 transparent_bg = true
 oversampling_override = 1.0
+mode = 4
 size = Vector2i(1920, 1080)
+borderless = true
+transparent = true
 script = ExtResource("1_1jagg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0.32156864)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

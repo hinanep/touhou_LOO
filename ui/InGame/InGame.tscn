@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=22 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" uid="uid://cr1hm1rqq35i" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dl15bichusdko" path="res://scene/FragmentContainer.tscn" id="11_v3t2b"]
 [ext_resource type="Shader" uid="uid://yt0da0noecjg" path="res://ui/TestScene/uptodownfade.gdshader" id="12_5kc7y"]
 [ext_resource type="Texture2D" uid="uid://456sgmno5a88" path="res://asset/pic/texture/maskalp.png" id="13_83w4i"]
+[ext_resource type="PackedScene" uid="uid://cavm07fciqflj" path="res://scene/drops/exp_1.tscn" id="14_v3t2b"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
@@ -138,6 +139,8 @@ position = Vector2(606, 135)
 texture = ExtResource("9_3sgji")
 
 [node name="Node2D2" parent="." instance=ExtResource("9_7xnml")]
+z_index = -500
+z_as_relative = false
 position = Vector2(11, -4)
 
 [node name="shatter" type="CanvasLayer" parent="."]
@@ -153,5 +156,8 @@ material = SubResource("ShaderMaterial_so81o")
 instance_shader_parameters/brightness = 1.0
 position = Vector2(960, 540)
 texture = ExtResource("13_83w4i")
+
+[node name="DropsBase" parent="." instance=ExtResource("14_v3t2b")]
+position = Vector2(-172, 372)
 
 [connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]

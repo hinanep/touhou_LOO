@@ -28,7 +28,7 @@ func danma_init(d4c_info:Dictionary):
 
 func _ready() -> void:
 	velocity = Vector2.ZERO
-
+	SignalBus.disbullet.connect(drop_from_disbullet)
 
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
@@ -166,5 +166,9 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		if(d_info.danmaku_type != 'dmk_laser'):
 			destroy.emit($".")
 
+func drop_from_disbullet(is_drop:bool):
+	if is_drop:
+		SignalBus.drop.emit('drops_p',global_position,1)
 
-		#queue_free()
+	queue_free()
+	#destroy.emit($".")

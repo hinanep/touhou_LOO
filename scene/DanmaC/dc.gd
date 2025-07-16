@@ -61,6 +61,7 @@ func d4c_init(id:String,parent):
 func _ready() -> void:
 	name = d4c_info.Id
 	SignalBus.clear_enemy.connect(destroy)
+
 	match d4c_info.create_front:
 		'character':
 

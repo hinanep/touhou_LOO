@@ -166,10 +166,11 @@ rotation_smoothing_speed = 10.0
 modulate = Color(1, 1, 1, 0)
 z_index = 4
 z_as_relative = false
-offset_left = -1003.0
-offset_top = -592.0
-offset_right = 1037.0
-offset_bottom = 601.0
+offset_left = -2104.0
+offset_top = -1198.0
+offset_right = -64.0
+offset_bottom = -5.0
+scale = Vector2(2, 2)
 color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
