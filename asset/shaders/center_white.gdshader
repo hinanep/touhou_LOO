@@ -18,8 +18,10 @@ vec3 sample_color(float cordi){
 }
 void fragment() {
 
-	COLOR.rgb = mix(COLOR.rgb,sample_color(custom_uv.x)*0.5,0.5);
-	COLOR.rgb *= clamp(5.0-3.0*abs(custom_uv.y)*clamp(0.8/(custom_uv.x+2.2)*2.0,0.2,2.0),1.7,10.0);
+	COLOR.rgb = mix(COLOR.rgb,sample_color(custom_uv.x)*0.9,0.7); 
+	//COLOR.rgb *=7.0-1.0*abs(custom_uv.y);
+	//COLOR.rgb *=7.0-3.0*abs(custom_uv.y)*clamp(0.9/(custom_uv.x+2.7)*2.0,0.1,2.0);
+	COLOR.rgb *= clamp(2.8-1.0*abs(custom_uv.y)*clamp(0.9/(custom_uv.x+2.7)*2.0,0.1,2.0),0.2,2.5);
 
 	//COLOR = vec4(1.,1.,1.,1.);
 	// Called for every pixel the material is visible on.

@@ -28,3 +28,9 @@ func upgrade(upname):
 func destroy(id):
 	if id == cardid:
 		queue_free()
+
+func set_highlight(is_hl):
+	if is_hl:
+		set_instance_shader_parameter("brightness",0.7)
+	else:
+		set_instance_shader_parameter("brightness",0.0)

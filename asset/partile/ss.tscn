@@ -1,0 +1,134 @@
+[gd_scene load_steps=13 format=3 uid="uid://gng8bj1kvmki"]
+
+[ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="1_c8g16"]
+[ext_resource type="Texture2D" uid="uid://bob0u3cbl1qh6" path="res://asset/pic/bullet/yinyangorb.png" id="2_1ijvg"]
+[ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="2_ekdg0"]
+[ext_resource type="Script" uid="uid://c4oea8o6wfaql" path="res://asset/partile/子弹.gd" id="3_3s4xh"]
+[ext_resource type="Texture2D" uid="uid://b4akvjdo07s81" path="res://asset/pic/bullet/激光.png" id="3_vc48r"]
+[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="5_5h2ot"]
+
+[sub_resource type="Shader" id="Shader_ekdg0"]
+code = "shader_type canvas_item;
+
+uniform float radius:hint_range(0.0,2.0) = 0.5;//取样半径（基于像素）
+uniform int sampleCount:hint_range(1, 8) = 4;//取样次数
+uniform float grayLimit :hint_range(0.0, 1.0) = 0.3;//取样最低灰度
+uniform float brightness :hint_range(0.0, 1.0)= 0.5;//模糊亮度
+
+vec4 limitGrayColor(vec4 color,float limit){
+
+if(limit <=0.0)//没限制，输入什么就输出什么
+return color;
+
+//计算灰度
+float gray = dot(color.rgb,vec3(0.299, 0.587, 0.114));
+
+if (gray<=limit){//灰度小于限制，就返回透明颜色
+return vec4(0.0);
+
+}else //不然就保留该颜色
+return color;
+
+}void fragment(){
+
+vec2 ps = TEXTURE_PIXEL_SIZE;//像素大小
+
+vec4 col = vec4(0.0);//最终输出的颜色
+
+for(int i = 1;i<=sampleCount;i++){
+
+//**当前为向8个方向取样，时间复杂度为O(n)，模糊效果不是特别好,尤其是对角
+//当然你也可以向外n*n个格子取样，不过时间复杂度是O(n^2),模糊效果较为精确
+//网上那些n+n的取样方式是对一张图处理1次后把图提取出来再处理1次，要配合底层代码来写的。
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(0,-radius)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(0,radius)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(-radius,0)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(radius,0)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(radius,radius)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(radius,-radius)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(-radius,radius)*ps*float(i)),grayLimit);
+col+=limitGrayColor(
+texture(TEXTURE,UV + vec2(-radius,-radius)*ps*float(i)),grayLimit);}
+
+col/=(8.0*float(sampleCount));
+COLOR = col*brightness+texture(TEXTURE,UV);
+
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_803e0"]
+shader = SubResource("Shader_ekdg0")
+shader_parameter/radius = 0.722000034295
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.2570000122075
+shader_parameter/brightness = 0.74800003553
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66e2d"]
+shader = ExtResource("5_5h2ot")
+shader_parameter/radius = 2.0
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.2400000114
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekdg0"]
+shader = ExtResource("5_5h2ot")
+shader_parameter/radius = 0.5
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8g16"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_u1oyu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
+
+[node name="Ss" type="CPUParticles2D"]
+emitting = false
+amount = 128
+texture = ExtResource("1_c8g16")
+lifetime = 0.2
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+
+[node name="子弹" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_803e0")
+position = Vector2(-1, 98)
+texture = ExtResource("2_ekdg0")
+script = ExtResource("3_3s4xh")
+
+[node name="Line2D" type="Line2D" parent="子弹"]
+top_level = true
+texture_repeat = 2
+material = SubResource("ShaderMaterial_66e2d")
+points = PackedVector2Array(115, 80, -87, 59.999985)
+width = 50.0
+texture = ExtResource("3_vc48r")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+round_precision = 32
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.21960784)
+top_level = true
+material = SubResource("ShaderMaterial_ekdg0")
+position = Vector2(-2, 52)
+rotation = -0.02443461
+amount = 1
+texture = ExtResource("2_1ijvg")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_c8g16")
+
+[node name="Path2D" type="Path2D" parent="GPUParticles2D"]
+curve = SubResource("Curve2D_u1oyu")

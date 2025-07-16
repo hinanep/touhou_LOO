@@ -13,7 +13,9 @@
 	"physical_damage": 50.0,
 	"time": 60.0,
 	"initial_bonus": 0.0,
-	"bonus_reduction_rate": 0.0
+	"bonus_reduction_rate": 0.0,
+	"lives": 1,
+	"hp_hud": "nons"
   },
   "bprc_keine_sc1": {
 	"id": "bprc_keine_sc1",
@@ -29,7 +31,9 @@
 	"physical_damage": 50.0,
 	"time": 60.0,
 	"initial_bonus": 15000.0,
-	"bonus_reduction_rate": 200.0
+	"bonus_reduction_rate": 200.0,
+	"lives": 1,
+	"hp_hud": "spell_quarter"
   },
   "bprc_keine_ns2": {
 	"id": "bprc_keine_ns2",
@@ -45,7 +49,9 @@
 	"physical_damage": 50.0,
 	"time": 60.0,
 	"initial_bonus": 0.0,
-	"bonus_reduction_rate": 0.0
+	"bonus_reduction_rate": 0.0,
+	"lives": 0,
+	"hp_hud": "nons"
   },
   "bprc_keine_sc2": {
 	"id": "bprc_keine_sc2",
@@ -61,6 +67,8 @@
 	"physical_damage": 50.0,
 	"time": 60.0,
 	"initial_bonus": 15000.0,
-	"bonus_reduction_rate": 200.0
+	"bonus_reduction_rate": 200.0,
+	"lives": 0,
+	"hp_hud": "spell_quarter"
   }
 }

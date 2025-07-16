@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c0o2d1rqeugpm"]
 
-[ext_resource type="Script" path="res://scene/player/player.gd" id="1_eqxiv"]
+[ext_resource type="Script" uid="uid://jn4lwmrly54r" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="PackedScene" uid="uid://clsoje0yt1dit" path="res://scene/component/skill/SkillComponent.tscn" id="2_20a0v"]
 [ext_resource type="PackedScene" uid="uid://fec4arl424pc" path="res://scene/component/card/CardComponent.tscn" id="3_astcg"]
 [ext_resource type="Texture2D" uid="uid://d111f1mjv8x4c" path="res://asset/pic/fairy/left.png" id="3_bbt5x"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4f8v0lfq8dq" path="res://scene/component/buff/BuffComponent.tscn" id="4_54cbq"]
 [ext_resource type="Texture2D" uid="uid://c7dk0w5s7aqfj" path="res://asset/pic/fairy/20241105-223621.png" id="5_3pdok"]
 [ext_resource type="PackedScene" uid="uid://bn82kepgtwd7v" path="res://scene/component/cp/CpComponent.tscn" id="5_fov64"]
-[ext_resource type="Shader" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
+[ext_resource type="Shader" uid="uid://1idqb1bfupq2" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
 radius = 16.0
@@ -35,7 +35,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hargt"]
 _data = {
-"hurt": SubResource("Animation_3lp87")
+&"hurt": SubResource("Animation_3lp87")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7menj"]
@@ -125,7 +125,7 @@ shape = SubResource("CircleShape2D_keelo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hargt")
+&"": SubResource("AnimationLibrary_hargt")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -161,6 +161,16 @@ ignore_rotation = false
 position_smoothing_speed = 500.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
+
+[node name="black" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+z_as_relative = false
+offset_left = -1003.0
+offset_top = -592.0
+offset_right = 1037.0
+offset_bottom = 601.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="invincible_time" to="." method="_on_invincible_time_timeout"]
 [connection signal="area_entered" from="pickup_area" to="." method="_on_pickup_area_area_entered"]

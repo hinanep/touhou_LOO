@@ -8,6 +8,9 @@ var progress_time = 0
 var diretion:Vector2 = Vector2.ZERO
 var move_func:Callable = move_stay
 signal trigger(id)
+var state = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
+
+
 func boss_init(id:String):
 	boss_info = table[id]
 	mob_info = boss_info[boss_info.keys()[0]]
@@ -122,7 +125,7 @@ func start_progess(phase:int):
 	progress_routine.clear()
 	SignalBus.clear_enemy.emit(true)
 	move_func = move_stay
-
+	set_cardstate(mob_info.hp_hud)
 
 	create_tween().tween_property($".",'global_position',Vector2(600,0),1)
 
@@ -178,7 +181,9 @@ func reincarnation_over():
 			$danma.add_child(nbr)
 
 			progress_routine[key] = rt[key]
+	SignalBus.set_bosstimer.emit(mob_info.time)
 	$progress_timer.start()
+
 
 
 func spellcard_timeover():
@@ -200,7 +205,44 @@ func _on_progress_timer_timeout() -> void:
 
 
 func _on_progress_bar_value_changed(value: float) -> void:
-	$hud/bossbar.value = value
+	match state:
+		'nons':
+			$hud/hp/nons/nons_mask.size.y = 6.45 * value
+		'spell_quarter':
+			$hud/hp/nons/quar_mask.size.y = 2.16 * value
+		'spell_full':
+			$hud/hp/fullcard/full_mask.size.y = 8.58 * value
+		'spell_time':
+			$hud/hp/fullcard/time_mask.size.y = 8.58 * value
+
+func set_cardstate(bossstate:String):
+	state = bossstate
+	match bossstate:
+		'nons':
+			$hud/hp/nons.visible = true
+			$hud/hp/fullcard.visible = false
+			$hud/hp/nons/nons_mask.visible = true
+			$hud/hp/nons/quar_mask.visible = true
+			$hud/hp/nons/nons_mask.size.y = 645
+			$hud/hp/nons/quar_mask.size.y = 216
+		'spell_quarter':
+			$hud/hp/nons.visible = true
+			$hud/hp/fullcard.visible = false
+			$hud/hp/nons/nons_mask.visible = false
+			$hud/hp/nons/quar_mask.visible = true
+			$hud/hp/nons/quar_mask.size.y = 216
+		'spell_full':
+			$hud/hp/nons.visible = false
+			$hud/hp/fullcard.visible = true
+			$hud/hp/fullcard/full_mask.visible = true
+			$hud/hp/fullcard/time_mask.visible = false
+			$hud/hp/fullcard/full_mask.size.y = 858
+		'spell_time':
+			$hud/hp/nons.visible = false
+			$hud/hp/fullcard.visible = true
+			$hud/hp/fullcard/full_mask.visible = false
+			$hud/hp/fullcard/time_mask.visible = true
+			$hud/hp/fullcard/time_mask.size.y = 858
 
 @onready var panel = $hud/card/PopupPanel
 @onready var text = $hud/card/RichTextLabel

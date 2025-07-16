@@ -1,32 +1,56 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=27 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
-[ext_resource type="Texture2D" uid="uid://bp4pdtn7snxio" path="res://asset/pic/ui/achievement_hr1.png" id="3_atrcm"]
+[ext_resource type="Texture2D" uid="uid://cdv853opb5hr6" path="res://asset/pic/ui/HUD/血条填充.png" id="3_kbjvd"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
-[ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="4_eyoy3"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
+[ext_resource type="Texture2D" uid="uid://d12nhv4wt0lnp" path="res://asset/pic/ui/HUD/符力条.png" id="5_xs3el"]
+[ext_resource type="Texture2D" uid="uid://bb2os5wgmj3oc" path="res://asset/pic/ui/HUD/血条.png" id="6_7ncbm"]
+[ext_resource type="Texture2D" uid="uid://bqqgbyv81gktt" path="res://asset/pic/ui/HUD/自机血条头像.png" id="6_e8oks"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="6_jyhex"]
+[ext_resource type="Texture2D" uid="uid://beykdon3f3y4n" path="res://asset/pic/ui/HUD/符力条填充.png" id="6_pjubw"]
 [ext_resource type="Script" uid="uid://pwiu7nfo2w0b" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
+[ext_resource type="Texture2D" uid="uid://btvijlv3rj6ut" path="res://asset/pic/ui/HUD/经验条填充.png" id="8_h7ufx"]
+[ext_resource type="Shader" uid="uid://cm31jdbaq2nwf" path="res://asset/shaders/fade.gdshader" id="10_7u03l"]
+[ext_resource type="Texture2D" uid="uid://cm7agolknpfi7" path="res://asset/pic/ui/HUD/记忆结晶底纹.png" id="10_754lx"]
+[ext_resource type="Texture2D" uid="uid://bnsff70wi6awc" path="res://asset/pic/ui/HUD/自机符卡信息.png" id="10_b8std"]
+[ext_resource type="Texture2D" uid="uid://dqv38mj8vnmn4" path="res://asset/pic/ui/HUD/符卡.png" id="11_agwl7"]
+[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="11_stodd"]
+[ext_resource type="Texture2D" uid="uid://bxuy0w1eqq10g" path="res://asset/pic/ui/HUD/残机（灰）.png" id="12_h7ufx"]
+[ext_resource type="Texture2D" uid="uid://vfr4e8kbltk8" path="res://asset/pic/ui/HUD/符卡（灰）.png" id="12_stodd"]
+[ext_resource type="Texture2D" uid="uid://b3en22kbxi8ae" path="res://asset/pic/ui/HUD/经验条.png" id="12_ynj7b"]
+[ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="13_tr6ke"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_o2qmu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7u03l"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.04800000228
+shader_parameter/fade_from_right = false
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nrydv"]
-texture = SubResource("CanvasTexture_o2qmu")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxoq7"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuorb"]
 
 [sub_resource type="Theme" id="Theme_08wx8"]
 default_base_scale = 0.5
 default_font = ExtResource("3_o5w7m")
 default_font_size = 60
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia0gh"]
-bg_color = Color(0.831373, 0.737255, 0.294118, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8oks"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.10600000503500001
+shader_parameter/fade_from_right = false
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvsvv"]
-atlas = ExtResource("3_atrcm")
-region = Rect2(118, 4, 122, 206)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfyr4"]
+shader = ExtResource("10_7u03l")
+shader_parameter/start_alpha = 1.0
+shader_parameter/end_alpha = 0.23600001121
+shader_parameter/fade_from_right = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_754lx"]
+shader = ExtResource("11_stodd")
+shader_parameter/radius = 2.0
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.30000001425
 
 [node name="Hud" type="Control" groups=["hud"]]
 process_mode = 3
@@ -36,56 +60,148 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 2.0
+offset_top = 14.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fpogy")
 
 [node name="hud" type="CanvasLayer" parent="."]
 
-[node name="hp" type="ProgressBar" parent="hud"]
-modulate = Color(1, 0.184861, 0.214292, 1)
-offset_left = 19.0
-offset_top = 6.0
-offset_right = 399.0
-offset_bottom = 53.0
-theme_override_styles/fill = SubResource("StyleBoxTexture_nrydv")
-value = 50.0
-show_percentage = false
+[node name="hp" type="Sprite2D" parent="hud"]
+material = SubResource("ShaderMaterial_7u03l")
+position = Vector2(203, 80)
+texture = ExtResource("6_7ncbm")
+
+[node name="hp_mask" type="ReferenceRect" parent="hud/hp"]
+z_index = -1
+clip_contents = true
+offset_left = -127.0
+offset_top = -20.0
+offset_right = 197.0
+offset_bottom = 47.0
+border_color = Color(1, 0, 0, 0)
+
+[node name="hp_cont" type="Sprite2D" parent="hud/hp/hp_mask"]
+modulate = Color(1, 0.58000004, 0.58000004, 1)
+material = SubResource("ShaderMaterial_uuorb")
+position = Vector2(163, 37)
+scale = Vector2(0.9969512, 1)
+texture = ExtResource("3_kbjvd")
 
 [node name="hp_text" type="RichTextLabel" parent="hud/hp"]
+modulate = Color(1, 1, 1, 0.7137255)
 clip_contents = false
-layout_mode = 0
-offset_left = 2.0
-offset_top = 9.0
-offset_right = 378.0
-offset_bottom = 56.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+offset_left = -153.0
+offset_top = 6.0
+offset_right = 223.0
+offset_bottom = 53.0
+theme_override_colors/default_color = Color(0.97, 0.6305, 0.6305, 1)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
+horizontal_alignment = 1
 
-[node name="card_mana" type="ProgressBar" parent="hud"]
-modulate = Color(0.181439, 0.947954, 0, 1)
-offset_left = 19.0
-offset_top = 67.0
-offset_right = 400.0
-offset_bottom = 114.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_kxoq7")
-value = 50.0
-show_percentage = false
+[node name="自机血条头像" type="Sprite2D" parent="hud/hp"]
+position = Vector2(-122.00001, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_e8oks")
 
-[node name="card_mana_text" type="RichTextLabel" parent="hud/card_mana"]
+[node name="mana" type="Sprite2D" parent="hud"]
+position = Vector2(219, 176)
+texture = ExtResource("5_xs3el")
+
+[node name="mana_mask" type="ReferenceRect" parent="hud/mana"]
+z_index = -1
+clip_contents = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -72.0
+offset_right = -194.5
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.915, 1)
+pivot_offset = Vector2(10, 0)
+border_color = Color(1, 0, 0, 0)
+
+[node name="mana_cont" type="Sprite2D" parent="hud/mana/mana_mask"]
+position = Vector2(176.90982, 36)
+scale = Vector2(1.0449421, 1)
+texture = ExtResource("6_pjubw")
+
+[node name="card_mana_text" type="RichTextLabel" parent="hud/mana"]
 clip_contents = false
-layout_mode = 0
-offset_left = -1.0
-offset_top = 8.0
-offset_right = 373.0
-offset_bottom = 42.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.5
+offset_top = -48.5
+offset_right = -31.5
+offset_bottom = -14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.32999998, 1, 0.38583326, 0.6627451)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
+horizontal_alignment = 1
+
+[node name="exp" type="Sprite2D" parent="hud"]
+position = Vector2(218, 258)
+texture = ExtResource("12_ynj7b")
+
+[node name="exp_mask" type="ReferenceRect" parent="hud/exp"]
+z_index = -1
+clip_contents = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -75.0
+offset_right = -165.18582
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.915, 1)
+pivot_offset = Vector2(10, 0)
+border_color = Color(1, 0, 0, 0)
+
+[node name="exp_cont" type="Sprite2D" parent="hud/exp/exp_mask"]
+position = Vector2(211.09288, 42.999985)
+scale = Vector2(1.0928961, 0.99999994)
+texture = ExtResource("8_h7ufx")
+
+[node name="Lv" type="RichTextLabel" parent="hud/exp"]
+modulate = Color(0.98048526, 0.6001637, 0.7718603, 1)
+offset_left = -59.0
+offset_top = -13.0
+offset_right = -4.0
+offset_bottom = 36.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 15
+text = "Lv."
+
+[node name="level_text" type="RichTextLabel" parent="hud/exp"]
+modulate = Color(0.98048526, 0.6001637, 0.7718603, 1)
+clip_contents = false
+offset_left = 22.999992
+offset_top = -12.0
+offset_right = 80.99989
+offset_bottom = 37.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_o5w7m")
+theme_override_font_sizes/normal_font_size = 15
+text = "lev."
 
 [node name="point_ratio" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345929, 0.903254, 1, 1)
@@ -112,10 +228,10 @@ text = "0"
 
 [node name="fps" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345098, 0.901961, 1, 1)
-offset_left = 1640.0
-offset_top = 1026.0
-offset_right = 2284.0
-offset_bottom = 1116.0
+offset_left = 1594.0
+offset_top = 124.0
+offset_right = 2238.0
+offset_bottom = 214.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 60
@@ -125,9 +241,9 @@ text = "FPS："
 clip_contents = false
 layout_mode = 0
 offset_left = 208.0
-offset_top = 14.0
+offset_top = 10.0
 offset_right = 616.0
-offset_bottom = 96.0
+offset_bottom = 92.0
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 60
 text = "0"
@@ -154,61 +270,31 @@ theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 60
 text = "0"
 
-[node name="exp_bar" type="ProgressBar" parent="hud"]
-offset_left = 17.0
-offset_top = 1048.0
-offset_right = 679.0
-offset_bottom = 1062.0
-rotation = 4.71239
-theme_override_styles/fill = SubResource("StyleBoxFlat_ia0gh")
-value = 80.0
-show_percentage = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="hud/exp_bar"]
-modulate = Color(0.831373, 0.737255, 0.294118, 1)
-layout_mode = 0
-offset_left = 27.0
-offset_top = 17.0
-offset_right = 82.0
-offset_bottom = 66.0
-rotation = 1.5708
-scale = Vector2(2, 2)
-theme_override_fonts/normal_font = ExtResource("3_o5w7m")
-theme_override_font_sizes/normal_font_size = 15
-text = "lev."
-
-[node name="level_number" type="RichTextLabel" parent="hud/exp_bar"]
-modulate = Color(0.832836, 0.737421, 0.294243, 1)
-clip_contents = false
-layout_mode = 0
-offset_left = 26.0001
-offset_top = 99.0
-offset_right = 84.0
-offset_bottom = 148.0
-rotation = 1.5708
-scale = Vector2(2, 2)
-theme_override_fonts/normal_font = ExtResource("3_o5w7m")
-theme_override_font_sizes/normal_font_size = 15
-text = "lev."
-
 [node name="cards" type="Node" parent="hud"]
 
-[node name="card_container" type="HBoxContainer" parent="hud"]
-offset_left = 37.0
-offset_top = 124.0
-offset_right = 3467.0
-offset_bottom = 1374.0
-scale = Vector2(0.08, 0.08)
-alignment = 1
-
 [node name="skill_container" type="HBoxContainer" parent="hud"]
-offset_left = 400.0
-offset_top = 965.0
-offset_right = 1626.0
-offset_bottom = 1065.0
+offset_left = 30.0
+offset_top = 782.0
+offset_right = 530.0
+offset_bottom = 842.0
+theme_override_constants/separation = 0
+
+[node name="card_container" type="HBoxContainer" parent="hud"]
+offset_left = 30.0
+offset_top = 911.0
+offset_right = 530.0
+offset_bottom = 971.0
+theme_override_constants/separation = 0
+
+[node name="psv_container" type="HBoxContainer" parent="hud"]
+offset_left = 30.0
+offset_top = 847.0
+offset_right = 530.0
+offset_bottom = 907.0
 theme_override_constants/separation = 0
 
 [node name="cp_container" type="HBoxContainer" parent="hud"]
+visible = false
 offset_left = 40.0
 offset_top = 377.0
 offset_right = 2860.0
@@ -217,32 +303,22 @@ scale = Vector2(0.07, 0.07)
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="card_now" type="TextureRect" parent="hud"]
-offset_left = 19.0
-offset_top = 354.0
-offset_right = 141.0
-offset_bottom = 722.0
-rotation = -1.5708
-texture = SubResource("AtlasTexture_bvsvv")
+[node name="记忆结晶底纹" type="Sprite2D" parent="hud"]
+z_index = -1
+material = SubResource("ShaderMaterial_e8oks")
+position = Vector2(211, 876)
+texture = ExtResource("10_754lx")
 
-[node name="crystal" type="TextureRect" parent="hud/card_now"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 19.0
-offset_right = 179.0
-offset_bottom = 100.0
-rotation = 1.5708
-texture = ExtResource("4_eyoy3")
-expand_mode = 2
+[node name="card_now" type="Sprite2D" parent="hud"]
+material = SubResource("ShaderMaterial_mfyr4")
+position = Vector2(174, 1023)
+texture = ExtResource("10_b8std")
 
 [node name="cardid" type="RichTextLabel" parent="hud/card_now"]
 clip_contents = false
-layout_mode = 0
-offset_left = 105.0
-offset_top = 106.0
-offset_right = 4345.0
-offset_bottom = 373.0
-rotation = 1.5708
+offset_left = -71.00001
+offset_right = 2309.0
+offset_bottom = 550.0
 scale = Vector2(0.1, 0.1)
 theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 200
@@ -251,24 +327,49 @@ fit_content = true
 
 [node name="manacost" type="RichTextLabel" parent="hud/card_now"]
 clip_contents = false
-layout_mode = 0
-offset_left = 51.0
-offset_top = 107.0
-offset_right = 2551.0
-offset_bottom = 374.0
-rotation = 1.5708
+offset_left = -73.00001
+offset_top = -31.99999
+offset_right = 2427.0
+offset_bottom = 235.00002
 scale = Vector2(0.1, 0.1)
 theme = ExtResource("6_jyhex")
 theme_override_font_sizes/normal_font_size = 200
 text = "符力消耗"
 fit_content = true
 
-[node name="psv_container" type="HBoxContainer" parent="hud"]
-offset_left = 1435.0
-offset_top = 138.0
-offset_right = 1791.0
-offset_bottom = 238.0
-alignment = 2
+[node name="enoughmana" type="Sprite2D" parent="hud/card_now"]
+z_index = 1
+material = SubResource("ShaderMaterial_754lx")
+position = Vector2(-109, -6)
+rotation = 0.2617994
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("11_agwl7")
+
+[node name="nomana" type="Sprite2D" parent="hud/card_now"]
+position = Vector2(-109.00001, -5.999983)
+rotation = 0.2617994
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("12_stodd")
+
+[node name="life" type="Node" parent="hud"]
+
+[node name="life1" type="Sprite2D" parent="hud/life"]
+position = Vector2(180, 40)
+texture = ExtResource("12_h7ufx")
+
+[node name="have" type="Sprite2D" parent="hud/life/life1"]
+z_index = 1
+position = Vector2(1, 0)
+texture = ExtResource("13_tr6ke")
+
+[node name="life2" type="Sprite2D" parent="hud/life"]
+position = Vector2(230, 41)
+texture = ExtResource("12_h7ufx")
+
+[node name="have" type="Sprite2D" parent="hud/life/life2"]
+z_index = 1
+position = Vector2(0, 1)
+texture = ExtResource("13_tr6ke")
 
 [node name="time" parent="." instance=ExtResource("4_jpst3")]
 process_mode = 1

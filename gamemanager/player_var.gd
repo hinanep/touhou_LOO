@@ -100,7 +100,7 @@ var free_card
 var passive_num_max
 
 var is_card_casting
-var player_node
+var player_node:Node2D
 var exp_need:
 	get:
 		return level*12 +12
@@ -239,6 +239,14 @@ func lock_camera():
 	tmpcamera.limit_right = player_var.air_wall_right*2
 	tmpcamera.limit_top = player_var.air_wall_top*2
 
+func screen_black(intensity:float,in_time:float,duration_time:float,out_time:float):
+	var black_mo = player_node.get_node('black')
+
+	var blacking = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+
+	blacking.tween_property(black_mo,"modulate",Color(1,1,1,intensity),in_time)
+	blacking.tween_interval(duration_time)
+	blacking.tween_property(black_mo,"modulate",Color(1,1,1,0),out_time)
 
 func ini():
 	var ini_list = initial_status.new()

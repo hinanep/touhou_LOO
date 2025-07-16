@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://yxfp21sr1yru"]
 
-[ext_resource type="Script" path="res://scene/enemys/boss/boss_routine.gd" id="1_g1ef5"]
+[ext_resource type="Script" uid="uid://clyfl2q2wb520" path="res://scene/enemys/boss/boss_routine.gd" id="1_g1ef5"]
 
 [node name="boss_routine" type="Node2D"]
 script = ExtResource("1_g1ef5")

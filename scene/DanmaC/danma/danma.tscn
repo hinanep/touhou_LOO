@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfhi4nkej810f"]
+[gd_scene load_steps=6 format=3 uid="uid://cfhi4nkej810f"]
 
 [ext_resource type="Script" uid="uid://dxl3w2m0a7kr7" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
 [ext_resource type="Texture2D" uid="uid://cq3udibbkhx3w" path="res://asset/pic/bullet/enemy/激光.png" id="2_wxdkc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bi33l"]
+blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_al86q"]
 size = Vector2(1, 1)
@@ -11,6 +14,7 @@ size = Vector2(1, 1)
 
 [node name="Danma" type="CharacterBody2D"]
 top_level = true
+material = SubResource("CanvasItemMaterial_bi33l")
 collision_layer = 64
 collision_mask = 0
 motion_mode = 1
@@ -28,6 +32,7 @@ monitorable = false
 shape = SubResource("RectangleShape2D_n623u")
 
 [node name="texture" type="Sprite2D" parent="."]
+self_modulate = Color(0.68799996, 1, 0.52, 1)
 z_index = 500
 z_as_relative = false
 rotation = -1.5708

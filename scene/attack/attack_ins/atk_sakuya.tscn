@@ -1,47 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpt73bwx42j78"]
+[gd_scene load_steps=6 format=3 uid="uid://bpt73bwx42j78"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_bgcvx"]
-[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_l2oxa"]
-[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="3_81bri"]
+[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_l2oxa"]
 [ext_resource type="Texture2D" uid="uid://dlwctapq2vwha" path="res://asset/pic/bullet/飞刀.png" id="3_edrru"]
-[ext_resource type="Texture2D" uid="uid://b3uu5wve6rdc2" path="res://asset/pic/未标题-2.png" id="3_tutt0"]
-[ext_resource type="Texture2D" uid="uid://b87g42lqgvd03" path="res://asset/pic/未标题-2-3.png" id="4_snlc4"]
-[ext_resource type="Texture2D" uid="uid://bj3wy5gb8k0bc" path="res://asset/pic/未标题-2-2.png" id="4_xvuig"]
-[ext_resource type="Texture2D" uid="uid://cv200cit0tbx7" path="res://asset/pic/未标题-2-4.png" id="5_ssfug"]
-[ext_resource type="Texture2D" uid="uid://4i0fghedda5i" path="res://asset/pic/未标题-2-5.png" id="6_o4chs"]
-[ext_resource type="Texture2D" uid="uid://dty7ovaqqrcjk" path="res://asset/pic/tmp.png" id="7_81bri"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_yx2lj"]
-frames = 5
-frame_0/texture = ExtResource("3_tutt0")
-frame_0/duration = 0.1
-frame_1/texture = ExtResource("4_snlc4")
-frame_1/duration = 0.1
-frame_2/texture = ExtResource("5_ssfug")
-frame_2/duration = 0.1
-frame_3/texture = ExtResource("3_tutt0")
-frame_3/duration = 0.1
-frame_4/texture = ExtResource("6_o4chs")
-frame_4/duration = 0.1
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmwwc"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_min = 0.19999999
-scale_max = 0.19999999
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_81bri"]
-shader = ExtResource("3_81bri")
-shader_parameter/radius = 0.5
-shader_parameter/sampleCount = 4
-shader_parameter/grayLimit = 1.0
-shader_parameter/brightness = 0.5
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_snlc4"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.099999994
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1xu3n"]
 animations = [{
@@ -56,60 +17,13 @@ animations = [{
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
-[sub_resource type="Curve" id="Curve_xvuig"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5016612, 0.48306328), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_kmwwc"]
-curve = SubResource("Curve_xvuig")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssfug"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 8.35
-gravity = Vector3(0, 0, 0)
-scale_min = 0.14999999
-scale_max = 0.14999999
-alpha_curve = SubResource("CurveTexture_kmwwc")
-
 [node name="Attack" instance=ExtResource("1_bgcvx")]
 z_index = 12
 script = ExtResource("2_l2oxa")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
-self_modulate = Color(1, 1, 1, 0.5019608)
-position = Vector2(8, 7)
-amount = 1
-texture = SubResource("AnimatedTexture_yx2lj")
-lifetime = 0.5
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_kmwwc")
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="2"]
-self_modulate = Color(1, 1, 1, 0.7058824)
-material = SubResource("ShaderMaterial_81bri")
-position = Vector2(3, 9)
-amount = 1
-texture = ExtResource("4_xvuig")
-lifetime = 10.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_snlc4")
-
-[node name="lock_component" parent="." index="3"]
+[node name="lock_component" parent="." index="1"]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_1xu3n")
 
-[node name="damage_area" parent="." index="4"]
-visible = false
-
 [node name="CollisionShape2D" parent="damage_area" index="0"]
-visible = false
 shape = SubResource("WorldBoundaryShape2D_74emn")
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="9"]
-self_modulate = Color(1, 1, 1, 0.76862746)
-position = Vector2(0, 5)
-amount = 5
-texture = ExtResource("7_81bri")
-lifetime = 0.25
-process_material = SubResource("ParticleProcessMaterial_ssfug")

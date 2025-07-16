@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform float radius:hint_range(0.0,2.0) = 0.5;//取样半径（基于像素）
 uniform int sampleCount:hint_range(1, 8) = 4;//取样次数
 uniform float grayLimit :hint_range(0.0, 1.0) = 0.3;//取样最低灰度
-uniform float brightness :hint_range(0.0, 1.0)= 0.5;//模糊亮度
+instance uniform float brightness :hint_range(0.0, 1.0)= 0.5;//模糊亮度
 
 vec4 limitGrayColor(vec4 color,float limit){
 
@@ -48,6 +48,9 @@ col+=limitGrayColor(
 texture(TEXTURE,UV + vec2(-radius,-radius)*ps*float(i)),grayLimit);}
 
 col/=(8.0*float(sampleCount));
-COLOR.rgb = (col*brightness+texture(TEXTURE,UV)).rgb;
+vec4 effect_color = col * brightness + texture(TEXTURE, UV);
+
+COLOR.rgb = effect_color.rgb;
+
 
 }

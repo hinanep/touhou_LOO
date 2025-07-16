@@ -81,7 +81,7 @@ script = ExtResource("7_7uj5j")
 script = ExtResource("5_pafhp")
 
 [node name="WorldEnvironment" type="CanvasModulate" parent="."]
-color = Color(0.709804, 0.807843, 0.835294, 1)
+color = Color(0.86329997, 0.94866, 0.97, 1)
 
 [node name="Node2D" parent="." instance=ExtResource("5_ep1gx")]
 z_index = -500

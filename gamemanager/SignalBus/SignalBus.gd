@@ -136,6 +136,7 @@ signal pause_spawner(is_pause:bool)
 signal add_mob_to_manager(mob_node)
 signal boss_set_stage(stage:int)
 signal kill_all
+signal set_bosstimer(time:float)
 # ==================== 调试日志 (Debug Log) ====================
 ## 是否启用信号发射日志记录功能。设置为 true 时，大部分信号触发时会在控制台打印信息。
 @export var is_log: bool = false # 在编辑器中勾选以启用日志
