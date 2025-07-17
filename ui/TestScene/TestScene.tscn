@@ -65,6 +65,7 @@ position = Vector2(240, 142)
 rotation = -3.1363516
 
 [node name="air_wall" type="StaticBody2D" parent="."]
+process_mode = 1
 collision_layer = 36
 collision_mask = 0
 
@@ -85,6 +86,7 @@ position = Vector2(1377, -6)
 shape = SubResource("WorldBoundaryShape2D_3l2uj")
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
+process_mode = 1
 
 [node name="drops" type="Node2D" parent="SpawnManager"]
 script = ExtResource("7_7uj5j")
@@ -101,6 +103,7 @@ z_as_relative = false
 position = Vector2(0, -1000)
 
 [node name="shatter" type="CanvasLayer" parent="."]
+process_mode = 1
 layer = 1000
 script = ExtResource("7_vsf1d")
 

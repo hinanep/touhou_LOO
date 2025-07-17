@@ -33,7 +33,7 @@ func _ready():
 
 func hp_display():
 
-	hp_cont.offset.x = 350 - player_var.player_hp/player_var.player_hp_max * 350
+	hp_cont.offset.x =   player_var.player_hp/player_var.player_hp_max * 275 - 275
 	hp_text.text = ("%d" % player_var.player_hp) + "/" + ("%d" % player_var.player_hp_max)
 
 func card_mana_display():

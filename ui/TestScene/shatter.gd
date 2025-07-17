@@ -65,13 +65,15 @@ func start_shatter_effect():
 	$Maskalp.material.set_shader_parameter('begin',true)
 	var tween = create_tween()
 	#tween.tween_interval(2.0)
+	tween.set_parallel(true)
+
+	tween.tween_callback(tween_all_fragment)
 	tween.tween_method(set_shader_phase,4.15,-1.0,0.5)
 	await tween.finished
 	$Maskalp.material.set_shader_parameter('begin',false)
 	set_shader_phase(0.0)
 
-	for i in fragments.size():
-		tween_fragment(i)
+
 
 
 
@@ -104,15 +106,20 @@ func clear_fragments():
 			child.position = Vector2.ZERO
 		print("已清理之前的碎片")
 
+func tween_all_fragment():
+	for i in fragments.size():
+		tween_fragment(i)
 # 创建单个碎片
 func tween_fragment(index:int):
 
 	fragments[index].rotation = 0
 	fragments[index].modulate.a = 1.0
-
+	await get_tree().create_timer(0.8).timeout
 	# 创建动画来模拟爆炸效果
 	var tween = create_tween()
-	tween.tween_interval(1.5)
+
+
+
 	tween.set_parallel(true)
 
 	# 移动动画

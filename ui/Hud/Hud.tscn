@@ -85,7 +85,7 @@ border_color = Color(1, 0, 0, 0)
 [node name="hp_cont" type="Sprite2D" parent="hud/hp/hp_mask"]
 modulate = Color(1, 0.58000004, 0.58000004, 1)
 material = SubResource("ShaderMaterial_uuorb")
-position = Vector2(163, 37)
+position = Vector2(161, 37)
 scale = Vector2(0.9969512, 1)
 texture = ExtResource("3_kbjvd")
 
