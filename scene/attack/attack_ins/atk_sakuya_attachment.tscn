@@ -1,8 +1,83 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1gp8urseg1si"]
+[gd_scene load_steps=27 format=3 uid="uid://b1gp8urseg1si"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_8i1h4"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_vkpgq"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_vkpgq"]
+[ext_resource type="Texture2D" uid="uid://dmkdxnkghc1sp" path="res://asset/pic/sakuyaatk-5.png" id="3_ocwl3"]
 [ext_resource type="Texture2D" uid="uid://dlwctapq2vwha" path="res://asset/pic/bullet/飞刀.png" id="3_q5s5t"]
+[ext_resource type="Texture2D" uid="uid://c67444p2656mc" path="res://asset/pic/sakuyaatk-4.png" id="5_aot3t"]
+
+[sub_resource type="Curve" id="Curve_aot3t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_porl0"]
+curve = SubResource("Curve_aot3t")
+
+[sub_resource type="Curve" id="Curve_emivx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_wfwsx"]
+_data = [Vector2(0, 0.50220907), 0.0, 0.0, 0, 0, Vector2(1, 0.50220907), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gaye6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_i6ime"]
+curve_x = SubResource("Curve_emivx")
+curve_y = SubResource("Curve_wfwsx")
+curve_z = SubResource("Curve_gaye6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t044e"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 0.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveXYZTexture_i6ime")
+alpha_curve = SubResource("CurveTexture_porl0")
+
+[sub_resource type="Curve" id="Curve_i6ime"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.109634556, 1), 0.0, 0.0, 0, 0, Vector2(0.88039875, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_t044e"]
+curve = SubResource("Curve_i6ime")
+
+[sub_resource type="Curve" id="Curve_y7pm5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7674419, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_dwey5"]
+_data = [Vector2(0, 0), 0.0, 3.2652748, 0, 0, Vector2(0.056478404, 0.50220907), 0.0, 0.0, 0, 0, Vector2(1, 0.4926362), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_270uq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_qhsxs"]
+curve_x = SubResource("Curve_y7pm5")
+curve_y = SubResource("Curve_dwey5")
+curve_z = SubResource("Curve_270uq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t6ury"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_qhsxs")
+alpha_curve = SubResource("CurveTexture_t044e")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_evrla"]
 animations = [{
@@ -17,13 +92,69 @@ animations = [{
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
+[sub_resource type="Curve" id="Curve_porl0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4983389, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_t044e"]
+_data = [Vector2(0.009966776, 0), 0.0, 0.0, 0, 0, Vector2(0.5049834, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qhsxs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5016612, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_t6ury"]
+curve_x = SubResource("Curve_porl0")
+curve_y = SubResource("Curve_t044e")
+curve_z = SubResource("Curve_qhsxs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_agmn5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveXYZTexture_t6ury")
+
 [node name="Attack" instance=ExtResource("1_8i1h4")]
 script = ExtResource("2_vkpgq")
 
-[node name="lock_component" parent="." index="1"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
+self_modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(-8, 0)
+scale = Vector2(0.52, 0.52)
+amount = 100
+texture = ExtResource("3_ocwl3")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_t044e")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="2"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.627451)
+position = Vector2(-8, 1)
+amount = 5
+texture = ExtResource("5_aot3t")
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_t6ury")
+
+[node name="lock_component" parent="." index="3"]
+visible = false
 rotation = 0.0
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_evrla")
 
+[node name="damage_area" parent="." index="4"]
+visible = false
+
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="9"]
+self_modulate = Color(1, 1, 1, 0.39215687)
+amount = 30
+texture = ExtResource("3_ocwl3")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_agmn5")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3uu5wve6rdc2"
-path="res://.godot/imported/未标题-2.png-52df83db02a419edc802cc027ec4f7e7.ctex"
+uid="uid://dbvpa5n8chvri"
+path="res://.godot/imported/sakuya-2.png-f3c1647e60211f1f3201f63cc112ea01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/pic/未标题-2.png"
-dest_files=["res://.godot/imported/未标题-2.png-52df83db02a419edc802cc027ec4f7e7.ctex"]
+source_file="res://asset/pic/sakuya-2.png"
+dest_files=["res://.godot/imported/sakuya-2.png-f3c1647e60211f1f3201f63cc112ea01.ctex"]
 
 [params]
 
