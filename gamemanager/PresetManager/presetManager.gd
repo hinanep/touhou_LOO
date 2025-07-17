@@ -27,10 +27,17 @@ var preset_map = {
 	"enemy_spawner":"res://scene/enemys/spawner.tscn",
 	'enm_memhappy':"res://scene/enemys/enm_memhappy.tscn",
 	'enm_memsad':"res://scene/enemys/enm_memsad.tscn",
+	'enm_mempeace':"res://scene/enemys/enm_mempeace.tscn",
 	'enm_keine_ns1_1':"res://scene/enemys/boss/keine/enm_keine_ns1_1.tscn",
 	'enm_keine_ns1_2':"res://scene/enemys/boss/keine/enm_keine_ns1_2.tscn",
 	'enm_keine_sc1':"res://scene/enemys/boss/keine/enm_keine_sc1.tscn",
 	'keine':"res://scene/enemys/boss/keine/keine.tscn",
+	'enm_yuurei':"res://scene/enemys/enm_yuurei.tscn",
+	'enm_onibi':"res://scene/enemys/enm_onibi.tscn",
+	'enm_book':"res://scene/enemys/enm_book.tscn",
+	'enm_eltkedama':"res://scene/enemys/enm_elite_kedama.tscn",
+	'enm_kedama':"res://scene/enemys/enm_kedama.tscn",
+
 	'd4c':"res://scene/DanmaC/DC.tscn",
 	'danma':"res://scene/DanmaC/danma/danma.tscn",
 
@@ -114,7 +121,13 @@ var preset_map = {
 	'img_enm_memhappy':"res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png",
 	'img_enm_mempeace':"res://asset/pic/enemy/bluerock/moving/bm_000.png",
 	'img_enm_memsad':"res://asset/pic/enemy/redrock/moving/rm_000.png",
-	'img_enm_kedama':"res://asset/pic/enemy/kedama/毛玉-animation_00.png",
+
+	'img_enm_yuurei':"res://asset/pic/enemy/yuurei/移动/鬼魂-alll_00.png",
+	'img_enm_onibi':"res://asset/pic/enemy/onibi/移动/移动_00.png",
+	'img_enm_book':"res://asset/pic/enemy/book/移动/移动_00.png",
+	'img_enm_eltkedama':"res://asset/pic/enemy/elite_kedama/毛玉-animation_00.png",
+	'img_enm_kedama':"res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_00.png",
+
 	'root_menu':"res://ui/game.tscn",
 	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
 }

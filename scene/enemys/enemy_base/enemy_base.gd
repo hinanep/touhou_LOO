@@ -51,12 +51,13 @@ var avoidance_strength: float = 320.0
 # 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
 var avoidance_neighbor_query_count: int = 6
 const searching_time = 0.1
+var scalex = 0.28
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	name = str(mob_id)
 	set_z_index(1)
 	set_z_as_relative(false)
-
+	scalex = $AnimatedSprite2D.scale.x
 	name = mob_info.id
 
 	hp = mob_info.health
@@ -97,7 +98,11 @@ func _ready():
 	last_position = global_position
 	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
+
+	choose_default_anime()
 var d = 0
+
+
 #根据表选择适当的移动函数（初始化时选择
 func _physics_process(delta):
 	d+=delta
@@ -111,6 +116,14 @@ func _physics_process(delta):
 
 		# 更新上一帧的位置
 		last_position = global_position
+	$AnimatedSprite2D.scale.x =
+func choose_default_anime():
+	var df = []
+	for anim:String in $AnimatedSprite2D.sprite_frames.get_animation_names():
+		if anim.contains('default'):
+			df.push_back(anim)
+	$AnimatedSprite2D.animation = df[randi_range(0,df.size()-1)]
+
 func get_desired_velocity():
 	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)
 var neighbors: Array[Node]
@@ -140,7 +153,8 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 	if(idea_velocity.length_squared()<speed_sq*shake_limit*0.1):
 		body.velocity = Vector2.ZERO
 		return
-	$AnimatedSprite2D.flip_h = (idea_velocity.x > 0)
+
+	turn_to_right(idea_velocity.x > 0)
 		# 查找附近需要避开的邻居
 		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
 
@@ -179,7 +193,9 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 	# 将最终计算的速度赋给 CharacterBody2D 的 velocity 属性
 	body.velocity = final_velocity
 	move_and_slide()
-
+var is_turning = false
+func turn_to_right(to_right:bool):
+	pass
 
 #移动方式：走向玩家
 func move_to_target():

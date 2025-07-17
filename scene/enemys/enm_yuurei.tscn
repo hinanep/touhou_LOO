@@ -1,0 +1,257 @@
+[gd_scene load_steps=62 format=3 uid="uid://r8txtjodvvp1"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_q4imp"]
+[ext_resource type="Texture2D" uid="uid://c103hkk21h0mh" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_00.png" id="2_nbirg"]
+[ext_resource type="Texture2D" uid="uid://d02hk5bsbmgnj" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_01.png" id="3_0j8b2"]
+[ext_resource type="Texture2D" uid="uid://dyoay802q0vxw" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_02.png" id="4_4wbso"]
+[ext_resource type="Texture2D" uid="uid://bqrp1vgmtxyn0" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_03.png" id="5_a41xc"]
+[ext_resource type="Texture2D" uid="uid://cb0xf7757kb5j" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_04.png" id="6_ik4bf"]
+[ext_resource type="Texture2D" uid="uid://bsy1757kkyhgq" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_05.png" id="7_mgywl"]
+[ext_resource type="Texture2D" uid="uid://tpismevqnjhg" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_06.png" id="8_kjatn"]
+[ext_resource type="Texture2D" uid="uid://dd556efffl6fp" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_07.png" id="9_xh2j0"]
+[ext_resource type="Texture2D" uid="uid://b1q47erocq6wp" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_08.png" id="10_5hp8o"]
+[ext_resource type="Texture2D" uid="uid://cpq7m5tan4gpo" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_09.png" id="11_nxyd5"]
+[ext_resource type="Texture2D" uid="uid://0kuysmvjemht" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_10.png" id="12_a4rfj"]
+[ext_resource type="Texture2D" uid="uid://ctetm8yofa715" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_11.png" id="13_feesj"]
+[ext_resource type="Texture2D" uid="uid://cikn4novagpy0" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_12.png" id="14_ij5nv"]
+[ext_resource type="Texture2D" uid="uid://ct2hv2ge472ie" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_13.png" id="15_2rltg"]
+[ext_resource type="Texture2D" uid="uid://db3sryvuxy2l2" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_14.png" id="16_os3nq"]
+[ext_resource type="Texture2D" uid="uid://8xkfal2kmh8l" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_15.png" id="17_unh0e"]
+[ext_resource type="Texture2D" uid="uid://biju2fkprldbx" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_16.png" id="18_gr8un"]
+[ext_resource type="Texture2D" uid="uid://d2e0pvn2gerhr" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_17.png" id="19_mkaw3"]
+[ext_resource type="Texture2D" uid="uid://hceqhueam07d" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_18.png" id="20_fmpcf"]
+[ext_resource type="Texture2D" uid="uid://ijydbe1qhug7" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_19.png" id="21_dpnm7"]
+[ext_resource type="Texture2D" uid="uid://ch2bggj77fky" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_20.png" id="22_fts8q"]
+[ext_resource type="Texture2D" uid="uid://b82xwoavoen0p" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_21.png" id="23_gehr4"]
+[ext_resource type="Texture2D" uid="uid://d0c5mp324dej6" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_22.png" id="24_qk3oe"]
+[ext_resource type="Texture2D" uid="uid://c6ony6cn23ql8" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_23.png" id="25_n6snv"]
+[ext_resource type="Texture2D" uid="uid://cbv7atef2jnv1" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_24.png" id="26_l2jx2"]
+[ext_resource type="Texture2D" uid="uid://1n6uuywg1wsd" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_25.png" id="27_u5rk6"]
+[ext_resource type="Texture2D" uid="uid://gtpc3bhaj0p8" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_26.png" id="28_vhqvg"]
+[ext_resource type="Texture2D" uid="uid://dxpnqyl3e7boc" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_27.png" id="29_ljluy"]
+[ext_resource type="Texture2D" uid="uid://dq7rbl5h4dkmt" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_28.png" id="30_3ahvv"]
+[ext_resource type="Texture2D" uid="uid://c46uvpiy46ll3" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_29.png" id="31_wc8pe"]
+[ext_resource type="Texture2D" uid="uid://cfry7s217isg4" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_30.png" id="32_7sing"]
+[ext_resource type="Texture2D" uid="uid://b0ly52jnemtt7" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_31.png" id="33_5uklq"]
+[ext_resource type="Texture2D" uid="uid://4wjok6hwq7y3" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_32.png" id="34_p3i1k"]
+[ext_resource type="Texture2D" uid="uid://cdkx5arfekrp" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_33.png" id="35_6ssjy"]
+[ext_resource type="Texture2D" uid="uid://wqksd71mdovi" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_34.png" id="36_nch8o"]
+[ext_resource type="Texture2D" uid="uid://dixkv5id7qk2c" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_35.png" id="37_4lfq0"]
+[ext_resource type="Texture2D" uid="uid://cy1nx7mslxtat" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_36.png" id="38_cxg6c"]
+[ext_resource type="Texture2D" uid="uid://yjdhsgfb3whu" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_37.png" id="39_8gi3r"]
+[ext_resource type="Texture2D" uid="uid://btilyyikxomrw" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_38.png" id="40_ggijg"]
+[ext_resource type="Texture2D" uid="uid://b0w8cvqlgb8kn" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_39.png" id="41_d4v7v"]
+[ext_resource type="Texture2D" uid="uid://bcbw3agbxh1my" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_40.png" id="42_len65"]
+[ext_resource type="Texture2D" uid="uid://bmsulgqgig22" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_00.png" id="43_x8xdw"]
+[ext_resource type="Texture2D" uid="uid://b4l35hng8ifb5" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_01.png" id="44_dtsa5"]
+[ext_resource type="Texture2D" uid="uid://cm4bll7iyxqws" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_02.png" id="45_kikpq"]
+[ext_resource type="Texture2D" uid="uid://cwknepem4is1m" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_03.png" id="46_8yab0"]
+[ext_resource type="Texture2D" uid="uid://bwwksumt6lb75" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_04.png" id="47_3fijm"]
+[ext_resource type="Texture2D" uid="uid://p8bmaw3ilp21" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_05.png" id="48_8n7ho"]
+[ext_resource type="Texture2D" uid="uid://dvvldh2n4p66f" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_06.png" id="49_gu52b"]
+[ext_resource type="Texture2D" uid="uid://by1awr7fkr8hl" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_07.png" id="50_g4yeq"]
+[ext_resource type="Texture2D" uid="uid://1qhpjk3bxur0" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_08.png" id="51_k58tw"]
+[ext_resource type="Texture2D" uid="uid://o42u3wst18l8" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_09.png" id="52_56rpe"]
+[ext_resource type="Texture2D" uid="uid://b2ol0qk3iklmq" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_10.png" id="53_hdpbx"]
+[ext_resource type="Texture2D" uid="uid://ds5xmqyqro8vt" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_11.png" id="54_h3x4x"]
+[ext_resource type="Texture2D" uid="uid://dp411o0u1j85i" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_12.png" id="55_y5i11"]
+[ext_resource type="Texture2D" uid="uid://8ok07r8cnm0x" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_13.png" id="56_q0dlb"]
+[ext_resource type="Texture2D" uid="uid://724xa5m4wxxa" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_14.png" id="57_d5hau"]
+[ext_resource type="Texture2D" uid="uid://c4pqqfn0g45wg" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_15.png" id="58_7hmdy"]
+[ext_resource type="Texture2D" uid="uid://d1athbo53hlc3" path="res://asset/pic/enemy/yuurei/死亡动画/死亡_16.png" id="59_ots2u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m4g8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5im3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nbirg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0j8b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4wbso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a41xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ik4bf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mgywl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kjatn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xh2j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5hp8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nxyd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_a4rfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_feesj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ij5nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2rltg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_os3nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_unh0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gr8un")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mkaw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_fmpcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_dpnm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_fts8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_gehr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_qk3oe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_n6snv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_l2jx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_u5rk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_vhqvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ljluy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_3ahvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_wc8pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_7sing")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_5uklq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_p3i1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6ssjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_nch8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_4lfq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_cxg6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_8gi3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ggijg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_d4v7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_len65")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("43_x8xdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_dtsa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_kikpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8yab0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_3fijm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_8n7ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_gu52b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_g4yeq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_k58tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_56rpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_hdpbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_h3x4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_y5i11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_q0dlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_d5hau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_7hmdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ots2u")
+}],
+"loop": false,
+"name": &"die",
+"speed": 30.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_q4imp")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_5m4g8")
+sprite_frames = SubResource("SpriteFrames_5im3c")
+frame_progress = 0.027544815
