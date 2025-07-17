@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1gp8urseg1si"]
+[gd_scene load_steps=28 format=3 uid="uid://b1gp8urseg1si"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_8i1h4"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_vkpgq"]
 [ext_resource type="Texture2D" uid="uid://dmkdxnkghc1sp" path="res://asset/pic/sakuyaatk-5.png" id="3_ocwl3"]
 [ext_resource type="Texture2D" uid="uid://dlwctapq2vwha" path="res://asset/pic/bullet/飞刀.png" id="3_q5s5t"]
 [ext_resource type="Texture2D" uid="uid://c67444p2656mc" path="res://asset/pic/sakuyaatk-4.png" id="5_aot3t"]
+[ext_resource type="Texture2D" uid="uid://ctacso4o5rcg0" path="res://asset/pic/tmp2.png" id="6_qny6v"]
 
 [sub_resource type="Curve" id="Curve_aot3t"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1960133, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -32,18 +33,11 @@ curve_z = SubResource("Curve_gaye6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t044e"]
 particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 5.0
 spread = 0.0
-initial_velocity_min = -40.0
-initial_velocity_max = -40.0
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.2351742e-06
-linear_accel_max = -2.2351742e-06
-radial_accel_min = -2.2351742e-06
-radial_accel_max = -2.2351742e-06
-scale_min = 2.5
-scale_max = 2.5
+initial_velocity_min = -200.0
+initial_velocity_max = -200.0
+scale_min = 4.0
+scale_max = 4.0
 scale_curve = SubResource("CurveXYZTexture_i6ime")
 alpha_curve = SubResource("CurveTexture_porl0")
 
@@ -74,7 +68,10 @@ curve_z = SubResource("Curve_270uq")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t6ury"]
 particle_flag_disable_z = true
 emission_shape = 1
-emission_sphere_radius = 3.0
+emission_sphere_radius = 2.0
+spread = 0.0
+initial_velocity_min = -100.0
+initial_velocity_max = -100.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveXYZTexture_qhsxs")
 alpha_curve = SubResource("CurveTexture_t044e")
@@ -92,24 +89,49 @@ animations = [{
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
+[sub_resource type="Curve" id="Curve_porl0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23920265, 1), 0.0, 0.0, 0, 0, Vector2(0.5016612, 0.35861558), 0.0, 0.0, 0, 0, Vector2(0.70764124, 1), 0.0, 0.0, 0, 0, Vector2(0.8006645, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_emivx"]
+curve = SubResource("Curve_porl0")
+
+[sub_resource type="Curve" id="Curve_t044e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2524917, 1), 0.0, 0.0, 0, 0, Vector2(0.5016612, 0.31075102), 0.0, 0.0, 0, 0, Vector2(0.75083065, 1), 0.0, 0.0, 0, 0, Vector2(0.9136213, 0.48306328), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_y7pm5"]
+curve = SubResource("Curve_t044e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwey5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 7.0
+spread = 0.0
+initial_velocity_min = -100.0
+initial_velocity_max = -100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_y7pm5")
+alpha_curve = SubResource("CurveTexture_emivx")
+
 [node name="Attack" instance=ExtResource("1_8i1h4")]
 script = ExtResource("2_vkpgq")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 self_modulate = Color(1, 1, 1, 0.19607843)
-position = Vector2(-8, 0)
+position = Vector2(-8, 1)
 scale = Vector2(0.52, 0.52)
 amount = 10
 texture = ExtResource("3_ocwl3")
-lifetime = 5.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_t044e")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="2"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.627451)
+self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(-8, 1)
-amount = 5
+amount = 20
 texture = ExtResource("5_aot3t")
 lifetime = 0.5
 local_coords = true
@@ -126,3 +148,8 @@ visible = false
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="9"]
+amount = 10
+texture = ExtResource("6_qny6v")
+process_material = SubResource("ParticleProcessMaterial_dwey5")
