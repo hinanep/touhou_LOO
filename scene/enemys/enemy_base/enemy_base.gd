@@ -52,6 +52,7 @@ var avoidance_strength: float = 320.0
 var avoidance_neighbor_query_count: int = 6
 const searching_time = 0.1
 var scalex = 0.28
+var scaledir = 1
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	name = str(mob_id)
@@ -116,7 +117,7 @@ func _physics_process(delta):
 
 		# 更新上一帧的位置
 		last_position = global_position
-	$AnimatedSprite2D.scale.x =
+	$AnimatedSprite2D.scale.x = clampf($AnimatedSprite2D.scale.x + 0.05 *scaledir,-scalex,scalex)
 func choose_default_anime():
 	var df = []
 	for anim:String in $AnimatedSprite2D.sprite_frames.get_animation_names():
@@ -153,8 +154,11 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 	if(idea_velocity.length_squared()<speed_sq*shake_limit*0.1):
 		body.velocity = Vector2.ZERO
 		return
+	if idea_velocity.x > 0:
+		scaledir = -1
+	else:
+		scaledir = 1
 
-	turn_to_right(idea_velocity.x > 0)
 		# 查找附近需要避开的邻居
 		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
 
