@@ -66,7 +66,9 @@ func _ready():
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 0
-
+	if mob_info["type"] == 'elite':
+		drops_path = "drops_plate"
+		set_scale(Vector2(2,2))
 	melee_battle_ready(mob_info.physical_damage == 0)
 
 	match mob_info.movement:
@@ -97,7 +99,8 @@ func _ready():
 
 
 	last_position = global_position
-	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
+	if player_node:
+		velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
 
 	choose_default_anime()
@@ -360,5 +363,5 @@ func _on_outscreen_disppear_timeout() -> void:
 	if mob_info.type == 'zako':
 		died(true)
 	else:
-		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 500
+		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 1000
 		print('tp to player')

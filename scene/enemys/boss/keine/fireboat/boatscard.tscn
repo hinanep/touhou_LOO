@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://god2onyo60oc"]
+
+[ext_resource type="PackedScene" uid="uid://fwdmr2jtjamg" path="res://scene/enemys/boss/keine/fireboat/enm_keine_boat.tscn" id="1_g5r0v"]
+[ext_resource type="PackedScene" uid="uid://113ll4i3ok55" path="res://scene/enemys/boss/keine/fireboat/line.tscn" id="2_jrtkm"]
+
+[node name="boatscard" type="Node2D"]
+process_mode = 1
+
+[node name="boat1" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-117, -154)
+
+[node name="boat2" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(112, -148)
+
+[node name="boat3" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(187, 0)
+
+[node name="boat4" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(114, 162)
+
+[node name="boat5" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-106, 163)
+
+[node name="boat6" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-198, 9)
+
+[node name="boat7" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(3, -317)
+
+[node name="boat8" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(333, -127)
+
+[node name="boat9" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(340, 157)
+
+[node name="boat10" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(4, 363)
+
+[node name="boat11" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-332, 173)
+
+[node name="boat12" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-338, -158)
+
+[node name="boat13" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-189, -450)
+
+[node name="boat14" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(226, -446)
+
+[node name="boat15" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(595, 2)
+
+[node name="boat16" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(309, 481)
+
+[node name="boat17" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-290, 483)
+
+[node name="boat18" parent="." instance=ExtResource("1_g5r0v")]
+position = Vector2(-590, -3)
+
+[node name="lines" type="Node2D" parent="."]
+
+[node name="Line2-3" parent="lines" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+boat1 = NodePath("../../boat2")
+boat2 = NodePath("../../boat3")
+start_burn = 3
+
+[node name="Line3-4" parent="lines" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+boat1 = NodePath("../../boat3")
+boat2 = NodePath("../../boat4")
+start_burn = 3
+
+[node name="Line1-2" parent="lines" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+boat1 = NodePath("../../boat1")
+boat2 = NodePath("../../boat2")

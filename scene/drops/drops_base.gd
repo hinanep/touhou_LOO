@@ -57,7 +57,8 @@ func find_fusion():
 				var tween = create_tween()
 				tween.tween_property($".",'global_position',area.global_position,0.2)
 				await tween.finished
-				area.fusion(value,experience,score,mana)
+				if area!= null:
+					area.fusion(value,experience,score,mana)
 
-				queue_free()
+					queue_free()
 				return

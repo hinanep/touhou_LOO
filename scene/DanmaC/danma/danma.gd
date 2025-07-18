@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name danma
 var d_info = {
 	type='dmk_ball',
 
