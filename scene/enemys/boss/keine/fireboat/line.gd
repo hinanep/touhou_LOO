@@ -8,14 +8,19 @@ var is_burning2: bool = false
 @export var start_burn:int = 0
 
 func _ready() -> void:
-
 	# 创建线条点
+	boat1.lines_withboat.push_back($".")
+	boat2.lines_withboat.push_back($".")
 	is_burning1 = false
 	is_burning2 = false
+
 	create_gra()
 	create_line_points()
+
+
 	if start_burn <2:
-		start_burning(start_burn)
+		call_deferred('start_burning',start_burn)
+
 
 func create_line_points():
 	# 清除现有点
@@ -36,12 +41,14 @@ func create_line_points():
 
 func create_gra():
 	gradient = Gradient.new()
-	gradient.add_point(0.0,Color.RED)
+	gradient.set_color(0,Color.RED)
+	gradient.set_color(1,Color.RED)
+
 	gradient.add_point(0.001,Color.RED)
 	gradient.add_point(0.002,Color.WHITE)
 	gradient.add_point(0.998,Color.WHITE)
 	gradient.add_point(0.999,Color.RED)
-	gradient.add_point(1.0,Color.RED)
+
 
 func start_burning(start_point: int):
 	if start_point == 0:
@@ -71,14 +78,16 @@ func update_burn_effect():
 		gradient.set_color(4,Color.RED)
 		if left_fire > 0.9 and not is_burning2:
 			print('2火辣')
-
 			fired = true
-			boat2.fire = true
+			# 检查boat2是否存在且有fire属性
+			if boat2 and is_instance_valid(boat2) and boat2.has_method('on_fire'):
+				boat2.on_fire()
 		if right_fire < 0.1 and not is_burning1:
 			print('1火辣')
 			fired = true
-			boat1.on_fire()
-
+			# 检查boat1是否存在且有on_fire方法
+			if boat1 and is_instance_valid(boat1) and boat1.has_method('on_fire'):
+				boat1.on_fire()
 		return
 	gradient.set_offset(1,left_fire)
 	gradient.set_offset(2,left_fire+0.001)
