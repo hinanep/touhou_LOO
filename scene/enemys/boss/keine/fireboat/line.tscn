@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j7r8e"]
 shader = ExtResource("1_d73ua")
-shader_parameter/progress = 0.0
+shader_parameter/progress = 1.0
 shader_parameter/feather = 0.038000001805
 
 [sub_resource type="Gradient" id="Gradient_d73ua"]
@@ -15,7 +15,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 
 
 [node name="Line" type="Line2D"]
 material = SubResource("ShaderMaterial_j7r8e")
-points = PackedVector2Array(20, 8, 142, 11)
+points = PackedVector2Array(-11, 11, 151, 16)
 width = 50.0
 gradient = SubResource("Gradient_d73ua")
 texture = ExtResource("1_6o38f")

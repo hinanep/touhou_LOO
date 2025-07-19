@@ -268,11 +268,16 @@ func melee_battle_ready(disable = false):
 	if disable:
 		$melee_damage_area.queue_free()
 		return
-	melee_damage_area.monitoring = true
-
+	# 使用call_deferred避免在物理查询刷新期间修改monitoring
+	call_deferred("set_melee_monitoring", true)
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
+
+# 延迟设置体术攻击Area2D监控状态
+func set_melee_monitoring(active: bool):
+	melee_damage_area.monitoring = active
+
 #疑似玩家进入体术攻击范围，开打
 func melee_damage_area_body_entered(_body):
 	if not _body is player:

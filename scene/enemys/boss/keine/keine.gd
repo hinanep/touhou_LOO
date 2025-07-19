@@ -7,6 +7,7 @@ var progress_routine :Dictionary= {}
 var progress_time = 0
 var diretion:Vector2 = Vector2.ZERO
 var move_func:Callable = move_stay
+var boatcard = preload("res://scene/enemys/boss/keine/fireboat/boatscard.tscn")
 signal trigger(id)
 var state = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
 
@@ -159,6 +160,11 @@ func reincarnation_over():
 	if mob_info.has('sc_tid') and mob_info.sc_tid != '':
 		$hud/card/RichTextLabel.text = table.TID[mob_info.sc_tid][player_var.language]
 		popup()
+		if mob_info.sc_tid == 'esc_keine_2':
+			var bc = boatcard.instantiate()
+			bc.global_position = Vector2(0,0)
+			add_child(bc)
+			pass
 	else:
 		$hud/card.visible = false
 	if mob_info.movement:

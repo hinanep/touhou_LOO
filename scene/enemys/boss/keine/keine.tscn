@@ -48,7 +48,7 @@ bg_color = Color(1, 1, 1, 1)
 atlas = ExtResource("5_kqtkm")
 region = Rect2(-5, 187, 260, 97)
 
-[node name="aq_boss" type="CharacterBody2D" groups=["boss"]]
+[node name="keine" type="CharacterBody2D" groups=["boss"]]
 process_mode = 1
 z_index = 1
 z_as_relative = false

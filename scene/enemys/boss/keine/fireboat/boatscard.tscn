@@ -80,7 +80,6 @@ start_burn = 3
 [node name="Line1-2" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat1")
 boat2 = NodePath("../../../boat2")
-start_burn = 3
 
 [node name="Line4-5" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat4")

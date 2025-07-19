@@ -61,7 +61,8 @@ func change_type_to(type: String):
 			cshape.size = Vector2(1,0)
 			$colli_area.position.x=0.5
 			$damage_area/colli_da.position.x=0.5
-			$damage_area.monitoring = false
+			# 使用call_deferred避免在物理查询刷新期间修改monitoring
+			call_deferred("set_damage_monitoring", false)
 			$texture.set_texture(PresetManager.getpre('img_laserpre'))
 			$texture.rotation = -PI/2
 			$texture.offset.y=16
@@ -77,7 +78,8 @@ func change_type_to(type: String):
 		'dmk_laser':
 			$texture.set_texture(PresetManager.getpre('img_laser'))
 			$texture.rotation = -PI/2
-			$damage_area.monitoring = true
+			# 使用call_deferred避免在物理查询刷新期间修改monitoring
+			call_deferred("set_damage_monitoring", true)
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(1,1)
 			$colli_area.position.x=0.5
@@ -91,6 +93,14 @@ func change_type_to(type: String):
 			#$damage_area.scale =Vector2(sizex,sizey)
 			#$colli_area.scale = Vector2(sizex,sizey)
 			#$VisibleOnScreenNotifier2D.scale = Vector2(sizex,sizey)
+		'dmk_fire_special':
+			cshape = CircleShape2D.new()
+			cshape.radius = 1
+			add_to_group('fire')
+			modulate = Color.RED
+			$texture.set_texture(PresetManager.getpre('img_tama'))
+			$texture.offset.y=0
+			change_size_to(20)
 
 			$VisibleOnScreenNotifier2D.rect = Rect2(-0.5,-0.5,1,1)
 	$colli_area.shape = cshape
@@ -100,6 +110,10 @@ func change_size_to(size:float):
 	$texture.scale = Vector2(size * 0.06,size * 0.06)
 	$damage_area.scale =Vector2(size,size)
 	$colli_area.scale = Vector2(size,size)
+
+# 延迟设置伤害Area2D监控状态
+func set_damage_monitoring(active: bool):
+	$damage_area.monitoring = active
 
 func change_move_type_to(move:String):
 	match move:

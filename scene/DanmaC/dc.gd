@@ -143,7 +143,6 @@ func shoot(v,d):
 	newd.damage = damage
 	newd.global_position = gen_position
 	newd.modulate = danma_color
-	print(global_position)
 	add_child(newd)
 
 func stay(delta):

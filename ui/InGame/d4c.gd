@@ -5,14 +5,16 @@ func _ready() -> void:
 func new_d4c(id,g_position,parent:Node2D,damage):
 	print('new d4c')
 	var nd4c = PresetManager.getpre('d4c').instantiate()
-
+	print(id)
+	print(parent)
 	nd4c.damage = damage
 	nd4c.gen_position = g_position
 
 	if nd4c.d4c_init(id,parent) == 'parent':
-
+		print('parent')
 		parent.add_child(nd4c)
 	else:
+		print(nd4c)
 		add_child(nd4c)
 	if parent.has_method('release'):
 		nd4c.die.connect(parent.release)

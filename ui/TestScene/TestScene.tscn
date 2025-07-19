@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" uid="uid://tbsm0kj0lheg" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dl15bichusdko" path="res://scene/FragmentContainer.tscn" id="8_numam"]
 [ext_resource type="Texture2D" uid="uid://456sgmno5a88" path="res://asset/pic/texture/maskalp.png" id="9_0mack"]
 [ext_resource type="Shader" uid="uid://yt0da0noecjg" path="res://ui/TestScene/uptodownfade.gdshader" id="9_xciso"]
-[ext_resource type="PackedScene" uid="uid://god2onyo60oc" path="res://scene/enemys/boss/keine/fireboat/boatscard.tscn" id="11_krafk"]
 
 [sub_resource type="Curve2D" id="Curve2D_wc05l"]
 _data = {
@@ -118,6 +117,3 @@ material = SubResource("ShaderMaterial_0mack")
 instance_shader_parameters/brightness = 1.0
 position = Vector2(960, 540)
 texture = ExtResource("9_0mack")
-
-[node name="boatscard" parent="." instance=ExtResource("11_krafk")]
-position = Vector2(180, -28)

@@ -9,8 +9,7 @@ uniform float feather : hint_range(0.0, 0.5) = 0.1;
 
 void fragment() {
 
-    // 获取当前像素的原始颜色
-    vec4 original_color = texture(TEXTURE, UV);
+
 	
     // 1. 计算当前像素的UV坐标离水平中心(0.5)的距离。
     //    abs()取绝对值，所以左右两边都会得到一个从0.0(中心)到0.5(边缘)的值。
@@ -29,9 +28,9 @@ void fragment() {
 
     // 4. 将计算出的 alpha 值应用到原始颜色的 alpha 通道上。
     //    乘以 original_color.a 可以保留纹理本身的透明区域。
-    COLOR = original_color;
+
 	if(progress < 1.0){
-		COLOR.a *= alpha;
+	COLOR.a *= alpha;
 	}
     
 }

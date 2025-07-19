@@ -16,6 +16,8 @@ func _ready():
 	$buff.brittle_modify = 0
 
 	super._ready()
+	await  get_tree().create_timer(3.8).timeout
+	#on_fire()
 func _physics_process(delta):
 	d+=delta
 
@@ -28,7 +30,10 @@ func _physics_process(delta):
 
 func _on_fireball_rec_body_entered(body:  Node2D) -> void:
 	if body.is_in_group('fire'):
-		on_fire()
+		body.destroy.emit(body)
+		call_deferred('on_fire')
+		pass
+
 
 func on_fire():
 	print(name + '火辣!')

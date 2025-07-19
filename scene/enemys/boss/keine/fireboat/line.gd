@@ -17,18 +17,21 @@ func _ready() -> void:
 	boat1.die.connect(boat_die_disconnect)
 	boat2.die.connect(boat_die_disconnect)
 	get_parent().get_parent().get_parent().link_line.connect(set_ready)
-
+	await  get_tree().create_timer(4.8).timeout
 	if start_burn <2:
-		call_deferred('start_burning',start_burn)
+		#call_deferred('on_fire_from',boat1)
+		call_deferred('start_burning',0)
+
 func set_ready():
 	create_gra()
 	create_line_points()
-
 
 	var tween = create_tween()
 	tween.tween_property(material,'shader_parameter/progress',0.0,0.0)
 	visible = true
 	tween.tween_property(material,'shader_parameter/progress',1.0,0.5)
+
+
 
 func boat_die_disconnect(_id):
 	queue_free()
@@ -116,6 +119,7 @@ func _process(delta):
 func on_fire_from(boatx: Node2D):
 	if boatx == boat1:
 		start_burning(0)
+
 	elif boatx == boat2:
 		start_burning(1)
 
