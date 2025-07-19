@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://fwdmr2jtjamg"]
+[gd_scene load_steps=7 format=3 uid="uid://fwdmr2jtjamg"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_umehn"]
 [ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_s1t7m"]
@@ -15,6 +15,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_051o3"]
+radius = 1.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_xykej"]
 radius = 28.071337
 
@@ -27,6 +30,8 @@ sprite_frames = SubResource("SpriteFrames_ua43r")
 
 [node name="buff" parent="." index="1"]
 visible = true
+shape = SubResource("CircleShape2D_051o3")
+disabled = true
 
 [node name="fireball_rec" type="Area2D" parent="." index="7"]
 collision_layer = 0

@@ -15,6 +15,7 @@ var mob_info = {
 	"id": "enm_undefined",
 	"type": "zako",
 	"movement": "default",
+
 	"danmaku_creator": "",
 	"physical_damage": 5.0,
 	"magical_damage": 0.0,
@@ -66,7 +67,7 @@ func _ready():
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 0
-	if mob_info["type"] == 'elite':
+	if mob_info.has('type') and mob_info["type"] == 'elite':
 		drops_path = "drops_plate"
 		set_scale(Vector2(2,2))
 	melee_battle_ready(mob_info.physical_damage == 0)

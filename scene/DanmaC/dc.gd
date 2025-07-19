@@ -94,6 +94,7 @@ func _ready() -> void:
 
 	$shoot_interval.wait_time = d4c_info.create_interval
 	$shoot_interval.start()
+	_on_shoot_interval_timeout()
 func _physics_process(delta: float) -> void:
 	exist_time += delta
 
@@ -140,9 +141,9 @@ func shoot(v,d):
 	newd.rotation =Vector2.RIGHT.angle_to(d)
 	newd.danma_init(d4c_info)
 	newd.damage = damage
-	newd.global_position = global_position
+	newd.global_position = gen_position
 	newd.modulate = danma_color
-
+	print(global_position)
 	add_child(newd)
 
 func stay(delta):

@@ -9,19 +9,29 @@ var is_burning2: bool = false
 
 func _ready() -> void:
 	# 创建线条点
+	visible = false
 	boat1.lines_withboat.push_back($".")
 	boat2.lines_withboat.push_back($".")
 	is_burning1 = false
 	is_burning2 = false
+	boat1.die.connect(boat_die_disconnect)
+	boat2.die.connect(boat_die_disconnect)
+	get_parent().get_parent().get_parent().link_line.connect(set_ready)
 
+	if start_burn <2:
+		call_deferred('start_burning',start_burn)
+func set_ready():
 	create_gra()
 	create_line_points()
 
 
-	if start_burn <2:
-		call_deferred('start_burning',start_burn)
+	var tween = create_tween()
+	tween.tween_property(material,'shader_parameter/progress',0.0,0.0)
+	visible = true
+	tween.tween_property(material,'shader_parameter/progress',1.0,0.5)
 
-
+func boat_die_disconnect(_id):
+	queue_free()
 func create_line_points():
 	# 清除现有点
 	clear_points()
@@ -71,41 +81,50 @@ var fired = false
 func update_burn_effect():
 	if not (is_burning1 or is_burning2):
 		return
-	if left_fire +0.03> right_fire:
+	if left_fire +0.05> right_fire:
 		gradient.set_color(1,Color.RED)
 		gradient.set_color(2,Color.RED)
 		gradient.set_color(3,Color.RED)
 		gradient.set_color(4,Color.RED)
+		fired = true
 		if left_fire > 0.9 and not is_burning2:
 			print('2火辣')
-			fired = true
 			# 检查boat2是否存在且有fire属性
 			if boat2 and is_instance_valid(boat2) and boat2.has_method('on_fire'):
 				boat2.on_fire()
 		if right_fire < 0.1 and not is_burning1:
 			print('1火辣')
-			fired = true
 			# 检查boat1是否存在且有on_fire方法
 			if boat1 and is_instance_valid(boat1) and boat1.has_method('on_fire'):
 				boat1.on_fire()
 		return
+	gradient.set_offset(2,left_fire+0.01)
 	gradient.set_offset(1,left_fire)
-	gradient.set_offset(2,left_fire+0.001)
 
-	gradient.set_offset(3,right_fire-0.001)
+
+	gradient.set_offset(3,right_fire-0.01)
 	gradient.set_offset(4,right_fire)
 func _process(delta):
 	if not (boat1 or boat2):
 		queue_free()
-	#if is_burning1 or is_burning2:
-	if not fired:
-		update_burn_effect()
+	if is_burning1 or is_burning2:
+		if not fired:
+
+			update_burn_effect()
 
 
 func on_fire_from(boatx: Node2D):
 	if boatx == boat1:
-		SignalBus.d4c_create.emit('dcrt_keine_sc2_2', global_position, $".", 30)
 		start_burning(0)
 	elif boatx == boat2:
-		SignalBus.d4c_create.emit('dcrt_keine_sc2_2', global_position, $".", 30)
 		start_burning(1)
+
+
+func _on_fireball_timeout() -> void:
+	if fired:
+		return
+	if is_burning1 and boat1 and boat2:
+		SignalBus.d4c_create.emit('dcrt_keine_sc2_2', boat1.global_position+(boat2.global_position- boat1.global_position)*left_fire, $".", 30)
+	if is_burning2 and boat1 and boat2:
+
+		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',   boat1.global_position+(boat2.global_position- boat1.global_position)*right_fire, $".", 30)
