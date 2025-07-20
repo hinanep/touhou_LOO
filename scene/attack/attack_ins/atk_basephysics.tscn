@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpf441krtwcgc"]
+[gd_scene load_steps=18 format=3 uid="uid://bpf441krtwcgc"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_g4alh"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_sn7l8"]
-[ext_resource type="Texture2D" uid="uid://by325642akhcr" path="res://asset/pic/bullet/刀.png" id="3_px37b"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_sn7l8"]
+[ext_resource type="Texture2D" uid="uid://byjgic2awnrjl" path="res://asset/pic/basephy-2.png" id="8_nrdeu"]
+[ext_resource type="Texture2D" uid="uid://blvm8cuxcma6j" path="res://asset/pic/basephy.png" id="10_es5fs"]
+[ext_resource type="Texture2D" uid="uid://b8a1q5lhferxu" path="res://asset/pic/basephy1.png" id="11_7q6nv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gccu5"]
 animations = [{
@@ -45,11 +47,57 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_db35n"]
 _data = {
-"slash": SubResource("Animation_ald0n")
+&"slash": SubResource("Animation_ald0n")
 }
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5c0i3"]
+frames = 3
+frame_0/texture = ExtResource("8_nrdeu")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("10_es5fs")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("11_7q6nv")
+frame_2/duration = 0.1
+
+[sub_resource type="Curve" id="Curve_gqv7g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24916944, 1), 0.0, 0.0, 0, 0, Vector2(0.5049834, 0.31075102), 0.0, 0.0, 0, 0, Vector2(0.74750835, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_gc1rg"]
+curve = SubResource("Curve_gqv7g")
+
+[sub_resource type="Curve" id="Curve_p3gd5"]
+_data = [Vector2(0, 0.70324004), 0.0, 0.0, 0, 0, Vector2(0.2524917, 0.70324004), 0.0, 0.0, 0, 0, Vector2(0.50830567, 0.70324004), 0.0, 0.0, 0, 0, Vector2(0.7541529, 0.70324004), 0.0, 0.0, 0, 0, Vector2(1, 0.70324004), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_pnlpg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_b1r73"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_qxwjo"]
+curve_x = SubResource("Curve_p3gd5")
+curve_y = SubResource("Curve_pnlpg")
+curve_z = SubResource("Curve_b1r73")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5c0i3"]
+particle_flag_disable_z = true
+angle_min = 180.00002
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_qxwjo")
+alpha_curve = SubResource("CurveTexture_gc1rg")
 
 [node name="Attack" instance=ExtResource("1_g4alh")]
 script = ExtResource("2_sn7l8")
+
+[node name="move_component" parent="." index="0"]
+visible = true
 
 [node name="lock_component" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_gccu5")
@@ -62,11 +110,20 @@ shape = SubResource("CircleShape2D_r1nd1")
 position = Vector2(1, -49)
 rotation = -3.14159
 scale = Vector2(0.05, 0.07)
-texture = ExtResource("3_px37b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_db35n")
+&"": SubResource("AnimationLibrary_db35n")
 }
 autoplay = "slash"
 speed_scale = 4.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" index="1"]
+position = Vector2(1399.9995, -128.57396)
+rotation = 3.1415908
+scale = Vector2(19.999996, 14.285712)
+amount = 1
+texture = SubResource("AnimatedTexture_5c0i3")
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5c0i3")

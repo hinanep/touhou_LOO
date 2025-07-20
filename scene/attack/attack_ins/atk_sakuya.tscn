@@ -59,8 +59,8 @@ scale_max = 0.13
 alpha_curve = SubResource("CurveTexture_yx2lj")
 
 [sub_resource type="Curve" id="Curve_3qfdw"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24252492, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ua3y1"]
 curve = SubResource("Curve_3qfdw")
@@ -114,9 +114,9 @@ process_material = SubResource("ParticleProcessMaterial_4pll8")
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="GPUParticles2D/GPUParticles2D2" index="0"]
 self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(-6, -4)
-amount = 5
+amount = 7
 texture = ExtResource("10_gqwla")
-lifetime = 0.25
+lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_wv83l")
 
 [node name="lock_component" parent="." index="2"]
