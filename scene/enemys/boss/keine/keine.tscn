@@ -151,6 +151,7 @@ vertical_alignment = 1
 [node name="hp" type="Node2D" parent="hud"]
 
 [node name="fullcard" type="Sprite2D" parent="hud/hp"]
+visible = false
 position = Vector2(1795, 581)
 texture = ExtResource("9_fav7k")
 
@@ -191,7 +192,6 @@ rotation = 3.1415925
 texture = ExtResource("8_rmmu3")
 
 [node name="nons" type="Sprite2D" parent="hud/hp"]
-visible = false
 position = Vector2(1795, 581)
 texture = ExtResource("11_m8gjf")
 
@@ -237,8 +237,8 @@ rotation = 3.1415927
 texture = ExtResource("10_i8gk4")
 
 [node name="icon" type="Sprite2D" parent="hud/hp"]
-position = Vector2(1812, 992)
-scale = Vector2(0.8, 0.8)
+position = Vector2(1813, 992)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("12_i8gk4")
 
 [node name="life" type="Node2D" parent="hud/hp"]

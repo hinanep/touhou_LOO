@@ -36,7 +36,7 @@ func _on_fireball_rec_body_entered(body:  Node2D) -> void:
 
 
 func on_fire():
-	print(name + '火辣!')
+
 	if fired:
 		return
 	fired = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=27 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://cdv853opb5hr6" path="res://asset/pic/ui/HUD/血条填充.png" id="3_kbjvd"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bnsff70wi6awc" path="res://asset/pic/ui/HUD/自机符卡信息.png" id="10_b8std"]
 [ext_resource type="Texture2D" uid="uid://dqv38mj8vnmn4" path="res://asset/pic/ui/HUD/符卡.png" id="11_agwl7"]
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="11_stodd"]
-[ext_resource type="Texture2D" uid="uid://bxuy0w1eqq10g" path="res://asset/pic/ui/HUD/残机（灰）.png" id="12_h7ufx"]
 [ext_resource type="Texture2D" uid="uid://vfr4e8kbltk8" path="res://asset/pic/ui/HUD/符卡（灰）.png" id="12_stodd"]
 [ext_resource type="Texture2D" uid="uid://b3en22kbxi8ae" path="res://asset/pic/ui/HUD/经验条.png" id="12_ynj7b"]
 [ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="13_tr6ke"]
@@ -86,8 +85,8 @@ border_color = Color(1, 0, 0, 0)
 [node name="hp_cont" type="Sprite2D" parent="hud/hp/hp_mask"]
 modulate = Color(1, 0.58000004, 0.58000004, 1)
 material = SubResource("ShaderMaterial_uuorb")
-position = Vector2(161, 37)
-scale = Vector2(0.9969512, 1)
+position = Vector2(160.25, 37)
+scale = Vector2(0.9923781, 1)
 texture = ExtResource("3_kbjvd")
 
 [node name="hp_text" type="RichTextLabel" parent="hud/hp"]
@@ -104,12 +103,12 @@ text = "100/100"
 horizontal_alignment = 1
 
 [node name="自机血条头像" type="Sprite2D" parent="hud/hp"]
-position = Vector2(-122.00001, 1)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-129.99998, 2)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_e8oks")
 
 [node name="mana" type="Sprite2D" parent="hud"]
-position = Vector2(219, 176)
+position = Vector2(203, 176)
 texture = ExtResource("5_xs3el")
 
 [node name="mana_mask" type="ReferenceRect" parent="hud/mana"]
@@ -122,7 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -573.0
 offset_top = -72.0
-offset_right = -194.5
+offset_right = -211.08746
 offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -155,7 +154,7 @@ text = "100/100"
 horizontal_alignment = 1
 
 [node name="exp" type="Sprite2D" parent="hud"]
-position = Vector2(218, 258)
+position = Vector2(203, 258)
 texture = ExtResource("12_ynj7b")
 
 [node name="exp_mask" type="ReferenceRect" parent="hud/exp"]
@@ -354,22 +353,14 @@ texture = ExtResource("12_stodd")
 
 [node name="life" type="Node" parent="hud"]
 
-[node name="life1" type="Sprite2D" parent="hud/life"]
-position = Vector2(180, 40)
-texture = ExtResource("12_h7ufx")
-
-[node name="have" type="Sprite2D" parent="hud/life/life1"]
+[node name="have" type="Sprite2D" parent="hud/life"]
 z_index = 1
-position = Vector2(1, 0)
+position = Vector2(181, 40)
 texture = ExtResource("13_tr6ke")
 
-[node name="life2" type="Sprite2D" parent="hud/life"]
-position = Vector2(230, 41)
-texture = ExtResource("12_h7ufx")
-
-[node name="have" type="Sprite2D" parent="hud/life/life2"]
+[node name="have2" type="Sprite2D" parent="hud/life"]
 z_index = 1
-position = Vector2(0, 1)
+position = Vector2(230, 40)
 texture = ExtResource("13_tr6ke")
 
 [node name="space" type="Node2D" parent="hud"]

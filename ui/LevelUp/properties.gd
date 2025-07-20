@@ -179,97 +179,26 @@ func clear_property_preview(property_name: String = ""):
 	else:
 		preview_changes.erase(property_name)
 
-# 批量设置多个属性的变化预览
-func set_multiple_property_previews(changes: Dictionary):
-	for property_name in changes:
-		preview_changes[property_name] = changes[property_name]
 
-# 根据技能ID设置属性变化预览
-func set_skill_preview(skill_id: String):
-	clear_property_preview()
-
-	# 这里可以根据技能ID来设置预期的属性变化
-	# 示例：根据技能类型设置不同的属性变化
-	if table.Skill.has(skill_id):
-		var skill_info = table.Skill[skill_id]
-
-		# 根据技能类型设置预览变化
-		match skill_info.get("type", ""):
-			"attack":
-				# 攻击类技能可能影响伤害相关属性
-				var current_damage = 1.0
-				if player_var.has("player_bullet_damage_ratio"):
-					current_damage = player_var.get("player_bullet_damage_ratio")
-				set_property_preview("player_bullet_damage_ratio", current_damage + 0.5)
-
-				var current_speed = 1.0
-				if player_var.has("bullet_speed_ratio"):
-					current_speed = player_var.get("bullet_speed_ratio")
-				set_property_preview("bullet_speed_ratio", current_speed + 0.2)
-
-			"defense":
-				# 防御类技能可能影响生命相关属性
-				var current_hp = 100
-				if player_var.has("player_hp_max"):
-					current_hp = player_var.get("player_hp_max")
-				set_property_preview("player_hp_max", current_hp + 50)
-
-				var current_defense = 0
-				if player_var.has("defence_bullet"):
-					current_defense = player_var.get("defence_bullet")
-				set_property_preview("defence_bullet", current_defense + 0.3)
-
-			"growth":
-				# 成长类技能可能影响经验相关属性
-				var current_exp_ratio = 1.0
-				if player_var.has("experience_ratio"):
-					current_exp_ratio = player_var.get("experience_ratio")
-				set_property_preview("experience_ratio", current_exp_ratio + 0.2)
-
-				var current_luck = 0
-				if player_var.has("luck"):
-					current_luck = player_var.get("luck")
-				set_property_preview("luck", current_luck + 1)
-
-			_:
-				# 默认情况，根据技能描述或其他逻辑设置
-				pass
 
 # 根据被动技能ID设置属性变化预览
 func set_passive_preview(passive_id: String):
 	clear_property_preview()
-
+	var passive_info = table.Passive[passive_id]
+	var upgroup = table.Passive[passive_id].upgrade_group
+	var newlevel = player_var.PassiveManager.get_passive_level(passive_id)+1
 	if table.Passive.has(passive_id):
-		var passive_info = table.Passive[passive_id]
+		for property in table.Upgrade[upgroup]:
 
-		# 根据被动技能的效果设置预览
-		if passive_info.has("buff"):
-			for buff_id in passive_info.buff:
-				if table.Buff.has(buff_id):
-					var buff_info = table.Buff[buff_id]
-					var property_name = buff_info.get("property", "")
-					var current_value = 0
-					if player_var.has(property_name):
-						current_value = player_var.get(property_name)
-					var new_value = current_value + buff_info.get("base_buff_value", 0)
-					set_property_preview(property_name, new_value)
-
-# 根据符卡ID设置属性变化预览
-func set_card_preview(card_id: String):
-	clear_property_preview()
-
-	if table.SpellCard.has(card_id):
-		var card_info = table.SpellCard[card_id]
-
-		# 根据符卡效果设置预览
-		# 这里可以根据符卡的具体效果来设置属性变化
-		# 示例：
-		var current_damage = 1.0
-		if player_var.has("player_bullet_damage_ratio"):
-			current_damage = player_var.get("player_bullet_damage_ratio")
-		set_property_preview("player_bullet_damage_ratio", current_damage + 1.0)
-
-		var current_mana = 100
-		if player_var.has("mana_max"):
-			current_mana = player_var.get("mana_max")
-		set_property_preview("mana_max", current_mana + 20)
+			var change_value =	table.Buff[ table.Passive[passive_id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1]
+			# 根据被动技能的效果设置预览
+			if passive_info.has("buff"):
+				for buff_id in passive_info.buff:
+					if table.Buff.has(buff_id):
+						var buff_info = table.Buff[buff_id]
+						var property_name = buff_info.get("property", "")
+						var current_value = 0
+						if player_var.has(property_name):
+							current_value = player_var.get(property_name)
+						var new_value = current_value + buff_info.get("base_buff_value", 0)
+						set_property_preview(property_name, new_value)

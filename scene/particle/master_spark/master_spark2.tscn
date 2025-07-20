@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://jh25f6kbce2d"]
+[gd_scene load_steps=15 format=3 uid="uid://jh25f6kbce2d"]
 
-[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="1_f6n6m"]
 [ext_resource type="PackedScene" uid="uid://d0x756vtjadka" path="res://scene/particle/master_spark/charging.tscn" id="1_oc2ru"]
 [ext_resource type="Script" uid="uid://cevwcqee07ff0" path="res://scene/particle/master_spark/master_spark_2.gd" id="1_qbugc"]
 [ext_resource type="Shader" uid="uid://bb85l1f7dxqpq" path="res://asset/shaders/center_white.gdshader" id="1_uqn6h"]
@@ -8,16 +7,33 @@
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="5_so7lh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_527pc"]
-shader = ExtResource("1_f6n6m")
-shader_parameter/radius = 0.5
-shader_parameter/sampleCount = 4
-shader_parameter/grayLimit = 0.3
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7iy1l"]
-light_mode = 1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n1gil"]
 viewport_path = NodePath("master_spark/SubViewport")
+
+[sub_resource type="Curve" id="Curve_jjkd8"]
+_data = [Vector2(0, 0.248555), 0.0, 0.0, 0, 0, Vector2(0.347518, 0.530347), 1.03011, 1.03011, 0, 0, Vector2(1, 0.840318), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_evr3a"]
+offsets = PackedFloat32Array(0.0364963, 0.288321, 1)
+colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800073, 1, 0.786916, 0.0004815, 0.78691, 1)
+
+[sub_resource type="Environment" id="Environment_xklsl"]
+background_mode = 3
+glow_enabled = true
+glow_levels/3 = 0.0
+glow_levels/5 = 0.5
+glow_levels/6 = 0.5
+glow_levels/7 = 0.1
+glow_intensity = 2.06
+glow_strength = 1.07
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 0.88
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 1.0
+adjustment_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_dvp2e"]
 interpolation_mode = 2
@@ -35,40 +51,14 @@ shader_parameter/gradient_color = SubResource("GradientTexture1D_f6n6m")
 [sub_resource type="ViewportTexture" id="ViewportTexture_n2i1a"]
 viewport_path = NodePath("master/SubViewport")
 
-[sub_resource type="Curve" id="Curve_jjkd8"]
-_data = [Vector2(0, 0.248555), 0.0, 0.0, 0, 0, Vector2(0.347518, 0.530347), 1.03011, 1.03011, 0, 0, Vector2(1, 0.840318), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_evr3a"]
-offsets = PackedFloat32Array(0.0364963, 0.288321, 1)
-colors = PackedColorArray(1, 0.0918145, 0.0503841, 1, 0.696345, 0.604863, 0.0800073, 1, 0.786916, 0.0004815, 0.78691, 1)
-
-[sub_resource type="Environment" id="Environment_xklsl"]
-background_mode = 3
-glow_enabled = true
-glow_levels/3 = 0.0
-glow_levels/5 = 0.5
-glow_levels/6 = 0.5
-glow_levels/7 = 0.1
-glow_intensity = 3.85
-glow_strength = 1.07
-glow_bloom = 0.01
-glow_blend_mode = 0
-glow_hdr_threshold = 0.88
-glow_hdr_scale = 0.0
-glow_hdr_luminance_cap = 1.0
-adjustment_enabled = true
-
 [node name="Node2D" type="Node2D"]
 modulate = Color(1, 1, 1, 0.84313726)
 material = SubResource("ShaderMaterial_527pc")
-position = Vector2(0, -38)
 rotation = -1.5708
 script = ExtResource("1_qbugc")
 
 [node name="master_spark" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.156863, 1)
-material = SubResource("CanvasItemMaterial_7iy1l")
 scale = Vector2(0.5, 0.5)
 texture = SubResource("ViewportTexture_n1gil")
 
@@ -76,18 +66,6 @@ texture = SubResource("ViewportTexture_n1gil")
 transparent_bg = true
 
 [node name="charging" parent="master_spark/SubViewport" instance=ExtResource("1_oc2ru")]
-
-[node name="master" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_lu5jp")
-position = Vector2(424.807, 0.29216)
-scale = Vector2(2, 2.2)
-texture = SubResource("ViewportTexture_n2i1a")
-
-[node name="SubViewport" type="SubViewport" parent="master"]
-transparent_bg = true
-
-[node name="Master" parent="master/SubViewport" instance=ExtResource("2_3lh6v")]
 
 [node name="MasterSpark" type="CPUParticles2D" parent="."]
 modulate = Color(1, 1, 1, 0.686275)
@@ -110,5 +88,17 @@ color_ramp = SubResource("Gradient_evr3a")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xklsl")
+
+[node name="master" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_lu5jp")
+position = Vector2(424.807, 0.29216)
+scale = Vector2(2, 2.2)
+texture = SubResource("ViewportTexture_n2i1a")
+
+[node name="SubViewport" type="SubViewport" parent="master"]
+transparent_bg = true
+
+[node name="Master" parent="master/SubViewport" instance=ExtResource("2_3lh6v")]
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

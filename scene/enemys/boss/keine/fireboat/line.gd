@@ -91,12 +91,11 @@ func update_burn_effect():
 		gradient.set_color(4,Color.RED)
 		fired = true
 		if left_fire > 0.9 and not is_burning2:
-			print('2火辣')
+
 			# 检查boat2是否存在且有fire属性
 			if boat2 and is_instance_valid(boat2) and boat2.has_method('on_fire'):
 				boat2.on_fire()
 		if right_fire < 0.1 and not is_burning1:
-			print('1火辣')
 			# 检查boat1是否存在且有on_fire方法
 			if boat1 and is_instance_valid(boat1) and boat1.has_method('on_fire'):
 				boat1.on_fire()

@@ -53,9 +53,9 @@ func try_upgrade_text(id,upgroup,newlevel,property):
 			#技能描述
 			$describe.text += " [color=white]"+table.TID[id+'_dsc'][player_var.language]
 			#添加buff基础数值
-			$describe.text +=' ' + str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value )
+			$describe.text +=' ' + str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1])
 			#本次升级技能倍率
-			$describe.text += '\n '+table.TID[property][player_var.language] + ' ' + str(table.Upgrade[upgroup][property][newlevel-1])+'x\n'
+			#$describe.text += '\n '+table.TID[property][player_var.language] + ' ' + str(table.Upgrade[upgroup][property][newlevel-1])+'x\n'
 			return
 		if table.Upgrade[upgroup][property][newlevel-1] != table.Upgrade[upgroup][property][newlevel-2]:
 			if newlevel == 1:

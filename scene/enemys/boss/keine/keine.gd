@@ -267,9 +267,9 @@ func popup() -> void:
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
 
-	print('flushover')
+
 	flush = null
-	print('expandstart')
+
 	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
@@ -278,9 +278,9 @@ func popup() -> void:
 
 	await  expand.finished
 
-	print('expandover')
+
 	expand = null
-	print('disstart')
+
 	var disappear = panel.create_tween()
 
 	disappear.tween_interval(1)
@@ -289,7 +289,7 @@ func popup() -> void:
 	disappear.set_parallel().tween_property(text,'position',Vector2(300,850),0.5)
 	disappear.tween_property(panel,'rotation',0,3.5)
 	await disappear.finished
-	print('disover')
+
 	disappear = null
 
 
