@@ -1,13 +1,18 @@
 extends TextureButton
 
 signal upgrade_selected
+var b_type = ''
+var b_id = ''
 func _ready() -> void:
 	pass
+
 func set_text(type,id):
 	var newlevel:int
 	var upgroup
 	$describe.text = "[color=white]"
 	set_crystal_texture('img_'+id)
+	b_type = type
+	b_id = id
 	match type:
 		'skill':
 			self_modulate = Color('ffd1d1')
@@ -72,7 +77,8 @@ func _on_button_up():
 
 
 func _on_focus_entered():
-	pass
+	if b_type == 'passive':
+		get_parent().get_parent().get_parent().set_property_change(b_id)
 	#$describe.visible = true
 	#$describe/AnimatedSprite2D.visible = true
 
@@ -80,6 +86,7 @@ func _on_focus_entered():
 
 
 func _on_focus_exited():
-	pass
+	if b_type == 'passive':
+		get_parent().get_parent().get_parent().set_property_change('')
 	#$describe.visible = false
 	#$describe/AnimatedSprite2D.visible = false

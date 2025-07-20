@@ -129,13 +129,13 @@ func update_property_text(pp, property_name: String):
 	# 检查是否有预览变化
 	if preview_changes.has(property_name):
 		var preview_value = preview_changes[property_name]
-		var preview_text = ""
+		var preview_text = '[color=red]'
 		if preview_value is float:
-			preview_text = "%.2f" % preview_value
+			preview_text += "%.2f" % preview_value
 		elif preview_value is int:
-			preview_text = str(preview_value)
+			preview_text += str(preview_value)
 		else:
-			preview_text = str(preview_value)
+			preview_text += str(preview_value)
 		value_text += " -> " + preview_text
 
 	set_pp_text(pp, display_name + ": " + value_text)
@@ -184,21 +184,24 @@ func clear_property_preview(property_name: String = ""):
 # 根据被动技能ID设置属性变化预览
 func set_passive_preview(passive_id: String):
 	clear_property_preview()
+	if not table.Passive.has(passive_id):
+		return
 	var passive_info = table.Passive[passive_id]
 	var upgroup = table.Passive[passive_id].upgrade_group
 	var newlevel = player_var.PassiveManager.get_passive_level(passive_id)+1
-	if table.Passive.has(passive_id):
-		for property in table.Upgrade[upgroup]:
 
-			var change_value =	table.Buff[ table.Passive[passive_id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1]
+	for property in table.Upgrade[upgroup]:
+
+
 			# 根据被动技能的效果设置预览
-			if passive_info.has("buff"):
+			if passive_info.has("buff") and table.Upgrade[upgroup][property] is Array:
+				var change_value =	table.Buff[ table.Passive[passive_id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1]
 				for buff_id in passive_info.buff:
 					if table.Buff.has(buff_id):
 						var buff_info = table.Buff[buff_id]
 						var property_name = buff_info.get("property", "")
 						var current_value = 0
-						if player_var.has(property_name):
-							current_value = player_var.get(property_name)
-						var new_value = current_value + buff_info.get("base_buff_value", 0)
-						set_property_preview(property_name, new_value)
+						#if player_var.has(property_name):
+						current_value = player_var.get(property_name)
+						#var new_value = current_value + buff_info.get("base_buff_value", 0)
+						set_property_preview(property_name, current_value + change_value)
