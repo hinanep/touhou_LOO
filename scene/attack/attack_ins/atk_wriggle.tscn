@@ -1,8 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://buoegejb7x3p2"]
+[gd_scene load_steps=12 format=3 uid="uid://buoegejb7x3p2"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_5bj8n"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_806o0"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_806o0"]
 [ext_resource type="Texture2D" uid="uid://ds4bddk6bp23" path="res://asset/pic/bullet/firefly.png" id="3_btae8"]
+[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="4_0u7kp"]
+[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_m6xqp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2n71k"]
+shader = ExtResource("4_0u7kp")
+shader_parameter/radius = 0.5
+shader_parameter/sampleCount = 4
+shader_parameter/grayLimit = 0.3
+
+[sub_resource type="Curve" id="Curve_0u7kp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2524917, 1), 0.0, 0.0, 0, 0, Vector2(0.48837212, 0.38733423), 0.0, 0.0, 0, 0, Vector2(0.75747514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_m6xqp"]
+curve = SubResource("Curve_0u7kp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qtq32"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+alpha_curve = SubResource("CurveTexture_m6xqp")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qn2ix"]
 animations = [{
@@ -21,9 +43,23 @@ animations = [{
 z_index = 11
 script = ExtResource("2_806o0")
 
-[node name="lock_component" parent="." index="1"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
+modulate = Color(0.52156866, 1, 0, 1)
+self_modulate = Color(1, 1, 1, 0.6117647)
+material = SubResource("ShaderMaterial_2n71k")
+position = Vector2(-4, 0)
+amount = 1
+texture = ExtResource("5_m6xqp")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qtq32")
+
+[node name="lock_component" parent="." index="2"]
+visible = false
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_qn2ix")
+
+[node name="damage_area" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_xgb5y")
