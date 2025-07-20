@@ -10,7 +10,7 @@ script = ExtResource("1_2hg6j")
 [node name="shoot_interval" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8addg")
 

@@ -71,10 +71,11 @@ void fragment() {
 	vec3 hsv = rgb_to_hsv(original_color.rgb);
 	
 	// 只改变色相，保持饱和度和明度不变
-	hsv.x = mod(hsv.x + hue_shift, 1.0);
-	hsv.y = mod(hsv.y + s_shift, 1.0);
+	//hsv.x = mod(hsv.x + hue_shift, 1.0);
+	hsv.x = mod(hue_shift, 1.0);
+	//hsv.y = mod(hsv.y + s_shift, 1.0);
 	//hsv.z = mod(hsv.z + v_shift, 1.0);
-	hsv.z = mod(hsv.z + v_shift, 1.0);
+	//hsv.z = mod(hsv.z + v_shift, 1.0);
 	// 转换回RGB
 	vec3 new_rgb = hsv_to_rgb(hsv);
 	

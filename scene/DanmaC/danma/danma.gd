@@ -109,9 +109,10 @@ func change_type_to(type: String):
 func set_color(hsv:Vector3):
 	print('color')
 	print(hsv)
-	$texture.modulate.h = hsv.x
-	$texture.modulate.s = hsv.y
-	$texture.modulate.v = hsv.z
+	$texture.material.set_shader_parameter("hue_shift", hsv.x/360)
+	#$texture.modulate.h = hsv.x
+	#$texture.modulate.s = hsv.y
+	#$texture.modulate.v = hsv.z
 
 func change_size_to(size:float):
 	$texture.scale = Vector2(size * 0.06,size * 0.06)
@@ -189,7 +190,7 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 
 func drop_from_disbullet(is_drop:bool):
 	if is_drop:
-		SignalBus.drop.emit('drops_p',global_position,1)
+		SignalBus.drop.emit('drops_point',global_position,1)
 
 	queue_free()
 	#destroy.emit($".")
