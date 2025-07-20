@@ -66,7 +66,7 @@ func change_type_to(type: String):
 			$texture.set_texture(PresetManager.getpre('img_laserpre'))
 			$texture.rotation = -PI/2
 			$texture.offset.y=16
-			$texture.modulate = Color(0.3,1,1,1)
+			#$texture.modulate = Color(0.3,1,1,1)
 			var sizex = 100
 			var sizey = 2
 			$texture.scale = Vector2(0.15,0.03)
@@ -85,7 +85,7 @@ func change_type_to(type: String):
 			$colli_area.position.x=0.5
 			$damage_area/colli_da.position.x=0.5
 			$texture.offset.y=16
-			$texture.modulate = Color(0.3,1,1,1)
+			#$texture.modulate = Color(0.3,1,1,1)
 			var sizex = 100
 			var sizey = 12
 			$texture.scale = Vector2(0.03,0.03)
@@ -97,7 +97,7 @@ func change_type_to(type: String):
 			cshape = CircleShape2D.new()
 			cshape.radius = 1
 			add_to_group('fire')
-			modulate = Color.RED
+			#modulate = Color.RED
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.offset.y=0
 			change_size_to(20)
@@ -105,6 +105,13 @@ func change_type_to(type: String):
 			$VisibleOnScreenNotifier2D.rect = Rect2(-0.5,-0.5,1,1)
 	$colli_area.shape = cshape
 	$damage_area/colli_da.shape = cshape
+
+func set_color(hsv:Vector3):
+	print('color')
+	print(hsv)
+	$texture.modulate.h = hsv.x
+	$texture.modulate.s = hsv.y
+	$texture.modulate.v = hsv.z
 
 func change_size_to(size:float):
 	$texture.scale = Vector2(size * 0.06,size * 0.06)

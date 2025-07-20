@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_ojps0"]
 
 [node name="enemy_base" instance=ExtResource("1_ojps0")]
+
+[node name="buff" parent="." index="1"]
+visible = true

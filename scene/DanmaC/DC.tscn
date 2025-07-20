@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl0uvfapmgq0j"]
 
 [ext_resource type="Script" uid="uid://bxdqxgu864efv" path="res://scene/DanmaC/dc.gd" id="1_2hg6j"]
-[ext_resource type="Texture2D" uid="uid://ctx4yov5h08nk" path="res://asset/pic/blue_plate.png" id="2_rwh2m"]
+[ext_resource type="Texture2D" uid="uid://uvpx40wiwo0b" path="res://asset/pic/texture/whitehole.png" id="2_8addg"]
 
 [node name="Dc" type="Node2D"]
 process_mode = 1
@@ -10,7 +10,8 @@ script = ExtResource("1_2hg6j")
 [node name="shoot_interval" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_rwh2m")
+texture = ExtResource("2_8addg")
 
 [connection signal="timeout" from="shoot_interval" to="." method="_on_shoot_interval_timeout"]

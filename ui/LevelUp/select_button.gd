@@ -7,20 +7,34 @@ func set_text(type,id):
 	var newlevel:int
 	var upgroup
 	$describe.text = "[color=white]"
+	set_crystal_texture('img_'+id)
 	match type:
 		'skill':
+			self_modulate = Color('ffd1d1')
 			newlevel = player_var.SkillManager.get_skill_level(id)+1
 			upgroup = table.Skill[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
+			if newlevel == 1:
+				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"
+
+			else:
+				$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel-1)+'->'+str(newlevel)
 
 		'card':
+			self_modulate = Color('daffd1')
 			newlevel = player_var.CardManager.get_card_level(id)+1
 			upgroup = table.SpellCard[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
+			if newlevel == 1:
+				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"
+			else:
+				$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel-1)+'->'+str(newlevel)
 		'passive':
+			self_modulate = Color('d1f1ff')
 			newlevel = player_var.PassiveManager.get_passive_level(id)+1
 			upgroup = table.Passive[id].upgrade_group
-			$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel )
+			if newlevel == 1:
+				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"
+			else:
+				$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel-1)+'->'+str(newlevel)
 	if newlevel == 1:
 		$describe.text += table.TID[id+'_dsc'][player_var.language]
 	for upkey in table.Upgrade[upgroup]:
@@ -48,6 +62,9 @@ func try_upgrade_text(id,upgroup,newlevel,property):
 				return
 			$describe.text += ' '+table.TID[property][player_var.language] + ' ' +str(table.Upgrade[upgroup][property][newlevel-2]) + '->' + str(table.Upgrade[upgroup][property][newlevel-1])+'\n'
 
+func set_crystal_texture(image):
+	if image!=null:
+		$crystal.set_texture(PresetManager.getpre(image))
 
 func _on_button_up():
 	emit_signal("upgrade_selected")
@@ -55,12 +72,14 @@ func _on_button_up():
 
 
 func _on_focus_entered():
-	$describe.visible = true
-	$describe/AnimatedSprite2D.visible = true
+	pass
+	#$describe.visible = true
+	#$describe/AnimatedSprite2D.visible = true
 
 
 
 
 func _on_focus_exited():
-	$describe.visible = false
-	$describe/AnimatedSprite2D.visible = false
+	pass
+	#$describe.visible = false
+	#$describe/AnimatedSprite2D.visible = false

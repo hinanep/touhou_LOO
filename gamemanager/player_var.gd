@@ -1,18 +1,17 @@
 extends Node
 
+##############攻击类#################
 var player_melee_damage_ratio#- 体术伤害倍率：影响体术类技能的伤害
 var player_bullet_damage_ratio #- 弹幕伤害倍率：影响弹幕类技能的伤害
 var bullet_speed_ratio #子弹速度比率
-var keep_time  #持续时间#
+var bullet_duration_ratio  #持续时间#
 var range_add_ratio#攻击范围
 var danma_times  #弹幕发射数量加成
 var melee_times  # 体术攻击次数
 var colddown_reduce #冷却缩减
-var player_hp=0:
-	get:
-		return player_hp
-	set(value):
-		player_hp = clamp(value,-1,player_hp_max)
+
+##############防御类#################
+
 var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
@@ -23,14 +22,16 @@ var player_hp_max = 0: #生命上限
 
 var hp_max_ex = 0
 var hp_max_ex_percent = 1
-
 var player_hp_regen  #每秒生命回复
 var lifesteal  #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 var player_speed  #移动速度
 var player_life_addi  #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
+
 var defence_melee  #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
 var defence_bullet #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
 var invincible_time  #- 受伤后无敌时间：受到伤害后的无敌时间
+
+###########成长类######################
 
 var range_pick #- 拾取范围：拾取记忆碎片的最大距离
 var luck  #- 幸运：影响各种与概率相关的东西
@@ -44,6 +45,9 @@ var mana_max=0: #- 符力上限：可存储的最大符力
 				var ex = value - mana_max
 				mana_max = value
 				mana += ex
+
+#######################################
+
 var skill_level_max
 var skill_num_max
 
@@ -56,7 +60,11 @@ var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
 var CpManager :CpManagers
 var dep:dep_formula = dep_formula.new()
-
+var player_hp=0:
+	get:
+		return player_hp
+	set(value):
+		player_hp = clamp(value,-1,player_hp_max)
 var air_wall_top
 var air_wall_bottom
 var air_wall_left

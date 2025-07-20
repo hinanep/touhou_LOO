@@ -130,6 +130,7 @@ var preset_map = {
 
 	'root_menu':"res://ui/game.tscn",
 	'start_menu':"res://ui/StartMenu/StartMenu.tscn",
+	'property_text':"res://ui/LevelUp/property_text.tscn",
 }
 
 

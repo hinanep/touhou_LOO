@@ -253,5 +253,9 @@ animations = [{
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_5m4g8")
+scale = Vector2(0.14, 0.14)
 sprite_frames = SubResource("SpriteFrames_5im3c")
 frame_progress = 0.027544815
+
+[node name="buff" parent="." index="1"]
+visible = true
