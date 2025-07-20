@@ -141,12 +141,13 @@ offset_top = -67.0
 offset_right = 1209.0
 offset_bottom = 657.0
 
-[node name="properties" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 609.0
-offset_top = -374.99997
-offset_right = 3293.9995
-offset_bottom = 2964.9998
+[node name="pp" type="CanvasLayer" parent="."]
+
+[node name="properties" type="VBoxContainer" parent="pp"]
+offset_left = 1545.0
+offset_top = 276.0
+offset_right = 4229.9995
+offset_bottom = 4065.9995
 scale = Vector2(0.2, 0.2)
 focus_mode = 2
 theme_override_constants/separation = 16

@@ -29,4 +29,5 @@ func close_self():
 	player_var.player_exp += 0
 
 func set_property_change(id):
-	$properties.set_passive_preview(id)
+
+	$pp/properties.set_passive_preview(id)
