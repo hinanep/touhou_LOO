@@ -14,8 +14,8 @@ shader_parameter/grayLimit = 0.2790000132525
 
 [node name="card_texture" type="TextureRect"]
 material = SubResource("ShaderMaterial_1j45h")
-instance_shader_parameters/brightness = 0.8750000415625
-instance_shader_parameters/width = 11.0000005225
+instance_shader_parameters/brightness = 0.0
+instance_shader_parameters/width = 0.0
 custom_minimum_size = Vector2(1, 0)
 offset_right = 400.0
 offset_bottom = 400.0

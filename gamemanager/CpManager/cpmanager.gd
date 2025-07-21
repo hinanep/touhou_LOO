@@ -49,6 +49,7 @@ func raise_weight_to_cp(xname):
 					player_var.CardManager.card_pool.unlocked[id]["weight"] *=1.1
 				if(player_var.PassiveManager.buff_pool.unlocked.has(id)):
 					player_var.PassiveManager.buff_pool.unlocked[id]["weight"] *=1.1
+
 func get_cp_unactive(id):
 	var find = false
 	var cp_array = []
@@ -67,6 +68,18 @@ func get_cp_unactive(id):
 				cp_array.append(cp_pool.unlocked[cps].id)
 
 	return cp_array
+func get_cpable_array(id):
+	var cpable_array = []
+
+	for cps in cp_pool.unlocked:
+		if cp_pool.unlocked[cps].partment.has(id):
+
+			for x in cp_pool.unlocked[cps].partment:
+				if x != id:
+					cpable_array.push_back(x)
+
+
+	return cpable_array
 
 func activate_cp(cp_array):
 	if cp_array.is_empty():

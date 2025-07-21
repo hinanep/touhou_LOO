@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnhpskvcu3daq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_p0rqg"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_liw8n"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_liw8n"]
 [ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="3_o8cy3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dbkf4"]
