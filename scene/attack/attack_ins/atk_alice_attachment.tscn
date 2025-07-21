@@ -48,3 +48,4 @@ texture = SubResource("AnimatedTexture_dhgcy")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_dugh4")
 script = ExtResource("5_km2k5")
+rotate_speed = 4
