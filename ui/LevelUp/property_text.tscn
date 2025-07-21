@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://blj24lq0e2tj3"]
+
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="1_xi3sh"]
+
+[node name="property_text" type="RichTextLabel"]
+theme = ExtResource("1_xi3sh")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "property"
+fit_content = true

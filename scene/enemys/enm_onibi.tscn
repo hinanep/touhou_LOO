@@ -1,0 +1,280 @@
+[gd_scene load_steps=66 format=3 uid="uid://cidpipphhn1nw"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_bvblr"]
+[ext_resource type="Texture2D" uid="uid://bibqsc2njflf" path="res://asset/pic/enemy/onibi/移动/移动_00.png" id="2_8wxsx"]
+[ext_resource type="Texture2D" uid="uid://hbxg5t7owinf" path="res://asset/pic/enemy/onibi/移动/移动_01.png" id="3_cju0e"]
+[ext_resource type="Texture2D" uid="uid://ctapnsghq77it" path="res://asset/pic/enemy/onibi/移动/移动_02.png" id="4_hc3uu"]
+[ext_resource type="Texture2D" uid="uid://cbnuww1e4yaba" path="res://asset/pic/enemy/onibi/移动/移动_03.png" id="5_34nft"]
+[ext_resource type="Texture2D" uid="uid://cfxi81iwup13i" path="res://asset/pic/enemy/onibi/移动/移动_04.png" id="6_c0wt7"]
+[ext_resource type="Texture2D" uid="uid://b7bfd6pb2hn52" path="res://asset/pic/enemy/onibi/移动/移动_05.png" id="7_pk2o6"]
+[ext_resource type="Texture2D" uid="uid://ltvfubfyhv5g" path="res://asset/pic/enemy/onibi/移动/移动_06.png" id="8_icxhy"]
+[ext_resource type="Texture2D" uid="uid://d4eddgmdidffn" path="res://asset/pic/enemy/onibi/移动/移动_07.png" id="9_4o8ii"]
+[ext_resource type="Texture2D" uid="uid://dgcfvsy2etox3" path="res://asset/pic/enemy/onibi/移动/移动_08.png" id="10_c12s7"]
+[ext_resource type="Texture2D" uid="uid://djng1fskcqdpj" path="res://asset/pic/enemy/onibi/移动/移动_09.png" id="11_3wwnn"]
+[ext_resource type="Texture2D" uid="uid://qy0yjsd857mc" path="res://asset/pic/enemy/onibi/移动/移动_10.png" id="12_p8rxx"]
+[ext_resource type="Texture2D" uid="uid://3mqhdjafpa66" path="res://asset/pic/enemy/onibi/移动/移动_11.png" id="13_2twih"]
+[ext_resource type="Texture2D" uid="uid://dq6j4y12kr0w6" path="res://asset/pic/enemy/onibi/移动/移动_12.png" id="14_d1em2"]
+[ext_resource type="Texture2D" uid="uid://dgto1l7mkigt5" path="res://asset/pic/enemy/onibi/移动/移动_13.png" id="15_cd8v6"]
+[ext_resource type="Texture2D" uid="uid://coassicbks3vm" path="res://asset/pic/enemy/onibi/移动/移动_14.png" id="16_reemy"]
+[ext_resource type="Texture2D" uid="uid://bjgfd5sjudmot" path="res://asset/pic/enemy/onibi/移动/移动_15.png" id="17_ac12u"]
+[ext_resource type="Texture2D" uid="uid://bq3ln3pttppce" path="res://asset/pic/enemy/onibi/移动/移动_16.png" id="18_frxtm"]
+[ext_resource type="Texture2D" uid="uid://bb2pe7vdhsw0s" path="res://asset/pic/enemy/onibi/移动/移动_17.png" id="19_p5x8h"]
+[ext_resource type="Texture2D" uid="uid://dtc4due6pnf6g" path="res://asset/pic/enemy/onibi/移动/移动_18.png" id="20_elx3b"]
+[ext_resource type="Texture2D" uid="uid://drhmiu7k1h6kv" path="res://asset/pic/enemy/onibi/移动/移动_19.png" id="21_i5k0g"]
+[ext_resource type="Texture2D" uid="uid://bg4oig6x187vr" path="res://asset/pic/enemy/onibi/移动/移动_20.png" id="22_eq8b2"]
+[ext_resource type="Texture2D" uid="uid://dwgwpu4baq4bo" path="res://asset/pic/enemy/onibi/移动/移动_21.png" id="23_q0g6r"]
+[ext_resource type="Texture2D" uid="uid://b34g7xmc37uy0" path="res://asset/pic/enemy/onibi/移动/移动_22.png" id="24_71wx0"]
+[ext_resource type="Texture2D" uid="uid://bnu0ny64wiq83" path="res://asset/pic/enemy/onibi/移动/移动_23.png" id="25_cx5kp"]
+[ext_resource type="Texture2D" uid="uid://cxw6htmb542r8" path="res://asset/pic/enemy/onibi/移动/移动_24.png" id="26_j08aj"]
+[ext_resource type="Texture2D" uid="uid://bpoepdu2bhngi" path="res://asset/pic/enemy/onibi/移动/移动_25.png" id="27_5m33p"]
+[ext_resource type="Texture2D" uid="uid://dwls0hm2l6oy0" path="res://asset/pic/enemy/onibi/移动/移动_26.png" id="28_4oa82"]
+[ext_resource type="Texture2D" uid="uid://ca34bncl2eggu" path="res://asset/pic/enemy/onibi/移动/移动_27.png" id="29_njqrr"]
+[ext_resource type="Texture2D" uid="uid://vn1x8dimtqwr" path="res://asset/pic/enemy/onibi/移动/移动_28.png" id="30_adgsl"]
+[ext_resource type="Texture2D" uid="uid://oh8rgytw28l0" path="res://asset/pic/enemy/onibi/移动/移动_29.png" id="31_rtkqd"]
+[ext_resource type="Texture2D" uid="uid://b5rsnx1bea3ma" path="res://asset/pic/enemy/onibi/移动/移动_30.png" id="32_1k85r"]
+[ext_resource type="Texture2D" uid="uid://d3g4vrtb0la3y" path="res://asset/pic/enemy/onibi/移动/移动_31.png" id="33_ovqjj"]
+[ext_resource type="Texture2D" uid="uid://htuuh7b1gfwi" path="res://asset/pic/enemy/onibi/移动/移动_32.png" id="34_qkq68"]
+[ext_resource type="Texture2D" uid="uid://d0n4elq7xp66l" path="res://asset/pic/enemy/onibi/移动/移动_33.png" id="35_d731s"]
+[ext_resource type="Texture2D" uid="uid://ddrl52eki1utb" path="res://asset/pic/enemy/onibi/移动/移动_34.png" id="36_sd44g"]
+[ext_resource type="Texture2D" uid="uid://d05quxocy68lh" path="res://asset/pic/enemy/onibi/移动/移动_35.png" id="37_mytf1"]
+[ext_resource type="Texture2D" uid="uid://pg5s88fua8m" path="res://asset/pic/enemy/onibi/移动/移动_36.png" id="38_gqsnc"]
+[ext_resource type="Texture2D" uid="uid://nxuujkn8d6nf" path="res://asset/pic/enemy/onibi/移动/移动_37.png" id="39_dorhh"]
+[ext_resource type="Texture2D" uid="uid://tt0p0c6pc4m4" path="res://asset/pic/enemy/onibi/移动/移动_38.png" id="40_8i2jo"]
+[ext_resource type="Texture2D" uid="uid://bjwyw4xy66lnb" path="res://asset/pic/enemy/onibi/移动/移动_39.png" id="41_1miks"]
+[ext_resource type="Texture2D" uid="uid://csm01bk2sfdyd" path="res://asset/pic/enemy/onibi/移动/移动_40.png" id="42_ox77h"]
+[ext_resource type="Texture2D" uid="uid://cl75nqt7ayodo" path="res://asset/pic/enemy/onibi/移动/移动_41.png" id="43_tatrv"]
+[ext_resource type="Texture2D" uid="uid://cxbgrckba7q2s" path="res://asset/pic/enemy/onibi/移动/移动_42.png" id="44_xt28x"]
+[ext_resource type="Texture2D" uid="uid://ijydsm2qb5d" path="res://asset/pic/enemy/onibi/移动/移动_43.png" id="45_jh6wn"]
+[ext_resource type="Texture2D" uid="uid://dkwhi6i0afeys" path="res://asset/pic/enemy/onibi/移动/移动_44.png" id="46_rhldd"]
+[ext_resource type="Texture2D" uid="uid://dfbdv3xeixsp3" path="res://asset/pic/enemy/onibi/移动/移动_45.png" id="47_kbnn5"]
+[ext_resource type="Texture2D" uid="uid://qvwwpaokc2gq" path="res://asset/pic/enemy/onibi/移动/移动_46.png" id="48_bwxwn"]
+[ext_resource type="Texture2D" uid="uid://1ki4otxrqk5o" path="res://asset/pic/enemy/onibi/移动/移动_47.png" id="49_kh7uh"]
+[ext_resource type="Texture2D" uid="uid://cxphkpqup2r5g" path="res://asset/pic/enemy/onibi/移动/移动_48.png" id="50_5g85f"]
+[ext_resource type="Texture2D" uid="uid://df6b76ouvcfkj" path="res://asset/pic/enemy/onibi/死亡动画/死亡_00.png" id="51_lmj12"]
+[ext_resource type="Texture2D" uid="uid://b011tkf476oy0" path="res://asset/pic/enemy/onibi/死亡动画/死亡_01.png" id="52_cexot"]
+[ext_resource type="Texture2D" uid="uid://flc76y7b1hoq" path="res://asset/pic/enemy/onibi/死亡动画/死亡_02.png" id="53_elwp2"]
+[ext_resource type="Texture2D" uid="uid://rt2ph0xup8e7" path="res://asset/pic/enemy/onibi/死亡动画/死亡_03.png" id="54_llxdq"]
+[ext_resource type="Texture2D" uid="uid://bokgr8yqiks5a" path="res://asset/pic/enemy/onibi/死亡动画/死亡_04.png" id="55_s0k86"]
+[ext_resource type="Texture2D" uid="uid://hm24pat0t0xe" path="res://asset/pic/enemy/onibi/死亡动画/死亡_05.png" id="56_3pxgq"]
+[ext_resource type="Texture2D" uid="uid://cseh2qx7f4v1m" path="res://asset/pic/enemy/onibi/死亡动画/死亡_06.png" id="57_lifbi"]
+[ext_resource type="Texture2D" uid="uid://43kgm56o6gkc" path="res://asset/pic/enemy/onibi/死亡动画/死亡_07.png" id="58_vmiwb"]
+[ext_resource type="Texture2D" uid="uid://d3buptkkyo4sy" path="res://asset/pic/enemy/onibi/死亡动画/死亡_08.png" id="59_yedhv"]
+[ext_resource type="Texture2D" uid="uid://ca187d6apldea" path="res://asset/pic/enemy/onibi/死亡动画/死亡_09.png" id="60_lrvsu"]
+[ext_resource type="Texture2D" uid="uid://wjn1ctxr0jwv" path="res://asset/pic/enemy/onibi/死亡动画/死亡_10.png" id="61_mwx7f"]
+[ext_resource type="Texture2D" uid="uid://bti2kl1jsyxft" path="res://asset/pic/enemy/onibi/死亡动画/死亡_11.png" id="62_6okqi"]
+[ext_resource type="Texture2D" uid="uid://cmt4wxhaxiaur" path="res://asset/pic/enemy/onibi/死亡动画/死亡_12.png" id="63_fyk7i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m4g8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5im3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8wxsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cju0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hc3uu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_34nft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c0wt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pk2o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_icxhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4o8ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c12s7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3wwnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p8rxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2twih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_d1em2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_cd8v6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_reemy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ac12u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_frxtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_p5x8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_elx3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_i5k0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_eq8b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_q0g6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_71wx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_cx5kp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_j08aj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_5m33p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_4oa82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_njqrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_adgsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_rtkqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_1k85r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ovqjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_qkq68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_d731s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_sd44g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_mytf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_gqsnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_dorhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_8i2jo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_1miks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ox77h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_tatrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_xt28x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_jh6wn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_rhldd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_kbnn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_bwxwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_kh7uh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_5g85f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 48.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_lmj12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_cexot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_elwp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_llxdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_s0k86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_3pxgq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_lifbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_vmiwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_yedhv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_lrvsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_mwx7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_6okqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_fyk7i")
+}],
+"loop": false,
+"name": &"die",
+"speed": 60.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_bvblr")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_5m4g8")
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_5im3c")
+
+[node name="buff" parent="." index="1"]
+visible = true
+position = Vector2(0, 38)
+
+[node name="melee_damage_area" parent="." index="2"]
+position = Vector2(0, 38)

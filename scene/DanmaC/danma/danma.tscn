@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfhi4nkej810f"]
+[gd_scene load_steps=8 format=3 uid="uid://cfhi4nkej810f"]
 
 [ext_resource type="Script" uid="uid://dxl3w2m0a7kr7" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
-[ext_resource type="Texture2D" uid="uid://cq3udibbkhx3w" path="res://asset/pic/bullet/enemy/激光.png" id="2_wxdkc"]
+[ext_resource type="Shader" uid="uid://dq0xbpgvfxndp" path="res://asset/shaders/hue_shift.gdshader" id="2_6775s"]
+[ext_resource type="Texture2D" uid="uid://rxccn5pqas6u" path="res://asset/pic/bullet/enemy/中玉.png" id="3_6775s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bi33l"]
 blend_mode = 2
@@ -11,6 +12,12 @@ size = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n623u"]
 size = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uctbj"]
+shader = ExtResource("2_6775s")
+shader_parameter/hue_shift = 0.0
+shader_parameter/s_shift = 0.0490000023275
+shader_parameter/v_shift = 0.9930000471675
 
 [node name="Danma" type="CharacterBody2D"]
 top_level = true
@@ -32,12 +39,12 @@ monitorable = false
 shape = SubResource("RectangleShape2D_n623u")
 
 [node name="texture" type="Sprite2D" parent="."]
-self_modulate = Color(0.68799996, 1, 0.52, 1)
 z_index = 500
 z_as_relative = false
+material = SubResource("ShaderMaterial_uctbj")
 rotation = -1.5708
 scale = Vector2(0.03, 0.03)
-texture = ExtResource("2_wxdkc")
+texture = ExtResource("3_6775s")
 offset = Vector2(0, 16)
 
 [node name="exist" type="Timer" parent="."]

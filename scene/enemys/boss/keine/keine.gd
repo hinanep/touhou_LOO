@@ -7,6 +7,7 @@ var progress_routine :Dictionary= {}
 var progress_time = 0
 var diretion:Vector2 = Vector2.ZERO
 var move_func:Callable = move_stay
+var boatcard = preload("res://scene/enemys/boss/keine/fireboat/boatscard.tscn")
 signal trigger(id)
 var state = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
 
@@ -159,6 +160,11 @@ func reincarnation_over():
 	if mob_info.has('sc_tid') and mob_info.sc_tid != '':
 		$hud/card/RichTextLabel.text = table.TID[mob_info.sc_tid][player_var.language]
 		popup()
+		if mob_info.sc_tid == 'esc_keine_2':
+			var bc = boatcard.instantiate()
+			bc.global_position = Vector2(0,0)
+			add_child(bc)
+			pass
 	else:
 		$hud/card.visible = false
 	if mob_info.movement:
@@ -189,10 +195,13 @@ func reincarnation_over():
 func spellcard_timeover():
 	AudioManager.play_sfx('music_sfx_break')
 	died()
+
 func spellcard_break():
 	AudioManager.play_sfx('music_sfx_break')
+	SignalBus.disbullet.emit(true)
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate
-
+	await get_tree().create_timer(.2).timeout
+	SignalBus.fly_to_player.emit(1,1,1,1)
 
 func _on_animated_sprite_2d_animation_finished():
 	pass
@@ -258,9 +267,9 @@ func popup() -> void:
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
 
-	print('flushover')
+
 	flush = null
-	print('expandstart')
+
 	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
@@ -269,9 +278,9 @@ func popup() -> void:
 
 	await  expand.finished
 
-	print('expandover')
+
 	expand = null
-	print('disstart')
+
 	var disappear = panel.create_tween()
 
 	disappear.tween_interval(1)
@@ -280,7 +289,7 @@ func popup() -> void:
 	disappear.set_parallel().tween_property(text,'position',Vector2(300,850),0.5)
 	disappear.tween_property(panel,'rotation',0,3.5)
 	await disappear.finished
-	print('disover')
+
 	disappear = null
 
 

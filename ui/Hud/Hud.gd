@@ -33,37 +33,42 @@ func _ready():
 
 func hp_display():
 
-	hp_cont.offset.x = 350 - player_var.player_hp/player_var.player_hp_max * 350
+	#hp_cont.offset.x =   player_var.player_hp/player_var.player_hp_max * 275 - 275
+	$hud/hp/hp_mask.size.x = player_var.player_hp/player_var.player_hp_max * 280 +45
 	hp_text.text = ("%d" % player_var.player_hp) + "/" + ("%d" % player_var.player_hp_max)
 
 func card_mana_display():
 
-
-	mana_cont.offset.x = 350 - player_var.mana/player_var.mana_max * 350
+	$hud/mana/mana_mask.size.x = player_var.mana/player_var.mana_max * 360
+	#mana_cont.offset.x = 350 - player_var.mana/player_var.mana_max * 350
 
 	mana_text.text = str(player_var.mana) + "/" + str(player_var.mana_max)
+
+func exp_display():
+	$hud/exp/exp_mask.size.x = player_var.player_exp/player_var.exp_need * 370 + 37
+	#exp_cont.offset.x = -320 + player_var.player_exp/player_var.exp_need * 320
+
+	level_text.text = ("%d" % player_var.level)
 
 func point_and_ratio_display():
 	point_ratio_text.text = ("%.2f" % player_var.point_ratio)
 
 	point_text.text = str(player_var.point)
 
-func exp_display():
-	exp_cont.offset.x = -320 + player_var.player_exp/player_var.exp_need * 320
 
-	level_text.text = ("%d" % player_var.level)
 
 func life_display():
 	match player_var.player_life_addi:
 		0:
-			$hud/life/life1/have.visible = false
-			$hud/life/life2/have.visible = false
+			$hud/life/have.visible = false
+			$hud/life/have2.visible = false
+
 		1:
-			$hud/life/life1/have.visible = true
-			$hud/life/life2/have.visible = false
+			$hud/life/have.visible = true
+			$hud/life/have2.visible = false
 		_:
-			$hud/life/life1/have.visible = true
-			$hud/life/life2/have.visible = true
+			$hud/life/have.visible = true
+			$hud/life/have2.visible = true
 
 
 

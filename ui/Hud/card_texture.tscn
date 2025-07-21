@@ -1,32 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://b423fr4pl50lx"]
+[gd_scene load_steps=6 format=3 uid="uid://b423fr4pl50lx"]
 
-[ext_resource type="Texture2D" uid="uid://c8a420nwdhl21" path="res://asset/pic/crystal/大妖精.png" id="1_pxaq0"]
-[ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="1_uyih8"]
+[ext_resource type="Shader" uid="uid://d1u5gm7rwoge0" path="res://asset/shaders/bloom_outline.gdshader" id="1_uyih8"]
 [ext_resource type="Script" uid="uid://cq22m7nf22ekr" path="res://ui/Hud/card_texture.gd" id="2_d07md"]
+[ext_resource type="Texture2D" uid="uid://c3i62vhrr12fu" path="res://asset/pic/crystal/主动技能/东风谷早苗.png" id="2_uyih8"]
+[ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="4_1j45h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1j45h"]
 shader = ExtResource("1_uyih8")
-shader_parameter/radius = 2.0
+shader_parameter/outline_color = Color(0.18039216, 0.74509805, 0, 0.34117648)
+shader_parameter/radius = 1.2320000585200002
 shader_parameter/sampleCount = 4
-shader_parameter/grayLimit = 0.3150000149625
+shader_parameter/grayLimit = 0.2790000132525
 
 [node name="card_texture" type="TextureRect"]
 material = SubResource("ShaderMaterial_1j45h")
 instance_shader_parameters/brightness = 0.0
+instance_shader_parameters/width = 0.0
 custom_minimum_size = Vector2(1, 0)
+offset_right = 400.0
+offset_bottom = 400.0
 pivot_offset = Vector2(400, 400)
-texture = ExtResource("1_pxaq0")
+texture = ExtResource("2_uyih8")
 expand_mode = 2
 stretch_mode = 4
 script = ExtResource("2_d07md")
 
 [node name="cn" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
-offset_left = -13.0
-offset_top = -299.0
-offset_right = 796.0
-offset_bottom = -107.0
+offset_left = -24.0
+offset_top = 24.000006
+offset_right = 976.0
+offset_bottom = 458.0
+scale = Vector2(0.12, 0.12)
+theme = ExtResource("4_1j45h")
 theme_override_font_sizes/normal_font_size = 150
-text = "魔理沙"
+bbcode_enabled = true
+text = "[center]
+LV.1"
 fit_content = true

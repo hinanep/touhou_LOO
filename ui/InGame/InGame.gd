@@ -31,8 +31,6 @@ func _open():
 func _close():
 	AudioManager.stop_background_bgm()
 	player_var.SpawnManager.clear()
-	print('clear')
-	pass
 
 
 func open():
@@ -75,32 +73,7 @@ func _on_end_game_timeout() -> void:
 		await interval.timeout
 		interval = null
 		if player_var.SpawnManager.mob_dic.is_empty():
+			SignalBus.shutter.emit()
 
-			var mv :Tween= player_var.player_node.create_tween()
-			var camera:Camera2D = get_viewport().get_camera_2d()
-			mv.set_parallel()
-
-			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),1)
-			mv.tween_property(camera,'global_position',Vector2(0,0),1)
-			await mv.finished
-			player_var.air_wall_bottom = 540
-			player_var.air_wall_top = -540
-			player_var.air_wall_left = -960
-			player_var.air_wall_right = 960
-
-			$air_wall/left.position.x = -960
-			$air_wall/right.position.x = 960
-			$air_wall/top.position.y = -540
-			$air_wall/down.position.y = 540
-			lock_camera()
-
-			var boss = PresetManager.getpre('keine').instantiate()
-
-			boss.boss_init('keine')
-			boss.position = Vector2(2000,1000)
-			$SpawnManager.add_mob(boss)
-			mv = boss.create_tween()
-			mv.tween_property(boss,'global_position',Vector2(600,0),3)
-			await mv.finished
-			boss.fight_begin()
+			player_var.boss_coming('keine')
 			return

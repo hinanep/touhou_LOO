@@ -177,7 +177,7 @@ func _on_summon_pressed() -> void:
 
 
 func _on_keine_pressed() -> void:
-
+	SignalBus.shutter.emit()
 	player_var.boss_coming('keine')
 
 

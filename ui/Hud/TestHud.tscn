@@ -108,10 +108,10 @@ offset_right = 191.0
 offset_bottom = 975.0
 
 [node name="upgrade_layer_vis" type="TextureButton" parent="testhud"]
-offset_left = 47.0
-offset_top = 872.0
-offset_right = 177.0
-offset_bottom = 965.0
+offset_left = 188.0
+offset_top = 516.0
+offset_right = 318.0
+offset_bottom = 609.0
 focus_mode = 1
 texture_normal = ExtResource("3_2gmep")
 texture_pressed = ExtResource("4_wkgob")
@@ -130,10 +130,10 @@ text = "技能选择"
 fit_content = true
 
 [node name="summon_layer_vis" type="TextureButton" parent="testhud"]
-offset_left = 48.0
-offset_top = 722.0
-offset_right = 178.0
-offset_bottom = 815.0
+offset_left = 189.0
+offset_top = 366.0
+offset_right = 319.0
+offset_bottom = 459.0
 focus_mode = 1
 texture_normal = ExtResource("3_2gmep")
 texture_pressed = ExtResource("4_wkgob")

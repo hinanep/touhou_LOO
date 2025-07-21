@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhkrsval15dv0"]
+
+[ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_bvt7o"]
+[ext_resource type="Script" uid="uid://bds5287q7m71c" path="res://scene/drops/point/point.gd" id="2_ju66c"]
+[ext_resource type="Texture2D" uid="uid://dqv38mj8vnmn4" path="res://asset/pic/ui/HUD/符卡.png" id="3_ju66c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3q6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ju66c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="point" instance=ExtResource("1_bvt7o")]
+monitoring = true
+script = ExtResource("2_ju66c")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_v3q6v")
+frame_progress = 0.0

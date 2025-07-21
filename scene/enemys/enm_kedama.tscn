@@ -1,6 +1,489 @@
-[gd_scene load_steps=2 format=3 uid="uid://bscmg0phnvseh"]
+[gd_scene load_steps=116 format=3 uid="uid://0weovvdyx00u"]
 
-[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_ojps0"]
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_s33qc"]
+[ext_resource type="Texture2D" uid="uid://bniabbp8xms3a" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_00.png" id="2_pfdwy"]
+[ext_resource type="Texture2D" uid="uid://tivic71hpgew" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_01.png" id="3_jtf7k"]
+[ext_resource type="Texture2D" uid="uid://bvmsmbf763mnj" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_02.png" id="4_pmtjx"]
+[ext_resource type="Texture2D" uid="uid://kbh3q5hgfp8n" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_03.png" id="5_5cvtd"]
+[ext_resource type="Texture2D" uid="uid://pmrtt4lks840" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_04.png" id="6_lcklo"]
+[ext_resource type="Texture2D" uid="uid://47nd3dt8isy3" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_05.png" id="7_dv3dx"]
+[ext_resource type="Texture2D" uid="uid://pktr43gbhikn" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_06.png" id="8_j62lj"]
+[ext_resource type="Texture2D" uid="uid://dnwkg00b4digm" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_07.png" id="9_ajrwc"]
+[ext_resource type="Texture2D" uid="uid://b61cyof8edh5o" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_08.png" id="10_gumuf"]
+[ext_resource type="Texture2D" uid="uid://cl8r5644wegtb" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_09.png" id="11_43xr4"]
+[ext_resource type="Texture2D" uid="uid://drf8pdp1vl31y" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_10.png" id="12_ga1xt"]
+[ext_resource type="Texture2D" uid="uid://c8t4aucuwitbf" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_11.png" id="13_cpdtc"]
+[ext_resource type="Texture2D" uid="uid://dsvig14xmcfg3" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_12.png" id="14_f1euk"]
+[ext_resource type="Texture2D" uid="uid://dgit8jywj61ht" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_13.png" id="15_5vgr3"]
+[ext_resource type="Texture2D" uid="uid://0am7f4jj1nmm" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_14.png" id="16_pb64r"]
+[ext_resource type="Texture2D" uid="uid://d7k0sjqptg0f" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_15.png" id="17_runh6"]
+[ext_resource type="Texture2D" uid="uid://dmuchoosrctik" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_16.png" id="18_5n1f1"]
+[ext_resource type="Texture2D" uid="uid://b1e3ym5g2bslx" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_17.png" id="19_3cnet"]
+[ext_resource type="Texture2D" uid="uid://ccvig1rfwgtvr" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_18.png" id="20_q1hvl"]
+[ext_resource type="Texture2D" uid="uid://bi2cswg1gyrnn" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_19.png" id="21_haamt"]
+[ext_resource type="Texture2D" uid="uid://cgb04ijkrisu1" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_20.png" id="22_p6rks"]
+[ext_resource type="Texture2D" uid="uid://cg2qo0nnifgmo" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_21.png" id="23_n5u4t"]
+[ext_resource type="Texture2D" uid="uid://bn1ttus001qho" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_22.png" id="24_c2p7o"]
+[ext_resource type="Texture2D" uid="uid://b7d7fluadhsj0" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_23.png" id="25_bx1ow"]
+[ext_resource type="Texture2D" uid="uid://jphnw6cj1dqq" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_24.png" id="26_wmd0j"]
+[ext_resource type="Texture2D" uid="uid://bxs7d0wlrk306" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_25.png" id="27_74fyj"]
+[ext_resource type="Texture2D" uid="uid://di813hyvd87pf" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_26.png" id="28_gn2f3"]
+[ext_resource type="Texture2D" uid="uid://drbrd2ydlufuf" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_27.png" id="29_p6baa"]
+[ext_resource type="Texture2D" uid="uid://rktiigx1p0hd" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_28.png" id="30_cdwjt"]
+[ext_resource type="Texture2D" uid="uid://cr8e1i7uim474" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_29.png" id="31_dwxia"]
+[ext_resource type="Texture2D" uid="uid://blxdnlt5710ja" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_30.png" id="32_hsvno"]
+[ext_resource type="Texture2D" uid="uid://bxjqq08etheeu" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_31.png" id="33_07bfb"]
+[ext_resource type="Texture2D" uid="uid://dy2c4f7tl24sg" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_32.png" id="34_co62e"]
+[ext_resource type="Texture2D" uid="uid://cyisvw2iknp0f" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_00.png" id="35_6rybv"]
+[ext_resource type="Texture2D" uid="uid://bsbj661nabjtm" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_01.png" id="36_cg6le"]
+[ext_resource type="Texture2D" uid="uid://drw6c8k0nmxpt" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_02.png" id="37_2x1no"]
+[ext_resource type="Texture2D" uid="uid://bxc08208faf6y" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_03.png" id="38_443rc"]
+[ext_resource type="Texture2D" uid="uid://daycw6o3megc4" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_04.png" id="39_av4yh"]
+[ext_resource type="Texture2D" uid="uid://c3hjvjtwf4bxc" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_05.png" id="40_o1esx"]
+[ext_resource type="Texture2D" uid="uid://c6vb4h6nfl8uh" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_06.png" id="41_qei48"]
+[ext_resource type="Texture2D" uid="uid://cbcx3b30es871" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_07.png" id="42_b4icv"]
+[ext_resource type="Texture2D" uid="uid://ch4hebdkd7ccr" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_08.png" id="43_b7k0e"]
+[ext_resource type="Texture2D" uid="uid://r8i05ejebfcf" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_09.png" id="44_ns47q"]
+[ext_resource type="Texture2D" uid="uid://d1x7xhhjgb4xs" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_10.png" id="45_m4io2"]
+[ext_resource type="Texture2D" uid="uid://rc311b31ijkp" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_11.png" id="46_cc6f5"]
+[ext_resource type="Texture2D" uid="uid://lqcgmo0cr2bk" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_12.png" id="47_qqn6r"]
+[ext_resource type="Texture2D" uid="uid://bpebjeg67k8t2" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_13.png" id="48_hpg6b"]
+[ext_resource type="Texture2D" uid="uid://jvgu7j6ovfuv" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_14.png" id="49_kiwo3"]
+[ext_resource type="Texture2D" uid="uid://ct04fxrdfngrm" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_15.png" id="50_ccwfi"]
+[ext_resource type="Texture2D" uid="uid://bhiaei67o61ju" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_16.png" id="51_5k3my"]
+[ext_resource type="Texture2D" uid="uid://cgmuhoxfthhh5" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_17.png" id="52_j7s6a"]
+[ext_resource type="Texture2D" uid="uid://bomt2aavg63ee" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_18.png" id="53_rbj6i"]
+[ext_resource type="Texture2D" uid="uid://ml85uodi65ec" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_19.png" id="54_k1y6p"]
+[ext_resource type="Texture2D" uid="uid://mraq7x1mx3xg" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_20.png" id="55_ns54o"]
+[ext_resource type="Texture2D" uid="uid://37wietwpybdo" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_21.png" id="56_881er"]
+[ext_resource type="Texture2D" uid="uid://dg4drqwyxl6vy" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_22.png" id="57_5ll2m"]
+[ext_resource type="Texture2D" uid="uid://cfr20yh77ci6r" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_23.png" id="58_sjcko"]
+[ext_resource type="Texture2D" uid="uid://btu42d32ffvfb" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_24.png" id="59_f22j4"]
+[ext_resource type="Texture2D" uid="uid://u7jw7ynuils1" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_25.png" id="60_dusuj"]
+[ext_resource type="Texture2D" uid="uid://bcthr2t7ipc1t" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_26.png" id="61_d71iw"]
+[ext_resource type="Texture2D" uid="uid://iiv6l327jud5" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_27.png" id="62_1pvid"]
+[ext_resource type="Texture2D" uid="uid://cugj8hseouj2j" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_28.png" id="63_et0my"]
+[ext_resource type="Texture2D" uid="uid://3nhqb01erch7" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_29.png" id="64_hlnei"]
+[ext_resource type="Texture2D" uid="uid://bxqbka8di415b" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_30.png" id="65_1qwb3"]
+[ext_resource type="Texture2D" uid="uid://rfs0kk1o6ymb" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_31.png" id="66_4j0kw"]
+[ext_resource type="Texture2D" uid="uid://cq5xrcmtll1ko" path="res://asset/pic/enemy/kedama/表情2 移动/表情2_32.png" id="67_88wgi"]
+[ext_resource type="Texture2D" uid="uid://jfq4jsxh7ik5" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_00.png" id="68_ncc1j"]
+[ext_resource type="Texture2D" uid="uid://ct0n440mylik8" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_01.png" id="69_h4l5n"]
+[ext_resource type="Texture2D" uid="uid://boyryi1ahgcwm" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_02.png" id="70_n3sl4"]
+[ext_resource type="Texture2D" uid="uid://fsx3o8055tfc" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_03.png" id="71_ffx8m"]
+[ext_resource type="Texture2D" uid="uid://ccr4n2eu0m6ua" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_04.png" id="72_pgmh8"]
+[ext_resource type="Texture2D" uid="uid://d04fdone8dnc6" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_05.png" id="73_trfw4"]
+[ext_resource type="Texture2D" uid="uid://bxumubjp2sos4" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_06.png" id="74_jbm1h"]
+[ext_resource type="Texture2D" uid="uid://c8v7kuvpb3e1d" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_07.png" id="75_gaogu"]
+[ext_resource type="Texture2D" uid="uid://cg427msixgjbh" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_08.png" id="76_f8o82"]
+[ext_resource type="Texture2D" uid="uid://co6ix6gnavqff" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_09.png" id="77_fsway"]
+[ext_resource type="Texture2D" uid="uid://dt3iyut7lnm1d" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_10.png" id="78_l8737"]
+[ext_resource type="Texture2D" uid="uid://f02kxs7pydda" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_11.png" id="79_v2jer"]
+[ext_resource type="Texture2D" uid="uid://dvdne21cklh7n" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_12.png" id="80_6g44i"]
+[ext_resource type="Texture2D" uid="uid://bwsjq21xjkjq4" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_13.png" id="81_jlk4f"]
+[ext_resource type="Texture2D" uid="uid://b8yclmgb1x6q8" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_14.png" id="82_lp7ni"]
+[ext_resource type="Texture2D" uid="uid://c48q4go2r0cm1" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_15.png" id="83_cwbec"]
+[ext_resource type="Texture2D" uid="uid://c1e51qkjo8of2" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_16.png" id="84_j4x72"]
+[ext_resource type="Texture2D" uid="uid://dkfdspgamu4rx" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_17.png" id="85_xwspb"]
+[ext_resource type="Texture2D" uid="uid://cd3t430j8no1t" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_18.png" id="86_bwyxc"]
+[ext_resource type="Texture2D" uid="uid://c53gnmlmq7b50" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_19.png" id="87_ctbg5"]
+[ext_resource type="Texture2D" uid="uid://fa7t8yovrn7r" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_20.png" id="88_eb5a8"]
+[ext_resource type="Texture2D" uid="uid://3udyvpxadpq" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_21.png" id="89_0ws05"]
+[ext_resource type="Texture2D" uid="uid://butilkmt5sh3u" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_22.png" id="90_p35bs"]
+[ext_resource type="Texture2D" uid="uid://bnb1hjqhinxms" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_23.png" id="91_g82g6"]
+[ext_resource type="Texture2D" uid="uid://dpgqofkti2w22" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_24.png" id="92_gbemr"]
+[ext_resource type="Texture2D" uid="uid://b0etew13j3wb" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_25.png" id="93_eognm"]
+[ext_resource type="Texture2D" uid="uid://b6hukkd02sm2s" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_26.png" id="94_34o2m"]
+[ext_resource type="Texture2D" uid="uid://kd2guiw1e4g2" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_27.png" id="95_2vae2"]
+[ext_resource type="Texture2D" uid="uid://ct01uqg7irb2g" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_28.png" id="96_7x3pt"]
+[ext_resource type="Texture2D" uid="uid://u844v6n8hqny" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_29.png" id="97_wyupd"]
+[ext_resource type="Texture2D" uid="uid://bnyvkcb14pbih" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_30.png" id="98_dyyr4"]
+[ext_resource type="Texture2D" uid="uid://n5tyypx1rat1" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_31.png" id="99_btfed"]
+[ext_resource type="Texture2D" uid="uid://bnxmrw7740643" path="res://asset/pic/enemy/kedama/表情3 移动/表情3_32.png" id="100_ds174"]
+[ext_resource type="Texture2D" uid="uid://d1tosiqhnwbxb" path="res://asset/pic/enemy/kedama/死亡动画/死亡_00.png" id="101_vy6wf"]
+[ext_resource type="Texture2D" uid="uid://bpv55saevqli1" path="res://asset/pic/enemy/kedama/死亡动画/死亡_01.png" id="102_4jnjf"]
+[ext_resource type="Texture2D" uid="uid://effvdl0g2x3i" path="res://asset/pic/enemy/kedama/死亡动画/死亡_02.png" id="103_40ydi"]
+[ext_resource type="Texture2D" uid="uid://4tw4ufb6mxb5" path="res://asset/pic/enemy/kedama/死亡动画/死亡_03.png" id="104_ykstx"]
+[ext_resource type="Texture2D" uid="uid://t03h4dvu7jkj" path="res://asset/pic/enemy/kedama/死亡动画/死亡_04.png" id="105_gcvyi"]
+[ext_resource type="Texture2D" uid="uid://bfr4ef5jvkaqp" path="res://asset/pic/enemy/kedama/死亡动画/死亡_05.png" id="106_0aa67"]
+[ext_resource type="Texture2D" uid="uid://egnib6h2sff0" path="res://asset/pic/enemy/kedama/死亡动画/死亡_06.png" id="107_4yqxb"]
+[ext_resource type="Texture2D" uid="uid://bc1nenkdjuyt" path="res://asset/pic/enemy/kedama/死亡动画/死亡_07.png" id="108_3hetv"]
+[ext_resource type="Texture2D" uid="uid://o5nt0202kvao" path="res://asset/pic/enemy/kedama/死亡动画/死亡_08.png" id="109_mf8ar"]
+[ext_resource type="Texture2D" uid="uid://clw6ioaesl0p" path="res://asset/pic/enemy/kedama/死亡动画/死亡_09.png" id="110_ooreb"]
+[ext_resource type="Texture2D" uid="uid://l73kmi3vh0n6" path="res://asset/pic/enemy/kedama/死亡动画/死亡_10.png" id="111_5m251"]
+[ext_resource type="Texture2D" uid="uid://co2rl16tgobmv" path="res://asset/pic/enemy/kedama/死亡动画/死亡_11.png" id="112_4jodd"]
+[ext_resource type="Texture2D" uid="uid://m5d2ekdv4rvf" path="res://asset/pic/enemy/kedama/死亡动画/死亡_12.png" id="113_2l83v"]
 
-[node name="enemy_base" instance=ExtResource("1_ojps0")]
-process_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5m4g8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5im3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pfdwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jtf7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pmtjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5cvtd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lcklo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dv3dx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j62lj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ajrwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gumuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_43xr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ga1xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cpdtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_f1euk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5vgr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pb64r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_runh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5n1f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3cnet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_q1hvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_haamt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_p6rks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_n5u4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_c2p7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_bx1ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wmd0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_74fyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_gn2f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_p6baa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_cdwjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_dwxia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hsvno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_07bfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_co62e")
+}],
+"loop": true,
+"name": &"default1",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_6rybv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_cg6le")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_2x1no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_443rc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_av4yh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_o1esx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_qei48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_b4icv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_b7k0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ns47q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_m4io2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_cc6f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_qqn6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_hpg6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_kiwo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_ccwfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_5k3my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_j7s6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_rbj6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_k1y6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_ns54o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_881er")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_5ll2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_sjcko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_f22j4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_dusuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_d71iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_1pvid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_et0my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_hlnei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_1qwb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_4j0kw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_88wgi")
+}],
+"loop": true,
+"name": &"default2",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("68_ncc1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_h4l5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_n3sl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_ffx8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_pgmh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_trfw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_jbm1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_gaogu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_f8o82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_fsway")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_l8737")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_v2jer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_6g44i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_jlk4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_lp7ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_cwbec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_j4x72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_xwspb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_bwyxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_ctbg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_eb5a8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_0ws05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_p35bs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_g82g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_gbemr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_eognm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_34o2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_2vae2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_7x3pt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_wyupd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_dyyr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_btfed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_ds174")
+}],
+"loop": true,
+"name": &"default3",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("101_vy6wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_4jnjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_40ydi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ykstx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_gcvyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_0aa67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_4yqxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_3hetv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_mf8ar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_ooreb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_5m251")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_4jodd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_2l83v")
+}],
+"loop": false,
+"name": &"die",
+"speed": 40.0
+}]
+
+[node name="enemy_base" instance=ExtResource("1_s33qc")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_5m4g8")
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_5im3c")
+animation = &"default3"
+autoplay = "default1"
+frame_progress = 0.3705699
+
+[node name="buff" parent="." index="1"]
+visible = true
