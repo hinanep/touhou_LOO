@@ -259,7 +259,7 @@
 	"one_creating_type": "single",
 	"one_creating_parameter": [],
 	"times_dependence": "",
-	"times": 1,
+	"times": 2,
 	"interval": 0.2,
 	"zero_point": "character",
 	"system_front": "character",
