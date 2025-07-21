@@ -57,6 +57,7 @@ run/main_run_args="--no-log"
 
 folder_colors={
 "res://Dialogue/": "gray",
+"res://bto_temp/": "blue",
 "res://scene/drops/": "red",
 "res://scene/enemys/": "orange",
 "res://scene/particle/": "teal",
