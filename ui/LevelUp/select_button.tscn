@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwppujyrfed45"]
+[gd_scene load_steps=12 format=3 uid="uid://cwppujyrfed45"]
 
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="1_0h5rc"]
 [ext_resource type="Script" uid="uid://x1jvub1bdeoy" path="res://ui/LevelUp/select_button.gd" id="2_n5vdr"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_cd0xr"]
 [ext_resource type="Texture2D" uid="uid://bcmjc1maua1pv" path="res://asset/pic/ui/skill.png" id="4_jvg3u"]
+[ext_resource type="Texture2D" uid="uid://c3i62vhrr12fu" path="res://asset/pic/crystal/主动技能/东风谷早苗.png" id="5_8p0wd"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1hpiu"]
 device = -1
@@ -36,12 +37,11 @@ animations = [{
 }]
 
 [node name="select_button" type="TextureButton"]
+self_modulate = Color(0.853, 1, 0.81999993, 1)
 offset_right = 256.0
 offset_bottom = 88.0
-scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-button_mask = 0
 shortcut = SubResource("Shortcut_siojg")
 texture_normal = SubResource("AtlasTexture_4g7qy")
 texture_pressed = SubResource("AtlasTexture_4g7qy")
@@ -52,18 +52,17 @@ stretch_mode = 0
 script = ExtResource("2_n5vdr")
 
 [node name="describe" type="RichTextLabel" parent="."]
-visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 268.0
-offset_top = 22.0
-offset_right = 1812.0
-offset_bottom = 246.0
+offset_left = 47.0
+offset_top = 31.0
+offset_right = 835.0
+offset_bottom = 214.0
 scale = Vector2(0.25, 0.25)
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("3_cd0xr")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 132
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = " [color=white]灵梦"
 fit_content = true
@@ -71,35 +70,42 @@ scroll_active = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="describe"]
 z_index = -1
-position = Vector2(814, 617)
-scale = Vector2(7.51563, 14.8125)
+position = Vector2(445.99973, 441)
+scale = Vector2(4.640628, 11.145834)
 sprite_frames = SubResource("SpriteFrames_jjexo")
 
 [node name="weapon" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 24.0
-offset_right = 2210.0
-offset_bottom = 327.0
+offset_left = 39.0
+offset_top = 10.0
+offset_right = 2138.9998
+offset_bottom = 409.99994
 scale = Vector2(0.1, 0.1)
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("3_cd0xr")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 250
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
 text = "灵梦"
 fit_content = true
 scroll_active = false
 
 [node name="Control" type="Control" parent="."]
+visible = false
 z_index = 1
 anchors_preset = 0
 offset_right = 288.0
 offset_bottom = 164.0
 
 [node name="icon" type="Sprite2D" parent="."]
-position = Vector2(32, 40)
-scale = Vector2(0.02, 0.02)
+position = Vector2(25, 23)
+scale = Vector2(0.01, 0.01)
 texture = ExtResource("4_jvg3u")
+
+[node name="crystal" type="Sprite2D" parent="."]
+position = Vector2(29, 53)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_8p0wd")
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

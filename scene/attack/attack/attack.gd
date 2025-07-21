@@ -177,6 +177,11 @@ func set_active(active:bool):
 		child.visible = active
 	set_process(active)
 	set_physics_process(active)
+	# 使用call_deferred避免在物理查询刷新期间修改monitoring
+	call_deferred("set_area_monitoring", active)
+
+# 延迟设置Area2D监控状态
+func set_area_monitoring(active: bool):
 	$damage_area.monitoring = active
 	if has_node('bullet_erase_area'):
 		$bullet_erase_area.monitoring = active

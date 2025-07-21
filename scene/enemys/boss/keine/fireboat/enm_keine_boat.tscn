@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://fwdmr2jtjamg"]
+
+[ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_umehn"]
+[ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_s1t7m"]
+[ext_resource type="Script" uid="uid://bj44caqpvxf4g" path="res://scene/enemys/boss/keine/fireboat/enm_keine_boat.gd" id="2_ua43r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ua43r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s1t7m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_051o3"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xykej"]
+radius = 28.071337
+
+[node name="boat" instance=ExtResource("1_umehn")]
+script = ExtResource("2_ua43r")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+process_mode = 1
+sprite_frames = SubResource("SpriteFrames_ua43r")
+
+[node name="buff" parent="." index="1"]
+visible = true
+shape = SubResource("CircleShape2D_051o3")
+disabled = true
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+disabled = true
+
+[node name="fireball_rec" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fireball_rec" index="0"]
+shape = SubResource("CircleShape2D_xykej")
+
+[connection signal="body_entered" from="fireball_rec" to="." method="_on_fireball_rec_body_entered"]

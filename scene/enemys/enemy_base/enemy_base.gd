@@ -15,6 +15,7 @@ var mob_info = {
 	"id": "enm_undefined",
 	"type": "zako",
 	"movement": "default",
+
 	"danmaku_creator": "",
 	"physical_damage": 5.0,
 	"magical_damage": 0.0,
@@ -51,12 +52,14 @@ var avoidance_strength: float = 320.0
 # 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
 var avoidance_neighbor_query_count: int = 6
 const searching_time = 0.1
+var scalex = 0.28
+var scaledir = 1
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	name = str(mob_id)
 	set_z_index(1)
 	set_z_as_relative(false)
-
+	scalex = $AnimatedSprite2D.scale.x
 	name = mob_info.id
 
 	hp = mob_info.health
@@ -64,7 +67,9 @@ func _ready():
 	$ProgressBar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 0
-
+	if mob_info.has('type') and mob_info["type"] == 'elite':
+		drops_path = "drops_plate"
+		set_scale(Vector2(2,2))
 	melee_battle_ready(mob_info.physical_damage == 0)
 
 	match mob_info.movement:
@@ -95,9 +100,14 @@ func _ready():
 
 
 	last_position = global_position
-	velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
+	if player_node:
+		velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 	speed_sq = mob_info.speed*mob_info.speed
+
+	choose_default_anime()
 var d = 0
+
+
 #根据表选择适当的移动函数（初始化时选择
 func _physics_process(delta):
 	d+=delta
@@ -111,6 +121,14 @@ func _physics_process(delta):
 
 		# 更新上一帧的位置
 		last_position = global_position
+	$AnimatedSprite2D.scale.x = clampf($AnimatedSprite2D.scale.x + 0.05 *scaledir,-scalex,scalex)
+func choose_default_anime():
+	var df = []
+	for anim:String in $AnimatedSprite2D.sprite_frames.get_animation_names():
+		if anim.contains('default'):
+			df.push_back(anim)
+	$AnimatedSprite2D.animation = df[randi_range(0,df.size()-1)]
+
 func get_desired_velocity():
 	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)
 var neighbors: Array[Node]
@@ -140,7 +158,11 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 	if(idea_velocity.length_squared()<speed_sq*shake_limit*0.1):
 		body.velocity = Vector2.ZERO
 		return
-	$AnimatedSprite2D.flip_h = (idea_velocity.x > 0)
+	if idea_velocity.x > 0:
+		scaledir = -1
+	else:
+		scaledir = 1
+
 		# 查找附近需要避开的邻居
 		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
 
@@ -179,7 +201,9 @@ func compute_safevelocity(body=self,idea_velocity = 0):
 	# 将最终计算的速度赋给 CharacterBody2D 的 velocity 属性
 	body.velocity = final_velocity
 	move_and_slide()
-
+var is_turning = false
+func turn_to_right(to_right:bool):
+	pass
 
 #移动方式：走向玩家
 func move_to_target():
@@ -244,11 +268,16 @@ func melee_battle_ready(disable = false):
 	if disable:
 		$melee_damage_area.queue_free()
 		return
-	melee_damage_area.monitoring = true
-
+	# 使用call_deferred避免在物理查询刷新期间修改monitoring
+	call_deferred("set_melee_monitoring", true)
 	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
 	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
 	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
+
+# 延迟设置体术攻击Area2D监控状态
+func set_melee_monitoring(active: bool):
+	melee_damage_area.monitoring = active
+
 #疑似玩家进入体术攻击范围，开打
 func melee_damage_area_body_entered(_body):
 	if not _body is player:
@@ -340,5 +369,5 @@ func _on_outscreen_disppear_timeout() -> void:
 	if mob_info.type == 'zako':
 		died(true)
 	else:
-		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 500
+		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 1000
 		print('tp to player')

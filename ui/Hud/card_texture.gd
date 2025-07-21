@@ -31,6 +31,9 @@ func destroy(id):
 
 func set_highlight(is_hl):
 	if is_hl:
-		set_instance_shader_parameter("brightness",0.7)
+		set_instance_shader_parameter("brightness",0.8)
+		set_instance_shader_parameter("width",11.0)
+
 	else:
 		set_instance_shader_parameter("brightness",0.0)
+		set_instance_shader_parameter("width",0.0)

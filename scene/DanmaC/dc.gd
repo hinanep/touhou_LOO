@@ -51,7 +51,7 @@ var parent_die_signal:Signal
 signal die(id)
 var damage = 10
 var gen_position:Vector2 = Vector2.ZERO
-var danma_color = Color(1,1,1,1)
+var danma_color = Vector3(0,0,0)
 func d4c_init(id:String,parent):
 
 	d4c_info = table.d4c[id].duplicate()
@@ -61,6 +61,7 @@ func d4c_init(id:String,parent):
 func _ready() -> void:
 	name = d4c_info.Id
 	SignalBus.clear_enemy.connect(destroy)
+
 	match d4c_info.create_front:
 		'character':
 
@@ -84,15 +85,16 @@ func _ready() -> void:
 			rot_func = rot_discrete_uniform
 	match d4c_info.danmaku_color_rule:
 		'single':
-			danma_color.r8 = d4c_info.danmaku_color[0]
-			danma_color.g8 = d4c_info.danmaku_color[1]
-			danma_color.b8 = d4c_info.danmaku_color[2]
+			danma_color.x = d4c_info.danmaku_color[0]
+			danma_color.y = d4c_info.danmaku_color[1]
+			danma_color.z = d4c_info.danmaku_color[2]
 
 	if d4c_info.moving_system == 'world':
 		top_level = true
 
 	$shoot_interval.wait_time = d4c_info.create_interval
 	$shoot_interval.start()
+	_on_shoot_interval_timeout()
 func _physics_process(delta: float) -> void:
 	exist_time += delta
 
@@ -139,8 +141,8 @@ func shoot(v,d):
 	newd.rotation =Vector2.RIGHT.angle_to(d)
 	newd.danma_init(d4c_info)
 	newd.damage = damage
-	newd.global_position = global_position
-	newd.modulate = danma_color
+	newd.global_position = gen_position
+	newd.set_color(danma_color)
 
 	add_child(newd)
 

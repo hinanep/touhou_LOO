@@ -29,8 +29,9 @@ func format_boss_display():
 
 func set_boss_timer(card_time):
 	timer.stop()
-	timer.timeout.disconnect(_on_timer_timeout)
-	timer.timeout.connect(_on_boss_timer_timeout)
+	if timer.is_connected("timeout",_on_timer_timeout):
+		timer.timeout.disconnect(_on_timer_timeout)
+		timer.timeout.connect(_on_boss_timer_timeout)
 	display = format_boss_display
 	boss_cardtime = card_time
 	boss_seconds = 0

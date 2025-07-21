@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name danma
 var d_info = {
 	type='dmk_ball',
 
@@ -28,7 +28,7 @@ func danma_init(d4c_info:Dictionary):
 
 func _ready() -> void:
 	velocity = Vector2.ZERO
-
+	SignalBus.disbullet.connect(drop_from_disbullet)
 
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
@@ -61,11 +61,12 @@ func change_type_to(type: String):
 			cshape.size = Vector2(1,0)
 			$colli_area.position.x=0.5
 			$damage_area/colli_da.position.x=0.5
-			$damage_area.monitoring = false
+			# 使用call_deferred避免在物理查询刷新期间修改monitoring
+			call_deferred("set_damage_monitoring", false)
 			$texture.set_texture(PresetManager.getpre('img_laserpre'))
 			$texture.rotation = -PI/2
 			$texture.offset.y=16
-			$texture.modulate = Color(0.3,1,1,1)
+			#$texture.modulate = Color(0.3,1,1,1)
 			var sizex = 100
 			var sizey = 2
 			$texture.scale = Vector2(0.15,0.03)
@@ -77,13 +78,14 @@ func change_type_to(type: String):
 		'dmk_laser':
 			$texture.set_texture(PresetManager.getpre('img_laser'))
 			$texture.rotation = -PI/2
-			$damage_area.monitoring = true
+			# 使用call_deferred避免在物理查询刷新期间修改monitoring
+			call_deferred("set_damage_monitoring", true)
 			cshape = RectangleShape2D.new()
 			cshape.size = Vector2(1,1)
 			$colli_area.position.x=0.5
 			$damage_area/colli_da.position.x=0.5
 			$texture.offset.y=16
-			$texture.modulate = Color(0.3,1,1,1)
+			#$texture.modulate = Color(0.3,1,1,1)
 			var sizex = 100
 			var sizey = 12
 			$texture.scale = Vector2(0.03,0.03)
@@ -91,15 +93,31 @@ func change_type_to(type: String):
 			#$damage_area.scale =Vector2(sizex,sizey)
 			#$colli_area.scale = Vector2(sizex,sizey)
 			#$VisibleOnScreenNotifier2D.scale = Vector2(sizex,sizey)
+		'dmk_fire_special':
+			cshape = CircleShape2D.new()
+			cshape.radius = 1
+			add_to_group('fire')
+			#modulate = Color.RED
+			$texture.set_texture(PresetManager.getpre('img_tama'))
+			$texture.offset.y=0
+			change_size_to(20)
 
 			$VisibleOnScreenNotifier2D.rect = Rect2(-0.5,-0.5,1,1)
 	$colli_area.shape = cshape
 	$damage_area/colli_da.shape = cshape
 
+func set_color(hsv:Vector3):
+
+	$texture.material.set_shader_parameter("hue_shift", hsv.x/360)
+
 func change_size_to(size:float):
 	$texture.scale = Vector2(size * 0.06,size * 0.06)
 	$damage_area.scale =Vector2(size,size)
 	$colli_area.scale = Vector2(size,size)
+
+# 延迟设置伤害Area2D监控状态
+func set_damage_monitoring(active: bool):
+	$damage_area.monitoring = active
 
 func change_move_type_to(move:String):
 	match move:
@@ -166,5 +184,9 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		if(d_info.danmaku_type != 'dmk_laser'):
 			destroy.emit($".")
 
+func drop_from_disbullet(is_drop:bool):
+	if is_drop:
+		SignalBus.drop.emit('drops_point',global_position,1)
 
-		#queue_free()
+	queue_free()
+	#destroy.emit($".")
