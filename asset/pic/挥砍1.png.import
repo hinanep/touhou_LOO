@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt1yn6xh78uhr"
-path="res://.godot/imported/sakuyaatk-2.png-0f6d39f5638fc697ad8b661fd226f45f.ctex"
+uid="uid://bvtpi58msigwj"
+path="res://.godot/imported/挥砍1.png-ee692806f08a0bccc12efb874e58673c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/pic/sakuyaatk-2.png"
-dest_files=["res://.godot/imported/sakuyaatk-2.png-0f6d39f5638fc697ad8b661fd226f45f.ctex"]
+source_file="res://asset/pic/挥砍1.png"
+dest_files=["res://.godot/imported/挥砍1.png-ee692806f08a0bccc12efb874e58673c.ctex"]
 
 [params]
 

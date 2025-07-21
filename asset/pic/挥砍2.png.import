@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djxm4di74gntt"
-path="res://.godot/imported/basephy5.png-a0cfbf34939213be3fd65f125394e5cf.ctex"
+uid="uid://c2gp1jaqjx5ai"
+path="res://.godot/imported/挥砍2.png-6312e7c8272bdfdfb74f082f1a6250ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/pic/basephy5.png"
-dest_files=["res://.godot/imported/basephy5.png-a0cfbf34939213be3fd65f125394e5cf.ctex"]
+source_file="res://asset/pic/挥砍2.png"
+dest_files=["res://.godot/imported/挥砍2.png-6312e7c8272bdfdfb74f082f1a6250ac.ctex"]
 
 [params]
 
