@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b13hrap262drc"]
 
-[ext_resource type="Script" path="res://scene/attack/attack/attack.gd" id="1_awf6h"]
+[ext_resource type="Script" uid="uid://c5wvpj13q1yxi" path="res://scene/attack/attack/attack.gd" id="1_awf6h"]
 [ext_resource type="Shape2D" uid="uid://dyj8le51dtysy" path="res://scene/attack/attack/attack_shape/circle.tres" id="2_43jrx"]
 [ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="3_3b566"]
-[ext_resource type="Script" path="res://scene/component/move_attack/move_attack.gd" id="3_qwaq3"]
-[ext_resource type="Script" path="res://scene/component/lock/lock.gd" id="5_x7ysv"]
+[ext_resource type="Script" uid="uid://btmswdp5gbbae" path="res://scene/component/move_attack/move_attack.gd" id="3_qwaq3"]
+[ext_resource type="Script" uid="uid://dy37b8101xdfq" path="res://scene/component/lock/lock.gd" id="5_x7ysv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3rfkp"]
 animations = [{

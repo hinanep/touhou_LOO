@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://gng8bj1kvmki"]
 
 [ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="1_c8g16"]
-[ext_resource type="Texture2D" uid="uid://bob0u3cbl1qh6" path="res://asset/pic/bullet/yinyangorb.png" id="2_1ijvg"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="2_ekdg0"]
 [ext_resource type="Script" uid="uid://c4oea8o6wfaql" path="res://asset/partile/子弹.gd" id="3_3s4xh"]
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="5_5h2ot"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="5_ekdg0"]
+[ext_resource type="Texture2D" uid="uid://2xkvkyn2pulk" path="res://asset/pic/bullet/头.png" id="6_ekdg0"]
 
 [sub_resource type="Shader" id="Shader_ekdg0"]
 code = "shader_type canvas_item;
@@ -82,8 +82,18 @@ shader_parameter/sampleCount = 4
 shader_parameter/grayLimit = 0.3
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c8g16"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
 particle_flag_disable_z = true
+angle_min = 1.0728836e-05
+angle_max = 445.7
+spread = 180.0
+flatness = 0.885
+initial_velocity_min = 208.76
+initial_velocity_max = 300.0
 gravity = Vector3(0, 0, 0)
+radial_accel_min = -92.7
+radial_accel_max = -92.7
 
 [sub_resource type="Curve2D" id="Curve2D_u1oyu"]
 _data = {
@@ -120,15 +130,15 @@ begin_cap_mode = 2
 round_precision = 32
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
 top_level = true
 z_index = -1
 material = SubResource("ShaderMaterial_ekdg0")
 position = Vector2(-5, -30)
 rotation = -0.02443461
-amount = 1
-texture = ExtResource("2_1ijvg")
-lifetime = 10.0
+amount = 20
+texture = ExtResource("6_ekdg0")
+lifetime = 4.84
+explosiveness = 0.63
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_c8g16")
 

@@ -23,7 +23,8 @@ func set_card(card_info):
 func upgrade(upname):
 	if upgrade_group == upname:
 		level += 1
-		describe = cardname + '\nLV.' + str(level)
+		#describe = cardname + '\nLV.' + str(level)
+		describe =  'LV.' + str(level)
 
 func destroy(id):
 	if id == cardid:

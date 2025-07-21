@@ -15,13 +15,13 @@ script = ExtResource("2_pvgmu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 57.0
-offset_right = 1031.0
-offset_bottom = 491.0
+offset_left = -23.000008
+offset_top = 42.0
+offset_right = 977.0
+offset_bottom = 476.0
 scale = Vector2(0.12, 0.12)
 theme = ExtResource("3_nig1a")
-theme_override_font_sizes/normal_font_size = 180
+theme_override_font_sizes/normal_font_size = 150
 bbcode_enabled = true
 text = "[center]
 LV.1"

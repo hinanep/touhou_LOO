@@ -37,6 +37,7 @@ func set_psv(psv_info):
 		set_texture(PresetManager.getpre('img_'+id))
 		$RichTextLabel.text ='[center]'+ selfname
 
+
 		SignalBus.del_passive.connect(destroy)
 		SignalBus.upgrade_group.connect(upgrade)
 
@@ -48,4 +49,5 @@ func destroy(did):
 func upgrade(upname):
 	if upgrade_group == upname:
 		level += 1
-		$RichTextLabel.text ='[center]'+ selfname + '\nLV.' + str(level)
+		#$RichTextLabel.text ='[center]'+ selfname + '\nLV.' + str(level)
+		$RichTextLabel.text ='[center]' + 'LV.' + str(level)
