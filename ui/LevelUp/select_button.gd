@@ -77,8 +77,9 @@ func _on_button_up():
 
 
 func _on_focus_entered():
-	if b_type == 'passive':
-		get_parent().get_parent().get_parent().set_property_change(b_id)
+	SignalBus.focus_on.emit(b_type,b_id)
+	#if b_type == 'passive':
+		#get_parent().get_parent().get_parent().set_property_change(b_id)
 	#$describe.visible = true
 	#$describe/AnimatedSprite2D.visible = true
 
@@ -86,7 +87,8 @@ func _on_focus_entered():
 
 
 func _on_focus_exited():
-	if b_type == 'passive':
-		get_parent().get_parent().get_parent().set_property_change('')
+	SignalBus.focus_off.emit()
+	#if b_type == 'passive':
+		#get_parent().get_parent().get_parent().set_property_change('')
 	#$describe.visible = false
 	#$describe/AnimatedSprite2D.visible = false

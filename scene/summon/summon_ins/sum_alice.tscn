@@ -128,10 +128,24 @@ animations = [{
 [node name="Summon" instance=ExtResource("1_bbv0t")]
 
 [node name="AnimatedSprite2D" parent="." index="3"]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_px1a4")
 autoplay = "default"
 
 [node name="Line2D" parent="." index="4"]
-points = PackedVector2Array(0, 0, 0, 3)
-width = 6.0
+points = PackedVector2Array(0, 0, 79, -3)
+width = 3.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="5"]
+modulate = Color(1, 1, 1, 0.78431374)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_epglw")
+autoplay = "default"
+script = ExtResource("6_buvp2")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." index="6"]
+modulate = Color(1, 1, 1, 0.78431374)
+rotation = 3.1415927
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_epglw")
+autoplay = "default"
+script = ExtResource("6_buvp2")
