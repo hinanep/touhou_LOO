@@ -1,11 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c5t6sflwdyuhl"]
+[gd_scene load_steps=18 format=3 uid="uid://c5t6sflwdyuhl"]
 
 [ext_resource type="PackedScene" uid="uid://xgi6s0ewkkow" path="res://scene/summon/summon.tscn" id="1_bbv0t"]
 [ext_resource type="Texture2D" uid="uid://ct5fpqgultvns" path="res://asset/pic/bullet/人形.png" id="2_4e7id"]
 [ext_resource type="Texture2D" uid="uid://cu85o2uhx1ghh" path="res://asset/pic/bullet/人形(镜像.png" id="3_xlkyh"]
-[ext_resource type="Texture2D" uid="uid://bvtpi58msigwj" path="res://asset/pic/挥砍1.png" id="4_lkk5k"]
-[ext_resource type="Texture2D" uid="uid://c2gp1jaqjx5ai" path="res://asset/pic/挥砍2.png" id="5_w5p28"]
-[ext_resource type="Script" uid="uid://brngerrgdr268" path="res://scene/attack/attack_ins/animated_sprite_2d.gd" id="6_buvp2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy0ip"]
 atlas = ExtResource("2_4e7id")
@@ -111,20 +108,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_epglw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_lkk5k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_w5p28")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Summon" instance=ExtResource("1_bbv0t")]
 
 [node name="AnimatedSprite2D" parent="." index="3"]
@@ -134,18 +117,3 @@ autoplay = "default"
 [node name="Line2D" parent="." index="4"]
 points = PackedVector2Array(0, 0, 79, -3)
 width = 3.0
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="5"]
-modulate = Color(1, 1, 1, 0.78431374)
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_epglw")
-autoplay = "default"
-script = ExtResource("6_buvp2")
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." index="6"]
-modulate = Color(1, 1, 1, 0.78431374)
-rotation = 3.1415927
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_epglw")
-autoplay = "default"
-script = ExtResource("6_buvp2")

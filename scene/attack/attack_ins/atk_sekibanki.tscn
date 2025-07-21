@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://2g6ystmugylk"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_mg7ig"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lb0pk"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lb0pk"]
 [ext_resource type="Texture2D" uid="uid://2xkvkyn2pulk" path="res://asset/pic/bullet/头.png" id="3_8bkux"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3et4i"]
@@ -22,7 +22,7 @@ radius = 20.0
 script = ExtResource("2_lb0pk")
 
 [node name="lock_component" parent="." index="1"]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_3et4i")
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
