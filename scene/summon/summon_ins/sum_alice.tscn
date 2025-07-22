@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://xgi6s0ewkkow" path="res://scene/summon/summon.tscn" id="1_bbv0t"]
 [ext_resource type="Texture2D" uid="uid://c8yg0b3dfcraw" path="res://asset/pic/bullet/爱丽丝正面.png" id="2_0lm8j"]
-[ext_resource type="Texture2D" path="res://asset/pic/bullet/爱丽丝侧面.png" id="3_lkk5k"]
+[ext_resource type="Texture2D" uid="uid://37t4ha1y1x6l" path="res://asset/pic/bullet/爱丽丝右面.png" id="3_0lm8j"]
 [ext_resource type="Texture2D" uid="uid://b231vcg2la2uc" path="res://asset/pic/bullet/爱丽丝背面.png" id="4_w5p28"]
 [ext_resource type="Texture2D" uid="uid://hssktga6b2xs" path="res://asset/pic/bullet/爱丽丝左面.png" id="5_buvp2"]
 
@@ -13,7 +13,7 @@ animations = [{
 "texture": ExtResource("2_0lm8j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_lkk5k")
+"texture": ExtResource("3_0lm8j")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_w5p28")
