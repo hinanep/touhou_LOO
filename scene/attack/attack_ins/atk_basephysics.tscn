@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpf441krtwcgc"]
+[gd_scene load_steps=11 format=3 uid="uid://bpf441krtwcgc"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_g4alh"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_sn7l8"]
 [ext_resource type="Texture2D" uid="uid://dtuwe1aot8ncw" path="res://asset/pic/半挥砍1.png" id="3_5c0i3"]
 [ext_resource type="Texture2D" uid="uid://ds4to6kbqol2q" path="res://asset/pic/半挥砍2.png" id="4_y5cby"]
-[ext_resource type="Script" uid="uid://br6korjjygb4l" path="res://bto_temp/rotate.gd" id="5_5c0i3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gccu5"]
 animations = [{
@@ -19,13 +18,25 @@ radius = 100.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_paiww"]
 frames = 2
-speed_scale = 5.0
+speed_scale = 10.0
 frame_0/texture = ExtResource("3_5c0i3")
 frame_1/texture = ExtResource("4_y5cby")
 frame_1/duration = 1.0
 
+[sub_resource type="Curve" id="Curve_paiww"]
+_data = [Vector2(0, 0.70676696), 0.0, 0.0, 0, 0, Vector2(0.104395606, 1), 0.0, 0.0, 0, 0, Vector2(0.3598901, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5c0i3"]
+curve = SubResource("Curve_paiww")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5c0i3"]
 particle_flag_disable_z = true
+angle_min = 1.0728836e-05
+angle_max = 360.00003
+angular_velocity_min = 1200.0
+angular_velocity_max = 1200.0
+alpha_curve = SubResource("CurveTexture_5c0i3")
 
 [node name="Attack" instance=ExtResource("1_g4alh")]
 script = ExtResource("2_sn7l8")
@@ -41,10 +52,9 @@ autoplay = ""
 shape = SubResource("CircleShape2D_r1nd1")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
-self_modulate = Color(0.88, 1, 0.884, 0.49803922)
+self_modulate = Color(0.88, 1, 0.884, 0.37254903)
 scale = Vector2(0.5, 0.5)
+amount = 1
 texture = SubResource("AnimatedTexture_paiww")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_5c0i3")
-script = ExtResource("5_5c0i3")
-rotate_speed = 8
