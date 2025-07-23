@@ -1,32 +1,51 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnhpskvcu3daq"]
+[gd_scene load_steps=11 format=3 uid="uid://bnhpskvcu3daq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_p0rqg"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_liw8n"]
-[ext_resource type="Texture2D" uid="uid://cphimhmgk3num" path="res://asset/pic/bullet/体术.png" id="3_o8cy3"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbkf4"]
-atlas = ExtResource("3_o8cy3")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7fffg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbkf4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://bvtpi58msigwj" path="res://asset/pic/挥砍1.png" id="3_dhgcy"]
+[ext_resource type="Texture2D" uid="uid://c2gp1jaqjx5ai" path="res://asset/pic/挥砍2.png" id="4_km2k5"]
+[ext_resource type="Script" uid="uid://br6korjjygb4l" path="res://bto_temp/rotate.gd" id="5_km2k5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_dhgcy"]
+frames = 2
+speed_scale = 5.0
+frame_0/texture = ExtResource("3_dhgcy")
+frame_1/texture = ExtResource("4_km2k5")
+frame_1/duration = 1.0
+
+[sub_resource type="Curve" id="Curve_cxqm4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vnvco"]
+curve = SubResource("Curve_cxqm4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dugh4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_vnvco")
 
 [node name="Attack" instance=ExtResource("1_p0rqg")]
 script = ExtResource("2_liw8n")
 
+[node name="move_component" parent="." index="0"]
+visible = true
+
 [node name="lock_component" parent="." index="1"]
 scale = Vector2(0.4, 0.3)
-sprite_frames = SubResource("SpriteFrames_7fffg")
+sprite_frames = null
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+self_modulate = Color(1, 1, 1, 0.49803922)
+scale = Vector2(0.4, 0.4)
+amount = 1
+texture = SubResource("AnimatedTexture_dhgcy")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_dugh4")
+script = ExtResource("5_km2k5")
+rotate_speed = 4

@@ -1,2 +1,2 @@
-G:\ee.exe gen-all
+D:\Files\THLoO\ee.exe gen-all
 pause

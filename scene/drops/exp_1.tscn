@@ -3,16 +3,13 @@
 [ext_resource type="Script" uid="uid://baak5dj1k51yo" path="res://scene/drops/exp_1.gd" id="1_cpuj4"]
 [ext_resource type="PackedScene" uid="uid://bxwsx0wpy3dir" path="res://scene/drops/drops_base.tscn" id="1_mpm0o"]
 [ext_resource type="Texture2D" uid="uid://ds1ls7uh2xfob" path="res://asset/pic/p.png" id="2_xbr8h"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u7ued"]
-atlas = ExtResource("2_xbr8h")
-region = Rect2(0, 0, 128, 128)
+[ext_resource type="Script" uid="uid://bikoqhr0opst8" path="res://bto_temp/color_trans.gd" id="4_tlrb6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v3q6v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u7ued")
+"texture": ExtResource("2_xbr8h")
 }],
 "loop": true,
 "name": &"default",
@@ -32,9 +29,14 @@ monitoring = true
 script = ExtResource("1_cpuj4")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-scale = Vector2(0.2, 0.2)
+self_modulate = Color(1, 0.85, 0.85, 0.7490196)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_v3q6v")
 frame_progress = 0.0
+script = ExtResource("4_tlrb6")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
