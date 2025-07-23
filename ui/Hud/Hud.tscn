@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=31 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://cdv853opb5hr6" path="res://asset/pic/ui/HUD/血条填充.png" id="3_kbjvd"]
 [ext_resource type="FontFile" uid="uid://bh1jevpgv2aqe" path="res://asset/fonts/PixelOperator8.ttf" id="3_o5w7m"]
 [ext_resource type="PackedScene" uid="uid://dlwk4q8jl4cbx" path="res://ui/Hud/time.tscn" id="4_jpst3"]
+[ext_resource type="Texture2D" uid="uid://kipmpt664dgr" path="res://asset/pic/ui/HUD/自机头像框.png" id="4_mfyr4"]
 [ext_resource type="Texture2D" uid="uid://d12nhv4wt0lnp" path="res://asset/pic/ui/HUD/符力条.png" id="5_xs3el"]
 [ext_resource type="Texture2D" uid="uid://bb2os5wgmj3oc" path="res://asset/pic/ui/HUD/血条.png" id="6_7ncbm"]
 [ext_resource type="Texture2D" uid="uid://bqqgbyv81gktt" path="res://asset/pic/ui/HUD/自机血条头像.png" id="6_e8oks"]
@@ -11,14 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://beykdon3f3y4n" path="res://asset/pic/ui/HUD/符力条填充.png" id="6_pjubw"]
 [ext_resource type="Script" uid="uid://pwiu7nfo2w0b" path="res://ui/Hud/arrow.gd" id="7_guf3d"]
 [ext_resource type="Texture2D" uid="uid://btvijlv3rj6ut" path="res://asset/pic/ui/HUD/经验条填充.png" id="8_h7ufx"]
+[ext_resource type="Texture2D" uid="uid://demhur01q6rha" path="res://asset/pic/ui/HUD/自机头像框发光.png" id="8_stc0a"]
+[ext_resource type="Texture2D" uid="uid://cpdupyovekwug" path="res://asset/pic/ui/HUD/血条填充（空）.png" id="9_382jc"]
 [ext_resource type="Shader" uid="uid://cm31jdbaq2nwf" path="res://asset/shaders/fade.gdshader" id="10_7u03l"]
 [ext_resource type="Texture2D" uid="uid://cm7agolknpfi7" path="res://asset/pic/ui/HUD/记忆结晶底纹.png" id="10_754lx"]
 [ext_resource type="Texture2D" uid="uid://bnsff70wi6awc" path="res://asset/pic/ui/HUD/自机符卡信息.png" id="10_b8std"]
 [ext_resource type="Texture2D" uid="uid://dqv38mj8vnmn4" path="res://asset/pic/ui/HUD/符卡.png" id="11_agwl7"]
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="11_stodd"]
+[ext_resource type="Texture2D" uid="uid://djor4iejtv8xa" path="res://asset/pic/ui/HUD/符力条填充（空）.png" id="12_382jc"]
 [ext_resource type="Texture2D" uid="uid://vfr4e8kbltk8" path="res://asset/pic/ui/HUD/符卡（灰）.png" id="12_stodd"]
 [ext_resource type="Texture2D" uid="uid://b3en22kbxi8ae" path="res://asset/pic/ui/HUD/经验条.png" id="12_ynj7b"]
 [ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="13_tr6ke"]
+[ext_resource type="Texture2D" uid="uid://eu3ovpisce2e" path="res://asset/pic/ui/HUD/经验条填充（空）.png" id="15_jcxs0"]
 [ext_resource type="Texture2D" uid="uid://jmuli2bjhfgo" path="res://asset/pic/crystal/空结晶.png" id="20_stc0a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7u03l"]
@@ -69,7 +74,19 @@ script = ExtResource("1_fpogy")
 [node name="hp" type="Sprite2D" parent="hud"]
 material = SubResource("ShaderMaterial_7u03l")
 position = Vector2(203, 80)
+
+[node name="hp_frame" type="Sprite2D" parent="hud/hp"]
+position = Vector2(32, 17)
 texture = ExtResource("6_7ncbm")
+
+[node name="hp_circle" type="Sprite2D" parent="hud/hp"]
+position = Vector2(-128, -1)
+texture = ExtResource("4_mfyr4")
+
+[node name="自机血条头像" type="Sprite2D" parent="hud/hp"]
+position = Vector2(-129.99998, 2)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("6_e8oks")
 
 [node name="hp_mask" type="ReferenceRect" parent="hud/hp"]
 z_index = -1
@@ -99,10 +116,16 @@ theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
 horizontal_alignment = 1
 
-[node name="自机血条头像" type="Sprite2D" parent="hud/hp"]
-position = Vector2(-129.99998, 2)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("6_e8oks")
+[node name="hp_light" type="Sprite2D" parent="hud/hp"]
+self_modulate = Color(1, 1, 1, 0.49803922)
+z_index = -2
+position = Vector2(-127, 0)
+texture = ExtResource("8_stc0a")
+
+[node name="hp_bottom" type="Sprite2D" parent="hud/hp"]
+z_index = -2
+position = Vector2(31, 16)
+texture = ExtResource("9_382jc")
 
 [node name="mana" type="Sprite2D" parent="hud"]
 position = Vector2(203, 176)
@@ -149,6 +172,11 @@ theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 30
 text = "100/100"
 horizontal_alignment = 1
+
+[node name="mana_bottom" type="Sprite2D" parent="hud/mana"]
+z_index = -2
+position = Vector2(-14, 0)
+texture = ExtResource("12_382jc")
 
 [node name="exp" type="Sprite2D" parent="hud"]
 position = Vector2(203, 258)
@@ -199,6 +227,11 @@ scale = Vector2(2, 2)
 theme_override_fonts/normal_font = ExtResource("3_o5w7m")
 theme_override_font_sizes/normal_font_size = 15
 text = "lev."
+
+[node name="exp_bottom" type="Sprite2D" parent="hud/exp"]
+z_index = -2
+position = Vector2(11, 2)
+texture = ExtResource("15_jcxs0")
 
 [node name="point_ratio" type="RichTextLabel" parent="hud"]
 modulate = Color(0.345929, 0.903254, 1, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=179 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
 [ext_resource type="Texture2D" uid="uid://cd7vnt66u5onw" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_00.png" id="2_fdhrd"]
@@ -15,10 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://crd3ovmlyuume" path="res://asset/pic/ui/HUD/BOSS血条（时符）填充.png" id="8_rmmu3"]
 [ext_resource type="Texture2D" uid="uid://6lebwjsmio2e" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_06.png" id="8_udxns"]
 [ext_resource type="Texture2D" uid="uid://d4eln1tkql4ls" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_07.png" id="9_d57wb"]
-[ext_resource type="Texture2D" uid="uid://vonpqxbjfktq" path="res://asset/pic/ui/HUD/BOSS血条（符卡）.png" id="9_fav7k"]
 [ext_resource type="Texture2D" uid="uid://c2kpflw1vs7ti" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_08.png" id="10_cofpv"]
 [ext_resource type="Texture2D" uid="uid://qs16yps0n7e2" path="res://asset/pic/ui/HUD/BOSS血条（符卡）填充.png" id="10_i8gk4"]
-[ext_resource type="Texture2D" uid="uid://2x1qvc7ql60h" path="res://asset/pic/ui/HUD/BOSS血条（非符+符卡）.png" id="11_m8gjf"]
 [ext_resource type="Texture2D" uid="uid://bflvmuuxv2qxb" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_09.png" id="11_paxg7"]
 [ext_resource type="Texture2D" uid="uid://bxm6kqvs2ioqi" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_10.png" id="12_bn3xi"]
 [ext_resource type="Texture2D" uid="uid://c3cob7ohv4aoi" path="res://asset/pic/ui/HUD/BOSS血条（非符）填充.png" id="12_fav7k"]
@@ -170,6 +168,11 @@
 [ext_resource type="Texture2D" uid="uid://bvp06i5oj5qrl" path="res://asset/pic/enemy/keine/移动/移动_62.png" id="155_8fpr5"]
 [ext_resource type="Texture2D" uid="uid://dirw35n4j1i5i" path="res://asset/pic/enemy/keine/移动/移动_63.png" id="156_rdmuf"]
 [ext_resource type="Texture2D" uid="uid://yjvvvrxnjoo7" path="res://asset/pic/enemy/keine/移动/移动_64.png" id="157_wlerw"]
+[ext_resource type="Texture2D" uid="uid://rw1qd4c04yt5" path="res://asset/pic/ui/HUD/BOSS血条.png" id="167_7sg5n"]
+[ext_resource type="Texture2D" uid="uid://gimlaaesrl5f" path="res://asset/pic/ui/HUD/符卡标记.png" id="168_wrr5r"]
+[ext_resource type="Texture2D" uid="uid://bhqmyblgvu1w3" path="res://asset/pic/ui/HUD/慧音头像框发光.png" id="169_7sg5n"]
+[ext_resource type="Texture2D" uid="uid://ckjspsqs48ev1" path="res://asset/pic/ui/HUD/慧音头像框.png" id="169_kjj0y"]
+[ext_resource type="Texture2D" uid="uid://dy05kbngew5d6" path="res://asset/pic/ui/HUD/BOSS血条填充（空）.png" id="173_wrr5r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
@@ -780,7 +783,6 @@ vertical_alignment = 1
 [node name="fullcard" type="Sprite2D" parent="hud/hp"]
 visible = false
 position = Vector2(1795, 581)
-texture = ExtResource("9_fav7k")
 
 [node name="full_mask" type="ReferenceRect" parent="hud/hp/fullcard"]
 z_index = -1
@@ -796,7 +798,7 @@ border_color = Color(1, 0, 0, 0)
 
 [node name="fullcard" type="Sprite2D" parent="hud/hp/fullcard/full_mask"]
 z_index = 1
-position = Vector2(27.72998, 426.62204)
+position = Vector2(27, 426.622)
 rotation = 3.1415925
 texture = ExtResource("10_i8gk4")
 
@@ -818,9 +820,13 @@ position = Vector2(26.72998, 428.62204)
 rotation = 3.1415925
 texture = ExtResource("8_rmmu3")
 
+[node name="frame" type="Sprite2D" parent="hud/hp/fullcard"]
+position = Vector2(37, -44)
+texture = ExtResource("167_7sg5n")
+
 [node name="nons" type="Sprite2D" parent="hud/hp"]
+self_modulate = Color(1, 1, 1, 0.09803922)
 position = Vector2(1795, 581)
-texture = ExtResource("11_m8gjf")
 
 [node name="nons_mask" type="ReferenceRect" parent="hud/hp/nons"]
 z_index = -1
@@ -848,10 +854,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -44.5
-offset_top = -631.0
-offset_right = 8.5
-offset_bottom = -415.0
+offset_left = 62.077305
+offset_top = 368.3022
+offset_right = 114.09927
+offset_bottom = 585.05304
 grow_horizontal = 2
 grow_vertical = 0
 rotation = 3.1415927
@@ -863,10 +869,34 @@ position = Vector2(26.000004, 431)
 rotation = 3.1415927
 texture = ExtResource("10_i8gk4")
 
+[node name="frame" type="Sprite2D" parent="hud/hp/nons"]
+position = Vector2(37, -44)
+texture = ExtResource("167_7sg5n")
+
+[node name="hint" type="Sprite2D" parent="hud/hp/nons"]
+self_modulate = Color(1, 1, 1, 0.7490196)
+position = Vector2(36, 153)
+texture = ExtResource("168_wrr5r")
+
+[node name="ciecle" type="Sprite2D" parent="hud/hp"]
+position = Vector2(1809, 994)
+texture = ExtResource("169_kjj0y")
+
 [node name="icon" type="Sprite2D" parent="hud/hp"]
 position = Vector2(1813, 992)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("12_i8gk4")
+
+[node name="light" type="Sprite2D" parent="hud/hp"]
+self_modulate = Color(1, 1, 1, 0.49803922)
+z_index = -2
+position = Vector2(1810, 991)
+texture = ExtResource("169_7sg5n")
+
+[node name="bottom" type="Sprite2D" parent="hud/hp"]
+z_index = -2
+position = Vector2(1832, 536)
+texture = ExtResource("173_wrr5r")
 
 [node name="life" type="Node2D" parent="hud/hp"]
 position = Vector2(44, -48)

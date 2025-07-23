@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=19 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" uid="uid://cr1hm1rqq35i" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -20,14 +20,21 @@ point_count = 5
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_281ib"]
 normal = Vector2(1, 0)
+distance = 404.64502
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vpjx8"]
 normal = Vector2(0, 1)
+distance = 305.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dbslg"]
+distance = 213.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6actc"]
 normal = Vector2(-1, 0)
+distance = 440.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyybq"]
+size = Vector2(22.392855, 22.522156)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_so81o"]
 shader = ExtResource("12_5kc7y")
@@ -85,7 +92,7 @@ collision_layer = 36
 collision_mask = 0
 
 [node name="left" type="CollisionShape2D" parent="air_wall"]
-position = Vector2(-1321, 0)
+position = Vector2(-1259.645, 0)
 shape = SubResource("WorldBoundaryShape2D_281ib")
 
 [node name="top" type="CollisionShape2D" parent="air_wall"]
@@ -99,6 +106,11 @@ shape = SubResource("WorldBoundaryShape2D_dbslg")
 [node name="right" type="CollisionShape2D" parent="air_wall"]
 position = Vector2(1377, -6)
 shape = SubResource("WorldBoundaryShape2D_6actc")
+
+[node name="house" type="CollisionShape2D" parent="air_wall"]
+position = Vector2(679.5, -1203)
+scale = Vector2(28, 36.675)
+shape = SubResource("RectangleShape2D_nyybq")
 
 [node name="end_game" type="Timer" parent="."]
 process_mode = 1
