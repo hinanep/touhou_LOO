@@ -57,7 +57,8 @@ var preset_map = {
 
 	"music_bgm_saga":"res://asset/music/Japanese Saga.mp3",
 	"music_bgm_oldworld":"res://asset/music/ChillKeine.wav",
-
+	'music_keine_intro':"res://asset/music/keine/intro.wav",
+	'music_keine_loop':"res://asset/music/keine/loop.wav",
 
 	"ui_select_button":"res://ui/LevelUp/select_button.tscn",
 	"ui_card_texture":"res://ui/Hud/card_texture.tscn",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://0weovvdyx00u"]
+[gd_scene load_steps=118 format=3 uid="uid://0weovvdyx00u"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_s33qc"]
 [ext_resource type="Texture2D" uid="uid://bniabbp8xms3a" path="res://asset/pic/enemy/kedama/表情1 移动/毛玉-jumping-w_00.png" id="2_pfdwy"]
@@ -475,6 +475,12 @@ animations = [{
 "speed": 40.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rybv"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cg6le"]
+radius = 60.0
+
 [node name="enemy_base" instance=ExtResource("1_s33qc")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -487,3 +493,7 @@ frame_progress = 0.3705699
 
 [node name="buff" parent="." index="1"]
 visible = true
+shape = SubResource("CircleShape2D_6rybv")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_cg6le")

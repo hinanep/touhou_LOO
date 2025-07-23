@@ -38,12 +38,15 @@ func add_mob(mob_ins):
 		#mob_ins.free()
 		#return
 
-	mob_ins.die.connect(del_mob)
-	mob_ins.mob_id = id
-	mob_dic[id] = mob_ins
-	id += 1
-	spatial_grid.add_object(mob_ins,mob_ins.global_position)
+	register_mob(mob_ins)
 	spawnmanager_node.add_child(mob_ins)
+
+func register_mob(mob):
+	mob.die.connect(del_mob)
+	mob.mob_id = id
+	mob_dic[id] = mob
+	id += 1
+	spatial_grid.add_object(mob,mob.global_position)
 
 
 

@@ -1,5 +1,5 @@
 extends enemy_base
-var stage = table.keine.keys().size()-1
+var stage = table.keine.keys().size()
 var tmp_stage = 0
 var reincarnation = false
 var boss_info:Dictionary
@@ -19,11 +19,10 @@ func fight_begin():
 	start_progess(0)
 func _ready():
 	drops_path = "drops_plate"
-	AudioManager.play_bgm("music_bgm_saga")
+	AudioManager.play_once_loop_bgm('music_keine_intro','music_keine_loop')
 
 	$buff.brittle_modify = 0
 	super._ready()
-
 	collision_mask = 32
 	SignalBus.clear_enemy.emit(true)
 	SignalBus.pause_spawner.emit(true)
@@ -143,8 +142,11 @@ func start_progess(phase:int):
 
 
 	var reincarnation_tween = create_tween()
-	reincarnation_tween.tween_property($".","hp",mob_info.health,3*(mob_info.health-hp)/mob_info.health)
-	reincarnation_tween.tween_property($ProgressBar,"value",100,3*(mob_info.health-hp)/mob_info.health)
+	#reincarnation_tween.tween_property($".","hp",mob_info.health,3*(mob_info.health-hp)/mob_info.health)
+	#reincarnation_tween.tween_property($ProgressBar,"value",100,3*(mob_info.health-hp)/mob_info.health)
+	reincarnation_tween.set_parallel()
+	reincarnation_tween.tween_property($".","hp",mob_info.health,3)
+	reincarnation_tween.tween_property($ProgressBar,"value",100,3)
 	await reincarnation_tween.finished
 	reincarnation_over()
 
@@ -157,9 +159,19 @@ func reincarnation_over():
 		invincible = false
 	reincarnation = false
 	atkable = true
+
+	if mob_info.movement:
+
+		move_func = move_random
+		$AnimatedSprite2D.play("move")
+	else:
+		move_func = move_stay
+		$AnimatedSprite2D.play("default")
+
 	if mob_info.has('sc_tid') and mob_info.sc_tid != '':
 		$hud/card/RichTextLabel.text = table.TID[mob_info.sc_tid][player_var.language]
 		popup()
+		$AnimatedSprite2D.play("sc_casting")
 		if mob_info.sc_tid == 'esc_keine_2':
 			var bc = boatcard.instantiate()
 			bc.global_position = Vector2(0,0)
@@ -167,11 +179,7 @@ func reincarnation_over():
 			pass
 	else:
 		$hud/card.visible = false
-	if mob_info.movement:
 
-		move_func = move_random
-	else:
-		move_func = move_stay
 
 	for child in $danma.get_children():
 		child.destroy()
@@ -189,7 +197,8 @@ func reincarnation_over():
 			progress_routine[key] = rt[key]
 	SignalBus.set_bosstimer.emit(mob_info.time)
 	$progress_timer.start()
-
+	await $AnimatedSprite2D.animation_finished
+	$AnimatedSprite2D.play("default")
 
 
 func spellcard_timeover():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bfbx4h1lccqnn"]
+[gd_scene load_steps=26 format=3 uid="uid://bfbx4h1lccqnn"]
 
 [ext_resource type="Script" uid="uid://cw7ctd0fd5t65" path="res://ui/Hud/Hud.gd" id="1_fpogy"]
 [ext_resource type="Texture2D" uid="uid://cdv853opb5hr6" path="res://asset/pic/ui/HUD/血条填充.png" id="3_kbjvd"]
@@ -26,8 +26,6 @@ shader = ExtResource("10_7u03l")
 shader_parameter/start_alpha = 1.0
 shader_parameter/end_alpha = 0.04800000228
 shader_parameter/fade_from_right = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuorb"]
 
 [sub_resource type="Theme" id="Theme_08wx8"]
 default_base_scale = 0.5
@@ -84,7 +82,6 @@ border_color = Color(1, 0, 0, 0)
 
 [node name="hp_cont" type="Sprite2D" parent="hud/hp/hp_mask"]
 modulate = Color(1, 0.58000004, 0.58000004, 1)
-material = SubResource("ShaderMaterial_uuorb")
 position = Vector2(160.25, 37)
 scale = Vector2(0.9923781, 1)
 texture = ExtResource("3_kbjvd")

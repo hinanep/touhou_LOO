@@ -107,7 +107,8 @@ func change_type_to(type: String):
 	$damage_area/colli_da.shape = cshape
 
 func set_color(hsv:Vector3):
-
+	print('set to ')
+	print(hsv)
 	$texture.material.set_shader_parameter("hue_shift", hsv.x/360)
 
 func change_size_to(size:float):

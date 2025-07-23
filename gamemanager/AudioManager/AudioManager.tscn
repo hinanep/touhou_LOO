@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3q4ih442ckan"]
 
-[ext_resource type="Script" path="res://gamemanager/AudioManager/AudioManager.gd" id="1_h3dxr"]
+[ext_resource type="Script" uid="uid://ctjq2605x7k3h" path="res://gamemanager/AudioManager/AudioManager.gd" id="1_h3dxr"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3

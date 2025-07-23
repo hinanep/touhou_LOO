@@ -69,9 +69,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      95,
-      214,
-      213
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],
@@ -112,9 +112,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      95,
-      214,
-      213
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],
@@ -152,8 +152,8 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      143,
       39,
+      101,
       216
     ],
     "creator_apart_rule": "time",
@@ -198,9 +198,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      95,
-      214,
-      213
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "time",
     "creator_apart_var": [
@@ -332,9 +332,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      255,
-      0,
-      0
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],
@@ -380,9 +380,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      0,
-      0,
-      255
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],
@@ -426,9 +426,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      95,
-      214,
-      213
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],
@@ -468,9 +468,9 @@
     "danmaku_damage": 30.0,
     "danmaku_color_rule": "single",
     "danmaku_color": [
-      95,
-      214,
-      213
+      39,
+      101,
+      216
     ],
     "creator_apart_rule": "",
     "creator_apart_var": [],

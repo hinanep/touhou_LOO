@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://bjbkbdigg5qvu"]
+[gd_scene load_steps=178 format=3 uid="uid://bjbkbdigg5qvu"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_y78b6"]
 [ext_resource type="Texture2D" uid="uid://d4jrxtjuudd5v" path="res://asset/pic/enemy/greenrock/moving/记忆幻影-alllllllll_000.png" id="2_14y0p"]
@@ -705,9 +705,22 @@ animations = [{
 "speed": 90.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5umv4"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmbht"]
+radius = 60.0
+
 [node name="enemy_base" instance=ExtResource("1_y78b6")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_5m4g8")
 sprite_frames = SubResource("SpriteFrames_5im3c")
 frame_progress = 0.1038
+
+[node name="buff" parent="." index="1"]
+visible = true
+shape = SubResource("CircleShape2D_5umv4")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_vmbht")

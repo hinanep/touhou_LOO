@@ -1,7 +1,6 @@
 extends drop
 
 
-
 func _ready():
 	super._ready()
 	experience = randi_range(1,3)

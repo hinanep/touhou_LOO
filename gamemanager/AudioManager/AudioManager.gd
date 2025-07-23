@@ -75,12 +75,34 @@ func play_bgm(bgm_name: String) -> void:
 		background_bgm_player.set_stream_paused(false)
 		printerr("AudioManager: 未找到主 BGM 资源 '", bgm_name, "'")
 
+func play_once_loop_bgm(bgm_name_once: String,bgm_name_loop: String):
+	# 暂停背景 BGM
+	background_bgm_player.set_stream_paused(true)
 
+	# 从 PresetManager 获取音频流
+	var stream = PresetManager.getpre(bgm_name_once)
+	if stream:
+		bgm_player.stream = stream
+		bgm_player.play()
+	else:
+		# 如果主 BGM 资源未找到，则恢复背景 BGM
+		background_bgm_player.set_stream_paused(false)
+		printerr("AudioManager: 未找到主 BGM 资源 '", bgm_name_once, "'")
+	stream = PresetManager.getpre(bgm_name_loop)
+	await bgm_player.finished
+	if stream:
+		bgm_player.stream = stream
+		bgm_player.play()
+	else:
+		# 如果主 BGM 资源未找到，则恢复背景 BGM
+		background_bgm_player.set_stream_paused(false)
+		printerr("AudioManager: 未找到主 BGM 资源 '", bgm_name_loop, "'")
 ## 切换背景 BGM。
 ## 可以切换到新的背景 BGM，或切换回之前被替换掉的背景 BGM。
 ## 会尝试从当前播放位置继续播放新的或恢复的 BGM。
 ## @param bgm_name: String (可选) - 要切换到的新背景 BGM 的名称。
 ##                            如果为 null，则切换回之前存储的背景 BGM。
+
 func swap_backbgm(bgm_name: String = "") -> void:
 	# 获取当前的播放位置，以便无缝切换
 	var point = background_bgm_player.get_playback_position()

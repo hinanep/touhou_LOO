@@ -1,38 +1,665 @@
-[gd_scene load_steps=21 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=176 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
-[ext_resource type="Texture2D" uid="uid://qjkqd4eo88sb" path="res://asset/pic/enemy/白泽球.png" id="2_ndu7c"]
+[ext_resource type="Texture2D" uid="uid://cd7vnt66u5onw" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_00.png" id="2_fdhrd"]
+[ext_resource type="Texture2D" uid="uid://b388cxyde17rp" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_01.png" id="3_ificp"]
 [ext_resource type="PackedScene" uid="uid://clvkueof1i4cp" path="res://scene/enemys/enemy_base/damageNum.tscn" id="3_rrecl"]
+[ext_resource type="Texture2D" uid="uid://1ceynui537ns" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_02.png" id="4_0uosw"]
 [ext_resource type="Script" uid="uid://cyi0g5onbgjw5" path="res://scene/enemys/enemy_base/mob_buffcomponent.gd" id="4_v0bqg"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="5_3pgrx"]
+[ext_resource type="Texture2D" uid="uid://bvrovnaqseho3" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_03.png" id="5_7sg5n"]
 [ext_resource type="Texture2D" uid="uid://c140byctc4gq6" path="res://asset/pic/ui/battletalk_hr1.png" id="5_kqtkm"]
+[ext_resource type="Texture2D" uid="uid://cyodgqoc3egr7" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_04.png" id="6_wrr5r"]
+[ext_resource type="Texture2D" uid="uid://b7vja43lyqphk" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_05.png" id="7_kjj0y"]
 [ext_resource type="Texture2D" uid="uid://b23e7p8e7fa7h" path="res://asset/pic/bullet/轨迹.png" id="8_ko4ll"]
 [ext_resource type="Texture2D" uid="uid://crd3ovmlyuume" path="res://asset/pic/ui/HUD/BOSS血条（时符）填充.png" id="8_rmmu3"]
+[ext_resource type="Texture2D" uid="uid://6lebwjsmio2e" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_06.png" id="8_udxns"]
+[ext_resource type="Texture2D" uid="uid://d4eln1tkql4ls" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_07.png" id="9_d57wb"]
 [ext_resource type="Texture2D" uid="uid://vonpqxbjfktq" path="res://asset/pic/ui/HUD/BOSS血条（符卡）.png" id="9_fav7k"]
+[ext_resource type="Texture2D" uid="uid://c2kpflw1vs7ti" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_08.png" id="10_cofpv"]
 [ext_resource type="Texture2D" uid="uid://qs16yps0n7e2" path="res://asset/pic/ui/HUD/BOSS血条（符卡）填充.png" id="10_i8gk4"]
 [ext_resource type="Texture2D" uid="uid://2x1qvc7ql60h" path="res://asset/pic/ui/HUD/BOSS血条（非符+符卡）.png" id="11_m8gjf"]
+[ext_resource type="Texture2D" uid="uid://bflvmuuxv2qxb" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_09.png" id="11_paxg7"]
+[ext_resource type="Texture2D" uid="uid://bxm6kqvs2ioqi" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_10.png" id="12_bn3xi"]
 [ext_resource type="Texture2D" uid="uid://c3cob7ohv4aoi" path="res://asset/pic/ui/HUD/BOSS血条（非符）填充.png" id="12_fav7k"]
 [ext_resource type="Texture2D" uid="uid://tba5oo3powgg" path="res://asset/pic/ui/HUD/BOSS血条头像.png" id="12_i8gk4"]
+[ext_resource type="Texture2D" uid="uid://cfi4sexmv1sro" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_11.png" id="13_5ilui"]
 [ext_resource type="Texture2D" uid="uid://bxuy0w1eqq10g" path="res://asset/pic/ui/HUD/残机（灰）.png" id="13_m8gjf"]
 [ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="14_i4kq0"]
+[ext_resource type="Texture2D" uid="uid://08u0x3oujfm3" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_12.png" id="14_v5bql"]
+[ext_resource type="Texture2D" uid="uid://eorxed7pc5bx" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_13.png" id="15_yxoh1"]
+[ext_resource type="Texture2D" uid="uid://dbsdn16pybibw" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_14.png" id="16_gbvmj"]
+[ext_resource type="Texture2D" uid="uid://047c3irrkq32" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_15.png" id="17_m2ohx"]
+[ext_resource type="Texture2D" uid="uid://camiodwhjtns3" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_16.png" id="18_jlkpv"]
+[ext_resource type="Texture2D" uid="uid://cjva7d1irixmg" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_17.png" id="19_ya4nv"]
+[ext_resource type="Texture2D" uid="uid://dnbam57f1gvw6" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_18.png" id="20_h2bvu"]
+[ext_resource type="Texture2D" uid="uid://cncapv2s6a77c" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_19.png" id="21_xr2hi"]
+[ext_resource type="Texture2D" uid="uid://tkj3hfibi4o8" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_20.png" id="22_24qw8"]
+[ext_resource type="Texture2D" uid="uid://cxaj54wkku7or" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_21.png" id="23_x6n8j"]
+[ext_resource type="Texture2D" uid="uid://drlau4d0oxrts" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_22.png" id="24_bcm6g"]
+[ext_resource type="Texture2D" uid="uid://cbica0l1ohxdl" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_23.png" id="25_lpbnh"]
+[ext_resource type="Texture2D" uid="uid://dq2twd1tgl13y" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_24.png" id="26_ympfn"]
+[ext_resource type="Texture2D" uid="uid://d1o6bbwguikvm" path="res://asset/pic/enemy/keine/闲置/闲置_00.png" id="27_yiobi"]
+[ext_resource type="Texture2D" uid="uid://c8g20kxm1ea3v" path="res://asset/pic/enemy/keine/闲置/闲置_01.png" id="28_pymk0"]
+[ext_resource type="Texture2D" uid="uid://bjlstdpj0pwkk" path="res://asset/pic/enemy/keine/闲置/闲置_02.png" id="29_l41u8"]
+[ext_resource type="Texture2D" uid="uid://lap87dktfp4a" path="res://asset/pic/enemy/keine/闲置/闲置_03.png" id="30_wlnhr"]
+[ext_resource type="Texture2D" uid="uid://ynwemm6swfcl" path="res://asset/pic/enemy/keine/闲置/闲置_04.png" id="31_s8wcx"]
+[ext_resource type="Texture2D" uid="uid://62sm7qj7b4x7" path="res://asset/pic/enemy/keine/闲置/闲置_05.png" id="32_vucvn"]
+[ext_resource type="Texture2D" uid="uid://cbndqoe8qkgwu" path="res://asset/pic/enemy/keine/闲置/闲置_06.png" id="33_os0lj"]
+[ext_resource type="Texture2D" uid="uid://bcrpc2rso2mhn" path="res://asset/pic/enemy/keine/闲置/闲置_07.png" id="34_nucka"]
+[ext_resource type="Texture2D" uid="uid://4vxulsq77a1r" path="res://asset/pic/enemy/keine/闲置/闲置_08.png" id="35_ocde1"]
+[ext_resource type="Texture2D" uid="uid://olcxmwqxoedu" path="res://asset/pic/enemy/keine/闲置/闲置_09.png" id="36_hpi32"]
+[ext_resource type="Texture2D" uid="uid://mcdo2yyudgc2" path="res://asset/pic/enemy/keine/闲置/闲置_10.png" id="37_ditol"]
+[ext_resource type="Texture2D" uid="uid://blcrchuo8laj7" path="res://asset/pic/enemy/keine/闲置/闲置_11.png" id="38_qac0w"]
+[ext_resource type="Texture2D" uid="uid://cvq18550fo16j" path="res://asset/pic/enemy/keine/闲置/闲置_12.png" id="39_shvmv"]
+[ext_resource type="Texture2D" uid="uid://n562lcalihpq" path="res://asset/pic/enemy/keine/闲置/闲置_13.png" id="40_nl4ub"]
+[ext_resource type="Texture2D" uid="uid://blyct1xqiatuk" path="res://asset/pic/enemy/keine/闲置/闲置_14.png" id="41_xh6ho"]
+[ext_resource type="Texture2D" uid="uid://bj64par4mupk4" path="res://asset/pic/enemy/keine/闲置/闲置_15.png" id="42_hemqc"]
+[ext_resource type="Texture2D" uid="uid://dsrl3r5jnoqpc" path="res://asset/pic/enemy/keine/闲置/闲置_16.png" id="43_sykbj"]
+[ext_resource type="Texture2D" uid="uid://cvp4dx36uky7j" path="res://asset/pic/enemy/keine/闲置/闲置_17.png" id="44_ryj87"]
+[ext_resource type="Texture2D" uid="uid://c57tpylqoijac" path="res://asset/pic/enemy/keine/闲置/闲置_18.png" id="45_wvcva"]
+[ext_resource type="Texture2D" uid="uid://2aufmdmbyk08" path="res://asset/pic/enemy/keine/闲置/闲置_19.png" id="46_4q5nx"]
+[ext_resource type="Texture2D" uid="uid://c6jvu1uutlngd" path="res://asset/pic/enemy/keine/闲置/闲置_20.png" id="47_ibvxl"]
+[ext_resource type="Texture2D" uid="uid://c6cypt6vmq2as" path="res://asset/pic/enemy/keine/闲置/闲置_21.png" id="48_jwhgk"]
+[ext_resource type="Texture2D" uid="uid://cm1koidhvd4bq" path="res://asset/pic/enemy/keine/闲置/闲置_22.png" id="49_1ej6p"]
+[ext_resource type="Texture2D" uid="uid://de2qse2hk7l0v" path="res://asset/pic/enemy/keine/闲置/闲置_23.png" id="50_747t7"]
+[ext_resource type="Texture2D" uid="uid://bjdi8jqqycua5" path="res://asset/pic/enemy/keine/闲置/闲置_24.png" id="51_6kcl6"]
+[ext_resource type="Texture2D" uid="uid://bg4t2672to2cc" path="res://asset/pic/enemy/keine/闲置/闲置_25.png" id="52_ftmjq"]
+[ext_resource type="Texture2D" uid="uid://dnfy2o6j7wsl6" path="res://asset/pic/enemy/keine/闲置/闲置_26.png" id="53_78wdq"]
+[ext_resource type="Texture2D" uid="uid://pdr3s8wrdjow" path="res://asset/pic/enemy/keine/闲置/闲置_27.png" id="54_rem1q"]
+[ext_resource type="Texture2D" uid="uid://60g36ul7lwfk" path="res://asset/pic/enemy/keine/闲置/闲置_28.png" id="55_qt4i7"]
+[ext_resource type="Texture2D" uid="uid://dmcoptbbxap7e" path="res://asset/pic/enemy/keine/闲置/闲置_29.png" id="56_43b6t"]
+[ext_resource type="Texture2D" uid="uid://cah8457h5jq6m" path="res://asset/pic/enemy/keine/闲置/闲置_30.png" id="57_ndhev"]
+[ext_resource type="Texture2D" uid="uid://dnfuy5t0kylup" path="res://asset/pic/enemy/keine/闲置/闲置_31.png" id="58_f1u2n"]
+[ext_resource type="Texture2D" uid="uid://ddc0rkdnrethc" path="res://asset/pic/enemy/keine/闲置/闲置_32.png" id="59_6fw1q"]
+[ext_resource type="Texture2D" uid="uid://dsmliuxoncht5" path="res://asset/pic/enemy/keine/闲置/闲置_33.png" id="60_abdyo"]
+[ext_resource type="Texture2D" uid="uid://ce5di8qvgq0si" path="res://asset/pic/enemy/keine/闲置/闲置_34.png" id="61_uxxns"]
+[ext_resource type="Texture2D" uid="uid://dy4cfyi8pv3cy" path="res://asset/pic/enemy/keine/闲置/闲置_35.png" id="62_tii7i"]
+[ext_resource type="Texture2D" uid="uid://b30gvlc18gu85" path="res://asset/pic/enemy/keine/闲置/闲置_36.png" id="63_c1ff5"]
+[ext_resource type="Texture2D" uid="uid://bdrllhsbdjbvs" path="res://asset/pic/enemy/keine/闲置/闲置_37.png" id="64_uxkef"]
+[ext_resource type="Texture2D" uid="uid://c163yptdecrkp" path="res://asset/pic/enemy/keine/闲置/闲置_38.png" id="65_s48ex"]
+[ext_resource type="Texture2D" uid="uid://br2nkw4q1i6dn" path="res://asset/pic/enemy/keine/闲置/闲置_39.png" id="66_75l8p"]
+[ext_resource type="Texture2D" uid="uid://bjyq7uqk0v7g6" path="res://asset/pic/enemy/keine/闲置/闲置_40.png" id="67_2rrl2"]
+[ext_resource type="Texture2D" uid="uid://xqxhmjwktfel" path="res://asset/pic/enemy/keine/闲置/闲置_41.png" id="68_snsp6"]
+[ext_resource type="Texture2D" uid="uid://cm4fqbqikclx4" path="res://asset/pic/enemy/keine/闲置/闲置_42.png" id="69_v8ciy"]
+[ext_resource type="Texture2D" uid="uid://cvmx06m7qys5d" path="res://asset/pic/enemy/keine/闲置/闲置_43.png" id="70_88a5u"]
+[ext_resource type="Texture2D" uid="uid://cx61lutp16e03" path="res://asset/pic/enemy/keine/闲置/闲置_44.png" id="71_ogn3l"]
+[ext_resource type="Texture2D" uid="uid://bm7xwoao3cjc7" path="res://asset/pic/enemy/keine/闲置/闲置_45.png" id="72_vbtfv"]
+[ext_resource type="Texture2D" uid="uid://d001mvnd8eysw" path="res://asset/pic/enemy/keine/闲置/闲置_46.png" id="73_chvsx"]
+[ext_resource type="Texture2D" uid="uid://c2tssbxqyxhlh" path="res://asset/pic/enemy/keine/闲置/闲置_47.png" id="74_72ao7"]
+[ext_resource type="Texture2D" uid="uid://bowmu3sihcp8k" path="res://asset/pic/enemy/keine/闲置/闲置_48.png" id="75_ieu3p"]
+[ext_resource type="Texture2D" uid="uid://wkp4mededvys" path="res://asset/pic/enemy/keine/闲置/闲置_49.png" id="76_gvrvk"]
+[ext_resource type="Texture2D" uid="uid://ix4fnhytpbdr" path="res://asset/pic/enemy/keine/闲置/闲置_50.png" id="77_2b28a"]
+[ext_resource type="Texture2D" uid="uid://cq54yj60kokc8" path="res://asset/pic/enemy/keine/闲置/闲置_51.png" id="78_1ppt3"]
+[ext_resource type="Texture2D" uid="uid://byjet1342a4p5" path="res://asset/pic/enemy/keine/闲置/闲置_52.png" id="79_a47bs"]
+[ext_resource type="Texture2D" uid="uid://cbmh21ite0gbo" path="res://asset/pic/enemy/keine/闲置/闲置_53.png" id="80_p8n66"]
+[ext_resource type="Texture2D" uid="uid://diqb3ib5enslt" path="res://asset/pic/enemy/keine/闲置/闲置_54.png" id="81_g5007"]
+[ext_resource type="Texture2D" uid="uid://bcobwc27bp15s" path="res://asset/pic/enemy/keine/闲置/闲置_55.png" id="82_o56ok"]
+[ext_resource type="Texture2D" uid="uid://q6jyncuptab7" path="res://asset/pic/enemy/keine/闲置/闲置_56.png" id="83_lam56"]
+[ext_resource type="Texture2D" uid="uid://mkjjn05560w8" path="res://asset/pic/enemy/keine/闲置/闲置_57.png" id="84_gvvij"]
+[ext_resource type="Texture2D" uid="uid://bmfptpldxn5ia" path="res://asset/pic/enemy/keine/闲置/闲置_58.png" id="85_ung04"]
+[ext_resource type="Texture2D" uid="uid://cy4y3j22j6mf0" path="res://asset/pic/enemy/keine/闲置/闲置_59.png" id="86_61bha"]
+[ext_resource type="Texture2D" uid="uid://uu2jbsoh1bjn" path="res://asset/pic/enemy/keine/闲置/闲置_60.png" id="87_txecc"]
+[ext_resource type="Texture2D" uid="uid://bbeioo54ch3n" path="res://asset/pic/enemy/keine/闲置/闲置_61.png" id="88_agaow"]
+[ext_resource type="Texture2D" uid="uid://ds27q7lr3g6xp" path="res://asset/pic/enemy/keine/闲置/闲置_62.png" id="89_554ty"]
+[ext_resource type="Texture2D" uid="uid://bdf2qxlksuutj" path="res://asset/pic/enemy/keine/闲置/闲置_63.png" id="90_2k0y8"]
+[ext_resource type="Texture2D" uid="uid://c0dtmoysohfii" path="res://asset/pic/enemy/keine/闲置/闲置_64.png" id="91_jhgf3"]
+[ext_resource type="Texture2D" uid="uid://b0jjyratx24s7" path="res://asset/pic/enemy/keine/死亡/死亡_00.png" id="92_g7kjb"]
+[ext_resource type="Texture2D" uid="uid://pkqs22px6nys" path="res://asset/pic/enemy/keine/移动/移动_00.png" id="93_k7430"]
+[ext_resource type="Texture2D" uid="uid://cuy7wdqcy8aro" path="res://asset/pic/enemy/keine/移动/移动_01.png" id="94_lgbg4"]
+[ext_resource type="Texture2D" uid="uid://dq8wvbxnlx3w7" path="res://asset/pic/enemy/keine/移动/移动_02.png" id="95_r3m2l"]
+[ext_resource type="Texture2D" uid="uid://uouslnvbyu12" path="res://asset/pic/enemy/keine/移动/移动_03.png" id="96_ekp62"]
+[ext_resource type="Texture2D" uid="uid://dr0kptg7e8aid" path="res://asset/pic/enemy/keine/移动/移动_04.png" id="97_iyqhi"]
+[ext_resource type="Texture2D" uid="uid://c8683ka8tlujp" path="res://asset/pic/enemy/keine/移动/移动_05.png" id="98_qbqbr"]
+[ext_resource type="Texture2D" uid="uid://b5a3wdrh11tvn" path="res://asset/pic/enemy/keine/移动/移动_06.png" id="99_s4efq"]
+[ext_resource type="Texture2D" uid="uid://ctt16u2f534pp" path="res://asset/pic/enemy/keine/移动/移动_07.png" id="100_fseaq"]
+[ext_resource type="Texture2D" uid="uid://6hxy2x0wqycl" path="res://asset/pic/enemy/keine/移动/移动_08.png" id="101_jjsqr"]
+[ext_resource type="Texture2D" uid="uid://bing8ltjusu7y" path="res://asset/pic/enemy/keine/移动/移动_09.png" id="102_ude7b"]
+[ext_resource type="Texture2D" uid="uid://calq1ahxqlkdd" path="res://asset/pic/enemy/keine/移动/移动_10.png" id="103_bcpxk"]
+[ext_resource type="Texture2D" uid="uid://0t5fjffmxy1p" path="res://asset/pic/enemy/keine/移动/移动_11.png" id="104_j1x5a"]
+[ext_resource type="Texture2D" uid="uid://cnbiakv063kqx" path="res://asset/pic/enemy/keine/移动/移动_12.png" id="105_qw4rh"]
+[ext_resource type="Texture2D" uid="uid://dj67v1x12ewbi" path="res://asset/pic/enemy/keine/移动/移动_13.png" id="106_cytj2"]
+[ext_resource type="Texture2D" uid="uid://cclrfuomd5i4p" path="res://asset/pic/enemy/keine/移动/移动_14.png" id="107_51syo"]
+[ext_resource type="Texture2D" uid="uid://4rbdcglr5p85" path="res://asset/pic/enemy/keine/移动/移动_15.png" id="108_el2v4"]
+[ext_resource type="Texture2D" uid="uid://cs4yui5bdjh3q" path="res://asset/pic/enemy/keine/移动/移动_16.png" id="109_mijfe"]
+[ext_resource type="Texture2D" uid="uid://ltntjo0hs85" path="res://asset/pic/enemy/keine/移动/移动_17.png" id="110_grk3r"]
+[ext_resource type="Texture2D" uid="uid://b2r1bxldce8wq" path="res://asset/pic/enemy/keine/移动/移动_18.png" id="111_2ixiw"]
+[ext_resource type="Texture2D" uid="uid://bcbdoggex88oo" path="res://asset/pic/enemy/keine/移动/移动_19.png" id="112_d4136"]
+[ext_resource type="Texture2D" uid="uid://eewqmmg55qv8" path="res://asset/pic/enemy/keine/移动/移动_20.png" id="113_732et"]
+[ext_resource type="Texture2D" uid="uid://ditwfajv6khoy" path="res://asset/pic/enemy/keine/移动/移动_21.png" id="114_i0yox"]
+[ext_resource type="Texture2D" uid="uid://x83fqanl5488" path="res://asset/pic/enemy/keine/移动/移动_22.png" id="115_6eooh"]
+[ext_resource type="Texture2D" uid="uid://b7yu6ml5i81s" path="res://asset/pic/enemy/keine/移动/移动_23.png" id="116_p18e8"]
+[ext_resource type="Texture2D" uid="uid://rj1kcm8uqcrg" path="res://asset/pic/enemy/keine/移动/移动_24.png" id="117_axn8q"]
+[ext_resource type="Texture2D" uid="uid://uoq3adobqrp3" path="res://asset/pic/enemy/keine/移动/移动_25.png" id="118_6hasv"]
+[ext_resource type="Texture2D" uid="uid://byahll7yaajcj" path="res://asset/pic/enemy/keine/移动/移动_26.png" id="119_cp8in"]
+[ext_resource type="Texture2D" uid="uid://b00vy78h7vdyj" path="res://asset/pic/enemy/keine/移动/移动_27.png" id="120_xbfah"]
+[ext_resource type="Texture2D" uid="uid://ckv41pn4oq2a6" path="res://asset/pic/enemy/keine/移动/移动_28.png" id="121_714da"]
+[ext_resource type="Texture2D" uid="uid://b7m5lywqfn0ns" path="res://asset/pic/enemy/keine/移动/移动_29.png" id="122_skatn"]
+[ext_resource type="Texture2D" uid="uid://bmpcu6t462jee" path="res://asset/pic/enemy/keine/移动/移动_30.png" id="123_256oi"]
+[ext_resource type="Texture2D" uid="uid://naj6yjvphuu7" path="res://asset/pic/enemy/keine/移动/移动_31.png" id="124_3ieos"]
+[ext_resource type="Texture2D" uid="uid://dytm7r0viq800" path="res://asset/pic/enemy/keine/移动/移动_32.png" id="125_1p20i"]
+[ext_resource type="Texture2D" uid="uid://2b0e7wujkfsv" path="res://asset/pic/enemy/keine/移动/移动_33.png" id="126_4kk8n"]
+[ext_resource type="Texture2D" uid="uid://cj8p6f6vg5mmn" path="res://asset/pic/enemy/keine/移动/移动_34.png" id="127_e253v"]
+[ext_resource type="Texture2D" uid="uid://bpv3ydv3momd" path="res://asset/pic/enemy/keine/移动/移动_35.png" id="128_3bntm"]
+[ext_resource type="Texture2D" uid="uid://b3fpok4xwkauk" path="res://asset/pic/enemy/keine/移动/移动_36.png" id="129_su0ff"]
+[ext_resource type="Texture2D" uid="uid://k3cfmu0tp5s5" path="res://asset/pic/enemy/keine/移动/移动_37.png" id="130_0jyec"]
+[ext_resource type="Texture2D" uid="uid://cwreuf4sevuw3" path="res://asset/pic/enemy/keine/移动/移动_38.png" id="131_yyfwc"]
+[ext_resource type="Texture2D" uid="uid://dnrr28rpepg45" path="res://asset/pic/enemy/keine/移动/移动_39.png" id="132_3smud"]
+[ext_resource type="Texture2D" uid="uid://b7r881jsg27w7" path="res://asset/pic/enemy/keine/移动/移动_40.png" id="133_u6xge"]
+[ext_resource type="Texture2D" uid="uid://sun6vpdpbigg" path="res://asset/pic/enemy/keine/移动/移动_41.png" id="134_slsvb"]
+[ext_resource type="Texture2D" uid="uid://cb64rchbnv1u8" path="res://asset/pic/enemy/keine/移动/移动_42.png" id="135_mt4ae"]
+[ext_resource type="Texture2D" uid="uid://cftoaidkocicb" path="res://asset/pic/enemy/keine/移动/移动_43.png" id="136_oypdv"]
+[ext_resource type="Texture2D" uid="uid://cta4lr3thi04v" path="res://asset/pic/enemy/keine/移动/移动_44.png" id="137_cwraj"]
+[ext_resource type="Texture2D" uid="uid://0upfnnhvaoxa" path="res://asset/pic/enemy/keine/移动/移动_45.png" id="138_2crkh"]
+[ext_resource type="Texture2D" uid="uid://cnwyhjc0a3l2a" path="res://asset/pic/enemy/keine/移动/移动_46.png" id="139_ub2uc"]
+[ext_resource type="Texture2D" uid="uid://b0beshgep7uoq" path="res://asset/pic/enemy/keine/移动/移动_47.png" id="140_dmabl"]
+[ext_resource type="Texture2D" uid="uid://brsnak12wnn8n" path="res://asset/pic/enemy/keine/移动/移动_48.png" id="141_wailh"]
+[ext_resource type="Texture2D" uid="uid://bmdxqtptxtpx7" path="res://asset/pic/enemy/keine/移动/移动_49.png" id="142_r4ol1"]
+[ext_resource type="Texture2D" uid="uid://db0hsvu2m1fun" path="res://asset/pic/enemy/keine/移动/移动_50.png" id="143_wimhu"]
+[ext_resource type="Texture2D" uid="uid://vw78gxwpt21a" path="res://asset/pic/enemy/keine/移动/移动_51.png" id="144_pmvd4"]
+[ext_resource type="Texture2D" uid="uid://ylv3y8d6iqi3" path="res://asset/pic/enemy/keine/移动/移动_52.png" id="145_mwdqs"]
+[ext_resource type="Texture2D" uid="uid://dxbdoys7pdpvc" path="res://asset/pic/enemy/keine/移动/移动_53.png" id="146_x2ye7"]
+[ext_resource type="Texture2D" uid="uid://cdr48c51y4ir1" path="res://asset/pic/enemy/keine/移动/移动_54.png" id="147_qcv8e"]
+[ext_resource type="Texture2D" uid="uid://brm82fnudnbkm" path="res://asset/pic/enemy/keine/移动/移动_55.png" id="148_roeds"]
+[ext_resource type="Texture2D" uid="uid://b37i0utrlv4bm" path="res://asset/pic/enemy/keine/移动/移动_56.png" id="149_6ca2j"]
+[ext_resource type="Texture2D" uid="uid://ddqynbh5xp1gd" path="res://asset/pic/enemy/keine/移动/移动_57.png" id="150_2l3da"]
+[ext_resource type="Texture2D" uid="uid://dwqabhyco3sin" path="res://asset/pic/enemy/keine/移动/移动_58.png" id="151_68k6w"]
+[ext_resource type="Texture2D" uid="uid://dxhxki8i7t85k" path="res://asset/pic/enemy/keine/移动/移动_59.png" id="152_3g4hl"]
+[ext_resource type="Texture2D" uid="uid://c7fjtadvira0q" path="res://asset/pic/enemy/keine/移动/移动_60.png" id="153_tmirt"]
+[ext_resource type="Texture2D" uid="uid://bh55suolt3vi5" path="res://asset/pic/enemy/keine/移动/移动_61.png" id="154_k5po1"]
+[ext_resource type="Texture2D" uid="uid://bvp06i5oj5qrl" path="res://asset/pic/enemy/keine/移动/移动_62.png" id="155_8fpr5"]
+[ext_resource type="Texture2D" uid="uid://dirw35n4j1i5i" path="res://asset/pic/enemy/keine/移动/移动_63.png" id="156_rdmuf"]
+[ext_resource type="Texture2D" uid="uid://yjvvvrxnjoo7" path="res://asset/pic/enemy/keine/移动/移动_64.png" id="157_wlerw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gakf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ndu7c")
+"texture": ExtResource("27_yiobi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_pymk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_l41u8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_wlnhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_s8wcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_vucvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_os0lj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_nucka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ocde1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_hpi32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ditol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_qac0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_shvmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_nl4ub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_xh6ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_hemqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_sykbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ryj87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_wvcva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_4q5nx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_ibvxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_jwhgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_1ej6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_747t7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_6kcl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_ftmjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_78wdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_rem1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_qt4i7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_43b6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_ndhev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_f1u2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_6fw1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_abdyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_uxxns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_tii7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_c1ff5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_uxkef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_s48ex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_75l8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_2rrl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_snsp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_v8ciy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_88a5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_ogn3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_vbtfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_chvsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_72ao7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_ieu3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_gvrvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_2b28a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_1ppt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_a47bs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_p8n66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_g5007")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_o56ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_lam56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_gvvij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_ung04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_61bha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_txecc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_agaow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_554ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_2k0y8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_jhgf3")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ndu7c")
+"texture": ExtResource("92_g7kjb")
 }],
-"loop": false,
+"loop": true,
 "name": &"die",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("93_k7430")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_lgbg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_r3m2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_ekp62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_iyqhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_qbqbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_s4efq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_fseaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_jjsqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_ude7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_bcpxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_j1x5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_qw4rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_cytj2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_51syo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_el2v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_mijfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_grk3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_2ixiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_d4136")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_732et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_i0yox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_6eooh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_p18e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_axn8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_6hasv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_cp8in")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_xbfah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_714da")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_skatn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_256oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_3ieos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_1p20i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_4kk8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_e253v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_3bntm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_su0ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_0jyec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_yyfwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_3smud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_u6xge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_slsvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_mt4ae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_oypdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_cwraj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_2crkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_ub2uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_dmabl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_wailh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_r4ol1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_wimhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_pmvd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_mwdqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_x2ye7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_qcv8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_roeds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_6ca2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_2l3da")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_68k6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_3g4hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_tmirt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_k5po1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_8fpr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_rdmuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_wlerw")
+}],
+"loop": true,
+"name": &"move",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fdhrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ificp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0uosw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7sg5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wrr5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kjj0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_udxns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d57wb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cofpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_paxg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bn3xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5ilui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_v5bql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yxoh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gbvmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_m2ohx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jlkpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ya4nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_h2bvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xr2hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_24qw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_x6n8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_bcm6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lpbnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ympfn")
+}],
+"loop": false,
+"name": &"sc_casting",
+"speed": 30.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itioj"]
@@ -63,7 +690,7 @@ z_index = 15
 position = Vector2(0, -4.9999895)
 scale = Vector2(0.4, 0.39493674)
 sprite_frames = SubResource("SpriteFrames_4gakf")
-animation = &"die"
+animation = &"sc_casting"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

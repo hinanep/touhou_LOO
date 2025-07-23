@@ -16,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_051o3"]
-radius = 1.0
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xykej"]
 radius = 28.071337
@@ -31,7 +31,6 @@ sprite_frames = SubResource("SpriteFrames_ua43r")
 [node name="buff" parent="." index="1"]
 visible = true
 shape = SubResource("CircleShape2D_051o3")
-disabled = true
 
 [node name="melee_damage_area" parent="melee_damage_area" index="0"]
 disabled = true

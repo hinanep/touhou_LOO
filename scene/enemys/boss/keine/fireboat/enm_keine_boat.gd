@@ -17,6 +17,7 @@ func _ready():
 
 	super._ready()
 	await  get_tree().create_timer(3.8).timeout
+	player_var.SpawnManager.register_mob($".")
 	#on_fire()
 func _physics_process(delta):
 	d+=delta

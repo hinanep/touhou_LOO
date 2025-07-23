@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://r8txtjodvvp1"]
+[gd_scene load_steps=64 format=3 uid="uid://r8txtjodvvp1"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_q4imp"]
 [ext_resource type="Texture2D" uid="uid://c103hkk21h0mh" path="res://asset/pic/enemy/yuurei/移动/鬼魂-alll_00.png" id="2_nbirg"]
@@ -249,6 +249,12 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nbirg"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0j8b2"]
+radius = 55.0
+
 [node name="enemy_base" instance=ExtResource("1_q4imp")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -259,3 +265,7 @@ frame_progress = 0.027544815
 
 [node name="buff" parent="." index="1"]
 visible = true
+shape = SubResource("CircleShape2D_nbirg")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_0j8b2")

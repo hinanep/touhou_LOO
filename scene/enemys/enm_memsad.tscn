@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://bhijqacoflcf0"]
+[gd_scene load_steps=178 format=3 uid="uid://bhijqacoflcf0"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_4mj1f"]
 [ext_resource type="Texture2D" uid="uid://bgvxhnqni600n" path="res://asset/pic/enemy/redrock/moving/rm_000.png" id="2_o7as8"]
@@ -705,8 +705,13 @@ animations = [{
 "speed": 90.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3s0ou"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owarq"]
+radius = 60.0
+
 [node name="enemy_base" instance=ExtResource("1_4mj1f")]
-process_mode = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 process_mode = 1
@@ -714,6 +719,15 @@ material = SubResource("CanvasItemMaterial_6411r")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_lppg4")
 animation = &"die"
+
+[node name="buff" parent="." index="1"]
+visible = true
+position = Vector2(-4, -22)
+shape = SubResource("CircleShape2D_3s0ou")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+position = Vector2(-4, -21)
+shape = SubResource("CircleShape2D_owarq")
 
 [node name="ProgressBar" parent="." index="3"]
 offset_top = -27.0

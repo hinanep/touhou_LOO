@@ -81,7 +81,7 @@ func start_shatter_effect():
 
 
 func set_shader_phase(p):
-	print('set to' + str(p))
+
 	$Maskalp.material.set_shader_parameter('phase',p)
 # 安全获取屏幕纹理的方法
 func get_screen_texture_safe() -> Texture2D:

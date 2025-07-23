@@ -233,7 +233,7 @@
     "type": "dcreator",
     "create_rule": "inplace",
     "create_parameter": [],
-    "creature_id": "",
+    "creature_id": "dcrt_keine_ns2_2",
     "danmaku_damage": 30.0,
     "physical_rule": "",
     "physical_parameter": [],

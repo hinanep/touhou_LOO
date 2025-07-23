@@ -46,9 +46,9 @@ var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未
 var shake_limit = 0.99
 var speed_sq = 0
 # 避障检测半径：只对进入这个半径的邻居做出反应
-var avoidance_radius: float = 120
+var avoidance_radius: float = 100
 # 避障力度：推开力的强度系数
-var avoidance_strength: float = 320.0
+var avoidance_strength: float = 200.0
 # 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
 var avoidance_neighbor_query_count: int = 6
 const searching_time = 0.1
@@ -122,6 +122,7 @@ func _physics_process(delta):
 		# 更新上一帧的位置
 		last_position = global_position
 	$AnimatedSprite2D.scale.x = clampf($AnimatedSprite2D.scale.x + 0.05 *scaledir,-scalex,scalex)
+
 func choose_default_anime():
 	var df = []
 	for anim:String in $AnimatedSprite2D.sprite_frames.get_animation_names():

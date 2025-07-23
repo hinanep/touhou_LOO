@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://c1e27o50msdlh"]
+[gd_scene load_steps=96 format=3 uid="uid://c1e27o50msdlh"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_0jfef"]
 [ext_resource type="Texture2D" uid="uid://bt8b7wj153k5q" path="res://asset/pic/enemy/book/移动/移动_00.png" id="2_3p354"]
@@ -377,6 +377,12 @@ animations = [{
 "speed": 60.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3p354"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v044n"]
+radius = 50.0
+
 [node name="magicbook" instance=ExtResource("1_0jfef")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -386,3 +392,7 @@ sprite_frames = SubResource("SpriteFrames_5im3c")
 
 [node name="buff" parent="." index="1"]
 visible = true
+shape = SubResource("CircleShape2D_3p354")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_v044n")

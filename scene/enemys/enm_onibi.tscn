@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cidpipphhn1nw"]
+[gd_scene load_steps=68 format=3 uid="uid://cidpipphhn1nw"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_bvblr"]
 [ext_resource type="Texture2D" uid="uid://bibqsc2njflf" path="res://asset/pic/enemy/onibi/移动/移动_00.png" id="2_8wxsx"]
@@ -265,6 +265,12 @@ animations = [{
 "speed": 60.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8wxsx"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cju0e"]
+radius = 60.0
+
 [node name="enemy_base" instance=ExtResource("1_bvblr")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -275,6 +281,10 @@ sprite_frames = SubResource("SpriteFrames_5im3c")
 [node name="buff" parent="." index="1"]
 visible = true
 position = Vector2(0, 38)
+shape = SubResource("CircleShape2D_8wxsx")
 
 [node name="melee_damage_area" parent="." index="2"]
 position = Vector2(0, 38)
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_cju0e")

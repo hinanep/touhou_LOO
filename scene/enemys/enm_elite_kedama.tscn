@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bscmg0phnvseh"]
+[gd_scene load_steps=4 format=3 uid="uid://bscmg0phnvseh"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_ojps0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_agwqa"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qijc0"]
+radius = 70.0
 
 [node name="enemy_base" instance=ExtResource("1_ojps0")]
 
 [node name="buff" parent="." index="1"]
 visible = true
+shape = SubResource("CircleShape2D_agwqa")
+
+[node name="melee_damage_area" parent="melee_damage_area" index="0"]
+shape = SubResource("CircleShape2D_qijc0")
