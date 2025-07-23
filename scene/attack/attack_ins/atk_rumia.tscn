@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://o4yslgmrf8td"]
+[gd_scene load_steps=16 format=3 uid="uid://o4yslgmrf8td"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_wq5qk"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_57lmb"]
 [ext_resource type="Texture2D" uid="uid://c4tasudhxp6s1" path="res://asset/pic/texture/bh-2.png" id="3_ot8my"]
+[ext_resource type="Texture2D" uid="uid://b4cdkhc6vpiwq" path="res://asset/pic/露米娅展开前环绕1.png" id="4_xwt6u"]
+[ext_resource type="Texture2D" uid="uid://dn1kiigtb8evb" path="res://asset/pic/露米娅展开前环绕2.png" id="5_iukek"]
+[ext_resource type="Texture2D" uid="uid://bmh3k2j0ha8mw" path="res://asset/pic/露米娅展开前核心.png" id="6_187hf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6wkt7"]
 animations = [{
@@ -18,6 +21,45 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_a8qnf"]
+frames = 2
+frame_0/texture = ExtResource("4_xwt6u")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("5_iukek")
+frame_1/duration = 0.1
+
+[sub_resource type="Curve" id="Curve_so48u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10299004, 1), 0.0, 0.0, 0, 0, Vector2(0.84717613, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wugdl"]
+curve = SubResource("Curve_so48u")
+
+[sub_resource type="Curve" id="Curve_o3tsh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19933555, 1), 0.0, 0.0, 0, 0, Vector2(0.74750835, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h327m"]
+curve = SubResource("Curve_o3tsh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_or5y2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angular_velocity_min = 499.99997
+angular_velocity_max = 499.99997
+gravity = Vector3(0, 0, 0)
+scale_min = 0.08
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_h327m")
+alpha_curve = SubResource("CurveTexture_wugdl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbvrm"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.099999994
+
 [node name="Attack" instance=ExtResource("1_wq5qk")]
 script = ExtResource("2_57lmb")
 
@@ -28,5 +70,18 @@ sprite_frames = SubResource("SpriteFrames_6wkt7")
 autoplay = ""
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
-visible = false
 shape = SubResource("CircleShape2D_7lt5v")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="7"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+amount = 6
+texture = SubResource("AnimatedTexture_a8qnf")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_or5y2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="8"]
+amount = 1
+texture = ExtResource("6_187hf")
+lifetime = 5.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rbvrm")
