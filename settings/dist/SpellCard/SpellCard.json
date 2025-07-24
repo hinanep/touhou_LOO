@@ -44,10 +44,10 @@
     "buff_value_factor": [],
     "special": "dash",
     "special_parameter": [
-      400.0
+      500.0
     ],
-    "mana": 200.0,
-    "invincible_time": 0.5,
+    "mana": 150.0,
+    "invincible_time": 0.2,
     "invicible_time_depend": "",
     "is_following": false
   }

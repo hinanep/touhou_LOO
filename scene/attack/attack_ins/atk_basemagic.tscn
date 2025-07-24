@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cg0okjckka01r"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_ktam7"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_r4p3p"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_r4p3p"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_nwwb0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqk1b"]
@@ -19,5 +19,6 @@ animations = [{
 script = ExtResource("2_r4p3p")
 
 [node name="lock_component" parent="." index="1"]
-scale = Vector2(0.8, 0.8)
+self_modulate = Color(1, 1, 1, 0.7490196)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_dqk1b")
