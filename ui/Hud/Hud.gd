@@ -89,23 +89,21 @@ func card_display(bias):
 		#card_container.get_child(card_selecting).set_expand_mode(0)
 		#card_container.get_child(card_selecting).set_stretch_mode(3)
 
-		card_selecting = int(card_selecting+bias)%card_having
+	card_selecting = int(card_selecting+bias)%card_having
 
-	card_container.get_child(card_selecting).set_highlight(true)
-		#card_container.get_child(card_selecting).set_expand_mode(2)
-		#card_container.get_child(card_selecting).set_stretch_mode(4)
+	var now_selected = card_container.get_child(card_selecting)
+	now_selected.set_highlight(true)
 
-		#$hud/card_now/crystal.set_texture(card_container.get_child(card_selecting).card_texture)
 
-	$hud/card_now/cardid.text = card_container.get_child(card_selecting).describe
+	$hud/card_now/cardid.text = now_selected.describe
 
-	$hud/card_now/enoughmana.visible =not (card_container.get_child(card_selecting).manacost > player_var.mana)
+	$hud/card_now/enoughmana.visible =not (now_selected.manacost > player_var.mana)
 	#TODO:多语言
 	if player_var.free_card > 0:
 		$hud/card_now/manacost.text = '符力消耗：0!'
 		$hud/card_now/enoughmana.visible = true
 	else:
-		$hud/card_now/manacost.text = '符力消耗：' + str(card_container.get_child(card_selecting).manacost/player_var.mana_cost)
+		$hud/card_now/manacost.text = '符力消耗：' + str(now_selected.manacost/player_var.mana_cost)
 
 func on_add_card(card_info):
 

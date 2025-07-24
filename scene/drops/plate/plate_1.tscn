@@ -126,6 +126,6 @@ sprite_frames = SubResource("SpriteFrames_as4t1")
 libraries = {
 &"": SubResource("AnimationLibrary_tlrb6")
 }
-autoplay = "new_animation"
+autoplay = "RESET"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

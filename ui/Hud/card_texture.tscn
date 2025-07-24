@@ -27,10 +27,10 @@ script = ExtResource("2_d07md")
 
 [node name="cn" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = -24.0
-offset_top = 24.000006
-offset_right = 976.0
-offset_bottom = 458.0
+offset_left = 26.000002
+offset_top = 48.000004
+offset_right = 1026.0
+offset_bottom = 482.0
 scale = Vector2(0.12, 0.12)
 theme = ExtResource("4_1j45h")
 theme_override_font_sizes/normal_font_size = 150

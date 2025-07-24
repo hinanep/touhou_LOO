@@ -26,11 +26,11 @@ func set_card(card_info):
 	SignalBus.upgrade_group.connect(upgrade)
 
 func upgrade(upname):
-	if upgrade_group == upname:
+	if upgrade_group == upname and upgrade_group!='none':
 		level += 1
-		#describe = cardname + '\nLV.' + str(level)
-		describe =  'LV.' + str(level)
-
+		describe = cardname + '\nLV.' + str(level)
+		#describe +=  '\nLV.' + str(level)
+		$cn.text = 'LV.' + str(level)
 func destroy(id):
 	if id == cardid:
 		queue_free()
