@@ -25,8 +25,8 @@ curve = SubResource("Curve_cxqm4")
 particle_flag_disable_z = true
 angle_min = 1.0728836e-05
 angle_max = 360.00003
-angular_velocity_min = 1440.0
-angular_velocity_max = 1440.0
+angular_velocity_min = -720.0
+angular_velocity_max = -720.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_vnvco")
 

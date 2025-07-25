@@ -34,8 +34,8 @@ curve = SubResource("Curve_paiww")
 particle_flag_disable_z = true
 angle_min = 1.0728836e-05
 angle_max = 360.00003
-angular_velocity_min = 1200.0
-angular_velocity_max = 1200.0
+angular_velocity_min = -1200.0
+angular_velocity_max = -1200.0
 alpha_curve = SubResource("CurveTexture_5c0i3")
 
 [node name="Attack" instance=ExtResource("1_g4alh")]

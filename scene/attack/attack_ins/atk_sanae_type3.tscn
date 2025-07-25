@@ -1,29 +1,89 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhuakpdjsihip"]
+[gd_scene load_steps=15 format=3 uid="uid://bhuakpdjsihip"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_c4ica"]
-[ext_resource type="Script" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
-[ext_resource type="Texture2D" uid="uid://8q826ubgnjw3" path="res://asset/pic/bullet/大风.png" id="3_7fdd0"]
+[ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
+[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/风环绕1.png" id="3_ehg2l"]
+[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/风环绕2.png" id="4_m7dn8"]
+[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_m7dn8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fscg0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_7fdd0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+animations = []
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
 radius = 250.0
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_mc74e"]
+frames = 2
+speed_scale = 8.0
+frame_0/texture = ExtResource("3_ehg2l")
+frame_1/texture = ExtResource("4_m7dn8")
+frame_1/duration = 1.0
+
+[sub_resource type="Curve" id="Curve_b8xe7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vioxq"]
+curve = SubResource("Curve_b8xe7")
+
+[sub_resource type="Curve" id="Curve_8aml3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qdpqv"]
+curve = SubResource("Curve_8aml3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6vroq"]
+particle_flag_disable_z = true
+angle_min = 1.0728836e-05
+angle_max = 360.00003
+angular_velocity_min = 719.99994
+angular_velocity_max = 959.99994
+gravity = Vector3(0, 0, 0)
+scale_min = 15.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_qdpqv")
+alpha_curve = SubResource("CurveTexture_vioxq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mc74e"]
+particle_flag_disable_z = true
+orbit_velocity_min = 0.5000001
+orbit_velocity_max = 1.0000001
+radial_velocity_min = 49.999977
+radial_velocity_max = 79.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+
 [node name="Attack" instance=ExtResource("1_c4ica")]
 script = ExtResource("2_ryf0y")
+
+[node name="move_component" parent="." index="0"]
+visible = true
 
 [node name="lock_component" parent="." index="1"]
 scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_fscg0")
+animation = &""
+autoplay = ""
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_beisj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+self_modulate = Color(0.8666667, 1, 0.81960785, 0.7490196)
+scale = Vector2(0.1, 0.1)
+amount = 16
+texture = SubResource("AnimatedTexture_mc74e")
+preprocess = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_6vroq")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="GPUParticles2D" index="0"]
+self_modulate = Color(1, 1, 1, 0.24705882)
+scale = Vector2(9.999999, 9.999999)
+amount = 48
+texture = ExtResource("5_m7dn8")
+lifetime = 3.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_mc74e")
