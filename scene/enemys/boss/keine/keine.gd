@@ -126,12 +126,12 @@ func start_progess(phase:int):
 	SignalBus.clear_enemy.emit(true)
 	move_func = move_stay
 	set_cardstate(mob_info.hp_hud)
-
+	atkable = false
 	create_tween().tween_property($".",'global_position',Vector2(600,0),1)
 
 	$melee_damage_area.scale = Vector2(mob_info.physical_radius,mob_info.physical_radius)
 	invincible = true
-	atkable = false
+
 	progress_time = 0
 	$progress_timer.stop()
 

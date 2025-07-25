@@ -4,10 +4,10 @@
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 2.5,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_memsad": {
     "id": "enm_memsad",
@@ -24,9 +24,9 @@
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 2.5,
     "magical_damage": 0.0,
-    "health": 30.0,
+    "health": 45.0,
     "speed": 50.0
   },
   "enm_kedama": {
@@ -34,60 +34,60 @@
     "type": "zako",
     "movement": "creep",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 150.0
   },
   "enm_yuurei": {
     "id": "enm_yuurei",
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_onibi": {
     "id": "enm_onibi",
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_book": {
     "id": "enm_book",
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_boy": {
     "id": "enm_boy",
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_girl": {
     "id": "enm_girl",
     "type": "zako",
     "movement": "default",
     "danmaku_creator": "",
-    "physical_damage": 5.0,
+    "physical_damage": 3.0,
     "magical_damage": 0.0,
     "health": 30.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_memcolorful": {
     "id": "enm_memcolorful",
@@ -97,7 +97,7 @@
     "physical_damage": 10.0,
     "magical_damage": 0.0,
     "health": 1000.0,
-    "speed": 30.0
+    "speed": 60.0
   },
   "enm_eltkedama": {
     "id": "enm_eltkedama",
@@ -107,7 +107,7 @@
     "physical_damage": 5.0,
     "magical_damage": 0.0,
     "health": 1000.0,
-    "speed": 75.0
+    "speed": 200.0
   },
   "enm_teacher": {
     "id": "enm_teacher",
@@ -117,7 +117,7 @@
     "physical_damage": 12.0,
     "magical_damage": 0.0,
     "health": 1500.0,
-    "speed": 50.0
+    "speed": 100.0
   },
   "enm_keine_ns1_1": {
     "id": "enm_keine_ns1_1",

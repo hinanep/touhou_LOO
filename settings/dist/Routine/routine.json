@@ -227,7 +227,7 @@
     "one_creating_parameter": [],
     "times_dependence": "",
     "times": 4,
-    "interval": 0.04,
+    "interval": 0.08,
     "zero_point": "character",
     "system_front": "character",
     "system_type": "rectangular",
@@ -601,7 +601,7 @@
       0,
       0
     ],
-    "danma_times_efficiency": 0.5,
+    "danma_times_efficiency": 1.0,
     "melee_times_efficiency": 0.0
   },
   "rou_sakuya_attachment": {

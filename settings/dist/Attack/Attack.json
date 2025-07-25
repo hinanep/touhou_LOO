@@ -110,7 +110,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "danma",
-    "damage": 25.0,
+    "damage": 30.0,
     "duration": 999999.0,
     "duration_dependence": "",
     "debuff": [],
@@ -451,7 +451,7 @@
       "slowdown"
     ],
     "debuff_intensity": [
-      0.2
+      0.4
     ],
     "debuff_duration": [
       1.0
@@ -499,7 +499,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 1.0,
+    "damage": 3.0,
     "duration": 5.0,
     "duration_dependence": "",
     "debuff": [],
@@ -514,7 +514,7 @@
     "defeating_item_creation_value": 0.0,
     "eraseing_item_creation": [],
     "eraseing_item_creation_value": 0.0,
-    "penetration": 10,
+    "penetration": 999999,
     "shape": "circle",
     "size_dependence": [],
     "size": [
@@ -528,9 +528,9 @@
     "moving_rule": "trail",
     "moving_parameter_dependence": [],
     "moving_parameter": [
-      50,
-      1000,
-      150
+      0,
+      100,
+      250
     ],
     "diretion": "",
     "rotation": true,
@@ -552,7 +552,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 7.0,
+    "damage": 3.5,
     "duration": 0.5,
     "duration_dependence": "",
     "debuff": [],
@@ -855,7 +855,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "danma",
-    "damage": 10.0,
+    "damage": 15.0,
     "duration": 10.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1008,7 +1008,7 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 2.0,
+    "damage": 3.0,
     "duration": 3.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1040,7 +1040,7 @@
     "moving_parameter_dependence": [],
     "moving_parameter": [
       120,
-      20,
+      25,
       180
     ],
     "diretion": "",
@@ -1063,7 +1063,7 @@
     "effective_condition": "",
     "damage_times": "single",
     "damage_type": "danma",
-    "damage": 40.0,
+    "damage": 50.0,
     "duration": 999999.0,
     "duration_dependence": "",
     "debuff": [],
@@ -1218,11 +1218,17 @@
     "damage_times": "single",
     "damage_type": "melee",
     "damage": 100.0,
-    "duration": 0.5,
+    "duration": 0.3,
     "duration_dependence": "",
-    "debuff": [],
-    "debuff_intensity": [],
-    "debuff_duration": [],
+    "debuff": [
+      "slowdown"
+    ],
+    "debuff_intensity": [
+      0.7
+    ],
+    "debuff_duration": [
+      1.0
+    ],
     "buff": [],
     "buff_value_factor": [],
     "hitting_routine_creation": [],
@@ -1236,8 +1242,8 @@
     "shape": "rectangle_edge",
     "size_dependence": [],
     "size": [
-      300,
-      500
+      250,
+      200
     ],
     "ri_dependence": "lock",
     "ri": 0.0,
