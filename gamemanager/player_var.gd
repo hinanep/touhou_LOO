@@ -238,6 +238,7 @@ func boss_coming(id:String):
 			mv.tween_property(boss,'global_position',Vector2(600,0),3)
 			await mv.finished
 			boss.fight_begin()
+			SignalBus.boss_stage.emit(true)
 			return
 func lock_camera():
 	var tmpcamera:Camera2D = get_viewport().get_camera_2d()

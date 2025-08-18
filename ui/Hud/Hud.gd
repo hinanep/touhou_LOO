@@ -127,10 +127,9 @@ func on_del_card(id):
 		return
 	card_selecting = (card_selecting)%card_having
 	for child in card_container.get_children():
-		child.set_expand_mode(0)
-		child.set_stretch_mode(3)
-	card_container.get_child(card_selecting).set_expand_mode(2)
-	card_container.get_child(card_selecting).set_stretch_mode(4)
+		child.set_expand_mode(2)
+		child.set_stretch_mode(4)
+
 
 func add_skill(ski_info):
 		if ski_info.id == "ski_basemagic" or ski_info.id == "ski_basephysics":

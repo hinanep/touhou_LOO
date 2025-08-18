@@ -33,7 +33,7 @@ func del_to_maxlist(id):
 	#删除该技能已解锁的羁绊
 	for cps in cp_pool.ready:
 		if cp_pool.ready[cps].partment.has(id):
-			cp_pool.unlocked[cps] = cp_pool.ready[cp]
+			cp_pool.unlocked[cps] = cp_pool.ready[cps]
 			cp_pool.ready.erase(cps)
 	for cps in cp_pool.actived:
 		if cp_pool.actived[cps].partment.has(id):

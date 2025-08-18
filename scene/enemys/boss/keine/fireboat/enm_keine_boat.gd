@@ -16,6 +16,7 @@ func _ready():
 	$buff.brittle_modify = 0
 
 	super._ready()
+	drops_path = 'drops_point'
 	await  get_tree().create_timer(3.8).timeout
 	player_var.SpawnManager.register_mob($".")
 

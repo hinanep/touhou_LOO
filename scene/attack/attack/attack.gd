@@ -30,6 +30,7 @@ var move_compo
 
 func first_init():
 	const cont = 2
+
 	if attack_info.type == 'base':
 		SignalBus.atk_boost.connect(recive_boost,cont)
 	elif attack_info.type == 'boost':
@@ -41,6 +42,7 @@ func first_init():
 
 	kill.connect(on_kill,cont)
 	SignalBus.upgrade_group.connect(upgrade_attack,cont)
+	SignalBus.boss_stage.connect(set_bossing)
 	if not (attack_info.bullet_eraseing):
 		$bullet_erase_area.queue_free()
 
@@ -56,6 +58,7 @@ func first_init():
 
 #初始化
 func _ready():
+
 	if attack_info.has('duration') and attack_info.duration>0.1:
 
 		if attack_info.has('duration_dependence') :
@@ -317,3 +320,6 @@ func _on_exit_screen_timer_timeout() -> void:
 	queue_free()
 	#destroy('cannot vis')
 	#call_deferred("destroy", 'cannot vis')
+func set_bossing(is_boss):
+	if is_boss:
+		modulate.a = 0.15

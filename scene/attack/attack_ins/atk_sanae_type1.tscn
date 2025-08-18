@@ -7,7 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_3hp2n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ad1vr"]
-animations = []
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_a8273"]
 frames = 2
@@ -52,24 +57,24 @@ script = ExtResource("2_p2d1r")
 rotation = 0.0
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_ad1vr")
-animation = &""
+animation = &"new_animation"
 autoplay = ""
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
 self_modulate = Color(0.8666667, 1, 0.81960785, 0.7490196)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.99999994, 0.99999994)
 amount = 12
 texture = SubResource("AnimatedTexture_a8273")
 preprocess = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_lj7m4")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" type="Sprite2D" parent="lock_component" index="1"]
 self_modulate = Color(1, 1, 1, 0.49803922)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(3.9999998, 3.9999998)
 texture = ExtResource("5_3hp2n")
 
-[node name="damage_area" parent="." index="4"]
+[node name="damage_area" parent="." index="2"]
 visible = false
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]

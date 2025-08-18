@@ -136,6 +136,7 @@ signal pause_spawner(is_pause:bool)
 signal add_mob_to_manager(mob_node)
 signal boss_set_stage(stage:int)
 signal kill_all
+signal boss_stage(is_boss:bool)
 signal disbullet(is_drop:bool)
 signal set_bosstimer(time:float)
 signal shutter
