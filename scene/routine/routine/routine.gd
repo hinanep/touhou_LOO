@@ -26,25 +26,18 @@ func _ready():
 			var atknode = add_attack(atk)
 			if routine_info.has('creating_attack') and atk in routine_info.creating_attack:
 				attack_nodes.append(atknode)
+				attack_pool.append([])
 
 	for sum in table.Summoned:
 		if table.Summoned[sum].routine_group.has(routine_info.id) :
 			var sumnode = add_summon(sum)
 			if routine_info.has('creating_summoned') and sum in routine_info.creating_summoned:
 				summons.append(sumnode)
+				summon_pool.append([])
 
 	if routine_info.interval > 0.01:
 		$interval_timer.wait_time = routine_info.interval
 		has_interval = true
-	#if routine_info.has("creating_attack"):
-		#for id in routine_info.creating_attack:
-			#attack_nodes.append(add_attack(id))
-
-	#if routine_info.has('creating_summoned'):
-		#for sum in routine_info.creating_summoned:
-			#var spre = PresetManager.getpre(sum)
-#
-			#summons[sum] = spre
 
 
 #根据表中对应项获取攻击生成位置
@@ -103,7 +96,7 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 						await  $interval_timer.timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node)
-					single_summon(gen_position,gen_rotation)
+					single_summon(gen_position,gen_rotation,parent_node)
 
 			'multi_together':
 				for j in range(routine_info.one_creating_parameter[0]):
@@ -111,57 +104,90 @@ func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotati
 						await  $interval_timer.timeout
 					get_gen_position(force_world_position,input_position,input_rotation)
 					single_attack(gen_position,gen_rotation,parent_node,j)
-					single_summon(gen_position,gen_rotation)
+					single_summon(gen_position,gen_rotation,parent_node)
+var attack_pool = []
+var summon_pool = []
+func add_to_pool(node):
+	attack_pool[node.index].append(node)
+func add_sum_to_pool(node):
+	summon_pool[node.index].append(node)
+func clear_pool():
+	for arr:Array in attack_pool:
+		for nod in arr:
+			if not is_instance_valid(nod):
+				continue
+			nod.queue_free()
+		arr.clear()
+	for arr:Array in summon_pool:
+		for nod in arr:
+			nod.free()
+		arr.clear()
 
+func get_atk_from_pool(index:int = 0):
+	var obj:Node2D = null
+	if not attack_pool[index].is_empty():
+		obj =  attack_pool[index].pop_back()
+		obj.spawn( attack_nodes[index].level)
+		obj.request_ready()
+	if obj == null:
+		obj = attack_nodes[index].duplicate(7)
+		obj.over.connect(add_to_pool)
+	obj.index = index
+
+	return obj
+func get_sum_from_pool(index:int = 0):
+	var obj:Node2D
+	if not summon_pool[index].is_empty():
+		obj =  summon_pool[index].pop_back()
+		obj.spawn( summons[index].level)
+		obj.request_ready()
+	if obj == null:
+		obj = summons[index].duplicate(7)
+		obj.over.connect(add_sum_to_pool)
+	obj.index = index
+
+	return obj
 #生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
 func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0):
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
-				var new_attack = attack_nodes[select_from_luck()].duplicate()
+				var new_attack = get_atk_from_pool(select_from_luck())
+				parent_node.add_child(new_attack)
 				if parent_node != $".":
 					new_attack.position = generate_position
+
 
 				else:
 
 					new_attack.global_position = generate_position
-					#new_attack.rotation = generate_rotation
 				new_attack.batch_num = batch_num
-				parent_node.add_child(new_attack)
+
 
 	else:
-		for attack_node in attack_nodes:
+		for index in attack_nodes.size():
 			if parent_node != null:
-				#TODO： duplicate15与7的性能区别？
-				var new_attack = attack_node.duplicate(7)
-
-				if parent_node != $".":
-						new_attack.global_position = parent_node.global_position + gen_position
-						#new_attack.rotation = generate_rotation
-				else:
-						new_attack.global_position = generate_position
-						#new_attack.rotation = generate_rotation
-				new_attack.batch_num = batch_num
+				var new_attack = get_atk_from_pool(index)
 				parent_node.add_child(new_attack)
+				if parent_node != $".":
+					new_attack.position = generate_position
+
+				else:
+					new_attack.global_position = generate_position
+
+				new_attack.batch_num = batch_num
+
 
 #生成单次召唤物 TODO：随机种类召唤物
-func single_summon(generate_position,generate_rotation):
+func single_summon(generate_position,generate_rotation,parent_node):
 	if not active:
 		return
-	#if routine_info.has('special_creating_attack'):
-		#match routine_info.special_creating_attack:
-			#'probability':
-				#var new_attack = attack_nodes[select_from_luck()].duplicate()
-#
-				#new_attack.global_position = generate_position
-				#new_attack.rotation = generate_rotation
-				#$".".add_child(new_attack)
-#
-	#else:
-	for sumnode in summons:
-			var new_sum  = sumnode.duplicate()
-			new_sum.global_position = generate_position
+
+	for index in summons.size():
+			var new_sum  = get_sum_from_pool(index)
 			$".".add_child(new_sum)
+			new_sum.global_position = generate_position
+
 
 #随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
 func select_from_luck():
@@ -179,6 +205,7 @@ func select_from_luck():
 
 #根据group升级招式，level1没有属性提升且算法会数组越界所以特判
 func upgrade_routine(group):
+	#clear_pool()
 	if not routine_info.has("upgrade_group"):
 		return
 	if routine_info.upgrade_group != group:
@@ -191,11 +218,9 @@ func upgrade_routine(group):
 
 #招式初始化时使用，按表将需要使用的攻击加入子节点并使其休眠，生成攻击时复制其
 func add_attack(id):
-	var attack_info = table.Attack[id].duplicate()
+	var attack_info = table.Attack[id].duplicate(true)
 
 
-	#print(Time.get_ticks_msec())
-	#print("res://scene/attack/attack_ins/"+id+".tscn")
 	var attack_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
 
 	attack_pre.attack_info = attack_info
@@ -208,7 +233,7 @@ func add_attack(id):
 
 #招式初始化时使用，按表将需要使用的召唤物加入子节点并使其休眠，生成攻击时复制其
 func add_summon(id):
-	var summon_info = table.Summoned[id].duplicate()
+	var summon_info = table.Summoned[id].duplicate(true)
 
 	var summon_pre = load("res://scene/summon/summon_ins/"+id+".tscn").instantiate()
 
@@ -218,15 +243,14 @@ func add_summon(id):
 
 	add_child(summon_pre)
 	return summon_pre
+func _exit_tree() -> void:
 
+	clear_pool()
 #销毁所有子节点，销毁招式
 func destroy():
 	active = false
-	attack_nodes.clear()
-	summons.clear()
-	print('routine destroy')
-
+	clear_pool()
 	for child in get_children():
 
-			child.queue_free()
+		child.queue_free()
 	queue_free()

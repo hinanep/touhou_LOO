@@ -3,6 +3,9 @@ class_name summon extends Node2D
 
   }
 signal shoot
+var index =0
+signal over(this_node)
+var	recycling = false
 @export var level = 0
 
 var node_active = true
@@ -10,8 +13,44 @@ var hp
 var target_location:Vector2
 var max_level = 0
 @export var damage_source = ''
-func _ready():
+func spawn(true_level:int) -> void:
+	if node_active:
+		await tree_entered
+		recycling = false
+		level = true_level
 
+func reinit():
+
+	if summon_info.type == 'boost':
+		return
+
+	if summon_info.has('cd') and summon_info.cd > 0:
+		var cd_timer = $cd_timer
+
+		cd_timer.wait_time = summon_info.cd
+		cd_timer.start()
+
+	var duration = $duration
+	var dt = player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
+	if dt>0:
+		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
+		duration.start()
+
+	target_location = player_var.player_node.global_position
+	on_create()
+	if summon_info.has('movement'):
+		if summon_info.movement=='sandsoldier':
+			$rediretion.wait_time = summon_info.movement_parameter[0]
+			$rediretion.start()
+			await get_tree().create_timer(0.1).timeout
+			rediretion()
+
+var first_ready = true
+func _ready():
+	if not first_ready:
+		reinit()
+		return
+	first_ready = false
 	name = summon_info.id
 	set_active(node_active)
 	if summon_info.type == 'base':
@@ -21,8 +60,6 @@ func _ready():
 		SignalBus.cp_del.connect(boost_active.bind(false))
 		return
 
-	#if table.Upgrade.has(summon_info.upgrade_group):
-		#max_level = table.Upgrade[summon_info.upgrade_group].level
 	SignalBus.upgrade_group.connect(upgrade_summon)
 
 	if summon_info.has('special'):
@@ -31,32 +68,16 @@ func _ready():
 
 	if summon_info.has('cd') and summon_info.cd > 0:
 		var cd_timer = $cd_timer
-
-		cd_timer.wait_time = summon_info.cd
 		cd_timer.timeout.connect(gen_routines)
-		cd_timer.start()
 
 	var duration = $duration
 	var dt = player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
 	if dt>0:
-		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
-
 		duration.timeout.connect(destroy.bind(summon_info.id))
-		duration.start()
+
+
 	top_level = true
-	global_position = position
-	var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
-
-	if not target.is_empty():
-		target_location = target[0].global_position
-	else:
-		target_location = global_position
-
-	on_create()
-	if summon_info.has('movement'):
-		if summon_info.movement=='sandsoldier':
-			$rediretion.wait_time = summon_info.movement_parameter[0]
-			rediretion()
+	reinit()
 
 
 func _physics_process(delta: float) -> void:
@@ -68,9 +89,9 @@ func _physics_process(delta: float) -> void:
 func rediretion():
 
 		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
-
 		if not target.is_empty():
-			target_location = target[0].global_position
+			if is_instance_valid(target[0]):
+				target_location = target[0].global_position
 
 func on_create():
 	if summon_info.has('creating_routine'):
@@ -101,6 +122,9 @@ func scdestroy(scid):
 
 
 func destroy(id):
+	if recycling:
+		return
+	recycling = true
 	if summon_info.id != id:
 		return
 	if summon_info.has('destroying_routine'):
@@ -109,7 +133,9 @@ func destroy(id):
 	for child in get_children():
 		if child.has_method('destroy'):
 			child.destroy('summon_destroy')
-	queue_free()
+	get_parent().call_deferred('remove_child',$".")
+	await get_tree().physics_frame
+	over.emit($".")
 
 func set_active(active:bool):
 	$cd_timer.paused = !active

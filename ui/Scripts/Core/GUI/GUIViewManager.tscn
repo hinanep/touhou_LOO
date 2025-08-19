@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hstbyppinrro"]
 
-[ext_resource type="Script" path="res://ui/Scripts/Core/GUI/GUIViewManager.gd" id="1_bpc8u"]
+[ext_resource type="Script" uid="uid://1ftrt8o4ivhr" path="res://ui/Scripts/Core/GUI/GUIViewManager.gd" id="1_bpc8u"]
 
 [node name="GuiViewManager" type="Node" node_paths=PackedStringArray("guiRoot")]
 script = ExtResource("1_bpc8u")

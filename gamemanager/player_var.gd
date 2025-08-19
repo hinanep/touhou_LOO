@@ -59,6 +59,7 @@ var CardManager :CardManagers
 var SpawnManager :SpawnManagers
 var PassiveManager :PassiveManagers
 var CpManager :CpManagers
+var MonsterAvoidanceManager
 var dep:dep_formula = dep_formula.new()
 var player_hp=0:
 	get:
@@ -114,7 +115,14 @@ var exp_need:
 		return level*12 +12
 
 var damage_sum
-
+var worldenvir:WorldEnvironment
+var underrecycle_tween = []
+func _clear_all_tweens():
+	for tween:Tween in underrecycle_tween:
+		if tween and tween.is_valid():
+			print('clear tween')
+			tween.kill()
+	underrecycle_tween.clear()
 func _ready() -> void:
 	ini()
 func _physics_process(delta: float) -> void:
@@ -139,6 +147,8 @@ func new_scene():
 	CardManager = CardManagers.new()
 	PassiveManager = PassiveManagers.new()
 	CpManager = CpManagers.new()
+	MonsterAvoidanceManager = get_node("/root/MonsterAvoidanceManager")
+	MonsterAvoidanceManager.Reset()
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
@@ -194,13 +204,15 @@ func shake_screen_damage(damage):
 	var shakei_offsetx = 30 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec())
 	var shakei_offsety = 30 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+1)
 	var shakei_angle = 0.3 * pow(damage,2) * noise.get_noise_1d(Time.get_ticks_msec()+2)
+	if not camera:
+		return
 	camera.position = Vector2(shakei_offsetx,shakei_offsety)
 	camera.rotation = shakei_angle
 
 func shake_screen(time,interval,intensity):
 
 	var ct:Tween = camera.create_tween().set_loops(time/interval)
-
+	underrecycle_tween.append(ct)
 	ct.tween_callback(func():
 		shake_damage+=intensity
 		).set_delay(interval)
@@ -210,6 +222,7 @@ func shake_screen(time,interval,intensity):
 func boss_coming(id:String):
 			SignalBus.kill_all.emit()
 			var mv :Tween= player_var.player_node.create_tween()
+			player_var.underrecycle_tween.append(mv)
 			var tmpcamera:Camera2D = get_viewport().get_camera_2d()
 			tmpcamera.top_level = true
 			mv.set_parallel()
@@ -235,6 +248,7 @@ func boss_coming(id:String):
 			boss.position = Vector2(2000,1000)
 			tmp_scene.get_node('SpawnManager').add_mob(boss)
 			mv = boss.create_tween()
+			player_var.underrecycle_tween.append(mv)
 			mv.tween_property(boss,'global_position',Vector2(600,0),3)
 			await mv.finished
 			boss.fight_begin()
@@ -252,7 +266,7 @@ func screen_black(intensity:float,in_time:float,duration_time:float,out_time:flo
 	var black_mo = player_node.get_node('black')
 
 	var blacking = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-
+	player_var.underrecycle_tween.append(blacking)
 	blacking.tween_property(black_mo,"modulate",Color(1,1,1,intensity),in_time)
 	blacking.tween_interval(duration_time)
 	blacking.tween_property(black_mo,"modulate",Color(1,1,1,0),out_time)

@@ -15,12 +15,14 @@ script = ExtResource("1_vqm2k")
 [node name="testhud" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="testhud"]
+anchors_preset = -1
 offset_left = -9.0
 offset_top = -9.0
 offset_right = -1.0
 offset_bottom = -1.0
 
 [node name="levelup" type="TextureButton" parent="testhud"]
+anchors_preset = -1
 offset_left = 45.0
 offset_top = 376.0
 offset_right = 175.0
@@ -43,6 +45,7 @@ text = "升级"
 fit_content = true
 
 [node name="moremana" type="TextureButton" parent="testhud"]
+anchors_preset = -1
 offset_left = 43.0
 offset_top = 512.0
 offset_right = 173.0
@@ -65,6 +68,7 @@ text = "回蓝"
 fit_content = true
 
 [node name="invincible" type="TextureButton" parent="testhud"]
+anchors_preset = -1
 offset_left = 45.0
 offset_top = 242.0
 offset_right = 175.0
@@ -88,6 +92,7 @@ fit_content = true
 
 [node name="TextEdit" type="TextEdit" parent="testhud"]
 visible = false
+anchors_preset = -1
 offset_left = 9.0
 offset_top = 800.0
 offset_right = 432.0
@@ -95,6 +100,7 @@ offset_bottom = 904.0
 
 [node name="Button2" type="Button" parent="testhud"]
 visible = false
+anchors_preset = -1
 offset_left = 12.0
 offset_top = 916.0
 offset_right = 95.0
@@ -102,12 +108,14 @@ offset_bottom = 972.0
 
 [node name="Button3" type="Button" parent="testhud"]
 visible = false
+anchors_preset = -1
 offset_left = 112.0
 offset_top = 916.0
 offset_right = 191.0
 offset_bottom = 975.0
 
 [node name="upgrade_layer_vis" type="TextureButton" parent="testhud"]
+anchors_preset = -1
 offset_left = 188.0
 offset_top = 516.0
 offset_right = 318.0
@@ -130,6 +138,7 @@ text = "技能选择"
 fit_content = true
 
 [node name="summon_layer_vis" type="TextureButton" parent="testhud"]
+anchors_preset = -1
 offset_left = 189.0
 offset_top = 366.0
 offset_right = 319.0
@@ -156,6 +165,7 @@ layer = 2
 visible = false
 
 [node name="summon" type="TextureButton" parent="summon_layer"]
+anchors_preset = -1
 offset_left = 1412.0
 offset_top = 867.0
 offset_right = 1542.0
@@ -177,6 +187,7 @@ text = "召唤"
 
 [node name="zako" type="RichTextLabel" parent="summon_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1266.0
 offset_top = 88.00001
 offset_right = 1691.0
@@ -198,6 +209,7 @@ columns = 4
 
 [node name="elite" type="RichTextLabel" parent="summon_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1258.0
 offset_top = 346.0
 offset_right = 1683.0
@@ -219,6 +231,7 @@ columns = 4
 
 [node name="boss" type="RichTextLabel" parent="summon_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1251.0
 offset_top = 584.0
 offset_right = 1741.0
@@ -296,6 +309,7 @@ visible = false
 
 [node name="card" type="RichTextLabel" parent="upgrade_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1383.0
 offset_top = 93.0
 offset_right = 1868.0
@@ -316,6 +330,7 @@ columns = 6
 
 [node name="skill" type="RichTextLabel" parent="upgrade_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1382.0
 offset_top = 180.0
 offset_right = 1897.0
@@ -336,6 +351,7 @@ columns = 6
 
 [node name="psv" type="RichTextLabel" parent="upgrade_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1382.0
 offset_top = 469.0
 offset_right = 1887.0
@@ -356,6 +372,7 @@ columns = 7
 
 [node name="cp" type="RichTextLabel" parent="upgrade_layer"]
 clip_contents = false
+anchors_preset = -1
 offset_left = 1383.0
 offset_top = 335.0
 offset_right = 1968.0
@@ -375,6 +392,7 @@ scale = Vector2(0.75, 0.75)
 columns = 6
 
 [node name="update" type="TextureButton" parent="upgrade_layer"]
+anchors_preset = -1
 offset_left = 1404.0
 offset_top = 701.0
 offset_right = 1534.0
@@ -395,6 +413,7 @@ scale = Vector2(2, 2)
 text = "升级选定"
 
 [node name="delete" type="TextureButton" parent="upgrade_layer"]
+anchors_preset = -1
 offset_left = 1600.0
 offset_top = 702.0
 offset_right = 1730.0
@@ -419,6 +438,7 @@ layer = 12
 
 [node name="point" type="TextureRect" parent="point"]
 z_index = 1000
+anchors_preset = -1
 offset_right = 64.0
 offset_bottom = 64.0
 scale = Vector2(0.3, 0.3)

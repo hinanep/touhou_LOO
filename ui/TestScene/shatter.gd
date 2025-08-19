@@ -64,6 +64,7 @@ func start_shatter_effect():
 
 	$Maskalp.material.set_shader_parameter('begin',true)
 	var tween = create_tween()
+	player_var.underrecycle_tween.append(tween)
 	#tween.tween_interval(2.0)
 	tween.set_parallel(true)
 
@@ -117,7 +118,7 @@ func tween_fragment(index:int):
 	await get_tree().create_timer(0.8).timeout
 	# 创建动画来模拟爆炸效果
 	var tween = create_tween()
-
+	player_var.underrecycle_tween.append(tween)
 
 
 	tween.set_parallel(true)

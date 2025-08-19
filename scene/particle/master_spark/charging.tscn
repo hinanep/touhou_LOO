@@ -24,6 +24,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 8.0
+emission_ring_cone_angle = 90.0
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 direction = Vector3(0, 0, 0)

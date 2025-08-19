@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene load_steps=18 format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" uid="uid://tbsm0kj0lheg" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -36,10 +36,25 @@ shader_parameter/grayLimit = 0.0
 shader_parameter/phase = -1.0
 shader_parameter/begin = true
 
+[sub_resource type="Environment" id="Environment_xciso"]
+background_mode = 3
+glow_enabled = true
+glow_levels/3 = 0.0
+glow_levels/5 = 0.5
+glow_levels/6 = 0.5
+glow_levels/7 = 0.1
+glow_intensity = 2.06
+glow_strength = 1.07
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 0.88
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 1.0
+adjustment_enabled = true
+
 [node name="TestScene" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
@@ -95,7 +110,7 @@ script = ExtResource("7_7uj5j")
 [node name="d4c" type="Node2D" parent="SpawnManager"]
 script = ExtResource("5_pafhp")
 
-[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+[node name="color" type="CanvasModulate" parent="."]
 color = Color(0.86329997, 0.94866, 0.97, 1)
 
 [node name="Node2D" parent="." instance=ExtResource("5_ep1gx")]
@@ -117,3 +132,6 @@ material = SubResource("ShaderMaterial_0mack")
 instance_shader_parameters/brightness = 1.0
 position = Vector2(960, 540)
 texture = ExtResource("9_0mack")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xciso")

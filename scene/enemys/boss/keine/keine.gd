@@ -21,6 +21,7 @@ func _ready():
 	drops_path = "drops_plate"
 	AudioManager.play_once_loop_bgm('music_keine_intro','music_keine_loop')
 
+	collisionshape = $CollisionShape2D
 	$buff.brittle_modify = 0
 	super._ready()
 	collision_mask = 32
@@ -79,6 +80,7 @@ func dush(speed,time,charge_time):
 	move_func = move_dush
 
 	time_tween = create_tween()
+	player_var.underrecycle_tween.append(time_tween)
 	time_tween.tween_interval(time)
 	time_tween.tween_callback(func():
 		move_func = move_stay
@@ -127,8 +129,8 @@ func start_progess(phase:int):
 	move_func = move_stay
 	set_cardstate(mob_info.hp_hud)
 	atkable = false
-	create_tween().tween_property($".",'global_position',Vector2(600,0),1)
-
+	var t = create_tween().tween_property($".",'global_position',Vector2(600,0),1)
+	player_var.underrecycle_tween.append(t)
 	$melee_damage_area.scale = Vector2(mob_info.physical_radius,mob_info.physical_radius)
 	invincible = true
 
@@ -142,11 +144,10 @@ func start_progess(phase:int):
 
 
 	var reincarnation_tween = create_tween()
-	#reincarnation_tween.tween_property($".","hp",mob_info.health,3*(mob_info.health-hp)/mob_info.health)
-	#reincarnation_tween.tween_property($ProgressBar,"value",100,3*(mob_info.health-hp)/mob_info.health)
+	player_var.underrecycle_tween.append(reincarnation_tween)
 	reincarnation_tween.set_parallel()
 	reincarnation_tween.tween_property($".","hp",mob_info.health,3)
-	reincarnation_tween.tween_property($ProgressBar,"value",100,3)
+	reincarnation_tween.tween_property(progress_bar,"value",100,3)
 	await reincarnation_tween.finished
 	reincarnation_over()
 
@@ -271,7 +272,7 @@ func popup() -> void:
 	panel.scale = Vector2(0.6,0.6)
 	$hud/card.visible = true
 	var flush:Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
-
+	player_var.underrecycle_tween.append(flush)
 	flush.tween_property(panel,'modulate',Color(1,1,1,0.1),3)
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
@@ -280,7 +281,7 @@ func popup() -> void:
 	flush = null
 
 	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
-
+	player_var.underrecycle_tween.append(expand)
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
 	expand.tween_property(text,'scale',Vector2(0.6,0.6),2)
 
@@ -291,7 +292,7 @@ func popup() -> void:
 	expand = null
 
 	var disappear = panel.create_tween()
-
+	player_var.underrecycle_tween.append(disappear)
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property(panel,'scale',Vector2(0.5,0),0.5)
 	disappear.set_parallel().tween_property(text,'scale',Vector2(0.2,0.2),0.5)

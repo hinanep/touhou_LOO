@@ -51,8 +51,9 @@ func display_next_dialogue():
 		if not dialogue.bgm.is_empty():
 			AudioManager.stop_background_bgm()
 			var tw = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).tween_callback(func(): AudioManager.play_background_bgm(dialogue.bgm)).set_delay(3)
-			tw = null
+			player_var.underrecycle_tween.append(tw)
 		tween = create_tween()
+		player_var.underrecycle_tween.append(tween)
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		content.text = ""
 		for character in dialogue.content:

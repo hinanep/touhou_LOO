@@ -23,12 +23,12 @@ var mob_info = {
 	"speed": 50.0
   }
 
-@onready var progress_bar = $ProgressBar
-
+@onready var progress_bar = $AvoidanceModule
+@onready var collisionshape = $buff
 @onready var melee_damage_area = $melee_damage_area
 @onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
 
-
+@onready var sprite = $AnimatedSprite2D
 
 #@onready var navi = $NavigationAgent2D
 var movement:Callable
@@ -42,34 +42,36 @@ const GRID_CELL_SIZE = Vector2(200, 200)
 var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未知
 
 # --- 避障参数 ---
-# @export 用于让这些变量在 Godot 编辑器的检查器面板中可见并可编辑
-var shake_limit = 0.99
-var speed_sq = 0
-# 避障检测半径：只对进入这个半径的邻居做出反应
-var avoidance_radius: float = 100
-# 避障力度：推开力的强度系数
-var avoidance_strength: float = 200.0
-# 查询邻居数量：查找最近的多少个邻居来进行避障计算 (不必太多)
-var avoidance_neighbor_query_count: int = 6
-const searching_time = 0.1
 var scalex = 0.28
 var scaledir = 1
+
+# 1. 定义怪物属性。C# 模块将会读取这些值。
+@export var radius: float = 80.0
+@export var max_speed: float = 50
+
+# 2. 获取对 C# 模块子节点的引用
+@onready var avoidance_module = $AvoidanceModule
+
 func _ready():
 	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
 	name = str(mob_id)
 	set_z_index(1)
 	set_z_as_relative(false)
-	scalex = $AnimatedSprite2D.scale.x
+	scalex = sprite.scale.x
 	name = mob_info.id
 
 	hp = mob_info.health
 
-	$ProgressBar._set_size(Vector2(144,20))
+	progress_bar._set_size(Vector2(144,20))
 	collision_layer = 2
 	collision_mask = 0
+	radius = collisionshape.shape.radius / 1
+	max_speed =mob_info.speed
 	if mob_info.has('type') and mob_info["type"] == 'elite':
 		drops_path = "drops_plate"
 		set_scale(Vector2(2,2))
+		radius *= 2
+	avoidance_module.regis()
 	melee_battle_ready(mob_info.physical_damage == 0)
 
 	match mob_info.movement:
@@ -97,12 +99,12 @@ func _ready():
 		SignalBus.kill_all.connect(died.bind(true))
 		bullet_battle_ready(mob_info.magical_damage == 0)
 
-
-
 	last_position = global_position
 	if player_node:
 		velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
-	speed_sq = mob_info.speed*mob_info.speed
+
+	# 连接屏幕可见性相关的信号
+	_connect_screen_signals()
 
 	choose_default_anime()
 var d = 0
@@ -115,102 +117,35 @@ func _physics_process(delta):
 
 	if moveable:
 		movement.call()
-	if not global_position.is_equal_approx(last_position):
-
-		player_var.SpawnManager.update_enemy_position_in_grid(self, last_position, global_position)
-
-		# 更新上一帧的位置
-		last_position = global_position
-	$AnimatedSprite2D.scale.x = clampf($AnimatedSprite2D.scale.x + 0.05 *scaledir,-scalex,scalex)
+	sprite.scale.x = clampf(sprite.scale.x + 0.05 *scaledir,-scalex,scalex)
 
 func choose_default_anime():
 	var df = []
-	for anim:String in $AnimatedSprite2D.sprite_frames.get_animation_names():
+	for anim:String in sprite.sprite_frames.get_animation_names():
 		if anim.contains('default'):
 			df.push_back(anim)
-	$AnimatedSprite2D.animation = df[randi_range(0,df.size()-1)]
+	sprite.animation = df[randi_range(0,df.size()-1)]
 
 func get_desired_velocity():
 	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)
-var neighbors: Array[Node]
-func compute_safevelocity(body=self,idea_velocity = 0):
 
-	#if not is_inscreen:
-		#idea_velocity = get_desired_velocity()
-		#body.velocity = idea_velocity
-		#move_and_slide()
-		#return
-	#if d<searching_time:
-		#move_and_slide()
-		#return
-	if d>searching_time:
-		d=0
-		neighbors = player_var.SpawnManager.find_closest_enemies(
-		global_position,
-		avoidance_neighbor_query_count,
-		avoidance_radius,
-		self, # 排除自己
-		true
-		)
-
-	var avoidance_force: Vector2 = Vector2.ZERO
-	idea_velocity = get_desired_velocity()
-	#避免贴近玩家
-	if(idea_velocity.length_squared()<speed_sq*shake_limit*0.1):
-		body.velocity = Vector2.ZERO
-		return
-	if idea_velocity.x > 0:
-		scaledir = -1
-	else:
-		scaledir = 1
-
-		# 查找附近需要避开的邻居
-		# 注意：使用 avoidance_radius 作为搜索半径，并排除自身 (self)
-
-	if neighbors.is_empty():
-		body.velocity = idea_velocity
-		move_and_slide()
-		return
-		# 遍历找到的邻居
-	for neighbor in neighbors:
-		if not is_instance_valid(neighbor):
-			continue # 确保邻居仍然有效
-
-		var to_neighbor: Vector2 = neighbor.global_position - global_position
-		var dist_sq: float = to_neighbor.length_squared()
-
-				# 计算远离邻居的方向向量 (单位向量)
-		var away_direction = -to_neighbor.normalized()
-		if(away_direction.dot(idea_velocity)<0):
-			away_direction *= 12
-				# 累加避障力
-		avoidance_force += away_direction * avoidance_strength * (1.0 - sqrt(dist_sq) / avoidance_radius)
-
-	# --- 3. 结合速度与力 ---
-
-	var final_velocity:Vector2 = idea_velocity + avoidance_force
-
-	# 限制最终速度不超过某个最大值
-
-	final_velocity = final_velocity.limit_length(mob_info.speed)
-	#避免抖动
-	if(final_velocity.length_squared()<speed_sq*shake_limit) or final_velocity.dot(idea_velocity)<0:
-		body.velocity = Vector2.ZERO
-
-		return
-
-	# 将最终计算的速度赋给 CharacterBody2D 的 velocity 属性
-	body.velocity = final_velocity
-	move_and_slide()
 var is_turning = false
 func turn_to_right(to_right:bool):
 	pass
 
 #移动方式：走向玩家
 func move_to_target():
+	var idea_v = get_desired_velocity()
 
-	compute_safevelocity(self)
+	var safe_velocity = avoidance_module.CalculateSafeVelocity(idea_v)
 
+	set_velocity(safe_velocity)
+
+	if idea_v.x > 0:
+		scaledir = -1
+	else:
+		scaledir = 1
+	move_and_slide()
 func stay():
 	pass
 
@@ -248,17 +183,51 @@ func died(disppear = false):
 	invincible = true
 	atkable = false
 	set_physics_process(false)
-	if($AnimatedSprite2D.sprite_frames.has_animation('die')):
-		$AnimatedSprite2D.play('die')
-		await $AnimatedSprite2D.animation_finished
 
+	# 清理所有信号连接
+	_cleanup_connections()
 
+	if(sprite.sprite_frames.has_animation('die')):
+		sprite.play('die')
+		await sprite.animation_finished
 	else:
-		var tween = create_tween().tween_property($AnimatedSprite2D,'skew',PI/2,0.5)
+		var tween = create_tween().tween_property(sprite,'skew',PI/2,0.5)
+		player_var.underrecycle_tween.append(tween)
 		await tween.finished
-		#tween = null
+		# 清理tween引用
+		if tween and is_instance_valid(tween):
+			tween.kill()
+			player_var.underrecycle_tween.erase(tween)
 
 	queue_free()
+
+# 清理所有信号连接
+func _cleanup_connections():
+	# 断开体术攻击相关的信号连接
+	if melee_damage_area and is_instance_valid(melee_damage_area):
+		if melee_damage_area.body_entered.is_connected(melee_damage_area_body_entered):
+			melee_damage_area.body_entered.disconnect(melee_damage_area_body_entered)
+		if melee_damage_area.body_exited.is_connected(_on_melee_damage_area_body_exited):
+			melee_damage_area.body_exited.disconnect(_on_melee_damage_area_body_exited)
+
+	if melee_attack_cd and is_instance_valid(melee_attack_cd):
+		if melee_attack_cd.timeout.is_connected(melee_attack_cd_timeout):
+			melee_attack_cd.timeout.disconnect(melee_attack_cd_timeout)
+
+	# 断开屏幕可见性相关的信号连接
+	var screen_notifier = get_node_or_null("VisibleOnScreenEnabler2D")
+	if screen_notifier and is_instance_valid(screen_notifier):
+		if screen_notifier.screen_entered.is_connected(_on_visible_on_screen_enabler_2d_screen_entered):
+			screen_notifier.screen_entered.disconnect(_on_visible_on_screen_enabler_2d_screen_entered)
+		if screen_notifier.screen_exited.is_connected(_on_visible_on_screen_enabler_2d_screen_exited):
+			screen_notifier.screen_exited.disconnect(_on_visible_on_screen_enabler_2d_screen_exited)
+
+	# 断开离屏消失定时器
+	var outscreen_timer = get_node_or_null("outscreen_disppear")
+	if outscreen_timer and is_instance_valid(outscreen_timer):
+		if outscreen_timer.timeout.is_connected(_on_outscreen_disppear_timeout):
+			outscreen_timer.timeout.disconnect(_on_outscreen_disppear_timeout)
+
 #掉落
 func drop():
 	SignalBus.drop.emit(drops_path,global_position,drop_num)
@@ -271,9 +240,14 @@ func melee_battle_ready(disable = false):
 		return
 	# 使用call_deferred避免在物理查询刷新期间修改monitoring
 	call_deferred("set_melee_monitoring", true)
-	melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
-	melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
-	melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
+
+	# 确保信号只连接一次
+	if not melee_damage_area.body_entered.is_connected(melee_damage_area_body_entered):
+		melee_damage_area.body_entered.connect(melee_damage_area_body_entered)
+	if not melee_attack_cd.timeout.is_connected(melee_attack_cd_timeout):
+		melee_attack_cd.timeout.connect(melee_attack_cd_timeout)
+	if not melee_damage_area.body_exited.is_connected(_on_melee_damage_area_body_exited):
+		melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
 
 # 延迟设置体术攻击Area2D监控状态
 func set_melee_monitoring(active: bool):
@@ -372,3 +346,19 @@ func _on_outscreen_disppear_timeout() -> void:
 	else:
 		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 1000
 		print('tp to player')
+func highlight():
+	$AnimatedSprite2D.modulate = Color(0,1,1,1)
+
+# 连接屏幕可见性相关的信号
+func _connect_screen_signals():
+	var screen_notifier = get_node_or_null("VisibleOnScreenEnabler2D")
+	if screen_notifier:
+		if not screen_notifier.screen_entered.is_connected(_on_visible_on_screen_enabler_2d_screen_entered):
+			screen_notifier.screen_entered.connect(_on_visible_on_screen_enabler_2d_screen_entered)
+		if not screen_notifier.screen_exited.is_connected(_on_visible_on_screen_enabler_2d_screen_exited):
+			screen_notifier.screen_exited.connect(_on_visible_on_screen_enabler_2d_screen_exited)
+
+	var outscreen_timer = get_node_or_null("outscreen_disppear")
+	if outscreen_timer:
+		if not outscreen_timer.timeout.is_connected(_on_outscreen_disppear_timeout):
+			outscreen_timer.timeout.connect(_on_outscreen_disppear_timeout)

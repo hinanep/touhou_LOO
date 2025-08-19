@@ -1,11 +1,13 @@
 extends Node2D
 class_name attack
 
-@export var level =0
+var level =0
 #击杀目标发出的信号
 signal kill(global_position)
 signal start
-
+#所属对象池的索引
+var index = 0
+signal over(this_node)
 @export var damage_source :String
 @export var attack_info = {
 	  }
@@ -27,10 +29,10 @@ var dot_on = false
 #组件
 var lock_compo
 var move_compo
-
+var recycling = false
 func first_init():
 	const cont = 2
-
+	name = attack_info.id
 	if attack_info.type == 'base':
 		SignalBus.atk_boost.connect(recive_boost,cont)
 	elif attack_info.type == 'boost':
@@ -56,9 +58,36 @@ func first_init():
 		$damage_area.collision_mask = 1
 	damage_source = attack_info.damage_belong
 
-#初始化
-func _ready():
+func spawn(true_level:int) -> void:
+	penetration = 0
+	start.emit()
 
+
+	recycling = false
+	if not attack_info.has("upgrade_group") or level == true_level:
+		return
+	upgrade_to_level(attack_info.upgrade_group,true_level)
+
+func reinit(position:Vector2 = global_position):
+	move_compo.reinit(position)
+	if attack_info.has('duration') and attack_info.duration>0.1:
+		if attack_info.has('duration_dependence') :
+				$duration_timer.wait_time = player_var.dep.operate_dep(attack_info.duration_dependence,attack_info.duration)
+		else:
+				$duration_timer.wait_time = attack_info.duration
+	if node_active:
+		$duration_timer.start()
+		start.emit()
+		if not attack_info.reference_system == 'world':
+			global_position = position
+
+#初始化
+var first_ready = true
+func _ready():
+	if not first_ready:
+		reinit(global_position)
+		return
+	first_ready = false
 	if attack_info.has('duration') and attack_info.duration>0.1:
 
 		if attack_info.has('duration_dependence') :
@@ -68,12 +97,7 @@ func _ready():
 
 				$duration_timer.wait_time = attack_info.duration
 
-
-	name = attack_info.id
-	#first_init()
 	set_active(node_active)
-
-
 	if node_active:
 		$duration_timer.start()
 		start.emit()
@@ -81,11 +105,7 @@ func _ready():
 			top_level = true
 		else:
 			global_position = position
-
-
 	lock_compo = $lock_component.init($".",attack_info.get('locking_type'),lock_routine)
-
-
 	move_compo = $move_component.init($".",attack_info,lock_compo,diretion_routine)
 
 
@@ -213,11 +233,18 @@ func _on_damage_area_body_entered(body):
 
 #摧毁本攻击
 func destroy(message:String=''):
-
+	if recycling:
+		return
+	recycling = true
 	if attack_info.has('destroying_routine_creation'):
 		for destroy_gen in attack_info.destroying_routine_creation:
 			SignalBus.trigger_routine_by_id.emit(destroy_gen,true,global_position,rotation,null)
-	queue_free()
+	get_parent().call_deferred('remove_child',$".")
+	await get_tree().physics_frame
+	position = Vector2.ZERO
+	over.emit($".")
+
+	#queue_free()
 
 ##激活cp效果 TODO：boost似乎还没有实现
 #func cp_active():
@@ -290,24 +317,44 @@ func upgrade_attack(group):
 		return
 	if attack_info.upgrade_group != group:
 		return
+	if node_active:
+		return
 	level += 1
 	if level == 1:
 		return
+	upgrade_to_level(group,level)
+
+
+	#if table.Upgrade[group].has('damage_addition'):
+		#attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
+#
+	#if table.Upgrade[group].has('bullet_speed_addition'):
+#
+		#for i in attack_info.moving_parameter.size():
+			#if i == 1 and attack_info.moving_rule != 'polar':
+				#continue
+			#attack_info.moving_parameter[i]*=(1+table.Upgrade[group].bullet_speed_addition[level-1])/(1+table.Upgrade[group].bullet_speed_addition[level-2])
+	#if table.Upgrade[group].has('duration_addition'):
+		#attack_info.duration *=(1+ table.Upgrade[group].duration_addition[level-1]) / (1+table.Upgrade[group].duration_addition[level-2])
+	#if table.Upgrade[group].has('range_addition'):
+		#for i in attack_info.size:
+			#i*=(1+ table.Upgrade[group].range_addition[level-1]) / (1+table.Upgrade[group].range_addition[level-2])
+
+func upgrade_to_level(group,level:int):
+	var oriinfo = table.Attack[attack_info.id]
 	if table.Upgrade[group].has('damage_addition'):
-		attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
+		attack_info.damage = oriinfo.damage * (1+ table.Upgrade[group].damage_addition[level-1])
 
 	if table.Upgrade[group].has('bullet_speed_addition'):
-
 		for i in attack_info.moving_parameter.size():
 			if i == 1 and attack_info.moving_rule != 'polar':
 				continue
-			attack_info.moving_parameter[i]*=(1+table.Upgrade[group].bullet_speed_addition[level-1])/(1+table.Upgrade[group].bullet_speed_addition[level-2])
+			attack_info.moving_parameter[i] = oriinfo.moving_parameter[i] * (1+table.Upgrade[group].bullet_speed_addition[level-1])
 	if table.Upgrade[group].has('duration_addition'):
-		attack_info.duration *=(1+ table.Upgrade[group].duration_addition[level-1]) / (1+table.Upgrade[group].duration_addition[level-2])
+		attack_info.duration =oriinfo.duration * (1+ table.Upgrade[group].duration_addition[level-1])
 	if table.Upgrade[group].has('range_addition'):
-		for i in attack_info.size:
-			i*=(1+ table.Upgrade[group].range_addition[level-1]) / (1+table.Upgrade[group].range_addition[level-2])
-
+		for i in attack_info.size.size():
+			attack_info.size[i] =oriinfo.size[i] * (1+ table.Upgrade[group].range_addition[level-1])
 #离开屏幕时触发，销毁攻击
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	$exit_screen_timer.start()
@@ -317,9 +364,10 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 
 func _on_exit_screen_timer_timeout() -> void:
-	queue_free()
-	#destroy('cannot vis')
-	#call_deferred("destroy", 'cannot vis')
+	destroy('outofscreen')
+
 func set_bossing(is_boss):
+	if attack_info.damage_belong.contains('sc'):
+		return
 	if is_boss:
 		modulate.a = 0.15

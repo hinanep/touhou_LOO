@@ -31,6 +31,38 @@ var diretions = {
 
 			random='random',
 }
+func reinit(future_position:Vector2):
+	velocity = 0
+	diretion = Vector2(0,0)
+	acc = 0
+	polar_len = 0
+	polar_angle = 0
+	next_found_counter = 0
+	lock.find_next_target()
+	if attack_info.has('ri_dependence'):
+		match attack_info.ri_dependence:
+			'lock':
+				if lock.lock_target!=null:
+					body.rotation = future_position.angle_to_point(lock.lock_target.global_position)+deg_to_rad(attack_info.ri)
+				elif lock.lock_position!=null:
+					body.rotation = future_position.angle_to_point(lock.lock_position)+deg_to_rad(attack_info.ri)
+			'character':
+					body.rotation = player_var.player_diretion_angle
+	else:
+		body.rotation = deg_to_rad(attack_info.ri)
+	diretion = Vector2.from_angle(body.rotation)
+	if attack_info.has('moving_rule'):
+		match attack_info.moving_rule:
+			moving_rule.straight:
+				move_straight_init()
+			moving_rule.trail:
+				velocity = attack_info.moving_parameter[0] * diretion
+			moving_rule.sekibanki:
+				velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * player_var.bullet_speed_ratio * attack_info.moving_parameter[0]
+			moving_rule.polar:
+				polar_angle +=  attack_info.moving_parameter[0] + 120*body.batch_num
+
+
 func init(B,attack_in,lock_com:LockComponent,diretion_routine=Vector2(0,0)):
 	body = B
 	attack_info = attack_in

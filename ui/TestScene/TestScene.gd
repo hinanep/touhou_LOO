@@ -28,13 +28,22 @@ func _open():
 		$SpawnManager.add_mob(dummm)
 		#print(PresetManager.getpre('keine'))
 	#player_var.boss_coming('keine')
+	player_var.worldenvir = $WorldEnvironment
+	for i in  100:
+		summonhappy(Vector2(400,2*i))
 
-	#for i in  10:
-		#dummm = preload("res://scene/enemys/enemy_base/enemy_base.tscn").instantiate()
-		#dummm.position.x += 100
-		#$SpawnManager.add_mob(dummm)
+func summonhappy(p) -> void:
+	var tname = 'enm_memhappy'
+	var mob = PresetManager.getpre(tname)
+	if mob == null:
+		return
+	mob = mob.instantiate()
+	mob.global_position = p
+	mob.mob_info = table.Enemy[tname].duplicate()
 
+	mob.drop_num = 1.0
 
+	player_var.SpawnManager.add_mob(mob)
 	#for i in 2000:
 		#SignalBus.drop.emit("drops_p",%player.global_position+Vector2(randf_range(-1,1),randf_range(-1,1))*400)
 
@@ -55,3 +64,5 @@ func close():
 
 func close_self():
 	G.get_gui_view_manager().close_view(viewInstanceId)
+	# 清理所有计时器
+	player_var._clear_all_tweens()

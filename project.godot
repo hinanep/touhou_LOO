@@ -17,7 +17,7 @@ cmd_path="res://addons/GDExcelExporter/ee.exe"
 
 config/name="touhouSurvivors"
 run/main_scene="res://ui/game.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/flush_stdout_on_print.debug=false
 boot_splash/fullsize=false
 boot_splash/image="res://asset/pic/blue_plate.png"
@@ -31,6 +31,7 @@ PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.gd"
 SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
 RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
+MonsterAvoidanceManager="*res://gamemanager/MonsterAvoidanceManager/MonsterAvoidanceManager.cs"
 player_var="*res://gamemanager/player_var.gd"
 G="*res://ui/Scripts/G.gd"
 
@@ -48,6 +49,10 @@ window/size/mode=2
 window/size/transparent=true
 window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
+
+[dotnet]
+
+project/assembly_name="touhouSurvivors"
 
 [editor]
 
@@ -170,7 +175,6 @@ avoidance/thread_model/avoidance_use_high_priority_threads=false
 [physics]
 
 2d/run_on_separate_thread=true
-common/physics_ticks_per_second=30
 common/physics_jitter_fix=0.0
 2d/default_linear_damp=0.0
 2d/default_angular_damp=0.0

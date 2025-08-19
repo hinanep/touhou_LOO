@@ -11,6 +11,7 @@ func active():
 	for boat in boats:
 		if boat:
 			var tween:Tween = boat.create_tween()
+			player_var.underrecycle_tween.append(tween)
 			tween.tween_property(boat,'position',boat.position + Vector2(-800,800),0.5)
 			await get_tree().create_timer(0.1).timeout
 	await get_tree().create_timer(1.0).timeout

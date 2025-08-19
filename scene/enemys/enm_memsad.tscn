@@ -728,7 +728,3 @@ shape = SubResource("CircleShape2D_3s0ou")
 [node name="melee_damage_area" parent="melee_damage_area" index="0"]
 position = Vector2(-4, -21)
 shape = SubResource("CircleShape2D_owarq")
-
-[node name="ProgressBar" parent="." index="3"]
-offset_top = -27.0
-offset_bottom = -7.0

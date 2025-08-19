@@ -189,5 +189,5 @@ func drop_from_disbullet(is_drop:bool):
 	if is_drop:
 		SignalBus.drop.emit('drops_point',global_position,1)
 
-	queue_free()
-	#destroy.emit($".")
+	#queue_free()
+	destroy.emit($".")
