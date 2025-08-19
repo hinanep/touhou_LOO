@@ -12,6 +12,7 @@ var node_active = true
 var hp
 var target_location:Vector2
 var max_level = 0
+var movement :Callable= move_stay
 @export var damage_source = ''
 func spawn(true_level:int) -> void:
 	if node_active:
@@ -20,7 +21,7 @@ func spawn(true_level:int) -> void:
 		level = true_level
 
 func reinit():
-
+	global_position = position
 	if summon_info.type == 'boost':
 		return
 
@@ -35,15 +36,22 @@ func reinit():
 	if dt>0:
 		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
 		duration.start()
+	#if summon_info.has('special'):
+		#if summon_info.special.has('scdestroy'):
+			#if not SignalBus.true_use_card.is_connected(scdestroy):
+				#SignalBus.true_use_card.connect(scdestroy)
 
-	target_location = player_var.player_node.global_position
 	on_create()
 	if summon_info.has('movement'):
 		if summon_info.movement=='sandsoldier':
+			movement = move_sandsol
+			target_location = player_var.player_node.global_position
 			$rediretion.wait_time = summon_info.movement_parameter[0]
 			$rediretion.start()
 			await get_tree().create_timer(0.1).timeout
 			rediretion()
+	else:
+		target_location = global_position
 
 var first_ready = true
 func _ready():
@@ -62,9 +70,8 @@ func _ready():
 
 	SignalBus.upgrade_group.connect(upgrade_summon)
 
-	if summon_info.has('special'):
-		if summon_info.special.has('scdestroy'):
-			SignalBus.true_use_card.connect(scdestroy)
+
+	SignalBus.true_use_card.connect(scdestroy)
 
 	if summon_info.has('cd') and summon_info.cd > 0:
 		var cd_timer = $cd_timer
@@ -78,11 +85,15 @@ func _ready():
 
 	top_level = true
 	reinit()
-
-
+func move_sandsol(delta):
+	if global_position.distance_squared_to(target_location)<10:
+		return
+	global_position += global_position.direction_to(target_location)*delta * 400 * player_var.bullet_speed_ratio
+func move_stay(delta):
+	pass
 func _physics_process(delta: float) -> void:
 
-	global_position =global_position.move_toward(target_location,delta * 400 * player_var.bullet_speed_ratio)
+	movement.call(delta)
 
 	$Line2D.set_point_position(1,player_var.player_node.global_position-global_position)
 
@@ -116,6 +127,12 @@ func upgrade_summon(group):
 
 
 func scdestroy(scid):
+	if not is_inside_tree():
+		return
+	if not summon_info.has('special'):
+		return
+	if not summon_info.special.has('scdestroy'):
+		return
 	for rs in summon_info.special_routine:
 		SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation,null)
 	destroy(summon_info.id)
@@ -159,7 +176,7 @@ func recive_boost(sum_info,is_active):
 	if sum_info.routine_group[0] != summon_info.routine_group[0]:
 
 		return
-
+	print('receiveboost')
 	for key in sum_info:
 		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition'or key =='upgrade_group':
 			continue
