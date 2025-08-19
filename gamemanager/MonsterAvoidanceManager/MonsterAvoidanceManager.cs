@@ -3,19 +3,17 @@
 using Godot;
 using System.Collections.Generic;
 
-// 定义怪物避障配置，方便在注册时传递参数
-public partial class MonsterAvoidanceConfig : GodotObject
+
+
+
+public partial class MonsterAvoidanceManager : Node
 {
 	public float NeighborDistance { get; set; } = 150.0f;
 	public int MaxNeighbors { get; set; } = 10;
 	public float TimeHorizon { get; set; } = 1.5f;
 	public float TimeHorizonObstacles { get; set; } = 2.0f;
-	public float Radius { get; set; } = 8.0f;
-	public float MaxSpeed { get; set; } = 100.0f;
-}
 
-public partial class MonsterAvoidanceManager : Node
-{
+
 	private Rid _navMap;
 	// 使用字典来存储 Node 和其对应的 Rid，比数组更高效、更安全
 	private Dictionary<Node2D, Rid> _registeredMonsters = new Dictionary<Node2D, Rid>();
@@ -48,7 +46,7 @@ public partial class MonsterAvoidanceManager : Node
 	/// <param name="monsterNode">怪物的节点实例</param>
 	/// <param name="config">怪物的避障参数</param>
 	/// <returns>成功返回 true, 如果已注册则返回 false</returns>
-	public bool RegisterMonster(Node2D monsterNode, MonsterAvoidanceConfig config)
+	public bool RegisterMonster(Node2D monsterNode, int Radius,int MaxSpeed)
 	{
 		if (_registeredMonsters.ContainsKey(monsterNode))
 		{
@@ -61,12 +59,12 @@ public partial class MonsterAvoidanceManager : Node
 		NavigationServer2D.AgentSetAvoidanceEnabled(agentRid, true);
 
 		// 应用配置参数
-		NavigationServer2D.AgentSetNeighborDistance(agentRid, config.NeighborDistance);
-		NavigationServer2D.AgentSetMaxNeighbors(agentRid, config.MaxNeighbors);
-		NavigationServer2D.AgentSetTimeHorizonAgents(agentRid, config.TimeHorizon);
-		NavigationServer2D.AgentSetTimeHorizonObstacles(agentRid, config.TimeHorizonObstacles);
-		NavigationServer2D.AgentSetRadius(agentRid, config.Radius);
-		NavigationServer2D.AgentSetMaxSpeed(agentRid, config.MaxSpeed);
+		NavigationServer2D.AgentSetNeighborDistance(agentRid, NeighborDistance);
+		NavigationServer2D.AgentSetMaxNeighbors(agentRid, MaxNeighbors);
+		NavigationServer2D.AgentSetTimeHorizonAgents(agentRid, TimeHorizon);
+		NavigationServer2D.AgentSetTimeHorizonObstacles(agentRid, TimeHorizonObstacles);
+		NavigationServer2D.AgentSetRadius(agentRid, Radius);
+		NavigationServer2D.AgentSetMaxSpeed(agentRid, MaxSpeed);
 
 		_registeredMonsters.Add(monsterNode, agentRid);
 		_monsterListCache.Add(monsterNode);
