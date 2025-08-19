@@ -4,4 +4,3 @@
 
 [node name="SignalBus" type="Node"]
 script = ExtResource("1_4m3uc")
-is_log = true

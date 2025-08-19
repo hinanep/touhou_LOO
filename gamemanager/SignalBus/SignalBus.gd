@@ -154,11 +154,12 @@ func _ready() -> void:
 		for sig in signal_dic:
 			var signal_name: StringName = sig["name"]
 			# 避免连接过于频繁或复杂的信号，以免日志刷屏
-			if signal_name == &"trigger_routine_by_id":
-				continue
+			#if signal_name == &"trigger_routine_by_id":
+				#continue
 			if signal_name == &"fly_to_player": # 这个也可能很频繁
 				continue
-
+			if signal_name == &"drop": # 这个也可能很频繁
+				continue
 			# 连接信号到 _on_signal_emit 函数。
 			# 使用 bind 将信号名称作为参数传递给处理函数，以便知道是哪个信号触发了。
 			# 注意：这里只绑定了信号名称到 message2 参数。

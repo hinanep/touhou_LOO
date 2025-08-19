@@ -79,7 +79,7 @@ func called(routine_id,force_world_position,input_position,input_rotation,parent
 		return
 	if parent_node == null:
 		parent_node = $"."
-
+	print(routine_id)
 
 	attacks(force_world_position,input_position,input_rotation,parent_node)
 
@@ -205,7 +205,7 @@ func select_from_luck():
 
 #根据group升级招式，level1没有属性提升且算法会数组越界所以特判
 func upgrade_routine(group):
-	#clear_pool()
+
 	if not routine_info.has("upgrade_group"):
 		return
 	if routine_info.upgrade_group != group:
