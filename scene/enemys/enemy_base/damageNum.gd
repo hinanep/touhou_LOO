@@ -1,6 +1,7 @@
 extends Node2D
 var sum_damage = 0
 func showdamage(num):
+	$"../AvoidanceModule".visible = true
 	sum_damage += num
 
 	visible = true

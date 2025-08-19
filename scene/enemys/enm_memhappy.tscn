@@ -724,3 +724,8 @@ shape = SubResource("CircleShape2D_5umv4")
 
 [node name="melee_damage_area" parent="melee_damage_area" index="0"]
 shape = SubResource("CircleShape2D_vmbht")
+
+[node name="AvoidanceModule" parent="." index="3"]
+visible = false
+z_index = 11
+z_as_relative = false

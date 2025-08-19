@@ -71,7 +71,7 @@ func _ready():
 		drops_path = "drops_plate"
 		set_scale(Vector2(2,2))
 		radius *= 2
-	avoidance_module.regis()
+	avoidance_module.regis(radius,max_speed)
 	melee_battle_ready(mob_info.physical_damage == 0)
 
 	match mob_info.movement:
