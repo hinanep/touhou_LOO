@@ -39,9 +39,10 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgb5y"]
 
-[node name="Attack" instance=ExtResource("1_5bj8n")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_5bj8n")]
 z_index = 11
 script = ExtResource("2_806o0")
+particles = [NodePath("GPUParticles2D")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 modulate = Color(0.52156866, 1, 0, 1)

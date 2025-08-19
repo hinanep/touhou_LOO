@@ -28,8 +28,8 @@ animations = [{
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_uoxij"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeq53"]
-color_ramp = SubResource("Gradient_c7yuj")
 noise = SubResource("FastNoiseLite_uoxij")
+color_ramp = SubResource("Gradient_c7yuj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bty1h"]
 shader = ExtResource("3_q4l1o")
@@ -92,9 +92,10 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_qs6q5")
 alpha_curve = SubResource("CurveTexture_i3u0u")
 
-[node name="Attack" instance=ExtResource("1_h12sq")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_h12sq")]
 z_index = 6
 script = ExtResource("2_pp31y")
+particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D")]
 
 [node name="lock_component" parent="." index="1"]
 modulate = Color(0.295867, 0.295866, 0.295866, 0.956863)

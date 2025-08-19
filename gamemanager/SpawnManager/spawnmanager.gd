@@ -8,10 +8,8 @@ var spawner_pre
 
 var mob_dic:Dictionary
 var id = 0
-const GRID_CELL_SIZE = Vector2(50, 50)
 
-var audit_timer = 0.0
-const AUDIT_INTERVAL = 15.0 # 每 15 秒检查一次
+
 func _ready() -> void:
 	SignalBus.add_mob_to_manager.connect(add_mob)
 
@@ -31,10 +29,6 @@ func spawnmanager_init(eventlist):
 		add_spawn_event(event_list[event])
 
 func add_mob(mob_ins):
-	#TODO:在生成实例前终止
-	#if mob_dic.size()>300:
-		#mob_ins.free()
-		#return
 
 	register_mob(mob_ins)
 	spawnmanager_node.add_child(mob_ins)
@@ -78,7 +72,6 @@ func get_strongest_mob():
 
 func clear():
 	printerr('spawnmanager has been clear')
-
 	# 清理所有怪物
 	for mob_id in mob_dic.keys():
 		del_mob(mob_id)

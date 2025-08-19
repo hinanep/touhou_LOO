@@ -87,9 +87,10 @@ animations = [{
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
-[node name="Attack" instance=ExtResource("1_bgcvx")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_bgcvx")]
 z_index = 12
 script = ExtResource("2_l2oxa")
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D/GPUParticles2D2"), NodePath("GPUParticles2D/GPUParticles2D2/GPUParticles2D3")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 self_modulate = Color(1, 1, 1, 0.6431373)

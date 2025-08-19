@@ -60,8 +60,9 @@ scale_max = 0.29999998
 [sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
 radius = 250.0
 
-[node name="Attack" instance=ExtResource("1_c4ica")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_c4ica")]
 script = ExtResource("2_ryf0y")
+particles = [NodePath("lock_component/GPUParticles2D"), NodePath("lock_component/GPUParticles2D/GPUParticles2D2")]
 
 [node name="move_component" parent="." index="0"]
 visible = true

@@ -79,8 +79,6 @@ func called(routine_id,force_world_position,input_position,input_rotation,parent
 		return
 	if parent_node == null:
 		parent_node = $"."
-	print(routine_id)
-
 	attacks(force_world_position,input_position,input_rotation,parent_node)
 
 #生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
@@ -127,7 +125,7 @@ func get_atk_from_pool(index:int = 0):
 	var obj:Node2D = null
 	if not attack_pool[index].is_empty():
 		obj =  attack_pool[index].pop_back()
-		obj.spawn( attack_nodes[index].level)
+		obj.spawn(attack_nodes[index].level)
 		obj.request_ready()
 	if obj == null:
 		obj = attack_nodes[index].duplicate(7)
@@ -139,7 +137,7 @@ func get_sum_from_pool(index:int = 0):
 	var obj:Node2D
 	if not summon_pool[index].is_empty():
 		obj =  summon_pool[index].pop_back()
-		obj.spawn( summons[index].level)
+		obj.spawn(summons[index].level)
 		obj.request_ready()
 	if obj == null:
 		obj = summons[index].duplicate(7)
@@ -153,14 +151,20 @@ func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0
 		match routine_info.special_creating_attack:
 			'probability':
 				var new_attack = get_atk_from_pool(select_from_luck())
-				parent_node.add_child(new_attack)
+
 				if parent_node != $".":
-					new_attack.position = generate_position
+
+
+					var idel_p =  parent_node.global_position + generate_position
+
+					new_attack.future_world_position = idel_p
 
 
 				else:
-
-					new_attack.global_position = generate_position
+					var idel_p =   generate_position
+					#new_attack.global_position = idel_p
+					new_attack.future_world_position = idel_p
+				parent_node.add_child(new_attack)
 				new_attack.batch_num = batch_num
 
 
@@ -168,13 +172,20 @@ func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0
 		for index in attack_nodes.size():
 			if parent_node != null:
 				var new_attack = get_atk_from_pool(index)
-				parent_node.add_child(new_attack)
 				if parent_node != $".":
-					new_attack.position = generate_position
+					print('genp')
+					print(generate_position)
+					var idel_p =  parent_node.global_position + generate_position
+					print(idel_p)
+					new_attack.future_world_position = idel_p
+					new_attack.global_position = idel_p
 
 				else:
-					new_attack.global_position = generate_position
+					var idel_p =   generate_position
+					new_attack.global_position = idel_p
+					new_attack.future_world_position = idel_p
 
+				parent_node.add_child(new_attack)
 				new_attack.batch_num = batch_num
 
 
@@ -185,8 +196,9 @@ func single_summon(generate_position,generate_rotation,parent_node):
 
 	for index in summons.size():
 			var new_sum  = get_sum_from_pool(index)
-			$".".add_child(new_sum)
-			new_sum.global_position = generate_position
+
+			new_sum.future_world_position = generate_position
+			parent_node.add_child(new_sum)
 
 
 #随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
@@ -213,6 +225,7 @@ func upgrade_routine(group):
 	level += 1
 	if level == 1:
 		return
+	clear_pool()
 	if table.Upgrade[group].has('times_addition'):
 		routine_info.times += (table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2])*routine_info.danma_times_efficiency
 

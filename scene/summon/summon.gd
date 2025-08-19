@@ -19,9 +19,10 @@ func spawn(true_level:int) -> void:
 		await tree_entered
 		recycling = false
 		level = true_level
+var	future_world_position = Vector2.ZERO
 
 func reinit():
-	global_position = position
+	global_position = future_world_position
 	if summon_info.type == 'boost':
 		return
 
@@ -36,10 +37,6 @@ func reinit():
 	if dt>0:
 		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
 		duration.start()
-	#if summon_info.has('special'):
-		#if summon_info.special.has('scdestroy'):
-			#if not SignalBus.true_use_card.is_connected(scdestroy):
-				#SignalBus.true_use_card.connect(scdestroy)
 
 	on_create()
 	if summon_info.has('movement'):
@@ -51,7 +48,7 @@ func reinit():
 			await get_tree().create_timer(0.1).timeout
 			rediretion()
 	else:
-		target_location = global_position
+		target_location = future_world_position
 
 var first_ready = true
 func _ready():
@@ -107,7 +104,7 @@ func rediretion():
 func on_create():
 	if summon_info.has('creating_routine'):
 		for rs in summon_info.creating_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,Vector2.ZERO,global_rotation,$".")
+			SignalBus.trigger_routine_by_id.emit(rs,true,future_world_position,global_rotation,null)
 
 
 

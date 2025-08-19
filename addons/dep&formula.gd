@@ -6,13 +6,13 @@ func operate_dep(depid,value):
 
 		return value
 	var addi
-	print(depid)
+
 	match dep_table[depid].calculation:
 		'linear':
 			addi = dep_table[depid].calculation_parameter[0] * player_var.get(dep_table[depid].attribute) + dep_table[depid].calculation_parameter[1]
 		'sin':
 			addi = sin(player_var.get(dep_table[depid].calculation_parameter[0] * dep_table[depid].attribute))
-	print(addi)
+
 	match dep_table[depid].relationship:
 		'multiply':
 			return value * addi

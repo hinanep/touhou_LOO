@@ -11,35 +11,21 @@ var multi = 1.0
 var drop_num = 1.0
 signal die(id)
 var is_inscreen:bool = false
-var mob_info = {
-	"id": "enm_undefined",
-	"type": "zako",
-	"movement": "default",
-
-	"danmaku_creator": "",
-	"physical_damage": 5.0,
-	"magical_damage": 0.0,
-	"health": 100.0,
-	"speed": 50.0
-  }
+var mob_info :Dictionary
 
 @onready var progress_bar = $AvoidanceModule
 @onready var collisionshape = $buff
 @onready var melee_damage_area = $melee_damage_area
 @onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
-
 @onready var sprite = $AnimatedSprite2D
+# 2. 获取对 C# 模块子节点的引用
+@onready var avoidance_module = $AvoidanceModule
 
-#@onready var navi = $NavigationAgent2D
+
 var movement:Callable
 var creep_move:bool
 var atkable = true
 var moveable = true
-
-var last_position: Vector2 # 存储上一帧的位置，用于检测是否移动
-const GRID_CELL_SIZE = Vector2(200, 200)
-# 可选: 存储当前所在的单元格坐标，可以用于优化更新逻辑
-var current_grid_cell: Vector2i = Vector2i(-1, -1) # 初始值表示无效或未知
 
 # --- 避障参数 ---
 var scalex = 0.28
@@ -49,12 +35,10 @@ var scaledir = 1
 @export var radius: float = 80.0
 @export var max_speed: float = 50
 
-# 2. 获取对 C# 模块子节点的引用
-@onready var avoidance_module = $AvoidanceModule
+
 
 func _ready():
-	#set_modulate(modulate-Color(0, 1, 1, 0)*modi*4)
-	name = str(mob_id)
+
 	set_z_index(1)
 	set_z_as_relative(false)
 	scalex = sprite.scale.x
@@ -99,21 +83,14 @@ func _ready():
 		SignalBus.kill_all.connect(died.bind(true))
 		bullet_battle_ready(mob_info.magical_damage == 0)
 
-	last_position = global_position
 	if player_node:
 		velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 
-	# 连接屏幕可见性相关的信号
-	_connect_screen_signals()
-
 	choose_default_anime()
-var d = 0
 
 
 #根据表选择适当的移动函数（初始化时选择
 func _physics_process(delta):
-	d+=delta
-
 
 	if moveable:
 		movement.call()
@@ -214,19 +191,6 @@ func _cleanup_connections():
 		if melee_attack_cd.timeout.is_connected(melee_attack_cd_timeout):
 			melee_attack_cd.timeout.disconnect(melee_attack_cd_timeout)
 
-	# 断开屏幕可见性相关的信号连接
-	var screen_notifier = get_node_or_null("VisibleOnScreenEnabler2D")
-	if screen_notifier and is_instance_valid(screen_notifier):
-		if screen_notifier.screen_entered.is_connected(_on_visible_on_screen_enabler_2d_screen_entered):
-			screen_notifier.screen_entered.disconnect(_on_visible_on_screen_enabler_2d_screen_entered)
-		if screen_notifier.screen_exited.is_connected(_on_visible_on_screen_enabler_2d_screen_exited):
-			screen_notifier.screen_exited.disconnect(_on_visible_on_screen_enabler_2d_screen_exited)
-
-	# 断开离屏消失定时器
-	var outscreen_timer = get_node_or_null("outscreen_disppear")
-	if outscreen_timer and is_instance_valid(outscreen_timer):
-		if outscreen_timer.timeout.is_connected(_on_outscreen_disppear_timeout):
-			outscreen_timer.timeout.disconnect(_on_outscreen_disppear_timeout)
 
 #掉落
 func drop():
@@ -348,17 +312,3 @@ func _on_outscreen_disppear_timeout() -> void:
 		print('tp to player')
 func highlight():
 	$AnimatedSprite2D.modulate = Color(0,1,1,1)
-
-# 连接屏幕可见性相关的信号
-func _connect_screen_signals():
-	var screen_notifier = get_node_or_null("VisibleOnScreenEnabler2D")
-	if screen_notifier:
-		if not screen_notifier.screen_entered.is_connected(_on_visible_on_screen_enabler_2d_screen_entered):
-			screen_notifier.screen_entered.connect(_on_visible_on_screen_enabler_2d_screen_entered)
-		if not screen_notifier.screen_exited.is_connected(_on_visible_on_screen_enabler_2d_screen_exited):
-			screen_notifier.screen_exited.connect(_on_visible_on_screen_enabler_2d_screen_exited)
-
-	var outscreen_timer = get_node_or_null("outscreen_disppear")
-	if outscreen_timer:
-		if not outscreen_timer.timeout.is_connected(_on_outscreen_disppear_timeout):
-			outscreen_timer.timeout.connect(_on_outscreen_disppear_timeout)

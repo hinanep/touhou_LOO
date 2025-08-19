@@ -64,6 +64,7 @@ offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rc87f")
+metadata/_edit_group_ = true
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_1q6uy")]
 unique_name_in_owner = true

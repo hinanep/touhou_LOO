@@ -158,9 +158,7 @@ func player_make_melee_damage(basic_damage,damage_source = "none"):
 		damage_sum[damage_source] += basic_damage
 		return basic_damage
 func player_make_bullet_damage(basic_damage,damage_source = "none"):
-	#if randf() < critical_rate:
-	#	return basic_damage * damageRatio * critical_damage
-	#else:
+
 		basic_damage *= player_bullet_damage_ratio
 		damage_sum[damage_source] += basic_damage
 		return basic_damage

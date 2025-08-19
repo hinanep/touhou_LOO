@@ -45,8 +45,9 @@ func _ready() -> void:
 	#rotate(rotate_speed * PI * delta)
 "
 
-[node name="Attack" instance=ExtResource("1_p0rqg")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_p0rqg")]
 script = ExtResource("2_liw8n")
+particles = [NodePath("GPUParticles2D")]
 
 [node name="move_component" parent="." index="0"]
 visible = true

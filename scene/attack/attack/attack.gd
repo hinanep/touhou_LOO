@@ -58,17 +58,19 @@ func first_init():
 		$damage_area.collision_mask = 1
 	damage_source = attack_info.damage_belong
 
+
+var	future_world_position = Vector2.ZERO
+
+
+@export var particles :Array[Node]= []
 func spawn(true_level:int) -> void:
 	penetration = 0
-	start.emit()
-
-
 	recycling = false
 	if not attack_info.has("upgrade_group") or level == true_level:
 		return
 	upgrade_to_level(attack_info.upgrade_group,true_level)
 
-func reinit(position:Vector2 = global_position):
+func reinit(position:Vector2):
 	move_compo.reinit(position)
 	if attack_info.has('duration') and attack_info.duration>0.1:
 		if attack_info.has('duration_dependence') :
@@ -78,14 +80,16 @@ func reinit(position:Vector2 = global_position):
 	if node_active:
 		$duration_timer.start()
 		start.emit()
-		if not attack_info.reference_system == 'world':
-			global_position = position
-
+		#if not attack_info.reference_system == 'world':
+		global_position = position
+	$lock_component.set_frame(0)
+	for particle in particles:
+		particle.restart()
 #初始化
 var first_ready = true
 func _ready():
 	if not first_ready:
-		reinit(global_position)
+		reinit(future_world_position)
 		return
 	first_ready = false
 	if attack_info.has('duration') and attack_info.duration>0.1:
@@ -229,7 +233,6 @@ func _on_damage_area_body_entered(body):
 		penetration += 1
 		if penetration > attack_info.penetration:
 			destroy('pene')
-			#call_deferred("destroy", 'pene')
 
 #摧毁本攻击
 func destroy(message:String=''):
@@ -244,12 +247,6 @@ func destroy(message:String=''):
 	position = Vector2.ZERO
 	over.emit($".")
 
-	#queue_free()
-
-##激活cp效果 TODO：boost似乎还没有实现
-#func cp_active():
-	#if attack_info.type == 'boost':
-		#get_parent().get_child(0).attack_info += attack_info
 
 #对body施加debuff
 func give_debuff(body):
@@ -325,23 +322,9 @@ func upgrade_attack(group):
 	upgrade_to_level(group,level)
 
 
-	#if table.Upgrade[group].has('damage_addition'):
-		#attack_info.damage *=(1+ table.Upgrade[group].damage_addition[level-1]) / (1+table.Upgrade[group].damage_addition[level-2])
-#
-	#if table.Upgrade[group].has('bullet_speed_addition'):
-#
-		#for i in attack_info.moving_parameter.size():
-			#if i == 1 and attack_info.moving_rule != 'polar':
-				#continue
-			#attack_info.moving_parameter[i]*=(1+table.Upgrade[group].bullet_speed_addition[level-1])/(1+table.Upgrade[group].bullet_speed_addition[level-2])
-	#if table.Upgrade[group].has('duration_addition'):
-		#attack_info.duration *=(1+ table.Upgrade[group].duration_addition[level-1]) / (1+table.Upgrade[group].duration_addition[level-2])
-	#if table.Upgrade[group].has('range_addition'):
-		#for i in attack_info.size:
-			#i*=(1+ table.Upgrade[group].range_addition[level-1]) / (1+table.Upgrade[group].range_addition[level-2])
-
 func upgrade_to_level(group,level:int):
 	var oriinfo = table.Attack[attack_info.id]
+	self.level = level
 	if table.Upgrade[group].has('damage_addition'):
 		attack_info.damage = oriinfo.damage * (1+ table.Upgrade[group].damage_addition[level-1])
 
@@ -371,3 +354,6 @@ func set_bossing(is_boss):
 		return
 	if is_boss:
 		modulate.a = 0.15
+func _exit_tree() -> void:
+	position = Vector2.ZERO
+	rotation = 0

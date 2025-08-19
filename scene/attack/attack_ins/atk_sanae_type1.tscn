@@ -50,8 +50,9 @@ alpha_curve = SubResource("CurveTexture_816y1")
 [sub_resource type="CircleShape2D" id="CircleShape2D_56p1l"]
 radius = 20.0
 
-[node name="Attack" instance=ExtResource("1_i2n1l")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_i2n1l")]
 script = ExtResource("2_p2d1r")
+particles = [NodePath("lock_component/GPUParticles2D")]
 
 [node name="lock_component" parent="." index="1"]
 rotation = 0.0

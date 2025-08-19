@@ -98,8 +98,9 @@ scale_min = 0.29999998
 scale_max = 0.29999998
 alpha_curve = SubResource("CurveTexture_shnlr")
 
-[node name="Attack" instance=ExtResource("1_bg30o")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_bg30o")]
 script = ExtResource("2_aflkx")
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D3"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D4")]
 
 [node name="lock_component" parent="." index="1"]
 visible = false

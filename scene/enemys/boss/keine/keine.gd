@@ -32,12 +32,7 @@ func _ready():
 	SignalBus.boss_set_stage.connect(start_progess)
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
-	if not global_position.is_equal_approx(last_position):
 
-		player_var.SpawnManager.update_enemy_position_in_grid(self, last_position, global_position)
-
-		# 更新上一帧的位置
-		last_position = global_position
 func died(disppear = false):
 
 	if(disppear):
