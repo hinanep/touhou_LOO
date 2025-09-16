@@ -20,6 +20,7 @@ shader_parameter/s_shift = 0.0490000023275
 shader_parameter/v_shift = 0.9930000471675
 
 [node name="Danma" type="CharacterBody2D"]
+visible = false
 top_level = true
 material = SubResource("CanvasItemMaterial_bi33l")
 collision_layer = 64

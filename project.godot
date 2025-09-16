@@ -37,6 +37,7 @@ G="*res://ui/Scripts/G.gd"
 
 [debug]
 
+settings/stdout/verbose_stdout=true
 file_logging/enable_file_logging.pc=false
 gdscript/warnings/unused_parameter=0
 gdscript/warnings/unused_signal=0

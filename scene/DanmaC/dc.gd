@@ -81,20 +81,17 @@ func random_shoot():
 
 var danma_pool = []
 func add_to_pool(node):
-	call_deferred('remove_child',node)
-	await get_tree().physics_frame
+
 	danma_pool.append(node)
 
 func get_from_pool():
-	var obj:Node2D
-	if danma_pool.is_empty():
-		obj = danma_pre.instantiate()
-		obj.destroy.connect(add_to_pool)
-	else:
+	var obj:Node2D = null
+	if not danma_pool.is_empty():
 		obj =  danma_pool.pop_back()
 	if obj == null:
 		obj = danma_pre.instantiate()
 		obj.destroy.connect(add_to_pool)
+		add_child(obj)
 	return obj
 func shoot(v,d):
 
@@ -102,12 +99,12 @@ func shoot(v,d):
 	newd.velo = v
 	newd.diretion = d
 	newd.rotation =Vector2.RIGHT.angle_to(d)
-	newd.danma_init(d4c_info)
+
 	newd.damage = damage
 	newd.global_position = gen_position
 	newd.set_color(danma_color)
+	newd.danma_init(d4c_info)
 
-	add_child(newd)
 
 func stay(delta):
 	pass

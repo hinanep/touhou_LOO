@@ -5,7 +5,6 @@ extends Node
 
 var seconds :int= 0
 var minutes :int= 0
-#func _process(_delta):
 var boss_seconds:int = 0
 var boss_miliseconds:int = 0
 var boss_cardtime = 0

@@ -15,6 +15,7 @@ var level = 0
 var damage_source = ''
 var has_interval = true
 #初始化
+
 func _ready():
 	name = routine_info.id
 	add_to_group(routine_info.id)

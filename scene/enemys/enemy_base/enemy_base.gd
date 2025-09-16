@@ -171,11 +171,7 @@ func died(disppear = false):
 		var tween = create_tween().tween_property(sprite,'skew',PI/2,0.5)
 		player_var.underrecycle_tween.append(tween)
 		await tween.finished
-		# 清理tween引用
-		if tween and is_instance_valid(tween):
-			tween.kill()
-			player_var.underrecycle_tween.erase(tween)
-
+		tween = null
 	queue_free()
 
 # 清理所有信号连接

@@ -132,18 +132,20 @@ func start_progess(phase:int):
 	progress_time = 0
 	$progress_timer.stop()
 
-	if mob_info.is_sc:
-		pass
 
 
 
+	if not mob_info.is_sc:
+		var reincarnation_tween = create_tween()
+		player_var.underrecycle_tween.append(reincarnation_tween)
+		reincarnation_tween.set_parallel()
+		reincarnation_tween.tween_property($".","hp",mob_info.health,2)
+		reincarnation_tween.tween_property(progress_bar,"value",100,2)
+		await reincarnation_tween.finished
 
-	var reincarnation_tween = create_tween()
-	player_var.underrecycle_tween.append(reincarnation_tween)
-	reincarnation_tween.set_parallel()
-	reincarnation_tween.tween_property($".","hp",mob_info.health,3)
-	reincarnation_tween.tween_property(progress_bar,"value",100,3)
-	await reincarnation_tween.finished
+	else:
+		hp = mob_info.health
+		progress_bar.value = 100
 	reincarnation_over()
 
 

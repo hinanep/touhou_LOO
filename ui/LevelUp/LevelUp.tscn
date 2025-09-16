@@ -35,6 +35,7 @@ transform = Transform2D(1.5, 0, 0, 1.5, 100, 100)
 script = ExtResource("2_2i5d0")
 
 [node name="select_buttons" type="VBoxContainer" parent="select_weapon"]
+anchors_preset = -1
 offset_left = 301.33334
 offset_top = -28.666668
 offset_right = 557.3334
@@ -55,6 +56,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_h36oa")
 
 [node name="select_buttons2" type="VBoxContainer" parent="select_weapon"]
+anchors_preset = -1
 offset_left = 98.666664
 offset_top = -42.666668
 offset_right = 349.66672
@@ -135,7 +137,6 @@ scroll_active = false
 visible = false
 z_index = 1
 layout_mode = 3
-anchors_preset = 0
 offset_left = -67.0
 offset_top = -67.0
 offset_right = 1209.0
@@ -144,6 +145,7 @@ offset_bottom = 657.0
 [node name="pp" type="CanvasLayer" parent="."]
 
 [node name="properties" type="VBoxContainer" parent="pp"]
+anchors_preset = -1
 offset_left = 1545.0
 offset_top = 276.0
 offset_right = 4229.9995

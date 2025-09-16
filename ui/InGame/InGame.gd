@@ -25,7 +25,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _open():
-	pass
+	player_var.worldenvir = $WorldEnvironment
 
 
 func _close():

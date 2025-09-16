@@ -3,7 +3,6 @@ func _ready():
 	G.get_gui_view_manager().open_view("Hud")
 	G.get_gui_view_manager().open_view("TestHud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
-	#$Spawner.spawn_list.pre = PresetManager.getpre("enemy_boss_aq")
 	player_var.tmp_scene = $"."
 var pauseing = false
 var pause_id
