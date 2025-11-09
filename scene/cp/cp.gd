@@ -57,7 +57,7 @@ func popup() -> void:
 
 	$CanvasLayer.visible = true
 	var flush:Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
-
+	player_var.underrecycle_tween.append(flush)
 	flush.tween_property(panel,'modulate',Color(1,1,1,0.1),3)
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
@@ -66,7 +66,7 @@ func popup() -> void:
 
 	flush = null
 	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
-
+	player_var.underrecycle_tween.append(expand)
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
 	expand.tween_property(text,'scale',Vector2(0.6,0.6),2)
 
@@ -77,7 +77,7 @@ func popup() -> void:
 	expand = null
 
 	var disappear = panel.create_tween()
-
+	player_var.underrecycle_tween.append(disappear)
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property(panel,'scale',Vector2(0.5,0),0.5)
 	disappear.set_parallel().tween_property(text,'scale',Vector2(0.3,0.3),0.5)

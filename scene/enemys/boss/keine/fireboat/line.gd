@@ -27,6 +27,7 @@ func set_ready():
 	create_line_points()
 
 	var tween = create_tween()
+	player_var.underrecycle_tween.append(tween)
 	tween.tween_property(material,'shader_parameter/progress',0.0,0.0)
 	visible = true
 	tween.tween_property(material,'shader_parameter/progress',1.0,0.5)
@@ -69,12 +70,14 @@ func start_burning(start_point: int):
 			return
 		is_burning1 = true
 		var tween = create_tween()
+		player_var.underrecycle_tween.append(tween)
 		tween.tween_property($".",'left_fire',1,2)
 	else:
 		if is_burning2:
 			return
 		is_burning2 = true
 		var tween = create_tween()
+		player_var.underrecycle_tween.append(tween)
 		tween.tween_property($".",'right_fire',0,2)
 
 

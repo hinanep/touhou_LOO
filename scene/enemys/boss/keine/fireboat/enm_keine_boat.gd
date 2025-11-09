@@ -16,17 +16,12 @@ func _ready():
 	$buff.brittle_modify = 0
 
 	super._ready()
+	drops_path = 'drops_point'
 	await  get_tree().create_timer(3.8).timeout
 	player_var.SpawnManager.register_mob($".")
 
 func _physics_process(delta):
-	d+=delta
-
-
-	if not global_position.is_equal_approx(last_position):
-		player_var.SpawnManager.update_enemy_position_in_grid(self, last_position, global_position)
-		# 更新上一帧的位置
-		last_position = global_position
+	pass
 
 
 func _on_fireball_rec_body_entered(body:  Node2D) -> void:

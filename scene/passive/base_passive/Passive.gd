@@ -18,7 +18,7 @@ func _ready():
 	SignalBus.upgrade_group.connect(upgrade_passive)
 	SignalBus.del_passive.connect(del)
 	max_level = table.Upgrade[psv_info.upgrade_group].level
-func upgrade_passive(group):
+func upgrade_passive(group,cur):
 	if group != psv_info.upgrade_group:
 		return
 	level+=1

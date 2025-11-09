@@ -25,12 +25,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _open():
-	pass
+	player_var.worldenvir = $WorldEnvironment
 
 
 func _close():
 	AudioManager.stop_background_bgm()
 	player_var.SpawnManager.clear()
+	# 清理所有计时器
+	player_var._clear_all_tweens()
+
 
 
 func open():

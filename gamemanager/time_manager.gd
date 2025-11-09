@@ -5,7 +5,6 @@ extends Node
 
 var seconds :int= 0
 var minutes :int= 0
-#func _process(_delta):
 var boss_seconds:int = 0
 var boss_miliseconds:int = 0
 var boss_cardtime = 0
@@ -49,7 +48,8 @@ func _on_boss_timer_timeout():
 	boss_seconds += 1
 	boss_miliseconds = 0
 	player_var.time_secs = seconds
-	#create_tween().tween_property($".",boss_miliseconds,99,0.99)
-	create_tween().tween_method(setmili,99,0,0.99)
+
+	var t = create_tween().tween_method(setmili,99,0,0.99)
+	player_var.underrecycle_tween.append(t)
 func setmili(mili:int):
 	boss_miliseconds = mili

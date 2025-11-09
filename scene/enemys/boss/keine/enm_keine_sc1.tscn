@@ -712,7 +712,3 @@ material = SubResource("CanvasItemMaterial_6411r")
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_lppg4")
 animation = &"die"
-
-[node name="ProgressBar" parent="." index="3"]
-offset_top = -27.0
-offset_bottom = -7.0

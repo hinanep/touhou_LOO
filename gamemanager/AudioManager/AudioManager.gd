@@ -141,7 +141,7 @@ func bgm_over() -> void:
 ## 播放音效 (SFX)。
 ## 如果该音效已有对应的播放器，则复用该播放器；否则创建一个新的播放器。
 ## @param sfx_name: String - 要播放的音效的名称（需要 PresetManager 能识别）。
-func play_sfx(sfx_name: String) -> void:
+func play_sfx(sfx_name: String,volume = 0.0,position = 0) -> void:
 	var aplayer: AudioStreamPlayer
 
 	# 检查是否已有该音效的播放器
@@ -155,12 +155,12 @@ func play_sfx(sfx_name: String) -> void:
 	else:
 		# 如果有，获取现有的播放器实例
 		aplayer = sfx_player_playing_pair[sfx_name]
-
+	aplayer.volume_db = volume
 	# 从 PresetManager 获取音效音频流
 	var stream = PresetManager.getpre(sfx_name)
 	if stream:
 		aplayer.stream = stream
-		aplayer.play() # 播放音效
+		aplayer.play(position) # 播放音效
 	else:
 		printerr("AudioManager: 未找到音效资源 '", sfx_name, "'")
 

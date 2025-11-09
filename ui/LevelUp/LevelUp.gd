@@ -4,6 +4,9 @@ extends BaseGUIView
 func _open():
 
 	get_tree().paused = true
+	set_process_input(false)
+	await get_tree().create_timer(0.5).timeout
+	set_process_input(true)
 
 
 

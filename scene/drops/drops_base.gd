@@ -13,6 +13,7 @@ var not_fusioning = true
 func _ready() -> void:
 	set_physics_process(false)
 	var  t = create_tween().set_loops()
+	player_var.underrecycle_tween.append(t)
 	t.tween_interval(1)
 	t.tween_callback(find_fusion)
 func _physics_process(delta):
@@ -55,6 +56,7 @@ func find_fusion():
 				not_fusioning = false
 				area.not_fusioning = false
 				var tween = create_tween()
+				player_var.underrecycle_tween.append(tween)
 				tween.tween_property($".",'global_position',area.global_position,0.2)
 				await tween.finished
 				if area!= null:

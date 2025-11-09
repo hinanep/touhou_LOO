@@ -60,8 +60,9 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.099999994
 scale_max = 0.099999994
 
-[node name="Attack" instance=ExtResource("1_wq5qk")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_wq5qk")]
 script = ExtResource("2_57lmb")
+particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D")]
 
 [node name="lock_component" parent="." index="1"]
 modulate = Color(0.370364, 0.370364, 0.370364, 0.745098)

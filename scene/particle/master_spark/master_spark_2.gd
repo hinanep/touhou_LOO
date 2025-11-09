@@ -1,28 +1,31 @@
 extends Node2D
-var os
+var os = Vector2(4,0.4)
+var duratime = 5
 func _ready() -> void:
-	$"../..".start.connect(func():
-		player_var.shake_screen(5,0.1,0.35)
-		AudioManager.play_sfx('music_sfx_masterspark')
-		player_var.screen_black(0.7,0.3,5,2)
+	
+
+	$"../..".online.connect(func():
+		duratime = $"../../duration_timer".wait_time
+		player_var.shake_screen(duratime,0.1,0.15)
+		AudioManager.play_sfx('music_sfx_masterspark',-10,5.9-duratime)
+		player_var.screen_black(0.5,0.3,duratime,0.2)
+		online()
 		)
 
-	os = scale
+	#os = scale
 
-func _on_visibility_changed() -> void:
-	if visible:
-
-		$WorldEnvironment.environment.set_glow_enabled(true)
+func online() -> void:
+	
+		player_var.worldenvir.environment.set_glow_enabled(true)
 		scale.y = 0
 		var tween = create_tween()
+		print('tweening')
 		tween.tween_property($".",'scale',os,0.5)
 		tween.tween_interval(5.0)
 		tween.tween_property($".",'scale',os*Vector2(1,0),0.5)
-	else:
-		$WorldEnvironment.environment.set_glow_enabled(false)
+		await tween.finished
+		print('tweened')
+		tween.kill()
+	
 
-
-
-func _on_tree_exited() -> void:
-
-	$WorldEnvironment.environment.set_glow_enabled(false)
+		player_var.worldenvir.environment.set_glow_enabled(false)

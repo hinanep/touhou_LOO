@@ -23,12 +23,13 @@ func danma_init(d4c_info:Dictionary):
 	d_info = d4c_info
 	change_type_to(d_info.danmaku_type)
 	change_move_type_to(d_info.danmaku_moving_rule)
-
+	disable(true)
 #另需要在创建时传入diretion
-
+func _init() -> void:
+	pass
 func _ready() -> void:
 	velocity = Vector2.ZERO
-	SignalBus.disbullet.connect(drop_from_disbullet)
+
 
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
@@ -107,8 +108,7 @@ func change_type_to(type: String):
 	$damage_area/colli_da.shape = cshape
 
 func set_color(hsv:Vector3):
-	print('set to ')
-	print(hsv)
+
 	$texture.material.set_shader_parameter("hue_shift", hsv.x/360)
 
 func change_size_to(size:float):
@@ -173,21 +173,38 @@ func _on_timer_timeout() -> void:
 		if next_checkpoint ==-1:
 			next_checkpoint = d_info.danmaku_apart_point[0]
 		progress_check()
+var is_active = false
+func disable(active):
+	if(is_active == active):
+		return
+	is_active = active
+	set_process(active)
+	set_physics_process(active)
+	visible = active
+	$damage_area.set_deferred('monitoring',active)
 
+	if not active:
+		SignalBus.disbullet.disconnect(drop_from_disbullet)
+		destroy.emit($".")
+	else:
+		SignalBus.disbullet.connect(drop_from_disbullet)
+		_ready()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	destroy.emit($".")
+	disable(false)
+
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 
 	if body.has_method('take_damage'):
 		body.take_damage('danma',damage)
 		if(d_info.danmaku_type != 'dmk_laser'):
-			destroy.emit($".")
+			disable(false)
+
+
 
 func drop_from_disbullet(is_drop:bool):
 	if is_drop:
 		SignalBus.drop.emit('drops_point',global_position,1)
 
-	queue_free()
-	#destroy.emit($".")
+	disable(false)

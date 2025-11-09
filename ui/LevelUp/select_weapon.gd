@@ -30,7 +30,8 @@ func _ready():
 		player_var.point_ratio *= 1.1
 		call_deferred("close_levelup")
 
-
+func _input(event: InputEvent) -> void:
+	pass
 
 
 func on_button_selected(id):

@@ -96,7 +96,9 @@ signal spellcard_cast
 # ==================== 升级 (Upgrade) 相关信号 ====================
 ## 当某个升级组满足升级条件时发出 (例如，某系列技能达到特定等级组合)。
 ## @param group: Variant - 升级组的标识符。
-signal upgrade_group(group)
+signal upgrade_group(group,currentlevel)
+
+signal renew_state(id)
 ## 当某个东西 (技能、属性等) 达到最高等级时发出。
 ## @param anyname: Variant - 达到最高级的项目名称或标识符。
 signal upgrade_max(anyname)
@@ -107,13 +109,6 @@ signal cp_active(cp_info)
 ## @param cp_id: Variant - 要删除的 CP 的标识符。
 signal cp_del(cp_id)
 
-# ==================== 增益 (Boost) 相关信号 ====================
-## 应用攻击相关的增益时发出。
-## @param attack_info: Dictionary/Object - 包含攻击增益的详细信息 (如增幅、持续时间等)。
-signal atk_boost(attack_info)
-## 应用召唤物相关的增益时发出。
-## @param sum_info: Dictionary/Object - 包含召唤物增益的详细信息。
-signal sum_boost(sum_info)
 
 # ==================== 掉落物 (Drop) 相关信号 ====================
 ## 请求在指定位置生成掉落物时发出。
@@ -136,6 +131,7 @@ signal pause_spawner(is_pause:bool)
 signal add_mob_to_manager(mob_node)
 signal boss_set_stage(stage:int)
 signal kill_all
+signal boss_stage(is_boss:bool)
 signal disbullet(is_drop:bool)
 signal set_bosstimer(time:float)
 signal shutter
@@ -153,11 +149,12 @@ func _ready() -> void:
 		for sig in signal_dic:
 			var signal_name: StringName = sig["name"]
 			# 避免连接过于频繁或复杂的信号，以免日志刷屏
-			if signal_name == &"trigger_routine_by_id":
-				continue
+			#if signal_name == &"trigger_routine_by_id":
+				#continue
 			if signal_name == &"fly_to_player": # 这个也可能很频繁
 				continue
-
+			if signal_name == &"drop": # 这个也可能很频繁
+				continue
 			# 连接信号到 _on_signal_emit 函数。
 			# 使用 bind 将信号名称作为参数传递给处理函数，以便知道是哪个信号触发了。
 			# 注意：这里只绑定了信号名称到 message2 参数。

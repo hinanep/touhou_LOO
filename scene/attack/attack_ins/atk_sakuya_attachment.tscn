@@ -116,8 +116,9 @@ scale_max = 0.099999994
 scale_curve = SubResource("CurveTexture_y7pm5")
 alpha_curve = SubResource("CurveTexture_emivx")
 
-[node name="Attack" instance=ExtResource("1_8i1h4")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_8i1h4")]
 script = ExtResource("2_vkpgq")
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
 self_modulate = Color(1, 1, 1, 0.19607843)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://duui0qg20kcrv"]
+[gd_scene load_steps=20 format=3 uid="uid://duui0qg20kcrv"]
 
 [ext_resource type="Script" uid="uid://cr1hm1rqq35i" path="res://ui/InGame/InGame.gd" id="1_y0rgb"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_34uwu"]
@@ -44,10 +44,24 @@ shader_parameter/grayLimit = 0.0
 shader_parameter/phase = -1.0
 shader_parameter/begin = true
 
+[sub_resource type="Environment" id="Environment_nyybq"]
+background_mode = 3
+glow_levels/3 = 0.0
+glow_levels/5 = 0.5
+glow_levels/6 = 0.5
+glow_levels/7 = 0.1
+glow_intensity = 2.06
+glow_strength = 1.07
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 0.88
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 1.0
+adjustment_enabled = true
+
 [node name="InGame" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
@@ -118,7 +132,7 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+[node name="color" type="CanvasModulate" parent="."]
 color = Color(0.709804, 0.807843, 0.835294, 1)
 
 [node name="Node2D2" parent="." instance=ExtResource("9_7xnml")]
@@ -141,5 +155,8 @@ material = SubResource("ShaderMaterial_so81o")
 instance_shader_parameters/brightness = 1.0
 position = Vector2(960, 540)
 texture = ExtResource("13_83w4i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nyybq")
 
 [connection signal="timeout" from="end_game" to="." method="_on_end_game_timeout"]

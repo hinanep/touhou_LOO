@@ -5,21 +5,18 @@ var card_info={
 }
 
 var damage_source :String= ''
-var level :int= 0
 signal shoot
-var max_level
+
 func _ready() -> void:
 	name = card_info.id
 	damage_source = card_info.id
 	if card_info.has('routines'):
 		for rou in card_info.routines:
 			var r = add_routine(rou)
-			shoot.connect(r.attacks)
-	SignalBus.upgrade_group.connect(upgrade_card)
+			shoot.connect(r._execute_attack_flow)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
-	if table.Upgrade.has(card_info.upgrade_group):
-		max_level = table.Upgrade[card_info.upgrade_group].level
+
 
 func on_use_card(id,cost_rate):
 	if id != card_info.id:
@@ -46,6 +43,7 @@ func on_use_card(id,cost_rate):
 		match card_info.special:
 			'dash':
 				var tween = player_var.player_node.create_tween()
+				player_var.underrecycle_tween.append(tween)
 				#tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 				var end_position:Vector2 = player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 				end_position.x = clamp(end_position.x,player_var.air_wall_left,player_var.air_wall_right)
@@ -64,15 +62,6 @@ func add_routine(id):
 
 	add_child(routinepre)
 	return routinepre
-
-
-func upgrade_card(group):
-	if card_info.upgrade_group != group:
-		return
-
-	level += 1
-	if(level == max_level):
-		SignalBus.upgrade_max.emit(card_info.id)
 
 func destroy(id):
 	if card_info.id != id:

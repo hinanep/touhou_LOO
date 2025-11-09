@@ -4,6 +4,14 @@
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lhhvw"]
 [ext_resource type="Texture2D" uid="uid://q8y1sjpxfe5d" path="res://asset/pic/风改.png" id="5_oy2y7"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_35flk"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywquh"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -48,19 +56,24 @@ alpha_curve = SubResource("CurveTexture_kmcfv")
 anim_speed_min = 3.0
 anim_speed_max = 12.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0y0fc"]
-animations = []
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdgtq"]
 radius = 50.0
 
-[node name="Attack" instance=ExtResource("1_vgm1u")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_vgm1u")]
 script = ExtResource("2_lhhvw")
+particles = [NodePath("lock_component/GPUParticles2D")]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
+[node name="lock_component" parent="." index="1"]
+rotation = 0.0
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_35flk")
+autoplay = ""
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
 self_modulate = Color(0.868, 1, 0.81999993, 0.7490196)
 material = SubResource("CanvasItemMaterial_ywquh")
-position = Vector2(0, 24)
+position = Vector2(0, 160)
+scale = Vector2(6.6666665, 6.6666665)
 amount = 48
 texture = ExtResource("5_oy2y7")
 lifetime = 2.0
@@ -68,13 +81,6 @@ preprocess = 1.0
 local_coords = true
 draw_order = 2
 process_material = SubResource("ParticleProcessMaterial_jebhf")
-
-[node name="lock_component" parent="." index="2"]
-rotation = 0.0
-scale = Vector2(0.15, 0.15)
-sprite_frames = SubResource("SpriteFrames_0y0fc")
-animation = &""
-autoplay = ""
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_wdgtq")

@@ -51,7 +51,7 @@ func destroy(did):
 	if id == did:
 		queue_free()
 
-func upgrade(upname):
+func upgrade(upname,currentLevel):
 	if upgrade_group == upname:
 		level += 1
 		#$RichTextLabel.text ='[center]'+ selfname + '\nLV.' + str(level)

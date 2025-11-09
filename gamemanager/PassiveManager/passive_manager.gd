@@ -81,7 +81,7 @@ func on_del_passive(id):
 	passive_num_full = false
 	passive_full = false
 
-func on_upgrade_passive(group):
+func on_upgrade_passive(group,cur):
 	for psvi in passive_list:
 		if get_passive_by_name(psvi).upgrade_group == group:
 			passive_list[psvi] += 1

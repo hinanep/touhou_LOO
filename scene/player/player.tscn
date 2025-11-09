@@ -110,6 +110,7 @@ texture = ExtResource("3_g1rlb")
 
 [node name="invincible_time" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="pickup_area" type="Area2D" parent="."]
 collision_layer = 0
@@ -166,6 +167,7 @@ rotation_smoothing_speed = 10.0
 modulate = Color(1, 1, 1, 0)
 z_index = 4
 z_as_relative = false
+anchors_preset = -1
 offset_left = -2104.0
 offset_top = -1198.0
 offset_right = -64.0

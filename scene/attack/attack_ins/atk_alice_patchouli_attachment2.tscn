@@ -100,13 +100,15 @@ scale_min = 0.19999999
 scale_max = 0.29999998
 alpha_curve = SubResource("CurveTexture_2nvhf")
 
-[node name="Attack" instance=ExtResource("1_l4wq1")]
+[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_l4wq1")]
 script = ExtResource("2_2eiqs")
+particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3"), NodePath("GPUParticles2D4"), NodePath("GPUParticles2D")]
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="1"]
 self_modulate = Color(0.19999999, 0.45333344, 1, 1)
 amount = 20
 lifetime = 2.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8q3s7")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="2"]
@@ -114,6 +116,7 @@ self_modulate = Color(1, 1, 1, 0.2509804)
 amount = 1
 texture = ExtResource("3_4pqpq")
 lifetime = 5.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_csw40")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="3"]
@@ -121,6 +124,7 @@ self_modulate = Color(1, 1, 1, 0.39215687)
 amount = 1
 texture = ExtResource("5_u3iqd")
 lifetime = 5.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_g6qlj")
 
 [node name="lock_component" parent="." index="4"]
@@ -134,4 +138,5 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 self_modulate = Color(1, 1, 1, 0.4117647)
 amount = 10
 texture = ExtResource("6_2nvhf")
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_u3iqd")

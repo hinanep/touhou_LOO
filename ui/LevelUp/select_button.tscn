@@ -98,13 +98,14 @@ offset_right = 288.0
 offset_bottom = 164.0
 
 [node name="icon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 23)
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("4_jvg3u")
 
 [node name="crystal" type="Sprite2D" parent="."]
-position = Vector2(29, 53)
-scale = Vector2(0.1, 0.1)
+position = Vector2(31.000002, 50.000004)
+scale = Vector2(0.09, 0.09)
 texture = ExtResource("5_8p0wd")
 
 [connection signal="button_up" from="." to="." method="_on_button_up"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene load_steps=180 format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
 [ext_resource type="Texture2D" uid="uid://cd7vnt66u5onw" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_00.png" id="2_fdhrd"]
@@ -168,6 +168,7 @@
 [ext_resource type="Texture2D" uid="uid://bvp06i5oj5qrl" path="res://asset/pic/enemy/keine/移动/移动_62.png" id="155_8fpr5"]
 [ext_resource type="Texture2D" uid="uid://dirw35n4j1i5i" path="res://asset/pic/enemy/keine/移动/移动_63.png" id="156_rdmuf"]
 [ext_resource type="Texture2D" uid="uid://yjvvvrxnjoo7" path="res://asset/pic/enemy/keine/移动/移动_64.png" id="157_wlerw"]
+[ext_resource type="Script" uid="uid://b6a6od0kbrg03" path="res://scene/enemys/enemy_base/AvoidanceModule.cs" id="158_wrr5r"]
 [ext_resource type="Texture2D" uid="uid://rw1qd4c04yt5" path="res://asset/pic/ui/HUD/BOSS血条.png" id="167_7sg5n"]
 [ext_resource type="Texture2D" uid="uid://gimlaaesrl5f" path="res://asset/pic/ui/HUD/符卡标记.png" id="168_wrr5r"]
 [ext_resource type="Texture2D" uid="uid://bhqmyblgvu1w3" path="res://asset/pic/ui/HUD/慧音头像框发光.png" id="169_7sg5n"]
@@ -714,9 +715,10 @@ shape = SubResource("CircleShape2D_shwxr")
 
 [node name="danma" type="Node2D" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="AvoidanceModule" type="ProgressBar" parent="."]
 visible = false
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+anchors_preset = -1
 offset_left = -39.0
 offset_top = -46.0
 offset_right = 273.0
@@ -728,6 +730,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_nqpgj")
 step = 1.0
 value = 100.0
 show_percentage = false
+script = ExtResource("158_wrr5r")
 
 [node name="progress_timer" type="Timer" parent="."]
 
@@ -747,7 +750,7 @@ visible = false
 
 [node name="PopupPanel" type="TextureRect" parent="hud/card"]
 modulate = Color(1, 1, 1, 0.356863)
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -765,6 +768,7 @@ texture = SubResource("AtlasTexture_xs83g")
 expand_mode = 1
 
 [node name="RichTextLabel" type="Label" parent="hud/card"]
+anchors_preset = -1
 offset_left = -236.0
 offset_top = 128.0
 offset_right = 2164.0
@@ -788,6 +792,7 @@ position = Vector2(1795, 581)
 z_index = -1
 clip_contents = true
 layout_direction = 2
+anchors_preset = -1
 offset_left = -60.269794
 offset_top = -944.3779
 offset_right = -5.2697945
@@ -806,6 +811,7 @@ texture = ExtResource("10_i8gk4")
 z_index = -1
 clip_contents = true
 layout_direction = 2
+anchors_preset = -1
 offset_left = -60.269794
 offset_top = -944.3779
 offset_right = -5.2697945
@@ -832,6 +838,7 @@ position = Vector2(1795, 581)
 z_index = -1
 clip_contents = true
 layout_direction = 2
+anchors_preset = -1
 offset_left = -60.269775
 offset_top = -1157.0
 offset_right = -5.2697754
@@ -849,7 +856,7 @@ texture = ExtResource("12_fav7k")
 [node name="quar_mask" type="ReferenceRect" parent="hud/hp/nons"]
 z_index = -1
 clip_contents = true
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -923,5 +930,5 @@ scale = Vector2(2.5, 0.5)
 texture = ExtResource("8_ko4ll")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="value_changed" from="AvoidanceModule" to="." method="_on_progress_bar_value_changed"]
 [connection signal="timeout" from="progress_timer" to="." method="_on_progress_timer_timeout"]

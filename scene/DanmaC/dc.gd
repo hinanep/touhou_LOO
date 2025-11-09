@@ -1,44 +1,6 @@
 extends Node2D
 class_name d4c
-var d4c_info = {
-	"Id": "dcrt_keine_sc1_1",
-	"danmaku_type": "dmk_laserpre",
-	"create_rule": "circle",
-	"create_parameter": [
-	  -600,
-	  90
-	],
-	"create_amount": 2,
-	"create_front": "world",
-	"rotate_rule": "static",
-	"rotate_parameter": [],
-	"create_interval": 0.1,
-	"max_create_times": 10,
-	"is_destroy_with_parent": true,
-	"moving_system": "parent",
-	"moving_rule": "static",
-	"moving_parameter": [],
-	"danmaku_moving_rule": "straight",
-	"danmaku_moving_parameter": [
-	  0,
-	  999999
-	],
-	"danmaku_damage": 30.0,
-	"creator_apart_rule": "time",
-	"creator_apart_var": [
-	  "type"
-	],
-	"creator_apart_point": [
-	  0.5
-	],
-	"creator_apart_parameter": [
-	  "dmk_laser"
-	],
-	"danmaku_apart_rule": "",
-	"danmaku_apart_var": [],
-	"danmaku_apart_point": [],
-	"danmaku_apart_parameter": []
-  }
+var d4c_info:Dictionary
 
 var zero_diretion:Vector2
 var danma_pre :PackedScene = PresetManager.getpre('danma')
@@ -53,7 +15,8 @@ var damage = 10
 var gen_position:Vector2 = Vector2.ZERO
 var danma_color = Vector3(0,0,0)
 func d4c_init(id:String,parent):
-
+	if id == "":
+		return
 	d4c_info = table.d4c[id].duplicate()
 	global_position = parent.global_position
 	return d4c_info.moving_system
@@ -118,20 +81,17 @@ func random_shoot():
 
 var danma_pool = []
 func add_to_pool(node):
-	call_deferred('remove_child',node)
-	await get_tree().physics_frame
+
 	danma_pool.append(node)
 
 func get_from_pool():
-	var obj:Node2D
-	if danma_pool.is_empty():
-		obj = danma_pre.instantiate()
-		obj.destroy.connect(add_to_pool)
-	else:
+	var obj:Node2D = null
+	if not danma_pool.is_empty():
 		obj =  danma_pool.pop_back()
 	if obj == null:
 		obj = danma_pre.instantiate()
 		obj.destroy.connect(add_to_pool)
+		add_child(obj)
 	return obj
 func shoot(v,d):
 
@@ -139,12 +99,12 @@ func shoot(v,d):
 	newd.velo = v
 	newd.diretion = d
 	newd.rotation =Vector2.RIGHT.angle_to(d)
-	newd.danma_init(d4c_info)
+
 	newd.damage = damage
 	newd.global_position = gen_position
 	newd.set_color(danma_color)
+	newd.danma_init(d4c_info)
 
-	add_child(newd)
 
 func stay(delta):
 	pass
