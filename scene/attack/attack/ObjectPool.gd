@@ -13,19 +13,19 @@ func _init(p_prefab: PackedScene, p_parent_node: Node):
 	self.parent_node = p_parent_node
 
 # 从池中获取一个对象
-func get_object() -> Node:
+func get_object(parent = parent_node) -> Node:
 	if not pool.is_empty():
 		var obj = pool.pop_back()
 		# 确保节点是有效的，以防在其他地方被意外释放
 		if is_instance_valid(obj):
-			parent_node.add_child(obj) # 重新添加到场景树
-			obj.show() # 确保它是可见的
+			obj.process_mode = Node.PROCESS_MODE_INHERIT
 			return obj
-
+	if not is_instance_valid(parent):
+		parent = parent_node
 	# 如果池是空的，创建一个新的
 	if prefab:
 		var new_obj = prefab.instantiate()
-		parent_node.add_child(new_obj)
+		parent.add_child(new_obj)
 
 		# 非常重要：让对象知道如何回到池中
 		# 假设对象有一个名为 "returned_to_pool" 的信号
@@ -34,15 +34,18 @@ func get_object() -> Node:
 		return new_obj
 
 	return null
-
+func disable_object(obj:Node):
+	obj.process_mode = Node.PROCESS_MODE_DISABLED
 # 将对象返回到池中
 func return_object(obj: Node):
 	if not is_instance_valid(obj):
 		return
 
 	# 从场景树中移除，但不要释放它
-	if obj.get_parent() == parent_node:
-		parent_node.remove_child(obj)
+	#if obj.get_parent() == parent_node:
+	if true:
+		call_deferred("disable_object",obj)
+
 		obj.hide() # 隐藏起来
 
 		pool.push_back(obj)

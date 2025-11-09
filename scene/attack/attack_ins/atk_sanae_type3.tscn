@@ -85,7 +85,6 @@ process_material = SubResource("ParticleProcessMaterial_6vroq")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="lock_component/GPUParticles2D" index="0"]
 self_modulate = Color(1, 1, 1, 0.24705882)
-scale = Vector2(4, 4)
 amount = 48
 texture = ExtResource("5_m7dn8")
 lifetime = 3.0

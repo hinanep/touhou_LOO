@@ -96,7 +96,9 @@ signal spellcard_cast
 # ==================== 升级 (Upgrade) 相关信号 ====================
 ## 当某个升级组满足升级条件时发出 (例如，某系列技能达到特定等级组合)。
 ## @param group: Variant - 升级组的标识符。
-signal upgrade_group(group)
+signal upgrade_group(group,currentlevel)
+
+signal renew_state(id)
 ## 当某个东西 (技能、属性等) 达到最高等级时发出。
 ## @param anyname: Variant - 达到最高级的项目名称或标识符。
 signal upgrade_max(anyname)
@@ -107,13 +109,6 @@ signal cp_active(cp_info)
 ## @param cp_id: Variant - 要删除的 CP 的标识符。
 signal cp_del(cp_id)
 
-# ==================== 增益 (Boost) 相关信号 ====================
-## 应用攻击相关的增益时发出。
-## @param attack_info: Dictionary/Object - 包含攻击增益的详细信息 (如增幅、持续时间等)。
-signal atk_boost(attack_info)
-## 应用召唤物相关的增益时发出。
-## @param sum_info: Dictionary/Object - 包含召唤物增益的详细信息。
-signal sum_boost(sum_info)
 
 # ==================== 掉落物 (Drop) 相关信号 ====================
 ## 请求在指定位置生成掉落物时发出。

@@ -44,6 +44,15 @@ var TID = loader('res://settings/dist/TID/TID.json')
 var Upgrade = loader('res://settings/dist/Upgrade/Upgrade.json')
 
 
+
+var oAttack = loader('res://settings/dist/Attack/Attack.json')
+var oBuff = loader('res://settings/dist/Buff/Buff.json')
+var oPassive = loader('res://settings/dist/Passive/Passive.json')
+var oRoutine = loader('res://settings/dist/Routine/routine.json')
+var oSkill = loader('res://settings/dist/Skill/skill.json')
+var oSpellCard = loader('res://settings/dist/SpellCard/SpellCard.json')
+var oSummoned = loader('res://settings/dist/Summoned/Summoned.json')
+
 static func is_null(datax):
 
 	match typeof(datax):

@@ -27,7 +27,6 @@ func _init():
 	SignalBus.del_card.connect(on_del_card)
 	SignalBus.upgrade_max.connect(on_upgrade_card_max)
 	SignalBus.ban_card.connect(on_ban_card)
-	SignalBus.upgrade_group.connect(on_upgrade_card)
 
 	card_pool.unlocked = table.SpellCard.duplicate()
 	for id in card_pool.unlocked:
@@ -38,7 +37,8 @@ func _init():
 
 func on_try_add_card(id):
 	if(card_pool.choosed.has(id)):
-		SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group)
+		SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group,card_list[id])
+		card_list[id] += 1
 		return
 	if(card_pool.max.has(id)):
 		return
@@ -61,7 +61,7 @@ func on_add_card(card_info):
 		card_pool.max[id] = card_pool.choosed[id]
 		card_pool.choosed.erase(id)
 		return
-	SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group)
+	SignalBus.upgrade_group.emit(card_pool.choosed[id].upgrade_group,card_list[id])
 
 func on_del_card(id):
 	card_list.erase(id)
@@ -81,10 +81,10 @@ func on_del_card(id):
 	player_var.card_num_full = false
 	player_var.card_full = false
 
-func on_upgrade_card(group):
-	for cardi in card_list:
-		if  get_card_by_name(cardi).upgrade_group == group:
-			card_list[cardi] += 1
+#func on_upgrade_card(group,level):
+	#for cardi in card_list:
+		#if  get_card_by_name(cardi).upgrade_group == group:
+			#card_list[cardi] += 1
 
 func on_upgrade_card_max(id):
 	if not card_list.has(id):
@@ -134,4 +134,4 @@ func destroy():
 	SignalBus.del_card.disconnect(on_del_card)
 	SignalBus.upgrade_max.disconnect(on_upgrade_card_max)
 	SignalBus.ban_card.disconnect(on_ban_card)
-	SignalBus.upgrade_group.disconnect(on_upgrade_card)
+	#SignalBus.upgrade_group.disconnect(on_upgrade_card)

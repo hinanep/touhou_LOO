@@ -28,8 +28,8 @@ func _open():
 
 	player_var.worldenvir = $WorldEnvironment
 
-	for i in  20:
-		for j in 20:
+	for i in  5:
+		for j in 5:
 			summonhappy(Vector2(48*(i-10),30*(j-10)))
 var tname = 'enm_memhappy'
 var mobpre = PresetManager.getpre(tname)

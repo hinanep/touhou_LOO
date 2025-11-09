@@ -25,7 +25,7 @@ func set_card(card_info):
 	SignalBus.del_card.connect(destroy)
 	SignalBus.upgrade_group.connect(upgrade)
 
-func upgrade(upname):
+func upgrade(upname,cur):
 	if upgrade_group == upname and upgrade_group!='none':
 		level += 1
 		describe = cardname + '\nLV.' + str(level)

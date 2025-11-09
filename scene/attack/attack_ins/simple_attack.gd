@@ -1,1 +1,1 @@
-extends attack
+extends Attack

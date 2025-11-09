@@ -1,270 +1,164 @@
-class_name routine extends Node2D
+# routine.gd (重构后)
+class_name Routine extends Node2D
 
-var active = true
+# --- 核心属性 ---
+var active: bool = true
+var routine_info: Dictionary = {}
+var level: int = 0
+var damage_source: String = ""
 
+# --- 节点引用和预制体 ---
+@onready var interval_timer: Timer = $interval_timer
 
-var routine_info = {
+# 预加载攻击和召唤物的场景
+var attack_prefabs: Array[PackedScene] = []
+var summon_prefabs: Array[PackedScene] = []
 
-  }
+# --- 对象池 ---
+var attack_pools: Dictionary = {}
+var summon_pools: Dictionary = {}
 
-var gen_position
-var gen_rotation
-var attack_nodes = []
-var summons = []
-var level = 0
-var damage_source = ''
-var has_interval = true
-#初始化
-
-func _ready():
+# 初始化
+func _ready() -> void:
 	name = routine_info.id
 	add_to_group(routine_info.id)
-	SignalBus.trigger_routine_by_id.connect(called)
-	SignalBus.upgrade_group.connect(upgrade_routine)
 
-	for atk in table.Attack:
-		if table.Attack[atk].routine_group == routine_info.id:
-			var atknode = add_attack(atk)
-			if routine_info.has('creating_attack') and atk in routine_info.creating_attack:
-				attack_nodes.append(atknode)
-				attack_pool.append([])
+	_connect_signals()
+	_initialize_prefabs_and_pools()
 
-	for sum in table.Summoned:
-		if table.Summoned[sum].routine_group.has(routine_info.id) :
-			var sumnode = add_summon(sum)
-			if routine_info.has('creating_summoned') and sum in routine_info.creating_summoned:
-				summons.append(sumnode)
-				summon_pool.append([])
+	if routine_info.get("interval", 0.0) > 0.01:
+		interval_timer.wait_time = routine_info.interval
+	else:
+		interval_timer.stop()
 
-	if routine_info.interval > 0.01:
-		$interval_timer.wait_time = routine_info.interval
-		has_interval = true
+# --- 信号连接 ---
+func _connect_signals() -> void:
+	SignalBus.trigger_routine_by_id.connect(on_trigger_called)
 
+# --- 初始化 ---
+func _initialize_prefabs_and_pools() -> void:
+	# 初始化攻击
+	var creating_attacks = routine_info.get("creating_attack", [])
+	for attack_id in creating_attacks:
+		var prefab = load("res://scene/attack/attack_ins/" + attack_id + ".tscn")
+		attack_prefabs.append(prefab)
+		# 为每种攻击创建一个独立的对象池
+		var pool_container
+		if table.Attack[attack_id].get('reference_system','world') == 'world':
+			pool_container = Node.new() # 创建一个节点来持有实例化的对象
+		else:
+			pool_container = Node2D.new() # 跟随父节点
+		add_child(pool_container)
+		attack_pools[attack_id] = (ObjectPool.new(prefab, pool_container))
 
-#根据表中对应项获取攻击生成位置
-func get_gen_position(force_world_position:bool,input_position,input_rotation):
-	if force_world_position:
-		gen_position = input_position
-		gen_rotation = input_rotation
+	# 初始化召唤物
+	var creating_summons = routine_info.get("creating_summoned", [])
+	for summon_id in creating_summons:
+		var prefab = load("res://scene/summon/summon_ins/" + summon_id + ".tscn")
+		summon_prefabs.append(prefab)
+		var pool_container = Node.new()
+		add_child(pool_container)
+		summon_pools[summon_id] = (ObjectPool.new(prefab, pool_container))
+
+# --- 外部调用接口 ---
+func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node: Node) -> void:
+	if routine_id != routine_info.id or not active:
 		return
-	match routine_info.zero_point:
-		'character':
-			gen_position = player_var.player_node.global_position
 
-		'input':
-			gen_position = input_position
+	# 如果没有指定父节点，则使用世界作为父节点 (get_tree().root)
+	var spawn_parent = parent_node if is_instance_valid(parent_node) else get_tree().root
 
+	# 启动攻击流程，不再等待它完成
+	_execute_attack_flow(force_world_position, input_pos, input_rot, spawn_parent)
 
-	match routine_info.system_front:
-		'character':
-			gen_rotation = player_var.player_diretion_angle
-		'world':
-			gen_rotation = 0
-		'input':
-			gen_rotation = input_rotation
-
-
-	var add_vector
-	match routine_info.system_type:
-
-		'rectangular':
-			add_vector =Vector2(routine_info.position[0],routine_info.position[1])
-
-		'polar':
-			add_vector =Vector2.from_angle(rad_to_deg( routine_info.gen_position[1]))*routine_info.gen_position[0]
-	gen_position += add_vector.rotated(gen_rotation)
-
-#外部调用生成接口，由信号总线中 trigger_routine_by_id 控制，输入：调用招式id，强制输入对应世界坐标生成，输入位置，输入旋转，强制父节点（使生成攻击作为其子节点（生成攻击通常作为本招式子节点））
-func called(routine_id,force_world_position,input_position,input_rotation,parent_node):
-	if routine_id != routine_info.id:
-		return
-	if parent_node == null:
-		parent_node = $"."
-	attacks(force_world_position,input_position,input_rotation,parent_node)
-
-#生成所有攻击，与单次相比可以控制多个单次间的间隔时间，生成次数等
-func attacks(force_world_position=false,input_position=Vector2(0,0),input_rotation=0,parent_node = $"."):
+# --- 核心攻击流程 ---
+func _execute_attack_flow(force_world_pos: bool = false, input_pos: Vector2 = Vector2.ZERO, input_rot: float = 0, parent: Node = $".") -> void:
 	if not active:
 		return
 	AudioManager.play_sfx("music_sfx_shoot")
-	for i in range(int(routine_info.times +player_var.danma_times * routine_info.danma_times_efficiency)):
 
+	var times = int(routine_info.times + player_var.danma_times * routine_info.danma_times_efficiency)
+
+	for i in range(times):
 		match routine_info.one_creating_type:
 			'single':
-					if has_interval:
-						await  $interval_timer.timeout
-					get_gen_position(force_world_position,input_position,input_rotation)
-					single_attack(gen_position,gen_rotation,parent_node)
-					single_summon(gen_position,gen_rotation,parent_node)
+				if interval_timer.is_stopped() == false:
+					await interval_timer.timeout
+				_spawn_all_creations(force_world_pos, input_pos, input_rot, parent, i)
 
 			'multi_together':
+				# 这里可以根据具体需求实现更复杂的逻辑
+				# 例如，一次性生成多个，但每个有微小的时间或位置差
 				for j in range(routine_info.one_creating_parameter[0]):
-					if has_interval:
-						await  $interval_timer.timeout
-					get_gen_position(force_world_position,input_position,input_rotation)
-					single_attack(gen_position,gen_rotation,parent_node,j)
-					single_summon(gen_position,gen_rotation,parent_node)
-var attack_pool = []
-var summon_pool = []
-func add_to_pool(node):
-	attack_pool[node.index].append(node)
-func add_sum_to_pool(node):
-	summon_pool[node.index].append(node)
-func clear_pool():
-	for arr:Array in attack_pool:
-		for nod in arr:
-			if not is_instance_valid(nod):
-				continue
-			nod.queue_free()
-		arr.clear()
-	for arr:Array in summon_pool:
-		for nod in arr:
-			nod.free()
-		arr.clear()
+					if interval_timer.is_stopped() == false:
+						await interval_timer.timeout
+					_spawn_all_creations(force_world_pos, input_pos, input_rot, parent, j)
 
-func get_atk_from_pool(index:int = 0):
-	var obj:Node2D = null
-	if not attack_pool[index].is_empty():
-		obj =  attack_pool[index].pop_back()
-		obj.spawn(attack_nodes[index].level)
-		obj.request_ready()
-	if obj == null:
-		obj = attack_nodes[index].duplicate(7)
-		obj.over.connect(add_to_pool)
-	obj.index = index
+# --- 生成逻辑 ---
+func _spawn_all_creations(force_world_pos: bool, input_pos: Vector2, input_rot: float, parent: Node2D, batch_num: int) -> void:
+	var spawn_transform: Transform2D
+	if force_world_pos:
+		spawn_transform = Transform2D(input_rot, input_pos)
+	else:
+		# 使用工具类计算位置
+		spawn_transform = BattleUtils.calculate_spawn_transform(routine_info, player_var.player_node, parent.global_position + input_pos,parent.global_rotation + input_rot)
 
-	return obj
-func get_sum_from_pool(index:int = 0):
-	var obj:Node2D
-	if not summon_pool[index].is_empty():
-		obj =  summon_pool[index].pop_back()
-		obj.spawn(summons[index].level)
-		obj.request_ready()
-	if obj == null:
-		obj = summons[index].duplicate(7)
-		obj.over.connect(add_sum_to_pool)
-	obj.index = index
-
-	return obj
-#生成单次攻击,在传入父节点时认为生成坐标是相对父节点的坐标，否则是世界坐标
-func single_attack(generate_position,generate_rotation,parent_node,batch_num = 0):
+	# 生成攻击
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
-				var new_attack = get_atk_from_pool(select_from_luck())
-
-				if parent_node != $".":
-
-
-					var idel_p =  parent_node.global_position + generate_position
-
-					new_attack.future_world_position = idel_p
-
-
-				else:
-					var idel_p =   generate_position
-					#new_attack.global_position = idel_p
-					new_attack.future_world_position = idel_p
-				parent_node.add_child(new_attack)
-				new_attack.batch_num = batch_num
-
-
+				var pool_index = _select_pool_index_by_luck()
+				if pool_index != -1:
+					_spawn_instance_from_pool(attack_pools.keys()[pool_index],attack_pools[attack_pools.keys()[pool_index]], spawn_transform, parent, batch_num)
 	else:
-		for index in attack_nodes.size():
-			if parent_node != null:
-				var new_attack = get_atk_from_pool(index)
-				if parent_node != $".":
-					print('genp')
-					print(generate_position)
-					var idel_p =  parent_node.global_position + generate_position
-					print(idel_p)
-					new_attack.future_world_position = idel_p
-					new_attack.global_position = idel_p
+		for atkid in attack_pools:
+			_spawn_instance_from_pool(atkid,attack_pools[atkid], spawn_transform, parent, batch_num)
 
-				else:
-					var idel_p =   generate_position
-					new_attack.global_position = idel_p
-					new_attack.future_world_position = idel_p
+	# 生成召唤物
+	for sumid in summon_pools:
+		_spawn_instance_from_pool(sumid,summon_pools[sumid], spawn_transform, parent, batch_num)
 
-				parent_node.add_child(new_attack)
-				new_attack.batch_num = batch_num
-
-
-#生成单次召唤物 TODO：随机种类召唤物
-func single_summon(generate_position,generate_rotation,parent_node):
-	if not active:
+# 从指定的对象池生成一个实例
+func _spawn_instance_from_pool(id,pool:ObjectPool, transform: Transform2D, parent: Node, batch_num: int) -> void:
+	if parent == $".":
+		parent = null
+	var instance = pool.get_object(parent)
+	if not is_instance_valid(instance):
 		return
 
-	for index in summons.size():
-			var new_sum  = get_sum_from_pool(index)
+	# 设置实例的属性
+	# 假设实例有这些属性和方法，需要你在攻击/召唤物脚本中定义
+	#instance.global_transform = transform
+	if instance.has_method("initialize"):
+		instance.initialize(id,transform, damage_source, batch_num)
 
-			new_sum.future_world_position = generate_position
-			parent_node.add_child(new_sum)
 
 
-#随机生成使用，根据幸运返回选择生成的攻击 TODO：解耦合，实现根据输入与幸运返回
-func select_from_luck():
+
+# 根据幸运值选择池的索引
+func _select_pool_index_by_luck() -> int:
+	# (你的 select_from_luck 函数逻辑可以移到这里，保持不变)
 	var sum = 0
 	var weight_delta = []
-	for i in range(routine_info.special_creating_attack_parameter.size()/2):
-		var tmp =  routine_info.special_creating_attack_parameter[i*2] *pow(1+player_var.luck, routine_info.special_creating_attack_parameter[i*2+1])
+	var params = routine_info.special_creating_attack_parameter
+	for i in range(params.size() / 2):
+		var tmp = params[i*2] * pow(1 + player_var.luck, params[i*2+1])
 		sum += tmp
 		weight_delta.append(tmp)
-	var r = randf_range(0,sum)
-	for i in range(routine_info.special_creating_attack_parameter.size()/2):
+	var r = randf_range(0, sum)
+	for i in range(params.size() / 2):
 		r -= weight_delta[i]
-		if r<0:
+		if r < 0:
 			return i
+	return -1 # 如果没选中，返回-1
 
-#根据group升级招式，level1没有属性提升且算法会数组越界所以特判
-func upgrade_routine(group):
-
-	if not routine_info.has("upgrade_group"):
-		return
-	if routine_info.upgrade_group != group:
-		return
-	level += 1
-	if level == 1:
-		return
-	clear_pool()
-	if table.Upgrade[group].has('times_addition'):
-		routine_info.times += (table.Upgrade[group].times_addition[level-1] - table.Upgrade[group].times_addition[level-2])*routine_info.danma_times_efficiency
-
-#招式初始化时使用，按表将需要使用的攻击加入子节点并使其休眠，生成攻击时复制其
-func add_attack(id):
-	var attack_info = table.Attack[id].duplicate(true)
-
-
-	var attack_pre = load("res://scene/attack/attack_ins/"+id+".tscn").instantiate()
-
-	attack_pre.attack_info = attack_info
-	attack_pre.node_active = false
-	attack_pre.damage_source = damage_source
-	attack_pre.first_init()
-	add_child(attack_pre)
-	return attack_pre
-
-
-#招式初始化时使用，按表将需要使用的召唤物加入子节点并使其休眠，生成攻击时复制其
-func add_summon(id):
-	var summon_info = table.Summoned[id].duplicate(true)
-
-	var summon_pre = load("res://scene/summon/summon_ins/"+id+".tscn").instantiate()
-
-	summon_pre.summon_info = summon_info
-	summon_pre.node_active = false
-	summon_pre.damage_source = damage_source
-
-	add_child(summon_pre)
-	return summon_pre
+# --- 节点生命周期结束 ---
 func _exit_tree() -> void:
+	destroy()
 
-	clear_pool()
-#销毁所有子节点，销毁招式
-func destroy():
+func destroy() -> void:
+	if not active: return
 	active = false
-	clear_pool()
-	for child in get_children():
-
-		child.queue_free()
+	for pool in attack_pools: attack_pools[pool].clear()
+	for pool in summon_pools: summon_pools[pool].clear()
 	queue_free()

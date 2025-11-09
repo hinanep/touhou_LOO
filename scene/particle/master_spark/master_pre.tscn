@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ns11qx63rpen"]
+
+[ext_resource type="Shader" uid="uid://b0edltm4u4xav" path="res://scene/particle/master_spark/master_pre.gdshader" id="1_ebom6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynrpw"]
+shader = ExtResource("1_ebom6")
+shader_parameter/time_scale = 0.5
+shader_parameter/rainbow_freq = 0.5
+shader_parameter/cloud_speed = 10.0
+shader_parameter/cloud_density = 13.604999999995924
+shader_parameter/cloud_intensity = 1.0
+shader_parameter/transparency_threshold = 0.07499999999708962
+
+[node name="MasterPre" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ynrpw")
+offset_right = 109.0
+offset_bottom = 40.0

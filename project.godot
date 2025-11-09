@@ -34,6 +34,7 @@ RandomPool="*res://gamemanager/RandomPool/RandomPool.gd"
 MonsterAvoidanceManager="*res://gamemanager/MonsterAvoidanceManager/MonsterAvoidanceManager.cs"
 player_var="*res://gamemanager/player_var.gd"
 G="*res://ui/Scripts/G.gd"
+Upgrade="*res://scene/skill/upgrade/upgrade.gd"
 
 [debug]
 

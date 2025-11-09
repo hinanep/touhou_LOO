@@ -29,6 +29,7 @@ region = Rect2(0, 459.432, 5760, 85.926)
 
 [node name="Summon" type="Node2D"]
 process_mode = 1
+top_level = true
 script = ExtResource("1_3ka8b")
 
 [node name="cd_timer" type="Timer" parent="."]
@@ -44,7 +45,7 @@ sprite_frames = SubResource("SpriteFrames_pm8ww")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1
-points = PackedVector2Array(0, 0, 250, -1)
+points = PackedVector2Array(0, 0, 1, 0)
 gradient = SubResource("Gradient_vc0sf")
 texture = SubResource("AtlasTexture_42tbf")
 texture_mode = 1

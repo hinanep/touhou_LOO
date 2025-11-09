@@ -138,13 +138,10 @@ var preset_map = {
 func _ready():
 	for pname in preset_map:
 		ResourceLoader.load_threaded_request(preset_map[pname],'',true)
+	await  get_tree().create_timer(2.0).timeout
+	for pname in preset_map:
+		preset_map[pname] = ResourceLoader.load_threaded_get(preset_map[pname])
 
-
-func _process(delta: float) -> void:
-	if(ResourceLoader.load_threaded_get_status(preset_map['img_atk_misumaru']) == 3):
-		for pname in preset_map:
-			preset_map[pname] = ResourceLoader.load_threaded_get(preset_map[pname])
-		process_mode = PROCESS_MODE_DISABLED
 
 func getpre(prename : String):
 	if preset_map.has(prename) :
@@ -153,15 +150,14 @@ func getpre(prename : String):
 		else:
 			return preset_map[prename]
 	if(prename.contains('img')):
-		print('img  '+prename+'  not found!')
+		printerr('img  '+prename+'  not found!')
 		return preset_map.img_p
 	if(prename.contains('enm')):
-		print('enm  '+prename+'  not found!')
+		printerr('enm  '+prename+'  not found!')
 		return preset_map.enemy
-
 	if(prename.contains('sum')):
-		print('sum  '+prename+'  not found!')
+		printerr('sum  '+prename+'  not found!')
 		return preset_map.summon
 
-	print('pre  '+prename+'  not found!')
+	printerr('pre  '+prename+'  not found!')
 	return null

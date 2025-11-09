@@ -42,7 +42,7 @@ func _init() -> void:
 
 func on_try_add_skill(id):
 	if(skill_pool.choosed.has(id)):
-		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group)
+		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group,skill_list[id])
 		return
 	if(skill_pool.max.has(id)):
 		return
@@ -65,7 +65,7 @@ func on_add_skill(ski_info):
 		skill_pool.max[id] = skill_pool.choosed[id]
 		skill_pool.choosed.erase(id)
 	else:
-		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group)
+		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group,skill_list[id])
 
 func on_del_skill(id):
 	if(skill_pool.choosed.has(id)):
@@ -84,7 +84,7 @@ func on_del_skill(id):
 	skill_num_full = false
 	skill_full = false
 
-func on_upgrade_skill(group):
+func on_upgrade_skill(group,currentlevel):
 	for skilli in skill_list:
 		if get_skill_by_name(skilli).upgrade_group == group:
 			skill_list[skilli] += 1

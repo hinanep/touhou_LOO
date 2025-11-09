@@ -1,193 +1,176 @@
-class_name summon extends Node2D
-@export var summon_info =  {
+class_name Summon extends Node2D
 
-  }
-signal shoot
-var index =0
-signal over(this_node)
-var	recycling = false
-@export var level = 0
+# 信号：通知对象池回收自己
+signal returned_to_pool(node: Node)
 
-var node_active = true
-var hp
-var target_location:Vector2
-var max_level = 0
-var movement :Callable= move_stay
-@export var damage_source = ''
-func spawn(true_level:int) -> void:
-	if node_active:
-		await tree_entered
-		recycling = false
-		level = true_level
-var	future_world_position = Vector2.ZERO
+# --- 核心属性 ---
+var summon_info: Dictionary = {}
+var summon_id: String = "" # 用于自我配置
 
-func reinit():
-	global_position = future_world_position
-	if summon_info.type == 'boost':
-		return
+# --- 状态变量 ---
+var level: int = 0
+var is_active: bool = false
+var damage_source: String = ""
 
-	if summon_info.has('cd') and summon_info.cd > 0:
-		var cd_timer = $cd_timer
+# --- 组件引用 ---
+@onready var cooldown_timer: Timer = $cd_timer
+@onready var duration_timer: Timer = $duration
+@onready var redirection_timer: Timer = $rediretion
 
-		cd_timer.wait_time = summon_info.cd
-		cd_timer.start()
+var target_location
+#=============================================================================
+# 生命周期 & 对象池接口
+#=============================================================================
+var move_func = move_stay
+# 仅在节点首次实例化时执行一次，负责连接不依赖 summon_info 的信号
+func _ready() -> void:
+	duration_timer.timeout.connect(_on_duration_timeout)
+	cooldown_timer.timeout.connect(_on_cooldown_timeout)
+	redirection_timer.timeout.connect(_on_redirection_timeout)
 
-	var duration = $duration
-	var dt = player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
-	if dt>0:
-		duration.wait_time =  player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
-		duration.start()
+	SignalBus.upgrade_group.connect(_on_upgrade_signal)
+	SignalBus.true_use_card.connect(_on_sc_destroy)
 
-	on_create()
+
+
+# 公开的初始化接口，由 Routine 的对象池在每次取出节点时调用
+func initialize(p_id: String, p_transform: Transform2D, p_damage_source: String,batch_num:int) -> void:
+	# --- 自我配置 ---
+	if self.summon_id != p_id:
+		self.summon_id = p_id
+		if not table.Summoned.has(summon_id):
+			push_error("Summon ID not found in table: " + summon_id)
+			return
+		self.summon_info = table.Summoned[summon_id]
+		_one_time_setup_from_info()
+
+	# --- 每次重生时的重置逻辑 ---
+	self.damage_source = p_damage_source
+	self.global_transform = p_transform
+
+	_set_active(true)
+
+	# 初始化子组件
 	if summon_info.has('movement'):
 		if summon_info.movement=='sandsoldier':
-			movement = move_sandsol
+			move_func = move_sandsol
 			target_location = player_var.player_node.global_position
-			$rediretion.wait_time = summon_info.movement_parameter[0]
-			$rediretion.start()
-			await get_tree().create_timer(0.1).timeout
-			rediretion()
-	else:
-		target_location = future_world_position
+			_on_redirection_timeout()
+	# 设置并启动计时器
+	_setup_timers(p_id)
 
-var first_ready = true
-func _ready():
-	if not first_ready:
-		reinit()
+	# 处理创建时触发的 routine
+	_trigger_routines("creating_routine")
+	if is_instance_valid(player_var.player_node):
+		$Line2D.set_point_position(1, player_var.player_node.global_position - global_position)
+	show()
+# 仅执行一次的、依赖 summon_info 的设置
+func _one_time_setup_from_info() -> void:
+	name = summon_info.get("id", "summon")
+
+# 使节点失活并通知对象池回收
+func _return_to_pool() -> void:
+	if not is_active: return
+
+	_trigger_routines("destroying_routine")
+	_set_active(false)
+	returned_to_pool.emit(self)
+
+#=============================================================================
+# 核心功能与协调
+#=============================================================================
+
+func _physics_process(delta: float) -> void:
+	if not is_active: return
+	# 将移动任务委托给移动组件
+	move_func.call(delta)
+
+	# 如果需要画线，在这里更新
+	if is_instance_valid(player_var.player_node):
+		$Line2D.set_point_position(1, player_var.player_node.global_position - global_position)
+
+# 触发指定事件的 routine
+func _trigger_routines(event_key: String) -> void:
+	var routines_to_trigger = summon_info.get(event_key, [])
+	for routine_id in routines_to_trigger:
+		# 注意：第三个参数 true 表示强制世界坐标生成
+		# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
+		# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
+		SignalBus.trigger_routine_by_id.emit(routine_id, false, Vector2.ZERO, global_rotation, $".")
+
+#=============================================================================
+# 计时器与信号回调
+#=============================================================================
+
+func _setup_timers(id) -> void:
+	if id != summon_info.id:
 		return
-	first_ready = false
-	name = summon_info.id
-	set_active(node_active)
-	if summon_info.type == 'base':
-		SignalBus.sum_boost.connect(recive_boost)
-	elif summon_info.type == 'boost':
-		SignalBus.cp_active.connect(boost_active.bind(true))
-		SignalBus.cp_del.connect(boost_active.bind(false))
-		return
+	var cd = summon_info.get("cd", 0.0)
+	if cd > 0:
+		cooldown_timer.wait_time = cd
+		cooldown_timer.start()
 
-	SignalBus.upgrade_group.connect(upgrade_summon)
+	var duration = summon_info.get("duration", 0.0)
+	if summon_info.has("dependence"):
+		duration = player_var.dep.operate_dep(summon_info.dependence, duration)
+
+	duration_timer.wait_time = max(duration,0.1)
+	duration_timer.start()
+
+	if summon_info.get("movement") == "sandsoldier":
+		var redir_interval = summon_info.get("movement_parameter", [1.0])[0]
+		redirection_timer.wait_time = redir_interval
+		redirection_timer.start()
+		# 首次立即索敌
+		_on_redirection_timeout()
+
+func _on_duration_timeout() -> void:
+	_return_to_pool()
+
+func _on_cooldown_timeout() -> void:
+	_trigger_routines("automatic_routine")
+
+# 重新索敌的回调
+func _on_redirection_timeout() -> void:
+	# 将索敌任务委托给索敌组件
+		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
+
+		if not target.is_empty():
+			if is_instance_valid(target[0]):
+
+				target_location = target[0].global_position
 
 
-	SignalBus.true_use_card.connect(scdestroy)
 
-	if summon_info.has('cd') and summon_info.cd > 0:
-		var cd_timer = $cd_timer
-		cd_timer.timeout.connect(gen_routines)
+func _on_upgrade_signal(group: String,cur) -> void:
+	if summon_info.get("upgrade_group") != group: return
+	level += 1
+	# TODO: 应用实际的升级效果
 
-	var duration = $duration
-	var dt = player_var.dep.operate_dep(summon_info.get('dependence'),summon_info.duration)
-	if dt>0:
-		duration.timeout.connect(destroy.bind(summon_info.id))
+func _on_sc_destroy(scid: String) -> void:
+	if not summon_info.get("special", {}).has("scdestroy"): return
+	_trigger_routines("special_routine")
+	_return_to_pool()
 
 
-	top_level = true
-	reinit()
+
+#=============================================================================
+# 工具函数
+#=============================================================================
+
+func _set_active(p_active: bool) -> void:
+	self.is_active = p_active
+	visible = p_active
+	set_physics_process(p_active)
+
+	# 暂停或启动所有计时器
+	cooldown_timer.paused = not p_active
+	duration_timer.paused = not p_active
+	redirection_timer.paused = not p_active
+
 func move_sandsol(delta):
 	if global_position.distance_squared_to(target_location)<10:
 		return
 	global_position += global_position.direction_to(target_location)*delta * 400 * player_var.bullet_speed_ratio
 func move_stay(delta):
 	pass
-func _physics_process(delta: float) -> void:
-
-	movement.call(delta)
-
-	$Line2D.set_point_position(1,player_var.player_node.global_position-global_position)
-
-func rediretion():
-
-		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
-		if not target.is_empty():
-			if is_instance_valid(target[0]):
-				target_location = target[0].global_position
-
-func on_create():
-	if summon_info.has('creating_routine'):
-		for rs in summon_info.creating_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,future_world_position,global_rotation,null)
-
-
-
-
-func gen_routines():
-	if summon_info.has('automatic_routine'):
-		for rs in summon_info.automatic_routine:
-
-			SignalBus.trigger_routine_by_id.emit(rs,true,Vector2.ZERO,global_rotation,$".")
-
-
-func upgrade_summon(group):
-	if summon_info.upgrade_group != group:
-		return
-
-	level += 1
-
-
-func scdestroy(scid):
-	if not is_inside_tree():
-		return
-	if not summon_info.has('special'):
-		return
-	if not summon_info.special.has('scdestroy'):
-		return
-	for rs in summon_info.special_routine:
-		SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation,null)
-	destroy(summon_info.id)
-
-
-func destroy(id):
-	if recycling:
-		return
-	recycling = true
-	if summon_info.id != id:
-		return
-	if summon_info.has('destroying_routine'):
-		for rs in summon_info.destroying_routine:
-			SignalBus.trigger_routine_by_id.emit(rs,true,global_position,global_rotation,null)
-	for child in get_children():
-		if child.has_method('destroy'):
-			child.destroy('summon_destroy')
-	get_parent().call_deferred('remove_child',$".")
-	await get_tree().physics_frame
-	over.emit($".")
-
-func set_active(active:bool):
-	$cd_timer.paused = !active
-	$duration.paused = !active
-	visible = active
-	#$texture.visible = active
-	set_process(active)
-	set_physics_process(active)
-
-#当本攻击是boost类型且接受到激活信号时触发
-func boost_active(cp_info,is_active):
-	if cp_info is String:
-		cp_info = table.Couple[cp_info]
-	if summon_info.effective_condition != cp_info.id:
-		return
-	SignalBus.sum_boost.emit(summon_info,is_active)
-
-#当本攻击接受到boost攻击发出的boost信号时触发
-func recive_boost(sum_info,is_active):
-
-	if sum_info.routine_group[0] != summon_info.routine_group[0]:
-
-		return
-	print('receiveboost')
-	for key in sum_info:
-		if key == 'id' or key == 'type' or key =='routine_group' or key =='effective_condition'or key =='upgrade_group':
-			continue
-		if sum_info[key] is bool:
-			continue
-		if not is_active:
-			match typeof(sum_info[key]):
-				TYPE_ARRAY:
-					for element in sum_info[key]:
-						summon_info[key].erase(element)
-				_:
-					summon_info[key] -= sum_info[key]
-			continue
-		if not summon_info.has(key):
-			summon_info[key] = sum_info[key]
-		else:
-			summon_info[key] += sum_info[key]

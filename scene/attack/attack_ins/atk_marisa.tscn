@@ -16,7 +16,6 @@ sprite_frames = SubResource("SpriteFrames_tq8me")
 autoplay = ""
 
 [node name="Node2D" parent="lock_component" index="0" instance=ExtResource("4_qrg0o")]
-visible = false
 position = Vector2(-3.494629, 0.000541687)
 scale = Vector2(4, 0.01)
 
