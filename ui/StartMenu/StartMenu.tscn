@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://q1xbyvts1yk4"]
+[gd_scene load_steps=6 format=3 uid="uid://q1xbyvts1yk4"]
 
-[ext_resource type="Script" path="res://ui/StartMenu/StartMenu.gd" id="1_rxoc4"]
+[ext_resource type="Script" uid="uid://cbotm160xggnr" path="res://ui/StartMenu/StartMenu.gd" id="1_rxoc4"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="2_mdpa5"]
+[ext_resource type="Texture2D" uid="uid://cmxinqhm8s1d8" path="res://asset/pic/ui/HUD/底框.png" id="3_csn1q"]
+[ext_resource type="Texture2D" uid="uid://c3cob7ohv4aoi" path="res://asset/pic/ui/HUD/BOSS血条（非符）填充.png" id="4_dqdm5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_imyx7"]
 font_size = 72
@@ -106,6 +108,32 @@ AS切换符卡
 esc暂停
 +号时间加速
 shift看判定点"
+
+[node name="progress" type="CanvasLayer" parent="."]
+
+[node name="PresetLoadingOverlay" type="Control" parent="progress"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1923.0
+offset_bottom = 1076.0
+
+[node name="ColorRect" type="ColorRect" parent="progress/PresetLoadingOverlay"]
+layout_mode = 0
+offset_right = 1936.0
+offset_bottom = 1106.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="progress/PresetLoadingOverlay"]
+z_index = 128
+layout_mode = 0
+offset_left = 500.0
+offset_top = 887.0
+offset_right = 643.0
+offset_bottom = 1887.0
+rotation = -1.5707964
+fill_mode = 2
+texture_under = ExtResource("3_csn1q")
+texture_progress = ExtResource("4_dqdm5")
 
 [connection signal="pressed" from="VBoxContainer/StoryModeButton" to="." method="_on_story_mode_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WikiButton" to="." method="_on_wiki_button_pressed"]
