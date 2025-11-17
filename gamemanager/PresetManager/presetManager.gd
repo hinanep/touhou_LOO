@@ -134,13 +134,85 @@ var preset_map = {
 	'property_text':"res://ui/LevelUp/property_text.tscn",
 }
 
+# --- 加载遮罩与进度条（仅在加载阶段存在） ---
+var _loading_layer
+var _loading_root
+var _loading_bar
+
+func _ensure_loading_overlay() -> void:
+	if is_instance_valid(_loading_layer):
+		return
+	_loading_layer = CanvasLayer.new()
+	_loading_layer.layer = 128
+	_loading_root = Control.new()
+	_loading_root.name = "PresetLoadingOverlay"
+	_loading_root.mouse_filter = Control.MOUSE_FILTER_STOP
+	_loading_root.anchor_right = 1.0
+	_loading_root.anchor_bottom = 1.0
+	var blocker = ColorRect.new()
+	blocker.color = Color(0,0,0,0.6)
+	blocker.anchor_right = 1.0
+	blocker.anchor_bottom = 1.0
+	_loading_root.add_child(blocker)
+	_loading_bar = ProgressBar.new()
+	_loading_bar.min_value = 0.0
+	_loading_bar.max_value = 1.0
+	_loading_bar.value = 0.0
+	_loading_bar.anchor_left = 0.25
+	_loading_bar.anchor_right = 0.75
+	_loading_bar.anchor_top = 0.47
+	_loading_bar.anchor_bottom = 0.53
+	_loading_bar.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_loading_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	_loading_root.add_child(_loading_bar)
+	_loading_layer.add_child(_loading_root)
+	get_tree().root.add_child(_loading_layer)
+
+func _set_loading_progress(p: float) -> void:
+	if is_instance_valid(_loading_bar):
+		_loading_bar.value = clamp(p, 0.0, 1.0)
+
+func _remove_loading_overlay() -> void:
+	if is_instance_valid(_loading_layer):
+		_loading_layer.queue_free()
+	_loading_layer = null
+	_loading_root = null
+	_loading_bar = null
 
 func _ready():
+	# 启动多线程加载，并显示遮罩与进度条阻塞交互
+	_ensure_loading_overlay()
+	var paths := []
 	for pname in preset_map:
-		ResourceLoader.load_threaded_request(preset_map[pname],'',true)
-	await  get_tree().create_timer(2.0).timeout
+		var p = preset_map[pname]
+		ResourceLoader.load_threaded_request(p,'',true)
+		paths.append(p)
+	# 轮询真实进度
+	while true:
+		var total := paths.size()
+		if total == 0:
+			break
+		var sum := 0.0
+		var done := 0
+		for p in paths:
+			var prog := []
+			var st = ResourceLoader.load_threaded_get_status(p, prog)
+			var v := 0.0
+			if prog.size() > 0:
+				v = float(prog[0])
+			if st == ResourceLoader.THREAD_LOAD_LOADED or st == ResourceLoader.THREAD_LOAD_FAILED:
+				v = 1.0
+				done += 1
+			sum += v
+		_set_loading_progress(sum / float(total))
+		if done >= total:
+			break
+		await get_tree().process_frame
+	# 取出已加载的资源
 	for pname in preset_map:
 		preset_map[pname] = ResourceLoader.load_threaded_get(preset_map[pname])
+	# 移除遮罩
+	_remove_loading_overlay()
 
 
 func getpre(prename : String):

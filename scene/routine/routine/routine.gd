@@ -66,7 +66,9 @@ func on_trigger_called(routine_id: String, force_world_position: bool, input_pos
 		return
 
 	# 如果没有指定父节点，则使用世界作为父节点 (get_tree().root)
-	var spawn_parent = parent_node if is_instance_valid(parent_node) else get_tree().root
+	var spawn_parent = parent_node if is_instance_valid(parent_node) else $"."
+
+
 
 	# 启动攻击流程，不再等待它完成
 	_execute_attack_flow(force_world_position, input_pos, input_rot, spawn_parent)

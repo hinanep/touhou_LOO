@@ -14,6 +14,7 @@ var penetration_count: int = 0
 var is_active: bool = false
 var damage_source: String = ""
 var lock_routine
+var batch_num
 # --- 组件引用 ---
 @onready var lock_component = $lock_component
 @onready var move_component = $move_component
@@ -41,6 +42,7 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	self.damage_source = p_damage_source
 	self.global_transform = p_transform
 	self.penetration_count = 0
+	self.batch_num = batch_num
 	if attack_info.is_empty():
 		attack_info = table.Attack.get(attack_id,{})
 
