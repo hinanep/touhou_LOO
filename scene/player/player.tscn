@@ -167,7 +167,6 @@ rotation_smoothing_speed = 10.0
 modulate = Color(1, 1, 1, 0)
 z_index = 4
 z_as_relative = false
-anchors_preset = -1
 offset_left = -2104.0
 offset_top = -1198.0
 offset_right = -64.0

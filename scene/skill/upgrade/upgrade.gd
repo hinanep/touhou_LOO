@@ -179,14 +179,15 @@ func up_skill(group,currentlevel):
 			SignalBus.upgrade_max.emit(id)
 
 func up_card(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in card_group.get(group,[]):
 		if currentlevel+1 == table.Upgrade[group].level:
 			SignalBus.upgrade_max.emit(id)
 
+
 func up_routine(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in routine_group.get(group,[]):
 		if table.Upgrade[group].has('times_addition'):
@@ -196,7 +197,7 @@ func up_routine(group,currentlevel):
 
 
 func up_attack(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in attack_group.get(group,[]):
 		if table.Upgrade[group].has("damage_addition"):
@@ -213,7 +214,7 @@ func up_attack(group,currentlevel):
 		SignalBus.renew_state.emit(id)
 
 func up_summon(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in summon_group.get(group,[]):
 		if table.Upgrade[group].has("duration_addition"):
