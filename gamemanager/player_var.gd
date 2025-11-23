@@ -118,8 +118,8 @@ var damage_sum
 var worldenvir:WorldEnvironment
 var underrecycle_tween = []
 func _clear_all_tweens():
-	for tween:Tween in underrecycle_tween:
-		if tween and tween.is_valid():
+	for tween in underrecycle_tween:
+		if tween is Tween and tween.is_valid():
 			print('clear tween')
 			tween.kill()
 	underrecycle_tween.clear()

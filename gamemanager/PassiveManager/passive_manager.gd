@@ -42,7 +42,7 @@ func _init() -> void:
 
 func on_try_add_passive(id):
 	if(passive_pool.choosed.has(id)):
-		SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group)
+		SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group,passive_list[id])
 		return
 	if(passive_pool.max.has(id)):
 		return
@@ -62,7 +62,7 @@ func on_add_passive(ski_info):
 	passive_pool.unlocked.erase(id)
 	passive_list[id] = 0
 
-	SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group)
+	SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group,0)
 
 func on_del_passive(id):
 	if(passive_pool.choosed.has(id)):

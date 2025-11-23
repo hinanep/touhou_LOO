@@ -98,14 +98,22 @@ func random_choose_cp():
 	return true
 
 func add_cp(cpid):
+	# 幂等化处理：先清理可能残留的已激活状态，再进行激活
+	cp_del(cpid)
+	# 如果既不在 ready 也不在 unlocked，但表里存在该 cp，则回填到 unlocked
+	if not cp_pool.ready.has(cpid) and not cp_pool.unlocked.has(cpid):
+		if table.Couple.has(cpid):
+			cp_pool.unlocked[cpid] = table.Couple[cpid]
 	if cp_pool.actived.has(cpid):
 		return
 	if cp_pool.ready.has(cpid):
 		cp_pool.actived[cpid] = cp_pool.ready[cpid]
 		cp_pool.ready.erase(cpid)
-	if cp_pool.unlocked.has(cpid):
+	elif cp_pool.unlocked.has(cpid):
 		cp_pool.actived[cpid] = cp_pool.unlocked[cpid]
 		cp_pool.unlocked.erase(cpid)
+	else:
+		return
 	player_var.damage_sum[cpid] = 0
 
 	SignalBus.cp_active.emit(cp_pool.actived[cpid])

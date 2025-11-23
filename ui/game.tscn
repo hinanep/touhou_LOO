@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://hstbyppinrro" path="res://ui/Scripts/Core/GUI/GUIViewManager.tscn" id="1_7pgd6"]
 [ext_resource type="PackedScene" uid="uid://q1xbyvts1yk4" path="res://ui/StartMenu/StartMenu.tscn" id="2_lroyr"]
-[ext_resource type="Script" path="res://ui/Scripts/Core/GUI/GUIViewConfig.gd" id="3_btr1i"]
+[ext_resource type="Script" uid="uid://dy7uhww4fj8ww" path="res://ui/Scripts/Core/GUI/GUIViewConfig.gd" id="3_btr1i"]
 [ext_resource type="PackedScene" uid="uid://c1ccewwn1rfql" path="res://ui/SettingsMenu/SettingsMenu.tscn" id="4_m54sr"]
 [ext_resource type="PackedScene" uid="uid://daklkj46c774t" path="res://ui/ShopMenu/ShopMenu.tscn" id="5_mq2v4"]
 [ext_resource type="PackedScene" uid="uid://cnniu3dbjynwk" path="res://ui/StoryModeMenu/StoryModeMenu.tscn" id="6_f1l43"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://7oqb4rblvirf" path="res://ui/PauseMenu/PauseMenu.tscn" id="11_but3r"]
 [ext_resource type="PackedScene" uid="uid://bxhe0o8utfl7j" path="res://ui/ClearMenu/ClearMenu.tscn" id="12_y7uxi"]
 [ext_resource type="PackedScene" uid="uid://ckywbpd3lrj8e" path="res://ui/Hud/TestHud.tscn" id="13_jkha8"]
-[ext_resource type="Script" path="res://ui/Scripts/Core/LaunchGame.gd" id="13_ntjm4"]
+[ext_resource type="Script" uid="uid://cdqfj0f1yqr68" path="res://ui/Scripts/Core/LaunchGame.gd" id="13_ntjm4"]
 [ext_resource type="PackedScene" uid="uid://dsmua8weisch7" path="res://ui/TestScene/TestScene.tscn" id="14_vf552"]
 [ext_resource type="PackedScene" uid="uid://tdm0tp1oy2j1" path="res://Dialogue/ui/DialogueMenu.tscn" id="15_u3f4g"]
 

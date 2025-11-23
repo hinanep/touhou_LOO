@@ -71,7 +71,8 @@ func _one_time_setup_from_info() -> void:
 # 使节点失活并通知对象池回收
 func _return_to_pool() -> void:
 	if not is_active: return
-
+	for atk in $subattack.get_children():
+		atk.queue_free()
 	_trigger_routines("destroying_routine")
 	_set_active(false)
 	returned_to_pool.emit(self)
@@ -92,11 +93,19 @@ func _physics_process(delta: float) -> void:
 # 触发指定事件的 routine
 func _trigger_routines(event_key: String) -> void:
 	var routines_to_trigger = summon_info.get(event_key, [])
-	for routine_id in routines_to_trigger:
-		# 注意：第三个参数 true 表示强制世界坐标生成
-		# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
-		# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
-		SignalBus.trigger_routine_by_id.emit(routine_id, false, Vector2.ZERO, global_rotation, $".")
+	if event_key == "automatic_routine":
+		
+		for routine_id in routines_to_trigger:
+			# 注意：第三个参数 true 表示强制世界坐标生成
+			# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
+			# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
+			SignalBus.trigger_routine_by_id.emit(routine_id, false, Vector2.ZERO, global_rotation, $subattack)
+	else:
+		for routine_id in routines_to_trigger:
+			# 注意：第三个参数 true 表示强制世界坐标生成
+			# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
+			# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
+			SignalBus.trigger_routine_by_id.emit(routine_id, true, global_position, global_rotation,0)	
 
 #=============================================================================
 # 计时器与信号回调

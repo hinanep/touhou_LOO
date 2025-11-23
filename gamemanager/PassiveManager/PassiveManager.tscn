@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dug0t15h436p2"]
 
-[ext_resource type="Script" path="res://gamemanager/PassiveManager/passive_manager.gd" id="1_vpjxh"]
+[ext_resource type="Script" uid="uid://qmba00h0h20w" path="res://gamemanager/PassiveManager/passive_manager.gd" id="1_vpjxh"]
 
 [node name="PassiveManager" type="Node"]
 script = ExtResource("1_vpjxh")

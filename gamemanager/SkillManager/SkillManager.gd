@@ -65,7 +65,7 @@ func on_add_skill(ski_info):
 		skill_pool.max[id] = skill_pool.choosed[id]
 		skill_pool.choosed.erase(id)
 	else:
-		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group,skill_list[id])
+		SignalBus.upgrade_group.emit(skill_pool.choosed[id].upgrade_group,0)
 
 func on_del_skill(id):
 	if(skill_pool.choosed.has(id)):

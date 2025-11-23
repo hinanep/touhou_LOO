@@ -63,11 +63,17 @@ func _on_upgrade(group,currentlevel):
 	up_attack(group,currentlevel)
 	up_summon(group,currentlevel)
 
-func _on_boost_active(cp_info: Dictionary,is_active: bool) -> void:
-	print('boost')
+func _on_boost_active(cp, is_active: bool) -> void:
+	# 兼容信号两种入参：激活时传字典/对象，删除时传字符串 id
+	var cp_id = cp
+	match typeof(cp):
+		TYPE_DICTIONARY:
+			cp_id = cp.get("id")
+
+				
 	for boostid in boost_atk:
 		var boost_info = table.Attack[boostid]
-		if boost_info.effective_condition != cp_info.id:
+		if boost_info.effective_condition != cp_id:
 			continue
 		#应用/删除强化
 		for id in table.Attack:
@@ -79,9 +85,11 @@ func _on_boost_active(cp_info: Dictionary,is_active: bool) -> void:
 		var boost_info = table.Summoned[boostid]
 		for id in table.Summoned:
 			var sum_info = table.Summoned[id]
-			if boost_info.effective_condition != cp_info.id:
+			if boost_info.effective_condition != cp_id:
 				continue
-			if boost_info.get("routine_group")[0] in sum_info.get("routine_group") and sum_info.type != 'boost':
+			var b_groups = boost_info.get("routine_group", [])
+			var s_groups = sum_info.get("routine_group", [])
+			if b_groups.size() > 0 and (b_groups[0] in s_groups) and sum_info.type != 'boost':
 
 				_apply_sum_boost_effects(boost_info,sum_info, is_active)
 
@@ -104,7 +112,12 @@ func _apply_sum_boost_effects(boost_info: Dictionary,summon_info, is_active: boo
 
 		# 添加效果
 		if not summon_info.has(key):
-			summon_info[key] = boost_info[key]
+			match typeof(boost_info[key]):
+				TYPE_ARRAY:
+					# 避免与 boost_info 共享引用，导致删除时把 boost_info 清空
+					summon_info[key] = boost_info[key].duplicate()
+				_:
+					summon_info[key] = boost_info[key]
 		else:
 			match typeof(summon_info[key]):
 				TYPE_ARRAY:
@@ -144,7 +157,12 @@ func _apply_atk_boost_effects(boost_info: Dictionary,attack_info, is_active: boo
 		# --- 应用 Boost 效果的逻辑 ---
 		# 如果本攻击原本没有这个属性，则直接添加
 		if not attack_info.has(key):
-			attack_info[key] = boost_info[key]
+			match typeof(boost_info[key]):
+				TYPE_ARRAY:
+					# 避免与 boost_info 共享引用
+					attack_info[key] = boost_info[key].duplicate()
+				_:
+					attack_info[key] = boost_info[key]
 		# 如果已有该属性
 		else:
 			match typeof(attack_info[key]):
@@ -179,14 +197,15 @@ func up_skill(group,currentlevel):
 			SignalBus.upgrade_max.emit(id)
 
 func up_card(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in card_group.get(group,[]):
 		if currentlevel+1 == table.Upgrade[group].level:
 			SignalBus.upgrade_max.emit(id)
 
+
 func up_routine(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in routine_group.get(group,[]):
 		if table.Upgrade[group].has('times_addition'):
@@ -196,7 +215,7 @@ func up_routine(group,currentlevel):
 
 
 func up_attack(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in attack_group.get(group,[]):
 		if table.Upgrade[group].has("damage_addition"):
@@ -213,7 +232,7 @@ func up_attack(group,currentlevel):
 		SignalBus.renew_state.emit(id)
 
 func up_summon(group,currentlevel):
-	if currentlevel+1 == table.Upgrade[group].level:
+	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in summon_group.get(group,[]):
 		if table.Upgrade[group].has("duration_addition"):
