@@ -110,7 +110,6 @@ esc暂停
 shift看判定点"
 
 [node name="progress" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PresetLoadingOverlay" type="Control" parent="progress"]
 layout_mode = 3

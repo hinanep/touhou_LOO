@@ -61,7 +61,7 @@ func _initialize_prefabs_and_pools() -> void:
 		summon_pools[summon_id] = (ObjectPool.new(prefab, pool_container))
 
 # --- 外部调用接口 ---
-func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node: Node) -> void:
+func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node) -> void:
 	if routine_id != routine_info.id or not active:
 		return
 

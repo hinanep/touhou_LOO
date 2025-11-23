@@ -112,25 +112,33 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+emitting = false
 amount = 1
 texture = ExtResource("3_df07c")
 lifetime = 5.0
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_n8llv")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="8"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+emitting = false
 amount = 1
 texture = ExtResource("4_bxsym")
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_anqd2")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="9"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+emitting = false
 amount = 10
 texture = ExtResource("4_yew75")
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_hib34")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="10"]
+emitting = false
 amount = 1
 texture = ExtResource("9_bxsym")
 lifetime = 5.0
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_shnlr")
