@@ -70,7 +70,7 @@ func _on_boost_active(cp, is_active: bool) -> void:
 		TYPE_DICTIONARY:
 			cp_id = cp.get("id")
 
-				
+
 	for boostid in boost_atk:
 		var boost_info = table.Attack[boostid]
 		if boost_info.effective_condition != cp_id:

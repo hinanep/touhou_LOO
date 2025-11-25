@@ -59,7 +59,7 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	# 重启特效和计时器
 	for p:GPUParticles2D in particles:
 		p.restart()
-		
+
 
 	if attack_info.get("duration", 0.0) > 0.0:
 		duration_timer.start()
