@@ -100,7 +100,9 @@ func _execute_attack_flow(force_world_pos: bool = false, input_pos: Vector2 = Ve
 func _spawn_all_creations(force_world_pos: bool, input_pos: Vector2, input_rot: float, parent: Node2D, batch_num: int) -> void:
 	var spawn_transform: Transform2D
 	if force_world_pos:
-		spawn_transform = Transform2D(input_rot, input_pos)
+		spawn_transform = Transform2D(0, input_pos)
+		spawn_transform.rotated(input_rot)
+
 	else:
 		# 使用工具类计算位置
 		spawn_transform = BattleUtils.calculate_spawn_transform(routine_info, player_var.player_node, parent.global_position + input_pos,parent.global_rotation + input_rot)

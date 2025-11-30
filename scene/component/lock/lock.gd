@@ -60,6 +60,7 @@ func get_target_node() -> Node:
 
 # [API] 获取目标位置（无论目标是节点还是坐标）
 func get_target_position() -> Vector2:
+	find_next_target()
 	if is_instance_valid(_lock_target):
 		return _lock_target.global_position
 	return _lock_position
