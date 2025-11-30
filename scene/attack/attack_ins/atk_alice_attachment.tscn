@@ -61,7 +61,7 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(1, 1, 1, 0.49803922)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.8, 0.8)
 amount = 1
 texture = SubResource("AnimatedTexture_dhgcy")
 local_coords = true

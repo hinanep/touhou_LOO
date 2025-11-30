@@ -106,6 +106,7 @@ particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3"), NodePath(
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="1"]
 self_modulate = Color(0.19999999, 0.45333344, 1, 1)
+scale = Vector2(2, 2)
 amount = 20
 lifetime = 2.0
 local_coords = true
@@ -113,6 +114,7 @@ process_material = SubResource("ParticleProcessMaterial_8q3s7")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="2"]
 self_modulate = Color(1, 1, 1, 0.2509804)
+scale = Vector2(2, 2)
 amount = 1
 texture = ExtResource("3_4pqpq")
 lifetime = 5.0
@@ -121,6 +123,7 @@ process_material = SubResource("ParticleProcessMaterial_csw40")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="3"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+scale = Vector2(2, 2)
 amount = 1
 texture = ExtResource("5_u3iqd")
 lifetime = 5.0
@@ -136,6 +139,7 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="10"]
 self_modulate = Color(1, 1, 1, 0.4117647)
+scale = Vector2(2, 2)
 amount = 10
 texture = ExtResource("6_2nvhf")
 local_coords = true
