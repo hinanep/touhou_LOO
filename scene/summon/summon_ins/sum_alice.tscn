@@ -43,5 +43,3 @@ frame_progress = 0.08292214
 [node name="Line2D" parent="." index="4"]
 points = PackedVector2Array(0, 0, 79, -3)
 width = 3.0
-
-[node name="subattack" type="Node2D" parent="." index="5"]

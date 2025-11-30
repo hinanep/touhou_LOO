@@ -2,7 +2,7 @@ extends Node2D
 var os = Vector2(4,0.4)
 var duratime = 5
 func _ready() -> void:
-	
+
 
 	$"../..".online.connect(func():
 		duratime = $"../../duration_timer".wait_time
@@ -12,10 +12,10 @@ func _ready() -> void:
 		online()
 		)
 
-	#os = scale
+	os = scale
 
 func online() -> void:
-	
+
 		player_var.worldenvir.environment.set_glow_enabled(true)
 		scale.y = 0
 		var tween = create_tween()
@@ -26,6 +26,6 @@ func online() -> void:
 		await tween.finished
 		print('tweened')
 		tween.kill()
-	
+
 
 		player_var.worldenvir.environment.set_glow_enabled(false)

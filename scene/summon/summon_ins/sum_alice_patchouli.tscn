@@ -6,5 +6,5 @@
 
 [node name="Summon" instance=ExtResource("1_emh2d")]
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[node name="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_fyvqb")

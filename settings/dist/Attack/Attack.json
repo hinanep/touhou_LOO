@@ -626,7 +626,7 @@
 	"ri_dependence": "lock",
 	"ri": 0.0,
 	"locking_type": "front",
-	"reference_system": "character",
+	"reference_system": "world",
 	"moving": false,
 	"moving_rule": "",
 	"moving_parameter_dependence": [],
