@@ -721,7 +721,7 @@
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      500.0
+      250.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
@@ -774,7 +774,7 @@
     "shape": "circle",
     "size_dependence": [],
     "size": [
-      400.0
+      200.0
     ],
     "ri_dependence": "",
     "ri": 0.0,
