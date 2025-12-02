@@ -22,7 +22,7 @@ var batch_num
 @onready var duration_timer: Timer = $duration_timer
 @export var particles: Array[Node] = [] # 示例
 @onready var texture = $lock_component
-var dot_tween
+var dot_tween:Tween
 #=============================================================================
 # 生命周期 & 对象池接口
 #=============================================================================
@@ -230,7 +230,7 @@ func _set_active(p_active: bool) -> void:
 	self.is_active = p_active
 	self.visible = p_active
 	set_physics_process(p_active)
-	if not p_active:
+	if not p_active and dot_tween is Tween:
 		dot_tween.kill()
 	call_deferred("set_monitoring", p_active) # 延迟执行以避免物理引擎冲突
 
