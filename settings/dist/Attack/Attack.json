@@ -499,8 +499,8 @@
     "effective_condition": "",
     "damage_times": "dot",
     "damage_type": "danma",
-    "damage": 3.0,
-    "duration": 5.0,
+    "damage": 2.0,
+    "duration": 10.0,
     "duration_dependence": "",
     "debuff": [],
     "debuff_intensity": [],
@@ -528,9 +528,9 @@
     "moving_rule": "trail",
     "moving_parameter_dependence": [],
     "moving_parameter": [
-      0,
-      100,
-      250
+      30,
+      200,
+      200
     ],
     "diretion": "",
     "rotation": true,
