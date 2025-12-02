@@ -47,7 +47,7 @@ func return_object(obj: Node):
 		call_deferred("disable_object",obj)
 
 		obj.hide() # 隐藏起来
-
+		obj.position = Vector2.ZERO
 		pool.push_back(obj)
 		object_returned.emit(obj)
 

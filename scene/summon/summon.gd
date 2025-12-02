@@ -101,8 +101,7 @@ func _trigger_routines(event_key: String) -> void:
 			# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
 			# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
 			SignalBus.trigger_routine_by_id.emit(routine_id, false, Vector2.ZERO, global_rotation, $subattack)
-			print("---sums")
-			print(global_position)
+
 	else:
 		for routine_id in routines_to_trigger:
 			# 注意：第三个参数 true 表示强制世界坐标生成
