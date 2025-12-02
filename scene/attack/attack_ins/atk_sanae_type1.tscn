@@ -75,8 +75,5 @@ self_modulate = Color(1, 1, 1, 0.49803922)
 scale = Vector2(3.9999998, 3.9999998)
 texture = ExtResource("5_3hp2n")
 
-[node name="damage_area" parent="." index="2"]
-visible = false
-
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_56p1l")

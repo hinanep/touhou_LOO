@@ -1,4 +1,4 @@
-class_name Attack extends Node2D
+class_name Attack extends CharacterBody2D
 
 # 信号：当此节点完成使命，应返回对象池时发出
 signal returned_to_pool(node: Node)
@@ -34,6 +34,7 @@ func _ready() -> void:
 	killed_enemy.connect(_on_enemy_killed)
 
 
+
 	SignalBus.renew_state.connect(_update_dynamic_stats)
 	SignalBus.boss_stage.connect(_set_boss_mode)
 	origin_scale = texture.scale
@@ -45,6 +46,9 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	self.batch_num = batch_num
 	if attack_info.is_empty():
 		attack_info = table.Attack.get(attack_id,{})
+		if attack_info.has("reflection"):
+			if attack_info.reflection.has("enemy"):
+				set_collision_mask_value(2,true)
 
 	# 更新基于等级和玩家属性的动态属性
 	_update_dynamic_stats(attack_id)

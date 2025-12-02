@@ -50,4 +50,6 @@ gradient = SubResource("Gradient_vc0sf")
 texture = SubResource("AtlasTexture_42tbf")
 texture_mode = 1
 
+[node name="subattack" type="Node2D" parent="."]
+
 [connection signal="timeout" from="rediretion" to="." method="rediretion"]

@@ -109,9 +109,6 @@ material = SubResource("ShaderMaterial_bty1h")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_7cdwn")
 
-[node name="damage_area" parent="." index="2"]
-visible = false
-
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_tm7v0")
 
