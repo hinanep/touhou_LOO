@@ -67,6 +67,5 @@ rect = Rect2(-1, -1, 2, 2)
 [node name="exit_screen_timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="bullet_erase_area" to="." method="_on_bullet_erase_area_body_entered"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
 [connection signal="timeout" from="exit_screen_timer" to="." method="_on_exit_screen_timer_timeout"]

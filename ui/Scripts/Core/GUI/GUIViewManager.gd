@@ -50,7 +50,7 @@ func  open_view(viewId:StringName):
 
 func clear_to_start():
 	close_all_view()
-
+	table.return_to_start()
 	get_tree().change_scene_to_packed(PresetManager.getpre('root_menu'))
 
 

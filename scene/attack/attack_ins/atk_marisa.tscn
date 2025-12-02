@@ -17,7 +17,7 @@ autoplay = ""
 
 [node name="Node2D" parent="lock_component" index="0" instance=ExtResource("4_qrg0o")]
 position = Vector2(-3.494629, 0.000541687)
-scale = Vector2(4, 0.01)
+scale = Vector2(4, 0.4)
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = ExtResource("3_od6hf")
