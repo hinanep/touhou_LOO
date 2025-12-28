@@ -271,6 +271,7 @@ func screen_black(intensity:float,in_time:float,duration_time:float,out_time:flo
 
 func ini():
 	var ini_list = initial_status.new()
+	
 	for property in ini_list.status:
 		set(property,ini_list.status[property])
 	ini_list = null

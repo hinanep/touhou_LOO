@@ -33,6 +33,12 @@ func initialize(p_body: Node2D, p_attack_info: Dictionary, p_lock_comp: LockComp
 	self.attack_info = p_attack_info
 	self.lock = p_lock_comp
 	self.has_reflection = attack_info.has("reflection")
+	if has_reflection:
+		body.collision_mask = 0
+		if "enemy" in attack_info.reflection:
+			body.collision_mask += 2
+		if "wall" in attack_info.reflection:
+			body.collision_mask += 32
 
 	_reset_state_variables()
 

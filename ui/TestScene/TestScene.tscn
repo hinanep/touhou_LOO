@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="5_ep1gx"]
 [ext_resource type="Script" uid="uid://bfglv8fvpyl4j" path="res://ui/InGame/d4c.gd" id="5_pafhp"]
-[ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnManager.tscn" id="6_uy8n2"]
+[ext_resource type="PackedScene" uid="uid://bmoc4mqpo2fwi" path="res://gamemanager/SpawnManager/spawnmanager.tscn" id="6_uy8n2"]
 [ext_resource type="Script" uid="uid://dh17e78nirbh0" path="res://ui/InGame/drops.gd" id="7_7uj5j"]
 [ext_resource type="Script" uid="uid://dbm3kll2vedrc" path="res://ui/TestScene/shatter.gd" id="7_vsf1d"]
 [ext_resource type="PackedScene" uid="uid://dl15bichusdko" path="res://scene/FragmentContainer.tscn" id="8_numam"]
@@ -54,6 +54,7 @@ adjustment_enabled = true
 [node name="TestScene" type="Control"]
 process_mode = 3
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0

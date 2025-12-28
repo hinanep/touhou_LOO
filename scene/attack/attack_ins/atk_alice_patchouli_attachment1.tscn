@@ -103,8 +103,7 @@ script = ExtResource("2_aflkx")
 particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D3"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D4")]
 
 [node name="lock_component" parent="." index="1"]
-visible = false
-scale = Vector2(1.2, 1.2)
+scale = Vector2(0.2, 0.2)
 sprite_frames = null
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
@@ -112,15 +111,15 @@ shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(1, 1, 1, 0.39215687)
-emitting = false
+rotation = 1.5708
 amount = 1
 texture = ExtResource("3_df07c")
 lifetime = 5.0
-one_shot = true
 process_material = SubResource("ParticleProcessMaterial_n8llv")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="8"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+scale = Vector2(0.16666667, 0.16666667)
 emitting = false
 amount = 1
 texture = ExtResource("4_bxsym")
@@ -129,6 +128,7 @@ process_material = SubResource("ParticleProcessMaterial_anqd2")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="9"]
 self_modulate = Color(1, 1, 1, 0.39215687)
+scale = Vector2(0.16666667, 0.16666667)
 emitting = false
 amount = 10
 texture = ExtResource("4_yew75")
@@ -136,6 +136,7 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_hib34")
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="10"]
+scale = Vector2(0.16666667, 0.16666667)
 emitting = false
 amount = 1
 texture = ExtResource("9_bxsym")

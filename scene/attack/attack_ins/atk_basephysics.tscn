@@ -13,9 +13,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r1nd1"]
-radius = 100.0
-
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_paiww"]
 frames = 2
 speed_scale = 10.0
@@ -38,9 +35,12 @@ angular_velocity_min = -1200.0
 angular_velocity_max = -1200.0
 alpha_curve = SubResource("CurveTexture_5c0i3")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1nd1"]
+radius = 100.0
+
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_g4alh")]
 script = ExtResource("2_sn7l8")
-particles = [NodePath("GPUParticles2D")]
+particles = [NodePath("lock_component/GPUParticles2D")]
 
 [node name="move_component" parent="." index="0"]
 visible = true
@@ -49,13 +49,14 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_gccu5")
 autoplay = ""
 
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("CircleShape2D_r1nd1")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
 self_modulate = Color(0.88, 1, 0.884, 0.37254903)
-scale = Vector2(0.5, 0.5)
+rotation = -1.5708
+scale = Vector2(0.198, 0.198)
 amount = 1
 texture = SubResource("AnimatedTexture_paiww")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_5c0i3")
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_r1nd1")

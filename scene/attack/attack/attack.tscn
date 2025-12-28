@@ -58,6 +58,7 @@ collision_mask = 64
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_erase_area"]
+visible = false
 
 [node name="duration_timer" type="Timer" parent="."]
 
