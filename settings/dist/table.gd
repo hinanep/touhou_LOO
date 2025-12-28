@@ -65,3 +65,11 @@ static func is_null(datax):
 		_:
 			return false
 	return false
+func return_to_start():
+	Attack = oAttack.duplicate(true)
+	Skill = oSkill.duplicate(true)
+	Buff = oBuff.duplicate(true)
+	Passive = oPassive.duplicate(true)
+	Routine = oRoutine.duplicate(true)
+	SpellCard = oSpellCard.duplicate(true)
+	Summoned = oSummoned.duplicate(true)

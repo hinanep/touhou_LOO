@@ -1,4 +1,4 @@
-class_name Attack extends Node2D
+class_name Attack extends CharacterBody2D
 
 # 信号：当此节点完成使命，应返回对象池时发出
 signal returned_to_pool(node: Node)
@@ -22,6 +22,7 @@ var batch_num
 @onready var duration_timer: Timer = $duration_timer
 @export var particles: Array[Node] = [] # 示例
 @onready var texture = $lock_component
+var dot_tween:Tween
 #=============================================================================
 # 生命周期 & 对象池接口
 #=============================================================================
@@ -32,6 +33,7 @@ func _ready() -> void:
 	damage_area.body_entered.connect(_on_damage_area_body_entered)
 	duration_timer.timeout.connect(_on_duration_timeout)
 	killed_enemy.connect(_on_enemy_killed)
+
 
 
 	SignalBus.renew_state.connect(_update_dynamic_stats)
@@ -45,7 +47,14 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	self.batch_num = batch_num
 	if attack_info.is_empty():
 		attack_info = table.Attack.get(attack_id,{})
+		if attack_info.has("reflection"):
+			if attack_info.reflection.has("enemy"):
+				set_collision_mask_value(2,true)
 
+	if attack_info.get("damage_times") == "dot":
+		dot_tween = create_tween().set_loops()
+		dot_tween.tween_interval(0.25)
+		dot_tween.tween_callback(do_dot)
 	# 更新基于等级和玩家属性的动态属性
 	_update_dynamic_stats(attack_id)
 
@@ -63,6 +72,8 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 
 	if attack_info.get("duration", 0.0) > 0.0:
 		duration_timer.start()
+
+
 	show()
 # 使节点失活并通知对象池回收
 func _return_to_pool(reason: String = "") -> void:
@@ -82,14 +93,25 @@ func _physics_process(delta: float) -> void:
 	if not is_active: return
 	# 将更新任务委托给移动组件
 	move_component.physics_update(delta)
-	pass
+
+func do_dot():
+
+	var all_mon3ter = damage_area.get_overlapping_bodies()
+	if all_mon3ter.is_empty():
+		return
+	_trigger_routines_on_event(attack_info.get("hitting_routine_creation", []))
+	for mon3ter in damage_area.get_overlapping_bodies():
+		do_damage_to(mon3ter)
 
 func _on_damage_area_body_entered(body: Node) -> void:
 	if not body.has_method("mob_take_damage"):
 		return
 
 	_trigger_routines_on_event(attack_info.get("hitting_routine_creation", []))
+	do_damage_to(body)
 
+
+func do_damage_to(body):
 	var damage_amount = attack_info.get("damage", 0.0)
 	var damage_type = attack_info.get("damage_type", "danma")
 
@@ -100,7 +122,6 @@ func _on_damage_area_body_entered(body: Node) -> void:
 		final_damage = player_var.player_make_melee_damage(damage_amount * attack_info.get("physical_addition_efficiency", 1.0), damage_source)
 
 	body.mob_take_damage(final_damage)
-
 	_apply_debuffs(body)
 
 	if body.hp <= 0:
@@ -109,6 +130,7 @@ func _on_damage_area_body_entered(body: Node) -> void:
 	penetration_count += 1
 	if penetration_count >= attack_info.get("penetration", 1):
 		_return_to_pool("penetration_limit")
+
 
 func _apply_debuffs(body: Node) -> void:
 	if not attack_info.has("debuff") or not body.has_method("set_debuff"):
@@ -223,6 +245,8 @@ func _set_active(p_active: bool) -> void:
 	self.is_active = p_active
 	self.visible = p_active
 	set_physics_process(p_active)
+	if not p_active and dot_tween is Tween:
+		dot_tween.kill()
 	call_deferred("set_monitoring", p_active) # 延迟执行以避免物理引擎冲突
 
 func set_monitoring(p_active: bool) -> void:

@@ -116,6 +116,11 @@ var exp_need:
 
 var damage_sum
 var worldenvir:WorldEnvironment
+var need_glow:int:
+	set(value):
+		if value < 0:
+			need_glow = 0
+
 var underrecycle_tween = []
 func _clear_all_tweens():
 	for tween in underrecycle_tween:
@@ -268,6 +273,15 @@ func screen_black(intensity:float,in_time:float,duration_time:float,out_time:flo
 	blacking.tween_property(black_mo,"modulate",Color(1,1,1,intensity),in_time)
 	blacking.tween_interval(duration_time)
 	blacking.tween_property(black_mo,"modulate",Color(1,1,1,0),out_time)
+
+func require_env_glowing(getin:bool):
+	if getin:
+		need_glow+=1
+		worldenvir.environment.set_glow_enabled(true)
+	else:
+		need_glow-=1
+		if need_glow==0:
+			worldenvir.environment.set_glow_enabled(false)
 
 func ini():
 	var ini_list = initial_status.new()

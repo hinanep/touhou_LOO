@@ -1,103 +1,103 @@
 {
   "sum_alice": {
-	"id": "sum_alice",
-	"routine_group": [
-	  "rou_alice",
+    "id": "sum_alice",
+    "routine_group": [
+      "rou_alice",
       "rou_alice_marisa_attachment3"
-	],
-	"upgrade_group": "upg_alice",
-	"type": "base",
-	"effective_condition": "",
-	"duration": 8.0,
-	"dependence": "",
-	"can_be_hited": false,
-	"initial_hp": 1.0,
-	"automatic_routine": [
+    ],
+    "upgrade_group": "upg_alice",
+    "type": "base",
+    "effective_condition": "",
+    "duration": 8.0,
+    "dependence": "",
+    "can_be_hited": false,
+    "initial_hp": 1.0,
+    "automatic_routine": [
       "rou_alice_attachment"
-	],
-	"cd": 0.5,
-	"movement": "sandsoldier",
-	"movement_parameter": [
-	  3.0
-	],
-	"creating_routine": [],
-	"destroying_routine": [],
-	"special": [],
-	"special_routine": []
+    ],
+    "cd": 0.5,
+    "movement": "sandsoldier",
+    "movement_parameter": [
+      4.0
+    ],
+    "creating_routine": [],
+    "destroying_routine": [],
+    "special": [],
+    "special_routine": []
   },
   "sum_alice_marisa": {
-	"id": "sum_alice_marisa",
-	"routine_group": [
+    "id": "sum_alice_marisa",
+    "routine_group": [
       "rou_alice"
-	],
-	"upgrade_group": "none",
-	"type": "boost",
-	"effective_condition": "cp_marisa_alice",
-	"duration": 0.0,
-	"dependence": "",
-	"can_be_hited": false,
-	"initial_hp": 0.0,
-	"automatic_routine": [],
-	"cd": 0.0,
-	"movement": "",
-	"movement_parameter": [],
-	"creating_routine": [],
-	"destroying_routine": [],
-	"special": [
+    ],
+    "upgrade_group": "none",
+    "type": "boost",
+    "effective_condition": "cp_marisa_alice",
+    "duration": 0.0,
+    "dependence": "",
+    "can_be_hited": false,
+    "initial_hp": 0.0,
+    "automatic_routine": [],
+    "cd": 0.0,
+    "movement": "",
+    "movement_parameter": [],
+    "creating_routine": [],
+    "destroying_routine": [],
+    "special": [
       "scdestroy"
-	],
-	"special_routine": [
+    ],
+    "special_routine": [
       "rou_alice_marisa_attachment1"
-	]
+    ]
   },
   "sum_alice_patchouli": {
-	"id": "sum_alice_patchouli",
-	"routine_group": [
+    "id": "sum_alice_patchouli",
+    "routine_group": [
       "rou_alice"
-	],
-	"upgrade_group": "none",
-	"type": "boost",
-	"effective_condition": "cp_alice_patchouli",
-	"duration": 0.0,
-	"dependence": "",
-	"can_be_hited": false,
-	"initial_hp": 0.0,
-	"automatic_routine": [],
-	"cd": 0.0,
-	"movement": "",
-	"movement_parameter": [],
-	"creating_routine": [
+    ],
+    "upgrade_group": "none",
+    "type": "boost",
+    "effective_condition": "cp_alice_patchouli",
+    "duration": 0.0,
+    "dependence": "",
+    "can_be_hited": false,
+    "initial_hp": 0.0,
+    "automatic_routine": [],
+    "cd": 0.0,
+    "movement": "",
+    "movement_parameter": [],
+    "creating_routine": [
       "rou_alice_ptchouli_attachment1"
-	],
-	"destroying_routine": [
+    ],
+    "destroying_routine": [
       "rou_alice_ptchouli_attachment2"
-	],
-	"special": [],
-	"special_routine": []
+    ],
+    "special": [],
+    "special_routine": []
   },
   "sum_alice_marisa_attachment1": {
-	"id": "sum_alice_marisa_attachment1",
-	"routine_group": [
+    "id": "sum_alice_marisa_attachment1",
+    "routine_group": [
       "rou_alice_marisa_attachment1"
-	],
-	"upgrade_group": "none",
-	"type": "base",
-	"effective_condition": "",
-	"duration": 1.0,
-	"dependence": "atkdep_marisa_alice_duration",
-	"can_be_hited": false,
-	"initial_hp": 1.0,
-	"automatic_routine": [],
-	"cd": 0.0,
-	"movement": "none",
-	"movement_parameter": [],
-	"creating_routine": [
+    ],
+    "upgrade_group": "none",
+    "type": "base",
+    "effective_condition": "",
+    "duration": 1.0,
+    "dependence": "atkdep_marisa_alice_duration",
+    "can_be_hited": false,
+    "initial_hp": 1.0,
+    "automatic_routine": [],
+    "cd": 0.0,
+    "movement": "none",
+    "movement_parameter": [],
+    "creating_routine": [
       "rou_alice_marisa_attachment2"
-	],
-	"destroying_routine": [
+    ],
+    "destroying_routine": [
       "rou_alice_marisa_attachment3"
-	],
-	"special": [],
-	"special_routine": []
+    ],
+    "special": [],
+    "special_routine": []
   }
 }
