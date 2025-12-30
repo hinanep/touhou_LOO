@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b84qs45wwa3qu"]
 
-[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_58ra8"]
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_58ra8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fml4o"]
 

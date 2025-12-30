@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cg0okjckka01r"]
 
-[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_ktam7"]
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_ktam7"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_r4p3p"]
 [ext_resource type="Texture2D" uid="uid://c85lfonim3h5i" path="res://asset/pic/bullet/子弹.png" id="4_nwwb0"]
 
@@ -17,6 +17,7 @@ animations = [{
 
 [node name="Attack" instance=ExtResource("1_ktam7")]
 script = ExtResource("2_r4p3p")
+particle_scale_need_change = false
 
 [node name="lock_component" parent="." index="1"]
 self_modulate = Color(1, 1, 1, 0.7490196)

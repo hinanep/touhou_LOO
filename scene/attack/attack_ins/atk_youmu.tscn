@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cmppkk7xftxae"]
 
-[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_ddg6b"]
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_ddg6b"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_dc43h"]
 [ext_resource type="Shape2D" uid="uid://bgb8je55njqj7" path="res://scene/attack/attack/attack_shape/rec_edge.tres" id="3_368xe"]
 [ext_resource type="Texture2D" uid="uid://dmrwr5eax2jsm" path="res://asset/pic/bullet/剑气.png" id="4_t0x4p"]

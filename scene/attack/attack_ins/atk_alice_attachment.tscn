@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnhpskvcu3daq"]
+[gd_scene load_steps=10 format=3 uid="uid://bnhpskvcu3daq"]
 
-[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_p0rqg"]
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_p0rqg"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_liw8n"]
 [ext_resource type="Texture2D" uid="uid://bsra182evfurc" path="res://asset/pic/挥砍1.png" id="3_dhgcy"]
 [ext_resource type="Texture2D" uid="uid://xi0ac5g4ddvj" path="res://asset/pic/挥砍2.png" id="4_km2k5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_dhgcy"]
 frames = 2
@@ -28,43 +30,27 @@ angular_velocity_max = -720.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_vnvco")
 
-[sub_resource type="GDScript" id="GDScript_dhgcy"]
-script/source = "#该脚本实现一些贴图的旋转
-
-extends GPUParticles2D
-
-#@export_group(\"Auto Rotate\")
-#@export var rotate_speed : int
-
-func _ready() -> void:
-	var tween = create_tween()
-	tween.tween_property($\".\",'rotation',4*PI,1)
-#func _process(delta: float) -> void:
-	#rotate(rotate_speed * PI * delta)
-"
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
-
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_p0rqg")]
 script = ExtResource("2_liw8n")
-particles = [NodePath("lock_component/GPUParticles2D")]
+particle_scale_need_change = false
+particle_scale_min = [7.5, 1.0, 1.0, 1.0]
+particle_scale_max = [7.5, 1.0, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D")]
 
 [node name="move_component" parent="." index="0"]
 visible = true
 
 [node name="lock_component" parent="." index="1"]
-scale = Vector2(0.4, 0.3)
 sprite_frames = null
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(1, 1, 1, 0.49803922)
-rotation = -1.570799
-scale = Vector2(0.188, 0.141)
+rotation = 1.5708
+scale = Vector2(0.094550006, 0.094550006)
 amount = 1
 texture = SubResource("AnimatedTexture_dhgcy")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_dugh4")
-script = SubResource("GDScript_dhgcy")
-
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("WorldBoundaryShape2D_74emn")

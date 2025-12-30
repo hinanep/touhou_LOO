@@ -285,7 +285,7 @@ func require_env_glowing(getin:bool):
 
 func ini():
 	var ini_list = initial_status.new()
-	
+
 	for property in ini_list.status:
 		set(property,ini_list.status[property])
 	ini_list = null

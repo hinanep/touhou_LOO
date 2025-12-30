@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://def8milxirujq"]
 
-[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack/attack.tscn" id="1_h12sq"]
+[ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_h12sq"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
 [ext_resource type="Shader" uid="uid://dhxpb1iq2snv8" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
 [ext_resource type="Texture2D" uid="uid://b4vdl2oub648v" path="res://asset/pic/texture/bh-3.png" id="5_7cdwn"]

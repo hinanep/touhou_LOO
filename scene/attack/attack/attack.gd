@@ -174,18 +174,9 @@ func _update_shape_and_size() -> void:
 		size_add = player_var.dep.operate_dep(attack_info.size_dependence, size_add)
 
 	var final_scale = Vector2.ONE * player_var.range_add_ratio * size_add
-	if final_scale.x/self.scale.x == 1:
+	self.scale = final_scale
 
-		pass
-	else:
-		for particle:GPUParticles2D in particles:
-			particle.process_material.scale_min *= final_scale/self.scale
-			particle.process_material.scale_max *= final_scale/self.scale
-		self.scale = final_scale
-		
-	if shape_set:
-		return
-		
+
 	match shape_type:
 		"circle":
 			new_shape = _create_circle_shape()
@@ -195,16 +186,14 @@ func _update_shape_and_size() -> void:
 
 	if new_shape:
 		shape_node.shape = new_shape
-	shape_set = true
+
 
 
 func _create_circle_shape() -> CircleShape2D:
 	var shape = CircleShape2D.new()
 	shape.radius = attack_info.size[0]
 	texture.scale = origin_scale * shape.radius / 20
-	for particle:GPUParticles2D in particles:
-		particle.process_material.scale_min *= shape.radius / 20
-		particle.process_material.scale_max *= shape.radius / 20
+
 	return shape
 
 func _create_rectangle_shape(is_edge_aligned: bool) -> RectangleShape2D:
