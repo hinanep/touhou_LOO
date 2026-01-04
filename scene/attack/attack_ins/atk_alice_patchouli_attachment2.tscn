@@ -6,6 +6,32 @@
 [ext_resource type="Texture2D" uid="uid://cjyuyuuy2aa62" path="res://asset/pic/月符.png" id="5_u3iqd"]
 [ext_resource type="Texture2D" uid="uid://co8msfmu8ntnd" path="res://asset/pic/+.png" id="6_2nvhf"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="Curve" id="Curve_4pqpq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15282393, 1), 0.0, 0.0, 0, 0, Vector2(0.60132897, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2nvhf"]
+curve = SubResource("Curve_4pqpq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3iqd"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 90.0
+emission_ring_inner_radius = 10.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -30, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+alpha_curve = SubResource("CurveTexture_2nvhf")
+
 [sub_resource type="Curve" id="Curve_2nvhf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8172758, 0.4926362), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -74,44 +100,35 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_b61sp")
 alpha_curve = SubResource("CurveTexture_1ql5d")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
-
-[sub_resource type="Curve" id="Curve_4pqpq"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15282393, 1), 0.0, 0.0, 0, 0, Vector2(0.60132897, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_2nvhf"]
-curve = SubResource("Curve_4pqpq")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3iqd"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.0
-emission_ring_radius = 90.0
-emission_ring_inner_radius = 10.0
-emission_ring_cone_angle = 90.0
-direction = Vector3(0, 1, 0)
-spread = 90.0
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
-gravity = Vector3(0, -30, 0)
-scale_min = 0.19999999
-scale_max = 0.29999998
-alpha_curve = SubResource("CurveTexture_2nvhf")
-
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_l4wq1")]
 script = ExtResource("2_2eiqs")
-particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3"), NodePath("GPUParticles2D4"), NodePath("GPUParticles2D")]
+particle_scale_need_change = true
+particle_scale_min = [0.3, 2.0, 1.8, 0.7]
+particle_scale_max = [0.3, 2.0, 1.8, 0.7]
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3"), NodePath("GPUParticles2D4")]
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="1"]
+[node name="lock_component" parent="." index="1"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = null
+
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+self_modulate = Color(1, 1, 1, 0.4117647)
+amount = 10
+texture = ExtResource("6_2nvhf")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_u3iqd")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
 self_modulate = Color(0.19999999, 0.45333344, 1, 1)
 amount = 20
 lifetime = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8q3s7")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="2"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="9"]
 self_modulate = Color(1, 1, 1, 0.2509804)
 amount = 1
 texture = ExtResource("3_4pqpq")
@@ -119,24 +136,10 @@ lifetime = 5.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_csw40")
 
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="3"]
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="." index="10"]
 self_modulate = Color(1, 1, 1, 0.39215687)
 amount = 1
 texture = ExtResource("5_u3iqd")
 lifetime = 5.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_g6qlj")
-
-[node name="lock_component" parent="." index="4"]
-scale = Vector2(1.2, 1.2)
-sprite_frames = null
-
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("WorldBoundaryShape2D_74emn")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="10"]
-self_modulate = Color(1, 1, 1, 0.4117647)
-amount = 10
-texture = ExtResource("6_2nvhf")
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_u3iqd")

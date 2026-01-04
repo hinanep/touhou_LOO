@@ -12,6 +12,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdgtq"]
+radius = 150.0
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywquh"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -56,12 +59,12 @@ alpha_curve = SubResource("CurveTexture_kmcfv")
 anim_speed_min = 3.0
 anim_speed_max = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wdgtq"]
-radius = 50.0
-
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_vgm1u")]
 script = ExtResource("2_lhhvw")
-particles = [NodePath("lock_component/GPUParticles2D")]
+particle_scale_need_change = false
+particle_scale_min = [0.3, 1.0, 1.0, 1.0]
+particle_scale_max = [0.3, 1.0, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D")]
 
 [node name="lock_component" parent="." index="1"]
 rotation = 0.0
@@ -69,11 +72,14 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_35flk")
 autoplay = ""
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_wdgtq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(0.868, 1, 0.81999993, 0.7490196)
 material = SubResource("CanvasItemMaterial_ywquh")
-position = Vector2(0, 160)
-scale = Vector2(2.5, 2.5)
+position = Vector2(-1, 159)
+scale = Vector2(3, 2.1)
 amount = 48
 texture = ExtResource("5_oy2y7")
 lifetime = 2.0
@@ -81,6 +87,3 @@ preprocess = 1.0
 local_coords = true
 draw_order = 2
 process_material = SubResource("ParticleProcessMaterial_jebhf")
-
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("CircleShape2D_wdgtq")

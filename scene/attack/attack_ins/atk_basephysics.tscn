@@ -36,6 +36,8 @@ angle_min = 1.0728836e-05
 angle_max = 360.00003
 angular_velocity_min = -1200.0
 angular_velocity_max = -1200.0
+scale_min = 5.0
+scale_max = 5.0
 alpha_curve = SubResource("CurveTexture_5c0i3")
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_g4alh")]
