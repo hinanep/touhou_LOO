@@ -21,6 +21,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7lt5v"]
 radius = 20.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbvrm"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.63
+scale_max = 0.63
+
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_a8qnf"]
 frames = 2
 frame_0/texture = ExtResource("4_xwt6u")
@@ -49,20 +55,17 @@ emission_sphere_radius = 0.2
 angular_velocity_min = 499.99997
 angular_velocity_max = 499.99997
 gravity = Vector3(0, 0, 0)
-scale_min = 0.08
-scale_max = 0.099999994
+scale_min = 0.59999996
+scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_h327m")
 alpha_curve = SubResource("CurveTexture_wugdl")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rbvrm"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.099999994
-
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_wq5qk")]
 script = ExtResource("2_57lmb")
-particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D")]
+particle_scale_need_change = false
+particle_scale_min = [0.63, 0.6, 1.0, 1.0]
+particle_scale_max = [0.63, 0.6, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2")]
 
 [node name="lock_component" parent="." index="1"]
 modulate = Color(0.370364, 0.370364, 0.370364, 0.745098)
@@ -73,16 +76,16 @@ autoplay = ""
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_7lt5v")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="7"]
-self_modulate = Color(1, 1, 1, 0.78431374)
-amount = 6
-texture = SubResource("AnimatedTexture_a8qnf")
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_or5y2")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="8"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 amount = 1
 texture = ExtResource("6_187hf")
 lifetime = 5.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rbvrm")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
+self_modulate = Color(1, 1, 1, 0.78431374)
+amount = 6
+texture = SubResource("AnimatedTexture_a8qnf")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_or5y2")

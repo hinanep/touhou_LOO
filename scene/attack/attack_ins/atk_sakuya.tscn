@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpt73bwx42j78"]
+[gd_scene load_steps=23 format=3 uid="uid://bpt73bwx42j78"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_bgcvx"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_l2oxa"]
@@ -10,6 +10,17 @@
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="8_bbird"]
 [ext_resource type="Texture2D" uid="uid://dbvpa5n8chvri" path="res://asset/pic/sakuya-2.png" id="8_ncp7u"]
 [ext_resource type="Texture2D" uid="uid://dty7ovaqqrcjk" path="res://asset/pic/tmp.png" id="10_gqwla"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1xu3n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_edrru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_7ogr1"]
 frames = 5
@@ -34,8 +45,8 @@ curve = SubResource("Curve_snlc4")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n8gv7"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-scale_min = 0.14999999
-scale_max = 0.14999999
+scale_min = 0.56
+scale_max = 0.56
 alpha_curve = SubResource("CurveTexture_ssfug")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_remwn"]
@@ -54,8 +65,8 @@ curve = SubResource("Curve_o4chs")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4pll8"]
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
-scale_min = 0.13
-scale_max = 0.13
+scale_min = 0.48999998
+scale_max = 0.48999998
 alpha_curve = SubResource("CurveTexture_yx2lj")
 
 [sub_resource type="Curve" id="Curve_3qfdw"]
@@ -70,67 +81,52 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 8.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.099999994
+scale_min = 0.38
+scale_max = 0.38
 alpha_curve = SubResource("CurveTexture_ua3y1")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1xu3n"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_edrru")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_bgcvx")]
 z_index = 12
 script = ExtResource("2_l2oxa")
-particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D/GPUParticles2D2"), NodePath("GPUParticles2D/GPUParticles2D2/GPUParticles2D3")]
+particle_scale_need_change = false
+particle_scale_min = [1.0, 1.0, 1.0, 1.0]
+particle_scale_max = [1.0, 1.0, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2"), NodePath("GPUParticles2D3")]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
+[node name="lock_component" parent="." index="1"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_1xu3n")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="2"]
 self_modulate = Color(1, 1, 1, 0.6431373)
 z_index = -10
-position = Vector2(6, 8)
+position = Vector2(23, 26)
 amount = 1
 texture = SubResource("AnimatedTexture_7ogr1")
 lifetime = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_n8gv7")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="GPUParticles2D" index="0"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="3"]
 self_modulate = Color(1, 1, 1, 0.31764707)
+z_index = -1
 material = SubResource("ShaderMaterial_remwn")
-position = Vector2(-1, 0)
+position = Vector2(26, 8)
 amount = 1
 texture = ExtResource("8_ncp7u")
 lifetime = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_4pll8")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="GPUParticles2D/GPUParticles2D2" index="0"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." index="4"]
 self_modulate = Color(1, 1, 1, 0.39215687)
-position = Vector2(-6, -4)
+z_index = -1
+position = Vector2(-1, 4)
 amount = 7
 texture = ExtResource("10_gqwla")
 lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_wv83l")
 
-[node name="lock_component" parent="." index="2"]
-modulate = Color(1, 1, 1, 1)
-z_index = 10
-scale = Vector2(0.4, 0.4)
-sprite_frames = SubResource("SpriteFrames_1xu3n")
-
-[node name="damage_area" parent="." index="3"]
-visible = false
-
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("WorldBoundaryShape2D_74emn")
-
-[node name="bullet_erase_area" parent="." index="4"]
+[node name="bullet_erase_area" parent="." index="6"]
 visible = false

@@ -6,7 +6,7 @@ extends Attack
 
 func _ready() -> void:
 	super._ready()
-
+	item_rect_changed.connect(_on_item_rect_changed)
 	set_particle_scale(scale.x)
 
 func set_particle_scale(sc:float):
@@ -18,4 +18,5 @@ func set_particle_scale(sc:float):
 func _on_item_rect_changed() -> void:
 	if not particle_scale_need_change:
 		return
+
 	set_particle_scale(scale.x)

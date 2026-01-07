@@ -14,6 +14,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
+radius = 250.0
+
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_mc74e"]
 frames = 2
 speed_scale = 8.0
@@ -42,8 +45,8 @@ angle_max = 360.00003
 angular_velocity_min = 719.99994
 angular_velocity_max = 959.99994
 gravity = Vector3(0, 0, 0)
-scale_min = 15.0
-scale_max = 15.0
+scale_min = 450.0
+scale_max = 450.0
 scale_curve = SubResource("CurveTexture_qdpqv")
 alpha_curve = SubResource("CurveTexture_vioxq")
 
@@ -54,15 +57,15 @@ orbit_velocity_max = 1.0000001
 radial_velocity_min = 49.999977
 radial_velocity_max = 79.99998
 gravity = Vector3(0, 0, 0)
-scale_min = 0.19999999
+scale_min = 0.29999998
 scale_max = 0.29999998
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
-radius = 250.0
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_c4ica")]
 script = ExtResource("2_ryf0y")
-particles = [NodePath("lock_component/GPUParticles2D"), NodePath("lock_component/GPUParticles2D/GPUParticles2D2")]
+particle_scale_need_change = false
+particle_scale_min = [450.0, 0.3, 1.0, 1.0]
+particle_scale_max = [450.0, 0.3, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2")]
 
 [node name="move_component" parent="." index="0"]
 visible = true
@@ -73,23 +76,23 @@ sprite_frames = SubResource("SpriteFrames_fscg0")
 animation = &"new_animation"
 autoplay = ""
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="lock_component" index="0"]
+[node name="CollisionShape2D" parent="damage_area" index="0"]
+shape = SubResource("CircleShape2D_beisj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(0.8666667, 1, 0.81960785, 0.7490196)
-rotation = -1.5708
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.01, 0.01)
 amount = 16
 texture = SubResource("AnimatedTexture_mc74e")
 preprocess = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_6vroq")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="lock_component/GPUParticles2D" index="0"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
 self_modulate = Color(1, 1, 1, 0.24705882)
+scale = Vector2(0.01, 0.01)
 amount = 48
 texture = ExtResource("5_m7dn8")
-lifetime = 3.0
+lifetime = 5.0
 preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_mc74e")
-
-[node name="CollisionShape2D" parent="damage_area" index="0"]
-shape = SubResource("CircleShape2D_beisj")

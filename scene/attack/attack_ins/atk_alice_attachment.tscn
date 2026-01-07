@@ -54,3 +54,5 @@ amount = 1
 texture = SubResource("AnimatedTexture_dhgcy")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_dugh4")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

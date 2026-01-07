@@ -39,6 +39,28 @@ shader_parameter/distor_modi = 0.01
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm7v0"]
 radius = 100.0
 
+[sub_resource type="Curve" id="Curve_hnra5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2192691, 0.894698), 0.0, 0.0, 0, 0, Vector2(0.36877078, 1), 0.0, 0.0, 0, 0, Vector2(0.5913622, 0.894698), 0.0, 0.0, 0, 0, Vector2(0.8239203, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8659793), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_i3u0u"]
+curve = SubResource("Curve_hnra5")
+
+[sub_resource type="Curve" id="Curve_i3u0u"]
+_data = [Vector2(0, 0), 0.0, -1.2966497, 0, 0, Vector2(0.033222593, 1), 0.0, 0.0, 0, 0, Vector2(0.13289037, 0.96170837), 0.0, 0.0, 0, 0, Vector2(0.22923589, 1), 0.0, 0.0, 0, 0, Vector2(0.33222592, 0.95213544), 0.0, 0.0, 0, 0, Vector2(0.43853822, 1), 0.0, 0.0, 0, 0, Vector2(0.6644519, 1), 0.0, 0.0, 0, 0, Vector2(0.75083065, 0.93298966), 0.0, 0.0, 0, 0, Vector2(0.8538207, 1), 0.0, 0.0, 0, 0, Vector2(0.9202658, 0.92341673), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 11
+
+[sub_resource type="CurveTexture" id="CurveTexture_qs6q5"]
+curve = SubResource("Curve_i3u0u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_th47p"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qs6q5")
+alpha_curve = SubResource("CurveTexture_i3u0u")
+
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_qs6q5"]
 frames = 2
 frame_0/texture = ExtResource("5_hnra5")
@@ -67,35 +89,16 @@ angle_max = 90.000015
 angular_velocity_min = 399.99997
 angular_velocity_max = 399.99997
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 0.5
 scale_curve = SubResource("CurveTexture_hogdi")
 alpha_curve = SubResource("CurveTexture_0sn8o")
-
-[sub_resource type="Curve" id="Curve_hnra5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2192691, 0.894698), 0.0, 0.0, 0, 0, Vector2(0.36877078, 1), 0.0, 0.0, 0, 0, Vector2(0.5913622, 0.894698), 0.0, 0.0, 0, 0, Vector2(0.8239203, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8659793), 0.0, 0.0, 0, 0]
-point_count = 6
-
-[sub_resource type="CurveTexture" id="CurveTexture_i3u0u"]
-curve = SubResource("Curve_hnra5")
-
-[sub_resource type="Curve" id="Curve_i3u0u"]
-_data = [Vector2(0, 0), 0.0, -1.2966497, 0, 0, Vector2(0.033222593, 1), 0.0, 0.0, 0, 0, Vector2(0.13289037, 0.96170837), 0.0, 0.0, 0, 0, Vector2(0.22923589, 1), 0.0, 0.0, 0, 0, Vector2(0.33222592, 0.95213544), 0.0, 0.0, 0, 0, Vector2(0.43853822, 1), 0.0, 0.0, 0, 0, Vector2(0.6644519, 1), 0.0, 0.0, 0, 0, Vector2(0.75083065, 0.93298966), 0.0, 0.0, 0, 0, Vector2(0.8538207, 1), 0.0, 0.0, 0, 0, Vector2(0.9202658, 0.92341673), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 11
-
-[sub_resource type="CurveTexture" id="CurveTexture_qs6q5"]
-curve = SubResource("Curve_i3u0u")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_th47p"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_qs6q5")
-alpha_curve = SubResource("CurveTexture_i3u0u")
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_h12sq")]
 z_index = 6
 script = ExtResource("2_pp31y")
-particles = [NodePath("GPUParticles2D2"), NodePath("GPUParticles2D")]
+particle_scale_need_change = false
+particle_scale_min = [2.0, 1.0, 1.0, 1.0]
+particle_scale_max = [2.0, 1.0, 1.0, 1.0]
+particles = [NodePath("GPUParticles2D"), NodePath("GPUParticles2D2")]
 
 [node name="lock_component" parent="." index="1"]
 modulate = Color(0.295867, 0.295866, 0.295866, 0.956863)
@@ -112,15 +115,15 @@ texture = ExtResource("5_7cdwn")
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_tm7v0")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="7"]
-self_modulate = Color(0.4, 0.4, 0.4, 0.78431374)
-amount = 10
-texture = SubResource("AnimatedTexture_qs6q5")
-process_material = SubResource("ParticleProcessMaterial_qxx5v")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="8"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(0, 0, 0, 0.78431374)
 amount = 1
 texture = ExtResource("7_hnra5")
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_th47p")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
+self_modulate = Color(0.4, 0.4, 0.4, 0.78431374)
+amount = 10
+texture = SubResource("AnimatedTexture_qs6q5")
+process_material = SubResource("ParticleProcessMaterial_qxx5v")
