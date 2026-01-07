@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5t6sflwdyuhl"]
+[gd_scene load_steps=11 format=3 uid="uid://c5t6sflwdyuhl"]
 
 [ext_resource type="PackedScene" uid="uid://xgi6s0ewkkow" path="res://scene/summon/summon.tscn" id="1_bbv0t"]
 [ext_resource type="Texture2D" uid="uid://c8yg0b3dfcraw" path="res://asset/pic/bullet/爱丽丝正面.png" id="2_0lm8j"]
 [ext_resource type="Texture2D" uid="uid://37t4ha1y1x6l" path="res://asset/pic/bullet/爱丽丝右面.png" id="3_0lm8j"]
+[ext_resource type="Texture2D" uid="uid://dja8ttomm33jn" path="res://asset/pic/bullet/爱丽丝右前.png" id="3_epglw"]
 [ext_resource type="Texture2D" uid="uid://b231vcg2la2uc" path="res://asset/pic/bullet/爱丽丝背面.png" id="4_w5p28"]
+[ext_resource type="Texture2D" uid="uid://br3r8xvb718lu" path="res://asset/pic/bullet/爱丽丝右后.png" id="5_6tjb3"]
 [ext_resource type="Texture2D" uid="uid://hssktga6b2xs" path="res://asset/pic/bullet/爱丽丝左面.png" id="5_buvp2"]
+[ext_resource type="Texture2D" uid="uid://cpw1rin7eyi1t" path="res://asset/pic/bullet/爱丽丝左后.png" id="7_ma2f6"]
+[ext_resource type="Texture2D" uid="uid://bm7vfna4jfwtx" path="res://asset/pic/bullet/爱丽丝左前.png" id="9_nbglk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_px1a4"]
 animations = [{
@@ -13,17 +17,29 @@ animations = [{
 "texture": ExtResource("2_0lm8j")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_epglw")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_0lm8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6tjb3")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_w5p28")
 }, {
 "duration": 1.0,
+"texture": ExtResource("7_ma2f6")
+}, {
+"duration": 1.0,
 "texture": ExtResource("5_buvp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nbglk")
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [],
 "loop": true,
@@ -38,7 +54,7 @@ self_modulate = Color(0.8, 0.8, 0.8, 1)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_px1a4")
 autoplay = "default"
-frame_progress = 0.08292214
+frame_progress = 0.1990063
 
 [node name="Line2D" parent="." index="4"]
 points = PackedVector2Array(0, 0, 79, -3)
