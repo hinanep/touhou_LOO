@@ -42,6 +42,9 @@ animations = [{
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_5bj8n")]
 z_index = 11
 script = ExtResource("2_806o0")
+particle_scale_need_change = false
+particle_scale_min = [1.0, 1.0, 1.0, 1.0]
+particle_scale_max = [1.0, 1.0, 1.0, 1.0]
 particles = [NodePath("GPUParticles2D")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="1"]
@@ -55,11 +58,9 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qtq32")
 
 [node name="lock_component" parent="." index="2"]
-scale = Vector2(0.4, 0.4)
+self_modulate = Color(1, 1, 1, 0.7647059)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_qn2ix")
-
-[node name="damage_area" parent="." index="3"]
-visible = false
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_xgb5y")
