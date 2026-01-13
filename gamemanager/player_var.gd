@@ -120,6 +120,8 @@ var need_glow:int:
 	set(value):
 		if value < 0:
 			need_glow = 0
+		else:
+			need_glow = value
 
 var underrecycle_tween = []
 func _clear_all_tweens():
@@ -277,6 +279,8 @@ func screen_black(intensity:float,in_time:float,duration_time:float,out_time:flo
 func require_env_glowing(getin:bool):
 	if getin:
 		need_glow+=1
+		print("needglow = ")
+		print(need_glow)
 		worldenvir.environment.set_glow_enabled(true)
 	else:
 		need_glow-=1
