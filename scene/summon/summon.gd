@@ -73,7 +73,7 @@ func _return_to_pool() -> void:
 	if not is_active: return
 	if $subattack.get_child_count()>0:
 		for atk in $subattack.get_children():
-			atk.queue_free()
+			atk._return_to_pool("duration_timeout")
 	_trigger_routines("destroying_routine")
 	_set_active(false)
 	returned_to_pool.emit(self)
@@ -107,8 +107,7 @@ func _trigger_routines(event_key: String) -> void:
 			# 注意：第三个参数 true 表示强制世界坐标生成
 			# 第四个参数 Vector2.ZERO 表示生成的相对位置为(0,0)，即召唤物自身位置
 			# 第五个参数 self 表示生成的 routine attack 是召唤物自身的子节点
-			print(name)
-			print(event_key)
+
 			SignalBus.trigger_routine_by_id.emit(routine_id, true, global_position, global_rotation,0)
 
 #=============================================================================

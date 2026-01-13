@@ -27,6 +27,9 @@ viewport_path = NodePath("lock_component/master2/SubViewport")
 
 [node name="Attack" instance=ExtResource("1_brahv")]
 script = ExtResource("2_ag7ab")
+particle_scale_need_change = false
+particle_scale_min = [1.0, 1.0, 1.0, 1.0]
+particle_scale_max = [1.0, 1.0, 1.0, 1.0]
 
 [node name="lock_component" parent="." index="1"]
 scale = Vector2(0.016, 0.03)
