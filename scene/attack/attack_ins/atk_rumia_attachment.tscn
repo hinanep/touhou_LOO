@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
 [ext_resource type="Shader" uid="uid://dhxpb1iq2snv8" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
 [ext_resource type="Texture2D" uid="uid://b4vdl2oub648v" path="res://asset/pic/texture/bh-3.png" id="5_7cdwn"]
-[ext_resource type="Texture2D" uid="uid://6gfheudxkty5" path="res://asset/pic/露米娅展开后环绕1.png" id="5_hnra5"]
-[ext_resource type="Texture2D" uid="uid://caadswrtwk4pf" path="res://asset/pic/露米娅展开后环绕2.png" id="6_i3u0u"]
-[ext_resource type="Texture2D" uid="uid://bmh3k2j0ha8mw" path="res://asset/pic/露米娅展开前核心.png" id="7_hnra5"]
+[ext_resource type="Texture2D" uid="uid://6gfheudxkty5" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕1.png" id="5_hnra5"]
+[ext_resource type="Texture2D" uid="uid://caadswrtwk4pf" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕2.png" id="6_i3u0u"]
+[ext_resource type="Texture2D" uid="uid://bmh3k2j0ha8mw" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开前核心.png" id="7_hnra5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcw58"]
 atlas = ExtResource("5_7cdwn")

@@ -1,11 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnhpskvcu3daq"]
+[gd_scene load_steps=11 format=3 uid="uid://bnhpskvcu3daq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_p0rqg"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_liw8n"]
-[ext_resource type="Texture2D" uid="uid://bsra182evfurc" path="res://asset/pic/挥砍1.png" id="3_dhgcy"]
-[ext_resource type="Texture2D" uid="uid://xi0ac5g4ddvj" path="res://asset/pic/挥砍2.png" id="4_km2k5"]
+[ext_resource type="Texture2D" uid="uid://bsra182evfurc" path="res://asset/pic/攻击贴图特效/爱丽丝/挥砍1.png" id="3_dhgcy"]
+[ext_resource type="Texture2D" uid="uid://xi0ac5g4ddvj" path="res://asset/pic/攻击贴图特效/爱丽丝/挥砍2.png" id="4_km2k5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dhgcy"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_dhgcy"]
 frames = 2
@@ -29,6 +35,8 @@ angular_velocity_min = -720.0
 angular_velocity_max = -720.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_vnvco")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_p0rqg")]
 script = ExtResource("2_liw8n")
@@ -36,6 +44,7 @@ particle_scale_need_change = false
 particle_scale_min = [7.5, 1.0, 1.0, 1.0]
 particle_scale_max = [7.5, 1.0, 1.0, 1.0]
 particles = [NodePath("GPUParticles2D")]
+metadata/_edit_vertical_guides_ = [-68.0]
 
 [node name="move_component" parent="." index="0"]
 visible = true
@@ -47,7 +56,9 @@ sprite_frames = null
 shape = SubResource("WorldBoundaryShape2D_74emn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+process_mode = 1
 self_modulate = Color(1, 1, 1, 0.49803922)
+material = SubResource("CanvasItemMaterial_dhgcy")
 rotation = 1.5708
 scale = Vector2(0.094550006, 0.094550006)
 amount = 1

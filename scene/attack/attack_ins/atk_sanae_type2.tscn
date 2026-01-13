@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_vgm1u"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lhhvw"]
-[ext_resource type="Texture2D" uid="uid://q8y1sjpxfe5d" path="res://asset/pic/风改.png" id="5_oy2y7"]
+[ext_resource type="Texture2D" uid="uid://q8y1sjpxfe5d" path="res://asset/pic/攻击贴图特效/早苗/风改.png" id="5_oy2y7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_35flk"]
 animations = [{

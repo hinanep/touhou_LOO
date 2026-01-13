@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_i2n1l"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_p2d1r"]
-[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/风环绕1.png" id="3_816y1"]
-[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/风环绕2.png" id="4_73qwp"]
-[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_3hp2n"]
+[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/早苗/风环绕1.png" id="3_816y1"]
+[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/早苗/风环绕2.png" id="4_73qwp"]
+[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/攻击贴图特效/早苗/green.png" id="5_3hp2n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ad1vr"]
 animations = [{
@@ -52,6 +52,9 @@ radius = 20.0
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_i2n1l")]
 script = ExtResource("2_p2d1r")
+particle_scale_need_change = false
+particle_scale_min = [1.0, 1.0, 1.0, 1.0]
+particle_scale_max = [1.0, 1.0, 1.0, 1.0]
 particles = [NodePath("lock_component/GPUParticles2D")]
 
 [node name="lock_component" parent="." index="1"]

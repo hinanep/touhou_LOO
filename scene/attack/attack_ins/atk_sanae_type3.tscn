@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_c4ica"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
-[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/风环绕1.png" id="3_ehg2l"]
-[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/风环绕2.png" id="4_m7dn8"]
-[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_m7dn8"]
+[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/早苗/风环绕1.png" id="3_ehg2l"]
+[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/早苗/风环绕2.png" id="4_m7dn8"]
+[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/攻击贴图特效/早苗/green.png" id="5_m7dn8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fscg0"]
 animations = [{

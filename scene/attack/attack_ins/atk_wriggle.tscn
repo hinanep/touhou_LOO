@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_806o0"]
 [ext_resource type="Texture2D" uid="uid://ds4bddk6bp23" path="res://asset/pic/bullet/firefly.png" id="3_btae8"]
 [ext_resource type="Shader" uid="uid://bxt32hgirbyig" path="res://asset/shaders/bloom.gdshader" id="4_0u7kp"]
-[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/green.png" id="5_m6xqp"]
+[ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/攻击贴图特效/早苗/green.png" id="5_m6xqp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2n71k"]
 shader = ExtResource("4_0u7kp")
