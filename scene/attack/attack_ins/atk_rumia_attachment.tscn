@@ -1,11 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://def8milxirujq"]
+[gd_scene load_steps=25 format=3 uid="uid://def8milxirujq"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_h12sq"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_pp31y"]
 [ext_resource type="Shader" uid="uid://dhxpb1iq2snv8" path="res://asset/shaders/distortion.gdshader" id="3_q4l1o"]
 [ext_resource type="Texture2D" uid="uid://b4vdl2oub648v" path="res://asset/pic/texture/bh-3.png" id="5_7cdwn"]
-[ext_resource type="Texture2D" uid="uid://6gfheudxkty5" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕1.png" id="5_hnra5"]
-[ext_resource type="Texture2D" uid="uid://caadswrtwk4pf" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕2.png" id="6_i3u0u"]
+[ext_resource type="Texture2D" uid="uid://da4bl1t5k3hb" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕1-sheet.png" id="6_th47p"]
 [ext_resource type="Texture2D" uid="uid://bmh3k2j0ha8mw" path="res://asset/pic/攻击贴图特效/露米娅/露米娅展开前核心.png" id="7_hnra5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcw58"]
@@ -61,12 +60,11 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_qs6q5")
 alpha_curve = SubResource("CurveTexture_i3u0u")
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_qs6q5"]
-frames = 2
-frame_0/texture = ExtResource("5_hnra5")
-frame_0/duration = 0.1
-frame_1/texture = ExtResource("6_i3u0u")
-frame_1/duration = 0.1
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hnra5"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="Curve" id="Curve_d08lt"]
 _data = [Vector2(0.0033222586, 0), 0.0, 0.0, 0, 0, Vector2(0.79734224, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -91,6 +89,8 @@ angular_velocity_max = 399.99997
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_hogdi")
 alpha_curve = SubResource("CurveTexture_0sn8o")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_h12sq")]
 z_index = 6
@@ -124,6 +124,7 @@ process_material = SubResource("ParticleProcessMaterial_th47p")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
 self_modulate = Color(0.4, 0.4, 0.4, 0.78431374)
+material = SubResource("CanvasItemMaterial_hnra5")
 amount = 10
-texture = SubResource("AnimatedTexture_qs6q5")
+texture = ExtResource("6_th47p")
 process_material = SubResource("ParticleProcessMaterial_qxx5v")

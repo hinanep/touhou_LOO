@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhuakpdjsihip"]
+[gd_scene load_steps=14 format=3 uid="uid://bhuakpdjsihip"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_c4ica"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
-[ext_resource type="Texture2D" uid="uid://i5ttx2ad3yuf" path="res://asset/pic/攻击贴图特效/早苗/风环绕1.png" id="3_ehg2l"]
-[ext_resource type="Texture2D" uid="uid://dtormxvgkphfw" path="res://asset/pic/攻击贴图特效/早苗/风环绕2.png" id="4_m7dn8"]
+[ext_resource type="Texture2D" uid="uid://cto54ii2y3ik4" path="res://asset/pic/攻击贴图特效/早苗/风环绕1-sheet.png" id="3_ehg2l"]
 [ext_resource type="Texture2D" uid="uid://cw42v4iga01eg" path="res://asset/pic/攻击贴图特效/早苗/green.png" id="5_m7dn8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fscg0"]
@@ -17,12 +16,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_beisj"]
 radius = 250.0
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_mc74e"]
-frames = 2
-speed_scale = 8.0
-frame_0/texture = ExtResource("3_ehg2l")
-frame_1/texture = ExtResource("4_m7dn8")
-frame_1/duration = 1.0
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m7dn8"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="Curve" id="Curve_b8xe7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -49,6 +47,8 @@ scale_min = 450.0
 scale_max = 450.0
 scale_curve = SubResource("CurveTexture_qdpqv")
 alpha_curve = SubResource("CurveTexture_vioxq")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mc74e"]
 particle_flag_disable_z = true
@@ -81,9 +81,10 @@ shape = SubResource("CircleShape2D_beisj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
 self_modulate = Color(0.8666667, 1, 0.81960785, 0.7490196)
+material = SubResource("CanvasItemMaterial_m7dn8")
 scale = Vector2(0.01, 0.01)
 amount = 16
-texture = SubResource("AnimatedTexture_mc74e")
+texture = ExtResource("3_ehg2l")
 preprocess = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_6vroq")

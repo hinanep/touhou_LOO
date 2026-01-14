@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be7gc7qyc2v8u"
-path="res://.godot/imported/光线2.png-4f8344e4618854fffec375fa1e553465.ctex"
+uid="uid://da4bl1t5k3hb"
+path="res://.godot/imported/露米娅展开后环绕1-sheet.png-f675dc2b6d6176c6916fdbf732644d1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/pic/攻击贴图特效/爱丽丝/光线2.png"
-dest_files=["res://.godot/imported/光线2.png-4f8344e4618854fffec375fa1e553465.ctex"]
+source_file="res://asset/pic/攻击贴图特效/露米娅/露米娅展开后环绕1-sheet.png"
+dest_files=["res://.godot/imported/露米娅展开后环绕1-sheet.png-f675dc2b6d6176c6916fdbf732644d1e.ctex"]
 
 [params]
 
