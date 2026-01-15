@@ -109,7 +109,7 @@ func change_type_to(type: String):
 
 func set_color(hsv:Vector3):
 
-	$texture.material.set_shader_parameter("hue_shift", hsv.x/360)
+	$texture.set_instance_shader_parameter("hue_shift", hsv.x/360)
 
 func change_size_to(size:float):
 	$texture.scale = Vector2(size * 0.06,size * 0.06)

@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 // 色相偏移参数，范围0.0到1.0
-uniform float hue_shift : hint_range(0.0, 1.0) = 0.0;
-uniform float s_shift : hint_range(0.0, 1.0) = 0.0;
-uniform float v_shift : hint_range(0.0, 1.0) = 0.0;
+instance uniform float hue_shift : hint_range(0.0, 1.0) = 0.0;
+instance uniform float s_shift : hint_range(0.0, 1.0) = 0.0;
+instance uniform float v_shift : hint_range(0.0, 1.0) = 0.0;
 
 // RGB转HSV函数
 vec3 rgb_to_hsv(vec3 rgb) {
@@ -64,21 +64,29 @@ vec3 hsv_to_rgb(vec3 hsv) {
 }
 
 void fragment() {
-	// 获取原始颜色
 	vec4 original_color = texture(TEXTURE, UV);
 	
-	// 转换为HSV
+	// 1. 转换为HSV
 	vec3 hsv = rgb_to_hsv(original_color.rgb);
 	
-	// 只改变色相，保持饱和度和明度不变
-	//hsv.x = mod(hsv.x + hue_shift, 1.0);
-	hsv.x = mod(hue_shift, 1.0);
-	//hsv.y = mod(hsv.y + s_shift, 1.0);
-	//hsv.z = mod(hsv.z + v_shift, 1.0);
-	//hsv.z = mod(hsv.z + v_shift, 1.0);
-	// 转换回RGB
+	// 2. 核心逻辑：
+	// 如果中心是白色，其 hsv.y (饱和度) 会很低。
+	// 我们只改变色相，利用 "0饱和度无论怎么换色相都是白色" 的特性。
+	
+	// 强制改为目标色相（hue_shift），或者加上偏移
+	hsv.x = mod(hue_shift, 1.0); 
+	
+	// 【关键修复】：不要对饱和度用 mod，改用乘法或有限的加法
+	// 这样原本是 0（白色）的地方，0 乘以任何数还是 0，保持白色
+	// 原本有颜色（红色）的地方，饱和度会变化
+	hsv.y = clamp(hsv.y * (1.0 + s_shift), 0.0, 1.0);
+	
+	// 明度调整同理
+	hsv.z = clamp(hsv.z + v_shift, 0.0, 1.0);
+	
+	// 3. 转换回RGB
 	vec3 new_rgb = hsv_to_rgb(hsv);
 	
-	// 输出结果，保持原始透明度
-	COLOR.rgb = new_rgb;
-} 
+	// 保持原始透明度
+	COLOR = vec4(new_rgb, original_color.a);
+}

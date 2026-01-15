@@ -10,7 +10,7 @@ var preset_map = {
 	'drops_point':"res://scene/drops/point/point.tscn",
 	'skill':"res://scene/skill/skill_class/skill.tscn",
 	'routine':"res://scene/routine/routine/routine.tscn",
-	'attack':"res://scene/attack/attack/attack.tscn",
+	'attack':"res://scene/attack/attack_ins/attack.tscn",
 	'notfoundatk':"res://scene/attack/attack_ins/notfindattack.tscn",
 	'summon':"res://scene/summon/summon.tscn",
 	'card':"res://scene/cards/card/card.tscn",

@@ -1,68 +1,68 @@
 {
   "psv_patchouli": {
-    "id": "psv_patchouli",
-    "upgrade_group": "upg_patchouli",
-    "type": "base",
-    "buff": [
+	"id": "psv_patchouli",
+	"upgrade_group": "upg_patchouli",
+	"type": "base",
+	"buff": [
       "buff_mana_max_forever"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   },
   "psv_saki": {
-    "id": "psv_saki",
-    "upgrade_group": "upg_saki",
-    "type": "base",
-    "buff": [
+	"id": "psv_saki",
+	"upgrade_group": "upg_saki",
+	"type": "base",
+	"buff": [
       "buff_bullet_speed_ratio_forever"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   },
   "psv_narumi": {
-    "id": "psv_narumi",
-    "upgrade_group": "upg_narumi",
-    "type": "base",
-    "buff": [
+	"id": "psv_narumi",
+	"upgrade_group": "upg_narumi",
+	"type": "base",
+	"buff": [
       "buff_player_life_addi_disposable"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   },
   "psv_junko": {
-    "id": "psv_junko",
-    "upgrade_group": "upg_junko",
-    "type": "base",
-    "buff": [
+	"id": "psv_junko",
+	"upgrade_group": "upg_junko",
+	"type": "base",
+	"buff": [
       "buff_danma_times_forever"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   },
   "psv_kisumi": {
-    "id": "psv_kisumi",
-    "upgrade_group": "upg_kisumi",
-    "type": "base",
-    "buff": [
+	"id": "psv_kisumi",
+	"upgrade_group": "upg_kisumi",
+	"type": "base",
+	"buff": [
       "buff_defence_melee_forever"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   },
   "psv_momoyo": {
-    "id": "psv_momoyo",
-    "upgrade_group": "upg_momoyo",
-    "type": "base",
-    "buff": [
+	"id": "psv_momoyo",
+	"upgrade_group": "upg_momoyo",
+	"type": "base",
+	"buff": [
       "buff_player_bullet_damage_ratio_forever"
-    ],
-    "buff_value_factor": [
-      1.0
-    ]
+	],
+	"buff_value_factor": [
+	  1.0
+	]
   }
 }

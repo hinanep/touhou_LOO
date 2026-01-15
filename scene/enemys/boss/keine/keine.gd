@@ -14,7 +14,9 @@ var state = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
 
 func boss_init(id:String):
 	boss_info = table[id]
-	mob_info = boss_info[boss_info.keys()[0]]
+	for i in boss_info.keys().size():
+		if not boss_info[boss_info.keys()[i]].is_dialog:
+			mob_info = boss_info[boss_info.keys()[i]]
 func fight_begin():
 	start_progess(0)
 func _ready():
@@ -115,10 +117,19 @@ func trigger_routine(id):
 func move_stay(delta):
 	pass
 func start_progess(phase:int):
-	tmp_stage = phase
-	if phase >= boss_info.keys().size():
+	if phase == -1:
+		tmp_stage = tmp_stage + 1
+	else:
+		tmp_stage = phase
+	if tmp_stage >= boss_info.keys().size():
 		return
-	mob_info = boss_info[boss_info.keys()[phase]]
+
+	if boss_info[boss_info.keys()[tmp_stage]].is_dialog:
+		#TODO:触发对话并在触发后回来到stage+1的状态
+		#SignalBus.triggertalk.emit(dialogs1,callback)
+		start_progess(tmp_stage+1)
+		return
+	mob_info = boss_info[boss_info.keys()[tmp_stage]]
 	progress_routine.clear()
 	SignalBus.clear_enemy.emit(true)
 	move_func = move_stay

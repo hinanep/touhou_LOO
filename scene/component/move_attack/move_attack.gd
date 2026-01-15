@@ -155,7 +155,7 @@ func _move_straight_init() -> void:
 	velocity = direction * initial_speed
 
 func move_straight(delta: float) -> KinematicCollision2D:
-	var max_speed = attack_info.get("moving_parameter", [0, 0, 9999])[2]
+	var max_speed = attack_info.get("moving_parameter", [0, 0, 9999])[2] * attack_info.get("speed_efficiency", 1.0) * player_var.bullet_speed_ratio
 	velocity += direction * acceleration * delta
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
@@ -171,7 +171,7 @@ func move_trace_target(delta: float) -> KinematicCollision2D:
 			next_found_counter = 30 # 每 30 帧索敌一次
 	else:
 		var params = attack_info.get("moving_parameter", [0, 0, 9999])
-		var acceleration_factor = params[1] * player_var.bullet_speed_ratio
+		var acceleration_factor = params[1] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
 		var max_speed = params[2] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
 
 		var accel_vec = body.global_position.direction_to(target.global_position) * acceleration_factor
