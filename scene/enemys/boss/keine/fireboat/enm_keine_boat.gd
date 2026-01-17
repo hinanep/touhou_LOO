@@ -17,7 +17,7 @@ func _ready():
 
 	super._ready()
 	drops_path = 'drops_point'
-	await  get_tree().create_timer(3.8).timeout
+	await  get_tree().create_timer(3.8,false).timeout
 	player_var.SpawnManager.register_mob($".")
 
 func _physics_process(delta):
@@ -26,9 +26,15 @@ func _physics_process(delta):
 
 func _on_fireball_rec_body_entered(body:  Node2D) -> void:
 	if body.is_in_group('fire'):
+
+
+		print(body.global_position)
+		if(global_position.distance_squared_to(body.global_position) > 2500):
+			return
+
 		body.destroy.emit(body)
 		call_deferred('on_fire')
-		pass
+
 
 
 func on_fire():

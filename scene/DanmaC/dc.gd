@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 
 	move_func.call(delta)
 	rot_func.call(delta)
+	gen_position = global_position
 
 func circle_shoot():
 	var bias = 2*PI/d4c_info.create_amount

@@ -21,7 +21,7 @@ func online(duratime) -> void:
 		scale.y = 0
 		var tween = create_tween()
 		tween.tween_property($".",'scale',os,0.5)
-		await get_tree().create_timer(duratime-1).timeout
+		await get_tree().create_timer(duratime-1,false).timeout
 		tween = create_tween()
 		tween.tween_property($".",'scale',os*Vector2(1,0),0.5)
 		await tween.finished

@@ -17,10 +17,10 @@ func _ready() -> void:
 	boat1.die.connect(boat_die_disconnect)
 	boat2.die.connect(boat_die_disconnect)
 	get_parent().get_parent().get_parent().link_line.connect(set_ready)
-	await  get_tree().create_timer(4.8).timeout
-	if start_burn <2:
-		#call_deferred('on_fire_from',boat1)
-		call_deferred('start_burning',0)
+	#await  get_tree().create_timer(4.8,false).timeout
+	#if start_burn <2:
+		##call_deferred('on_fire_from',boat1)
+		#call_deferred('start_burning',0)
 
 func set_ready():
 	create_gra()

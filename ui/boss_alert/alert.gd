@@ -9,7 +9,7 @@ func _ready() -> void:
 	flush.tween_property($PopupPanel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
 
-	var interval = get_tree().create_timer(0.1)
+	var interval = get_tree().create_timer(0.1,false)
 	await interval.timeout
 	interval = null
 	var expand = $RichTextLabel.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)

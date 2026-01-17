@@ -71,7 +71,7 @@ var colli = false
 func dush(speed,time,charge_time):
 	$"轨迹".visible = true
 	diretion = global_position.direction_to(player_var.player_node.global_position)
-	await get_tree().create_timer(charge_time).timeout
+	await get_tree().create_timer(charge_time,false).timeout
 
 	dush_speed = speed
 	move_func = move_dush
@@ -188,7 +188,6 @@ func reincarnation_over():
 			var bc = boatcard.instantiate()
 			bc.global_position = Vector2(0,0)
 			add_child(bc)
-			pass
 	else:
 		$hud/card.visible = false
 
@@ -222,7 +221,7 @@ func spellcard_break():
 	SignalBus.disbullet.emit(true)
 	SignalBus.clear_enemy.emit(true)
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate
-	await get_tree().create_timer(.2).timeout
+	await get_tree().create_timer(0.2,false).timeout
 	SignalBus.fly_to_player.emit(1,1,1,1)
 
 func _on_animated_sprite_2d_animation_finished():

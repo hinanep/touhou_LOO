@@ -98,7 +98,6 @@ func change_type_to(type: String):
 			cshape = CircleShape2D.new()
 			cshape.radius = 1
 			add_to_group('fire')
-			#modulate = Color.RED
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.offset.y=0
 			change_size_to(20)
@@ -173,7 +172,9 @@ func _on_timer_timeout() -> void:
 		if next_checkpoint ==-1:
 			next_checkpoint = d_info.danmaku_apart_point[0]
 		progress_check()
+
 var is_active = false
+
 func disable(active):
 	if(is_active == active):
 		return

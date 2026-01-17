@@ -72,7 +72,7 @@ func _on_end_game_timeout() -> void:
 
 
 	while true:
-		var interval = get_tree().create_timer(1)
+		var interval = get_tree().create_timer(1,false)
 		await interval.timeout
 		interval = null
 		if player_var.SpawnManager.mob_dic.is_empty():

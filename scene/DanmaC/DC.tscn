@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl0uvfapmgq0j"]
+[gd_scene format=3 uid="uid://bl0uvfapmgq0j"]
 
 [ext_resource type="Script" uid="uid://bxdqxgu864efv" path="res://scene/DanmaC/dc.gd" id="1_2hg6j"]
 [ext_resource type="Texture2D" uid="uid://uvpx40wiwo0b" path="res://asset/pic/texture/whitehole.png" id="2_8addg"]
 
-[node name="Dc" type="Node2D"]
+[node name="Dc" type="Node2D" unique_id=1329764372]
 process_mode = 1
 script = ExtResource("1_2hg6j")
 
-[node name="shoot_interval" type="Timer" parent="."]
+[node name="shoot_interval" type="Timer" parent="." unique_id=585789261]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=354762966]
 visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8addg")

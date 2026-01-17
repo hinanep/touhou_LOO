@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://fwdmr2jtjamg"]
+[gd_scene format=3 uid="uid://fwdmr2jtjamg"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_umehn"]
 [ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_s1t7m"]
@@ -21,7 +21,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xykej"]
 radius = 28.071337
 
-[node name="boat" instance=ExtResource("1_umehn")]
+[node name="boat" unique_id=733545954 instance=ExtResource("1_umehn")]
 script = ExtResource("2_ua43r")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
@@ -35,11 +35,12 @@ shape = SubResource("CircleShape2D_051o3")
 [node name="melee_damage_area" parent="melee_damage_area" index="0"]
 disabled = true
 
-[node name="fireball_rec" type="Area2D" parent="." index="7"]
+[node name="fireball_rec" type="Area2D" parent="." index="7" unique_id=1796631406]
 collision_layer = 0
 collision_mask = 64
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fireball_rec" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fireball_rec" index="0" unique_id=522951956]
 shape = SubResource("CircleShape2D_xykej")
 
 [connection signal="body_entered" from="fireball_rec" to="." method="_on_fireball_rec_body_entered"]

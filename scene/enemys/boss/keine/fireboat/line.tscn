@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://113ll4i3ok55"]
+[gd_scene format=3 uid="uid://113ll4i3ok55"]
 
 [ext_resource type="Script" uid="uid://botmeg4fce4uo" path="res://scene/enemys/boss/keine/fireboat/line.gd" id="1_2o6o0"]
 [ext_resource type="Texture2D" uid="uid://hl0aji401uyp" path="res://asset/pic/sakuyaatk-3.png" id="1_6o38f"]
@@ -13,7 +13,7 @@ shader_parameter/feather = 0.038000001805
 offsets = PackedFloat32Array(0, 0.001, 0.002, 0.998, 0.999, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0.050000004, 0, 1)
 
-[node name="Line" type="Line2D"]
+[node name="Line" type="Line2D" unique_id=2055842132]
 material = SubResource("ShaderMaterial_j7r8e")
 points = PackedVector2Array(-11, 11, 151, 16)
 width = 50.0
@@ -22,7 +22,7 @@ texture = ExtResource("1_6o38f")
 texture_mode = 2
 script = ExtResource("1_2o6o0")
 
-[node name="fireball" type="Timer" parent="."]
+[node name="fireball" type="Timer" parent="." unique_id=1884728465]
 wait_time = 0.8
 autostart = true
 

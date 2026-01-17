@@ -115,7 +115,7 @@ func tween_fragment(index:int):
 
 	fragments[index].rotation = 0
 	fragments[index].modulate.a = 1.0
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.8,false).timeout
 	# 创建动画来模拟爆炸效果
 	var tween = create_tween()
 	player_var.underrecycle_tween.append(tween)

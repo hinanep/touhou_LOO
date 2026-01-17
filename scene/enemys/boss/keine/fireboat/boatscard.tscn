@@ -1,285 +1,285 @@
-[gd_scene load_steps=4 format=3 uid="uid://god2onyo60oc"]
+[gd_scene format=3 uid="uid://god2onyo60oc"]
 
 [ext_resource type="PackedScene" uid="uid://fwdmr2jtjamg" path="res://scene/enemys/boss/keine/fireboat/enm_keine_boat.tscn" id="1_g5r0v"]
 [ext_resource type="Script" uid="uid://okqfwab74utr" path="res://scene/enemys/boss/keine/fireboat/boatscard.gd" id="1_obbfu"]
 [ext_resource type="PackedScene" uid="uid://113ll4i3ok55" path="res://scene/enemys/boss/keine/fireboat/line.tscn" id="2_jrtkm"]
 
-[node name="boatscard" type="Node2D"]
+[node name="boatscard" type="Node2D" unique_id=1464461912]
 process_mode = 1
 script = ExtResource("1_obbfu")
 boats = [null, null]
 
-[node name="boat1" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat1" parent="." unique_id=1624454933 instance=ExtResource("1_g5r0v")]
 position = Vector2(696, -959)
 
-[node name="boat2" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat2" parent="." unique_id=1095239886 instance=ExtResource("1_g5r0v")]
 position = Vector2(925, -953)
 
-[node name="boat3" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat3" parent="." unique_id=1216550846 instance=ExtResource("1_g5r0v")]
 position = Vector2(1000, -805)
 
-[node name="boat4" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat4" parent="." unique_id=959202786 instance=ExtResource("1_g5r0v")]
 position = Vector2(927, -643)
 
-[node name="boat5" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat5" parent="." unique_id=823859581 instance=ExtResource("1_g5r0v")]
 position = Vector2(707, -642)
 
-[node name="boat6" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat6" parent="." unique_id=827488757 instance=ExtResource("1_g5r0v")]
 position = Vector2(615, -796)
 
-[node name="boat7" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat7" parent="." unique_id=1418591589 instance=ExtResource("1_g5r0v")]
 position = Vector2(816, -1122)
 
-[node name="boat8" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat8" parent="." unique_id=531565067 instance=ExtResource("1_g5r0v")]
 position = Vector2(1146, -932)
 
-[node name="boat9" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat9" parent="." unique_id=261394515 instance=ExtResource("1_g5r0v")]
 position = Vector2(1153, -648)
 
-[node name="boat10" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat10" parent="." unique_id=790219676 instance=ExtResource("1_g5r0v")]
 position = Vector2(817, -442)
 
-[node name="boat11" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat11" parent="." unique_id=1291362970 instance=ExtResource("1_g5r0v")]
 position = Vector2(481, -632)
 
-[node name="boat12" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat12" parent="." unique_id=1197321864 instance=ExtResource("1_g5r0v")]
 position = Vector2(475, -963)
 
-[node name="boat13" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat13" parent="." unique_id=676608955 instance=ExtResource("1_g5r0v")]
 position = Vector2(624, -1255)
 
-[node name="boat14" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat14" parent="." unique_id=1572219440 instance=ExtResource("1_g5r0v")]
 position = Vector2(1039, -1251)
 
-[node name="boat15" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat15" parent="." unique_id=1721537589 instance=ExtResource("1_g5r0v")]
 position = Vector2(1408, -803)
 
-[node name="boat16" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat16" parent="." unique_id=183488388 instance=ExtResource("1_g5r0v")]
 position = Vector2(1122, -324)
 
-[node name="boat17" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat17" parent="." unique_id=1697480373 instance=ExtResource("1_g5r0v")]
 position = Vector2(523, -322)
 
-[node name="boat18" parent="." instance=ExtResource("1_g5r0v")]
+[node name="boat18" parent="." unique_id=1511292915 instance=ExtResource("1_g5r0v")]
 position = Vector2(223, -808)
 
-[node name="lines" type="Node2D" parent="."]
+[node name="lines" type="Node2D" parent="." unique_id=275467209]
 
-[node name="cir1" type="Node2D" parent="lines"]
+[node name="cir1" type="Node2D" parent="lines" unique_id=234485697]
 
-[node name="Line2-3" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line2-3" parent="lines/cir1" unique_id=1345224982 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat2")
 boat2 = NodePath("../../../boat3")
 start_burn = 3
 
-[node name="Line3-4" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line3-4" parent="lines/cir1" unique_id=1540089360 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat3")
 boat2 = NodePath("../../../boat4")
 start_burn = 3
 
-[node name="Line1-2" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line1-2" parent="lines/cir1" unique_id=1379754678 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat1")
 boat2 = NodePath("../../../boat2")
 
-[node name="Line4-5" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line4-5" parent="lines/cir1" unique_id=829744159 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat4")
 boat2 = NodePath("../../../boat5")
 start_burn = 3
 
-[node name="Line5-6" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line5-6" parent="lines/cir1" unique_id=817571802 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat5")
 boat2 = NodePath("../../../boat6")
 start_burn = 3
 
-[node name="Line6-1" parent="lines/cir1" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line6-1" parent="lines/cir1" unique_id=1287183958 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat6")
 boat2 = NodePath("../../../boat1")
 start_burn = 3
 
-[node name="cir2" type="Node2D" parent="lines"]
+[node name="cir2" type="Node2D" parent="lines" unique_id=1763622337]
 
-[node name="Line7-8" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line7-8" parent="lines/cir2" unique_id=967037371 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat7")
 boat2 = NodePath("../../../boat8")
 start_burn = 3
 
-[node name="Line8-9" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line8-9" parent="lines/cir2" unique_id=1480114697 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat8")
 boat2 = NodePath("../../../boat9")
 start_burn = 3
 
-[node name="Line9-10" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line9-10" parent="lines/cir2" unique_id=1201149712 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat9")
 boat2 = NodePath("../../../boat10")
 start_burn = 3
 
-[node name="Line10-11" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line10-11" parent="lines/cir2" unique_id=263806352 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat10")
 boat2 = NodePath("../../../boat11")
 start_burn = 3
 
-[node name="Line11-12" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line11-12" parent="lines/cir2" unique_id=1025013174 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat11")
 boat2 = NodePath("../../../boat12")
 start_burn = 3
 
-[node name="Line12-7" parent="lines/cir2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line12-7" parent="lines/cir2" unique_id=946265726 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat12")
 boat2 = NodePath("../../../boat7")
 start_burn = 3
 
-[node name="cir3" type="Node2D" parent="lines"]
+[node name="cir3" type="Node2D" parent="lines" unique_id=1267520826]
 
-[node name="Line13-14" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line13-14" parent="lines/cir3" unique_id=867739714 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat13")
 boat2 = NodePath("../../../boat14")
 start_burn = 3
 
-[node name="Line14-15" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line14-15" parent="lines/cir3" unique_id=513156733 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat14")
 boat2 = NodePath("../../../boat15")
 start_burn = 3
 
-[node name="Line15-16" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line15-16" parent="lines/cir3" unique_id=1872771439 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat15")
 boat2 = NodePath("../../../boat16")
 start_burn = 3
 
-[node name="Line16-17" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line16-17" parent="lines/cir3" unique_id=1663909423 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat16")
 boat2 = NodePath("../../../boat17")
 start_burn = 3
 
-[node name="Line17-18" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line17-18" parent="lines/cir3" unique_id=457242418 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat17")
 boat2 = NodePath("../../../boat18")
 start_burn = 3
 
-[node name="Line18-13" parent="lines/cir3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line18-13" parent="lines/cir3" unique_id=569645531 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat18")
 boat2 = NodePath("../../../boat13")
 start_burn = 3
 
-[node name="1-2" type="Node2D" parent="lines"]
+[node name="1-2" type="Node2D" parent="lines" unique_id=1026868542]
 
-[node name="Line1-7" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line1-7" parent="lines/1-2" unique_id=1085834423 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat1")
 boat2 = NodePath("../../../boat7")
 start_burn = 3
 
-[node name="Line1-12" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line1-12" parent="lines/1-2" unique_id=327037619 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat1")
 boat2 = NodePath("../../../boat12")
 start_burn = 3
 
-[node name="Line2-7" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line2-7" parent="lines/1-2" unique_id=130684555 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat2")
 boat2 = NodePath("../../../boat7")
 start_burn = 3
 
-[node name="Line2-8" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line2-8" parent="lines/1-2" unique_id=749046096 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat2")
 boat2 = NodePath("../../../boat8")
 start_burn = 3
 
-[node name="Line3-8" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line3-8" parent="lines/1-2" unique_id=843730773 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat3")
 boat2 = NodePath("../../../boat8")
 start_burn = 3
 
-[node name="Line3-9" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line3-9" parent="lines/1-2" unique_id=541610023 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat3")
 boat2 = NodePath("../../../boat9")
 start_burn = 3
 
-[node name="Line4-9" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line4-9" parent="lines/1-2" unique_id=319706384 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat4")
 boat2 = NodePath("../../../boat9")
 start_burn = 3
 
-[node name="Line4-10" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line4-10" parent="lines/1-2" unique_id=288568337 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat4")
 boat2 = NodePath("../../../boat10")
 start_burn = 3
 
-[node name="Line5-10" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line5-10" parent="lines/1-2" unique_id=281226279 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat5")
 boat2 = NodePath("../../../boat10")
 start_burn = 3
 
-[node name="Line5-11" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line5-11" parent="lines/1-2" unique_id=80285669 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat5")
 boat2 = NodePath("../../../boat11")
 start_burn = 3
 
-[node name="Line6-11" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line6-11" parent="lines/1-2" unique_id=1709130082 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat6")
 boat2 = NodePath("../../../boat11")
 start_burn = 3
 
-[node name="Line6-12" parent="lines/1-2" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line6-12" parent="lines/1-2" unique_id=1194331788 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat6")
 boat2 = NodePath("../../../boat12")
 start_burn = 3
 
-[node name="2-3" type="Node2D" parent="lines"]
+[node name="2-3" type="Node2D" parent="lines" unique_id=818503530]
 
-[node name="Line7-13" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line7-13" parent="lines/2-3" unique_id=407679765 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat7")
 boat2 = NodePath("../../../boat13")
 start_burn = 3
 
-[node name="Line7-14" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line7-14" parent="lines/2-3" unique_id=1602278721 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat7")
 boat2 = NodePath("../../../boat14")
 start_burn = 3
 
-[node name="Line8-14" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line8-14" parent="lines/2-3" unique_id=1850155729 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat8")
 boat2 = NodePath("../../../boat14")
 start_burn = 3
 
-[node name="Line8-15" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line8-15" parent="lines/2-3" unique_id=871218884 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat8")
 boat2 = NodePath("../../../boat15")
 start_burn = 3
 
-[node name="Line9-15" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line9-15" parent="lines/2-3" unique_id=1784550149 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat9")
 boat2 = NodePath("../../../boat15")
 start_burn = 3
 
-[node name="Line9-16" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line9-16" parent="lines/2-3" unique_id=1232890145 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat9")
 boat2 = NodePath("../../../boat16")
 start_burn = 3
 
-[node name="Line10-16" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line10-16" parent="lines/2-3" unique_id=1212545408 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat10")
 boat2 = NodePath("../../../boat16")
 start_burn = 3
 
-[node name="Line10-17" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line10-17" parent="lines/2-3" unique_id=1906079410 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat10")
 boat2 = NodePath("../../../boat17")
 start_burn = 3
 
-[node name="Line11-17" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line11-17" parent="lines/2-3" unique_id=1244169336 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat11")
 boat2 = NodePath("../../../boat17")
 start_burn = 3
 
-[node name="Line11-18" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line11-18" parent="lines/2-3" unique_id=452555256 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat11")
 boat2 = NodePath("../../../boat18")
 start_burn = 3
 
-[node name="Line12-18" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line12-18" parent="lines/2-3" unique_id=1971060376 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat12")
 boat2 = NodePath("../../../boat18")
 start_burn = 3
 
-[node name="Line12-13" parent="lines/2-3" node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
+[node name="Line12-13" parent="lines/2-3" unique_id=782073646 node_paths=PackedStringArray("boat1", "boat2") instance=ExtResource("2_jrtkm")]
 boat1 = NodePath("../../../boat12")
 boat2 = NodePath("../../../boat13")
 start_burn = 3

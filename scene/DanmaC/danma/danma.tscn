@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfhi4nkej810f"]
+[gd_scene format=3 uid="uid://cfhi4nkej810f"]
 
 [ext_resource type="Script" uid="uid://dxl3w2m0a7kr7" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
 [ext_resource type="Shader" uid="uid://dq0xbpgvfxndp" path="res://asset/shaders/hue_shift.gdshader" id="2_6775s"]
@@ -16,7 +16,7 @@ size = Vector2(1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6775s"]
 shader = ExtResource("2_6775s")
 
-[node name="Danma" type="CharacterBody2D"]
+[node name="Danma" type="CharacterBody2D" unique_id=1392810748]
 top_level = true
 material = SubResource("CanvasItemMaterial_6775s")
 collision_layer = 64
@@ -24,18 +24,18 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_gybhv")
 
-[node name="colli_area" type="CollisionShape2D" parent="."]
+[node name="colli_area" type="CollisionShape2D" parent="." unique_id=550712500]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_al86q")
 
-[node name="damage_area" type="Area2D" parent="."]
+[node name="damage_area" type="Area2D" parent="." unique_id=1185500474]
 collision_layer = 0
 monitorable = false
 
-[node name="colli_da" type="CollisionShape2D" parent="damage_area"]
+[node name="colli_da" type="CollisionShape2D" parent="damage_area" unique_id=1011990277]
 shape = SubResource("RectangleShape2D_n623u")
 
-[node name="texture" type="Sprite2D" parent="."]
+[node name="texture" type="Sprite2D" parent="." unique_id=719478613]
 z_index = 500
 z_as_relative = false
 material = SubResource("ShaderMaterial_6775s")
@@ -47,12 +47,12 @@ scale = Vector2(0.03, 0.03)
 texture = ExtResource("3_6775s")
 offset = Vector2(0, 16)
 
-[node name="exist" type="Timer" parent="."]
+[node name="exist" type="Timer" parent="." unique_id=1333113420]
 process_mode = 1
 wait_time = 0.2
 autostart = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1210445952]
 rect = Rect2(-0.5, -0.5, 1, 1)
 
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
