@@ -28,4 +28,14 @@ func online(duratime) -> void:
 
 
 
-		player_var.require_env_glowing(false)
+
+
+
+
+#
+#func _on_attack_visibility_changed() -> void:
+	#player_var.require_env_glowing(false)
+
+
+func _on_hidden() -> void:
+	player_var.require_env_glowing(false)

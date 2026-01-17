@@ -14,7 +14,7 @@ var boss_routine_info = {
 	"physical_parameter": [],
 	"followup": ""
   }
-signal end()
+signal end(follow_routine)
 var num_limit = 1
 
 var viewport_size:Vector2
@@ -33,6 +33,7 @@ func _ready() -> void:
 		$auto_emit.start()
 
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
+	end.connect(on_routine_end)
 	viewport_size = Vector2(1920,1080)
 func _on_viewport_size_changed():
 
@@ -42,6 +43,7 @@ func get_triggered(id:String):
 	if id == boss_routine_info.id:
 		shoot()
 func shoot():
+	print(boss_routine_info.id)
 	if num_limit < 1:
 		return
 	if boss_routine_info.is_auto:
@@ -90,12 +92,12 @@ func shoot():
 			match boss_routine_info.create_rule:
 				'inplace':
 					gen_position = global_position
-					SignalBus.d4c_create.emit(boss_routine_info.creature_id,gen_position,$".",boss_routine_info.danmaku_damage)
+					SignalBus.d4c_create.emit(boss_routine_info.creature_id,gen_position,$".",boss_routine_info.danmaku_damage,release)
 				'circle':
 					var gen_angle = boss_routine_info.create_parameter[2]*PI/180
 					for i in boss_routine_info.create_parameter[0]:
 						gen_position = Vector2.from_angle(gen_angle) * boss_routine_info.create_parameter[1]
-						SignalBus.d4c_create.emit(boss_routine_info.creature_id,gen_position,$".",boss_routine_info.danmaku_damage)
+						SignalBus.d4c_create.emit(boss_routine_info.creature_id,gen_position,$".",boss_routine_info.danmaku_damage,release)
 						gen_angle+= 2*PI/boss_routine_info.create_parameter[0]
 				'screen_line':
 					var bias = Vector2(boss_routine_info.create_parameter[2]-boss_routine_info.create_parameter[0],boss_routine_info.create_parameter[3]-boss_routine_info.create_parameter[1])/(boss_routine_info.create_parameter[4]-1)
@@ -103,7 +105,7 @@ func shoot():
 
 					for i in boss_routine_info.create_parameter[4]:
 
-						SignalBus.d4c_create.emit(boss_routine_info.creature_id,screen_to_world(gen_position),$".",boss_routine_info.danmaku_damage)
+						SignalBus.d4c_create.emit(boss_routine_info.creature_id,screen_to_world(gen_position),$".",boss_routine_info.danmaku_damage,release)
 						gen_position += bias
 
 
@@ -122,8 +124,11 @@ func _on_auto_emit_timeout() -> void:
 		shoot()
 
 func destroy():
-	end.emit()
+	if boss_routine_info.has("followup"):
+		end.emit(boss_routine_info.followup)
 	queue_free()
+func on_routine_end():
+	pass
 func _on_end_time_timeout() -> void:
 	destroy()
 

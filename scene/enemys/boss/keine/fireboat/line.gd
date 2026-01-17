@@ -130,7 +130,9 @@ func _on_fireball_timeout() -> void:
 	if fired:
 		return
 	if is_burning1 and boat1 and boat2:
-		SignalBus.d4c_create.emit('dcrt_keine_sc2_2', boat1.global_position+(boat2.global_position- boat1.global_position)*left_fire, $".", 30)
+		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',
+		boat1.global_position+(boat2.global_position- boat1.global_position)*left_fire, $".", 30,null)
 	if is_burning2 and boat1 and boat2:
 
-		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',   boat1.global_position+(boat2.global_position- boat1.global_position)*right_fire, $".", 30)
+		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',
+		boat1.global_position+(boat2.global_position- boat1.global_position)*right_fire, $".", 30,null)
