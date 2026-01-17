@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://v4gxpugft4ox"]
+[gd_scene format=3 uid="uid://v4gxpugft4ox"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_cci4r"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_y2vk4"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tq8me"]
 
-[node name="Attack" instance=ExtResource("1_cci4r")]
+[node name="Attack" unique_id=326328411 instance=ExtResource("1_cci4r")]
 script = ExtResource("2_y2vk4")
 particle_scale_need_change = false
 particle_scale_min = [1.0, 1.0, 1.0, 1.0]
@@ -18,7 +18,7 @@ scale = Vector2(0.05, 0.006)
 sprite_frames = SubResource("SpriteFrames_tq8me")
 autoplay = ""
 
-[node name="Node2D" parent="lock_component" index="0" instance=ExtResource("4_qrg0o")]
+[node name="Node2D" parent="lock_component" index="0" unique_id=137456609 instance=ExtResource("4_qrg0o")]
 position = Vector2(-3.494629, 0.000541687)
 scale = Vector2(4, 0.4)
 

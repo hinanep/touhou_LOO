@@ -122,6 +122,9 @@ func start_progess(phase:int):
 	else:
 		tmp_stage = phase
 	if tmp_stage >= boss_info.keys().size():
+		reincarnation = false
+		hp = 0
+		died()
 		return
 
 	if boss_info[boss_info.keys()[tmp_stage]].is_dialog:
@@ -217,6 +220,7 @@ func spellcard_timeover():
 func spellcard_break():
 	AudioManager.play_sfx('music_sfx_break')
 	SignalBus.disbullet.emit(true)
+	SignalBus.clear_enemy.emit(true)
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate
 	await get_tree().create_timer(.2).timeout
 	SignalBus.fly_to_player.emit(1,1,1,1)

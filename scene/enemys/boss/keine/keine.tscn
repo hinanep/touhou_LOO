@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=3 uid="uid://myebb0n8nmac"]
+[gd_scene format=3 uid="uid://myebb0n8nmac"]
 
 [ext_resource type="Script" uid="uid://b2rqufy2kwywv" path="res://scene/enemys/boss/keine/keine.gd" id="1_w6a4s"]
 [ext_resource type="Texture2D" uid="uid://cd7vnt66u5onw" path="res://asset/pic/enemy/keine/符卡释放/符卡释放_00.png" id="2_fdhrd"]
@@ -679,7 +679,7 @@ bg_color = Color(1, 1, 1, 1)
 atlas = ExtResource("5_kqtkm")
 region = Rect2(-5, 187, 260, 97)
 
-[node name="keine" type="CharacterBody2D" groups=["boss"]]
+[node name="keine" type="CharacterBody2D" unique_id=1182207605 groups=["boss"]]
 process_mode = 1
 z_index = 1
 z_as_relative = false
@@ -689,7 +689,7 @@ motion_mode = 1
 safe_margin = 10.0
 script = ExtResource("1_w6a4s")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1620660895]
 z_index = 15
 position = Vector2(0, -4.9999895)
 scale = Vector2(0.4, 0.39493674)
@@ -697,25 +697,25 @@ sprite_frames = SubResource("SpriteFrames_4gakf")
 animation = &"sc_casting"
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1052471374]
 visible = false
 z_index = 15
 shape = SubResource("CircleShape2D_itioj")
 
-[node name="melee_damage_area" type="Area2D" parent="."]
+[node name="melee_damage_area" type="Area2D" parent="." unique_id=1852190979]
 visible = false
 scale = Vector2(50, 50)
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee_damage_area" unique_id=1600054844]
 shape = SubResource("CircleShape2D_shwxr")
 
-[node name="melee_attack_cd" type="Timer" parent="melee_damage_area"]
+[node name="melee_attack_cd" type="Timer" parent="melee_damage_area" unique_id=466325622]
 
-[node name="danma" type="Node2D" parent="."]
+[node name="danma" type="Node2D" parent="." unique_id=61667267]
 
-[node name="AvoidanceModule" type="ProgressBar" parent="."]
+[node name="AvoidanceModule" type="ProgressBar" parent="." unique_id=639805532]
 visible = false
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
 offset_left = -39.0
@@ -731,23 +731,23 @@ value = 100.0
 show_percentage = false
 script = ExtResource("158_wrr5r")
 
-[node name="progress_timer" type="Timer" parent="."]
+[node name="progress_timer" type="Timer" parent="." unique_id=251432839]
 
-[node name="DamageNum" parent="." instance=ExtResource("3_rrecl")]
+[node name="DamageNum" parent="." unique_id=236422576 instance=ExtResource("3_rrecl")]
 
-[node name="outscreen_disppear" type="Timer" parent="."]
+[node name="outscreen_disppear" type="Timer" parent="." unique_id=1837738076]
 wait_time = 10.0
 autostart = true
 
-[node name="buff" type="Node" parent="."]
+[node name="buff" type="Node" parent="." unique_id=784878900]
 script = ExtResource("4_v0bqg")
 
-[node name="hud" type="CanvasLayer" parent="."]
+[node name="hud" type="CanvasLayer" parent="." unique_id=1969783128]
 
-[node name="card" type="CanvasLayer" parent="hud"]
+[node name="card" type="CanvasLayer" parent="hud" unique_id=1591205916]
 visible = false
 
-[node name="PopupPanel" type="TextureRect" parent="hud/card"]
+[node name="PopupPanel" type="TextureRect" parent="hud/card" unique_id=1757412053]
 modulate = Color(1, 1, 1, 0.356863)
 anchors_preset = 8
 anchor_left = 0.5
@@ -766,7 +766,7 @@ size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_xs83g")
 expand_mode = 1
 
-[node name="RichTextLabel" type="Label" parent="hud/card"]
+[node name="RichTextLabel" type="Label" parent="hud/card" unique_id=1818735323]
 offset_left = -236.0
 offset_top = 128.0
 offset_right = 2164.0
@@ -780,13 +780,13 @@ text = "数符「直线、射线、线段」"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hp" type="Node2D" parent="hud"]
+[node name="hp" type="Node2D" parent="hud" unique_id=1654855159]
 
-[node name="fullcard" type="Sprite2D" parent="hud/hp"]
+[node name="fullcard" type="Sprite2D" parent="hud/hp" unique_id=432989484]
 visible = false
 position = Vector2(1795, 581)
 
-[node name="full_mask" type="ReferenceRect" parent="hud/hp/fullcard"]
+[node name="full_mask" type="ReferenceRect" parent="hud/hp/fullcard" unique_id=131030746]
 z_index = -1
 clip_contents = true
 layout_direction = 2
@@ -798,13 +798,13 @@ rotation = 3.1415927
 pivot_offset = Vector2(62, 655)
 border_color = Color(1, 0, 0, 0)
 
-[node name="fullcard" type="Sprite2D" parent="hud/hp/fullcard/full_mask"]
+[node name="fullcard" type="Sprite2D" parent="hud/hp/fullcard/full_mask" unique_id=1893774992]
 z_index = 1
 position = Vector2(27, 426.622)
 rotation = 3.1415925
 texture = ExtResource("10_i8gk4")
 
-[node name="time_mask" type="ReferenceRect" parent="hud/hp/fullcard"]
+[node name="time_mask" type="ReferenceRect" parent="hud/hp/fullcard" unique_id=1720287639]
 z_index = -1
 clip_contents = true
 layout_direction = 2
@@ -816,21 +816,21 @@ rotation = 3.1415927
 pivot_offset = Vector2(62, 655)
 border_color = Color(1, 0, 0, 0)
 
-[node name="timecard" type="Sprite2D" parent="hud/hp/fullcard/time_mask"]
+[node name="timecard" type="Sprite2D" parent="hud/hp/fullcard/time_mask" unique_id=62176051]
 z_index = 1
 position = Vector2(26.72998, 428.62204)
 rotation = 3.1415925
 texture = ExtResource("8_rmmu3")
 
-[node name="frame" type="Sprite2D" parent="hud/hp/fullcard"]
+[node name="frame" type="Sprite2D" parent="hud/hp/fullcard" unique_id=787453971]
 position = Vector2(37, -44)
 texture = ExtResource("167_7sg5n")
 
-[node name="nons" type="Sprite2D" parent="hud/hp"]
+[node name="nons" type="Sprite2D" parent="hud/hp" unique_id=243994906]
 self_modulate = Color(1, 1, 1, 0.09803922)
 position = Vector2(1795, 581)
 
-[node name="nons_mask" type="ReferenceRect" parent="hud/hp/nons"]
+[node name="nons_mask" type="ReferenceRect" parent="hud/hp/nons" unique_id=688900290]
 z_index = -1
 clip_contents = true
 layout_direction = 2
@@ -842,13 +842,13 @@ rotation = 3.1415927
 pivot_offset = Vector2(62, 655)
 border_color = Color(1, 0, 0, 0)
 
-[node name="non_cont" type="Sprite2D" parent="hud/hp/nons/nons_mask"]
+[node name="non_cont" type="Sprite2D" parent="hud/hp/nons/nons_mask" unique_id=1339915247]
 z_index = 1
 position = Vector2(27, 215)
 rotation = 3.1415927
 texture = ExtResource("12_fav7k")
 
-[node name="quar_mask" type="ReferenceRect" parent="hud/hp/nons"]
+[node name="quar_mask" type="ReferenceRect" parent="hud/hp/nons" unique_id=1487173482]
 z_index = -1
 clip_contents = true
 anchors_preset = 7
@@ -865,61 +865,61 @@ grow_vertical = 0
 rotation = 3.1415927
 border_color = Color(1, 0, 0, 0)
 
-[node name="quar_cont" type="Sprite2D" parent="hud/hp/nons/quar_mask"]
+[node name="quar_cont" type="Sprite2D" parent="hud/hp/nons/quar_mask" unique_id=947081608]
 z_index = 1
 position = Vector2(26.000004, 431)
 rotation = 3.1415927
 texture = ExtResource("10_i8gk4")
 
-[node name="frame" type="Sprite2D" parent="hud/hp/nons"]
+[node name="frame" type="Sprite2D" parent="hud/hp/nons" unique_id=463128820]
 position = Vector2(37, -44)
 texture = ExtResource("167_7sg5n")
 
-[node name="hint" type="Sprite2D" parent="hud/hp/nons"]
+[node name="hint" type="Sprite2D" parent="hud/hp/nons" unique_id=644969721]
 self_modulate = Color(1, 1, 1, 0.7490196)
 position = Vector2(36, 153)
 texture = ExtResource("168_wrr5r")
 
-[node name="ciecle" type="Sprite2D" parent="hud/hp"]
+[node name="ciecle" type="Sprite2D" parent="hud/hp" unique_id=1541085077]
 position = Vector2(1809, 994)
 texture = ExtResource("169_kjj0y")
 
-[node name="icon" type="Sprite2D" parent="hud/hp"]
+[node name="icon" type="Sprite2D" parent="hud/hp" unique_id=1265199691]
 position = Vector2(1813, 992)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("12_i8gk4")
 
-[node name="light" type="Sprite2D" parent="hud/hp"]
+[node name="light" type="Sprite2D" parent="hud/hp" unique_id=863480702]
 self_modulate = Color(1, 1, 1, 0.49803922)
 z_index = -2
 position = Vector2(1810, 991)
 texture = ExtResource("169_7sg5n")
 
-[node name="bottom" type="Sprite2D" parent="hud/hp"]
+[node name="bottom" type="Sprite2D" parent="hud/hp" unique_id=228869758]
 z_index = -2
 position = Vector2(1832, 536)
 texture = ExtResource("173_wrr5r")
 
-[node name="life" type="Node2D" parent="hud/hp"]
+[node name="life" type="Node2D" parent="hud/hp" unique_id=448249842]
 position = Vector2(44, -48)
 
-[node name="space" type="Sprite2D" parent="hud/hp/life"]
+[node name="space" type="Sprite2D" parent="hud/hp/life" unique_id=1564003498]
 position = Vector2(1722, 898)
 texture = ExtResource("13_m8gjf")
 
-[node name="space2" type="Sprite2D" parent="hud/hp/life"]
+[node name="space2" type="Sprite2D" parent="hud/hp/life" unique_id=765535638]
 position = Vector2(1723, 946.5)
 texture = ExtResource("13_m8gjf")
 
-[node name="life1" type="Sprite2D" parent="hud/hp/life"]
+[node name="life1" type="Sprite2D" parent="hud/hp/life" unique_id=1904373195]
 position = Vector2(1722, 899)
 texture = ExtResource("14_i4kq0")
 
-[node name="life2" type="Sprite2D" parent="hud/hp/life"]
+[node name="life2" type="Sprite2D" parent="hud/hp/life" unique_id=417070504]
 position = Vector2(1722, 947.5)
 texture = ExtResource("14_i4kq0")
 
-[node name="轨迹" type="Sprite2D" parent="."]
+[node name="轨迹" type="Sprite2D" parent="." unique_id=518302818]
 visible = false
 scale = Vector2(2.5, 0.5)
 texture = ExtResource("8_ko4ll")

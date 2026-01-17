@@ -13,13 +13,17 @@ config_version=5
 SettingsDir="res://table"
 cmd_path="res://addons/GDExcelExporter/ee.exe"
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="touhouSurvivors"
 run/main_scene="res://ui/game.tscn"
-config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 run/flush_stdout_on_print.debug=false
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/image="res://asset/pic/blue_plate.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
