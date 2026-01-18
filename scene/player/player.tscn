@@ -1,15 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://c0o2d1rqeugpm"]
+[gd_scene format=3 uid="uid://c0o2d1rqeugpm"]
 
 [ext_resource type="Script" uid="uid://jn4lwmrly54r" path="res://scene/player/player.gd" id="1_eqxiv"]
 [ext_resource type="PackedScene" uid="uid://clsoje0yt1dit" path="res://scene/component/skill/SkillComponent.tscn" id="2_20a0v"]
 [ext_resource type="PackedScene" uid="uid://fec4arl424pc" path="res://scene/component/card/CardComponent.tscn" id="3_astcg"]
-[ext_resource type="Texture2D" uid="uid://d111f1mjv8x4c" path="res://asset/pic/fairy/left.png" id="3_bbt5x"]
 [ext_resource type="Texture2D" uid="uid://rgktqsf1iapd" path="res://asset/pic/fairy/point.png" id="3_g1rlb"]
 [ext_resource type="PackedScene" uid="uid://daqfogwcp42va" path="res://scene/component/passive/PassiveComponent.tscn" id="4_0k654"]
 [ext_resource type="PackedScene" uid="uid://cw4f8v0lfq8dq" path="res://scene/component/buff/BuffComponent.tscn" id="4_54cbq"]
-[ext_resource type="Texture2D" uid="uid://c7dk0w5s7aqfj" path="res://asset/pic/fairy/20241105-223621.png" id="5_3pdok"]
 [ext_resource type="PackedScene" uid="uid://bn82kepgtwd7v" path="res://scene/component/cp/CpComponent.tscn" id="5_fov64"]
 [ext_resource type="Shader" uid="uid://1idqb1bfupq2" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
+[ext_resource type="Texture2D" uid="uid://55l6kcxo6usd" path="res://asset/pic/fairy/大妖精-sheet.png" id="9_pisg7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
 radius = 16.0
@@ -43,27 +42,51 @@ shader = ExtResource("7_n3i7f")
 shader_parameter/target_color = Color(1, 0, 0, 1)
 shader_parameter/progress = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdhb2"]
-atlas = ExtResource("3_bbt5x")
-region = Rect2(0, 0, 182, 202)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oypl4"]
+atlas = ExtResource("9_pisg7")
+region = Rect2(1536, 0, 512, 512)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7bnf"]
-atlas = ExtResource("5_3pdok")
-region = Rect2(0, 0, 182, 202)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjg4s"]
+atlas = ExtResource("9_pisg7")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wtbu"]
+atlas = ExtResource("9_pisg7")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3aiu"]
+atlas = ExtResource("9_pisg7")
+region = Rect2(0, 0, 512, 512)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ocn4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fdhb2")
+"texture": SubResource("AtlasTexture_oypl4")
 }],
 "loop": true,
-"name": &"left",
+"name": &"move_back",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r7bnf")
+"texture": SubResource("AtlasTexture_qjg4s")
+}],
+"loop": true,
+"name": &"move_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wtbu")
+}],
+"loop": true,
+"name": &"move_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3aiu")
 }],
 "loop": true,
 "name": &"stay",
@@ -81,89 +104,87 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_25blp"]
 normal = Vector2(-1, 0)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=1447663755]
 z_index = 10
 z_as_relative = false
 collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_eqxiv")
 
-[node name="skill" parent="." instance=ExtResource("2_20a0v")]
+[node name="skill" parent="." unique_id=1615477187 instance=ExtResource("2_20a0v")]
 
-[node name="card" parent="." instance=ExtResource("3_astcg")]
+[node name="card" parent="." unique_id=1598656542 instance=ExtResource("3_astcg")]
 
-[node name="passive" parent="." instance=ExtResource("4_0k654")]
+[node name="passive" parent="." unique_id=1713742494 instance=ExtResource("4_0k654")]
 
-[node name="CpComponent" parent="." instance=ExtResource("5_fov64")]
+[node name="CpComponent" parent="." unique_id=2112998114 instance=ExtResource("5_fov64")]
 
-[node name="BuffComponent" parent="." instance=ExtResource("4_54cbq")]
+[node name="BuffComponent" parent="." unique_id=710005633 instance=ExtResource("4_54cbq")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743779818]
 shape = SubResource("CircleShape2D_kq405")
 
-[node name="colli_point" type="Sprite2D" parent="CollisionShape2D"]
+[node name="colli_point" type="Sprite2D" parent="CollisionShape2D" unique_id=393929340]
 visible = false
 z_index = 500
 z_as_relative = false
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_g1rlb")
 
-[node name="invincible_time" type="Timer" parent="."]
+[node name="invincible_time" type="Timer" parent="." unique_id=1453449063]
 wait_time = 0.5
 one_shot = true
 
-[node name="pickup_area" type="Area2D" parent="."]
+[node name="pickup_area" type="Area2D" parent="." unique_id=1487403122]
 collision_layer = 0
 collision_mask = 16
 monitorable = false
 
-[node name="pickup_shape" type="CollisionShape2D" parent="pickup_area"]
+[node name="pickup_shape" type="CollisionShape2D" parent="pickup_area" unique_id=455014599]
 shape = SubResource("CircleShape2D_keelo")
 
-[node name="CardManager" type="Node2D" parent="."]
+[node name="CardManager" type="Node2D" parent="." unique_id=887667917]
 
-[node name="buffManager" type="Node2D" parent="."]
+[node name="buffManager" type="Node2D" parent="." unique_id=1599968139]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hargt")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=483370419]
+libraries/ = SubResource("AnimationLibrary_hargt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=885976744]
 material = SubResource("ShaderMaterial_7menj")
 position = Vector2(-1, 6.77626e-21)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
-animation = &"left"
+animation = &"move_back"
 autoplay = "stay"
 
-[node name="reflect" type="CharacterBody2D" parent="." groups=["wall"]]
+[node name="reflect" type="CharacterBody2D" parent="." unique_id=252774295 groups=["wall"]]
 collision_layer = 4
 collision_mask = 0
 
-[node name="left" type="CollisionShape2D" parent="reflect"]
+[node name="left" type="CollisionShape2D" parent="reflect" unique_id=1337080925]
 position = Vector2(-960, 2)
 shape = SubResource("WorldBoundaryShape2D_xlgpr")
 
-[node name="top" type="CollisionShape2D" parent="reflect"]
+[node name="top" type="CollisionShape2D" parent="reflect" unique_id=1153649842]
 position = Vector2(-2, -540)
 shape = SubResource("WorldBoundaryShape2D_nv7q1")
 
-[node name="down" type="CollisionShape2D" parent="reflect"]
+[node name="down" type="CollisionShape2D" parent="reflect" unique_id=1495895058]
 position = Vector2(0, 540)
 shape = SubResource("WorldBoundaryShape2D_doahy")
 
-[node name="right" type="CollisionShape2D" parent="reflect"]
+[node name="right" type="CollisionShape2D" parent="reflect" unique_id=1030086425]
 position = Vector2(960, 1)
 shape = SubResource("WorldBoundaryShape2D_25blp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1704433083]
 ignore_rotation = false
 position_smoothing_speed = 500.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
 
-[node name="black" type="ColorRect" parent="."]
+[node name="black" type="ColorRect" parent="." unique_id=9079237]
 modulate = Color(1, 1, 1, 0)
 z_index = 4
 z_as_relative = false
