@@ -124,7 +124,7 @@ signal drop(id, global_position, value)
 ## @param point_ratio_buff: float - 点数 (?) 获取倍率/加成。
 signal fly_to_player(exp_buff, mana_buff, score_buff, point_ratio_buff)
 
-signal d4c_create(id,position,parent,damage)
+signal d4c_create(id,position,parent,damage,callback)
 # ==================== 调试/控制 相关信号 ====================
 signal clear_enemy(not_drop:bool)
 signal pause_spawner(is_pause:bool)

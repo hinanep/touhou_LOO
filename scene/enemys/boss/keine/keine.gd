@@ -83,12 +83,17 @@ func dush(speed,time,charge_time):
 		move_func = move_stay
 		)
 
+var after_dush_trigger_2_2:bool = true
 func move_dush(delta):
 
 	var colli_info:KinematicCollision2D = move_and_collide(diretion * dush_speed * delta)
 	if colli_info is KinematicCollision2D:
 		$"轨迹".visible = false
-		trigger.emit('brou_keine_ns2_2')
+		if after_dush_trigger_2_2:
+			trigger.emit('brou_keine_ns2_2')
+		else:
+			trigger.emit('brou_keine_ns2_4')
+		after_dush_trigger_2_2 = not after_dush_trigger_2_2
 		if time_tween.is_valid():
 			time_tween.kill()
 		move_func = move_stay

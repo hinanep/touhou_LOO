@@ -22,9 +22,13 @@ func _physics_process(_delta: float) -> void:
 	direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	if direction:
 		player_var.player_diretion_angle =Vector2(1,0).angle_to( direction)
-	if direction.x <0:
-			animated_sprite_2d.play("left")
+	if direction.y <0:
+			animated_sprite_2d.play("move_back")
+	elif direction.x <0:
+			animated_sprite_2d.play("move_left")
 	elif direction.x >0:
+			animated_sprite_2d.play("move_right")
+	else:
 			animated_sprite_2d.play("stay")
 	velocity = direction * player_var.player_speed
 

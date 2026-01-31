@@ -2,7 +2,7 @@ extends Node2D
 func _ready() -> void:
 	SignalBus.d4c_create.connect(new_d4c)
 
-func new_d4c(id,g_position,parent:Node2D,damage):
+func new_d4c(id,g_position,parent:Node2D,damage,callback):
 
 	var nd4c = PresetManager.getpre('d4c').instantiate()
 
@@ -15,7 +15,8 @@ func new_d4c(id,g_position,parent:Node2D,damage):
 	else:
 
 		add_child(nd4c)
-	if parent.has_method('release'):
-		nd4c.die.connect(parent.release)
+	#if parent.has_method('release'):
+	if callback!=null:
+		nd4c.die.connect(callback)
 	nd4c.global_position = g_position
 	nd4c = null

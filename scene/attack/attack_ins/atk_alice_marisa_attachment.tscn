@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://biv3ye4x52b1g"]
+[gd_scene format=3 uid="uid://biv3ye4x52b1g"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_brahv"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ag7ab"]
@@ -25,7 +25,7 @@ viewport_path = NodePath("lock_component/master2/SubViewport")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_74emn"]
 
-[node name="Attack" instance=ExtResource("1_brahv")]
+[node name="Attack" unique_id=2012504003 instance=ExtResource("1_brahv")]
 script = ExtResource("2_ag7ab")
 particle_scale_need_change = false
 particle_scale_min = [1.0, 1.0, 1.0, 1.0]
@@ -35,7 +35,7 @@ particle_scale_max = [1.0, 1.0, 1.0, 1.0]
 scale = Vector2(0.016, 0.03)
 sprite_frames = SubResource("SpriteFrames_hyh1w")
 
-[node name="master2" type="Sprite2D" parent="lock_component" index="0"]
+[node name="master2" type="Sprite2D" parent="lock_component" index="0" unique_id=2059016958]
 z_index = 1
 material = SubResource("ShaderMaterial_i4l8s")
 position = Vector2(-0.0019226074, -381.9131)
@@ -44,10 +44,12 @@ scale = Vector2(1.911, 3)
 texture = SubResource("ViewportTexture_b3lng")
 script = ExtResource("4_bmqux")
 
-[node name="SubViewport" type="SubViewport" parent="lock_component/master2" index="0"]
+[node name="SubViewport" type="SubViewport" parent="lock_component/master2" index="0" unique_id=457469187]
 transparent_bg = true
 
-[node name="Master" parent="lock_component/master2/SubViewport" index="0" instance=ExtResource("4_05ogu")]
+[node name="Master" parent="lock_component/master2/SubViewport" index="0" unique_id=666103927 instance=ExtResource("4_05ogu")]
 
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("WorldBoundaryShape2D_74emn")
+
+[connection signal="hidden" from="lock_component/master2" to="lock_component/master2" method="_on_hidden"]

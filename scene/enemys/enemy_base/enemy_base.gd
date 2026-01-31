@@ -77,7 +77,7 @@ func _ready():
 	setbuff(multi,multi,multi,multi)
 
 	if mob_info.has('danmaku_creator'):
-		SignalBus.d4c_create.emit(mob_info.danmaku_creator,global_position,$".",mob_info.magical_damage)
+		SignalBus.d4c_create.emit(mob_info.danmaku_creator,global_position,$".",mob_info.magical_damage,null)
 	if not mob_info.has('boss'):
 		SignalBus.clear_enemy.connect(died)
 		SignalBus.kill_all.connect(died.bind(true))

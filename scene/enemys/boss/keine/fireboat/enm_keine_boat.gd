@@ -45,7 +45,7 @@ func on_fire():
 	for line in lines_withboat:
 		if line:
 			line.on_fire_from($".")
-	SignalBus.d4c_create.emit('dcrt_keine_sc2_2',global_position,$".",30)
+	SignalBus.d4c_create.emit('dcrt_keine_sc2_2',global_position,$".",30,null)
 
 func _on_outscreen_disppear_timeout() -> void:
 	pass

@@ -25,4 +25,6 @@ scale = Vector2(4, 0.4)
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = ExtResource("3_od6hf")
 
+[connection signal="visibility_changed" from="." to="lock_component/Node2D" method="_on_attack_visibility_changed"]
+[connection signal="hidden" from="lock_component/Node2D" to="lock_component/Node2D" method="_on_hidden"]
 [connection signal="tree_exited" from="lock_component/Node2D" to="lock_component/Node2D" method="_on_tree_exited"]
