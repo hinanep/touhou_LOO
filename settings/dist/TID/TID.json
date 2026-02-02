@@ -49,7 +49,7 @@
   },
   "esc_keine_1": {
     "Id": "esc_keine_1",
-    "CHS": "数符「平面几何初步」",
+    "CHS": "数符「直线、射线、线段」",
     "JP": "",
     "ENG": ""
   },
@@ -485,56 +485,56 @@
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg2after_2": {
-    "Id": "dialog_stg2after_2",
+  "dialog_stg1after_2": {
+    "Id": "dialog_stg1after_2",
     "CHS": "呜，老师您不是可以直接创造历史嘛，为什么还要打一架呢？",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg3after_3": {
-    "Id": "dialog_stg3after_3",
+  "dialog_stg1after_3": {
+    "Id": "dialog_stg1after_3",
     "CHS": "这种事只有满月时候才能做到啦。这还正好把今天的课补上了，挺好的嘛。",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg4after_4": {
-    "Id": "dialog_stg4after_4",
+  "dialog_stg1after_4": {
+    "Id": "dialog_stg1after_4",
     "CHS": "那头槌那部分算什么啦——",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg5after_5": {
-    "Id": "dialog_stg5after_5",
+  "dialog_stg1after_5": {
+    "Id": "dialog_stg1after_5",
     "CHS": "老师能帮你的就这么多了。要加油哦，老师等着你早点解决危机回来上课呢。",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg6after_6": {
-    "Id": "dialog_stg6after_6",
+  "dialog_stg1after_6": {
+    "Id": "dialog_stg1after_6",
     "CHS": "班上其他妖精都太不让人省心了……",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg7after_7": {
-    "Id": "dialog_stg7after_7",
+  "dialog_stg1after_7": {
+    "Id": "dialog_stg1after_7",
     "CHS": "诶嘿~谢谢老师！",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg8after_8": {
-    "Id": "dialog_stg8after_8",
+  "dialog_stg1after_8": {
+    "Id": "dialog_stg1after_8",
     "CHS": "另外这是今天新发的练习册，开学前要完成前20页。",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg9after_9": {
-    "Id": "dialog_stg9after_9",
+  "dialog_stg1after_9": {
+    "Id": "dialog_stg1after_9",
     "CHS": "你的话前面的题挑着做就可以，但大题还是要认真做完哦。",
     "JP": "",
     "ENG": ""
   },
-  "dialog_stg10after_10": {
-    "Id": "dialog_stg10after_10",
+  "dialog_stg1after_10": {
+    "Id": "dialog_stg1after_10",
     "CHS": "呜啊—谢谢老师！",
     "JP": "",
     "ENG": ""

@@ -6,6 +6,7 @@ func _ready():
 	player_var.tmp_scene = $"."
 var pauseing = false
 var pause_id
+var first = true
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -21,6 +22,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			Engine.time_scale = 1.0
 
 	if event.is_action_pressed("dialogue"):
+		if first:
+			table.dialogues = table.stage1_before
+		else:
+			table.dialogues = table.stage1_after
+		
+		first = !first
+		print_debug(table.dialogues)
 		G.get_gui_view_manager().open_view("DialogueMenu")
 
 
