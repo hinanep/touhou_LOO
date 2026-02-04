@@ -31,37 +31,37 @@ func display_next_dialogue():
 		close_self()
 		get_tree().paused = false
 		return
-	
+
 	if tween and tween.is_running():
 		tween.kill()
 		content.text = dialogue.content
 		i += 1
 	else:
 		dialogue = dialogues.get(str(i))
-	
+
 		#dialogue.get_or_add('position')
-		
+
 		dialogue.get_or_add('content', '')
 		dialogue.get_or_add('left_tachie')
 		dialogue.get_or_add('right_tachie')
 		dialogue.get_or_add('character', '')
 		dialogue.get_or_add('title', '')
-		
+
 		if dialogue.content != '':
 			dialogue.content = table.TID.get(dialogue.content).CHS
-		
+
 		if dialogue.character != '':
 			dialogue.character = table.TID.get(dialogue.character).CHS
-		
+
 		if dialogue.title != '':
 			dialogue.title = table.TID.get(dialogue.title).CHS
-			
+
 		character.text = dialogue.character
 		title.text = dialogue.title
 
 		if dialogue.has('bgm'):
 			AudioManager.stop_background_bgm()
-			
+
 			if dialogue.bgm != 'STOP':
 				var tw = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).tween_callback(func(): AudioManager.play_background_bgm(dialogue.bgm)).set_delay(3)
 				tw = null

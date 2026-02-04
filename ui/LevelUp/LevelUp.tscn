@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://buapai5om3oao"]
+[gd_scene format=3 uid="uid://buapai5om3oao"]
 
 [ext_resource type="Script" uid="uid://dwek2x7dldr2c" path="res://ui/LevelUp/LevelUp.gd" id="1_wgmem"]
 [ext_resource type="Script" uid="uid://dkwbtfh38csaa" path="res://ui/LevelUp/select_weapon.gd" id="2_2i5d0"]
@@ -16,7 +16,7 @@ region = Rect2(3, 291, 251, 82)
 atlas = ExtResource("6_hwo62")
 region = Rect2(1, 99, 254, 85)
 
-[node name="LevelUp" type="Control"]
+[node name="LevelUp" type="Control" unique_id=1860572188]
 process_mode = 3
 z_index = 901
 layout_mode = 3
@@ -27,15 +27,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wgmem")
 
-[node name="select_weapon" type="CanvasLayer" parent="."]
+[node name="select_weapon" type="CanvasLayer" parent="." unique_id=438416993]
 layer = 10
 offset = Vector2(100, 100)
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 100, 100)
 script = ExtResource("2_2i5d0")
 
-[node name="select_buttons" type="VBoxContainer" parent="select_weapon"]
-anchors_preset = -1
+[node name="select_buttons" type="VBoxContainer" parent="select_weapon" unique_id=1546915754]
 offset_left = 301.33334
 offset_top = -28.666668
 offset_right = 557.3334
@@ -43,20 +42,19 @@ offset_bottom = 151.33333
 scale = Vector2(2, 2)
 focus_mode = 2
 
-[node name="back2" type="Sprite2D" parent="select_weapon"]
+[node name="back2" type="Sprite2D" parent="select_weapon" unique_id=574029281]
 z_index = -10
 position = Vector2(555.6667, 297.66666)
 scale = Vector2(0.22277297, 0.2334918)
 texture = ExtResource("3_kbms8")
 
-[node name="UP!" type="Sprite2D" parent="select_weapon"]
+[node name="UP!" type="Sprite2D" parent="select_weapon" unique_id=192729545]
 visible = false
 position = Vector2(579, 140.667)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_h36oa")
 
-[node name="select_buttons2" type="VBoxContainer" parent="select_weapon"]
-anchors_preset = -1
+[node name="select_buttons2" type="VBoxContainer" parent="select_weapon" unique_id=273865672]
 offset_left = 98.666664
 offset_top = -42.666668
 offset_right = 349.66672
@@ -64,7 +62,7 @@ offset_bottom = 211.33333
 scale = Vector2(0.8, 0.8)
 focus_mode = 2
 
-[node name="ban" type="TextureButton" parent="select_weapon/select_buttons2"]
+[node name="ban" type="TextureButton" parent="select_weapon/select_buttons2" unique_id=1021030170]
 layout_mode = 2
 focus_neighbor_top = NodePath("../abandon")
 focus_neighbor_bottom = NodePath("../reroll")
@@ -73,7 +71,7 @@ texture_normal = SubResource("AtlasTexture_2ah3e")
 texture_hover = SubResource("AtlasTexture_nkj25")
 texture_focused = SubResource("AtlasTexture_nkj25")
 
-[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/ban"]
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/ban" unique_id=685158320]
 layout_mode = 0
 offset_left = 92.08341
 offset_top = 18.333334
@@ -87,7 +85,7 @@ bbcode_enabled = true
 text = "[color=white]遗忘"
 scroll_active = false
 
-[node name="reroll" type="TextureButton" parent="select_weapon/select_buttons2"]
+[node name="reroll" type="TextureButton" parent="select_weapon/select_buttons2" unique_id=440449739]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ban")
 focus_neighbor_bottom = NodePath("../abandon")
@@ -96,7 +94,7 @@ texture_normal = SubResource("AtlasTexture_2ah3e")
 texture_hover = SubResource("AtlasTexture_nkj25")
 texture_focused = SubResource("AtlasTexture_nkj25")
 
-[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/reroll"]
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/reroll" unique_id=1054083858]
 layout_mode = 0
 offset_left = 92.91667
 offset_top = 18.999996
@@ -110,7 +108,7 @@ bbcode_enabled = true
 text = "[color=white]刷新"
 scroll_active = false
 
-[node name="abandon" type="TextureButton" parent="select_weapon/select_buttons2"]
+[node name="abandon" type="TextureButton" parent="select_weapon/select_buttons2" unique_id=420267295]
 layout_mode = 2
 focus_neighbor_top = NodePath("../reroll")
 focus_neighbor_bottom = NodePath("../ban")
@@ -119,7 +117,7 @@ texture_normal = SubResource("AtlasTexture_2ah3e")
 texture_hover = SubResource("AtlasTexture_nkj25")
 texture_focused = SubResource("AtlasTexture_nkj25")
 
-[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/abandon"]
+[node name="weapon" type="RichTextLabel" parent="select_weapon/select_buttons2/abandon" unique_id=1864162327]
 layout_mode = 0
 offset_left = 94.583374
 offset_top = 20.499998
@@ -133,19 +131,19 @@ bbcode_enabled = true
 text = "[color=white]跳过"
 scroll_active = false
 
-[node name="Control" type="Control" parent="select_weapon"]
+[node name="Control" type="Control" parent="select_weapon" unique_id=406724804]
 visible = false
 z_index = 1
 layout_mode = 3
+anchors_preset = 0
 offset_left = -67.0
 offset_top = -67.0
 offset_right = 1209.0
 offset_bottom = 657.0
 
-[node name="pp" type="CanvasLayer" parent="."]
+[node name="pp" type="CanvasLayer" parent="." unique_id=470551187]
 
-[node name="properties" type="VBoxContainer" parent="pp"]
-anchors_preset = -1
+[node name="properties" type="VBoxContainer" parent="pp" unique_id=782255725]
 offset_left = 1545.0
 offset_top = 276.0
 offset_right = 4229.9995
