@@ -207,7 +207,7 @@
     "phase_number": 3,
     "is_auto": true,
     "auto_interval": 18.0,
-    "first_use_time": 10.0,
+    "first_use_time": 9.0,
     "end_time": 99.0,
     "type": "physical",
     "create_rule": "",
