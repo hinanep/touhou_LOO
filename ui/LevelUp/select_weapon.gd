@@ -29,13 +29,14 @@ func _ready():
 	else:
 		player_var.point_ratio *= 1.1
 		call_deferred("close_levelup")
-
+	SignalBus.delete_mode.connect(close_levelup)
 func _input(event: InputEvent) -> void:
 	pass
 
 
 func on_button_selected(id):
 	if ban_mode:
+
 		match selected[id]:
 			'skill':
 				SignalBus.ban_skill.emit(id)
@@ -57,7 +58,8 @@ func on_button_selected(id):
 	call_deferred("close_levelup")
 
 
-func close_levelup():
+func close_levelup(not_close = false):
+	if not_close:return
 	$"..".close_self()
 
 
@@ -73,6 +75,7 @@ func _on_reroll_button_up():
 
 
 func _on_ban_button_up():
+	SignalBus.delete_mode.emit(true)
 	if $select_buttons.get_child_count()!=0:
 		$select_buttons.get_child(0).grab_focus()
 	if !ban_mode:

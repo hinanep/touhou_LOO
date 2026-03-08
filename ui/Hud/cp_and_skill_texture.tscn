@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dalot4hpwth2w"]
+[gd_scene format=3 uid="uid://dalot4hpwth2w"]
 
 [ext_resource type="Shader" uid="uid://d1u5gm7rwoge0" path="res://asset/shaders/bloom_outline.gdshader" id="1_6t6g0"]
 [ext_resource type="Texture2D" uid="uid://cqd4t2pc0y5jm" path="res://asset/pic/crystal/主动技能/博丽灵梦.png" id="1_kbttv"]
 [ext_resource type="Script" uid="uid://hkbinayv2uve" path="res://ui/Hud/cp_and_skill_texture.gd" id="2_pvgmu"]
 [ext_resource type="Theme" uid="uid://bi4f3b7qk68ct" path="res://ui/chinese_theme.tres" id="3_nig1a"]
+[ext_resource type="Shader" uid="uid://dcxj03v1ymvkb" path="res://ui/Hud/cp_and_skill_texture.gdshader" id="4_xjeic"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1j45h"]
 shader = ExtResource("1_6t6g0")
@@ -11,10 +12,52 @@ shader_parameter/outline_color = Color(0.18039216, 0.74509805, 0, 0.34117648)
 shader_parameter/radius = 1.2320000585200002
 shader_parameter/sampleCount = 4
 shader_parameter/grayLimit = 0.2790000132525
+shader_parameter/spread = 0.50000002375
+shader_parameter/gravity = 0.6690000317775
+shader_parameter/grid_size = 16.0000007125
 
-[node name="card_texture" type="TextureRect"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ftyw"]
+shader = ExtResource("4_xjeic")
+shader_parameter/progress = 0.0
+shader_parameter/spread = 0.406000019285
+shader_parameter/gravity = 3.7750001793125
+shader_parameter/grid_size = 19.90000089775
+shader_parameter/is_boob = true
+
+[sub_resource type="Gradient" id="Gradient_6t6g0"]
+colors = PackedColorArray(1, 0.18251956, 0.13418633, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xjeic"]
+gradient = SubResource("Gradient_6t6g0")
+
+[sub_resource type="Curve" id="Curve_6t6g0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.42819846, 0.954279), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xjeic"]
+curve = SubResource("Curve_6t6g0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ftyw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 700, 0)
+scale_min = 8.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_xjeic")
+color_ramp = SubResource("GradientTexture1D_xjeic")
+
+[node name="card_texture" type="TextureRect" unique_id=1726606902 groups=["skill_icon"]]
 material = SubResource("ShaderMaterial_1j45h")
+instance_shader_parameters/boob_progress = 0.0
 instance_shader_parameters/brightness = 0.0
+instance_shader_parameters/is_boob = false
+instance_shader_parameters/progress = 0.0
+instance_shader_parameters/width = 0.0
 custom_minimum_size = Vector2(1, 0)
 offset_right = 120.0
 offset_bottom = 120.0
@@ -23,7 +66,8 @@ texture = ExtResource("1_kbttv")
 expand_mode = 2
 script = ExtResource("2_pvgmu")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=7309810]
+material = SubResource("ShaderMaterial_0ftyw")
 layout_mode = 0
 offset_left = -23.000008
 offset_top = 42.0
@@ -36,3 +80,12 @@ bbcode_enabled = true
 text = "[center]
 LV.1"
 fit_content = true
+
+[node name="boob" type="GPUParticles2D" parent="." unique_id=78462855]
+visible = false
+position = Vector2(59, 59)
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.95
+process_material = SubResource("ParticleProcessMaterial_0ftyw")

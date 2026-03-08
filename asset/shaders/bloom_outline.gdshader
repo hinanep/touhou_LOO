@@ -9,6 +9,22 @@ uniform int sampleCount:hint_range(1, 8) = 4;//取样次数
 uniform float grayLimit :hint_range(0.0, 1.0) = 0.3;//取样最低灰度
 instance uniform float brightness :hint_range(0.0, 1.0)= 0.5;//模糊亮度
 
+instance uniform float progress : hint_range(0.0, 1.0) = 0.0; // 长按进度 0-1
+instance uniform float shake_strength = 0.0;                 // 抖动强度
+
+instance uniform float boob_progress : hint_range(0.0, 1.0) = 0.0;
+uniform float spread : hint_range(0.0, 3.0) = 0.6;    // 爆炸强度
+uniform float gravity : hint_range(0.0, 5.0) = 2.0;  // 重力强度
+uniform float grid_size : hint_range(1.0, 100.0) = 20.0; // 碎片密度
+instance uniform bool is_boob = false; // 碎片密度
+// 随机函数，用于给不同碎片增加一点点差异化
+float rand(vec2 co) {
+    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
+}
+// 随机函数用于产生抖动
+float random(vec2 uv) {
+    return fract(sin(dot(uv.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+}
 vec4 limitGrayColor(vec4 color,float limit){
 
 if(limit <=0.0)//没限制，输入什么就输出什么
@@ -23,7 +39,17 @@ return vec4(0.0);
 }else //不然就保留该颜色
 return color;
 
-}void fragment(){
+}
+
+void vertex() {
+	// 实现随机抖动逻辑
+	if (shake_strength > 0.0) {
+		VERTEX.x += (random(vec2(TIME, 0.0)) - 0.5) * shake_strength;
+		VERTEX.y += (random(vec2(0.0, TIME)) - 0.5) * shake_strength;
+	}
+}
+
+void fragment(){
 
 
     float size = width * 1.0 / float(textureSize(TEXTURE,0).x);
@@ -74,6 +100,58 @@ vec4 effect_color = col * brightness + COLOR;
 
 	COLOR.rgb = effect_color.rgb;
 	
+	
+	
+// 从下往上变红：1.0-UV.y 会从底部(1.0)到顶部(0.0)计算
+    // 如果当前的进度大于高度占比，则混入红色
+    float mask = step(1.0 - progress, UV.y);
+    
+    // 混合原始颜色和红色，长按越多红得越深
+    vec3 red_tint = mix(COLOR.rgb, vec3(1.0, 0.0, 0.0), 0.7);   
+    COLOR.rgb = mix(COLOR.rgb, red_tint, mask);
+	
+	
+	if(is_boob){
+		vec2 grid_uv = (floor(UV * grid_size) + 0.5) / grid_size;
+    
+	    // 2. 计算离心方向 (从中心指向格子的向量)
+	    vec2 center = vec2(0.5, 0.5);
+	    vec2 dir = grid_uv - center;
+	    
+	    // 加上一点随机扰动，防止爆炸看起来像一个完美的圆
+	    float r = rand(grid_uv);
+	    dir += (vec2(r) - 0.5) * 0.5; 
+	    
+	    // 3. 计算位移
+	    // 水平和初始向上的力：dir * boob_progress
+	    vec2 velocity = dir * boob_progress * spread * 5.0;
+	    
+	    // 重力影响：随着时间(boob_progress)平方级增加 Y 轴位移
+	    float gravity_effect = boob_progress * 0.5 * gravity;
+	    
+	    // 总位移：离心力 + 重力
+	    vec2 offset = velocity;
+	    offset.y += gravity_effect; // Y轴向下增加
+	    
+	    // 4. 采样原图
+	    vec2 target_uv = UV - offset;
+	    vec4 color = texture(TEXTURE, target_uv);
+	    
+	    // 5. 边界剪裁：只显示当前格子范围内的内容，防止碎片互相重叠
+	    // 先计算采样点属于哪个格子
+	    vec2 target_grid_uv = (floor(target_uv * grid_size) + 0.5) / grid_size;
+	    
+	    // 如果采样的点不在原来的格子里，或者是越界了，就裁掉
+	    if (distance(target_grid_uv, grid_uv) > 0.1 / grid_size || 
+	        target_uv.x < 0.0 || target_uv.x > 1.0 || target_uv.y < 0.0 || target_uv.y > 1.0) {
+	        color.a = 0.0;
+	    }
+	    
+	    // 随进度淡出
+	    color.a *= 1.0 * (1.0 - boob_progress);
+	    
+	    COLOR = color;
+	}
 	
 }
 

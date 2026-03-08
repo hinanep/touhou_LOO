@@ -28,7 +28,7 @@ func _open():
 	player_var.new_scene()
 	player_var.SpawnManager = $SpawnManager
 	player_var.is_uping = false
-	
+
 	for i in 0:
 		var dummm = preload("res://scene/enemys/dummy/dummy.tscn").instantiate()
 		dummm.position.x += 2*100
@@ -36,7 +36,7 @@ func _open():
 
 	player_var.worldenvir = $WorldEnvironment
 
-	for i in  5:
+	for i in  0:
 		for j in 5:
 			summonhappy(Vector2(48*(i-10),30*(j-10)))
 var tname = 'enm_memhappy'
@@ -60,7 +60,7 @@ func _close():
 
 
 func open():
-	
+
 	_open()
 
 

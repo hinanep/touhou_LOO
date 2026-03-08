@@ -153,7 +153,7 @@ libraries/ = SubResource("AnimationLibrary_hargt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=885976744]
 material = SubResource("ShaderMaterial_7menj")
 position = Vector2(-1, 6.77626e-21)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
 animation = &"move_back"
 autoplay = "stay"

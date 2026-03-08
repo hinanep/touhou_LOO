@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsmua8weisch7"]
+[gd_scene format=3 uid="uid://dsmua8weisch7"]
 
 [ext_resource type="Script" uid="uid://tbsm0kj0lheg" path="res://ui/TestScene/TestScene.gd" id="1_rc87f"]
 [ext_resource type="PackedScene" uid="uid://c0o2d1rqeugpm" path="res://scene/player/player.tscn" id="2_1q6uy"]
@@ -51,88 +51,88 @@ glow_hdr_scale = 0.0
 glow_hdr_luminance_cap = 1.0
 adjustment_enabled = true
 
-[node name="TestScene" type="Control"]
+[node name="TestScene" type="Control" unique_id=395779318]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 470.0
-offset_bottom = 309.0
+offset_left = 192.0
+offset_top = 252.0
+offset_right = 661.0
+offset_bottom = 559.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rc87f")
 metadata/_edit_group_ = true
 
-[node name="player" parent="." groups=["player"] instance=ExtResource("2_1q6uy")]
+[node name="player" parent="." unique_id=1944774343 groups=["player"] instance=ExtResource("2_1q6uy")]
 unique_name_in_owner = true
 process_mode = 1
 position = Vector2(185, -5)
 collision_mask = 51
 safe_margin = 1.0
 
-[node name="monster_spawn_line" type="Path2D" parent="player"]
+[node name="monster_spawn_line" type="Path2D" parent="player" unique_id=424217801]
 scale = Vector2(1.1, 1.1)
 curve = SubResource("Curve2D_wc05l")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line"]
+[node name="PathFollow2D" type="PathFollow2D" parent="player/monster_spawn_line" unique_id=1715665870]
 position = Vector2(240, 142)
 rotation = -3.1363516
 
-[node name="air_wall" type="StaticBody2D" parent="."]
+[node name="air_wall" type="StaticBody2D" parent="." unique_id=2133520316]
 process_mode = 1
 collision_layer = 36
 collision_mask = 0
 
-[node name="left" type="CollisionShape2D" parent="air_wall"]
+[node name="left" type="CollisionShape2D" parent="air_wall" unique_id=1150917577]
 position = Vector2(-1321, 0)
 shape = SubResource("WorldBoundaryShape2D_n5tmk")
 
-[node name="top" type="CollisionShape2D" parent="air_wall"]
+[node name="top" type="CollisionShape2D" parent="air_wall" unique_id=2124135459]
 position = Vector2(0, -1800)
 shape = SubResource("WorldBoundaryShape2D_r5a1a")
 
-[node name="down" type="CollisionShape2D" parent="air_wall"]
+[node name="down" type="CollisionShape2D" parent="air_wall" unique_id=693598077]
 position = Vector2(0, 1050)
 shape = SubResource("WorldBoundaryShape2D_3ool2")
 
-[node name="right" type="CollisionShape2D" parent="air_wall"]
+[node name="right" type="CollisionShape2D" parent="air_wall" unique_id=338341091]
 position = Vector2(1377, -6)
 shape = SubResource("WorldBoundaryShape2D_3l2uj")
 
-[node name="SpawnManager" parent="." instance=ExtResource("6_uy8n2")]
+[node name="SpawnManager" parent="." unique_id=284604179 instance=ExtResource("6_uy8n2")]
 process_mode = 1
 
-[node name="drops" type="Node2D" parent="SpawnManager"]
+[node name="drops" type="Node2D" parent="SpawnManager" unique_id=207174591]
 script = ExtResource("7_7uj5j")
 
-[node name="d4c" type="Node2D" parent="SpawnManager"]
+[node name="d4c" type="Node2D" parent="SpawnManager" unique_id=1092449520]
 script = ExtResource("5_pafhp")
 
-[node name="color" type="CanvasModulate" parent="."]
+[node name="color" type="CanvasModulate" parent="." unique_id=306179957]
 color = Color(0.86329997, 0.94866, 0.97, 1)
 
-[node name="Node2D" parent="." instance=ExtResource("5_ep1gx")]
+[node name="Node2D" parent="." unique_id=247626173 instance=ExtResource("5_ep1gx")]
 z_index = -500
 z_as_relative = false
 position = Vector2(0, -1000)
 
-[node name="shatter" type="CanvasLayer" parent="."]
+[node name="shatter" type="CanvasLayer" parent="." unique_id=1950876541]
 process_mode = 1
 layer = 1000
 script = ExtResource("7_vsf1d")
 
-[node name="FragmentContainer" parent="shatter" instance=ExtResource("8_numam")]
+[node name="FragmentContainer" parent="shatter" unique_id=1150763891 instance=ExtResource("8_numam")]
 visible = false
 z_index = 1000
 
-[node name="Maskalp" type="Sprite2D" parent="shatter"]
+[node name="Maskalp" type="Sprite2D" parent="shatter" unique_id=1754492760]
 material = SubResource("ShaderMaterial_0mack")
 instance_shader_parameters/brightness = 1.0
 position = Vector2(960, 540)
 texture = ExtResource("9_0mack")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=973601005]
 environment = SubResource("Environment_xciso")

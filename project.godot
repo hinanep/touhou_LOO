@@ -85,6 +85,7 @@ import/blender/enabled=false
 drop=""
 treasure_chests=""
 attack=""
+skill_icon="skill hud"
 
 [gui]
 
