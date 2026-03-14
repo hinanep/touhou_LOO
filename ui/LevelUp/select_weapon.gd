@@ -76,13 +76,13 @@ func _on_reroll_button_up():
 
 func _on_ban_button_up():
 	SignalBus.delete_mode.emit(true)
-	if $select_buttons.get_child_count()!=0:
-		$select_buttons.get_child(0).grab_focus()
-	if !ban_mode:
-		$back2.set_modulate(Color(1, 0, 0))
-	else:
-		$back2.set_modulate(Color(1, 1, 1))
-	ban_mode = !ban_mode
+	#if $select_buttons.get_child_count()!=0:
+		#$select_buttons.get_child(0).grab_focus()
+	#if !ban_mode:
+		#$back2.set_modulate(Color(1, 0, 0))
+	#else:
+		#$back2.set_modulate(Color(1, 1, 1))
+	#ban_mode = !ban_mode
 
 
 

@@ -19,6 +19,7 @@ extends BaseGUIView
 @onready var psv_container = $hud/psv_container
 
 func _ready():
+	_delete_mode_containers = [skill_container, psv_container, card_container]
 
 	SignalBus.add_skill.connect(add_skill)
 	SignalBus.add_card.connect(on_add_card)
@@ -30,6 +31,7 @@ func _ready():
 	SignalBus.cp_active.connect(add_cp)
 
 	SignalBus.set_bosstimer.connect(set_boss_timer)
+	SignalBus.delete_mode.connect(_on_delete_mode_changed)
 
 func hp_display():
 
@@ -78,6 +80,9 @@ var card_selecting = 0
 var card_having
 var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
+
+var _delete_mode_active := false
+var _delete_mode_containers: Array[HBoxContainer] = []
 
 
 func card_display(bias):
@@ -166,3 +171,54 @@ func _on_renew_timer_timeout():
 	card_display(0)
 	life_display()
 	$hud/fps/text.text = str(Engine.get_frames_per_second())
+
+func _on_delete_mode_changed(on: bool) -> void:
+	_delete_mode_active = on
+	if on:
+		_setup_delete_mode_focus()
+	else:
+		_teardown_delete_mode_focus()
+
+func _setup_delete_mode_focus() -> void:
+	var rows: Array[Array] = []
+	for c in _delete_mode_containers:
+		var row: Array = []
+		for child in c.get_children():
+			if child is Control:
+				child.focus_mode = Control.FOCUS_ALL
+				row.append(child)
+		rows.append(row)
+	var first_focus: Control = null
+	for row_idx in rows.size():
+		var row = rows[row_idx]
+		for col_idx in row.size():
+			var btn: Control = row[col_idx]
+			if first_focus == null:
+				first_focus = btn
+			if col_idx > 0:
+				btn.focus_neighbor_left = btn.get_path_to(row[col_idx - 1])
+			if col_idx < row.size() - 1:
+				btn.focus_neighbor_right = btn.get_path_to(row[col_idx + 1])
+			if row_idx > 0:
+				var top_row = rows[row_idx - 1]
+				if top_row.size() > 0:
+					var top_col = col_idx % top_row.size()
+					btn.focus_neighbor_top = btn.get_path_to(top_row[top_col])
+			if row_idx < rows.size() - 1:
+				var bot_row = rows[row_idx + 1]
+				if bot_row.size() > 0:
+					var bot_col = col_idx % bot_row.size()
+					btn.focus_neighbor_bottom = btn.get_path_to(bot_row[bot_col])
+	if first_focus:
+		first_focus.grab_focus()
+
+func _teardown_delete_mode_focus() -> void:
+	for c in _delete_mode_containers:
+		for child in c.get_children():
+			if child is Control:
+				child.focus_mode = Control.FOCUS_NONE
+
+func _input(event: InputEvent) -> void:
+	if _delete_mode_active and event.is_action_pressed("ui_cancel"):
+		SignalBus.delete_mode.emit(false)
+		get_viewport().set_input_as_handled()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b423fr4pl50lx"]
+[gd_scene format=3 uid="uid://b423fr4pl50lx"]
 
 [ext_resource type="Shader" uid="uid://d1u5gm7rwoge0" path="res://asset/shaders/bloom_outline.gdshader" id="1_uyih8"]
 [ext_resource type="Script" uid="uid://cq22m7nf22ekr" path="res://ui/Hud/card_texture.gd" id="2_d07md"]
@@ -11,8 +11,11 @@ shader_parameter/outline_color = Color(0.18039216, 0.74509805, 0, 0.34117648)
 shader_parameter/radius = 1.2320000585200002
 shader_parameter/sampleCount = 4
 shader_parameter/grayLimit = 0.2790000132525
+shader_parameter/spread = 0.6
+shader_parameter/gravity = 2.0
+shader_parameter/grid_size = 20.0
 
-[node name="card_texture" type="TextureRect"]
+[node name="card_texture" type="TextureRect" unique_id=647681272]
 material = SubResource("ShaderMaterial_1j45h")
 instance_shader_parameters/brightness = 0.0
 instance_shader_parameters/width = 0.0
@@ -25,7 +28,7 @@ expand_mode = 2
 stretch_mode = 4
 script = ExtResource("2_d07md")
 
-[node name="cn" type="RichTextLabel" parent="."]
+[node name="cn" type="RichTextLabel" parent="." unique_id=833710950]
 layout_mode = 0
 offset_left = 26.000002
 offset_top = 48.000004

@@ -57,6 +57,7 @@ instance_shader_parameters/boob_progress = 0.0
 instance_shader_parameters/brightness = 0.0
 instance_shader_parameters/is_boob = false
 instance_shader_parameters/progress = 0.0
+instance_shader_parameters/shake_strength = 0.0
 instance_shader_parameters/width = 0.0
 custom_minimum_size = Vector2(1, 0)
 offset_right = 120.0
@@ -89,3 +90,16 @@ amount = 64
 one_shot = true
 explosiveness = 0.95
 process_material = SubResource("ParticleProcessMaterial_0ftyw")
+
+[node name="redx" type="Label" parent="." unique_id=1500190967]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_top = -22.0
+offset_right = 120.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 48
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
