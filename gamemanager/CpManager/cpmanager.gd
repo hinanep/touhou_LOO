@@ -16,6 +16,8 @@ var max_list = []
 func _init():
 	#删除技能时，将其从（可能的）满级列表中移除
 	SignalBus.del_skill.connect(del_to_maxlist)
+	SignalBus.del_card.connect(del_to_maxlist)
+	SignalBus.del_passive.connect(del_to_maxlist)
 	#技能升满时，将其加入满级列表
 	SignalBus.upgrade_max.connect(add_to_maxlist)
 	#删除cp时，调用

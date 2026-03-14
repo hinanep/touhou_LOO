@@ -29,7 +29,7 @@ func _ready():
 	else:
 		player_var.point_ratio *= 1.1
 		call_deferred("close_levelup")
-	SignalBus.delete_mode.connect(close_levelup)
+	SignalBus.delete_mode.connect(_on_delete_mode_changed)
 func _input(event: InputEvent) -> void:
 	pass
 
@@ -59,8 +59,22 @@ func on_button_selected(id):
 
 
 func close_levelup(not_close = false):
-	if not_close:return
+	if not_close: return
 	$"..".close_self()
+
+## 进入删除模式时隐藏本界面；取消时恢复显示并焦点重回；执行删除后直接关闭
+func _on_delete_mode_changed(entering: bool, completed: bool = false) -> void:
+	var levelup = $".."
+	if entering:
+		print("10")
+		
+	elif completed:
+		print("01")
+		close_levelup()
+	else:
+		print("else")
+		
+		$select_buttons2/ban.call_deferred("grab_focus")
 
 
 
@@ -75,7 +89,7 @@ func _on_reroll_button_up():
 
 
 func _on_ban_button_up():
-	SignalBus.delete_mode.emit(true)
+	SignalBus.delete_mode.emit(true, false)
 	#if $select_buttons.get_child_count()!=0:
 		#$select_buttons.get_child(0).grab_focus()
 	#if !ban_mode:

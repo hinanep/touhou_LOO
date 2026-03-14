@@ -78,7 +78,6 @@ func life_display():
 
 var card_selecting = 0
 var card_having
-var card_tex_pre = PresetManager.getpre("ui_card_texture")
 var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
 
 var _delete_mode_active := false
@@ -111,17 +110,16 @@ func card_display(bias):
 		$hud/card_now/manacost.text = '符力消耗：' + str(now_selected.manacost/player_var.mana_cost)
 
 func on_add_card(card_info):
-
-	var newcard = card_tex_pre.instantiate()
+	var newcard = cp_and_skill_texture.instantiate()
 	newcard.set_card(card_info)
 
 	card_container.add_child(newcard)
 
 	card_having = card_container.get_child_count()
 
-	for child in card_container.get_children():
-		child.set_expand_mode(2)
-		child.set_stretch_mode(4)
+	#for child in card_container.get_children():
+		#child.set_expand_mode(2)
+		#child.set_stretch_mode(4)
 	#card_container.get_child(card_selecting).set_expand_mode(2)
 	#card_container.get_child(card_selecting).set_stretch_mode(4)
 
@@ -172,7 +170,7 @@ func _on_renew_timer_timeout():
 	life_display()
 	$hud/fps/text.text = str(Engine.get_frames_per_second())
 
-func _on_delete_mode_changed(on: bool) -> void:
+func _on_delete_mode_changed(on: bool,completed:bool) -> void:
 	_delete_mode_active = on
 	if on:
 		_setup_delete_mode_focus()
@@ -188,6 +186,22 @@ func _setup_delete_mode_focus() -> void:
 				child.focus_mode = Control.FOCUS_ALL
 				row.append(child)
 		rows.append(row)
+	# 每行向上/向下最近的非空行索引，空行时用于跨行焦点
+	var next_non_empty_above: Array[int] = []
+	var next_non_empty_below: Array[int] = []
+	for row_idx in rows.size():
+		var above := -1
+		for i in range(row_idx - 1, -1, -1):
+			if rows[i].size() > 0:
+				above = i
+				break
+		next_non_empty_above.append(above)
+		var below := -1
+		for i in range(row_idx + 1, rows.size()):
+			if rows[i].size() > 0:
+				below = i
+				break
+		next_non_empty_below.append(below)
 	var first_focus: Control = null
 	for row_idx in rows.size():
 		var row = rows[row_idx]
@@ -199,18 +213,16 @@ func _setup_delete_mode_focus() -> void:
 				btn.focus_neighbor_left = btn.get_path_to(row[col_idx - 1])
 			if col_idx < row.size() - 1:
 				btn.focus_neighbor_right = btn.get_path_to(row[col_idx + 1])
-			if row_idx > 0:
-				var top_row = rows[row_idx - 1]
-				if top_row.size() > 0:
-					var top_col = col_idx % top_row.size()
-					btn.focus_neighbor_top = btn.get_path_to(top_row[top_col])
-			if row_idx < rows.size() - 1:
-				var bot_row = rows[row_idx + 1]
-				if bot_row.size() > 0:
-					var bot_col = col_idx % bot_row.size()
-					btn.focus_neighbor_bottom = btn.get_path_to(bot_row[bot_col])
+			if next_non_empty_above[row_idx] >= 0:
+				var top_row = rows[next_non_empty_above[row_idx]]
+				var top_col = col_idx % top_row.size()
+				btn.focus_neighbor_top = btn.get_path_to(top_row[top_col])
+			if next_non_empty_below[row_idx] >= 0:
+				var bot_row = rows[next_non_empty_below[row_idx]]
+				var bot_col = col_idx % bot_row.size()
+				btn.focus_neighbor_bottom = btn.get_path_to(bot_row[bot_col])
 	if first_focus:
-		first_focus.grab_focus()
+		first_focus.call_deferred("grab_focus")
 
 func _teardown_delete_mode_focus() -> void:
 	for c in _delete_mode_containers:
@@ -220,5 +232,5 @@ func _teardown_delete_mode_focus() -> void:
 
 func _input(event: InputEvent) -> void:
 	if _delete_mode_active and event.is_action_pressed("ui_cancel"):
-		SignalBus.delete_mode.emit(false)
+		SignalBus.delete_mode.emit(false, false)
 		get_viewport().set_input_as_handled()

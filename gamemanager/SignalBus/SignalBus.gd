@@ -108,7 +108,7 @@ signal cp_active(cp_info)
 ## 删除/移除某个 CP 时发出。
 ## @param cp_id: Variant - 要删除的 CP 的标识符。
 signal cp_del(cp_id)
-signal delete_mode(is_on)
+signal delete_mode(is_on, completed)
 
 # ==================== 掉落物 (Drop) 相关信号 ====================
 ## 请求在指定位置生成掉落物时发出。

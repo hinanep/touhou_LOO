@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1j45h"]
 shader = ExtResource("1_6t6g0")
-shader_parameter/outline_color = Color(0.18039216, 0.74509805, 0, 0.34117648)
+shader_parameter/outline_color = Color(0.34117648, 0.7254902, 0, 0.2509804)
 shader_parameter/radius = 1.2320000585200002
 shader_parameter/sampleCount = 4
 shader_parameter/grayLimit = 0.2790000132525
@@ -67,7 +67,7 @@ texture = ExtResource("1_kbttv")
 expand_mode = 2
 script = ExtResource("2_pvgmu")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=7309810]
+[node name="cn" type="RichTextLabel" parent="." unique_id=7309810]
 material = SubResource("ShaderMaterial_0ftyw")
 layout_mode = 0
 offset_left = -23.000008

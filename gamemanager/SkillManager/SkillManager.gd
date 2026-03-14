@@ -127,6 +127,10 @@ func get_skill_by_name(id):
 		return skill_pool.unlocked[id]
 	if(skill_pool.max.has(id)):
 		return skill_pool.max[id]
+	if(skill_pool.banned.has(id)):
+		return skill_pool.banned[id]
+	if(skill_pool.locked.has(id)):
+		return skill_pool.locked[id]
 	return null
 
 func get_skill_level(id):

@@ -61,7 +61,6 @@ var preset_map = {
 	'music_keine_loop':"res://asset/music/keine/loop.wav",
 
 	"ui_select_button":"res://ui/LevelUp/select_button.tscn",
-	"ui_card_texture":"res://ui/Hud/card_texture.tscn",
 	"ui_cp_and_skill_texture":"res://ui/Hud/cp_and_skill_texture.tscn",
 	"ui_test_skillbutton":"res://ui/TestScene/buttons/test_skillbutton.tscn",
 

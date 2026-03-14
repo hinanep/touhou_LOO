@@ -1,22 +1,38 @@
 extends TextureRect
 
+enum IconType { CARD, SKILL, CP, PASSIVE }
+var icon_type: IconType = IconType.SKILL
+
 var selfname = ''
 var id = ''
 var level = 0
 var upgrade_group
 var cpable = []
+# 符卡专用，供 Hud.card_display 使用
+var cardname = ''
+var describe = ''
+var manacost = 0
 
-@onready var _red_x_label: Label = $redx
+var _red_x_label: Label
+var _label_node: Control
 
 func _ready() -> void:
+	_red_x_label = get_node_or_null("redx") as Label
+	_label_node = get_node_or_null("RichTextLabel") as Control
 
-	_red_x_label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_red_x_label.offset_left = 0
-	_red_x_label.offset_top = 0
-	_red_x_label.offset_right = 0
-	_red_x_label.offset_bottom = 0
+	_label_node = get_node_or_null("cn") as Control
 
-
+	if _red_x_label:
+		_red_x_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_red_x_label.offset_left = 0
+		_red_x_label.offset_top = 0
+		_red_x_label.offset_right = 0
+		_red_x_label.offset_bottom = 0
+		# 按图标尺寸统一红叉相对大小，避免技能(120)与符卡(400)表现不一致
+		var icon_size = min(size.x, size.y)
+		if icon_size <= 0:
+			icon_size = 120
+		_red_x_label.add_theme_font_size_override("font_size", int(icon_size * 0.4))
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
 	SignalBus.focus_on.connect(detact_focus)
@@ -31,54 +47,51 @@ var hold_timer: float = 0.0
 
 func _process(delta: float) -> void:
 	if delete_mode:
+		# 删除模式下所有类型（含 CARD）都使用抖动 shader
 		shake_amount = 2.5
 		set_instance_shader_parameter("shake_strength", shake_amount)
 		if is_holding:
 			hold_timer += delta
-			var progress = hold_timer / delete_time
-			# 更新 Shader 参数
-			set_instance_shader_parameter("progress", progress)
-			# 进度越高，抖动越剧烈
-			shake_amount = 2.5 * (1+progress)
-
+			var progress_val = hold_timer / delete_time
+			set_instance_shader_parameter("progress", progress_val)
+			shake_amount = 2.5 * (1.0 + progress_val)
 			if hold_timer >= delete_time:
-				SignalBus.delete_mode.emit(false)
+				SignalBus.delete_mode.emit(false, true)
 				print("execute del")
-
-				$RichTextLabel.hide()
 				delete_mode = false
-				
+				if _label_node:
+					_label_node.hide()
 				set_instance_shader_parameter("is_boob", true)
 				var tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 				tween.tween_method(
-									func(val): set_instance_shader_parameter("boob_progress", val),
-									0.0,  # 起始值
-									0.1,  # 结束值
-									0.5   # 时长
-								).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-				# 动画完成后自动销毁
-				await  tween.finished
-
-				SignalBus.del_skill.emit(id)
-				SignalBus.del_passive.emit(id)
-				SignalBus.cp_del.emit(id)
-				SignalBus.delete_mode.emit(false)
-
-
-
+					func(val): set_instance_shader_parameter("boob_progress", val),
+					0.0, 0.1, 0.5
+				).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+				await tween.finished
+				match icon_type:
+					IconType.SKILL:
+						SignalBus.del_skill.emit(id)
+						SignalBus.ban_skill.emit(id)
+					IconType.CARD:
+						SignalBus.del_card.emit(id)
+						SignalBus.ban_card.emit(id)
+					IconType.PASSIVE:
+						SignalBus.del_passive.emit(id)
+						SignalBus.ban_passive.emit(id)
+					IconType.CP:
+						SignalBus.cp_del.emit(id)
 		else:
-			# 松开后快速回弹重置（可选）
 			hold_timer = lerp(hold_timer, 0.0, delta * 10)
 			set_instance_shader_parameter("progress", hold_timer / delete_time)
 			shake_amount = 0
 
 func _on_focus_entered() -> void:
-	if delete_mode:
+	if delete_mode and _red_x_label:
 		_red_x_label.visible = true
 
 func _on_focus_exited() -> void:
-	_red_x_label.visible = false
+	if _red_x_label:
+		_red_x_label.visible = false
 
 # 监听鼠标输入与键盘交互键
 func out_of_delete_mode():
@@ -96,59 +109,79 @@ func _gui_input(event):
 			if not is_holding:
 				hold_timer = 0.0
 			accept_event()
+
+func set_card(card_info) -> void:
+	icon_type = IconType.CARD
+	id = card_info.id
+	cardname = table.TID[card_info.id + "_name"][player_var.language]
+	describe = "[center]" + cardname
+	manacost = card_info.mana
+	upgrade_group = card_info.upgrade_group
+	cpable = player_var.CpManager.get_cpable_array(id)
+	set_texture(PresetManager.getpre("img_" + id))
+	if _label_node:
+		_label_node.text = "[center]" + cardname
+	SignalBus.del_card.connect(destroy)
+	SignalBus.upgrade_group.connect(upgrade)
+
 func set_skill(skill_info):
-		id = skill_info.id
-		cpable = player_var.CpManager.get_cpable_array(id)
-		selfname = table.TID[id][player_var.language]
-		upgrade_group = skill_info.upgrade_group
-
-		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text ='[center]'+ selfname
-
-		SignalBus.del_skill.connect(destroy)
-		SignalBus.cp_del.connect(destroy)
-		SignalBus.del_passive.connect(destroy)
-		SignalBus.upgrade_group.connect(upgrade)
+	icon_type = IconType.SKILL
+	id = skill_info.id
+	cpable = player_var.CpManager.get_cpable_array(id)
+	selfname = table.TID[id][player_var.language]
+	upgrade_group = skill_info.upgrade_group
+	set_texture(PresetManager.getpre("img_" + id))
+	if _label_node:
+		_label_node.text = "[center]" + selfname
+	SignalBus.del_skill.connect(destroy)
+	SignalBus.upgrade_group.connect(upgrade)
 
 func set_cp(cp_info):
-		id = cp_info.id
-
-		selfname = table.TID[id][player_var.language]
-		upgrade_group =null
-		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text ='[center]'+ selfname
-		SignalBus.cp_del.connect(destroy)
+	icon_type = IconType.CP
+	id = cp_info.id
+	selfname = table.TID[id][player_var.language]
+	upgrade_group = null
+	set_texture(PresetManager.getpre("img_" + id))
+	if _label_node:
+		_label_node.text = "[center]" + selfname
+	SignalBus.cp_del.connect(destroy)
 
 func set_psv(psv_info):
-		id = psv_info.id
+	icon_type = IconType.PASSIVE
+	id = psv_info.id
+	selfname = table.TID[id][player_var.language]
+	upgrade_group = psv_info.upgrade_group
+	set_texture(PresetManager.getpre("img_" + id))
+	if _label_node:
+		_label_node.text = "[center]" + selfname
+	SignalBus.del_passive.connect(destroy)
+	SignalBus.upgrade_group.connect(upgrade)
 
-		selfname = table.TID[id][player_var.language]
-		upgrade_group = psv_info.upgrade_group
-
-		set_texture(PresetManager.getpre('img_'+id))
-		$RichTextLabel.text ='[center]'+ selfname
-
-
-		SignalBus.del_passive.connect(destroy)
-		SignalBus.upgrade_group.connect(upgrade)
-
-func delete_mode_toggle(on:bool):
+func delete_mode_toggle(on:bool,complete:bool):
 	delete_mode = on
 	if on:
-		if has_focus():
+		if has_focus() and _red_x_label:
 			_red_x_label.visible = true
 	else:
+		# 退出删除模式：CARD 还原为原 bloom（无抖动），其他类型同样重置抖动参数
 		set_instance_shader_parameter("shake_strength", 0)
-		_red_x_label.visible = false
+		set_instance_shader_parameter("progress", 0)
+		if _red_x_label:
+			_red_x_label.visible = false
 func destroy(did):
 	if id == did:
 		queue_free()
 
-func upgrade(upname,currentLevel):
-	if upgrade_group == upname:
-		level += 1
-		#$RichTextLabel.text ='[center]'+ selfname + '\nLV.' + str(level)
-		$RichTextLabel.text ='[center]' + 'LV.' + str(level)
+func upgrade(upname, currentLevel):
+	if upgrade_group != upname or (icon_type == IconType.CARD and upgrade_group == "none"):
+		return
+	level += 1
+	if _label_node:
+		if icon_type == IconType.CARD:
+			describe = cardname + "\nLV." + str(level)
+			_label_node.text = "[center]LV." + str(level)
+		else:
+			_label_node.text = "[center]LV." + str(level)
 
 func detact_focus(type,id):
 	if id in cpable:
