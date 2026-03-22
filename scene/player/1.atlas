@@ -1,0 +1,243 @@
+
+1.png
+size: 1711,1811
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+大妖精 向后-spell-card_00
+  rotate: false
+  xy: 425, 1088
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 10
+  index: -1
+大妖精 向后-spell-card_02
+  rotate: false
+  xy: 850, 1088
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 9
+  index: -1
+大妖精 向后-spell-card_04
+  rotate: false
+  xy: 1277, 1088
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 8
+  index: -1
+大妖精 向后-spell-card_05
+  rotate: false
+  xy: 425, 726
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 7
+  index: -1
+大妖精 向后-spell-card_07
+  rotate: false
+  xy: 854, 726
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 6
+  index: -1
+大妖精 向后-spell-card_08
+  rotate: false
+  xy: 1283, 726
+  size: 426, 360
+  orig: 434, 371
+  offset: 3, 5
+  index: -1
+大妖精 向后-spell-card_09
+  rotate: false
+  xy: 425, 364
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 5
+  index: -1
+大妖精 向后-spell-card_10
+  rotate: false
+  xy: 852, 364
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 4
+  index: -1
+大妖精 向后-spell-card_11
+  rotate: false
+  xy: 1279, 364
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 4
+  index: -1
+大妖精 向后-spell-card_12
+  rotate: false
+  xy: 2, 2
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 3
+  index: -1
+大妖精 向后-spell-card_13
+  rotate: false
+  xy: 2, 1450
+  size: 421, 359
+  orig: 434, 371
+  offset: 6, 3
+  index: -1
+大妖精 向后-spell-card_14
+  rotate: false
+  xy: 2, 727
+  size: 421, 360
+  orig: 434, 371
+  offset: 6, 2
+  index: -1
+大妖精 向后-spell-card_15
+  rotate: false
+  xy: 425, 1450
+  size: 419, 359
+  orig: 434, 371
+  offset: 7, 2
+  index: -1
+大妖精 向后-spell-card_16
+  rotate: false
+  xy: 846, 1450
+  size: 418, 359
+  orig: 434, 371
+  offset: 8, 1
+  index: -1
+大妖精 向后-spell-card_17
+  rotate: false
+  xy: 1266, 1450
+  size: 419, 359
+  orig: 434, 371
+  offset: 7, 2
+  index: -1
+大妖精 向后-spell-card_18
+  rotate: false
+  xy: 2, 365
+  size: 421, 360
+  orig: 434, 371
+  offset: 6, 2
+  index: -1
+大妖精 向后-spell-card_19
+  rotate: false
+  xy: 2, 1089
+  size: 421, 359
+  orig: 434, 371
+  offset: 6, 3
+  index: -1
+大妖精 向后-spell-card_20
+  rotate: false
+  xy: 427, 2
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 3
+  index: -1
+大妖精 向后-spell-card_21
+  rotate: false
+  xy: 852, 2
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 4
+  index: -1
+大妖精 向后-spell-card_22
+  rotate: false
+  xy: 1277, 2
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 4
+  index: -1
+
+12.png
+size: 1713,1452
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+大妖精 向后-spell-card_01
+  rotate: false
+  xy: 859, 3
+  size: 425, 361
+  orig: 434, 371
+  offset: 4, 9
+  index: -1
+大妖精 向后-spell-card_03
+  rotate: false
+  xy: 431, 365
+  size: 426, 361
+  orig: 434, 371
+  offset: 3, 8
+  index: -1
+大妖精 向后-spell-card_06
+  rotate: false
+  xy: 2, 1089
+  size: 427, 361
+  orig: 434, 371
+  offset: 3, 6
+  index: -1
+大妖精 向后-spell-card_23
+  rotate: false
+  xy: 2, 2
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 5
+  index: -1
+大妖精 向后-spell-card_24
+  rotate: false
+  xy: 859, 366
+  size: 426, 360
+  orig: 434, 371
+  offset: 3, 5
+  index: -1
+大妖精 向后-spell-card_25
+  rotate: false
+  xy: 860, 1090
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 6
+  index: -1
+大妖精 向后-spell-card_26
+  rotate: false
+  xy: 431, 1089
+  size: 427, 361
+  orig: 434, 371
+  offset: 3, 6
+  index: -1
+大妖精 向后-spell-card_27
+  rotate: false
+  xy: 860, 728
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 7
+  index: -1
+大妖精 向后-spell-card_28
+  rotate: false
+  xy: 2, 727
+  size: 427, 360
+  orig: 434, 371
+  offset: 3, 8
+  index: -1
+大妖精 向后-spell-card_29
+  rotate: false
+  xy: 2, 364
+  size: 426, 361
+  orig: 434, 371
+  offset: 3, 8
+  index: -1
+大妖精 向后-spell-card_30
+  rotate: false
+  xy: 1286, 4
+  size: 425, 360
+  orig: 434, 371
+  offset: 4, 9
+  index: -1
+大妖精 向后-spell-card_31
+  rotate: false
+  xy: 430, 2
+  size: 425, 361
+  orig: 434, 371
+  offset: 4, 9
+  index: -1
+大妖精 向后-spell-card_32
+  rotate: false
+  xy: 1287, 366
+  size: 423, 360
+  orig: 434, 371
+  offset: 5, 10
+  index: -1

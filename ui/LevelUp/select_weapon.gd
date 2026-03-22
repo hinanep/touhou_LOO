@@ -67,13 +67,13 @@ func _on_delete_mode_changed(entering: bool, completed: bool = false) -> void:
 	var levelup = $".."
 	if entering:
 		print("10")
-		
+
 	elif completed:
 		print("01")
 		close_levelup()
 	else:
 		print("else")
-		
+
 		$select_buttons2/ban.call_deferred("grab_focus")
 
 

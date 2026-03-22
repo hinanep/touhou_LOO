@@ -27,6 +27,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if cardnum_have!=0:
 		if event.is_action_pressed("use_card"):
 			SignalBus.use_card.emit(card_arr[cardnum_now],1)
+			$"../AnimationTree".get("parameters/playback").travel("sc")
 
 
 		if event.is_action_pressed("card_next") or event.is_action_pressed("card_before"):
