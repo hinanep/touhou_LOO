@@ -692,10 +692,11 @@ script = ExtResource("1_w6a4s")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1620660895]
 z_index = 15
 position = Vector2(0, -4.9999895)
-scale = Vector2(0.4, 0.39493674)
+scale = Vector2(0.3, 0.296)
 sprite_frames = SubResource("SpriteFrames_4gakf")
-animation = &"sc_casting"
+animation = &"move"
 autoplay = "default"
+frame_progress = 0.4603699
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1052471374]
 visible = false

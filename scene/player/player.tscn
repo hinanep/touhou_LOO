@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cw4f8v0lfq8dq" path="res://scene/component/buff/BuffComponent.tscn" id="4_54cbq"]
 [ext_resource type="PackedScene" uid="uid://bn82kepgtwd7v" path="res://scene/component/cp/CpComponent.tscn" id="5_fov64"]
 [ext_resource type="Shader" uid="uid://1idqb1bfupq2" path="res://asset/pic/anime/setred.gdshader" id="7_n3i7f"]
-[ext_resource type="Texture2D" uid="uid://55l6kcxo6usd" path="res://asset/pic/fairy/大妖精-sheet.png" id="9_pisg7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kq405"]
 radius = 16.0
@@ -42,54 +41,14 @@ shader = ExtResource("7_n3i7f")
 shader_parameter/target_color = Color(1, 0, 0, 1)
 shader_parameter/progress = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oypl4"]
-atlas = ExtResource("9_pisg7")
-region = Rect2(1536, 0, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjg4s"]
-atlas = ExtResource("9_pisg7")
-region = Rect2(512, 0, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wtbu"]
-atlas = ExtResource("9_pisg7")
-region = Rect2(1024, 0, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p3aiu"]
-atlas = ExtResource("9_pisg7")
-region = Rect2(0, 0, 512, 512)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ocn4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oypl4")
+"texture": ExtResource("3_g1rlb")
 }],
 "loop": true,
-"name": &"move_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjg4s")
-}],
-"loop": true,
-"name": &"move_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1wtbu")
-}],
-"loop": true,
-"name": &"move_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p3aiu")
-}],
-"loop": true,
-"name": &"stay",
+"name": &"idle_forward",
 "speed": 1.0
 }]
 
@@ -155,8 +114,8 @@ material = SubResource("ShaderMaterial_7menj")
 position = Vector2(-1, 6.77626e-21)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_8ocn4")
-animation = &"move_back"
-autoplay = "stay"
+animation = &"idle_forward"
+autoplay = "idle_forward"
 
 [node name="reflect" type="CharacterBody2D" parent="." unique_id=252774295 groups=["wall"]]
 collision_layer = 4
