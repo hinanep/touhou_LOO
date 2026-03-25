@@ -3,6 +3,11 @@ class_name player
 
 var direction = Vector2.ZERO
 
+@export var hurt_lock_seconds: float = 0.25
+
+var state_lock_until: float = 0.0
+var requested_anim_state: StringName = &""
+
 
 var blend_position_paths = [
 	"parameters/hurt/blend_position",
@@ -21,6 +26,7 @@ func _init():
 func _ready():
 	SignalBus.player_invincible.connect(on_player_invincible)
 	player_var.camera = get_viewport().get_camera_2d()
+	_request_anim_state(&"idle")
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -38,19 +44,11 @@ func _physics_process(_delta: float) -> void:
 			for path in blend_position_paths:
 				animation_tree.set(path, animation_diretion)
 
-	var current_state = state_machine.get_current_node()
-
-
-	if current_state == "hurt":
-		print("is_hurttting")
-
-	elif current_state == "sc":
-		pass
-	elif direction:
-		state_machine.travel("move")
-
-	else:
-		state_machine.travel("idle")
+	if not _is_locked():
+		if direction:
+			_request_anim_state(&"move")
+		else:
+			_request_anim_state(&"idle")
 	velocity = direction * player_var.player_speed
 	move_and_slide()
 
@@ -61,7 +59,7 @@ func take_damage(type, damage):
 	if player_var.is_invincible:
 		return
 
-	state_machine.start("hurt")
+	_request_anim_state(&"hurt", hurt_lock_seconds, true)
 	AudioManager.play_sfx("music_sfx_hurt")
 	match type:
 		"melee":
@@ -81,11 +79,13 @@ func on_player_invincible(time):
 	$invincible_time.start()
 
 func died():
+	state_lock_until = 99999999.0
 	AudioManager.play_sfx("music_sfx_die")
 	if player_var.player_life_addi > 0:
 		player_var.player_life_addi -= 1
 		player_var.player_hp = player_var.player_hp_max
 		player_var.mana = player_var.mana_max
+		state_lock_until = 0.0
 		return
 	G.get_gui_view_manager().close_all_view()
 
@@ -101,3 +101,21 @@ func _on_pickup_area_body_entered(body):
 func _on_pickup_area_area_entered(area):
 	if area.has_method("fly_to_player"):
 		area.fly_to_player()
+
+func _request_anim_state(next_state: StringName, lock_seconds: float = 0.0, force: bool = false) -> void:
+	if _is_locked() and not force:
+		return
+	if lock_seconds > 0.0:
+		state_lock_until = _now_seconds() + lock_seconds
+	if requested_anim_state == next_state and not force:
+		return
+	requested_anim_state = next_state
+	state_machine.travel(next_state)
+
+func _is_locked() -> bool:
+	if state_lock_until <= 0.0:
+		return false
+	return _now_seconds() < state_lock_until
+
+func _now_seconds() -> float:
+	return float(Time.get_ticks_msec()) / 1000.0
