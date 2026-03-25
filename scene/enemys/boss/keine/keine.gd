@@ -165,6 +165,8 @@ func start_progess(phase:int):
 	else:
 		hp = mob_info.health
 		progress_bar.value = 100
+		var reincarnation_tween = create_tween()
+		reincarnation_tween.tween_interval(4)
 	reincarnation_over()
 
 
@@ -219,10 +221,12 @@ func reincarnation_over():
 
 func spellcard_timeover():
 	AudioManager.play_sfx('music_sfx_break')
+	SignalBus.pause_boss_hud_time.emit(true)
 	died()
 
 func spellcard_break():
 	AudioManager.play_sfx('music_sfx_break')
+	SignalBus.pause_boss_hud_time.emit(true)
 	SignalBus.disbullet.emit(true)
 	SignalBus.clear_enemy.emit(true)
 	player_var.point += mob_info.initial_bonus - progress_time*mob_info.bonus_reduction_rate

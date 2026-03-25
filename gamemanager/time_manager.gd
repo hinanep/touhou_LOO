@@ -8,12 +8,15 @@ var minutes :int= 0
 var boss_seconds:int = 0
 var boss_miliseconds:int = 0
 var boss_cardtime = 0
+var pause_boss_hud_time := false
+var boss_mili_tween: Tween = null
 #func get_time_passed():
 var display = null
 
 #	return timer.wait_time - timer.time_left
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
+	SignalBus.pause_boss_hud_time.connect(_on_pause_boss_hud_time)
 
 func _physics_process(delta: float) -> void:
 	if display:
@@ -32,6 +35,7 @@ func set_boss_timer(card_time):
 		timer.timeout.disconnect(_on_timer_timeout)
 		timer.timeout.connect(_on_boss_timer_timeout)
 	display = format_boss_display
+	pause_boss_hud_time = false
 	boss_cardtime = card_time
 	boss_seconds = 0
 	boss_miliseconds = 0
@@ -44,12 +48,24 @@ func _on_timer_timeout():
 	format_display(minutes,floor(seconds - 60 * minutes))
 
 func _on_boss_timer_timeout():
+	if pause_boss_hud_time:
+		return
 
 	boss_seconds += 1
 	boss_miliseconds = 0
 	player_var.time_secs = seconds
 
-	var t = create_tween().tween_method(setmili,99,0,0.99)
-	player_var.underrecycle_tween.append(t)
+	if boss_mili_tween and boss_mili_tween.is_valid():
+		boss_mili_tween.kill()
+	boss_mili_tween = create_tween()
+	boss_mili_tween.tween_method(setmili,99,0,0.99)
+	player_var.underrecycle_tween.append(boss_mili_tween)
 func setmili(mili:int):
+	if pause_boss_hud_time:
+		return
 	boss_miliseconds = mili
+
+func _on_pause_boss_hud_time(is_pause: bool) -> void:
+	pause_boss_hud_time = is_pause
+	if is_pause and boss_mili_tween and boss_mili_tween.is_valid():
+		boss_mili_tween.kill()

@@ -27,8 +27,6 @@ func _physics_process(delta):
 func _on_fireball_rec_body_entered(body:  Node2D) -> void:
 	if body.is_in_group('fire'):
 
-
-		print(body.global_position)
 		if(global_position.distance_squared_to(body.global_position) > 2500):
 			return
 
@@ -45,7 +43,10 @@ func on_fire():
 	for line in lines_withboat:
 		if line:
 			line.on_fire_from($".")
-	SignalBus.d4c_create.emit('dcrt_keine_sc2_2',global_position,$".",30,null)
+	while true:
+		
+		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',global_position,$".",30,null)
+		await get_tree().create_timer(2,false,true).timeout
 
 func _on_outscreen_disppear_timeout() -> void:
 	pass

@@ -134,6 +134,7 @@ signal kill_all
 signal boss_stage(is_boss:bool)
 signal disbullet(is_drop:bool)
 signal set_bosstimer(time:float)
+signal pause_boss_hud_time(is_pause:bool)
 signal shutter
 signal focus_on(type,id)
 signal focus_off
