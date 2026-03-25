@@ -4,11 +4,11 @@ extends Node
 
 
 static func loader(path:String):
-	var file = FileAccess.open(path,FileAccess.READ)
-	var txt = file.get_as_text()
-	var data = JSON.parse_string(txt)
-	file.close()
-	return data
+    var file = FileAccess.open(path,FileAccess.READ)
+    var txt = file.get_as_text()
+    var data = JSON.parse_string(txt)
+    file.close()
+    return data
 
 var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
 var Attack = loader('res://settings/dist/Attack/Attack.json')
@@ -18,6 +18,8 @@ var Buff = loader('res://settings/dist/Buff/Buff.json')
 var Couple = loader('res://settings/dist/Couple/Couple.json')
 var danma = loader('res://settings/dist/Danmaku/danma.json')
 var d4c = loader('res://settings/dist/DanmakuCreator/d4c.json')
+var dialog_s1a = loader('res://settings/dist/Dialog/dialog_s1a.json')
+var dialog_s1b = loader('res://settings/dist/Dialog/dialog_s1b.json')
 var stage1_after = loader('res://settings/dist/Dialogues/stage1_after.json')
 var stage1_before = loader('res://settings/dist/Dialogues/stage1_before.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')

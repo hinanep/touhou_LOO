@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxl3w2m0a7kr7" path="res://scene/DanmaC/danma/danma.gd" id="1_gybhv"]
 [ext_resource type="Shader" uid="uid://dq0xbpgvfxndp" path="res://asset/shaders/hue_shift.gdshader" id="2_6775s"]
-[ext_resource type="Texture2D" uid="uid://rxccn5pqas6u" path="res://asset/pic/bullet/enemy/中玉.png" id="3_6775s"]
+[ext_resource type="Texture2D" uid="uid://cq3udibbkhx3w" path="res://asset/pic/bullet/enemy/激光.png" id="3_6775s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6775s"]
 blend_mode = 2
@@ -40,6 +40,8 @@ z_index = 500
 z_as_relative = false
 material = SubResource("ShaderMaterial_6775s")
 instance_shader_parameters/hue_shift = 0.0
+instance_shader_parameters/laser_taper = false
+instance_shader_parameters/laser_taper_size = 0.36300001654397995
 instance_shader_parameters/s_shift = 0.0
 instance_shader_parameters/v_shift = 1.0
 rotation = -1.5708

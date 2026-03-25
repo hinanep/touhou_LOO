@@ -1,24 +1,22 @@
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\AtkDependence.xlsx:Atk_Dependence => D:\Files\THLoO\touhou_survivors\settings\dist\AtkDependence\Atk_Dependence.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Attack.xlsx:Attack => D:\Files\THLoO\touhou_survivors\settings\dist\Attack\Attack.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\BossProcess.xlsx:keine => D:\Files\THLoO\touhou_survivors\settings\dist\BossProcess\keine.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\BossRoutine.xlsx:keine_routine => D:\Files\THLoO\touhou_survivors\settings\dist\BossRoutine\keine_routine.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Buff.xlsx:Buff => D:\Files\THLoO\touhou_survivors\settings\dist\Buff\Buff.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Couple.xlsx:Couple => D:\Files\THLoO\touhou_survivors\settings\dist\Couple\Couple.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Danmaku.xlsx:danma => D:\Files\THLoO\touhou_survivors\settings\dist\Danmaku\danma.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\DanmakuCreator.xlsx:d4c => D:\Files\THLoO\touhou_survivors\settings\dist\DanmakuCreator\d4c.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Dialog.xlsx:dialog_s1b => D:\Files\THLoO\touhou_survivors\settings\dist\Dialog\dialog_s1b.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Dialog.xlsx:dialog_s1a => D:\Files\THLoO\touhou_survivors\settings\dist\Dialog\dialog_s1a.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Enemy.xlsx:Enemy => D:\Files\THLoO\touhou_survivors\settings\dist\Enemy\Enemy.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Passive.xlsx:Passive => D:\Files\THLoO\touhou_survivors\settings\dist\Passive\Passive.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Routine.xlsx:Routine => D:\Files\THLoO\touhou_survivors\settings\dist\Routine\Routine.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Skill.xlsx:Skill => D:\Files\THLoO\touhou_survivors\settings\dist\Skill\Skill.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\SpellCard.xlsx:SpellCard => D:\Files\THLoO\touhou_survivors\settings\dist\SpellCard\SpellCard.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\StageProcess.xlsx:Stage1 => D:\Files\THLoO\touhou_survivors\settings\dist\StageProcess\Stage1.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\SumDependence.xlsx:Sum_Dependence => D:\Files\THLoO\touhou_survivors\settings\dist\SumDependence\Sum_Dependence.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Summoned.xlsx:Summoned => D:\Files\THLoO\touhou_survivors\settings\dist\Summoned\Summoned.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\TID.xlsx:TID => D:\Files\THLoO\touhou_survivors\settings\dist\TID\TID.json
-gd_excelexporter.core.engine-INFO:导出：D:\Files\THLoO\touhou_survivors\settings\data\Upgrade.xlsx:Upgrade => D:\Files\THLoO\touhou_survivors\settings\dist\Upgrade\Upgrade.json
-gd_excelexporter.core.engine-WARNING:~$BossProcess.xlsx 不是配置表，跳过！
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\AtkDependence.xlsx:Atk_Dependence => C:\Users\10709\Desktop\thloo\settings\dist\AtkDependence\Atk_Dependence.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Attack.xlsx:Attack => C:\Users\10709\Desktop\thloo\settings\dist\Attack\Attack.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\BossProcess.xlsx:keine => C:\Users\10709\Desktop\thloo\settings\dist\BossProcess\keine.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\BossRoutine.xlsx:keine_routine => C:\Users\10709\Desktop\thloo\settings\dist\BossRoutine\keine_routine.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Buff.xlsx:Buff => C:\Users\10709\Desktop\thloo\settings\dist\Buff\Buff.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Couple.xlsx:Couple => C:\Users\10709\Desktop\thloo\settings\dist\Couple\Couple.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Danmaku.xlsx:danma => C:\Users\10709\Desktop\thloo\settings\dist\Danmaku\danma.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\DanmakuCreator.xlsx:d4c => C:\Users\10709\Desktop\thloo\settings\dist\DanmakuCreator\d4c.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Dialogues.xlsx:stage1_before => C:\Users\10709\Desktop\thloo\settings\dist\Dialogues\stage1_before.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Dialogues.xlsx:stage1_after => C:\Users\10709\Desktop\thloo\settings\dist\Dialogues\stage1_after.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Enemy.xlsx:Enemy => C:\Users\10709\Desktop\thloo\settings\dist\Enemy\Enemy.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Passive.xlsx:Passive => C:\Users\10709\Desktop\thloo\settings\dist\Passive\Passive.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Routine.xlsx:Routine => C:\Users\10709\Desktop\thloo\settings\dist\Routine\Routine.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Skill.xlsx:Skill => C:\Users\10709\Desktop\thloo\settings\dist\Skill\Skill.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\SpellCard.xlsx:SpellCard => C:\Users\10709\Desktop\thloo\settings\dist\SpellCard\SpellCard.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\StageProcess.xlsx:Stage1 => C:\Users\10709\Desktop\thloo\settings\dist\StageProcess\Stage1.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\SumDependence.xlsx:Sum_Dependence => C:\Users\10709\Desktop\thloo\settings\dist\SumDependence\Sum_Dependence.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Summoned.xlsx:Summoned => C:\Users\10709\Desktop\thloo\settings\dist\Summoned\Summoned.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\TID.xlsx:TID => C:\Users\10709\Desktop\thloo\settings\dist\TID\TID.json
+gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Upgrade.xlsx:Upgrade => C:\Users\10709\Desktop\thloo\settings\dist\Upgrade\Upgrade.json
 gd_excelexporter.core.engine-WARNING:~$BossRoutine.xlsx 不是配置表，跳过！
-gd_excelexporter.core.engine-WARNING:~$DanmakuCreator.xlsx 不是配置表，跳过！
 gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

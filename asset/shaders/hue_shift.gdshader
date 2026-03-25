@@ -4,6 +4,8 @@ shader_type canvas_item;
 instance uniform float hue_shift : hint_range(0.0, 1.0) = 0.0;
 instance uniform float s_shift : hint_range(0.0, 1.0) = 0.0;
 instance uniform float v_shift : hint_range(0.0, 1.0) = 0.0;
+instance uniform bool laser_taper = false;
+instance uniform float laser_taper_size : hint_range(0.01, 0.49) = 0.1;
 
 // RGB转HSV函数
 vec3 rgb_to_hsv(vec3 rgb) {
@@ -87,6 +89,17 @@ void fragment() {
 	// 3. 转换回RGB
 	vec3 new_rgb = hsv_to_rgb(hsv);
 	
-	// 保持原始透明度
-	COLOR = vec4(new_rgb, original_color.a);
+	float alpha = original_color.a;
+	if (laser_taper) {
+		// 中间保持完整宽度，仅两端按“半椭圆”曲线收缩（更平滑、更像椭圆端帽）
+		float edge_dist = min(UV.x, 1.0 - UV.x); // 到最近端点的距离
+		float t = clamp(edge_dist / laser_taper_size, 0.0, 1.0);
+		// 半椭圆：x 从 0->1 时，y 从 0->1，且在接近中段时斜率更平缓
+		float half_width = sqrt(max(0.0, 2.0 * t - t * t));
+		float cross = abs(UV.y - 0.5) * 2.0; // 0=中心, 1=边缘
+		float aa = fwidth(cross) * 1.5 + 0.002;
+		float shape_mask = 1.0 - smoothstep(half_width, half_width + aa, cross);
+		alpha *= shape_mask;
+	}
+	COLOR = vec4(new_rgb, alpha);
 }
