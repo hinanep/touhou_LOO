@@ -61,7 +61,7 @@ func spawn_mob():
 	mob.multi = (spawn_list['enemy_attribute_boost'])
 
 
-	mob.drop_num = 1.0
+	mob.drop_num = spawn_list['piece_boost']
 
 	SpawnManager.add_mob(mob)
 
