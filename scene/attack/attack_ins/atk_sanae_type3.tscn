@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhuakpdjsihip"]
+[gd_scene format=3 uid="uid://bhuakpdjsihip"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_c4ica"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_ryf0y"]
@@ -60,7 +60,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.29999998
 scale_max = 0.29999998
 
-[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_c4ica")]
+[node name="Attack" unique_id=201484993 node_paths=PackedStringArray("particles") instance=ExtResource("1_c4ica")]
 script = ExtResource("2_ryf0y")
 particle_scale_need_change = false
 particle_scale_min = [450.0, 0.3, 1.0, 1.0]
@@ -79,7 +79,7 @@ autoplay = ""
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_beisj")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7" unique_id=15551298]
 self_modulate = Color(0.8666667, 1, 0.81960785, 0.7490196)
 material = SubResource("CanvasItemMaterial_m7dn8")
 scale = Vector2(0.01, 0.01)
@@ -89,10 +89,10 @@ preprocess = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_6vroq")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8" unique_id=263654056]
 self_modulate = Color(1, 1, 1, 0.24705882)
 scale = Vector2(0.01, 0.01)
-amount = 48
+amount = 18
 texture = ExtResource("5_m7dn8")
 lifetime = 5.0
 preprocess = 1.0

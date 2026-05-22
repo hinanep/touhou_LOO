@@ -25,6 +25,7 @@ var _ufo_scene: PackedScene = null
 var _ufo_mob_info_template: Dictionary = {}
 var settlement_payload: Dictionary = {}
 var _settlement_kill_position: Vector2 = Vector2.ZERO
+var _settlement_busy: bool = false
 
 @export var ufo_enemy_preset_id: String = _UFO_ENEMY_TABLE_ID
 
@@ -98,8 +99,8 @@ func _on_ufo_spawn_requested(color: int, pickup_position: Vector2) -> void:
 	print("receive ufo gen")
 	if has_active_ufo():
 		return
-	if color < 1 or color > 3:
-		push_warning("[UfoManager] 无效 color=%s，应为 1..3" % color)
+	if color < 1 or color > 4:
+		push_warning("[UfoManager] 无效 color=%s，应为 1..4" % color)
 		return
 	_reset_ledger()
 	_color = color
@@ -111,20 +112,26 @@ func _on_ufo_spawn_requested(color: int, pickup_position: Vector2) -> void:
 	_bind_ufo_to_manager(ufo)
 
 
-## 飞碟被击破：消弹 → 入账 → 羁绊即时/升级预选 → 结算 UI → 关闭后应用升级 → VFX → 结束事件
+## 飞碟被击破：消弹 → 符力/得分入账 → 羁绊即时/升级预选 → 结算 UI → 关闭后发经验+升级 → VFX → 结束事件
 func _on_ufo_killed(ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
+	if _settlement_busy or not has_active_ufo():
+		return
+	_settlement_busy = true
 	if ledger.is_empty():
 		ledger = _ledger.duplicate()
 	else:
 		ledger = ledger.duplicate()
-	if color < 1 or color > 3:
+	if color < 1 or color > 4:
 		color = _color
 	_settlement_kill_position = kill_global_position
 	_clear_hostile_danmaku()
+	color = 4
 	var display := _compute_settlement_display(ledger, color)
+	var pending_ledger_exp: float = _compute_pending_ledger_exp(ledger, color)
+	var pending_legacy_exp: float = _compute_pending_legacy_exp(color)
 	_apply_ledger_and_legacy(ledger, color)
 	var extra: Dictionary = _apply_cp_or_upgrades()
-	_build_settlement_payload(ledger, color, extra, display)
+	_build_settlement_payload(ledger, color, extra, display, pending_ledger_exp, pending_legacy_exp)
 	_show_settlement_ui()
 
 
@@ -204,38 +211,90 @@ func _clear_danmaku_recursive(node: Node) -> void:
 		_clear_danmaku_recursive(child)
 
 
-## 账本 × 颜色倍率 × 玩家 ratio，并施加 legacy 额外效果
-func _apply_ledger_and_legacy(ledger: Dictionary, color: int) -> void:
+## 按颜色从 Global 表取账本倍率
+func _get_color_multipliers(color: int) -> Dictionary:
+	var red_rate: float = table.get_global_variable("red_ufo_rate", 2.0)
+	var green_rate: float = table.get_global_variable("green_ufo_rate", 2.0)
+	var blue_rate: float = table.get_global_variable("blue_ufo_rate", 2.0)
 	var exp_mul := 1.0
 	var mana_mul := 1.0
 	var score_mul := 1.0
 	match color:
 		1:
-			exp_mul = 2.0
+			exp_mul = red_rate
 		2:
-			mana_mul = 2.0
+			mana_mul = green_rate
 		3:
-			score_mul = 2.0
+			score_mul = blue_rate
+		4:
+			exp_mul = red_rate
+			mana_mul = green_rate
+			score_mul = blue_rate
 		_:
 			pass
-	var exp_base := float(ledger.get("exp", 0))
-	var mana_base := float(ledger.get("mana", 0))
-	var score_base := float(ledger.get("score", 0))
-	player_var.player_exp += exp_base * exp_mul * player_var.experience_ratio
-	player_var.mana += mana_base * mana_mul * player_var.mana_ratio
-	player_var.point += score_base * score_mul * player_var.point_ratio
+	return {"exp_mul": exp_mul, "mana_mul": mana_mul, "score_mul": score_mul}
+
+
+## 蓝碟 legacy：按吸收碎片数计算得点倍率增量
+func _compute_blue_point_ratio_delta(fragment_count: int) -> float:
+	var coeff: float = table.get_global_variable("blue_ufo_pv_coefficient", 0.01)
+	return float(fragment_count) * coeff
+
+
+## 红/彩碟 legacy 经验（结算 UI 关闭后再发放）
+func _compute_pending_legacy_exp(color: int) -> float:
+	if color == 1 or color == 4:
+		return float(player_var.exp_need)
+	return 0.0
+
+
+## 击破时立即施加的颜色 legacy（红/彩经验除外）
+func _apply_color_legacy(color: int, fragment_count: int) -> void:
+	var blue_delta := _compute_blue_point_ratio_delta(fragment_count)
 	match color:
-		1:
-			player_var.player_exp += player_var.exp_need
 		2:
 			player_var.free_card += 1.0
 		3:
-			player_var.point_ratio += 0.01
+			player_var.point_ratio += blue_delta
+		4:
+			player_var.free_card += 1.0
+			player_var.point_ratio += blue_delta
 		_:
 			pass
 
 
-## 击破一次：随机羁绊（立即激活），失败则预选三次升级（关闭结算 UI 后再应用）
+## 结算面板 legacy 文案 TID key
+func _get_legacy_tid_key(color: int) -> String:
+	match color:
+		1:
+			return "ufo_settlement_legacy_red"
+		2:
+			return "ufo_settlement_legacy_green"
+		3:
+			return "ufo_settlement_legacy_blue"
+		4:
+			return "ufo_settlement_legacy_colorful"
+		_:
+			return ""
+
+
+## 账本经验结算关闭后再发；符力/得分与即时 legacy 击破时入账
+func _compute_pending_ledger_exp(ledger: Dictionary, color: int) -> float:
+	var mul := _get_color_multipliers(color)
+	var exp_base := float(ledger.get("exp", 0))
+	return exp_base * float(mul["exp_mul"]) * player_var.experience_ratio
+
+
+func _apply_ledger_and_legacy(ledger: Dictionary, color: int) -> void:
+	var mul := _get_color_multipliers(color)
+	var mana_base := float(ledger.get("mana", 0))
+	var score_base := float(ledger.get("score", 0))
+	player_var.mana += mana_base * float(mul["mana_mul"]) * player_var.mana_ratio
+	player_var.point += score_base * float(mul["score_mul"]) * player_var.point_ratio
+	_apply_color_legacy(color, int(ledger.get("fragment_count", 0)))
+
+
+## 击破一次：随机羁绊（立即激活），失败则预选三次升级
 func _apply_cp_or_upgrades() -> Dictionary:
 	var result := {"cp_id": "", "upgrade_ids": [], "upgrade_picks": []}
 	var actived_before: Array = []
@@ -295,33 +354,29 @@ func _apply_pending_upgrades(picks: Array) -> void:
 
 ## 按账本与颜色预计算面板展示数值（入账前调用）
 func _compute_settlement_display(ledger: Dictionary, color: int) -> Dictionary:
-	var exp_mul := 1.0
-	var mana_mul := 1.0
-	var score_mul := 1.0
-	var legacy_tid := ""
-	match color:
-		1:
-			exp_mul = 2.0
-			legacy_tid = "ufo_settlement_legacy_red"
-		2:
-			mana_mul = 2.0
-			legacy_tid = "ufo_settlement_legacy_green"
-		3:
-			score_mul = 2.0
-			legacy_tid = "ufo_settlement_legacy_blue"
-		_:
-			pass
+	var mul := _get_color_multipliers(color)
+	var exp_mul := float(mul["exp_mul"])
+	var mana_mul := float(mul["mana_mul"])
+	var score_mul := float(mul["score_mul"])
 	var exp_base := float(ledger.get("exp", 0))
 	var mana_base := float(ledger.get("mana", 0))
 	var score_base := float(ledger.get("score", 0))
+	var fragment_count := int(ledger.get("fragment_count", 0))
+	var blue_pv_delta := 0.0
+	if color == 3 or color == 4:
+		blue_pv_delta = _compute_blue_point_ratio_delta(fragment_count)
 	return {
+		"exp_base": exp_base,
+		"mana_base": mana_base,
+		"score_base": score_base,
 		"exp_final": exp_base * exp_mul * player_var.experience_ratio,
 		"mana_final": mana_base * mana_mul * player_var.mana_ratio,
 		"score_final": score_base * score_mul * player_var.point_ratio,
 		"exp_mul": exp_mul,
 		"mana_mul": mana_mul,
 		"score_mul": score_mul,
-		"legacy_line_tid_key": legacy_tid,
+		"legacy_line_tid_key": _get_legacy_tid_key(color),
+		"legacy_blue_point_ratio_delta": blue_pv_delta,
 	}
 
 
@@ -330,7 +385,9 @@ func _build_settlement_payload(
 	ledger: Dictionary,
 	color: int,
 	extra: Dictionary,
-	display: Dictionary
+	display: Dictionary,
+	pending_ledger_exp: float,
+	pending_legacy_exp: float
 ) -> void:
 	settlement_payload = {
 		"ledger": ledger.duplicate(),
@@ -339,6 +396,8 @@ func _build_settlement_payload(
 		"upgrade_ids": extra.get("upgrade_ids", []).duplicate(),
 		"upgrade_picks": extra.get("upgrade_picks", []).duplicate(true),
 		"display": display.duplicate(),
+		"pending_ledger_exp": pending_ledger_exp,
+		"pending_legacy_exp": pending_legacy_exp,
 	}
 
 
@@ -369,9 +428,15 @@ func on_settlement_closed() -> void:
 	var ledger: Dictionary = settlement_payload.get("ledger", {})
 	var color: int = int(settlement_payload.get("color", _color))
 	var kill_pos := _settlement_kill_position
+	var pending_ledger_exp: float = float(settlement_payload.get("pending_ledger_exp", 0.0))
+	var pending_legacy_exp: float = float(settlement_payload.get("pending_legacy_exp", 0.0))
 	var upgrade_picks: Array = settlement_payload.get("upgrade_picks", []).duplicate(true)
 	settlement_payload = {}
 	_settlement_kill_position = Vector2.ZERO
+	if pending_ledger_exp > 0.0:
+		player_var.player_exp += pending_ledger_exp
+	if pending_legacy_exp > 0.0:
+		player_var.player_exp += pending_legacy_exp
 	if not upgrade_picks.is_empty():
 		_apply_pending_upgrades(upgrade_picks)
 	_play_capped_fly_vfx(ledger, color, kill_pos)
@@ -380,18 +445,11 @@ func on_settlement_closed() -> void:
 
 ## 代表粒子：主数值已入账，仅触发飞向自机的拾取表现
 func _play_capped_fly_vfx(_ledger: Dictionary, color: int, _kill_global_position: Vector2) -> void:
-	match color:
-		1:
-			SignalBus.fly_to_player.emit(2.0, 1.0, 1.0, false)
-		2:
-			SignalBus.fly_to_player.emit(1.0, 2.0, 1.0, false)
-		3:
-			SignalBus.fly_to_player.emit(1.0, 1.0, 2.0, true)
-		_:
-			SignalBus.fly_to_player.emit(1.0, 1.0, 1.0, false)
+	pass
 
 
 func _end_event() -> void:
 	_active_ufo = null
 	_color = 0
+	_settlement_busy = false
 	_reset_ledger()

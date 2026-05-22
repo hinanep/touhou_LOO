@@ -4,9 +4,17 @@ extends enemy_base
 const _DEFAULT_ABSORB_MAX_DURATION := 2.5
 const _DEFAULT_HP_PER_FRAGMENT := 8.0
 const _ABSORB_TWEEN_SEC := 0.35
+const _COLORFUL_HUE_STEP := 2
+const _COLORFUL_HUE_MOD := 256
+const _COLORFUL_ANIM := &"all"
+const _COLORFUL_SPRITE_S := 0.67
+const _COLORFUL_SPRITE_V := 0.9
+const _COLORFUL_LIGHT_S := 0.5
+const _COLORFUL_LIGHT_V := 1.0
+const _COLORFUL_FRAME_TICKS := 10
 
 ## 运行时状态：与表配置、吸收批次及 UfoManager 协作相关字段
-## @ufo_color 事件颜色 1=红 2=绿 3=蓝，由 UfoManager 生成时赋值
+## @ufo_color 事件颜色 1=红 2=绿 3=蓝 4=彩，由 UfoManager 生成时赋值
 ## @absorb_phase 是否处于吸收期；数值在吸收开始时一次性入账
 ## @_ufo_manager UfoManager 节点引用，用于入账与击破通知
 ## @_absorb_visual_running 是否正在播放批量吸入 tween
@@ -20,8 +28,13 @@ var _absorb_visual_running: bool = false
 var _pending_destroy: Array = []
 var _absorb_max_duration: float = _DEFAULT_ABSORB_MAX_DURATION
 var _hp_per_fragment: float = _DEFAULT_HP_PER_FRAGMENT
+var _colorful_hue: int = 0
+var _colorful_frame: int = 0
+var _colorful_frame_tick: int = 0
+var _colorful_active: bool = false
 
 @onready var _absorb_duration_timer: Timer = $absorb_duration_timer
+@onready var light_layer: AnimatedSprite2D = $light
 
 
 ## 节点就绪：补全 mob_info、读表调参、禁用离屏秒杀并延迟开启吸收阶段
@@ -75,20 +88,83 @@ func _read_tuning_from_mob_info() -> void:
 		_hp_per_fragment = float(mob_info["hp_per_fragment"])
 
 
-## 按 ufo_color 设置精灵 modulate
-## @return 无
+## 按 ufo_color 设置精灵与光晕表现
 func _apply_color_visual() -> void:
-	var tint := Color.WHITE
+	if ufo_color == 4:
+		_start_colorful_visual()
+	else:
+		_apply_non_colorful_visual()
+
+
+## 红/绿/蓝飞碟：隐藏 light，sprite 恢复白色并切换对应动画
+func _apply_non_colorful_visual() -> void:
+	_stop_colorful_visual()
 	match ufo_color:
 		1:
-			sprite.animation = 'red'
+			sprite.animation = &"red"
 		2:
-			sprite.animation = 'green'
+			sprite.animation = &"green"
 		3:
-			sprite.animation = 'blue'
+			sprite.animation = &"blue"
 		_:
 			pass
-	sprite.modulate = tint
+	sprite.modulate = Color.WHITE
+
+
+## 彩色飞碟：显示 light、停止自动播放，启用 HSV 与手动帧
+func _start_colorful_visual() -> void:
+	_colorful_hue = 0
+	_colorful_frame = 0
+	_colorful_frame_tick = 0
+	sprite.animation = _COLORFUL_ANIM
+	sprite.stop()
+	sprite.frame = 0
+	light_layer.visible = true
+	light_layer.animation = _COLORFUL_ANIM
+	light_layer.stop()
+	light_layer.frame = 0
+	_colorful_active = true
+	sprite.modulate = Color.from_hsv(0.0, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V)
+	light_layer.modulate = Color.from_hsv(0.0, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V)
+	set_process(true)
+
+
+## 关闭彩色飞碟 HSV 循环与 light，并将 sprite 恢复为默认白色
+func _stop_colorful_visual() -> void:
+	_colorful_active = false
+	set_process(false)
+	if is_instance_valid(sprite):
+		sprite.modulate = Color.WHITE
+	if is_instance_valid(light_layer):
+		light_layer.visible = false
+
+
+func _process(_delta: float) -> void:
+	if not _colorful_active:
+		return
+	_apply_colorful_hsv_and_frame()
+
+
+## 每帧：H 0..255 步进 +2；每 10 帧 sprite/light 的 frame +1
+func _apply_colorful_hsv_and_frame() -> void:
+	_colorful_hue = (_colorful_hue + _COLORFUL_HUE_STEP) % _COLORFUL_HUE_MOD
+	var hue := float(_colorful_hue) / 255.0
+	sprite.modulate = Color.from_hsv(hue, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V)
+	light_layer.modulate = Color.from_hsv(hue, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V)
+	if sprite.sprite_frames == null or light_layer.sprite_frames == null:
+		return
+	var frame_count := sprite.sprite_frames.get_frame_count(_COLORFUL_ANIM)
+	if frame_count <= 0:
+		return
+	_colorful_frame_tick += 1
+	if _colorful_frame_tick < _COLORFUL_FRAME_TICKS:
+		return
+	_colorful_frame_tick = 0
+	_colorful_frame = (_colorful_frame + 1) % frame_count
+	sprite.frame = _colorful_frame
+	var light_frame_count := light_layer.sprite_frames.get_frame_count(_COLORFUL_ANIM)
+	if light_frame_count > 0:
+		light_layer.frame = _colorful_frame % light_frame_count
 
 
 ## 开启吸收：扫描碎片、抬 HP、一次性入账，并并行播放吸入动画
@@ -237,6 +313,7 @@ func _cleanup_absorb_timers() -> void:
 ## @return 无
 func died(disppear: bool = false) -> void:
 	if disppear:
+		_stop_colorful_visual()
 		_cleanup_absorb_timers()
 		_flush_pending_destroy()
 		emit_signal("die", mob_id)
@@ -248,6 +325,7 @@ func died(disppear: bool = false) -> void:
 ## 玩家击破：通知 UfoManager 并移除自身，不触发 plate 掉落
 ## @return 无
 func _finish_player_kill() -> void:
+	_stop_colorful_visual()
 	invincible = true
 	atkable = false
 	set_physics_process(false)

@@ -98,9 +98,32 @@ var is_card_casting
 var player_node:Node2D
 var exp_need:
 	get:
-		return level*12 +12
+		var diff: float = table.get_global_variable("upgrade_exp_difference", 15.0)
+		return level * diff + diff
 
 var damage_sum
+var _game_pause_depth: int = 0
+
+
+## 申请局内暂停：引用计数 +1 并保持树暂停
+func request_game_pause() -> void:
+	_game_pause_depth += 1
+	get_tree().paused = true
+
+
+## 释放一次局内暂停申请：计数归零时才解除树暂停
+func release_game_pause() -> void:
+	if _game_pause_depth <= 0:
+		return
+	_game_pause_depth -= 1
+	if _game_pause_depth == 0:
+		get_tree().paused = false
+
+
+func _reset_game_pause_state() -> void:
+	_game_pause_depth = 0
+	get_tree().paused = false
+
 
 func _ready() -> void:
 	ini()
@@ -111,6 +134,7 @@ func _physics_process(delta: float) -> void:
 
 
 func new_scene() -> void:
+	_reset_game_pause_state()
 	RunSession.begin_run()
 
 
@@ -204,6 +228,7 @@ func _clear_all_tweens() -> void:
 
 
 func ini():
+	_reset_game_pause_state()
 	var ini_list = initial_status.new()
 
 	for property in ini_list.status:

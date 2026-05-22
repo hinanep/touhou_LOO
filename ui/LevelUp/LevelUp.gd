@@ -3,7 +3,7 @@ extends BaseGUIView
 
 func _open():
 
-	get_tree().paused = true
+	player_var.request_game_pause()
 	set_process_input(false)
 	await get_tree().create_timer(0.5,false).timeout
 	set_process_input(true)
@@ -11,8 +11,7 @@ func _open():
 
 
 func _close():
-	get_tree().paused = false
-	pass
+	player_var.release_game_pause()
 
 
 func open():

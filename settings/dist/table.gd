@@ -21,6 +21,7 @@ var Couple = loader('res://settings/dist/Couple/Couple.json')
 var danma = loader('res://settings/dist/Danmaku/danma.json')
 var d4c = loader('res://settings/dist/DanmakuCreator/d4c.json')
 var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
+var Global = loader('res://settings/dist/Global/Global.json')
 var Passive = loader('res://settings/dist/Passive/Passive.json')
 var Routine = loader('res://settings/dist/Routine/routine.json')
 var Skill = loader('res://settings/dist/Skill/skill.json')
@@ -29,6 +30,7 @@ var Stage1 = loader('res://settings/dist/StageProcess/Stage1.json')
 var Sum_Dependence = loader('res://settings/dist/SumDependence/Sum_Dependence.json')
 var Summoned = loader('res://settings/dist/Summoned/Summoned.json')
 var TID = loader('res://settings/dist/TID/TID.json')
+var TID_UI = loader('res://settings/dist/TID/TID_UI.json')
 var Upgrade = loader('res://settings/dist/Upgrade/Upgrade.json')
 
 var dialogues: Dictionary = {}
@@ -79,6 +81,21 @@ func get_base_row(table_name: String, row_id: String) -> Dictionary:
 	if base_table.has(row_id):
 		return base_table[row_id]
 	return {}
+
+
+## 读取 Global 表 variable 字段
+## @param row_id Global 行 id
+## @param default_value 缺行或缺字段时的回退值
+## @return variable 数值
+func get_global_variable(row_id: String, default_value: float = 0.0) -> float:
+	if not Global.has(row_id):
+		push_warning("[table] Global 无行: %s" % row_id)
+		return default_value
+	var row: Dictionary = Global[row_id]
+	if not row.has("variable"):
+		push_warning("[table] Global.%s 无 variable 字段" % row_id)
+		return default_value
+	return float(row["variable"])
 
 
 func resolve_attack(row_id: String) -> Dictionary:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx6yjilut3njj"]
+[gd_scene format=3 uid="uid://cx6yjilut3njj"]
 
 [ext_resource type="PackedScene" uid="uid://b13hrap262drc" path="res://scene/attack/attack_ins/attack.tscn" id="1_vgm1u"]
 [ext_resource type="Script" uid="uid://bophe4fs51ug8" path="res://scene/attack/attack_ins/simple_attack.gd" id="2_lhhvw"]
@@ -59,7 +59,7 @@ alpha_curve = SubResource("CurveTexture_kmcfv")
 anim_speed_min = 3.0
 anim_speed_max = 12.0
 
-[node name="Attack" node_paths=PackedStringArray("particles") instance=ExtResource("1_vgm1u")]
+[node name="Attack" unique_id=793845183 node_paths=PackedStringArray("particles") instance=ExtResource("1_vgm1u")]
 script = ExtResource("2_lhhvw")
 particle_scale_need_change = false
 particle_scale_min = [0.3, 1.0, 1.0, 1.0]
@@ -75,12 +75,12 @@ autoplay = ""
 [node name="CollisionShape2D" parent="damage_area" index="0"]
 shape = SubResource("CircleShape2D_wdgtq")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="7" unique_id=37376323]
 self_modulate = Color(0.868, 1, 0.81999993, 0.7490196)
 material = SubResource("CanvasItemMaterial_ywquh")
 position = Vector2(-1, 159)
 scale = Vector2(3, 2.1)
-amount = 48
+amount = 24
 texture = ExtResource("5_oy2y7")
 lifetime = 2.0
 preprocess = 1.0
