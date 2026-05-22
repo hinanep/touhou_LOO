@@ -57,7 +57,7 @@ glow_hdr_luminance_cap = 1.0
 adjustment_enabled = true
 
 [node name="InGame" type="Control" unique_id=944959084]
-process_mode = 3
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

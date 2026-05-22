@@ -185,14 +185,25 @@ func mob_take_damage(damage: float) -> void:
 		died()
 
 
+## 死亡后关闭物理碰撞，避免死亡动画期间仍阻挡子弹
+## @return 无
+func _disable_collision() -> void:
+	set_deferred('collision_layer', 0)
+	set_deferred('collision_mask', 0)
+	if is_instance_valid(collisionshape):
+		collisionshape.set_deferred('disabled', true)
+
+
 #似了
 func died(disppear = false):
 	if(disppear):
+		_disable_collision()
 		emit_signal('die',mob_id)
 		call_deferred('queue_free')
 		return
 	drop()
 	emit_signal('die',mob_id)
+	_disable_collision()
 	invincible = true
 	atkable = false
 	set_physics_process(false)
