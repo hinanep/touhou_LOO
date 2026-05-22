@@ -44,7 +44,7 @@ func on_fire():
 		if line:
 			line.on_fire_from($".")
 	while true:
-		
+
 		SignalBus.d4c_create.emit('dcrt_keine_sc2_2',global_position,$".",30,null)
 		await get_tree().create_timer(2,false,true).timeout
 

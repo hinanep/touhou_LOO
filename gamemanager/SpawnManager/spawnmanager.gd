@@ -87,5 +87,5 @@ func clear():
 # ... (参数和返回说明同前) ...
 func find_closest_enemies(center_position: Vector2, count: int, max_radius: float, exclude_self: Node = null,simple = false) -> Array[Node]:
 	var final_results: Array[Node] = []
-	final_results.append(player_var.MonsterAvoidanceManager.FindClosestEnemy(center_position, exclude_self))
+	final_results.append(RunSession.MonsterAvoidanceManager.FindClosestEnemy(center_position, exclude_self))
 	return final_results

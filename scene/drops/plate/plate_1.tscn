@@ -1,41 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxjtlo06ihwlx"]
+[gd_scene format=3 uid="uid://dxjtlo06ihwlx"]
 
 [ext_resource type="Script" uid="uid://bdc3lbm8ntl65" path="res://scene/drops/plate/plate_1.gd" id="1_s86ur"]
-[ext_resource type="Texture2D" uid="uid://ctx4yov5h08nk" path="res://asset/pic/blue_plate.png" id="2_udoao"]
-[ext_resource type="Texture2D" uid="uid://72xiojvlc8d6" path="res://asset/pic/green_plate.png" id="3_8372n"]
-[ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="4_18p4l"]
 [ext_resource type="Texture2D" uid="uid://dm8q4g5x7wckc" path="res://asset/pic/texture/light.png" id="5_erhmg"]
 [ext_resource type="Texture2D" uid="uid://l648r4vrhkys" path="res://asset/pic/车钥匙.png" id="6_n5p1g"]
 [ext_resource type="Texture2D" uid="uid://48fo5m7qwug8" path="res://asset/pic/宇宙.png" id="7_as4t1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_txblh"]
-atlas = ExtResource("2_udoao")
-region = Rect2(0, 0, 200, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vy3y4"]
-atlas = ExtResource("3_8372n")
-region = Rect2(0, 0, 200, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3oeoh"]
-atlas = ExtResource("4_18p4l")
-region = Rect2(0, 0, 200, 150)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cdvnr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txblh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vy3y4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3oeoh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjjcq"]
 radius = 5.0
@@ -70,18 +38,6 @@ tracks/0/keys = {
 resource_name = "new_animation"
 length = 2.0
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:self_modulate:h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.96666664, 1.9666667),
-"transitions": PackedFloat32Array(1, 0.59460366, 0.6830201),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tlrb6"]
 _data = {
@@ -89,43 +45,34 @@ _data = {
 &"new_animation": SubResource("Animation_qlao4")
 }
 
-[node name="plate_1" type="Area2D" groups=["treasure_chests"]]
+[node name="plate_1" type="Area2D" unique_id=1550950773 groups=["treasure_chests"]]
 z_index = -1
 scale = Vector2(4, 4)
 collision_layer = 16
 script = ExtResource("1_s86ur")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_cdvnr")
-autoplay = "default"
-frame_progress = 0.0828607
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=353454791]
 scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_cjjcq")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=953490970]
 visible = false
 color = Color(1, 1, 0.317647, 1)
 energy = 1.12
 texture = ExtResource("5_erhmg")
 
-[node name="Sprite2D" type="Node2D" parent="."]
+[node name="Sprite2D" type="Node2D" parent="." unique_id=2073375281]
 scale = Vector2(0.25, 0.25)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1471227871]
 texture = ExtResource("6_n5p1g")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Sprite2D" unique_id=2017764321]
 self_modulate = Color(1, 0.6999999, 0.6999999, 1)
 sprite_frames = SubResource("SpriteFrames_as4t1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tlrb6")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=997871851]
+libraries/ = SubResource("AnimationLibrary_tlrb6")
+autoplay = &"RESET"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

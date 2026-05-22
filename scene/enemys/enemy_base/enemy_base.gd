@@ -17,7 +17,7 @@ var mob_info :Dictionary
 @onready var collisionshape = $buff
 @onready var melee_damage_area = $melee_damage_area
 @onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite :AnimatedSprite2D = $AnimatedSprite2D
 # 2. 获取对 C# 模块子节点的引用
 @onready var avoidance_module = $AvoidanceModule
 
@@ -101,7 +101,8 @@ func choose_default_anime():
 	for anim:String in sprite.sprite_frames.get_animation_names():
 		if anim.contains('default'):
 			df.push_back(anim)
-	sprite.animation = df[randi_range(0,df.size()-1)]
+	if not df.is_empty():
+		sprite.animation = df[randi_range(0,df.size()-1)]
 
 func get_desired_velocity():
 	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)

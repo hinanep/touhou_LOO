@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckywbpd3lrj8e"]
+[gd_scene format=3 uid="uid://ckywbpd3lrj8e"]
 
 [ext_resource type="Script" uid="uid://5bduwd20ddww" path="res://ui/Hud/TestHud.gd" id="1_vqm2k"]
 [ext_resource type="Texture2D" uid="uid://cfa8g66xxmv6j" path="res://asset/pic/red_plate.png" id="2_we724"]
@@ -9,20 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://b5wosd6tpxr6w" path="res://ui/TestScene/buttons/test_skillbutton.tscn" id="6_mw1aa"]
 [ext_resource type="Texture2D" uid="uid://qjkqd4eo88sb" path="res://asset/pic/enemy/白泽球.png" id="7_j1qb8"]
 
-[node name="TestHud" type="Node"]
+[node name="TestHud" type="Node" unique_id=1705390055]
 script = ExtResource("1_vqm2k")
 
-[node name="testhud" type="CanvasLayer" parent="."]
+[node name="testhud" type="CanvasLayer" parent="." unique_id=1791311750]
 
-[node name="Button" type="Button" parent="testhud"]
-anchors_preset = -1
+[node name="Button" type="Button" parent="testhud" unique_id=924148533]
 offset_left = -9.0
 offset_top = -9.0
 offset_right = -1.0
 offset_bottom = -1.0
 
-[node name="levelup" type="TextureButton" parent="testhud"]
-anchors_preset = -1
+[node name="levelup" type="TextureButton" parent="testhud" unique_id=1584673585]
 offset_left = 45.0
 offset_top = 376.0
 offset_right = 175.0
@@ -33,7 +31,7 @@ texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="testhud/levelup"]
+[node name="cp" type="RichTextLabel" parent="testhud/levelup" unique_id=657810811]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 88.0
@@ -44,8 +42,7 @@ mouse_filter = 2
 text = "升级"
 fit_content = true
 
-[node name="moremana" type="TextureButton" parent="testhud"]
-anchors_preset = -1
+[node name="moremana" type="TextureButton" parent="testhud" unique_id=13253544]
 offset_left = 43.0
 offset_top = 512.0
 offset_right = 173.0
@@ -56,7 +53,7 @@ texture_pressed = ExtResource("4_wkgob")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="testhud/moremana"]
+[node name="cp" type="RichTextLabel" parent="testhud/moremana" unique_id=1970235888]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 88.0
@@ -67,8 +64,7 @@ mouse_filter = 2
 text = "回蓝"
 fit_content = true
 
-[node name="invincible" type="TextureButton" parent="testhud"]
-anchors_preset = -1
+[node name="invincible" type="TextureButton" parent="testhud" unique_id=1889992379]
 offset_left = 45.0
 offset_top = 242.0
 offset_right = 175.0
@@ -79,7 +75,7 @@ texture_pressed = ExtResource("4_wkgob")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="testhud/invincible"]
+[node name="cp" type="RichTextLabel" parent="testhud/invincible" unique_id=1357883357]
 layout_mode = 0
 offset_left = 31.0
 offset_top = 88.0
@@ -90,32 +86,28 @@ mouse_filter = 2
 text = "无敌"
 fit_content = true
 
-[node name="TextEdit" type="TextEdit" parent="testhud"]
+[node name="TextEdit" type="TextEdit" parent="testhud" unique_id=1424842458]
 visible = false
-anchors_preset = -1
 offset_left = 9.0
 offset_top = 800.0
 offset_right = 432.0
 offset_bottom = 904.0
 
-[node name="Button2" type="Button" parent="testhud"]
+[node name="Button2" type="Button" parent="testhud" unique_id=1555421588]
 visible = false
-anchors_preset = -1
 offset_left = 12.0
 offset_top = 916.0
 offset_right = 95.0
 offset_bottom = 972.0
 
-[node name="Button3" type="Button" parent="testhud"]
+[node name="Button3" type="Button" parent="testhud" unique_id=1351186168]
 visible = false
-anchors_preset = -1
 offset_left = 112.0
 offset_top = 916.0
 offset_right = 191.0
 offset_bottom = 975.0
 
-[node name="upgrade_layer_vis" type="TextureButton" parent="testhud"]
-anchors_preset = -1
+[node name="upgrade_layer_vis" type="TextureButton" parent="testhud" unique_id=1419356956]
 offset_left = 188.0
 offset_top = 516.0
 offset_right = 318.0
@@ -126,7 +118,7 @@ texture_pressed = ExtResource("4_wkgob")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="testhud/upgrade_layer_vis"]
+[node name="cp" type="RichTextLabel" parent="testhud/upgrade_layer_vis" unique_id=392403253]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 91.0
@@ -137,8 +129,7 @@ mouse_filter = 2
 text = "技能选择"
 fit_content = true
 
-[node name="summon_layer_vis" type="TextureButton" parent="testhud"]
-anchors_preset = -1
+[node name="summon_layer_vis" type="TextureButton" parent="testhud" unique_id=1666139068]
 offset_left = 189.0
 offset_top = 366.0
 offset_right = 319.0
@@ -149,7 +140,7 @@ texture_pressed = ExtResource("4_wkgob")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="testhud/summon_layer_vis"]
+[node name="cp" type="RichTextLabel" parent="testhud/summon_layer_vis" unique_id=786499125]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 88.0
@@ -160,12 +151,11 @@ mouse_filter = 2
 text = "召唤菜单"
 fit_content = true
 
-[node name="summon_layer" type="CanvasLayer" parent="."]
+[node name="summon_layer" type="CanvasLayer" parent="." unique_id=306611038]
 layer = 2
 visible = false
 
-[node name="summon" type="TextureButton" parent="summon_layer"]
-anchors_preset = -1
+[node name="summon" type="TextureButton" parent="summon_layer" unique_id=268240154]
 offset_left = 1412.0
 offset_top = 867.0
 offset_right = 1542.0
@@ -176,7 +166,7 @@ texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="summon" type="RichTextLabel" parent="summon_layer/summon"]
+[node name="summon" type="RichTextLabel" parent="summon_layer/summon" unique_id=1050248708]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 97.0
@@ -185,9 +175,8 @@ offset_bottom = 137.0
 scale = Vector2(2, 2)
 text = "召唤"
 
-[node name="zako" type="RichTextLabel" parent="summon_layer"]
+[node name="zako" type="RichTextLabel" parent="summon_layer" unique_id=1317556270]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1266.0
 offset_top = 88.00001
 offset_right = 1691.0
@@ -198,7 +187,7 @@ theme_override_font_sizes/normal_font_size = 200
 text = "杂鱼"
 fit_content = true
 
-[node name="zako_container" type="GridContainer" parent="summon_layer/zako"]
+[node name="zako_container" type="GridContainer" parent="summon_layer/zako" unique_id=168005658]
 layout_mode = 0
 offset_left = 484.99988
 offset_top = -50.00003
@@ -207,9 +196,8 @@ offset_bottom = 662.4999
 scale = Vector2(1.2, 1.2)
 columns = 4
 
-[node name="elite" type="RichTextLabel" parent="summon_layer"]
+[node name="elite" type="RichTextLabel" parent="summon_layer" unique_id=1776169411]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1258.0
 offset_top = 346.0
 offset_right = 1683.0
@@ -220,7 +208,7 @@ theme_override_font_sizes/normal_font_size = 200
 text = "精英"
 fit_content = true
 
-[node name="elite_container" type="GridContainer" parent="summon_layer/elite"]
+[node name="elite_container" type="GridContainer" parent="summon_layer/elite" unique_id=693161043]
 layout_mode = 0
 offset_left = 619.9999
 offset_top = 54.99997
@@ -229,9 +217,8 @@ offset_bottom = 767.4999
 scale = Vector2(1.2, 1.2)
 columns = 4
 
-[node name="boss" type="RichTextLabel" parent="summon_layer"]
+[node name="boss" type="RichTextLabel" parent="summon_layer" unique_id=478825233]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1251.0
 offset_top = 584.0
 offset_right = 1741.0
@@ -243,7 +230,7 @@ text = "boss
 "
 fit_content = true
 
-[node name="boss_container" type="GridContainer" parent="summon_layer/boss"]
+[node name="boss_container" type="GridContainer" parent="summon_layer/boss" unique_id=1516103518]
 layout_mode = 0
 offset_left = 669.9999
 offset_top = -3.0517578e-05
@@ -252,11 +239,11 @@ offset_bottom = 562.4999
 scale = Vector2(1.2, 1.2)
 columns = 4
 
-[node name="keine" parent="summon_layer/boss/boss_container" instance=ExtResource("6_mw1aa")]
+[node name="keine" parent="summon_layer/boss/boss_container" unique_id=1419432667 instance=ExtResource("6_mw1aa")]
 layout_mode = 2
 texture_normal = ExtResource("7_j1qb8")
 
-[node name="boss_stage" type="HBoxContainer" parent="summon_layer/boss"]
+[node name="boss_stage" type="HBoxContainer" parent="summon_layer/boss" unique_id=695554652]
 layout_mode = 0
 offset_left = 744.99994
 offset_top = 780.0
@@ -264,37 +251,37 @@ offset_right = 2359.9995
 offset_bottom = 1029.0
 theme_override_constants/separation = 100
 
-[node name="1" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="1" type="Button" parent="summon_layer/boss/boss_stage" unique_id=1895217249]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "1"
 
-[node name="2" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="2" type="Button" parent="summon_layer/boss/boss_stage" unique_id=138737666]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "2"
 
-[node name="3" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="3" type="Button" parent="summon_layer/boss/boss_stage" unique_id=809835518]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "3"
 
-[node name="4" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="4" type="Button" parent="summon_layer/boss/boss_stage" unique_id=1211785745]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "4"
 
-[node name="5" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="5" type="Button" parent="summon_layer/boss/boss_stage" unique_id=940520191]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "5"
 
-[node name="6" type="Button" parent="summon_layer/boss/boss_stage"]
+[node name="6" type="Button" parent="summon_layer/boss/boss_stage" unique_id=1250034589]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
 text = "6"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="summon_layer/boss"]
+[node name="RichTextLabel" type="RichTextLabel" parent="summon_layer/boss" unique_id=1490931949]
 layout_mode = 0
 offset_left = -219.99976
 offset_top = 775.0
@@ -303,13 +290,12 @@ offset_bottom = 1049.9998
 theme_override_font_sizes/normal_font_size = 200
 text = "boss阶段"
 
-[node name="upgrade_layer" type="CanvasLayer" parent="."]
+[node name="upgrade_layer" type="CanvasLayer" parent="." unique_id=1674136361]
 layer = 3
 visible = false
 
-[node name="card" type="RichTextLabel" parent="upgrade_layer"]
+[node name="card" type="RichTextLabel" parent="upgrade_layer" unique_id=1045799416]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1383.0
 offset_top = 93.0
 offset_right = 1868.0
@@ -319,7 +305,7 @@ theme = ExtResource("5_mw1aa")
 theme_override_font_sizes/normal_font_size = 200
 text = "符卡"
 
-[node name="card_container" type="GridContainer" parent="upgrade_layer/card"]
+[node name="card_container" type="GridContainer" parent="upgrade_layer/card" unique_id=1209705393]
 layout_mode = 0
 offset_left = 464.99988
 offset_top = 10.000015
@@ -328,9 +314,8 @@ offset_bottom = 663.33325
 scale = Vector2(0.75, 0.75)
 columns = 6
 
-[node name="skill" type="RichTextLabel" parent="upgrade_layer"]
+[node name="skill" type="RichTextLabel" parent="upgrade_layer" unique_id=912216908]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1382.0
 offset_top = 180.0
 offset_right = 1897.0
@@ -340,7 +325,7 @@ theme = ExtResource("5_mw1aa")
 theme_override_font_sizes/normal_font_size = 200
 text = "招式"
 
-[node name="skill_container" type="GridContainer" parent="upgrade_layer/skill"]
+[node name="skill_container" type="GridContainer" parent="upgrade_layer/skill" unique_id=1084405091]
 layout_mode = 0
 offset_left = 474.99988
 offset_top = -25.00003
@@ -349,9 +334,8 @@ offset_bottom = 717.6665
 scale = Vector2(0.75, 0.75)
 columns = 6
 
-[node name="psv" type="RichTextLabel" parent="upgrade_layer"]
+[node name="psv" type="RichTextLabel" parent="upgrade_layer" unique_id=759969547]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1382.0
 offset_top = 469.0
 offset_right = 1887.0
@@ -361,7 +345,7 @@ theme = ExtResource("5_mw1aa")
 theme_override_font_sizes/normal_font_size = 200
 text = "被动"
 
-[node name="psv_container" type="GridContainer" parent="upgrade_layer/psv"]
+[node name="psv_container" type="GridContainer" parent="upgrade_layer/psv" unique_id=151541142]
 layout_mode = 0
 offset_left = 465.00012
 offset_top = 10.0
@@ -370,9 +354,8 @@ offset_bottom = 636.6665
 scale = Vector2(0.75, 0.75)
 columns = 7
 
-[node name="cp" type="RichTextLabel" parent="upgrade_layer"]
+[node name="cp" type="RichTextLabel" parent="upgrade_layer" unique_id=991033865]
 clip_contents = false
-anchors_preset = -1
 offset_left = 1383.0
 offset_top = 335.0
 offset_right = 1968.0
@@ -382,7 +365,7 @@ theme = ExtResource("5_mw1aa")
 theme_override_font_sizes/normal_font_size = 200
 text = "羁绊"
 
-[node name="cp_container" type="GridContainer" parent="upgrade_layer/cp"]
+[node name="cp_container" type="GridContainer" parent="upgrade_layer/cp" unique_id=1069832557]
 layout_mode = 0
 offset_left = 470.0
 offset_top = 5.0
@@ -391,8 +374,7 @@ offset_bottom = 605.0
 scale = Vector2(0.75, 0.75)
 columns = 6
 
-[node name="update" type="TextureButton" parent="upgrade_layer"]
-anchors_preset = -1
+[node name="update" type="TextureButton" parent="upgrade_layer" unique_id=1459243562]
 offset_left = 1404.0
 offset_top = 701.0
 offset_right = 1534.0
@@ -403,7 +385,7 @@ texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="upgrade_layer/update"]
+[node name="cp" type="RichTextLabel" parent="upgrade_layer/update" unique_id=472280707]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 88.0
@@ -412,8 +394,7 @@ offset_bottom = 128.0
 scale = Vector2(2, 2)
 text = "升级选定"
 
-[node name="delete" type="TextureButton" parent="upgrade_layer"]
-anchors_preset = -1
+[node name="delete" type="TextureButton" parent="upgrade_layer" unique_id=291961719]
 offset_left = 1600.0
 offset_top = 702.0
 offset_right = 1730.0
@@ -424,7 +405,7 @@ texture_pressed = ExtResource("3_2gmep")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="cp" type="RichTextLabel" parent="upgrade_layer/delete"]
+[node name="cp" type="RichTextLabel" parent="upgrade_layer/delete" unique_id=2004372799]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 88.0
@@ -433,12 +414,11 @@ offset_bottom = 128.0
 scale = Vector2(2, 2)
 text = "删除选定"
 
-[node name="point" type="CanvasLayer" parent="."]
+[node name="point" type="CanvasLayer" parent="." unique_id=1679571920]
 layer = 12
 
-[node name="point" type="TextureRect" parent="point"]
+[node name="point" type="TextureRect" parent="point" unique_id=1285424208]
 z_index = 1000
-anchors_preset = -1
 offset_right = 64.0
 offset_bottom = 64.0
 scale = Vector2(0.3, 0.3)

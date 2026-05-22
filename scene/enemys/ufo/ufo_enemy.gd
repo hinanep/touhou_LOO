@@ -67,12 +67,6 @@ func _is_absorbable_drop(node: Node) -> bool:
 		return false
 	if node.is_in_group("treasure_chests"):
 		return false
-	var scr: Script = node.get_script()
-	if scr == null:
-		return false
-	var path: String = scr.resource_path
-	if path.contains("plate"):
-		return false
 	if node.is_physics_processing():
 		return false
 	return true
@@ -95,11 +89,11 @@ func _apply_color_visual() -> void:
 	var tint := Color.WHITE
 	match ufo_color:
 		1:
-			tint = Color(1.0, 0.65, 0.65, 1.0)
+			sprite.animation = 'red'
 		2:
-			tint = Color(0.65, 1.0, 0.65, 1.0)
+			sprite.animation = 'green'
 		3:
-			tint = Color(0.65, 0.75, 1.0, 1.0)
+			sprite.animation = 'blue'
 		_:
 			pass
 	sprite.modulate = tint

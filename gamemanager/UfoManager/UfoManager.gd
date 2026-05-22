@@ -1,6 +1,6 @@
 extends Node
 class_name UfoManager
-## 局内飞碟事件编排：监听生成/击破信号，维护账本，击破后消弹、结算、羁绊/升级。
+## 局内飞碟事件编排：监听生成/击破信号，维护账本，击破后消弹、结算；羁绊即时，随机升级在结算 UI 关闭后应用。
 ## 挂于 InGame/SpawnManager/UfoManager；依赖 SignalBus 信号名 ufo_spawn_requested、ufo_killed（须在 SignalBus.gd 声明后类型检查才完整）。
 
 const _SIGNAL_SPAWN := &"ufo_spawn_requested"
@@ -95,6 +95,7 @@ func _connect_bus_signal(signal_name: StringName, callable: Callable) -> void:
 
 ## 拾钥匙后：生成飞碟并登记活跃引用
 func _on_ufo_spawn_requested(color: int, pickup_position: Vector2) -> void:
+	print("receive ufo gen")
 	if has_active_ufo():
 		return
 	if color < 1 or color > 3:
@@ -110,7 +111,7 @@ func _on_ufo_spawn_requested(color: int, pickup_position: Vector2) -> void:
 	_bind_ufo_to_manager(ufo)
 
 
-## 飞碟被击破：消弹 → 入账 → 羁绊/升级 → 结算 UI → 关闭后 VFX 与结束事件
+## 飞碟被击破：消弹 → 入账 → 羁绊即时/升级预选 → 结算 UI → 关闭后应用升级 → VFX → 结束事件
 func _on_ufo_killed(ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
 	if ledger.is_empty():
 		ledger = _ledger.duplicate()
@@ -125,6 +126,7 @@ func _on_ufo_killed(ledger: Dictionary, color: int, kill_global_position: Vector
 	var extra: Dictionary = _apply_cp_or_upgrades()
 	_build_settlement_payload(ledger, color, extra, display)
 	_show_settlement_ui()
+
 
 
 func _spawn_ufo(color: int, pickup_position: Vector2) -> Node:
@@ -233,9 +235,9 @@ func _apply_ledger_and_legacy(ledger: Dictionary, color: int) -> void:
 			pass
 
 
-## 击破一次：随机羁绊，失败则随机升级三次，返回本次 cp_id 与升级 id 列表
+## 击破一次：随机羁绊（立即激活），失败则预选三次升级（关闭结算 UI 后再应用）
 func _apply_cp_or_upgrades() -> Dictionary:
-	var result := {"cp_id": "", "upgrade_ids": []}
+	var result := {"cp_id": "", "upgrade_ids": [], "upgrade_picks": []}
 	var actived_before: Array = []
 	if player_var.CpManager != null:
 		actived_before = player_var.CpManager.cp_pool.actived.keys()
@@ -246,31 +248,49 @@ func _apply_cp_or_upgrades() -> Dictionary:
 				break
 	else:
 		for _i in 3:
-			var up_id := _rand_upgrade_once_return_id()
+			var pick := _pick_upgrade_once()
+			if pick.is_empty():
+				continue
+			var up_id := str(pick.get("id", ""))
 			if up_id != "":
 				result["upgrade_ids"].append(up_id)
+				result["upgrade_picks"].append(pick.duplicate())
 	return result
 
 
-## 随机升级一次并返回 id，无可用项则返回空串
-func _rand_upgrade_once_return_id() -> String:
+## 随机预选一次升级，返回 { id, kind }，无可用项则返回空字典（不 emit）
+func _pick_upgrade_once() -> Dictionary:
 	var selected: Dictionary = RandomPool.random_nselect_from_have(1)
 	if selected.is_empty():
-		return ""
+		return {}
 	for id in selected:
-		match selected[id]:
-			"skill":
-				SignalBus.try_add_skill.emit(id)
-				return str(id)
-			"card":
-				SignalBus.try_add_card.emit(id)
-				return str(id)
-			"passive":
-				SignalBus.try_add_passive.emit(id)
-				return str(id)
-			_:
-				return ""
-	return ""
+		var kind := str(selected[id])
+		if kind == "skill" or kind == "card" or kind == "passive":
+			return {"id": str(id), "kind": kind}
+	return {}
+
+
+## 应用单次预选升级
+func _apply_upgrade_pick(pick: Dictionary) -> void:
+	var entry_id := str(pick.get("id", ""))
+	if entry_id == "":
+		return
+	match str(pick.get("kind", "")):
+		"skill":
+			SignalBus.try_add_skill.emit(entry_id)
+		"card":
+			SignalBus.try_add_card.emit(entry_id)
+		"passive":
+			SignalBus.try_add_passive.emit(entry_id)
+		_:
+			pass
+
+
+## 结算 UI 关闭后应用待处理的随机升级
+func _apply_pending_upgrades(picks: Array) -> void:
+	for pick in picks:
+		if pick is Dictionary:
+			_apply_upgrade_pick(pick)
 
 
 ## 按账本与颜色预计算面板展示数值（入账前调用）
@@ -317,6 +337,7 @@ func _build_settlement_payload(
 		"color": color,
 		"cp_id": str(extra.get("cp_id", "")),
 		"upgrade_ids": extra.get("upgrade_ids", []).duplicate(),
+		"upgrade_picks": extra.get("upgrade_picks", []).duplicate(true),
 		"display": display.duplicate(),
 	}
 
@@ -341,15 +362,18 @@ func _show_settlement_ui() -> void:
 	vm.open_view("UfoSettlement")
 
 
-## 结算面板关闭后：补 VFX 并结束飞碟事件
+## 结算面板关闭后：应用待处理升级、补 VFX 并结束飞碟事件
 func on_settlement_closed() -> void:
 	if settlement_payload.is_empty():
 		return
 	var ledger: Dictionary = settlement_payload.get("ledger", {})
 	var color: int = int(settlement_payload.get("color", _color))
 	var kill_pos := _settlement_kill_position
+	var upgrade_picks: Array = settlement_payload.get("upgrade_picks", []).duplicate(true)
 	settlement_payload = {}
 	_settlement_kill_position = Vector2.ZERO
+	if not upgrade_picks.is_empty():
+		_apply_pending_upgrades(upgrade_picks)
 	_play_capped_fly_vfx(ledger, color, kill_pos)
 	_end_event()
 

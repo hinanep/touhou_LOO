@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8uf0settlement1"]
+[gd_scene format=3 uid="uid://japwnnmm85oy"]
 
-[ext_resource type="Script" path="res://ui/InGame/UfoSettlement/UfoSettlement.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cg12gq4tm36d8" path="res://ui/InGame/UfoSettlement/UfoSettlement.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.08, 0.08, 0.12, 0.92)
@@ -9,7 +9,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="UfoSettlement" type="Control"]
+[node name="UfoSettlement" type="Control" unique_id=1057188803]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -20,17 +20,16 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_script")
 
-[node name="dim" type="ColorRect" parent="."]
+[node name="dim" type="ColorRect" parent="." unique_id=331484066]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
 color = Color(0, 0, 0, 0.55)
 
-[node name="panel" type="PanelContainer" parent="."]
+[node name="panel" type="PanelContainer" parent="." unique_id=264309411]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -45,32 +44,31 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="margin" type="MarginContainer" parent="panel"]
+[node name="margin" type="MarginContainer" parent="panel" unique_id=610196134]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 20
 
-[node name="vbox" type="VBoxContainer" parent="panel/margin"]
+[node name="vbox" type="VBoxContainer" parent="panel/margin" unique_id=1943741458]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="body" type="RichTextLabel" parent="panel/margin/vbox"]
+[node name="body" type="RichTextLabel" parent="panel/margin/vbox" unique_id=193402246]
 custom_minimum_size = Vector2(760, 400)
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 fit_content = true
-scroll_active = true
 autowrap_mode = 2
 
-[node name="continue_btn" type="Button" parent="panel/margin/vbox"]
+[node name="continue_btn" type="Button" parent="panel/margin/vbox" unique_id=160468449]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "继续"
 
-[node name="auto_close_timer" type="Timer" parent="."]
+[node name="auto_close_timer" type="Timer" parent="." unique_id=1389835768]
 one_shot = true
 
 [connection signal="pressed" from="panel/margin/vbox/continue_btn" to="." method="_on_continue_pressed"]
