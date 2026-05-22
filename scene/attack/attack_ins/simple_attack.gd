@@ -10,6 +10,11 @@ func _ready() -> void:
 		item_rect_changed.connect(_on_item_rect_changed)
 	set_particle_scale(scale.x)
 
+
+func warmup_particles() -> void:
+	super.warmup_particles()
+	set_particle_scale(scale.x)
+
 func set_particle_scale(sc:float):
 	for i in particles.size():
 		var particle:GPUParticles2D = particles[i]

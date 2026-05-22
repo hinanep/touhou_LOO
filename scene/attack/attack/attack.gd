@@ -65,9 +65,7 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	lock_component.initialize($".", attack_info, lock_routine)
 	move_component.initialize($".",attack_info,lock_component)
 
-	# 重启特效和计时器
-	for p:GPUParticles2D in particles:
-		p.restart()
+	_restart_particles()
 
 
 	if attack_info.get("duration", 0.0) > 0.0:
@@ -75,6 +73,19 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 
 
 	show()
+
+
+## 离屏预热 GPUParticles2D，避免首次 instantiate/restart 时 GPU 与着色器编译卡顿
+func warmup_particles() -> void:
+	_restart_particles()
+
+
+## 重启攻击粒子（与 initialize 中逻辑一致）
+func _restart_particles() -> void:
+	for p: GPUParticles2D in particles:
+		p.restart()
+
+
 # 使节点失活并通知对象池回收
 func _return_to_pool(reason: String = "") -> void:
 	if not is_active: return

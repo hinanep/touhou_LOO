@@ -1,8 +1,13 @@
 extends BaseGUIView
+
+const _AttackParticleWarmup = preload("res://scene/attack/attack/AttackParticleWarmup.gd")
+
+@onready var _warmup_overlay: Control = $WarmupLoadingLayer/WarmupLoadingOverlay
+
 func _ready():
 	G.get_gui_view_manager().open_view("Hud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
-	scene_init()
+	await scene_init()
 	RunSession.tmp_scene = $"."
 var pauseing = false
 var pause_id
@@ -67,6 +72,24 @@ func scene_init():
 	SignalBus.try_add_card.emit("sc_daiyousei")
 	$SpawnManager.spawnmanager_init('Stage1')
 	RunSession.SpawnManager = $SpawnManager
+	_show_warmup_overlay()
+	var player_node := player_var.player_node
+	if is_instance_valid(player_node):
+		var warmup = _AttackParticleWarmup.new()
+		await warmup.warmup_under(player_node)
+	_hide_warmup_overlay()
+
+
+## 显示开局预热遮罩并暂停局内逻辑
+func _show_warmup_overlay() -> void:
+	_warmup_overlay.show()
+	player_var.request_game_pause()
+
+
+## 隐藏开局预热遮罩并恢复局内逻辑
+func _hide_warmup_overlay() -> void:
+	_warmup_overlay.hide()
+	player_var.release_game_pause()
 
 func lock_camera():
 	var camera:Camera2D = get_viewport().get_camera_2d()

@@ -17,6 +17,9 @@ var summon_prefabs: Array[PackedScene] = []
 # --- 对象池 ---
 var attack_pools: Dictionary = {}
 var summon_pools: Dictionary = {}
+var _attack_pools_warmed: bool = false
+
+const _ATTACK_SCENE_PATH := "res://scene/attack/attack_ins/%s.tscn"
 
 # 初始化
 func _ready() -> void:
@@ -40,7 +43,9 @@ func _initialize_prefabs_and_pools() -> void:
 	# 初始化攻击
 	var creating_attacks = routine_info.get("creating_attack", [])
 	for attack_id in creating_attacks:
-		var prefab = load("res://scene/attack/attack_ins/" + attack_id + ".tscn")
+		var prefab := _load_attack_packed_scene(attack_id)
+		if prefab == null:
+			continue
 		attack_prefabs.append(prefab)
 		# 为每种攻击创建一个独立的对象池
 		var pool_container
@@ -59,6 +64,62 @@ func _initialize_prefabs_and_pools() -> void:
 		var pool_container = Node.new()
 		add_child(pool_container)
 		summon_pools[summon_id] = (ObjectPool.new(prefab, pool_container))
+
+
+## 加载攻击场景（走 ResourceLoader 缓存，避免重复读盘）
+## @param attack_id 攻击表 id，对应 atk_*.tscn 文件名
+## @return PackedScene，失败返回 null
+func _load_attack_packed_scene(attack_id: String) -> PackedScene:
+	var path := _ATTACK_SCENE_PATH % attack_id
+	var prefab: PackedScene = ResourceLoader.load(path) as PackedScene
+	if prefab == null:
+		push_error("[Routine] 无法加载攻击场景: %s" % path)
+	return prefab
+
+
+## 对本 routine 各攻击池离屏预热一次（由 AttackParticleWarmup 在开局或新技能后 await）
+func warmup_attack_pools_once() -> void:
+	if _attack_pools_warmed:
+		return
+	await _warmup_attack_pools()
+	_attack_pools_warmed = true
+
+
+## 对本 routine 各攻击池离屏预热粒子
+func _warmup_attack_pools() -> void:
+	for attack_id in attack_pools:
+		var pool: ObjectPool = attack_pools[attack_id]
+		await _warmup_single_attack_pool(pool)
+
+
+## 从池取一个实例，触发粒子 restart 后等待 2 帧再归还
+## @param pool 攻击对象池
+func _warmup_single_attack_pool(pool: ObjectPool) -> void:
+	var instance: Node = pool.get_object(pool.parent_node)
+	if not is_instance_valid(instance):
+		return
+	var prev_process_mode := instance.process_mode
+	instance.hide()
+	instance.process_mode = Node.PROCESS_MODE_DISABLED
+	if instance.has_method("warmup_particles"):
+		instance.warmup_particles()
+	elif "particles" in instance:
+		for node in instance.particles:
+			if node is GPUParticles2D:
+				(node as GPUParticles2D).restart()
+	await _wait_warmup_frame()
+	await _wait_warmup_frame()
+	instance.process_mode = prev_process_mode
+	pool.return_object(instance)
+
+
+## 预热等待一帧（树暂停时 process_always 定时器仍可触发）
+func _wait_warmup_frame() -> void:
+	var tree := get_tree()
+	if tree == null:
+		return
+	await tree.create_timer(0.0, true, false, false).timeout
+
 
 # --- 外部调用接口 ---
 func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node) -> void:

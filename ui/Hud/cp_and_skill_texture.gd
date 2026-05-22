@@ -114,13 +114,13 @@ func set_card(card_info) -> void:
 	icon_type = IconType.CARD
 	id = card_info.id
 	cardname = table.TID[card_info.id + "_name"][player_var.language]
-	describe = "[center]" + cardname
+	describe = cardname
 	manacost = card_info.mana
 	upgrade_group = card_info.upgrade_group
 	cpable = RunSession.CpManager.get_cpable_array(id)
 	set_texture(PresetManager.getpre("img_" + id))
 	if _label_node:
-		_label_node.text = "[center]" + cardname
+		_label_node.text = cardname
 	SignalBus.del_card.connect(destroy)
 	SignalBus.upgrade_group.connect(upgrade)
 
