@@ -1,102 +1,102 @@
 {
   "ski_basemagic": {
-	"id": "ski_basemagic",
-	"upgrade_group": "none",
-	"type": "base",
-	"routines": [
+    "id": "ski_basemagic",
+    "upgrade_group": "none",
+    "type": "base",
+    "routines": [
       "rou_basemagic"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_basephysics": {
-	"id": "ski_basephysics",
-	"upgrade_group": "none",
-	"type": "base",
-	"routines": [
+    "id": "ski_basephysics",
+    "upgrade_group": "none",
+    "type": "base",
+    "routines": [
       "rou_basephysics"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_reimu": {
-	"id": "ski_reimu",
-	"upgrade_group": "upg_reimu",
-	"type": "base",
-	"routines": [
+    "id": "ski_reimu",
+    "upgrade_group": "upg_reimu",
+    "type": "base",
+    "routines": [
       "rou_reimu"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_sanae": {
-	"id": "ski_sanae",
-	"upgrade_group": "upg_sanae",
-	"type": "base",
-	"routines": [
+    "id": "ski_sanae",
+    "upgrade_group": "upg_sanae",
+    "type": "base",
+    "routines": [
       "rou_sanae"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_rumia": {
-	"id": "ski_rumia",
-	"upgrade_group": "upg_rumia",
-	"type": "base",
-	"routines": [
+    "id": "ski_rumia",
+    "upgrade_group": "upg_rumia",
+    "type": "base",
+    "routines": [
       "rou_rumia"
-	],
-	"cd": 2.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 2.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_wriggle": {
-	"id": "ski_wriggle",
-	"upgrade_group": "upg_wriggle",
-	"type": "base",
-	"routines": [
+    "id": "ski_wriggle",
+    "upgrade_group": "upg_wriggle",
+    "type": "base",
+    "routines": [
       "rou_wriggle"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_alice": {
-	"id": "ski_alice",
-	"upgrade_group": "upg_alice",
-	"type": "base",
-	"routines": [
+    "id": "ski_alice",
+    "upgrade_group": "upg_alice",
+    "type": "base",
+    "routines": [
       "rou_alice"
-	],
-	"cd": 4.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 4.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_sekibanki": {
-	"id": "ski_sekibanki",
-	"upgrade_group": "upg_sekibanki",
-	"type": "base",
-	"routines": [
+    "id": "ski_sekibanki",
+    "upgrade_group": "upg_sekibanki",
+    "type": "base",
+    "routines": [
       "rou_sekibanki"
-	],
-	"cd": 3.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 3.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_misumaru": {
-	"id": "ski_misumaru",
-	"upgrade_group": "upg_misumaru",
-	"type": "base",
-	"routines": [
+    "id": "ski_misumaru",
+    "upgrade_group": "upg_misumaru",
+    "type": "base",
+    "routines": [
       "rou_misumaru"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   },
   "ski_sakuya": {
-	"id": "ski_sakuya",
-	"upgrade_group": "upg_sakuya",
-	"type": "base",
-	"routines": [
+    "id": "ski_sakuya",
+    "upgrade_group": "upg_sakuya",
+    "type": "base",
+    "routines": [
       "rou_sakuya"
-	],
-	"cd": 1.0,
-	"cd_reduction_efficicency": 1.0
+    ],
+    "cd": 1.0,
+    "cd_reduction_efficicency": 1.0
   }
 }

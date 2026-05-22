@@ -187,8 +187,9 @@ script = ExtResource("2_script")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 modulate = Color(0.297, 0.35730004, 0.9, 1)
+z_index = 0
 material = null
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.6, 0.6)
 skew = 0.0
 sprite_frames = SubResource("SpriteFrames_ufo")
 animation = &"blue"
@@ -196,10 +197,9 @@ autoplay = ""
 frame_progress = 0.28198555
 
 [node name="light" type="AnimatedSprite2D" parent="." index="1" unique_id=1611861163]
-visible = false
 modulate = Color(0.5, 0.57500005, 1, 1)
-position = Vector2(0, 0.99999994)
-scale = Vector2(0.35, 0.35)
+position = Vector2(0, 2)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_7o0ad")
 animation = &"all"
 

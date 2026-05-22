@@ -230,7 +230,7 @@
     "magical_damage": 0.0,
     "health": 250.0,
     "speed": 0.0,
-    "invincibility_time": 3.0,
-    "invincibility_decrease_time": 3.0
+    "invincibility_time": 1.5,
+    "invincibility_decrease_time": 1.0
   }
 }
