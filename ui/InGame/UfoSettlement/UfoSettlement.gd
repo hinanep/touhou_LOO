@@ -12,7 +12,7 @@ func _ready() -> void:
 	$auto_close_timer.wait_time = _AUTO_CLOSE_SEC
 	$auto_close_timer.one_shot = true
 	if dim.has_signal("gui_input"):
-		$dim.gui_input.connect(_on_dim_gui_input)
+		dim.gui_input.connect(_on_dim_gui_input)
 
 
 ## 打开：冻结局内并填充结算文案
@@ -93,9 +93,9 @@ func _fill_from_payload() -> void:
 
 
 func _fetch_payload() -> Dictionary:
-	if player_var.SpawnManager == null or not is_instance_valid(player_var.SpawnManager):
+	if RunSession.SpawnManager == null or not is_instance_valid(RunSession.SpawnManager):
 		return {}
-	var mgr := player_var.SpawnManager.get_node_or_null("UfoManager")
+	var mgr := RunSession.SpawnManager.get_node_or_null("UfoManager")
 	if mgr != null and mgr.has_method("get_settlement_payload"):
 		return mgr.get_settlement_payload()
 	return {}
@@ -150,8 +150,8 @@ func close_self() -> void:
 
 
 func _notify_manager_closed() -> void:
-	if player_var.SpawnManager == null or not is_instance_valid(player_var.SpawnManager):
+	if RunSession.SpawnManager == null or not is_instance_valid(RunSession.SpawnManager):
 		return
-	var mgr := player_var.SpawnManager.get_node_or_null("UfoManager")
+	var mgr := RunSession.SpawnManager.get_node_or_null("UfoManager")
 	if mgr != null and mgr.has_method("on_settlement_closed"):
 		mgr.on_settlement_closed()

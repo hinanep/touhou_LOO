@@ -9,23 +9,23 @@ func random_nselect_from_allpool(n:int):
 	var cards = []
 	var skills = []
 	var passives = []
-	if !player_var.SkillManager.skill_num_full:
-		for skillname in player_var.SkillManager.skill_pool["unlocked"]:
-			skills.append([skillname,player_var.SkillManager.skill_pool["unlocked"][skillname]["weight"]])
-	for skillname in player_var.SkillManager.skill_pool["choosed"]:
-		skills.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
+	if !RunSession.SkillManager.skill_num_full:
+		for skillname in RunSession.SkillManager.skill_pool["unlocked"]:
+			skills.append([skillname,RunSession.SkillManager.skill_pool["unlocked"][skillname]["weight"]])
+	for skillname in RunSession.SkillManager.skill_pool["choosed"]:
+		skills.append([skillname,RunSession.SkillManager.skill_pool["choosed"][skillname]["weight"]])
 
 	if !player_var.card_num_full:
-		for cardname in player_var.CardManager.card_pool["unlocked"]:
-			cards.append([cardname,player_var.CardManager.card_pool["unlocked"][cardname]["weight"]])
-	for cardname in player_var.CardManager.card_pool["choosed"]:
-		cards.append([cardname,player_var.CardManager.card_pool["choosed"][cardname]["weight"]])
+		for cardname in RunSession.CardManager.card_pool["unlocked"]:
+			cards.append([cardname,RunSession.CardManager.card_pool["unlocked"][cardname]["weight"]])
+	for cardname in RunSession.CardManager.card_pool["choosed"]:
+		cards.append([cardname,RunSession.CardManager.card_pool["choosed"][cardname]["weight"]])
 
-	if !player_var.PassiveManager.passive_num_full:
-		for passivename in player_var.PassiveManager.passive_pool['unlocked']:
-			passives.append([passivename,player_var.PassiveManager.passive_pool['unlocked'][passivename]["weight"]])
-	for passivename in player_var.PassiveManager.passive_pool["choosed"]:
-		passives.append([passivename,player_var.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
+	if !RunSession.PassiveManager.passive_num_full:
+		for passivename in RunSession.PassiveManager.passive_pool['unlocked']:
+			passives.append([passivename,RunSession.PassiveManager.passive_pool['unlocked'][passivename]["weight"]])
+	for passivename in RunSession.PassiveManager.passive_pool["choosed"]:
+		passives.append([passivename,RunSession.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
 
 	var pool = []
 	pool.append_array(cards)
@@ -56,15 +56,15 @@ func random_nselect_from_have(n:int):
 	var skills = []
 	var passives = []
 
-	for skillname in player_var.SkillManager.skill_pool["choosed"]:
-		skills.append([skillname,player_var.SkillManager.skill_pool["choosed"][skillname]["weight"]])
+	for skillname in RunSession.SkillManager.skill_pool["choosed"]:
+		skills.append([skillname,RunSession.SkillManager.skill_pool["choosed"][skillname]["weight"]])
 
 
-	for cardname in player_var.CardManager.card_pool["choosed"]:
-		cards.append([cardname,player_var.CardManager.card_pool["choosed"][cardname]["weight"]])
+	for cardname in RunSession.CardManager.card_pool["choosed"]:
+		cards.append([cardname,RunSession.CardManager.card_pool["choosed"][cardname]["weight"]])
 
-	for passivename in player_var.PassiveManager.passive_pool["choosed"]:
-		passives.append([passivename,player_var.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
+	for passivename in RunSession.PassiveManager.passive_pool["choosed"]:
+		passives.append([passivename,RunSession.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
 
 	var pool = []
 	pool.append_array(cards)

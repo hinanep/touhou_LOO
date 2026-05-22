@@ -205,7 +205,7 @@ func died(disppear = false):
 		await sprite.animation_finished
 	else:
 		var tween = create_tween().tween_property(sprite,'skew',PI/2,0.5)
-		player_var.underrecycle_tween.append(tween)
+		RunSession.underrecycle_tween.append(tween)
 		await tween.finished
 		tween = null
 	queue_free()

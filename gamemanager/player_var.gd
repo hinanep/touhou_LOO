@@ -53,58 +53,6 @@ var skill_num_max
 
 var language = 'CHS'
 
-# 局内 Manager / 场景绑定 — 转发至 RunSession（见 ADR-0002）
-var SkillManager: SkillManagers:
-	get:
-		return RunSession.SkillManager
-var CardManager: CardManagers:
-	get:
-		return RunSession.CardManager
-var PassiveManager: PassiveManagers:
-	get:
-		return RunSession.PassiveManager
-var CpManager: CpManagers:
-	get:
-		return RunSession.CpManager
-var SpawnManager: SpawnManagers:
-	get:
-		return RunSession.SpawnManager
-	set(value):
-		RunSession.SpawnManager = value
-var tmp_scene: Node:
-	get:
-		return RunSession.tmp_scene
-	set(value):
-		RunSession.tmp_scene = value
-var worldenvir: WorldEnvironment:
-	get:
-		return RunSession.worldenvir
-	set(value):
-		RunSession.worldenvir = value
-var air_wall_top: float:
-	get:
-		return RunSession.air_wall_top
-	set(value):
-		RunSession.air_wall_top = value
-var air_wall_bottom: float:
-	get:
-		return RunSession.air_wall_bottom
-	set(value):
-		RunSession.air_wall_bottom = value
-var air_wall_left: float:
-	get:
-		return RunSession.air_wall_left
-	set(value):
-		RunSession.air_wall_left = value
-var air_wall_right: float:
-	get:
-		return RunSession.air_wall_right
-	set(value):
-		RunSession.air_wall_right = value
-var underrecycle_tween: Array:
-	get:
-		return RunSession.underrecycle_tween
-
 var dep:dep_formula = dep_formula.new()
 var player_hp=0:
 	get:
@@ -153,14 +101,6 @@ var exp_need:
 		return level*12 +12
 
 var damage_sum
-var need_glow:int:
-	get:
-		return RunSession.need_glow
-	set(value):
-		if value < 0:
-			RunSession.need_glow = 0
-		else:
-			RunSession.need_glow = value
 
 func _ready() -> void:
 	ini()
@@ -235,7 +175,7 @@ func shake_screen_damage(damage):
 func shake_screen(time,interval,intensity):
 
 	var ct:Tween = camera.create_tween().set_loops(time/interval)
-	underrecycle_tween.append(ct)
+	RunSession.underrecycle_tween.append(ct)
 	ct.tween_callback(func():
 		shake_damage+=intensity
 		).set_delay(interval)

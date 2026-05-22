@@ -92,7 +92,7 @@ func _on_update_pressed():
 			SignalBus.try_add_skill.emit(tname)
 
 		"cp":
-			player_var.CpManager.add_cp(tname)
+			RunSession.CpManager.add_cp(tname)
 			pass
 		"psv":
 			SignalBus.try_add_passive.emit(tname)
@@ -173,7 +173,7 @@ func _on_summon_pressed() -> void:
 
 	mob.drop_num = 1.0
 
-	player_var.SpawnManager.add_mob(mob)
+	RunSession.SpawnManager.add_mob(mob)
 
 
 func _on_keine_pressed() -> void:

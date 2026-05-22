@@ -117,7 +117,7 @@ func set_card(card_info) -> void:
 	describe = "[center]" + cardname
 	manacost = card_info.mana
 	upgrade_group = card_info.upgrade_group
-	cpable = player_var.CpManager.get_cpable_array(id)
+	cpable = RunSession.CpManager.get_cpable_array(id)
 	set_texture(PresetManager.getpre("img_" + id))
 	if _label_node:
 		_label_node.text = "[center]" + cardname
@@ -127,7 +127,7 @@ func set_card(card_info) -> void:
 func set_skill(skill_info):
 	icon_type = IconType.SKILL
 	id = skill_info.id
-	cpable = player_var.CpManager.get_cpable_array(id)
+	cpable = RunSession.CpManager.get_cpable_array(id)
 	selfname = table.TID[id][player_var.language]
 	upgrade_group = skill_info.upgrade_group
 	set_texture(PresetManager.getpre("img_" + id))

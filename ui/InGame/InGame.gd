@@ -3,7 +3,7 @@ func _ready():
 	G.get_gui_view_manager().open_view("Hud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
 	scene_init()
-	player_var.tmp_scene = $"."
+	RunSession.tmp_scene = $"."
 var pauseing = false
 var pause_id
 var first = true
@@ -33,7 +33,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _open():
-	player_var.worldenvir = $WorldEnvironment
+	RunSession.worldenvir = $WorldEnvironment
 
 
 func _close():
@@ -46,10 +46,10 @@ func _close():
 
 
 func open():
-	player_var.air_wall_top = $air_wall/top.position.y
-	player_var.air_wall_bottom = $air_wall/down.position.y
-	player_var.air_wall_left = $air_wall/left.position.x
-	player_var.air_wall_right = $air_wall/right.position.x
+	RunSession.air_wall_top = $air_wall/top.position.y
+	RunSession.air_wall_bottom = $air_wall/down.position.y
+	RunSession.air_wall_left = $air_wall/left.position.x
+	RunSession.air_wall_right = $air_wall/right.position.x
 	_open()
 
 
@@ -66,15 +66,15 @@ func scene_init():
 	SignalBus.try_add_skill.emit("ski_basephysics")
 	SignalBus.try_add_card.emit("sc_daiyousei")
 	$SpawnManager.spawnmanager_init('Stage1')
-	player_var.SpawnManager = $SpawnManager
+	RunSession.SpawnManager = $SpawnManager
 
 func lock_camera():
 	var camera:Camera2D = get_viewport().get_camera_2d()
 	#camera.position_smoothing_enabled = true
-	camera.limit_bottom = player_var.air_wall_bottom
-	camera.limit_left = player_var.air_wall_left
-	camera.limit_right = player_var.air_wall_right
-	camera.limit_top = player_var.air_wall_top
+	camera.limit_bottom = RunSession.air_wall_bottom
+	camera.limit_left = RunSession.air_wall_left
+	camera.limit_right = RunSession.air_wall_right
+	camera.limit_top = RunSession.air_wall_top
 
 func _on_end_game_timeout() -> void:
 
@@ -84,7 +84,7 @@ func _on_end_game_timeout() -> void:
 		var interval = get_tree().create_timer(1,false)
 		await interval.timeout
 		interval = null
-		if player_var.SpawnManager.mob_dic.is_empty():
+		if RunSession.SpawnManager.mob_dic.is_empty():
 			SignalBus.shutter.emit()
 
 			player_var.boss_coming('keine')

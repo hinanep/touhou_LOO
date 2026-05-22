@@ -59,7 +59,7 @@ func _on_boss_timer_timeout():
 		boss_mili_tween.kill()
 	boss_mili_tween = create_tween()
 	boss_mili_tween.tween_method(setmili,99,0,0.99)
-	player_var.underrecycle_tween.append(boss_mili_tween)
+	RunSession.underrecycle_tween.append(boss_mili_tween)
 func setmili(mili:int):
 	if pause_boss_hud_time:
 		return

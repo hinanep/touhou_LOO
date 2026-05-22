@@ -188,7 +188,7 @@ func set_passive_preview(passive_id: String):
 		return
 	var passive_info = table.Passive[passive_id]
 	var upgroup = table.Passive[passive_id].upgrade_group
-	var newlevel = player_var.PassiveManager.get_passive_level(passive_id)+1
+	var newlevel = RunSession.PassiveManager.get_passive_level(passive_id)+1
 
 	for property in table.Upgrade[upgroup]:
 

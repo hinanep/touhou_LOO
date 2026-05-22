@@ -16,7 +16,7 @@ func set_text(type,id):
 	match type:
 		'skill':
 			self_modulate = Color('ffd1d1')
-			newlevel = player_var.SkillManager.get_skill_level(id)+1
+			newlevel = RunSession.SkillManager.get_skill_level(id)+1
 			upgroup = table.Skill[id].upgrade_group
 			if newlevel == 1:
 				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"
@@ -26,7 +26,7 @@ func set_text(type,id):
 
 		'card':
 			self_modulate = Color('daffd1')
-			newlevel = player_var.CardManager.get_card_level(id)+1
+			newlevel = RunSession.CardManager.get_card_level(id)+1
 			upgroup = table.SpellCard[id].upgrade_group
 			if newlevel == 1:
 				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"
@@ -34,7 +34,7 @@ func set_text(type,id):
 				$weapon.text =table.TID[id][player_var.language]+" Lv."+str(newlevel-1)+'->'+str(newlevel)
 		'passive':
 			self_modulate = Color('d1f1ff')
-			newlevel = player_var.PassiveManager.get_passive_level(id)+1
+			newlevel = RunSession.PassiveManager.get_passive_level(id)+1
 			upgroup = table.Passive[id].upgrade_group
 			if newlevel == 1:
 				$weapon.text =table.TID[id][player_var.language]+"  [color=red]New!!!"

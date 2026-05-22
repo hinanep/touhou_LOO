@@ -146,7 +146,7 @@ func _on_cooldown_timeout() -> void:
 # 重新索敌的回调
 func _on_redirection_timeout() -> void:
 	# 将索敌任务委托给索敌组件
-		var target = player_var.SpawnManager.find_closest_enemies(global_position,1,1000,null)
+		var target = RunSession.SpawnManager.find_closest_enemies(global_position,1,1000,null)
 
 		if not target.is_empty():
 			if is_instance_valid(target[0]):

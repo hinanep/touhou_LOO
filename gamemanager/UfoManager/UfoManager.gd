@@ -132,7 +132,7 @@ func _on_ufo_killed(ledger: Dictionary, color: int, kill_global_position: Vector
 func _spawn_ufo(color: int, pickup_position: Vector2) -> Node:
 	var spawn_mgr := _get_spawn_manager()
 	if spawn_mgr == null:
-		push_error("[UfoManager] player_var.SpawnManager 不可用")
+		push_error("[UfoManager] RunSession.SpawnManager 不可用")
 		return null
 	if _ufo_scene == null:
 		push_error("[UfoManager] 飞碟预制体未初始化，检查 _init_ufo_prefab")
@@ -175,8 +175,8 @@ func _emit_killed(ledger: Dictionary, color: int, kill_global_position: Vector2)
 
 
 func _get_spawn_manager() -> SpawnManagers:
-	if player_var.SpawnManager != null and is_instance_valid(player_var.SpawnManager):
-		return player_var.SpawnManager
+	if RunSession.SpawnManager != null and is_instance_valid(RunSession.SpawnManager):
+		return RunSession.SpawnManager
 	return null
 
 
@@ -239,10 +239,10 @@ func _apply_ledger_and_legacy(ledger: Dictionary, color: int) -> void:
 func _apply_cp_or_upgrades() -> Dictionary:
 	var result := {"cp_id": "", "upgrade_ids": [], "upgrade_picks": []}
 	var actived_before: Array = []
-	if player_var.CpManager != null:
-		actived_before = player_var.CpManager.cp_pool.actived.keys()
-	if player_var.CpManager != null and player_var.CpManager.random_choose_cp():
-		for cpid in player_var.CpManager.cp_pool.actived.keys():
+	if RunSession.CpManager != null:
+		actived_before = RunSession.CpManager.cp_pool.actived.keys()
+	if RunSession.CpManager != null and RunSession.CpManager.random_choose_cp():
+		for cpid in RunSession.CpManager.cp_pool.actived.keys():
 			if cpid not in actived_before:
 				result["cp_id"] = str(cpid)
 				break

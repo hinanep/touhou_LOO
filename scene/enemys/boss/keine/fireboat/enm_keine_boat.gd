@@ -18,7 +18,7 @@ func _ready():
 	super._ready()
 	drops_path = 'drops_point'
 	await  get_tree().create_timer(3.8,false).timeout
-	player_var.SpawnManager.register_mob($".")
+	RunSession.SpawnManager.register_mob($".")
 
 func _physics_process(delta):
 	pass

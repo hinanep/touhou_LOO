@@ -130,9 +130,9 @@ func _collect_absorb_candidates() -> Array:
 ## 获取掉落物父节点
 ## @return drops 节点，不可用则为 null
 func _get_drops_root() -> Node:
-	if player_var.SpawnManager == null or not is_instance_valid(player_var.SpawnManager):
+	if RunSession.SpawnManager == null or not is_instance_valid(RunSession.SpawnManager):
 		return null
-	return player_var.SpawnManager.get_node_or_null("drops")
+	return RunSession.SpawnManager.get_node_or_null("drops")
 
 
 ## 吸收开始时一次性写入 UfoManager 账本（逻辑与动画分离）
@@ -184,7 +184,7 @@ func _run_absorb_visuals_batch(candidates: Array) -> void:
 	_pending_destroy.clear()
 	var tween := create_tween()
 	tween.set_parallel(true)
-	player_var.underrecycle_tween.append(tween)
+	RunSession.underrecycle_tween.append(tween)
 	for piece in valid:
 		_prepare_drop_for_absorb_visual(piece)
 		_pending_destroy.append(piece)

@@ -3,14 +3,14 @@ func _ready():
 	G.get_gui_view_manager().open_view("Hud")
 	G.get_gui_view_manager().open_view("TestHud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
-	player_var.tmp_scene = $"."
-	player_var.air_wall_top = $air_wall/top.position.y
-	player_var.air_wall_bottom = $air_wall/down.position.y
-	player_var.air_wall_left = $air_wall/left.position.x
-	player_var.air_wall_right = $air_wall/right.position.x
+	RunSession.tmp_scene = $"."
+	RunSession.air_wall_top = $air_wall/top.position.y
+	RunSession.air_wall_bottom = $air_wall/down.position.y
+	RunSession.air_wall_left = $air_wall/left.position.x
+	RunSession.air_wall_right = $air_wall/right.position.x
 	print("top")
 	print($air_wall/top.position.y)
-	print(player_var.air_wall_top)
+	print(RunSession.air_wall_top)
 var pauseing = false
 var pause_id
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -26,7 +26,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _open():
 	player_var.new_scene()
-	player_var.SpawnManager = $SpawnManager
+	RunSession.SpawnManager = $SpawnManager
 	player_var.is_uping = false
 
 	for i in 0:
@@ -34,7 +34,7 @@ func _open():
 		dummm.position.x += 2*100
 		$SpawnManager.add_mob(dummm)
 
-	player_var.worldenvir = $WorldEnvironment
+	RunSession.worldenvir = $WorldEnvironment
 
 	for i in  2:
 		for j in 5:
@@ -49,7 +49,7 @@ func summonhappy(p) -> void:
 	mob.global_position = p
 	mob.mob_info = table.Enemy[tname].duplicate()
 	mob.drop_num = 1.0
-	player_var.SpawnManager.add_mob(mob)
+	RunSession.SpawnManager.add_mob(mob)
 
 
 func _close():

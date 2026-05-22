@@ -17,7 +17,7 @@ var _lock_position: Vector2 = Vector2.INF # 使用 Vector2.INF 代表无效位�
 # --- 外部引用 ---
 var _body: Node2D
 var _attack_info: Dictionary
-var _spawn_manager = player_var.SpawnManager
+var _spawn_manager = RunSession.SpawnManager
 
 #=============================================================================
 # 生命周期与 API

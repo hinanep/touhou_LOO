@@ -45,12 +45,12 @@ func raise_weight_to_cp(xname):
 	for cps in cp_pool.unlocked:
 		if cp_pool.unlocked[cps].partment.has(xname):
 			for id in cp_pool.unlocked[cps].partment:
-				if(player_var.SkillManager.skill_pool.unlocked.has(id)):
-					player_var.SkillManager.skill_pool.unlocked["weight"] *=1.1
-				if(player_var.CardManager.card_pool.unlocked.has(id)):
-					player_var.CardManager.card_pool.unlocked[id]["weight"] *=1.1
-				if(player_var.PassiveManager.buff_pool.unlocked.has(id)):
-					player_var.PassiveManager.buff_pool.unlocked[id]["weight"] *=1.1
+				if(RunSession.SkillManager.skill_pool.unlocked.has(id)):
+					RunSession.SkillManager.skill_pool.unlocked["weight"] *=1.1
+				if(RunSession.CardManager.card_pool.unlocked.has(id)):
+					RunSession.CardManager.card_pool.unlocked[id]["weight"] *=1.1
+				if(RunSession.PassiveManager.buff_pool.unlocked.has(id)):
+					RunSession.PassiveManager.buff_pool.unlocked[id]["weight"] *=1.1
 
 func get_cp_unactive(id):
 	var find = false
