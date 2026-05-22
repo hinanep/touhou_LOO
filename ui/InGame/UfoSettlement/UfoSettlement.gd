@@ -1,6 +1,5 @@
 extends BaseGUIView
 
-const _MIN_DISPLAY_SEC := 1.0
 const _AUTO_CLOSE_SEC := 10.0
 const _UNIT_MUL_EPS := 1e-5
 const _COLORFUL_HUE_STEP := 2
@@ -11,36 +10,49 @@ const _COLORFUL_RAINBOW_V := 0.9
 @export var body_font_size: int = 18
 
 var _closing: bool = false
-var _open_time_msec: int = 0
-@onready var dim = $CanvasLayer/dim
-@onready var body = $CanvasLayer/panel/margin/vbox/body
+@onready var body = $CanvasLayer/panel/margin/center/body
 
 
 func _ready() -> void:
 	$auto_close_timer.wait_time = _AUTO_CLOSE_SEC
 	$auto_close_timer.one_shot = true
-	if dim.has_signal("gui_input"):
-		dim.gui_input.connect(_on_dim_gui_input)
 	_apply_body_text_style()
 
 
-## 打开：冻结局内并填充结算文案
+## 打开：先快照 payload，再关掉其它结算悬浮窗并填充文案（不暂停局内）
 func _open() -> void:
+	var payload := _fetch_payload()
+	_close_other_settlements()
 	_closing = false
-	_open_time_msec = Time.get_ticks_msec()
-	player_var.request_game_pause()
-	_fill_from_payload()
+	_fill_from_payload(payload)
 	$auto_close_timer.start()
 
 
-## 关闭：先结算入账（可能打开升级界面），再释放本界面暂停引用
+## 关闭除本实例外已打开的 UfoSettlement，避免多只飞碟结算叠层
+func _close_other_settlements() -> void:
+	if G == null:
+		return
+	var vm = G.get_gui_view_manager()
+	if vm == null:
+		return
+	var to_close: Array[int] = []
+	for instance_id in vm.viewInstanceMap.keys():
+		if instance_id == viewInstanceId:
+			continue
+		var view: BaseGUIView = vm.viewInstanceMap[instance_id]
+		if view.config.id == &"UfoSettlement":
+			to_close.append(instance_id)
+	for instance_id in to_close:
+		vm.close_view(instance_id)
+
+
+## 关闭：仅销毁视图，奖励由 UfoManager._apply_kill_rewards 在击破时处理
 func _close() -> void:
-	_notify_manager_closed()
-	player_var.release_game_pause()
+	pass
 
 
-func _fill_from_payload() -> void:
-	var payload: Dictionary = _fetch_payload()
+## 按击破时快照的 payload 填充结算文案
+func _fill_from_payload(payload: Dictionary) -> void:
 	if payload.is_empty():
 		body.text = ""
 		return
@@ -74,7 +86,7 @@ func _fill_from_payload() -> void:
 	body.text = _center_bbcode_lines(lines)
 
 
-## 正文 RichTextLabel：水平/垂直居中，字号由 body_font_size 控制
+## 正文 RichTextLabel：块在 panel 内居中，字号由 body_font_size 控制
 func _apply_body_text_style() -> void:
 	if not is_instance_valid(body):
 		return
@@ -279,40 +291,14 @@ func _format_legacy_line(legacy_key: String, display: Dictionary, ufo_color: int
 	return plain
 
 
-func _on_dim_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		close_self()
-
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_pressed():
-		close_self()
-
-
-func _on_continue_pressed() -> void:
-	close_self()
-
-
 func _on_auto_close_timer_timeout() -> void:
 	close_self()
 
 
-func _can_close_now() -> bool:
-	return Time.get_ticks_msec() - _open_time_msec >= int(_MIN_DISPLAY_SEC * 1000.0)
-
-
 func close_self() -> void:
-	if _closing or not _can_close_now():
+	if _closing:
 		return
 	_closing = true
 	if is_instance_valid($auto_close_timer):
 		$auto_close_timer.stop()
 	G.get_gui_view_manager().close_view(viewInstanceId)
-
-
-func _notify_manager_closed() -> void:
-	if RunSession.SpawnManager == null or not is_instance_valid(RunSession.SpawnManager):
-		return
-	var mgr := RunSession.SpawnManager.get_node_or_null("UfoManager")
-	if mgr != null and mgr.has_method("on_settlement_closed"):
-		mgr.on_settlement_closed()

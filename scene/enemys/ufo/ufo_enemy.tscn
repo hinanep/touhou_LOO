@@ -191,8 +191,9 @@ material = null
 scale = Vector2(0.35, 0.35)
 skew = 0.0
 sprite_frames = SubResource("SpriteFrames_ufo")
-animation = &"all"
+animation = &"blue"
 autoplay = ""
+frame_progress = 0.28198555
 
 [node name="light" type="AnimatedSprite2D" parent="." index="1" unique_id=1611861163]
 visible = false

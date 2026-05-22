@@ -1,5 +1,7 @@
 class_name Attack extends CharacterBody2D
 
+const _BOSS_MODULATE_A := 0.15
+
 # 信号：当此节点完成使命，应返回对象池时发出
 signal returned_to_pool(node: Node)
 # 信号：当击杀敌人时发出
@@ -66,7 +68,7 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	move_component.initialize($".",attack_info,lock_component)
 
 	_restart_particles()
-
+	_apply_boss_modulate()
 
 	if attack_info.get("duration", 0.0) > 0.0:
 		duration_timer.start()
@@ -234,9 +236,21 @@ func _on_bullet_erase_area_body_entered(body):
 			drop_item(item,attack_info.eraseing_item_creation_value,body.global_position)
 
 
+## 按当前 Boss 战状态设置根节点透明度（对象池取出时也会调用）
+func _apply_boss_modulate() -> void:
+	_set_boss_mode(RunSession.is_boss_stage)
+
+
 func _set_boss_mode(is_boss: bool) -> void:
-	if attack_info.damage_belong.contains("sc"): return
-	modulate.a = 0.15 if is_boss else 1.0
+	if _should_skip_boss_dim():
+		modulate.a = 1.0
+		return
+	modulate.a = _BOSS_MODULATE_A if is_boss else 1.0
+
+
+## 符卡等 damage_belong 含 sc 的攻击不参与 Boss 战减透明
+func _should_skip_boss_dim() -> bool:
+	return attack_info.has("damage_belong") and str(attack_info.damage_belong).contains("sc")
 
 #=============================================================================
 # 工具函数
@@ -246,8 +260,10 @@ func _set_active(p_active: bool) -> void:
 	self.is_active = p_active
 	self.visible = p_active
 	set_physics_process(p_active)
-	if not p_active and dot_tween is Tween:
-		dot_tween.kill()
+	if not p_active:
+		if dot_tween is Tween:
+			dot_tween.kill()
+		modulate.a = 1.0
 	call_deferred("set_monitoring", p_active) # 延迟执行以避免物理引擎冲突
 
 func set_monitoring(p_active: bool) -> void:

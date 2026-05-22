@@ -20,7 +20,7 @@ func get_object(parent = parent_node) -> Node:
 		var obj = pool.pop_back()
 		# 确保节点是有效的，以防在其他地方被意外释放
 		if is_instance_valid(obj):
-			obj.process_mode = Node.PROCESS_MODE_INHERIT
+			obj.process_mode = Node.PROCESS_MODE_PAUSABLE
 			if obj.get_parent() != parent:
 				obj.reparent(parent)
 			return obj
@@ -29,6 +29,7 @@ func get_object(parent = parent_node) -> Node:
 	# 如果池是空的，创建一个新的
 	if prefab:
 		var new_obj = prefab.instantiate()
+		new_obj.process_mode = Node.PROCESS_MODE_PAUSABLE
 		parent.add_child(new_obj)
 
 		# 非常重要：让对象知道如何回到池中

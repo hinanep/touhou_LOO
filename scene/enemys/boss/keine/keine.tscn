@@ -716,13 +716,12 @@ shape = SubResource("CircleShape2D_shwxr")
 [node name="danma" type="Node2D" parent="." unique_id=61667267]
 
 [node name="AvoidanceModule" type="ProgressBar" parent="." unique_id=639805532]
-visible = false
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
 offset_left = -39.0
 offset_top = -46.0
 offset_right = 273.0
 offset_bottom = -14.0
-scale = Vector2(0.25, 0.125)
+scale = Vector2(1e-05, 9.9379295e-06)
 tooltip_text = "
 "
 theme_override_styles/fill = SubResource("StyleBoxFlat_nqpgj")

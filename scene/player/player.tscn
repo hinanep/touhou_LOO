@@ -139,7 +139,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pisg7"]
 states/End/position = Vector2(863.99994, 83.2)
-states/Start/position = Vector2(181.6, 94.399994)
+states/Start/position = Vector2(181.6, 93.399994)
 states/hurt/node = SubResource("AnimationNodeBlendSpace2D_oypl4")
 states/hurt/position = Vector2(380.93597, 183.95076)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_pisg7")

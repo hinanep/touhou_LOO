@@ -28,7 +28,9 @@ func close_self():
 
 	G.get_gui_view_manager().close_view(viewInstanceId)
 	player_var.is_uping = false
+	player_var._bonus_pick_active = false
 	player_var.player_exp += 0
+	player_var.call_deferred("_try_open_bonus_upgrade_select")
 
 func set_property_change(id):
 

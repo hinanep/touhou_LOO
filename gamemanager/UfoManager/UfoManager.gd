@@ -1,31 +1,17 @@
 extends Node
 class_name UfoManager
-## 局内飞碟事件编排：监听生成/击破信号，维护账本，击破后消弹、结算；羁绊即时，随机升级在结算 UI 关闭后应用。
+## 局内飞碟事件编排：监听生成/击破信号，维护账本，击破后消弹、结算；羁绊即时，随机升级在击破时立即应用；红/彩碟 legacy 额外选取直开 LevelUp，左侧悬浮窗仅展示。
 ## 挂于 InGame/SpawnManager/UfoManager；依赖 SignalBus 信号名 ufo_spawn_requested、ufo_killed（须在 SignalBus.gd 声明后类型检查才完整）。
 
 const _SIGNAL_SPAWN := &"ufo_spawn_requested"
 const _SIGNAL_KILLED := &"ufo_killed"
 const _UFO_ENEMY_TABLE_ID := "enm_ufo"
 const _VFX_PARTICLE_CAP := 20
-## 飞碟事件吸收账本：击破结算前由 ufo_enemy 写入，击破信号可携带快照覆盖
-## @exp 累计经验分量
-## @mana 累计符力分量
-## @score 累计分数分量
-## @fragment_count 吸收碎片数量
-var _ledger: Dictionary = {
-	"exp": 0,
-	"mana": 0,
-	"score": 0,
-	"fragment_count": 0,
-}
-
-var _active_ufo: Node = null
-var _color: int = 0
+var _active_ufos: Array[Node] = []
 var _ufo_scene: PackedScene = null
 var _ufo_mob_info_template: Dictionary = {}
 var settlement_payload: Dictionary = {}
 var _settlement_kill_position: Vector2 = Vector2.ZERO
-var _settlement_busy: bool = false
 
 @export var ufo_enemy_preset_id: String = _UFO_ENEMY_TABLE_ID
 
@@ -57,32 +43,32 @@ func _init_ufo_prefab() -> void:
 		_ufo_mob_info_template = {"id": ufo_enemy_preset_id}
 
 
-## 是否已有进行中的飞碟事件
+## 是否仍有进行中的飞碟（可多只并存）
 func has_active_ufo() -> bool:
-	return _active_ufo != null and is_instance_valid(_active_ufo)
+	_prune_active_ufos()
+	return not _active_ufos.is_empty()
 
 
-## 返回当前账本副本（供 ufo_enemy 吸收期读取或调试）
-func get_ledger() -> Dictionary:
-	return _ledger.duplicate()
+func _prune_active_ufos() -> void:
+	for i in range(_active_ufos.size() - 1, -1, -1):
+		if not is_instance_valid(_active_ufos[i]):
+			_active_ufos.remove_at(i)
 
 
-## 吸收期累加账本（ufo_enemy 调用）
-func add_to_ledger(exp_amount: float, mana_amount: float, score_amount: float, fragment_delta: int = 1) -> void:
-	_ledger["exp"] = float(_ledger["exp"]) + exp_amount
-	_ledger["mana"] = float(_ledger["mana"]) + mana_amount
-	_ledger["score"] = float(_ledger["score"]) + score_amount
-	_ledger["fragment_count"] = int(_ledger["fragment_count"]) + fragment_delta
+func _register_active_ufo(ufo: Node) -> void:
+	if ufo == null:
+		return
+	_prune_active_ufos()
+	if ufo not in _active_ufos:
+		_active_ufos.append(ufo)
 
 
-## 重置账本与事件颜色
-func _reset_ledger() -> void:
-	_ledger = {
-		"exp": 0,
-		"mana": 0,
-		"score": 0,
-		"fragment_count": 0,
-	}
+func _unregister_active_ufo(ufo: Node) -> void:
+	if ufo == null:
+		return
+	var idx := _active_ufos.find(ufo)
+	if idx >= 0:
+		_active_ufos.remove_at(idx)
 
 
 func _connect_bus_signal(signal_name: StringName, callable: Callable) -> void:
@@ -94,45 +80,43 @@ func _connect_bus_signal(signal_name: StringName, callable: Callable) -> void:
 		push_error("[UfoManager] 连接 %s 失败: %s" % [signal_name, err])
 
 
-## 拾钥匙后：生成飞碟并登记活跃引用
+## 拾钥匙后：生成飞碟并登记活跃引用（多只飞碟可并存）
 func _on_ufo_spawn_requested(color: int, pickup_position: Vector2) -> void:
-	print("receive ufo gen")
-	if has_active_ufo():
-		return
 	if color < 1 or color > 4:
 		push_warning("[UfoManager] 无效 color=%s，应为 1..4" % color)
 		return
-	_reset_ledger()
-	_color = color
 	var ufo := _spawn_ufo(color, pickup_position)
 	if ufo == null:
-		_color = 0
 		return
-	_active_ufo = ufo
+	_register_active_ufo(ufo)
 	_bind_ufo_to_manager(ufo)
 
 
-## 飞碟被击破：消弹 → 符力/得分入账 → 羁绊即时/升级预选 → 结算 UI → 关闭后发经验+升级 → VFX → 结束事件
-func _on_ufo_killed(ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
-	if _settlement_busy or not has_active_ufo():
+## 飞碟被击破：消弹 → 符力/得分入账 → 羁绊即时/升级预选 → 经验入账与 VFX → 左侧结算悬浮窗（定时消失）
+func _on_ufo_killed(ufo: Node, ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
+	if ufo == null or not is_instance_valid(ufo):
 		return
-	_settlement_busy = true
+	_prune_active_ufos()
+	if ufo not in _active_ufos:
+		return
+	_unregister_active_ufo(ufo)
 	if ledger.is_empty():
-		ledger = _ledger.duplicate()
+		ledger = {}
 	else:
 		ledger = ledger.duplicate()
 	if color < 1 or color > 4:
-		color = _color
+		if "ufo_color" in ufo:
+			color = int(ufo.ufo_color)
 	_settlement_kill_position = kill_global_position
 	_clear_hostile_danmaku()
-	color = 4
 	var display := _compute_settlement_display(ledger, color)
 	var pending_ledger_exp: float = _compute_pending_ledger_exp(ledger, color)
-	var pending_legacy_exp: float = _compute_pending_legacy_exp(color)
+	var bonus_pick: bool = _has_bonus_pick(color)
 	_apply_ledger_and_legacy(ledger, color)
 	var extra: Dictionary = _apply_cp_or_upgrades()
-	_build_settlement_payload(ledger, color, extra, display, pending_ledger_exp, pending_legacy_exp)
+	_build_settlement_payload(ledger, color, extra, display, pending_ledger_exp, bonus_pick)
 	_show_settlement_ui()
+	_apply_kill_rewards()
 
 
 
@@ -159,26 +143,37 @@ func _bind_ufo_to_manager(ufo: Node) -> void:
 	if ufo.has_method("set_ufo_manager"):
 		ufo.set_ufo_manager(self)
 	if ufo.has_signal("die") and not ufo.die.is_connected(_on_ufo_die_fallback):
-		ufo.die.connect(_on_ufo_die_fallback)
+		ufo.die.connect(_on_ufo_die_fallback.bind(ufo))
 
 
-func _on_ufo_die_fallback(_mob_id: int = 0) -> void:
-	if not has_active_ufo():
+func _on_ufo_die_fallback(_mob_id: int, ufo: Node) -> void:
+	if ufo == null or not is_instance_valid(ufo) or ufo not in _active_ufos:
 		return
-	var pos: Vector2 = _active_ufo.global_position if is_instance_valid(_active_ufo) else Vector2.ZERO
-	_emit_killed(_ledger.duplicate(), _color, pos)
+	var ledger: Dictionary = {}
+	var color: int = 1
+	if "ufo_color" in ufo:
+		color = int(ufo.ufo_color)
+	if ufo.has_method("get_absorb_ledger"):
+		ledger = ufo.get_absorb_ledger()
+	var pos: Vector2 = ufo.global_position
+	_emit_killed(ufo, ledger, color, pos)
 
 
 ## 击破时由 ufo_enemy 调用，统一走 SignalBus 击破信号
-func notify_killed(ledger: Dictionary = {}, kill_position: Vector2 = Vector2.ZERO) -> void:
-	_emit_killed(ledger, _color, kill_position)
+func notify_killed(
+	ufo: Node,
+	ledger: Dictionary = {},
+	color: int = 0,
+	kill_position: Vector2 = Vector2.ZERO
+) -> void:
+	_emit_killed(ufo, ledger, color, kill_position)
 
 
-func _emit_killed(ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
+func _emit_killed(ufo: Node, ledger: Dictionary, color: int, kill_global_position: Vector2) -> void:
 	if SignalBus.has_signal(_SIGNAL_KILLED):
-		SignalBus.ufo_killed.emit(ledger, color, kill_global_position)
+		SignalBus.ufo_killed.emit(ufo, ledger, color, kill_global_position)
 	else:
-		_on_ufo_killed(ledger, color, kill_global_position)
+		_on_ufo_killed(ufo, ledger, color, kill_global_position)
 
 
 func _get_spawn_manager() -> SpawnManagers:
@@ -241,11 +236,9 @@ func _compute_blue_point_ratio_delta(fragment_count: int) -> float:
 	return float(fragment_count) * coeff
 
 
-## 红/彩碟 legacy 经验（结算 UI 关闭后再发放）
-func _compute_pending_legacy_exp(color: int) -> float:
-	if color == 1 or color == 4:
-		return float(player_var.exp_need)
-	return 0.0
+## 红/彩碟 legacy：额外升级选取（不灌经验，结算后直开 LevelUp）
+func _has_bonus_pick(color: int) -> bool:
+	return color == 1 or color == 4
 
 
 ## 击破时立即施加的颜色 legacy（红/彩经验除外）
@@ -278,7 +271,7 @@ func _get_legacy_tid_key(color: int) -> String:
 			return ""
 
 
-## 账本经验结算关闭后再发；符力/得分与即时 legacy 击破时入账
+## 账本经验击破时发放；符力/得分与即时 legacy 击破时入账
 func _compute_pending_ledger_exp(ledger: Dictionary, color: int) -> float:
 	var mul := _get_color_multipliers(color)
 	var exp_base := float(ledger.get("exp", 0))
@@ -345,7 +338,7 @@ func _apply_upgrade_pick(pick: Dictionary) -> void:
 			pass
 
 
-## 结算 UI 关闭后应用待处理的随机升级
+## 击破结算时应用待处理的随机升级
 func _apply_pending_upgrades(picks: Array) -> void:
 	for pick in picks:
 		if pick is Dictionary:
@@ -387,7 +380,7 @@ func _build_settlement_payload(
 	extra: Dictionary,
 	display: Dictionary,
 	pending_ledger_exp: float,
-	pending_legacy_exp: float
+	bonus_pick: bool
 ) -> void:
 	settlement_payload = {
 		"ledger": ledger.duplicate(),
@@ -397,7 +390,7 @@ func _build_settlement_payload(
 		"upgrade_picks": extra.get("upgrade_picks", []).duplicate(true),
 		"display": display.duplicate(),
 		"pending_ledger_exp": pending_ledger_exp,
-		"pending_legacy_exp": pending_legacy_exp,
+		"bonus_pick": bonus_pick,
 	}
 
 
@@ -406,50 +399,39 @@ func get_settlement_payload() -> Dictionary:
 	return settlement_payload.duplicate(true)
 
 
-## 打开结算面板；未注册时直接走关闭回调
+## 打开左侧结算悬浮窗；未注册时跳过展示（入账由击破流程统一处理）
 func _show_settlement_ui() -> void:
 	if G == null or G.get_gui_view_manager() == null:
-		on_settlement_closed()
 		return
 	var vm := G.get_gui_view_manager()
 	if not vm.has_method("open_view"):
-		on_settlement_closed()
 		return
 	if not vm.viewConfigMap.has("UfoSettlement"):
-		on_settlement_closed()
 		return
 	vm.open_view("UfoSettlement")
 
 
-## 结算面板关闭后：应用待处理升级、补 VFX 并结束飞碟事件
-func on_settlement_closed() -> void:
+## 击破后发放经验、预选升级与 bonus，并清空 payload（与结算窗关闭无关）
+func _apply_kill_rewards() -> void:
 	if settlement_payload.is_empty():
 		return
 	var ledger: Dictionary = settlement_payload.get("ledger", {})
-	var color: int = int(settlement_payload.get("color", _color))
+	var color: int = int(settlement_payload.get("color", 0))
 	var kill_pos := _settlement_kill_position
 	var pending_ledger_exp: float = float(settlement_payload.get("pending_ledger_exp", 0.0))
-	var pending_legacy_exp: float = float(settlement_payload.get("pending_legacy_exp", 0.0))
+	var bonus_pick: bool = bool(settlement_payload.get("bonus_pick", false))
 	var upgrade_picks: Array = settlement_payload.get("upgrade_picks", []).duplicate(true)
 	settlement_payload = {}
 	_settlement_kill_position = Vector2.ZERO
 	if pending_ledger_exp > 0.0:
 		player_var.player_exp += pending_ledger_exp
-	if pending_legacy_exp > 0.0:
-		player_var.player_exp += pending_legacy_exp
 	if not upgrade_picks.is_empty():
 		_apply_pending_upgrades(upgrade_picks)
+	if bonus_pick:
+		player_var.request_bonus_upgrade_select()
 	_play_capped_fly_vfx(ledger, color, kill_pos)
-	_end_event()
 
 
 ## 代表粒子：主数值已入账，仅触发飞向自机的拾取表现
 func _play_capped_fly_vfx(_ledger: Dictionary, color: int, _kill_global_position: Vector2) -> void:
 	pass
-
-
-func _end_event() -> void:
-	_active_ufo = null
-	_color = 0
-	_settlement_busy = false
-	_reset_ledger()

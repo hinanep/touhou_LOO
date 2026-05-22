@@ -16,10 +16,9 @@ func warmup_under(root: Node) -> void:
 	var routines: Array[Routine] = []
 	_collect_routines(root, routines)
 	for routine in routines:
-		var prev_mode := routine.process_mode
 		routine.process_mode = Node.PROCESS_MODE_ALWAYS
 		await routine.warmup_attack_pools_once()
-		routine.process_mode = prev_mode
+		routine.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 ## 递归收集 Routine 子节点

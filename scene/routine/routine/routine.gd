@@ -98,7 +98,6 @@ func _warmup_single_attack_pool(pool: ObjectPool) -> void:
 	var instance: Node = pool.get_object(pool.parent_node)
 	if not is_instance_valid(instance):
 		return
-	var prev_process_mode := instance.process_mode
 	instance.hide()
 	instance.process_mode = Node.PROCESS_MODE_DISABLED
 	if instance.has_method("warmup_particles"):
@@ -109,7 +108,6 @@ func _warmup_single_attack_pool(pool: ObjectPool) -> void:
 				(node as GPUParticles2D).restart()
 	await _wait_warmup_frame()
 	await _wait_warmup_frame()
-	instance.process_mode = prev_process_mode
 	pool.return_object(instance)
 
 

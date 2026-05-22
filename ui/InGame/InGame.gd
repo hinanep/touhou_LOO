@@ -1,7 +1,5 @@
 extends BaseGUIView
 
-const _AttackParticleWarmup = preload("res://scene/attack/attack/AttackParticleWarmup.gd")
-
 @onready var _warmup_overlay: Control = $WarmupLoadingLayer/WarmupLoadingOverlay
 
 func _ready():
@@ -73,10 +71,8 @@ func scene_init():
 	$SpawnManager.spawnmanager_init('Stage1')
 	RunSession.SpawnManager = $SpawnManager
 	_show_warmup_overlay()
-	var player_node := player_var.player_node
-	if is_instance_valid(player_node):
-		var warmup = _AttackParticleWarmup.new()
-		await warmup.warmup_under(player_node)
+	await get_tree().process_frame
+	await get_tree().process_frame
 	_hide_warmup_overlay()
 
 

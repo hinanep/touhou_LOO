@@ -69,6 +69,8 @@ var point:int:
 	set(value):
 		point = point + (value-point) *point_ratio
 var is_uping = false
+var _bonus_pick_active: bool = false
+var _bonus_pick_queue: int = 0
 var player_exp=0:
 	set(value):
 
@@ -135,6 +137,8 @@ func _physics_process(delta: float) -> void:
 
 func new_scene() -> void:
 	_reset_game_pause_state()
+	_bonus_pick_active = false
+	_bonus_pick_queue = 0
 	RunSession.begin_run()
 
 
@@ -175,6 +179,40 @@ func level_up():
 	player_var.player_exp -= player_var.exp_need
 	player_var.level += 1
 	G.get_gui_view_manager().open_view("LevelUp")
+
+
+## 红/彩碟 legacy：排队一次额外升级选取，不改动 level 与 player_exp
+func request_bonus_upgrade_select() -> void:
+	_bonus_pick_queue += 1
+	call_deferred("_try_open_bonus_upgrade_select")
+
+
+## 队列非空且当前无升级界面时，打开 LevelUp 供玩家三选一
+func _try_open_bonus_upgrade_select() -> void:
+	if _bonus_pick_queue <= 0:
+		return
+	if is_uping or _is_level_up_open():
+		return
+	_bonus_pick_queue -= 1
+	_bonus_pick_active = true
+	is_uping = true
+	G.get_gui_view_manager().open_view("LevelUp")
+
+
+## 升级界面关闭后清除 bonus 标志并尝试打开队列中的下一次选取
+func clear_bonus_pick_active() -> void:
+	_bonus_pick_active = false
+	call_deferred("_try_open_bonus_upgrade_select")
+
+
+func _is_level_up_open() -> bool:
+	if G == null or G.get_gui_view_manager() == null:
+		return false
+	var vm = G.get_gui_view_manager()
+	for view in vm.viewInstanceMap.values():
+		if view.config.id == &"LevelUp":
+			return true
+	return false
 
 
 var shake_damage = 0:

@@ -16,10 +16,13 @@ var air_wall_left: float
 var air_wall_right: float
 var underrecycle_tween: Array = []
 var need_glow: int = 0
+## Boss 战进行中；供 Attack 从对象池取出时同步透明度
+var is_boss_stage: bool = false
 
 
 ## 新局开始：清空局内修饰并重建各 Manager
 func begin_run() -> void:
+	is_boss_stage = false
 	RunModifiers.clear()
 	_destroy_managers()
 	SkillManager = SkillManagers.new()
@@ -32,6 +35,7 @@ func begin_run() -> void:
 
 ## 回主菜单或放弃本局：释放 Manager 与场景引用
 func end_run() -> void:
+	is_boss_stage = false
 	clear_tweens()
 	if SpawnManager != null and is_instance_valid(SpawnManager):
 		SpawnManager.clear()
@@ -99,6 +103,7 @@ func boss_coming(id: String) -> void:
 	mv.tween_property(boss, 'global_position', Vector2(600, 0), 3)
 	await mv.finished
 	boss.fight_begin()
+	is_boss_stage = true
 	SignalBus.boss_stage.emit(true)
 
 

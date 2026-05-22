@@ -1,9 +1,10 @@
 extends enemy_base
 ## 飞碟事件敌怪：吸收期吸入记忆碎片并入账；击破由 UfoManager 结算。
 
-const _DEFAULT_ABSORB_MAX_DURATION := 2.5
+const _DEFAULT_ABSORB_MAX_DURATION := 0.8
 const _DEFAULT_HP_PER_FRAGMENT := 8.0
-const _ABSORB_TWEEN_SEC := 0.35
+const _ABSORB_TWEEN_SEC := 0.8
+const _ABSORB_SCALE_MULTIPLIER := 1.8
 const _COLORFUL_HUE_STEP := 2
 const _COLORFUL_HUE_MOD := 256
 const _COLORFUL_ANIM := &"all"
@@ -21,6 +22,7 @@ const _COLORFUL_FRAME_TICKS := 10
 ## @_pending_destroy 动画结束后待 queue_free 的掉落物
 ## @_absorb_max_duration 吸收期最长秒数（兜底结束吸收阶段）
 ## @_hp_per_fragment 按场上碎片数增加的最大生命系数
+## @_absorb_ledger 本飞碟吸收账本 exp/mana/score/fragment_count
 var ufo_color: int = 1
 var absorb_phase: bool = true
 var _ufo_manager: Node = null
@@ -28,6 +30,7 @@ var _absorb_visual_running: bool = false
 var _pending_destroy: Array = []
 var _absorb_max_duration: float = _DEFAULT_ABSORB_MAX_DURATION
 var _hp_per_fragment: float = _DEFAULT_HP_PER_FRAGMENT
+var _absorb_ledger: Dictionary = {}
 var _colorful_hue: int = 0
 var _colorful_frame: int = 0
 var _colorful_frame_tick: int = 0
@@ -40,6 +43,7 @@ var _colorful_active: bool = false
 ## 节点就绪：补全 mob_info、读表调参、禁用离屏秒杀并延迟开启吸收阶段
 ## @return 无
 func _ready() -> void:
+	_reset_absorb_ledger()
 	if mob_info.is_empty():
 		mob_info = {"id": "enm_ufo", "type": "ufo", "movement": "static", "health": 500.0, "speed": 0.0}
 	mob_info["type"] = "ufo"
@@ -58,6 +62,21 @@ func _ready() -> void:
 ## @return 无
 func set_ufo_manager(mgr: Node) -> void:
 	_ufo_manager = mgr
+
+
+## 初始化本飞碟吸收账本
+func _reset_absorb_ledger() -> void:
+	_absorb_ledger = {
+		"exp": 0,
+		"mana": 0,
+		"score": 0,
+		"fragment_count": 0,
+	}
+
+
+## 返回本飞碟吸收账本副本
+func get_absorb_ledger() -> Dictionary:
+	return _absorb_ledger.duplicate()
 
 
 ## 是否仍处于吸收阶段
@@ -101,11 +120,11 @@ func _apply_non_colorful_visual() -> void:
 	_stop_colorful_visual()
 	match ufo_color:
 		1:
-			sprite.animation = &"red"
+			sprite.play(&"red")
 		2:
-			sprite.animation = &"green"
+			sprite.play(&"green")
 		3:
-			sprite.animation = &"blue"
+			sprite.play(&"blue")
 		_:
 			pass
 	sprite.modulate = Color.WHITE
@@ -222,10 +241,10 @@ func _commit_absorb_ledger(candidates: Array) -> void:
 		var exp_v := float(piece.experience) * float(piece.value)
 		var mana_v := float(piece.mana) * float(piece.value)
 		var score_v := float(piece.score) * float(piece.value)
-		if _ufo_manager != null and _ufo_manager.has_method("add_to_ledger"):
-			_ufo_manager.add_to_ledger(exp_v, mana_v, score_v, 1)
-		else:
-			push_warning("[ufo_enemy] UfoManager 未注入，碎片数值未入账")
+		_absorb_ledger["exp"] = float(_absorb_ledger["exp"]) + exp_v
+		_absorb_ledger["mana"] = float(_absorb_ledger["mana"]) + mana_v
+		_absorb_ledger["score"] = float(_absorb_ledger["score"]) + score_v
+		_absorb_ledger["fragment_count"] = int(_absorb_ledger["fragment_count"]) + 1
 
 
 ## 关闭掉落物交互与融合，仅保留可被 tween 的显示
@@ -259,12 +278,13 @@ func _run_absorb_visuals_batch(candidates: Array) -> void:
 	_absorb_visual_running = true
 	_pending_destroy.clear()
 	var tween := create_tween()
-	tween.set_parallel(true)
 	RunSession.underrecycle_tween.append(tween)
 	for piece in valid:
 		_prepare_drop_for_absorb_visual(piece)
 		_pending_destroy.append(piece)
-		tween.tween_property(piece, "global_position", global_position, _ABSORB_TWEEN_SEC)
+		tween.parallel().tween_property(piece, "global_position", global_position, _ABSORB_TWEEN_SEC)
+		tween.parallel().tween_property(piece, "scale", piece.scale * _ABSORB_SCALE_MULTIPLIER, 0.4)
+
 	await tween.finished
 	_finalize_absorb_visuals()
 	_absorb_visual_running = false
@@ -332,11 +352,8 @@ func _finish_player_kill() -> void:
 	_cleanup_absorb_timers()
 	_flush_pending_destroy()
 	_cleanup_connections()
-	var ledger: Dictionary = {}
-	if _ufo_manager != null and _ufo_manager.has_method("get_ledger"):
-		ledger = _ufo_manager.get_ledger()
 	if _ufo_manager != null and _ufo_manager.has_method("notify_killed"):
-		_ufo_manager.notify_killed(ledger, global_position)
+		_ufo_manager.notify_killed(self, _absorb_ledger.duplicate(), ufo_color, global_position)
 	emit_signal("die", mob_id)
 	queue_free()
 

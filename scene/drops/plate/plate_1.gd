@@ -8,6 +8,15 @@ func _ready() -> void:
 	not_fusioning = false
 	set_physics_process(false)
 	ufo_color = _roll_ufo_color()
+	_clamp_to_air_wall()
+
+
+## 掉落位置超出空气墙时，强制移入可前往矩形区域
+func _clamp_to_air_wall() -> void:
+	var pos := global_position
+	pos.x = clampf(pos.x, RunSession.air_wall_left, RunSession.air_wall_right)
+	pos.y = clampf(pos.y, RunSession.air_wall_top, RunSession.air_wall_bottom)
+	global_position = pos
 
 
 ## 按 Global 表权重随机钥匙颜色 1..4
@@ -36,7 +45,7 @@ func _roll_ufo_color() -> int:
 	return int(weight_delta[weight_delta.size() - 1][0])
 
 
-## 范围内玩家进入：无活跃飞碟时发射生成信号并销毁；否则忽略
+## 范围内玩家进入：发射生成信号并销毁，每把钥匙对应一场飞碟事件
 func _on_body_entered(_body) -> void:
 	AudioManager.play_sfx("music_sfx_pickup")
 	SignalBus.ufo_spawn_requested.emit(ufo_color, global_position)

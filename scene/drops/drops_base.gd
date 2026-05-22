@@ -49,8 +49,9 @@ func fusion(v,e,s,m):
 	not_fusioning= true
 	$AnimatedSprite2D.scale = Vector2(log(experience+1)/5.0,log(experience+1)/5.0)
 
-func find_fusion():
-
+func find_fusion() -> void:
+	if not monitoring:
+		return
 	for area in get_overlapping_areas():
 		if not_fusioning and area.has_method('fusion') and area.not_fusioning:
 				not_fusioning = false
