@@ -3,12 +3,15 @@ extends BaseGUIView
 const _AUTO_CLOSE_SEC := 3.0
 
 var _closing: bool = false
+@onready var dim = $CanvasLayer/dim
+@onready var body = $CanvasLayer/panel/margin/vbox/body
+
 
 
 func _ready() -> void:
 	$auto_close_timer.wait_time = _AUTO_CLOSE_SEC
 	$auto_close_timer.one_shot = true
-	if $dim.has_signal("gui_input"):
+	if dim.has_signal("gui_input"):
 		$dim.gui_input.connect(_on_dim_gui_input)
 
 
@@ -30,7 +33,7 @@ func _close() -> void:
 func _fill_from_payload() -> void:
 	var payload: Dictionary = _fetch_payload()
 	if payload.is_empty():
-		$panel/margin/vbox/body.text = _tid_text("ufo_settlement_title")
+		body.text = _tid_text("ufo_settlement_title")
 		return
 	var ledger: Dictionary = payload.get("ledger", {})
 	var display: Dictionary = payload.get("display", {})
@@ -85,8 +88,8 @@ func _fill_from_payload() -> void:
 		lines.append(_tid_text(legacy_key))
 	lines.append("")
 	lines.append(_tid_text("ufo_settlement_skip_hint"))
-	$panel/margin/vbox/body.text = "\n".join(lines)
-	$panel/margin/vbox/continue_btn.text = _tid_text("ufo_settlement_continue")
+	body.text = "\n".join(lines)
+
 
 
 func _fetch_payload() -> Dictionary:

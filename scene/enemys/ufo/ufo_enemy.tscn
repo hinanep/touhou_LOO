@@ -119,7 +119,7 @@ scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_ufo")
 animation = &"blue"
 autoplay = ""
-frame_progress = 0.6455597
+frame_progress = 0.56290954
 
 [node name="buff" parent="." index="1"]
 visible = true
@@ -131,7 +131,4 @@ shape = SubResource("CircleShape2D_ufo")
 [node name="absorb_duration_timer" type="Timer" parent="." index="7" unique_id=472691509]
 one_shot = true
 
-[node name="dps_reset_timer" type="Timer" parent="." index="8" unique_id=647407882]
-
 [connection signal="timeout" from="absorb_duration_timer" to="." method="_on_absorb_duration_timer_timeout"]
-[connection signal="timeout" from="dps_reset_timer" to="." method="_on_dps_reset_timer_timeout"]

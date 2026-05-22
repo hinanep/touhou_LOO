@@ -20,8 +20,9 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_script")
 
-[node name="dim" type="ColorRect" parent="." unique_id=331484066]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1192497483]
+
+[node name="dim" type="ColorRect" parent="CanvasLayer" unique_id=331484066]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,8 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
 
-[node name="panel" type="PanelContainer" parent="." unique_id=264309411]
-layout_mode = 1
+[node name="panel" type="PanelContainer" parent="CanvasLayer" unique_id=264309411]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -44,18 +44,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="margin" type="MarginContainer" parent="panel" unique_id=610196134]
+[node name="margin" type="MarginContainer" parent="CanvasLayer/panel" unique_id=610196134]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 20
 
-[node name="vbox" type="VBoxContainer" parent="panel/margin" unique_id=1943741458]
+[node name="vbox" type="VBoxContainer" parent="CanvasLayer/panel/margin" unique_id=1943741458]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="body" type="RichTextLabel" parent="panel/margin/vbox" unique_id=193402246]
+[node name="body" type="RichTextLabel" parent="CanvasLayer/panel/margin/vbox" unique_id=193402246]
 custom_minimum_size = Vector2(760, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -63,7 +63,8 @@ bbcode_enabled = true
 fit_content = true
 autowrap_mode = 2
 
-[node name="continue_btn" type="Button" parent="panel/margin/vbox" unique_id=160468449]
+[node name="continue_btn" type="Button" parent="CanvasLayer/panel/margin/vbox" unique_id=160468449]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "继续"
@@ -71,5 +72,5 @@ text = "继续"
 [node name="auto_close_timer" type="Timer" parent="." unique_id=1389835768]
 one_shot = true
 
-[connection signal="pressed" from="panel/margin/vbox/continue_btn" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/panel/margin/vbox/continue_btn" to="." method="_on_continue_pressed"]
 [connection signal="timeout" from="auto_close_timer" to="." method="_on_auto_close_timer_timeout"]

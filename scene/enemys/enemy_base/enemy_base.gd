@@ -12,7 +12,9 @@ var drop_num = 1.0
 signal die(id)
 var is_inscreen:bool = false
 var mob_info :Dictionary
-
+var _spawn_time_sec: float = 0.0
+var inv_time: float = 0.0
+var inv_decay: float = 0.0
 @onready var progress_bar = $AvoidanceModule
 @onready var collisionshape = $buff
 @onready var melee_damage_area = $melee_damage_area
@@ -87,6 +89,9 @@ func _ready():
 		velocity = global_position.direction_to(player_node.global_position) * mob_info.speed
 
 	choose_default_anime()
+	_spawn_time_sec = Time.get_ticks_msec() / 1000.0
+	inv_time = _mob_info_float("invincibility_time")
+	inv_decay = _mob_info_float("invincibility_decrease_time")
 
 
 #根据表选择适当的移动函数（初始化时选择
@@ -139,13 +144,43 @@ func damage_num_display(num):
 
 
 
+## 从 mob_info 读取浮点配置，缺失或类型非法时返回 0
+## @param key 表字段名
+## @return 配置数值
+func _mob_info_float(key: String) -> float:
+	if not mob_info.has(key):
+		return 0.0
+	var v = mob_info[key]
+	if typeof(v) == TYPE_FLOAT or typeof(v) == TYPE_INT:
+		return float(v)
+	return 0.0
+
+
+## 生成后无敌/减伤比例：1.0 为 100% 减伤，0.0 为无减伤
+## @return 当前应应用的减伤比例
+func _get_spawn_damage_reduction() -> float:
+	if inv_time <= 0.0:
+		return 0.0
+	var elapsed := Time.get_ticks_msec() / 1000.0 - _spawn_time_sec
+	if elapsed < inv_time:
+		return 1.0
+	if inv_decay <= 0.0:
+		return 0.0
+	var decay_elapsed := elapsed - inv_time
+	if decay_elapsed >= inv_decay:
+		return 0.0
+	return 1.0 - decay_elapsed / inv_decay
+
+
 #受到伤害
-func mob_take_damage(damage):
+func mob_take_damage(damage: float) -> void:
 	if invincible:
 		return
-	damage_num_display(damage)
-	hp -= damage
-	progress_bar.value = hp/mob_info.health * 100
+	var reduction: float = _get_spawn_damage_reduction()
+	var actual: float = damage * (1.0 - reduction)
+	damage_num_display(actual)
+	hp -= actual
+	progress_bar.value = hp / mob_info.health * 100.0
 	if hp <= 0:
 		died()
 
@@ -302,7 +337,7 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 
 func _on_outscreen_disppear_timeout() -> void:
-	if mob_info.type == 'zako':
+	if mob_info.get("is_can_disappear", true):
 		died(true)
 	else:
 		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 1000

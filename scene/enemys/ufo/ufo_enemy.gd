@@ -1,33 +1,27 @@
 extends enemy_base
-## 飞碟事件敌怪：吸收期吸入记忆碎片并限伤，吸收结束后可全额受伤；击破由 UfoManager 结算。
+## 飞碟事件敌怪：吸收期吸入记忆碎片并入账；击破由 UfoManager 结算。
 
-const _DEFAULT_ABSORB_DPS_CAP := 50.0
 const _DEFAULT_ABSORB_MAX_DURATION := 2.5
 const _DEFAULT_HP_PER_FRAGMENT := 8.0
 const _ABSORB_TWEEN_SEC := 0.35
 
 ## 运行时状态：与表配置、吸收批次及 UfoManager 协作相关字段
 ## @ufo_color 事件颜色 1=红 2=绿 3=蓝，由 UfoManager 生成时赋值
-## @absorb_phase 是否处于吸收期（限伤）；数值在吸收开始时一次性入账
+## @absorb_phase 是否处于吸收期；数值在吸收开始时一次性入账
 ## @_ufo_manager UfoManager 节点引用，用于入账与击破通知
 ## @_absorb_visual_running 是否正在播放批量吸入 tween
 ## @_pending_destroy 动画结束后待 queue_free 的掉落物
-## @_damage_this_second 吸收期内本秒已受伤害，配合 DPS 上限
-## @_absorb_dps_cap 吸收期每秒受伤上限
-## @_absorb_max_duration 吸收期最长秒数（兜底结束限伤阶段）
+## @_absorb_max_duration 吸收期最长秒数（兜底结束吸收阶段）
 ## @_hp_per_fragment 按场上碎片数增加的最大生命系数
 var ufo_color: int = 1
 var absorb_phase: bool = true
 var _ufo_manager: Node = null
 var _absorb_visual_running: bool = false
 var _pending_destroy: Array = []
-var _damage_this_second: float = 0.0
-var _absorb_dps_cap: float = _DEFAULT_ABSORB_DPS_CAP
 var _absorb_max_duration: float = _DEFAULT_ABSORB_MAX_DURATION
 var _hp_per_fragment: float = _DEFAULT_HP_PER_FRAGMENT
 
 @onready var _absorb_duration_timer: Timer = $absorb_duration_timer
-@onready var _dps_reset_timer: Timer = $dps_reset_timer
 
 
 ## 节点就绪：补全 mob_info、读表调参、禁用离屏秒杀并延迟开启吸收阶段
@@ -75,8 +69,6 @@ func _is_absorbable_drop(node: Node) -> bool:
 ## 从 mob_info 读取吸收期调参，缺省用脚本常量
 ## @return 无
 func _read_tuning_from_mob_info() -> void:
-	if mob_info.has("absorb_dps_cap"):
-		_absorb_dps_cap = float(mob_info["absorb_dps_cap"])
 	if mob_info.has("absorb_max_duration"):
 		_absorb_max_duration = float(mob_info["absorb_max_duration"])
 	if mob_info.has("hp_per_fragment"):
@@ -109,7 +101,6 @@ func _start_absorb_phase() -> void:
 	_absorb_duration_timer.wait_time = _absorb_max_duration
 	_absorb_duration_timer.one_shot = true
 	_absorb_duration_timer.start()
-	_dps_reset_timer.start()
 	_run_absorb_visuals_batch(candidates)
 
 
@@ -218,13 +209,13 @@ func _finalize_absorb_visuals() -> void:
 		piece.queue_free()
 
 
-## 吸收最长时长到达，强制结束吸收期（限伤阶段兜底）
+## 吸收最长时长到达，强制结束吸收期
 ## @return 无
 func _on_absorb_duration_timer_timeout() -> void:
 	_end_absorb_phase()
 
 
-## 结束吸收期，停止限伤计时；若动画仍在播也标记结束
+## 结束吸收期；若动画仍在播也标记结束
 ## @return 无
 func _end_absorb_phase() -> void:
 	if not absorb_phase:
@@ -239,31 +230,6 @@ func _end_absorb_phase() -> void:
 func _cleanup_absorb_timers() -> void:
 	if is_instance_valid(_absorb_duration_timer):
 		_absorb_duration_timer.stop()
-	if is_instance_valid(_dps_reset_timer):
-		_dps_reset_timer.stop()
-
-
-## 受到伤害；吸收期内受每秒伤害上限约束
-## @param damage 伤害量
-## @return 无
-func mob_take_damage(damage: float) -> void:
-	if invincible:
-		return
-	if absorb_phase:
-		if _damage_this_second + damage > _absorb_dps_cap:
-			return
-		_damage_this_second += damage
-	damage_num_display(damage)
-	hp -= damage
-	progress_bar.value = hp / float(mob_info.health) * 100.0
-	if hp <= 0:
-		died()
-
-
-## 每秒重置吸收期受伤累计
-## @return 无
-func _on_dps_reset_timer_timeout() -> void:
-	_damage_this_second = 0.0
 
 
 ## 死亡入口：清场消失不走结算，玩家击破走 UfoManager
