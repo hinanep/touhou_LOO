@@ -47,6 +47,54 @@
     "JP": "",
     "ENG": ""
   },
+  "cp_reimu_marisa_dsc": {
+    "Id": "cp_reimu_marisa_dsc",
+    "CHS": "受击时一定范围消弹，击退周围小范围的敌人。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_reimu_sanae_dsc": {
+    "Id": "cp_reimu_sanae_dsc",
+    "CHS": "灵梦的符札有概率定身敌人一小段时间。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_reimu_misumaru_dsc": {
+    "Id": "cp_reimu_misumaru_dsc",
+    "CHS": "魅须丸的阴阳玉因到达时限而消失时会爆炸。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_alice_dsc": {
+    "Id": "cp_marisa_alice_dsc",
+    "CHS": "释放符卡时，所有人偶会发射小型魔炮，会瞄准自机前方一定距离，符力消耗越高持续时间越长。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_patchouli_dsc": {
+    "Id": "cp_marisa_patchouli_dsc",
+    "CHS": "魔炮消掉弹幕和击破敌人时会掉落增加符力的道具。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_alice_patchouli_dsc": {
+    "Id": "cp_alice_patchouli_dsc",
+    "CHS": "爱丽丝的人偶生成时会释放日符，造成AOE伤害；摧毁时会释放月符，生成回复符力的区域。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_alice_patchouli_dsc": {
+    "Id": "cp_marisa_alice_patchouli_dsc",
+    "CHS": "符卡的符力消耗减半。",
+    "JP": "",
+    "ENG": ""
+  },
+  "cp_marisa_narumi_dsc": {
+    "Id": "cp_marisa_narumi_dsc",
+    "CHS": "释放符卡时，回复等同于消耗符力的1%的血量。",
+    "JP": "",
+    "ENG": ""
+  },
   "esc_keine_1": {
     "Id": "esc_keine_1",
     "CHS": "数符「直线、射线、线段」",
