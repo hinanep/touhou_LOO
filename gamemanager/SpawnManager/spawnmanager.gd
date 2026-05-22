@@ -53,7 +53,7 @@ func del_mob(mob_id):
 			mob.die.disconnect(del_mob)
 
 		# 清理C#避障模块引用
-		if player_var.MonsterAvoidanceManager and mob.has_method("get_avoidance_module"):
+		if RunSession.MonsterAvoidanceManager and mob.has_method("get_avoidance_module"):
 			var avoidance_module = mob.get_avoidance_module()
 			if avoidance_module:
 				avoidance_module.Call("unregister")

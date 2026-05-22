@@ -28,7 +28,7 @@ func _init():
 	SignalBus.upgrade_max.connect(on_upgrade_card_max)
 	SignalBus.ban_card.connect(on_ban_card)
 	SignalBus.upgrade_group.connect(on_upgrade_card)
-	card_pool.unlocked = table.SpellCard.duplicate()
+	card_pool.unlocked = RunModifiers.duplicate_resolved_table('SpellCard')
 	for id in card_pool.unlocked:
 		if id != 'sc_daiyousei':
 			card_pool.unlocked[id]['weight'] = 1

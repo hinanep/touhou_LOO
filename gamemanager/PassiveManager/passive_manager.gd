@@ -36,7 +36,7 @@ func _init() -> void:
 	SignalBus.ban_passive.connect(on_ban_passive)
 	SignalBus.upgrade_group.connect(on_upgrade_passive)
 
-	passive_pool.unlocked = table.Passive.duplicate()
+	passive_pool.unlocked = RunModifiers.duplicate_resolved_table('Passive')
 	for passives in passive_pool.unlocked:
 		passive_pool.unlocked[passives]['weight'] = 1
 

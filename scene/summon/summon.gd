@@ -30,6 +30,7 @@ func _ready() -> void:
 
 	SignalBus.upgrade_group.connect(_on_upgrade_signal)
 	SignalBus.true_use_card.connect(_on_sc_destroy)
+	SignalBus.renew_state.connect(_on_renew_state)
 
 
 
@@ -41,7 +42,7 @@ func initialize(p_id: String, p_transform: Transform2D, p_damage_source: String,
 		if not table.Summoned.has(summon_id):
 			push_error("Summon ID not found in table: " + summon_id)
 			return
-		self.summon_info = table.Summoned[summon_id]
+		self.summon_info = table.resolve_summoned(summon_id)
 		_one_time_setup_from_info()
 
 	# --- 每次重生时的重置逻辑 ---
@@ -154,8 +155,17 @@ func _on_redirection_timeout() -> void:
 
 
 
-func _on_upgrade_signal(group: String,cur) -> void:
-	if summon_info.get("upgrade_group") != group: return
+func _on_renew_state(id: String) -> void:
+	if id != summon_id:
+		return
+	summon_info = table.resolve_summoned(summon_id)
+	if is_active:
+		_setup_timers(summon_id)
+
+
+func _on_upgrade_signal(group: String, cur) -> void:
+	if summon_info.get('upgrade_group') != group:
+		return
 	level += 1
 	# TODO: 应用实际的升级效果
 

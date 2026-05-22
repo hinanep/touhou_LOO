@@ -124,6 +124,17 @@ signal drop(id, global_position, value)
 ## @param point_ratio_buff: float - 点数 (?) 获取倍率/加成。
 signal fly_to_player(exp_buff, mana_buff, score_buff, point_ratio_buff)
 
+# ==================== 飞碟事件 (UFO) ====================
+## 拾起飞碟钥匙后请求开始一场飞碟事件。
+## @param color: int - 1=红 2=绿 3=蓝
+## @param pickup_position: Vector2 - 拾起位置
+signal ufo_spawn_requested(color, pickup_position)
+## 飞碟被玩家击破，携带账本快照进入结算。
+## @param ledger: Dictionary - exp/mana/score/fragment_count
+## @param color: int - 1=红 2=绿 3=蓝
+## @param kill_global_position: Vector2 - 击破位置
+signal ufo_killed(ledger, color, kill_global_position)
+
 signal d4c_create(id,position,parent,damage,callback)
 # ==================== 调试/控制 相关信号 ====================
 signal clear_enemy(not_drop:bool)

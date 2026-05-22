@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cms8wuhr4ftsi" path="res://gamemanager/SpawnManager/spawnmanager.gd" id="4_2ujjm"]
 [ext_resource type="Script" uid="uid://dh17e78nirbh0" path="res://ui/InGame/drops.gd" id="5_7ehn4"]
 [ext_resource type="Script" uid="uid://bfglv8fvpyl4j" path="res://ui/InGame/d4c.gd" id="6_fs76o"]
+[ext_resource type="Script" uid="uid://6epbhrw2em82" path="res://gamemanager/UfoManager/UfoManager.gd" id="7_ufo_mgr"]
 [ext_resource type="PackedScene" uid="uid://b52quesshidbh" path="res://scene/tilemap/level1.tscn" id="9_7xnml"]
 [ext_resource type="Script" uid="uid://dbm3kll2vedrc" path="res://ui/TestScene/shatter.gd" id="10_1xypp"]
 [ext_resource type="PackedScene" uid="uid://dl15bichusdko" path="res://scene/FragmentContainer.tscn" id="11_v3t2b"]
@@ -98,6 +99,9 @@ script = ExtResource("5_7ehn4")
 script = ExtResource("6_fs76o")
 
 [node name="noparent" type="Node2D" parent="SpawnManager" unique_id=1620715197]
+
+[node name="UfoManager" type="Node" parent="SpawnManager"]
+script = ExtResource("7_ufo_mgr")
 
 [node name="air_wall" type="StaticBody2D" parent="." unique_id=802744890]
 process_mode = 1

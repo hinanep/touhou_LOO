@@ -53,24 +53,64 @@ var skill_num_max
 
 var language = 'CHS'
 
-#运行时使用
-var SkillManager :SkillManagers
-var CardManager :CardManagers
-var SpawnManager :SpawnManagers
-var PassiveManager :PassiveManagers
-var CpManager :CpManagers
-var MonsterAvoidanceManager
+# 局内 Manager / 场景绑定 — 转发至 RunSession（见 ADR-0002）
+var SkillManager: SkillManagers:
+	get:
+		return RunSession.SkillManager
+var CardManager: CardManagers:
+	get:
+		return RunSession.CardManager
+var PassiveManager: PassiveManagers:
+	get:
+		return RunSession.PassiveManager
+var CpManager: CpManagers:
+	get:
+		return RunSession.CpManager
+var SpawnManager: SpawnManagers:
+	get:
+		return RunSession.SpawnManager
+	set(value):
+		RunSession.SpawnManager = value
+var tmp_scene: Node:
+	get:
+		return RunSession.tmp_scene
+	set(value):
+		RunSession.tmp_scene = value
+var worldenvir: WorldEnvironment:
+	get:
+		return RunSession.worldenvir
+	set(value):
+		RunSession.worldenvir = value
+var air_wall_top: float:
+	get:
+		return RunSession.air_wall_top
+	set(value):
+		RunSession.air_wall_top = value
+var air_wall_bottom: float:
+	get:
+		return RunSession.air_wall_bottom
+	set(value):
+		RunSession.air_wall_bottom = value
+var air_wall_left: float:
+	get:
+		return RunSession.air_wall_left
+	set(value):
+		RunSession.air_wall_left = value
+var air_wall_right: float:
+	get:
+		return RunSession.air_wall_right
+	set(value):
+		RunSession.air_wall_right = value
+var underrecycle_tween: Array:
+	get:
+		return RunSession.underrecycle_tween
+
 var dep:dep_formula = dep_formula.new()
 var player_hp=0:
 	get:
 		return player_hp
 	set(value):
 		player_hp = clamp(value,-1,player_hp_max)
-var air_wall_top
-var air_wall_bottom
-var air_wall_left
-var air_wall_right
-
 var mana=0:
 		set(value):
 			mana = clamp(value,0,mana_max)
@@ -102,8 +142,6 @@ var card_num_max
 
 var summon_level_max
 
-var tmp_scene
-
 var free_card
 
 var passive_num_max
@@ -115,47 +153,27 @@ var exp_need:
 		return level*12 +12
 
 var damage_sum
-var worldenvir:WorldEnvironment
 var need_glow:int:
+	get:
+		return RunSession.need_glow
 	set(value):
 		if value < 0:
-			need_glow = 0
+			RunSession.need_glow = 0
 		else:
-			need_glow = value
+			RunSession.need_glow = value
 
-var underrecycle_tween = []
-func _clear_all_tweens():
-	for tween in underrecycle_tween:
-		if tween is Tween and tween.is_valid():
-			print('clear tween')
-			tween.kill()
-	underrecycle_tween.clear()
 func _ready() -> void:
 	ini()
 func _physics_process(delta: float) -> void:
 	if shake_damage > 0:
 		shake_damage -= delta
 		shake_screen_damage(shake_damage)
-func new_scene():
-	if SkillManager!=null:
-		SkillManager.destroy()
-		SkillManager.free()
-	if CardManager!=null:
-		CardManager.destroy()
-		CardManager.free()
-	if PassiveManager!=null:
-		PassiveManager.destroy()
-		PassiveManager.free()
-	if CpManager!=null:
-		CpManager.destroy()
-		CpManager.free()
 
-	SkillManager = SkillManagers.new()
-	CardManager = CardManagers.new()
-	PassiveManager = PassiveManagers.new()
-	CpManager = CpManagers.new()
-	MonsterAvoidanceManager = get_node("/root/MonsterAvoidanceManager")
-	MonsterAvoidanceManager.Reset()
+
+func new_scene() -> void:
+	RunSession.begin_run()
+
+
 #玩家造成伤害公式
 func player_make_melee_damage(basic_damage,damage_source = "none"):
 	#if randf() < critical_rate:
@@ -224,68 +242,26 @@ func shake_screen(time,interval,intensity):
 
 	ct = null
 
+
 func boss_coming(id:String):
-			SignalBus.kill_all.emit()
-			var mv :Tween= player_var.player_node.create_tween()
-			player_var.underrecycle_tween.append(mv)
-			var tmpcamera:Camera2D = get_viewport().get_camera_2d()
-			tmpcamera.top_level = true
-			mv.set_parallel()
+	await RunSession.boss_coming(id)
 
-			mv.tween_property(player_var.player_node,'global_position',Vector2(-400,0),0.1)
-			mv.tween_property(tmpcamera,'global_position',Vector2(0,0),0.1)
-			var viewport_size = Vector2(1920,1080)
-			await mv.finished
-			player_var.air_wall_bottom = viewport_size.y/2
-			player_var.air_wall_top = -viewport_size.y/2
-			player_var.air_wall_left = -viewport_size.x/2
-			player_var.air_wall_right = viewport_size.x/2
 
-			tmp_scene.get_node('air_wall/left').position.x = -viewport_size.x/2
-			tmp_scene.get_node('air_wall/right').position.x = viewport_size.x/2
-			tmp_scene.get_node('air_wall/top').position.y = -viewport_size.y/2
-			tmp_scene.get_node('air_wall/down').position.y = viewport_size.y/2
-			lock_camera()
-
-			var boss = PresetManager.getpre(id).instantiate()
-
-			boss.boss_init(id)
-			boss.position = Vector2(2000,1000)
-			tmp_scene.get_node('SpawnManager').add_mob(boss)
-			mv = boss.create_tween()
-			player_var.underrecycle_tween.append(mv)
-			mv.tween_property(boss,'global_position',Vector2(600,0),3)
-			await mv.finished
-			boss.fight_begin()
-			SignalBus.boss_stage.emit(true)
-			return
 func lock_camera():
-	var tmpcamera:Camera2D = get_viewport().get_camera_2d()
-	#camera.position_smoothing_enabled = true
-	tmpcamera.limit_bottom = player_var.air_wall_bottom*2
-	tmpcamera.limit_left = player_var.air_wall_left*2
-	tmpcamera.limit_right = player_var.air_wall_right*2
-	tmpcamera.limit_top = player_var.air_wall_top*2
+	RunSession.lock_camera()
+
 
 func screen_black(intensity:float,in_time:float,duration_time:float,out_time:float):
-	var black_mo = player_node.get_node('black')
+	RunSession.screen_black(intensity, in_time, duration_time, out_time)
 
-	var blacking = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	player_var.underrecycle_tween.append(blacking)
-	blacking.tween_property(black_mo,"modulate",Color(1,1,1,intensity),in_time)
-	blacking.tween_interval(duration_time)
-	blacking.tween_property(black_mo,"modulate",Color(1,1,1,0),out_time)
 
 func require_env_glowing(getin:bool):
-	if getin:
-		need_glow+=1
-		print("needglow = ")
-		print(need_glow)
-		worldenvir.environment.set_glow_enabled(true)
-	else:
-		need_glow-=1
-		if need_glow==0:
-			worldenvir.environment.set_glow_enabled(false)
+	RunSession.require_env_glowing(getin)
+
+
+func _clear_all_tweens() -> void:
+	RunSession.clear_tweens()
+
 
 func ini():
 	var ini_list = initial_status.new()

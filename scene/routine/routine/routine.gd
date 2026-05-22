@@ -44,7 +44,7 @@ func _initialize_prefabs_and_pools() -> void:
 		attack_prefabs.append(prefab)
 		# 为每种攻击创建一个独立的对象池
 		var pool_container
-		if table.Attack[attack_id].get('reference_system','world') == 'world':
+		if table.resolve_attack(attack_id).get('reference_system', 'world') == 'world':
 			pool_container = Node.new() # 创建一个节点来持有实例化的对象
 		else:
 			pool_container = Node2D.new() # 跟随父节点

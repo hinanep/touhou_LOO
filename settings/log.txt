@@ -18,5 +18,4 @@ gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings
 gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Summoned.xlsx:Summoned => C:\Users\10709\Desktop\thloo\settings\dist\Summoned\Summoned.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\TID.xlsx:TID => C:\Users\10709\Desktop\thloo\settings\dist\TID\TID.json
 gd_excelexporter.core.engine-INFO:导出：C:\Users\10709\Desktop\thloo\settings\data\Upgrade.xlsx:Upgrade => C:\Users\10709\Desktop\thloo\settings\dist\Upgrade\Upgrade.json
-gd_excelexporter.core.engine-WARNING:~$BossRoutine.xlsx 不是配置表，跳过！
 gd_excelexporter.generators.json2-INFO:创建：dist\settings.gd

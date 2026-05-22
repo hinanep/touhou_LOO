@@ -89,6 +89,19 @@
     "health": 30.0,
     "speed": 100.0
   },
+  "enm_ufo": {
+    "id": "enm_ufo",
+    "type": "ufo",
+    "movement": "default",
+    "danmaku_creator": "",
+    "physical_damage": 0.0,
+    "magical_damage": 0.0,
+    "health": 500.0,
+    "speed": 0.0,
+    "absorb_dps_cap": 50.0,
+    "absorb_max_duration": 2.5,
+    "hp_per_fragment": 8.0
+  },
   "enm_memcolorful": {
     "id": "enm_memcolorful",
     "type": "elite",

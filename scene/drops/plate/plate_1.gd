@@ -1,59 +1,54 @@
 extends drop
 
+## 飞碟钥匙颜色：1=红 2=绿 3=蓝，掉落时锁定
+var ufo_color: int = 1
 
-func _ready():
-	#拾起获得经验
-	experience = 100
 
-	#禁止飞碟合成/被合成大P点
+func _ready() -> void:
 	not_fusioning = false
-
 	set_physics_process(false)
-#@brief: 范围内存在玩家层单位（详见碰撞层）时触发，产生被拾起效果
-#@param body 疑似玩家节点
-#@return: 无
-func _on_body_entered(_body):
-	#添加经验
-	player_var.player_exp += experience
-	#音效
-	AudioManager.play_sfx("music_sfx_pickup")
-	#随机激活羁绊，若无羁绊激活，则随机升级三次
-	if not player_var.CpManager.random_choose_cp():
-		for j in 3:
-			rand_upgrade()
-	#随机颜色飞碟
-	var color = randi_range(1,3)
-	#不同颜色效果触发
-	match color:
-		#red
+	ufo_color = randi_range(1, 3)
+	_apply_ufo_color_visual()
+
+
+## 按 ufo_color 显示对应色盘帧与宇宙贴图 tint
+func _apply_ufo_color_visual() -> void:
+	var plate_sprite: AnimatedSprite2D = $AnimatedSprite2D
+	plate_sprite.visible = true
+	match ufo_color:
 		1:
-			SignalBus.fly_to_player.emit(2,1,1,false)
-
-			player_var.player_exp += player_var.exp_need
-		#green
+			plate_sprite.frame = 2
 		2:
-			SignalBus.fly_to_player.emit(1,2,1,false)
-
-			player_var.free_card += 1
-		#blue
+			plate_sprite.frame = 1
 		3:
-			SignalBus.fly_to_player.emit(1,1,2,true)
+			plate_sprite.frame = 0
+		_:
+			plate_sprite.frame = 0
+	var tint := Color.WHITE
+	match ufo_color:
+		1:
+			tint = Color(1.0, 0.7, 0.7, 1.0)
+		2:
+			tint = Color(0.7, 1.0, 0.7, 1.0)
+		3:
+			tint = Color(0.7, 0.7, 1.0, 1.0)
+		_:
+			pass
+	if has_node("Sprite2D/Sprite2D"):
+		$"Sprite2D/Sprite2D".self_modulate = tint
 
 
-	queue_free()
-#@brief: 随机升级，对已拥有技能、符卡、被动随机选择一个可升级的进行升级
-#@param 无
-#@return: 无
-func rand_upgrade():
-	var selected = RandomPool.random_nselect_from_have(1)
-	if selected.is_empty():
-		print('no upgradeable')
+## 范围内玩家进入：无活跃飞碟时发射生成信号并销毁；否则忽略
+func _on_body_entered(_body) -> void:
+	var ufo_mgr: Node = _get_ufo_manager()
+	if ufo_mgr != null and ufo_mgr.has_method("has_active_ufo") and ufo_mgr.has_active_ufo():
 		return
-	for id in selected:
-		match selected[id]:
-			'skill':
-				SignalBus.try_add_skill.emit(id)
-			'card':
-				SignalBus.try_add_card.emit(id)
-			'passive':
-				SignalBus.try_add_passive.emit(id)
+	AudioManager.play_sfx("music_sfx_pickup")
+	SignalBus.ufo_spawn_requested.emit(ufo_color, global_position)
+	queue_free()
+
+
+func _get_ufo_manager() -> Node:
+	if player_var.SpawnManager == null or not is_instance_valid(player_var.SpawnManager):
+		return null
+	return player_var.SpawnManager.get_node_or_null("UfoManager")

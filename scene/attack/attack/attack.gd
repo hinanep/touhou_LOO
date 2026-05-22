@@ -40,13 +40,13 @@ func _ready() -> void:
 	SignalBus.boss_stage.connect(_set_boss_mode)
 	origin_scale = texture.scale
 # 公开的初始化接口，由对象池在每次取出节点时调用
-func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: String, batch_num:int) -> void:
+func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: String, p_batch_num:int) -> void:
 	self.damage_source = p_damage_source
 	self.global_transform = p_transform
 	self.penetration_count = 0
-	self.batch_num = batch_num
+	self.batch_num = p_batch_num
 	if attack_info.is_empty():
-		attack_info = table.Attack.get(attack_id,{})
+		attack_info = table.resolve_attack(attack_id)
 		if attack_info.has("reflection"):
 			if attack_info.reflection.has("enemy"):
 				set_collision_mask_value(2,true)
@@ -145,8 +145,9 @@ func _apply_debuffs(body: Node) -> void:
 #=============================================================================
 
 func _update_dynamic_stats(id) -> void:
-	if id != attack_info.id:
+	if id != attack_info.get('id', ''):
 		return
+	attack_info = table.resolve_attack(id)
 	# 更新形状和尺寸
 	_update_shape_and_size()
 

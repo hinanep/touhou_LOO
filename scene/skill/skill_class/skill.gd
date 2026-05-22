@@ -64,7 +64,7 @@ func _connect_signals() -> void:
 func add_routine(id: String) -> Node:
 	var routine_instance = PresetManager.getpre('routine').instantiate()
 	routine_instance.position = Vector2.ZERO
-	routine_instance.routine_info = table.Routine[id].duplicate()
+	routine_instance.routine_info = table.resolve_routine(id)
 	routine_instance.damage_source = self.damage_source
 
 	add_child(routine_instance)
@@ -85,7 +85,10 @@ func _fire() -> void:
 func _update_cooldown_timer(id) -> void:
 	if id != skill_info.id:
 		return
-	var base_cd = skill_info.get("cd", 1.0)
+	var resolved_skill = table.resolve_skill(id)
+	if resolved_skill.has('cd'):
+		skill_info['cd'] = resolved_skill.cd
+	var base_cd = skill_info.get('cd', 1.0)
 	var efficiency = skill_info.get("cd_reduction_efficicency", 1.0)
 
 	var player_cd_reduction_factor = 1.0 + player_var.colddown_reduce * efficiency

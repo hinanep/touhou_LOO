@@ -32,7 +32,7 @@ func _init() -> void:
 	SignalBus.ban_skill.connect(on_ban_skill)
 	SignalBus.upgrade_group.connect(on_upgrade_skill)
 
-	skill_pool.unlocked = table.Skill.duplicate()
+	skill_pool.unlocked = RunModifiers.duplicate_resolved_table('Skill')
 	for id in skill_pool.unlocked:
 		if id == "ski_basemagic" or id == "ski_basephysics":
 			skill_pool.unlocked[id]['weight'] = 0

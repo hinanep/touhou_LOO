@@ -38,9 +38,10 @@ func _open():
 
 func _close():
 	AudioManager.stop_background_bgm()
-	player_var.SpawnManager.clear()
+	if RunSession.SpawnManager != null:
+		RunSession.SpawnManager.clear()
 	# 清理所有计时器
-	player_var._clear_all_tweens()
+	RunSession.clear_tweens()
 
 
 

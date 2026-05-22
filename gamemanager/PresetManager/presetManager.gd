@@ -37,6 +37,7 @@ var preset_map = {
 	'enm_book':"res://scene/enemys/enm_book.tscn",
 	'enm_eltkedama':"res://scene/enemys/enm_elite_kedama.tscn",
 	'enm_kedama':"res://scene/enemys/enm_kedama.tscn",
+	'enm_ufo':"res://scene/enemys/ufo/ufo_enemy.tscn",
 
 	'd4c':"res://scene/DanmaC/DC.tscn",
 	'danma':"res://scene/DanmaC/danma/danma.tscn",

@@ -31,6 +31,8 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 table="*res://settings/dist/table.gd"
+RunModifiers="*res://gamemanager/RunModifiers/RunModifiers.gd"
+RunSession="*res://gamemanager/RunSession/RunSession.gd"
 PresetManager="*res://gamemanager/PresetManager/presetManager.gd"
 AudioManager="*res://gamemanager/AudioManager/AudioManager.gd"
 SignalBus="*res://gamemanager/SignalBus/SignalBus.gd"
