@@ -47,7 +47,7 @@ func fusion(v,e,s,m):
 
 	value = 1
 	not_fusioning= true
-	$AnimatedSprite2D.scale = Vector2(log(experience+1)/5.0,log(experience+1)/5.0)
+	$AnimatedSprite2D.scale = Vector2(log(experience+1)/3.0+0.2,log(experience+1)/3.0+0.2)
 
 func find_fusion() -> void:
 	if not monitoring:
