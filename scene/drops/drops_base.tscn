@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxwsx0wpy3dir"]
+[gd_scene format=3 uid="uid://bxwsx0wpy3dir"]
 
 [ext_resource type="Script" uid="uid://da7jfes6dmdrt" path="res://scene/drops/drops_base.gd" id="1_7oqge"]
 [ext_resource type="Texture2D" uid="uid://b1gad75fvwygj" path="res://icon.svg" id="1_cfmt8"]
@@ -42,7 +42,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_mss2k"]
 radius = 52.0
 
-[node name="DropsBase" type="Area2D" groups=["drop"]]
+[node name="DropsBase" type="Area2D" unique_id=1220843769 groups=["drop"]]
 process_mode = 1
 z_index = -1
 collision_layer = 16
@@ -50,13 +50,13 @@ collision_mask = 17
 monitoring = false
 script = ExtResource("1_7oqge")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1026537732]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_sdtpr")
 autoplay = "default"
 frame_progress = 0.183001
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=6508187]
 shape = SubResource("CircleShape2D_mss2k")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
