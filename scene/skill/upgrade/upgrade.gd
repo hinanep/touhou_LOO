@@ -68,6 +68,7 @@ func _on_boost_active(cp, is_active: bool) -> void:
 		TYPE_DICTIONARY:
 			cp_id = cp.get('id')
 
+	var affected_ids: Array[String] = []
 	for boostid in boost_atk:
 		var boost_info = table.Attack[boostid]
 		if boost_info.effective_condition != cp_id:
@@ -76,6 +77,8 @@ func _on_boost_active(cp, is_active: bool) -> void:
 			var attack_base = table.get_base_row('Attack', id)
 			if boost_info.get('routine_group') == attack_base.get('routine_group') and attack_base.type != 'boost':
 				RunModifiers.register_cp_row_patch(cp_id, 'Attack', id, boost_info, is_active)
+				if not affected_ids.has(id):
+					affected_ids.append(id)
 	for boostid in boost_sum:
 		var boost_info = table.Summoned[boostid]
 		for id in table.Summoned:
@@ -86,6 +89,10 @@ func _on_boost_active(cp, is_active: bool) -> void:
 			var s_groups = sum_base.get('routine_group', [])
 			if b_groups.size() > 0 and (b_groups[0] in s_groups) and sum_base.type != 'boost':
 				RunModifiers.register_cp_row_patch(cp_id, 'Summoned', id, boost_info, is_active)
+				if not affected_ids.has(id):
+					affected_ids.append(id)
+	for row_id in affected_ids:
+		SignalBus.renew_state.emit(row_id)
 
 
 func up_skill(group, currentlevel) -> void:
