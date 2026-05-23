@@ -34,6 +34,21 @@ func _ready():
 	SignalBus.boss_set_stage.connect(start_progess)
 func _physics_process(delta: float) -> void:
 	move_func.call(delta)
+	_face_player()
+
+const _FACE_HYST := 40.0
+
+## 根据玩家水平位置更新 scaledir，并以与 enemy_base 相同步长渐变朝向
+func _face_player() -> void:
+	if not is_instance_valid(player_var.player_node):
+		return
+	var dx = player_var.player_node.global_position.x - global_position.x
+	# move_random 会使 Boss 横向穿过玩家垂线，|dx| 很小时反复翻转 scaledir 导致抽搐
+	if dx > _FACE_HYST:
+		scaledir = -1
+	elif dx < -_FACE_HYST:
+		scaledir = 1
+	sprite.scale.x = clampf(sprite.scale.x - 0.05 * scaledir, -abs(scalex), abs(scalex))
 
 func died(disppear = false):
 
