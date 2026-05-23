@@ -691,7 +691,7 @@ script = ExtResource("1_w6a4s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1620660895]
 position = Vector2(0, -4.9999895)
-scale = Vector2(0.3, 0.296)
+scale = Vector2(-0.3, 0.296)
 sprite_frames = SubResource("SpriteFrames_4gakf")
 animation = &"move"
 autoplay = "default"
@@ -733,6 +733,7 @@ script = ExtResource("158_wrr5r")
 [node name="progress_timer" type="Timer" parent="." unique_id=251432839]
 
 [node name="DamageNum" parent="." unique_id=236422576 instance=ExtResource("3_rrecl")]
+visible = false
 
 [node name="outscreen_disppear" type="Timer" parent="." unique_id=1837738076]
 wait_time = 10.0
