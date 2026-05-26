@@ -47,11 +47,11 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	self.global_transform = p_transform
 	self.penetration_count = 0
 	self.batch_num = p_batch_num
-	if attack_info.is_empty():
-		attack_info = table.resolve_attack(attack_id)
-		if attack_info.has("reflection"):
-			if attack_info.reflection.has("enemy"):
-				set_collision_mask_value(2,true)
+	var need_reflection_setup := attack_info.is_empty()
+	attack_info = table.resolve_attack(attack_id)
+	if need_reflection_setup and attack_info.has("reflection"):
+		if attack_info.reflection.has("enemy"):
+			set_collision_mask_value(2, true)
 
 	if attack_info.get("damage_times") == "dot":
 		dot_tween = create_tween().set_loops()

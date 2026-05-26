@@ -37,12 +37,13 @@ func _ready() -> void:
 # 公开的初始化接口，由 Routine 的对象池在每次取出节点时调用
 func initialize(p_id: String, p_transform: Transform2D, p_damage_source: String,batch_num:int) -> void:
 	# --- 自我配置 ---
-	if self.summon_id != p_id:
-		self.summon_id = p_id
-		if not table.Summoned.has(summon_id):
-			push_error("Summon ID not found in table: " + summon_id)
-			return
-		self.summon_info = table.resolve_summoned(summon_id)
+	if not table.Summoned.has(p_id):
+		push_error("Summon ID not found in table: " + p_id)
+		return
+	var id_changed := self.summon_id != p_id
+	self.summon_id = p_id
+	self.summon_info = table.resolve_summoned(summon_id)
+	if id_changed:
 		_one_time_setup_from_info()
 
 	# --- 每次重生时的重置逻辑 ---
