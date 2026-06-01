@@ -1,5 +1,22 @@
 extends Node
 
+signal stat_changed(stat_name: StringName)
+
+const STAT_HP := &"hp"
+const STAT_HP_MAX := &"hp_max"
+const STAT_MANA := &"mana"
+const STAT_MANA_MAX := &"mana_max"
+const STAT_EXP := &"exp"
+const STAT_LEVEL := &"level"
+const STAT_POINT := &"point"
+const STAT_POINT_RATIO := &"point_ratio"
+const STAT_LIFE := &"life"
+const STAT_FREE_CARD := &"free_card"
+
+## HUD 相关 stat 变化时发出 stat_changed
+func _emit_stat(stat_name: StringName) -> void:
+	stat_changed.emit(stat_name)
+
 ##############攻击类#################
 var player_melee_damage_ratio#- 体术伤害倍率：影响体术类技能的伤害
 var player_bullet_damage_ratio #- 弹幕伤害倍率：影响弹幕类技能的伤害
@@ -16,16 +33,34 @@ var player_hp_max = 0: #生命上限
 	get:
 		return (player_hp_max+hp_max_ex)*hp_max_ex_percent
 	set(value):
+		if player_hp_max == value:
+			return
 		var ex = value - player_hp_max
 		player_hp_max = value
+		_emit_stat(STAT_HP_MAX)
 		player_hp += ex
 
-var hp_max_ex = 0
-var hp_max_ex_percent = 1
+var hp_max_ex = 0:
+	set(value):
+		if hp_max_ex == value:
+			return
+		hp_max_ex = value
+		_emit_stat(STAT_HP_MAX)
+var hp_max_ex_percent = 1:
+	set(value):
+		if hp_max_ex_percent == value:
+			return
+		hp_max_ex_percent = value
+		_emit_stat(STAT_HP_MAX)
 var player_hp_regen  #每秒生命回复
 var lifesteal  #吸血：造成伤害时回复伤害量与吸血相乘的生命值
 var player_speed  #移动速度
-var player_life_addi  #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
+var player_life_addi = 0: #- 残机：血量耗尽后游戏结束，但如果还有残机的话可以消耗一残机满血继续
+	set(value):
+		if player_life_addi == value:
+			return
+		player_life_addi = value
+		_emit_stat(STAT_LIFE)
 
 var defence_melee  #- 体术防御：受到敌人碰撞伤害（能直接被玩家击破的东西接触玩家时的伤害）时获得与体术防御相关的减免
 var defence_bullet #- 弹幕防御：受到敌人弹幕伤害时获得与弹幕防御相关的减免
@@ -36,15 +71,23 @@ var invincible_time  #- 受伤后无敌时间：受到伤害后的无敌时间
 var range_pick #- 拾取范围：拾取记忆碎片的最大距离
 var luck  #- 幸运：影响各种与概率相关的东西
 var experience_ratio  #- 经验倍率：影响每一记忆碎片增加多少经验
-var point_ratio=1 #- 得点倍率：影响每一记忆碎片增加多少分数
+var point_ratio=1: #- 得点倍率：影响每一记忆碎片增加多少分数
+	set(value):
+		if point_ratio == value:
+			return
+		point_ratio = value
+		_emit_stat(STAT_POINT_RATIO)
 var mana_ratio #- 符力倍率：影响每一记忆碎片增加多少符力
 var change_times #- 刷新排除次数：增加刷新与排除的次数。前者可刷新升级时可选的记忆结晶，后者可使选择的记忆结晶在本局游戏剩余时间内不再出现
 var curse  #- 诅咒：增加敌人的各属性和刷新率
 var mana_max=0: #- 符力上限：可存储的最大符力
-			set(value):
-				var ex = value - mana_max
-				mana_max = value
-				mana += ex
+	set(value):
+		if mana_max == value:
+			return
+		var ex = value - mana_max
+		mana_max = value
+		_emit_stat(STAT_MANA_MAX)
+		mana += ex
 
 #######################################
 
@@ -58,29 +101,48 @@ var player_hp=0:
 	get:
 		return player_hp
 	set(value):
-		player_hp = clamp(value,-1,player_hp_max)
+		var new_hp = clamp(value, -1, player_hp_max)
+		if player_hp == new_hp:
+			return
+		player_hp = new_hp
+		_emit_stat(STAT_HP)
 var mana=0:
-		set(value):
-			mana = clamp(value,0,mana_max)
+	set(value):
+		var new_mana = clamp(value, 0, mana_max)
+		if mana == new_mana:
+			return
+		mana = new_mana
+		_emit_stat(STAT_MANA)
 var mana_cost
 var last_cardcost = 100
 var max_point
-var point:int:
+var point:int = 0:
 	set(value):
-		point = point + (value-point) *point_ratio
+		var new_point = point + (value - point) * point_ratio
+		if point == new_point:
+			return
+		point = new_point
+		_emit_stat(STAT_POINT)
 var is_uping = false
 var _bonus_pick_active: bool = false
 var _bonus_pick_queue: int = 0
 var player_exp=0:
 	set(value):
-
 		if value - player_exp > 0:
 			AudioManager.play_sfx("music_sfx_pickup")
+		if player_exp == value:
+			return
 		player_exp = value
-		if is_uping!=true and player_var.player_exp >= player_var.exp_need:
+		_emit_stat(STAT_EXP)
+		if is_uping != true and player_var.player_exp >= player_var.exp_need:
 			is_uping = true
 			level_up()
-var level=0
+var level=0:
+	set(value):
+		if level == value:
+			return
+		level = value
+		_emit_stat(STAT_LEVEL)
 var is_invincible
 var time_secs
 var player_diretion_angle
@@ -92,7 +154,12 @@ var card_num_max
 
 var summon_level_max
 
-var free_card
+var free_card = 0:
+	set(value):
+		if free_card == value:
+			return
+		free_card = value
+		_emit_stat(STAT_FREE_CARD)
 
 var passive_num_max
 

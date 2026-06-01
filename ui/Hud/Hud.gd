@@ -33,6 +33,33 @@ func _ready():
 	SignalBus.set_bosstimer.connect(set_boss_timer)
 	SignalBus.delete_mode.connect(_on_delete_mode_changed)
 
+	player_var.stat_changed.connect(_on_stat_changed)
+	_refresh_all_stats()
+
+func _refresh_all_stats() -> void:
+	hp_display()
+	card_mana_display()
+	point_and_ratio_display()
+	exp_display()
+	life_display()
+	_refresh_card_now()
+
+func _on_stat_changed(stat_name: StringName) -> void:
+	match stat_name:
+		player_var.STAT_HP, player_var.STAT_HP_MAX:
+			hp_display()
+		player_var.STAT_MANA, player_var.STAT_MANA_MAX, player_var.STAT_FREE_CARD:
+			card_mana_display()
+			_refresh_card_now()
+		player_var.STAT_EXP, player_var.STAT_LEVEL:
+			exp_display()
+		player_var.STAT_POINT, player_var.STAT_POINT_RATIO:
+			point_and_ratio_display()
+		player_var.STAT_LIFE:
+			life_display()
+		_:
+			pass
+
 func hp_display():
 
 	#hp_cont.offset.x =   player_var.player_hp/player_var.player_hp_max * 275 - 275
@@ -58,19 +85,21 @@ func point_and_ratio_display():
 	point_text.text = str(player_var.point)
 
 
+@onready var life1 = $hud/life/lifeBack1/life1
+@onready var life2 = $hud/life/lifeBack2/life2
 
 func life_display():
 	match player_var.player_life_addi:
 		0:
-			$hud/life/have.visible = false
-			$hud/life/have2.visible = false
+			life1.visible = false
+			life2.visible = false
 
 		1:
-			$hud/life/have.visible = true
-			$hud/life/have2.visible = false
+			life1.visible = true
+			life2.visible = false
 		_:
-			$hud/life/have.visible = true
-			$hud/life/have2.visible = true
+			life1.visible = true
+			life2.visible = true
 
 
 
@@ -86,28 +115,29 @@ var _delete_mode_containers: Array[HBoxContainer] = []
 
 func card_display(bias):
 	card_having = card_container.get_child_count()
-	if(card_having==0):
+	if card_having == 0:
 		return
-	if bias!=0:
+	if bias != 0:
 		card_container.get_child(card_selecting).set_highlight(false)
-		#card_container.get_child(card_selecting).set_expand_mode(0)
-		#card_container.get_child(card_selecting).set_stretch_mode(3)
+		card_selecting = int(card_selecting + bias) % card_having
+		card_container.get_child(card_selecting).set_highlight(true)
+	_refresh_card_now()
 
-	card_selecting = int(card_selecting+bias)%card_having
-
+func _refresh_card_now() -> void:
+	card_having = card_container.get_child_count()
+	if card_having == 0:
+		return
+	if card_selecting >= card_having:
+		card_selecting = card_having - 1
 	var now_selected = card_container.get_child(card_selecting)
-	now_selected.set_highlight(true)
-
-
 	$hud/card_now/cardid.text = now_selected.describe
-
-	$hud/card_now/enoughmana.visible =not (now_selected.manacost > player_var.mana)
+	$hud/card_now/enoughmana.visible = not (now_selected.manacost > player_var.mana)
 	#TODO:多语言
 	if player_var.free_card > 0:
 		$hud/card_now/manacost.text = '符力消耗：0!'
 		$hud/card_now/enoughmana.visible = true
 	else:
-		$hud/card_now/manacost.text = '符力消耗：' + str(now_selected.manacost/player_var.mana_cost)
+		$hud/card_now/manacost.text = '符力消耗：' + str(now_selected.manacost / player_var.mana_cost)
 
 func on_add_card(card_info):
 	var newcard = cp_and_skill_texture.instantiate()
@@ -116,23 +146,24 @@ func on_add_card(card_info):
 	card_container.add_child(newcard)
 
 	card_having = card_container.get_child_count()
+	if card_having == 1:
+		card_selecting = 0
+	card_container.get_child(card_selecting).set_highlight(true)
+	_refresh_card_now()
 
-	#for child in card_container.get_children():
-		#child.set_expand_mode(2)
-		#child.set_stretch_mode(4)
-	#card_container.get_child(card_selecting).set_expand_mode(2)
-	#card_container.get_child(card_selecting).set_stretch_mode(4)
+func on_del_card(_id):
+	call_deferred("_on_del_card_deferred")
 
-func on_del_card(id):
-
+func _on_del_card_deferred() -> void:
 	card_having = card_container.get_child_count()
-	if(card_having==0):
+	if card_having == 0:
+		card_selecting = 0
 		return
-	card_selecting = (card_selecting)%card_having
-	for child in card_container.get_children():
-		child.set_expand_mode(2)
-		child.set_stretch_mode(4)
-
+	if card_selecting >= card_having:
+		card_selecting = card_having - 1
+	for i in card_container.get_child_count():
+		card_container.get_child(i).set_highlight(i == card_selecting)
+	_refresh_card_now()
 
 func add_skill(ski_info):
 		if ski_info.id == "ski_basemagic" or ski_info.id == "ski_basephysics":
@@ -161,13 +192,7 @@ func add_passive(psv_info):
 func set_boss_timer(card_time:float):
 	$time.set_boss_timer(card_time)
 
-func _on_renew_timer_timeout():
-	hp_display()
-	card_mana_display()
-	point_and_ratio_display()
-	exp_display()
-	card_display(0)
-	life_display()
+func _on_fps_timer_timeout() -> void:
 	$hud/fps/text.text = str(Engine.get_frames_per_second())
 
 func _on_delete_mode_changed(on: bool,completed:bool) -> void:
