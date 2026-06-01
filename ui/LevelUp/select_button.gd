@@ -1,5 +1,7 @@
 extends TextureButton
 
+const _StatDisplayFormat = preload("res://gamemanager/StatDisplayFormat.gd")
+
 signal upgrade_selected
 var b_type = ''
 var b_id = ''
@@ -51,21 +53,23 @@ func try_upgrade_text(id,upgroup,newlevel,property):
 	if table.Upgrade[upgroup].has(property) and table.Upgrade[upgroup][property] is Array:
 		#如果这是一个被动技能
 		if property == 'buff_addition':
+			var buff_id = table.Passive[id].buff[0]
+			var buff_property: StringName = table.Buff[buff_id].property
 			#等级1时被动技能只需要显示buff基础数值
 			if newlevel == 1:
-				$describe.text += ' '+str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value )
+				$describe.text += ' ' + _StatDisplayFormat.format_property(buff_property, table.Buff[buff_id].base_buff_value)
 				return
 			#技能描述
 			$describe.text += " [color=white]"+table.TID[id+'_dsc'][player_var.language]
 			#添加buff基础数值
-			$describe.text +=' ' + str( table.Buff[ table.Passive[id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1])
+			$describe.text += ' ' + _StatDisplayFormat.format_property(buff_property, table.Buff[buff_id].base_buff_value * table.Upgrade[upgroup][property][newlevel-1])
 			#本次升级技能倍率
 			#$describe.text += '\n '+table.TID[property][player_var.language] + ' ' + str(table.Upgrade[upgroup][property][newlevel-1])+'x\n'
 			return
 		if table.Upgrade[upgroup][property][newlevel-1] != table.Upgrade[upgroup][property][newlevel-2]:
 			if newlevel == 1:
 				return
-			$describe.text += ' '+table.TID[property][player_var.language] + ' ' +str(table.Upgrade[upgroup][property][newlevel-2]) + '->' + str(table.Upgrade[upgroup][property][newlevel-1])+'\n'
+			$describe.text += ' '+table.TID[property][player_var.language] + ' ' + _StatDisplayFormat.format_property(property, table.Upgrade[upgroup][property][newlevel-2]) + '->' + _StatDisplayFormat.format_property(property, table.Upgrade[upgroup][property][newlevel-1])+'\n'
 
 func set_crystal_texture(image):
 	if image!=null:

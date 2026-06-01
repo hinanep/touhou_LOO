@@ -8,8 +8,8 @@ var player_bullet_damage_ratio: float = 1.0 #- 弹幕伤害倍率：影响弹幕
 var bullet_speed_ratio: float = 1.0 #子弹速度比率
 var bullet_duration_ratio: float = 1.0 #持续时间#
 var range_add_ratio: float = 1.0 #攻击范围
-var danma_times: int = 0 #弹幕发射数量加成
-var melee_times: int = 0 # 体术攻击次数
+var danma_times: float = 0.0 #弹幕发射数量加成
+var melee_times: float = 0.0 # 体术攻击次数
 var colddown_reduce: float = 0.0 #冷却缩减
 
 var player_hp_max: float = 200.0 #生命上限

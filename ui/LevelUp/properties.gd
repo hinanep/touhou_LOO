@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+const _StatDisplayFormat = preload("res://gamemanager/StatDisplayFormat.gd")
+
 # 存储所有创建的pp预制体实例
 var pp_list = []
 
@@ -115,28 +117,13 @@ func update_property_text(pp, property_name: String):
 	var display_name = property_names.get(property_name, property_name)
 
 	# 格式化数值显示
-	var value_text = ""
-	if property_value != null:
-		if property_value is float:
-			value_text = "%.2f" % property_value
-		elif property_value is int:
-			value_text = str(property_value)
-		else:
-			value_text = str(property_value)
-	else:
-		value_text = "未设置"
+	var value_text = _StatDisplayFormat.format_property(property_name, property_value)
 
 	# 检查是否有预览变化
 	if preview_changes.has(property_name):
 		var preview_value = preview_changes[property_name]
-		var preview_text = '[color=red]'
-		if preview_value is float:
-			preview_text += "%.2f" % preview_value
-		elif preview_value is int:
-			preview_text += str(preview_value)
-		else:
-			preview_text += str(preview_value)
-		value_text += " -> " + preview_text
+		var preview_text: String = _StatDisplayFormat.format_property(property_name, preview_value)
+		value_text += " -> [color=red]" + preview_text
 
 	set_pp_text(pp, display_name + ": " + value_text)
 
@@ -191,17 +178,20 @@ func set_passive_preview(passive_id: String):
 	var newlevel = RunSession.PassiveManager.get_passive_level(passive_id)+1
 
 	for property in table.Upgrade[upgroup]:
-
-
-			# 根据被动技能的效果设置预览
-			if passive_info.has("buff") and table.Upgrade[upgroup][property] is Array:
-				var change_value =	table.Buff[ table.Passive[passive_id].buff[0] ].base_buff_value * table.Upgrade[upgroup][property][newlevel-1]
-				for buff_id in passive_info.buff:
-					if table.Buff.has(buff_id):
-						var buff_info = table.Buff[buff_id]
-						var property_name = buff_info.get("property", "")
-						var current_value = 0
-						#if player_var.has(property_name):
-						current_value = player_var.get(property_name)
-						#var new_value = current_value + buff_info.get("base_buff_value", 0)
-						set_property_preview(property_name, current_value + change_value)
+		if property != 'buff_addition':
+			continue
+		if not passive_info.has("buff") or not table.Upgrade[upgroup][property] is Array:
+			continue
+		var buff_additions: Array = table.Upgrade[upgroup][property]
+		if newlevel - 1 < 0 or newlevel - 1 >= buff_additions.size():
+			continue
+		var change_value: float = table.Buff[passive_info.buff[0]].base_buff_value * buff_additions[newlevel - 1]
+		for buff_id in passive_info.buff:
+			if not table.Buff.has(buff_id):
+				continue
+			var buff_info = table.Buff[buff_id]
+			var property_name: String = buff_info.get("property", "")
+			if property_name.is_empty():
+				continue
+			var current_value: float = float(player_var.get(property_name))
+			set_property_preview(property_name, current_value + change_value)

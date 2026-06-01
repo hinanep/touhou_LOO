@@ -12,9 +12,9 @@ var point_ratio = false
 var not_fusioning = true
 func _ready() -> void:
 	set_physics_process(false)
-	var  t = create_tween().set_loops()
+	var  t = create_tween()
 	RunSession.underrecycle_tween.append(t)
-	t.tween_interval(1)
+	t.tween_interval(0.1)
 	t.tween_callback(find_fusion)
 func _physics_process(delta):
 	if player_node:

@@ -1,5 +1,7 @@
 extends BaseGUIView
 
+const _StatDisplayFormat = preload("res://gamemanager/StatDisplayFormat.gd")
+
 @onready var hp_cont = $hud/hp/hp_mask/hp_cont
 @onready var hp_text = $hud/hp/hp_text
 
@@ -64,14 +66,14 @@ func hp_display():
 
 	#hp_cont.offset.x =   player_var.player_hp/player_var.player_hp_max * 275 - 275
 	$hud/hp/hp_mask.size.x = player_var.player_hp/player_var.player_hp_max * 280 +45
-	hp_text.text = ("%d" % player_var.player_hp) + "/" + ("%d" % player_var.player_hp_max)
+	hp_text.text = _StatDisplayFormat.format_hud_value(player_var.player_hp) + "/" + _StatDisplayFormat.format_hud_value(player_var.player_hp_max)
 
 func card_mana_display():
 
 	$hud/mana/mana_mask.size.x = player_var.mana/player_var.mana_max * 360
 	#mana_cont.offset.x = 350 - player_var.mana/player_var.mana_max * 350
 
-	mana_text.text = str(player_var.mana) + "/" + str(player_var.mana_max)
+	mana_text.text = _StatDisplayFormat.format_hud_value(player_var.mana) + "/" + _StatDisplayFormat.format_hud_value(player_var.mana_max)
 
 func exp_display():
 	$hud/exp/exp_mask.size.x = player_var.player_exp/player_var.exp_need * 370 + 37
