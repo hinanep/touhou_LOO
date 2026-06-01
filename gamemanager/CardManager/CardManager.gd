@@ -47,10 +47,10 @@ func on_try_add_card(id):
 
 func on_add_card(card_info):
 	var id = card_info.id
-	player_var.damage_sum[id] = 0
+	player_var.damage_sum[id] = 0.0
 	cardnum_have += 1
 	if cardnum_have >= card_num_max:
-		player_var.cardnum_full = true
+		player_var.card_num_full = true
 	player_var.card_full = false
 
 	card_pool.choosed[id]=card_pool.unlocked[id]

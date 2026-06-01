@@ -10,7 +10,7 @@ func _open():
 	$CanvasLayer/RichTextLabel/RichTextLabel.text =String.num_int64(player_var.point)
 	var format_damage = " : %.2f \n"
 	for source in player_var.damage_sum:
-		if player_var.damage_sum[source] < 1:
+		if player_var.damage_sum[source] < 1.0:
 			continue
 		$CanvasLayer/damagesum.text += table.TID[source][player_var.language]
 		$CanvasLayer/damagesum.text += format_damage % player_var.damage_sum[source]

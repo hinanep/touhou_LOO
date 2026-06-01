@@ -246,11 +246,11 @@ func _apply_color_legacy(color: int, fragment_count: int) -> void:
 	var blue_delta := _compute_blue_point_ratio_delta(fragment_count)
 	match color:
 		2:
-			player_var.free_card += 1.0
+			player_var.free_card += 1
 		3:
 			player_var.point_ratio += blue_delta
 		4:
-			player_var.free_card += 1.0
+			player_var.free_card += 1
 			player_var.point_ratio += blue_delta
 		_:
 			pass

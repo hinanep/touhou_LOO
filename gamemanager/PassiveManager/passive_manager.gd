@@ -52,7 +52,7 @@ func on_try_add_passive(id):
 
 func on_add_passive(ski_info):
 	var id = ski_info.id
-	player_var.damage_sum[id] = 0
+	player_var.damage_sum[id] = 0.0
 	passive_num_have += 1
 	if passive_num_have >= player_var.passive_num_max:
 		passive_num_full = true

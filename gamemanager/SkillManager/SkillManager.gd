@@ -52,7 +52,7 @@ func on_try_add_skill(id):
 
 func on_add_skill(ski_info):
 	var id = ski_info.id
-	player_var.damage_sum[id] = 0
+	player_var.damage_sum[id] = 0.0
 	skill_num_have += 1
 	if skill_num_have >= player_var.skill_num_max:
 		skill_num_full = true

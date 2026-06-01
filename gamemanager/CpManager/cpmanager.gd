@@ -116,7 +116,7 @@ func add_cp(cpid):
 		cp_pool.unlocked.erase(cpid)
 	else:
 		return
-	player_var.damage_sum[cpid] = 0
+	player_var.damage_sum[cpid] = 0.0
 
 	SignalBus.cp_active.emit(cp_pool.actived[cpid])
 
