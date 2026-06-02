@@ -4,7 +4,7 @@ extends BaseGUIView
 func _on_back_button_pressed() -> void:
 
 
-	G.get_gui_view_manager().clear_to_start()
+	G.get_gui_view_manager().call_deferred("clear_to_start")
 
 func _open() -> void:
 	$CanvasLayer/RichTextLabel/RichTextLabel.text =String.num_int64(player_var.point)
