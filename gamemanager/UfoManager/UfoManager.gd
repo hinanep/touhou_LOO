@@ -71,6 +71,40 @@ func _unregister_active_ufo(ufo: Node) -> void:
 		_active_ufos.remove_at(idx)
 
 
+## Boss 入场等：无结算清掉所有未击破飞碟（先出活跃表再 died(true)，避免 die 回退误结算）
+func dismiss_all_active_ufos() -> void:
+	_prune_active_ufos()
+	var snapshot: Array[Node] = _active_ufos.duplicate()
+	for ufo in snapshot:
+		_unregister_active_ufo(ufo)
+		if ufo == null or not is_instance_valid(ufo):
+			continue
+		if ufo.has_method("died"):
+			ufo.died(true)
+		else:
+			ufo.queue_free()
+	_clear_hostile_danmaku()
+	settlement_payload = {}
+	_settlement_kill_position = Vector2.ZERO
+	_close_settlement_views()
+
+
+## 关闭所有 UfoSettlement 悬浮窗
+func _close_settlement_views() -> void:
+	if G == null:
+		return
+	var vm: GUIViewManager = G.get_gui_view_manager()
+	if vm == null:
+		return
+	var to_close: Array[int] = []
+	for instance_id in vm.viewInstanceMap.keys():
+		var view: BaseGUIView = vm.viewInstanceMap[instance_id]
+		if view.config.id == &"UfoSettlement":
+			to_close.append(instance_id)
+	for instance_id in to_close:
+		vm.close_view(instance_id)
+
+
 func _connect_bus_signal(signal_name: StringName, callable: Callable) -> void:
 	if not SignalBus.has_signal(signal_name):
 		push_error("[UfoManager] SignalBus 缺少信号: %s" % signal_name)

@@ -74,6 +74,7 @@ func _destroy_managers() -> void:
 
 ## Boss 入场：镜头、空气墙、刷 Boss
 func boss_coming(id: String) -> void:
+	_dismiss_active_ufos_for_boss()
 	SignalBus.kill_all.emit()
 	var mv: Tween = player_var.player_node.create_tween()
 	underrecycle_tween.append(mv)
@@ -105,6 +106,15 @@ func boss_coming(id: String) -> void:
 	boss.fight_begin()
 	is_boss_stage = true
 	SignalBus.boss_stage.emit(true)
+
+
+## Boss 入场前无结算清场未击破飞碟
+func _dismiss_active_ufos_for_boss() -> void:
+	if SpawnManager == null or not is_instance_valid(SpawnManager):
+		return
+	var ufo_mgr := SpawnManager.get_node_or_null("UfoManager")
+	if ufo_mgr != null and ufo_mgr.has_method("dismiss_all_active_ufos"):
+		ufo_mgr.dismiss_all_active_ufos()
 
 
 func lock_camera() -> void:
