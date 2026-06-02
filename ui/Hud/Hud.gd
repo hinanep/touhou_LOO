@@ -2,25 +2,25 @@ extends BaseGUIView
 
 const _StatDisplayFormat = preload("res://gamemanager/StatDisplayFormat.gd")
 
-@onready var hp_cont = $hud/hp/hp_mask/hp_cont
-@onready var hp_text = $hud/hp/hp_text
+@onready var hp_cont: Sprite2D = $hud/hp/hp_mask/hp_cont
+@onready var hp_text: RichTextLabel = $hud/hp/hp_text
 
-@onready var mana_cont = $hud/mana/mana_mask/mana_cont
-@onready var mana_text = $hud/mana/card_mana_text
+@onready var mana_cont: Sprite2D = $hud/mana/mana_mask/mana_cont
+@onready var mana_text: RichTextLabel = $hud/mana/card_mana_text
 
 
-@onready var point_ratio_text = $hud/point_ratio/text
-@onready var point_text = $hud/point/text
+@onready var point_ratio_text: RichTextLabel = $hud/point_ratio/text
+@onready var point_text: RichTextLabel = $hud/point/text
 
-@onready var exp_cont = $hud/exp/exp_mask/exp_cont
-@onready var level_text = $hud/exp/level_text
+@onready var exp_cont: Sprite2D = $hud/exp/exp_mask/exp_cont
+@onready var level_text: RichTextLabel = $hud/exp/level_text
 
-@onready var card_container = $hud/card_container
-@onready var skill_container = $hud/skill_container
-@onready var cp_container = $hud/cp_container
-@onready var psv_container = $hud/psv_container
+@onready var card_container: HBoxContainer = $hud/card_container
+@onready var skill_container: HBoxContainer = $hud/skill_container
+@onready var cp_container: HBoxContainer = $hud/cp_container
+@onready var psv_container: HBoxContainer = $hud/psv_container
 
-func _ready():
+func _ready() -> void:
 	_delete_mode_containers = [skill_container, psv_container, card_container]
 
 	SignalBus.add_skill.connect(add_skill)
@@ -62,35 +62,35 @@ func _on_stat_changed(stat_name: StringName) -> void:
 		_:
 			pass
 
-func hp_display():
+func hp_display() -> void:
 
 	#hp_cont.offset.x =   player_var.player_hp/player_var.player_hp_max * 275 - 275
 	$hud/hp/hp_mask.size.x = player_var.player_hp/player_var.player_hp_max * 280 +45
 	hp_text.text = _StatDisplayFormat.format_hud_value(player_var.player_hp) + "/" + _StatDisplayFormat.format_hud_value(player_var.player_hp_max)
 
-func card_mana_display():
+func card_mana_display() -> void:
 
 	$hud/mana/mana_mask.size.x = player_var.mana/player_var.mana_max * 360
 	#mana_cont.offset.x = 350 - player_var.mana/player_var.mana_max * 350
 
 	mana_text.text = _StatDisplayFormat.format_hud_value(player_var.mana) + "/" + _StatDisplayFormat.format_hud_value(player_var.mana_max)
 
-func exp_display():
+func exp_display() -> void:
 	$hud/exp/exp_mask.size.x = player_var.player_exp/player_var.exp_need * 370 + 37
 	#exp_cont.offset.x = -320 + player_var.player_exp/player_var.exp_need * 320
 
 	level_text.text = ("%d" % player_var.level)
 
-func point_and_ratio_display():
+func point_and_ratio_display() -> void:
 	point_ratio_text.text = ("%.2f" % player_var.point_ratio)
 
 	point_text.text = str(player_var.point)
 
 
-@onready var life1 = $hud/life/lifeBack1/life1
-@onready var life2 = $hud/life/lifeBack2/life2
+@onready var life1: Sprite2D = $hud/life/lifeBack1/life1
+@onready var life2: Sprite2D = $hud/life/lifeBack2/life2
 
-func life_display():
+func life_display() -> void:
 	match player_var.player_life_addi:
 		0:
 			life1.visible = false
@@ -107,15 +107,15 @@ func life_display():
 
 
 
-var card_selecting = 0
-var card_having
-var cp_and_skill_texture = PresetManager.getpre("ui_cp_and_skill_texture")
+var card_selecting: int = 0
+var card_having: int
+var cp_and_skill_texture: PackedScene = PresetManager.getpre("ui_cp_and_skill_texture")
 
-var _delete_mode_active := false
+var _delete_mode_active: bool = false
 var _delete_mode_containers: Array[HBoxContainer] = []
 
 
-func card_display(bias):
+func card_display(bias: int) -> void:
 	card_having = card_container.get_child_count()
 	if card_having == 0:
 		return
@@ -131,7 +131,7 @@ func _refresh_card_now() -> void:
 		return
 	if card_selecting >= card_having:
 		card_selecting = card_having - 1
-	var now_selected = card_container.get_child(card_selecting)
+	var now_selected: TextureRect = card_container.get_child(card_selecting)
 	$hud/card_now/cardid.text = now_selected.describe
 	$hud/card_now/enoughmana.visible = not (now_selected.manacost > player_var.mana)
 	#TODO:多语言
@@ -141,8 +141,8 @@ func _refresh_card_now() -> void:
 	else:
 		$hud/card_now/manacost.text = '符力消耗：' + str(now_selected.manacost / player_var.mana_cost)
 
-func on_add_card(card_info):
-	var newcard = cp_and_skill_texture.instantiate()
+func on_add_card(card_info: Dictionary) -> void:
+	var newcard: TextureRect = cp_and_skill_texture.instantiate()
 	newcard.set_card(card_info)
 
 	card_container.add_child(newcard)
@@ -153,7 +153,7 @@ func on_add_card(card_info):
 	card_container.get_child(card_selecting).set_highlight(true)
 	_refresh_card_now()
 
-func on_del_card(_id):
+func on_del_card(_id: String) -> void:
 	call_deferred("_on_del_card_deferred")
 
 func _on_del_card_deferred() -> void:
@@ -167,31 +167,31 @@ func _on_del_card_deferred() -> void:
 		card_container.get_child(i).set_highlight(i == card_selecting)
 	_refresh_card_now()
 
-func add_skill(ski_info):
+func add_skill(ski_info: Dictionary) -> void:
 		if ski_info.id == "ski_basemagic" or ski_info.id == "ski_basephysics":
 			return
-		var newskill = cp_and_skill_texture.instantiate()
+		var newskill: TextureRect = cp_and_skill_texture.instantiate()
 
 		newskill.set_skill(ski_info)
 
 		skill_container.add_child(newskill)
 
-func add_cp(cp_info):
+func add_cp(cp_info: Dictionary) -> void:
 
 
-		var newcp = cp_and_skill_texture.instantiate()
+		var newcp: TextureRect = cp_and_skill_texture.instantiate()
 		newcp.set_cp(cp_info)
 		cp_container.add_child(newcp)
 
-func add_passive(psv_info):
+func add_passive(psv_info: Dictionary) -> void:
 
-		var newpsv = cp_and_skill_texture.instantiate()
+		var newpsv: TextureRect = cp_and_skill_texture.instantiate()
 
 		newpsv.set_psv(psv_info)
 
 		psv_container.add_child(newpsv)
 
-func set_boss_timer(card_time:float):
+func set_boss_timer(card_time:float) -> void:
 	$time.set_boss_timer(card_time)
 
 func _on_fps_timer_timeout() -> void:
@@ -231,7 +231,7 @@ func _setup_delete_mode_focus() -> void:
 		next_non_empty_below.append(below)
 	var first_focus: Control = null
 	for row_idx in rows.size():
-		var row = rows[row_idx]
+		var row: Array = rows[row_idx]
 		for col_idx in row.size():
 			var btn: Control = row[col_idx]
 			if first_focus == null:
@@ -241,12 +241,12 @@ func _setup_delete_mode_focus() -> void:
 			if col_idx < row.size() - 1:
 				btn.focus_neighbor_right = btn.get_path_to(row[col_idx + 1])
 			if next_non_empty_above[row_idx] >= 0:
-				var top_row = rows[next_non_empty_above[row_idx]]
-				var top_col = col_idx % top_row.size()
+				var top_row: Array = rows[next_non_empty_above[row_idx]]
+				var top_col: int = col_idx % top_row.size()
 				btn.focus_neighbor_top = btn.get_path_to(top_row[top_col])
 			if next_non_empty_below[row_idx] >= 0:
-				var bot_row = rows[next_non_empty_below[row_idx]]
-				var bot_col = col_idx % bot_row.size()
+				var bot_row: Array = rows[next_non_empty_below[row_idx]]
+				var bot_col: int = col_idx % bot_row.size()
 				btn.focus_neighbor_bottom = btn.get_path_to(bot_row[bot_col])
 	if first_focus:
 		first_focus.call_deferred("grab_focus")

@@ -1,6 +1,6 @@
 extends Node2D
-var sum_damage = 0
-func showdamage(num):
+var sum_damage: float = 0
+func showdamage(num: float) -> void:
 	$"../AvoidanceModule".visible = true
 	sum_damage += num
 

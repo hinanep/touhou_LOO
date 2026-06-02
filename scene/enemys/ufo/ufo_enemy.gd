@@ -27,7 +27,7 @@ var ufo_color: int = 1
 var absorb_phase: bool = true
 var _ufo_manager: Node = null
 var _absorb_visual_running: bool = false
-var _pending_destroy: Array = []
+var _pending_destroy: Array[Node] = []
 var _absorb_max_duration: float = _DEFAULT_ABSORB_MAX_DURATION
 var _hp_per_fragment: float = _DEFAULT_HP_PER_FRAGMENT
 var _absorb_ledger: Dictionary = {}
@@ -190,7 +190,7 @@ func _apply_colorful_hsv_and_frame() -> void:
 ## @return 无
 func _start_absorb_phase() -> void:
 	absorb_phase = true
-	var candidates: Array = _collect_absorb_candidates()
+	var candidates: Array[Node] = _collect_absorb_candidates()
 	_apply_hp_from_fragment_count(candidates.size())
 	_commit_absorb_ledger(candidates)
 	_absorb_duration_timer.wait_time = _absorb_max_duration
@@ -211,8 +211,8 @@ func _apply_hp_from_fragment_count(fragment_count: int) -> void:
 
 ## 收集 SpawnManager/drops 下全部可吸收碎片
 ## @return drop 节点数组
-func _collect_absorb_candidates() -> Array:
-	var result: Array = []
+func _collect_absorb_candidates() -> Array[Node]:
+	var result: Array[Node] = []
 	var drops_root := _get_drops_root()
 	if drops_root == null:
 		return result
@@ -233,7 +233,7 @@ func _get_drops_root() -> Node:
 ## 吸收开始时一次性写入 UfoManager 账本（逻辑与动画分离）
 ## @param candidates 可吸收 drop 列表
 ## @return 无
-func _commit_absorb_ledger(candidates: Array) -> void:
+func _commit_absorb_ledger(candidates: Array[Node]) -> void:
 	for node in candidates:
 		if not is_instance_valid(node) or not node is drop:
 			continue
@@ -266,7 +266,7 @@ func _prepare_drop_for_absorb_visual(piece: drop) -> void:
 ## 并行 tween 将所有碎片拉向飞碟，结束后隐藏并进入待销毁序列
 ## @param candidates 可吸收 drop 列表
 ## @return 无
-func _run_absorb_visuals_batch(candidates: Array) -> void:
+func _run_absorb_visuals_batch(candidates: Array[Node]) -> void:
 	var valid: Array[drop] = []
 	for node in candidates:
 		if is_instance_valid(node) and node is drop:
@@ -295,7 +295,7 @@ func _run_absorb_visuals_batch(candidates: Array) -> void:
 ## 动画结束：隐藏节点并 queue_free（不再参与碰撞/融合）
 ## @return 无
 func _finalize_absorb_visuals() -> void:
-	var pending: Array = _pending_destroy.duplicate()
+	var pending: Array[Node] = _pending_destroy.duplicate()
 	_pending_destroy.clear()
 	for piece in pending:
 		if not is_instance_valid(piece):

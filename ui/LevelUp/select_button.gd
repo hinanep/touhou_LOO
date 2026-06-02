@@ -3,14 +3,14 @@ extends TextureButton
 const _StatDisplayFormat = preload("res://gamemanager/StatDisplayFormat.gd")
 
 signal upgrade_selected
-var b_type = ''
-var b_id = ''
+var b_type: String = ''
+var b_id: String = ''
 func _ready() -> void:
 	pass
 
-func set_text(type,id):
+func set_text(type: String, id: String) -> void:
 	var newlevel:int
-	var upgroup
+	var upgroup: String
 	$describe.text = "[color=white]"
 	set_crystal_texture('img_'+id)
 	b_type = type
@@ -47,13 +47,13 @@ func set_text(type,id):
 	for upkey in table.Upgrade[upgroup]:
 		try_upgrade_text(id,upgroup,newlevel,upkey)
 	$icon.set_texture(PresetManager.getpre('img_'+type+'_icon'))
-func try_upgrade_text(id,upgroup,newlevel,property):
+func try_upgrade_text(id: String, upgroup: String, newlevel: int, property: String) -> void:
 
 
 	if table.Upgrade[upgroup].has(property) and table.Upgrade[upgroup][property] is Array:
 		#如果这是一个被动技能
 		if property == 'buff_addition':
-			var buff_id = table.Passive[id].buff[0]
+			var buff_id: String = table.Passive[id].buff[0]
 			var buff_property: StringName = table.Buff[buff_id].property
 			#等级1时被动技能只需要显示buff基础数值
 			if newlevel == 1:
@@ -71,16 +71,16 @@ func try_upgrade_text(id,upgroup,newlevel,property):
 				return
 			$describe.text += ' '+table.TID[property][player_var.language] + ' ' + _StatDisplayFormat.format_property(property, table.Upgrade[upgroup][property][newlevel-2]) + '->' + _StatDisplayFormat.format_property(property, table.Upgrade[upgroup][property][newlevel-1])+'\n'
 
-func set_crystal_texture(image):
+func set_crystal_texture(image: String) -> void:
 	if image!=null:
 		$crystal.set_texture(PresetManager.getpre(image))
 
-func _on_button_up():
+func _on_button_up() -> void:
 	emit_signal("upgrade_selected")
 
 
 
-func _on_focus_entered():
+func _on_focus_entered() -> void:
 	SignalBus.focus_on.emit(b_type,b_id)
 	if b_type == 'passive':
 		get_parent().get_parent().get_parent().set_property_change(b_id)
@@ -90,7 +90,7 @@ func _on_focus_entered():
 
 
 
-func _on_focus_exited():
+func _on_focus_exited() -> void:
 	SignalBus.focus_off.emit()
 	if b_type == 'passive':
 		get_parent().get_parent().get_parent().set_property_change('')

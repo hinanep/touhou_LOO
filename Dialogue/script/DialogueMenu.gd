@@ -11,7 +11,7 @@ extends BaseGUIView
 @export_group('Dialogues')
 @export var dialogues : Dictionary
 
-var i := 1
+var i: int = 1
 var tween : Tween
 var dialogue : Dictionary
 
@@ -26,7 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		display_next_dialogue()
 
 
-func display_next_dialogue():
+func display_next_dialogue() -> void:
 	if i > len(dialogues):
 		close_self()
 		get_tree().paused = false
@@ -63,8 +63,7 @@ func display_next_dialogue():
 			AudioManager.stop_background_bgm()
 
 			if dialogue.bgm != 'STOP':
-				var tw = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).tween_callback(func(): AudioManager.play_background_bgm(dialogue.bgm)).set_delay(3)
-				tw = null
+				create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS).tween_callback(func(): AudioManager.play_background_bgm(dialogue.bgm)).set_delay(3)
 
 		tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -81,5 +80,5 @@ func display_next_dialogue():
 		#	right_tachie.texture = null
 
 
-func append_letter(letter : String):
+func append_letter(letter: String) -> void:
 	content.text += letter

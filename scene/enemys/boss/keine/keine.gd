@@ -1,25 +1,25 @@
 extends enemy_base
-var stage = table.keine.keys().size()
-var tmp_stage = 0
-var reincarnation = false
-var boss_info:Dictionary
-var progress_routine :Dictionary= {}
-var progress_time = 0
-var diretion:Vector2 = Vector2.ZERO
-var move_func:Callable = move_stay
-var boatcard = preload("res://scene/enemys/boss/keine/fireboat/boatscard.tscn")
-signal trigger(id)
-var state = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
+var stage: int = table.keine.keys().size()
+var tmp_stage: int = 0
+var reincarnation: bool = false
+var boss_info: Dictionary
+var progress_routine: Dictionary = {}
+var progress_time: float = 0
+var diretion: Vector2 = Vector2.ZERO
+var move_func: Callable = move_stay
+var boatcard: PackedScene = preload("res://scene/enemys/boss/keine/fireboat/boatscard.tscn")
+signal trigger(id: String)
+var state: String = 'nons' #'nons'|'spell_quarter'|'spell_full'|'spell_time'
 
 
-func boss_init(id:String):
+func boss_init(id: String) -> void:
 	boss_info = table[id]
 	for i in boss_info.keys().size():
 		if not boss_info[boss_info.keys()[i]].is_dialog:
 			mob_info = boss_info[boss_info.keys()[i]]
-func fight_begin():
+func fight_begin() -> void:
 	start_progess(0)
-func _ready():
+func _ready() -> void:
 	drops_path = "drops_plate"
 	AudioManager.play_once_loop_bgm('music_keine_intro','music_keine_loop')
 
@@ -42,7 +42,7 @@ const _FACE_HYST := 40.0
 func _face_player() -> void:
 	if not is_instance_valid(player_var.player_node):
 		return
-	var dx = player_var.player_node.global_position.x - global_position.x
+	var dx: float = player_var.player_node.global_position.x - global_position.x
 	# move_random 会使 Boss 横向穿过玩家垂线，|dx| 很小时反复翻转 scaledir 导致抽搐
 	if dx > _FACE_HYST:
 		scaledir = -1
@@ -50,7 +50,7 @@ func _face_player() -> void:
 		scaledir = 1
 	sprite.scale.x = clampf(sprite.scale.x - 0.05 * scaledir, -abs(scalex), abs(scalex))
 
-func died(disppear = false):
+func died(disppear: bool = false) -> void:
 
 	if(disppear):
 		emit_signal('die',mob_id)
@@ -80,10 +80,10 @@ func died(disppear = false):
 	G.get_gui_view_manager().close_all_view()
 	G.get_gui_view_manager().open_view("ClearMenu")
 
-var dush_speed = 0
-var colli = false
-@onready var time_tween:Tween
-func dush(speed,time,charge_time):
+var dush_speed: float = 0
+var colli: bool = false
+@onready var time_tween: Tween
+func dush(speed: float, time: float, charge_time: float) -> void:
 	$"轨迹".visible = true
 	diretion = global_position.direction_to(player_var.player_node.global_position)
 	await get_tree().create_timer(charge_time,false).timeout
@@ -98,10 +98,10 @@ func dush(speed,time,charge_time):
 		move_func = move_stay
 		)
 
-var after_dush_trigger_2_2:bool = true
-func move_dush(delta):
+var after_dush_trigger_2_2: bool = true
+func move_dush(delta: float) -> void:
 
-	var colli_info:KinematicCollision2D = move_and_collide(diretion * dush_speed * delta)
+	var colli_info: KinematicCollision2D = move_and_collide(diretion * dush_speed * delta)
 	if colli_info is KinematicCollision2D:
 		$"轨迹".visible = false
 		if after_dush_trigger_2_2:
@@ -112,11 +112,11 @@ func move_dush(delta):
 		if time_tween.is_valid():
 			time_tween.kill()
 		move_func = move_stay
-var v = 0
-var stan = 2
-var move = 1
-var mode = 0
-func move_random(delta):
+var v: float = 0
+var stan: float = 2
+var move: float = 1
+var mode: int = 0
+func move_random(delta: float) -> void:
 	v+=delta
 	if mode == 0:
 		if v > stan:
@@ -132,11 +132,11 @@ func move_random(delta):
 
 	move_and_slide()
 
-func trigger_routine(id):
+func trigger_routine(id: String) -> void:
 	pass
-func move_stay(delta):
+func move_stay(_delta: float) -> void:
 	pass
-func start_progess(phase:int):
+func start_progess(phase: int) -> void:
 	if phase == -1:
 		tmp_stage = tmp_stage + 1
 	else:
@@ -158,8 +158,9 @@ func start_progess(phase:int):
 	move_func = move_stay
 	set_cardstate(mob_info.hp_hud)
 	atkable = false
-	var t = create_tween().tween_property($".",'global_position',Vector2(600,0),1)
+	var t: Tween = create_tween()
 	RunSession.underrecycle_tween.append(t)
+	t.tween_property($".", 'global_position', Vector2(600, 0), 1)
 	$melee_damage_area.scale = Vector2(mob_info.physical_radius,mob_info.physical_radius)
 	invincible = true
 
@@ -170,7 +171,7 @@ func start_progess(phase:int):
 
 
 	if not mob_info.is_sc:
-		var reincarnation_tween = create_tween()
+		var reincarnation_tween: Tween = create_tween()
 		RunSession.underrecycle_tween.append(reincarnation_tween)
 		reincarnation_tween.set_parallel()
 		reincarnation_tween.tween_property($".","hp",mob_info.health,2)
@@ -180,12 +181,12 @@ func start_progess(phase:int):
 	else:
 		hp = mob_info.health
 		progress_bar.value = 100
-		var reincarnation_tween = create_tween()
+		var reincarnation_tween: Tween = create_tween()
 		reincarnation_tween.tween_interval(4)
 	reincarnation_over()
 
 
-func reincarnation_over():
+func reincarnation_over() -> void:
 
 	if mob_info.is_survial_card:
 		invincible = true
@@ -207,7 +208,7 @@ func reincarnation_over():
 		popup()
 		$AnimatedSprite2D.play("sc_casting")
 		if mob_info.sc_tid == 'esc_keine_2':
-			var bc = boatcard.instantiate()
+			var bc: Node2D = boatcard.instantiate()
 			bc.global_position = Vector2(0,0)
 			add_child(bc)
 	else:
@@ -216,12 +217,12 @@ func reincarnation_over():
 
 	for child in $danma.get_children():
 		child.destroy()
-	var rt = table.get(mob_info.boss + '_routine')
-	var br = PresetManager.getpre('boss_routine')
+	var rt: Dictionary = table.get(mob_info.boss + '_routine')
+	var br: PackedScene = PresetManager.getpre('boss_routine')
 	for key in rt:
 		if   rt[key].boss == mob_info.id:
 
-			var nbr = br.instantiate()
+			var nbr: Node2D = br.instantiate()
 			nbr.br_init(rt[key])
 			trigger.connect(nbr.get_triggered)
 
@@ -234,12 +235,12 @@ func reincarnation_over():
 	$AnimatedSprite2D.play("default")
 
 
-func spellcard_timeover():
+func spellcard_timeover() -> void:
 	AudioManager.play_sfx('music_sfx_break')
 	SignalBus.pause_boss_hud_time.emit(true)
 	died()
 
-func spellcard_break():
+func spellcard_break() -> void:
 	AudioManager.play_sfx('music_sfx_break')
 	SignalBus.pause_boss_hud_time.emit(true)
 	SignalBus.disbullet.emit(true)
@@ -248,7 +249,7 @@ func spellcard_break():
 	await get_tree().create_timer(0.2,false).timeout
 	SignalBus.fly_to_player.emit(1,1,1,1)
 
-func _on_animated_sprite_2d_animation_finished():
+func _on_animated_sprite_2d_animation_finished() -> void:
 	pass
 
 
@@ -269,7 +270,7 @@ func _on_progress_bar_value_changed(value: float) -> void:
 		'spell_time':
 			$hud/hp/fullcard/time_mask.size.y = 8.58 * value
 
-func set_cardstate(bossstate:String):
+func set_cardstate(bossstate: String) -> void:
 	state = bossstate
 	match bossstate:
 		'nons':
@@ -298,15 +299,15 @@ func set_cardstate(bossstate:String):
 			$hud/hp/fullcard/time_mask.visible = true
 			$hud/hp/fullcard/time_mask.size.y = 858
 
-@onready var panel = $hud/card/PopupPanel
-@onready var text = $hud/card/RichTextLabel
+@onready var panel: PopupPanel = $hud/card/PopupPanel
+@onready var text: Label = $hud/card/RichTextLabel
 func popup() -> void:
 
 	text.position = Vector2(-236,128)
 	text.scale = Vector2(0.1,0.6)
 	panel.scale = Vector2(0.6,0.6)
 	$hud/card.visible = true
-	var flush:Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
+	var flush: Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
 	RunSession.underrecycle_tween.append(flush)
 	flush.tween_property(panel,'modulate',Color(1,1,1,0.1),3)
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
@@ -315,7 +316,7 @@ func popup() -> void:
 
 	flush = null
 
-	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
+	var expand: Tween = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 	RunSession.underrecycle_tween.append(expand)
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
 	expand.tween_property(text,'scale',Vector2(0.6,0.6),2)
@@ -326,7 +327,7 @@ func popup() -> void:
 
 	expand = null
 
-	var disappear = panel.create_tween()
+	var disappear: Tween = panel.create_tween()
 	RunSession.underrecycle_tween.append(disappear)
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property(panel,'scale',Vector2(0.5,0),0.5)

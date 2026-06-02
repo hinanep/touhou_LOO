@@ -3,7 +3,7 @@ extends Node
 
 
 static func loader(path: String) -> Dictionary:
-	var txt = FileAccess.get_file_as_string(path)
+	var txt: String = FileAccess.get_file_as_string(path)
 	var data: Dictionary = JSON.parse_string(txt)
 	for key in data.keys():
 		for skey in data[key].keys():
@@ -12,34 +12,34 @@ static func loader(path: String) -> Dictionary:
 	return data
 
 
-var Atk_Dependence = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
-var Attack = loader('res://settings/dist/Attack/Attack.json')
-var keine = loader('res://settings/dist/BossProcess/keine.json')
-var keine_routine = loader('res://settings/dist/BossRoutine/keine_routine.json')
-var Buff = loader('res://settings/dist/Buff/Buff.json')
-var Couple = loader('res://settings/dist/Couple/Couple.json')
-var danma = loader('res://settings/dist/Danmaku/danma.json')
-var d4c = loader('res://settings/dist/DanmakuCreator/d4c.json')
-var Enemy = loader('res://settings/dist/Enemy/Enemy.json')
-var Global = loader('res://settings/dist/Global/Global.json')
-var Passive = loader('res://settings/dist/Passive/Passive.json')
-var Routine = loader('res://settings/dist/Routine/routine.json')
-var Skill = loader('res://settings/dist/Skill/skill.json')
-var SpellCard = loader('res://settings/dist/SpellCard/SpellCard.json')
-var Stage1 = loader('res://settings/dist/StageProcess/Stage1.json')
-var Sum_Dependence = loader('res://settings/dist/SumDependence/Sum_Dependence.json')
-var Summoned = loader('res://settings/dist/Summoned/Summoned.json')
-var TID = loader('res://settings/dist/TID/TID.json')
-var TID_UI = loader('res://settings/dist/TID/TID_UI.json')
-var Upgrade = loader('res://settings/dist/Upgrade/Upgrade.json')
+var Atk_Dependence: Dictionary = loader('res://settings/dist/AtkDependence/Atk_Dependence.json')
+var Attack: Dictionary = loader('res://settings/dist/Attack/Attack.json')
+var keine: Dictionary = loader('res://settings/dist/BossProcess/keine.json')
+var keine_routine: Dictionary = loader('res://settings/dist/BossRoutine/keine_routine.json')
+var Buff: Dictionary = loader('res://settings/dist/Buff/Buff.json')
+var Couple: Dictionary = loader('res://settings/dist/Couple/Couple.json')
+var danma: Dictionary = loader('res://settings/dist/Danmaku/danma.json')
+var d4c: Dictionary = loader('res://settings/dist/DanmakuCreator/d4c.json')
+var Enemy: Dictionary = loader('res://settings/dist/Enemy/Enemy.json')
+var Global: Dictionary = loader('res://settings/dist/Global/Global.json')
+var Passive: Dictionary = loader('res://settings/dist/Passive/Passive.json')
+var Routine: Dictionary = loader('res://settings/dist/Routine/routine.json')
+var Skill: Dictionary = loader('res://settings/dist/Skill/skill.json')
+var SpellCard: Dictionary = loader('res://settings/dist/SpellCard/SpellCard.json')
+var Stage1: Dictionary = loader('res://settings/dist/StageProcess/Stage1.json')
+var Sum_Dependence: Dictionary = loader('res://settings/dist/SumDependence/Sum_Dependence.json')
+var Summoned: Dictionary = loader('res://settings/dist/Summoned/Summoned.json')
+var TID: Dictionary = loader('res://settings/dist/TID/TID.json')
+var TID_UI: Dictionary = loader('res://settings/dist/TID/TID_UI.json')
+var Upgrade: Dictionary = loader('res://settings/dist/Upgrade/Upgrade.json')
 
 var dialogues: Dictionary = {}
 
-var stage1_after = loader('res://settings/dist/Dialogues/stage1_after.json')
-var stage1_before = loader('res://settings/dist/Dialogues/stage1_before.json')
+var stage1_after: Dictionary = loader('res://settings/dist/Dialogues/stage1_after.json')
+var stage1_before: Dictionary = loader('res://settings/dist/Dialogues/stage1_before.json')
 
 
-static func is_null(datax) -> bool:
+static func is_null(datax: Variant) -> bool:
 	match typeof(datax):
 		TYPE_STRING:
 			if datax == '':
@@ -77,7 +77,7 @@ func get_base_table(table_name: String) -> Dictionary:
 
 
 func get_base_row(table_name: String, row_id: String) -> Dictionary:
-	var base_table = get_base_table(table_name)
+	var base_table: Dictionary = get_base_table(table_name)
 	if base_table.has(row_id):
 		return base_table[row_id]
 	return {}

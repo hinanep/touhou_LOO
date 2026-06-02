@@ -36,7 +36,7 @@ func _ready() -> void:
 	# --- 【已恢复】使用你原来的初始化逻辑 ---
 	for aroutine in table.Routine:
 		if table.Routine[aroutine].skill_group == skill_info.id:
-			var r = add_routine(aroutine)
+			var r: Node = add_routine(aroutine)
 			if aroutine in skill_info.routines:
 				shoot.connect(r._execute_attack_flow)
 	# --- 恢复结束 ---
@@ -62,7 +62,7 @@ func _connect_signals() -> void:
 
 # --- 【已恢复】使用你原来的预制体加载方式 ---
 func add_routine(id: String) -> Node:
-	var routine_instance = PresetManager.getpre('routine').instantiate()
+	var routine_instance: Node = PresetManager.getpre('routine').instantiate()
 	routine_instance.position = Vector2.ZERO
 	routine_instance.routine_info = table.resolve_routine(id)
 	routine_instance.damage_source = self.damage_source
@@ -82,18 +82,18 @@ func _fire() -> void:
 	shoot.emit()
 
 ## 【保留的优化】更新冷却计时器的时间
-func _update_cooldown_timer(id) -> void:
+func _update_cooldown_timer(id: String) -> void:
 	if id != skill_info.id:
 		return
-	var resolved_skill = table.resolve_skill(id)
+	var resolved_skill: Dictionary = table.resolve_skill(id)
 	if resolved_skill.has('cd'):
 		skill_info['cd'] = resolved_skill.cd
-	var base_cd = skill_info.get('cd', 1.0)
-	var efficiency = skill_info.get("cd_reduction_efficicency", 1.0)
+	var base_cd: float = skill_info.get('cd', 1.0)
+	var efficiency: float = skill_info.get("cd_reduction_efficicency", 1.0)
 
-	var player_cd_reduction_factor = 1.0 + player_var.colddown_reduce * efficiency
+	var player_cd_reduction_factor: float = 1.0 + player_var.colddown_reduce * efficiency
 
-	var final_cd = base_cd / (player_cd_reduction_factor)
+	var final_cd: float = base_cd / (player_cd_reduction_factor)
 	cd_timer.wait_time = max(0.1, final_cd)
 
 #-----------------------------------------------------------------------------

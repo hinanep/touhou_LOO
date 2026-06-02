@@ -1,8 +1,8 @@
 extends enemy_base
 
-var lines_withboat = []
-var fired = false
-func _ready():
+var lines_withboat: Array[Line2D] = []
+var fired: bool = false
+func _ready() -> void:
 	mob_info = {
 	"id": "enm_boat",
 	"type": "zako",
@@ -20,11 +20,11 @@ func _ready():
 	await  get_tree().create_timer(3.8,false).timeout
 	RunSession.SpawnManager.register_mob($".")
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	pass
 
 
-func _on_fireball_rec_body_entered(body:  Node2D) -> void:
+func _on_fireball_rec_body_entered(body: Node2D) -> void:
 	if body.is_in_group('fire'):
 
 		if(global_position.distance_squared_to(body.global_position) > 2500):
@@ -35,7 +35,7 @@ func _on_fireball_rec_body_entered(body:  Node2D) -> void:
 
 
 
-func on_fire():
+func on_fire() -> void:
 
 	if fired:
 		return

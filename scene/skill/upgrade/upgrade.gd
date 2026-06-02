@@ -1,13 +1,13 @@
 extends Node
 
-var skill_group = {}
-var card_group = {}
-var summon_group = {}
-var routine_group = {}
-var attack_group = {}
+var skill_group: Dictionary = {}
+var card_group: Dictionary = {}
+var summon_group: Dictionary = {}
+var routine_group: Dictionary = {}
+var attack_group: Dictionary = {}
 
-var boost_atk = []
-var boost_sum = []
+var boost_atk: Array = []
+var boost_sum: Array = []
 
 
 func _ready() -> void:
@@ -23,10 +23,10 @@ func _ready() -> void:
 			boost_sum.append(id)
 
 
-func addtogroup(tabledic: Dictionary, group) -> void:
+func addtogroup(tabledic: Dictionary, group: Dictionary) -> void:
 	for id in tabledic:
 		if tabledic[id].has('upgrade_group'):
-			var skillsgroup = tabledic[id].upgrade_group
+			var skillsgroup: String = tabledic[id].upgrade_group
 			if group.has(skillsgroup):
 				group[skillsgroup].append(id)
 
@@ -52,7 +52,7 @@ func init_group() -> void:
 	addtogroup(table.SpellCard, card_group)
 
 
-func _on_upgrade(group, currentlevel) -> void:
+func _on_upgrade(group: String, currentlevel: int) -> void:
 	print('升级')
 	print(group, currentlevel)
 	up_skill(group, currentlevel)
@@ -62,31 +62,31 @@ func _on_upgrade(group, currentlevel) -> void:
 	up_summon(group, currentlevel)
 
 
-func _on_boost_active(cp, is_active: bool) -> void:
-	var cp_id = cp
+func _on_boost_active(cp: Variant, is_active: bool) -> void:
+	var cp_id: Variant = cp
 	match typeof(cp):
 		TYPE_DICTIONARY:
 			cp_id = cp.get('id')
 
 	var affected_ids: Array[String] = []
 	for boostid in boost_atk:
-		var boost_info = table.Attack[boostid]
+		var boost_info: Dictionary = table.Attack[boostid]
 		if boost_info.effective_condition != cp_id:
 			continue
 		for id in table.Attack:
-			var attack_base = table.get_base_row('Attack', id)
+			var attack_base: Dictionary = table.get_base_row('Attack', id)
 			if boost_info.get('routine_group') == attack_base.get('routine_group') and attack_base.type != 'boost':
 				RunModifiers.register_cp_row_patch(cp_id, 'Attack', id, boost_info, is_active)
 				if not affected_ids.has(id):
 					affected_ids.append(id)
 	for boostid in boost_sum:
-		var boost_info = table.Summoned[boostid]
+		var boost_info: Dictionary = table.Summoned[boostid]
 		for id in table.Summoned:
-			var sum_base = table.get_base_row('Summoned', id)
+			var sum_base: Dictionary = table.get_base_row('Summoned', id)
 			if boost_info.effective_condition != cp_id:
 				continue
-			var b_groups = boost_info.get('routine_group', [])
-			var s_groups = sum_base.get('routine_group', [])
+			var b_groups: Array = boost_info.get('routine_group', [])
+			var s_groups: Array = sum_base.get('routine_group', [])
 			if b_groups.size() > 0 and (b_groups[0] in s_groups) and sum_base.type != 'boost':
 				RunModifiers.register_cp_row_patch(cp_id, 'Summoned', id, boost_info, is_active)
 				if not affected_ids.has(id):
@@ -95,13 +95,13 @@ func _on_boost_active(cp, is_active: bool) -> void:
 		SignalBus.renew_state.emit(row_id)
 
 
-func up_skill(group, currentlevel) -> void:
+func up_skill(group: String, currentlevel: int) -> void:
 	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in skill_group.get(group, []):
 		var fields: Dictionary = {}
 		if table.Upgrade[group].has('cd_reduction'):
-			var base_row = table.get_base_row('Skill', id)
+			var base_row: Dictionary = table.get_base_row('Skill', id)
 			fields['cd'] = base_row.cd / (1.0 + table.Upgrade[group]['cd_reduction'][currentlevel])
 		if not fields.is_empty():
 			RunModifiers.set_row_fields('Skill', id, fields)
@@ -110,7 +110,7 @@ func up_skill(group, currentlevel) -> void:
 			SignalBus.upgrade_max.emit(id)
 
 
-func up_card(group, currentlevel) -> void:
+func up_card(group: String, currentlevel: int) -> void:
 	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in card_group.get(group, []):
@@ -118,24 +118,24 @@ func up_card(group, currentlevel) -> void:
 			SignalBus.upgrade_max.emit(id)
 
 
-func up_routine(group, currentlevel) -> void:
+func up_routine(group: String, currentlevel: int) -> void:
 	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in routine_group.get(group, []):
 		if table.Upgrade[group].has('times_addition'):
-			var base_row = table.get_base_row('Routine', id)
-			var fields = {
+			var base_row: Dictionary = table.get_base_row('Routine', id)
+			var fields: Dictionary = {
 				'times': base_row.times + table.Upgrade[group]['times_addition'][currentlevel],
 			}
 			RunModifiers.set_row_fields('Routine', id, fields)
 			SignalBus.renew_state.emit(id)
 
 
-func up_attack(group, currentlevel) -> void:
+func up_attack(group: String, currentlevel: int) -> void:
 	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in attack_group.get(group, []):
-		var base_row = table.get_base_row('Attack', id)
+		var base_row: Dictionary = table.get_base_row('Attack', id)
 		var fields: Dictionary = {}
 		if table.Upgrade[group].has('damage_addition'):
 			fields['damage'] = base_row.damage * (1 + table.Upgrade[group]['damage_addition'][currentlevel])
@@ -159,11 +159,11 @@ func up_attack(group, currentlevel) -> void:
 		SignalBus.renew_state.emit(id)
 
 
-func up_summon(group, currentlevel) -> void:
+func up_summon(group: String, currentlevel: int) -> void:
 	if currentlevel == table.Upgrade[group].level:
 		return
 	for id in summon_group.get(group, []):
-		var base_row = table.get_base_row('Summoned', id)
+		var base_row: Dictionary = table.get_base_row('Summoned', id)
 		var fields: Dictionary = {}
 		if table.Upgrade[group].has('duration_addition'):
 			fields['duration'] = base_row.duration * (1 + table.Upgrade[group]['duration_addition'][currentlevel])

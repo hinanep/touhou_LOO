@@ -9,10 +9,10 @@ func _ready() -> void:
 	flush.tween_property($PopupPanel,'modulate',Color(1,1,1,1),1)
 	flush.set_loops(3)
 
-	var interval = get_tree().create_timer(0.1,false)
+	var interval: SceneTreeTimer = get_tree().create_timer(0.1,false)
 	await interval.timeout
 	interval = null
-	var expand = $RichTextLabel.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
+	var expand: Tween = $RichTextLabel.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 	RunSession.underrecycle_tween.append(expand)
 	expand.tween_property($RichTextLabel,'scale',Vector2(0.7,1),1)
 	expand.tween_property($RichTextLabel,'scale',Vector2(1,1),2)
@@ -20,7 +20,7 @@ func _ready() -> void:
 
 	await  expand.finished
 
-	var disappear = $PopupPanel.create_tween()
+	var disappear: Tween = $PopupPanel.create_tween()
 	RunSession.underrecycle_tween.append(disappear)
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property($PopupPanel,'scale',Vector2(1,0),0.5)

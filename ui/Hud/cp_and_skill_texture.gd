@@ -3,24 +3,22 @@ extends TextureRect
 enum IconType { CARD, SKILL, CP, PASSIVE }
 var icon_type: IconType = IconType.SKILL
 
-var selfname = ''
-var id = ''
-var level = 0
-var upgrade_group
-var cpable = []
+var selfname: String = ''
+var id: String = ''
+var level: int = 0
+var upgrade_group: Variant
+var cpable: Array = []
 # 符卡专用，供 Hud.card_display 使用
-var cardname = ''
-var describe = ''
-var manacost = 0
+var cardname: String = ''
+var describe: String = ''
+var manacost: float = 0
 
 var _red_x_label: Label
-var _label_node: Control
+var _label_node: RichTextLabel
 
 func _ready() -> void:
 	_red_x_label = get_node_or_null("redx") as Label
-	_label_node = get_node_or_null("RichTextLabel") as Control
-
-	_label_node = get_node_or_null("cn") as Control
+	_label_node = get_node_or_null("cn") as RichTextLabel
 
 	if _red_x_label:
 		_red_x_label.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -29,7 +27,7 @@ func _ready() -> void:
 		_red_x_label.offset_right = 0
 		_red_x_label.offset_bottom = 0
 		# 按图标尺寸统一红叉相对大小，避免技能(120)与符卡(400)表现不一致
-		var icon_size = min(size.x, size.y)
+		var icon_size: float = min(size.x, size.y)
 		if icon_size <= 0:
 			icon_size = 120
 		_red_x_label.add_theme_font_size_override("font_size", int(icon_size * 0.4))
@@ -41,7 +39,7 @@ func _ready() -> void:
 
 var delete_mode :bool= false
 var is_holding :bool= false
-var shake_amount =  0 # 抖动强度
+var shake_amount: float =  0 # 抖动强度
 @export var delete_time: float = 1.5 # 需长按多久触发删除
 var hold_timer: float = 0.0
 
@@ -52,7 +50,7 @@ func _process(delta: float) -> void:
 		set_instance_shader_parameter("shake_strength", shake_amount)
 		if is_holding:
 			hold_timer += delta
-			var progress_val = hold_timer / delete_time
+			var progress_val: float = hold_timer / delete_time
 			set_instance_shader_parameter("progress", progress_val)
 			shake_amount = 2.5 * (1.0 + progress_val)
 			if hold_timer >= delete_time:
@@ -62,7 +60,7 @@ func _process(delta: float) -> void:
 				if _label_node:
 					_label_node.hide()
 				set_instance_shader_parameter("is_boob", true)
-				var tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+				var tween: Tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 				tween.tween_method(
 					func(val): set_instance_shader_parameter("boob_progress", val),
 					0.0, 0.1, 0.5
@@ -94,10 +92,10 @@ func _on_focus_exited() -> void:
 		_red_x_label.visible = false
 
 # 监听鼠标输入与键盘交互键
-func out_of_delete_mode():
+func out_of_delete_mode() -> void:
 	shake_amount = 0
 	set_instance_shader_parameter("shake_strength", shake_amount)
-func _gui_input(event):
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			is_holding = event.pressed
@@ -110,7 +108,7 @@ func _gui_input(event):
 				hold_timer = 0.0
 			accept_event()
 
-func set_card(card_info) -> void:
+func set_card(card_info: Dictionary) -> void:
 	icon_type = IconType.CARD
 	id = card_info.id
 	cardname = table.TID[card_info.id + "_name"][player_var.language]
@@ -124,7 +122,7 @@ func set_card(card_info) -> void:
 	SignalBus.del_card.connect(destroy)
 	SignalBus.upgrade_group.connect(upgrade)
 
-func set_skill(skill_info):
+func set_skill(skill_info: Dictionary) -> void:
 	icon_type = IconType.SKILL
 	id = skill_info.id
 	cpable = RunSession.CpManager.get_cpable_array(id)
@@ -136,7 +134,7 @@ func set_skill(skill_info):
 	SignalBus.del_skill.connect(destroy)
 	SignalBus.upgrade_group.connect(upgrade)
 
-func set_cp(cp_info):
+func set_cp(cp_info: Dictionary) -> void:
 	icon_type = IconType.CP
 	id = cp_info.id
 	selfname = table.TID[id][player_var.language]
@@ -146,7 +144,7 @@ func set_cp(cp_info):
 		_label_node.text = "[center]" + selfname
 	SignalBus.cp_del.connect(destroy)
 
-func set_psv(psv_info):
+func set_psv(psv_info: Dictionary) -> void:
 	icon_type = IconType.PASSIVE
 	id = psv_info.id
 	selfname = table.TID[id][player_var.language]
@@ -157,7 +155,7 @@ func set_psv(psv_info):
 	SignalBus.del_passive.connect(destroy)
 	SignalBus.upgrade_group.connect(upgrade)
 
-func delete_mode_toggle(on:bool,complete:bool):
+func delete_mode_toggle(on:bool,complete:bool) -> void:
 	delete_mode = on
 	if on:
 		if has_focus() and _red_x_label:
@@ -168,11 +166,11 @@ func delete_mode_toggle(on:bool,complete:bool):
 		set_instance_shader_parameter("progress", 0)
 		if _red_x_label:
 			_red_x_label.visible = false
-func destroy(did):
+func destroy(did: String) -> void:
 	if id == did:
 		queue_free()
 
-func upgrade(upname, currentLevel):
+func upgrade(upname: String, currentLevel: int) -> void:
 	if upgrade_group != upname or (icon_type == IconType.CARD and upgrade_group == "none"):
 		return
 	level += 1
@@ -183,10 +181,10 @@ func upgrade(upname, currentLevel):
 		else:
 			_label_node.text = "[center]LV." + str(level)
 
-func detact_focus(type,id):
+func detact_focus(type: String, id: String) -> void:
 	if id in cpable:
 		set_highlight(true)
-func set_highlight(is_hl):
+func set_highlight(is_hl: bool) -> void:
 	if is_hl:
 		set_instance_shader_parameter("brightness",0.8)
 		set_instance_shader_parameter("width",11.0)

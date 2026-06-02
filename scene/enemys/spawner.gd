@@ -1,13 +1,13 @@
 extends Node2D
-var path_follow_2d
+var path_follow_2d: PathFollow2D
 
-var spawnTimer
-var startTimer
-var endTimer
-var mob_pre
-var SpawnManager
-var mob_info
-var spawn_list = {
+var spawnTimer: Timer
+var startTimer: Timer
+var endTimer: Timer
+var mob_pre: PackedScene
+var SpawnManager: Node
+var mob_info: Dictionary
+var spawn_list: Dictionary = {
 	"enemy_type":"",
 	"spawn_type":"once",
 	"start_time":0,
@@ -17,7 +17,7 @@ var spawn_list = {
 	'enemy_attribute_boost':1,
 	'enemy_barrage_boost':1
 }
-func spawner_init(spawner_initlist,parent):
+func spawner_init(spawner_initlist: Dictionary, parent: Node) -> void:
 	SpawnManager = parent
 	spawn_list=spawner_initlist
 	spawnTimer = $spawnTimer
@@ -51,11 +51,11 @@ func spawner_init(spawner_initlist,parent):
 
 func _ready() -> void:
 	SignalBus.pause_spawner.connect(change_pause)
-func spawn_mob():
+func spawn_mob() -> void:
 
 	if path_follow_2d!=null:
 		path_follow_2d.progress_ratio = randf()
-	var mob = mob_pre.instantiate()
+	var mob: enemy_base = mob_pre.instantiate()
 	mob.global_position = path_follow_2d.global_position
 	mob.mob_info = mob_info.duplicate()
 	mob.multi = (spawn_list['enemy_attribute_boost'])
@@ -67,7 +67,7 @@ func spawn_mob():
 
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	if spawn_list["spawn_type"] == 'boss':
 			player_var.boss_coming('keine')
 			return
@@ -78,16 +78,16 @@ func _on_timer_timeout():
 		spawn_mob()
 
 
-func _on_start_timer_timeout():
+func _on_start_timer_timeout() -> void:
 	spawnTimer.start()
 
 
 
-func _on_end_timer_timeout():
+func _on_end_timer_timeout() -> void:
 	spawnTimer.stop()
 	queue_free()
 
-func change_pause(is_pause):
+func change_pause(is_pause: bool) -> void:
 
 
 	spawnTimer.set_paused(is_pause)

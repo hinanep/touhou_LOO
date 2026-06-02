@@ -15,7 +15,7 @@ func warmup_under(root: Node) -> void:
 	await _wait_idle_frame(tree)
 	var routines: Array[Routine] = []
 	_collect_routines(root, routines)
-	for routine in routines:
+	for routine: Routine in routines:
 		routine.process_mode = Node.PROCESS_MODE_ALWAYS
 		await routine.warmup_attack_pools_once()
 		routine.process_mode = Node.PROCESS_MODE_INHERIT
@@ -25,7 +25,7 @@ func warmup_under(root: Node) -> void:
 ## @param node 遍历起点
 ## @param out 输出列表
 func _collect_routines(node: Node, out: Array[Routine]) -> void:
-	for child in node.get_children():
+	for child: Node in node.get_children():
 		if child is Routine:
 			out.append(child as Routine)
 		_collect_routines(child, out)

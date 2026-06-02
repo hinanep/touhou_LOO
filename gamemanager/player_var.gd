@@ -282,7 +282,7 @@ func clear_bonus_pick_active() -> void:
 func _is_level_up_open() -> bool:
 	if G == null or G.get_gui_view_manager() == null:
 		return false
-	var vm = G.get_gui_view_manager()
+	var vm: Node = G.get_gui_view_manager()
 	for view in vm.viewInstanceMap.values():
 		if view.config.id == &"LevelUp":
 			return true

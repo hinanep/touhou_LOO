@@ -5,10 +5,10 @@ signal selected
 	#$weapon.text = upgrage
 #func set_describe_text(describe):
 	#$describe.text = "[color=white]"+describe
-func set_texture(image):
+func set_texture(image: String) -> void:
 	set_texture_normal(PresetManager.getpre(image))
 
-func _on_button_up():
+func _on_button_up() -> void:
 	emit_signal("selected")
 
 

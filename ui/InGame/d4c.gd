@@ -2,9 +2,9 @@ extends Node2D
 func _ready() -> void:
 	SignalBus.d4c_create.connect(new_d4c)
 
-func new_d4c(id,g_position,parent:Node2D,damage,callback):
+func new_d4c(id: String, g_position: Vector2, parent: Node2D, damage: float, callback: Callable) -> void:
 
-	var nd4c = PresetManager.getpre('d4c').instantiate()
+	var nd4c: Node2D = PresetManager.getpre('d4c').instantiate()
 
 	nd4c.damage = damage
 	nd4c.gen_position = g_position

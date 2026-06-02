@@ -1,6 +1,6 @@
 extends Node2D
 class_name cp
-var cp_info = {
+var cp_info: Dictionary = {
 	id='cp_marisa_alice_patchouli'
 }
 func _ready() -> void:
@@ -8,7 +8,7 @@ func _ready() -> void:
 	SignalBus.player_hurt.connect(on_player_hurt)
 	SignalBus.cp_del.connect(destroy)
 	on_unlocking()
-func on_unlocking():
+func on_unlocking() -> void:
 	AudioManager.play_sfx("music_sfx_cp")
 	if cp_info.has('giving_buff_moment'):
 		for i in range(cp_info.giving_buff_moment.size()):
@@ -18,7 +18,7 @@ func on_unlocking():
 	$CanvasLayer/RichTextLabel.text = table.TID[cp_info.id][player_var.language]
 	$CanvasLayer/RichTextLabel/Sprite2D.set_texture(PresetManager.getpre('img_'+cp_info.id))
 	popup()
-func on_using_card(id):
+func on_using_card(id: String) -> void:
 
 	if cp_info.has('giving_buff_moment'):
 		for i in range(cp_info.giving_buff_moment.size()):
@@ -29,7 +29,7 @@ func on_using_card(id):
 		for i in range(cp_info.creating_routine.size()):
 			if cp_info.creating_routine_moment[i]=='sc':
 				SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],false,global_position,rotation,null)
-func trigger_buff(i):
+func trigger_buff(i: int) -> void:
 	if cp_info.get('buff_value_factor_depend',[]).size()>i:
 		SignalBus.player_add_buff.emit(cp_info.giving_buff[i],
 										player_var.dep.operate_dep(cp_info.get('buff_value_factor_depend')[i],
@@ -40,23 +40,23 @@ func trigger_buff(i):
 
 										cp_info.buff_value_factor[i],
 										cp_info.id)
-func on_player_hurt():
+func on_player_hurt() -> void:
 	if(cp_info.has('creating_routine')):
 		for i in range(cp_info.creating_routine.size()):
 			if cp_info.creating_routine_moment[i]=='hurt':
 				SignalBus.trigger_routine_by_id.emit(cp_info.creating_routine[i],false,global_position,rotation,null)
-func destroy(desid):
+func destroy(desid: String) -> void:
 	if desid == cp_info.id:
 		SignalBus.player_del_buff_by_source.emit(cp_info.id)
 		queue_free()
 
-@onready var panel = $CanvasLayer/PopupPanel
-@onready var text = $CanvasLayer/RichTextLabel
+@onready var panel: PopupPanel = $CanvasLayer/PopupPanel
+@onready var text: Label = $CanvasLayer/RichTextLabel
 func popup() -> void:
 
 
 	$CanvasLayer.visible = true
-	var flush:Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
+	var flush: Tween = panel.create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_speed_scale(70)
 	RunSession.underrecycle_tween.append(flush)
 	flush.tween_property(panel,'modulate',Color(1,1,1,0.1),3)
 	flush.tween_property(panel,'modulate',Color(1,1,1,1),1)
@@ -65,7 +65,7 @@ func popup() -> void:
 
 
 	flush = null
-	var expand = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
+	var expand: Tween = text.create_tween().set_ease(Tween.EASE_OUT).set_speed_scale(3)
 	RunSession.underrecycle_tween.append(expand)
 	expand.tween_property(text,'scale',Vector2(0.4,0.6),1)
 	expand.tween_property(text,'scale',Vector2(0.6,0.6),2)
@@ -76,7 +76,7 @@ func popup() -> void:
 
 	expand = null
 
-	var disappear = panel.create_tween()
+	var disappear: Tween = panel.create_tween()
 	RunSession.underrecycle_tween.append(disappear)
 	disappear.tween_interval(1)
 	disappear.set_parallel().tween_property(panel,'scale',Vector2(0.5,0),0.5)

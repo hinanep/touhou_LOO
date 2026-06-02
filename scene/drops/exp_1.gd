@@ -1,7 +1,7 @@
 extends drop
 
 
-func _ready():
+func _ready() -> void:
 	super._ready()
 	experience = randi_range(1,3)
 	score = experience

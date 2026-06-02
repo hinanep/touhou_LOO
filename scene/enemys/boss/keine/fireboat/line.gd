@@ -5,7 +5,7 @@ extends Line2D
 
 var is_burning1: bool = false
 var is_burning2: bool = false
-@export var start_burn:int = 0
+@export var start_burn: int = 0
 
 func _ready() -> void:
 	# 创建线条点
@@ -22,11 +22,11 @@ func _ready() -> void:
 		##call_deferred('on_fire_from',boat1)
 		#call_deferred('start_burning',0)
 
-func set_ready():
+func set_ready() -> void:
 	create_gra()
 	create_line_points()
 
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	RunSession.underrecycle_tween.append(tween)
 	tween.tween_property(material,'shader_parameter/progress',0.0,0.0)
 	visible = true
@@ -34,26 +34,26 @@ func set_ready():
 
 
 
-func boat_die_disconnect(_id):
+func boat_die_disconnect(_id: int) -> void:
 	queue_free()
-func create_line_points():
+func create_line_points() -> void:
 	# 清除现有点
 	clear_points()
 
 
 	# 计算线条总长度和方向
-	var line_start = boat1.position
-	var line_end = boat2.position
-	var line_direction = (line_end - line_start).normalized()
-	var line_length = line_start.distance_to(line_end)
-	var segment_length = line_length / segment_count
+	var line_start: Vector2 = boat1.position
+	var line_end: Vector2 = boat2.position
+	var line_direction: Vector2 = (line_end - line_start).normalized()
+	var line_length: float = line_start.distance_to(line_end)
+	var segment_length: float = line_length / segment_count
 
 	# 创建多个点来形成线条
 	for i in range(segment_count + 1):  # segment_count + 1个点形成segment_count段
-		var point = line_start + line_direction * (i * segment_length)
+		var point: Vector2 = line_start + line_direction * (i * segment_length)
 		add_point(point)
 
-func create_gra():
+func create_gra() -> void:
 	gradient = Gradient.new()
 	gradient.set_color(0,Color.RED)
 	gradient.set_color(1,Color.RED)
@@ -64,27 +64,27 @@ func create_gra():
 	gradient.add_point(0.999,Color.RED)
 
 
-func start_burning(start_point: int):
+func start_burning(start_point: int) -> void:
 	if start_point == 0:
 		if is_burning1:
 			return
 		is_burning1 = true
-		var tween = create_tween()
+		var tween: Tween = create_tween()
 		RunSession.underrecycle_tween.append(tween)
 		tween.tween_property($".",'left_fire',1,2)
 	else:
 		if is_burning2:
 			return
 		is_burning2 = true
-		var tween = create_tween()
+		var tween: Tween = create_tween()
 		RunSession.underrecycle_tween.append(tween)
 		tween.tween_property($".",'right_fire',0,2)
 
 
-var left_fire = 0.001
-var right_fire = 0.999
-var fired = false
-func update_burn_effect():
+var left_fire: float = 0.001
+var right_fire: float = 0.999
+var fired: bool = false
+func update_burn_effect() -> void:
 	if not (is_burning1 or is_burning2):
 		return
 	if left_fire +0.05> right_fire:
@@ -109,7 +109,7 @@ func update_burn_effect():
 
 	gradient.set_offset(3,right_fire-0.01)
 	gradient.set_offset(4,right_fire)
-func _process(delta):
+func _process(delta: float) -> void:
 	if not (boat1 or boat2):
 		queue_free()
 	if is_burning1 or is_burning2:
@@ -118,7 +118,7 @@ func _process(delta):
 			update_burn_effect()
 
 
-func on_fire_from(boatx: Node2D):
+func on_fire_from(boatx: Node2D) -> void:
 	if boatx == boat1:
 		start_burning(0)
 

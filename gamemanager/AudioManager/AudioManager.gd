@@ -7,17 +7,17 @@ extends Node
 ## 将不同的音频类型分配到不同的音频总线 ('bgm', 'background', 'sfx')，以便进行混音控制。
 
 # BGM 播放器 (播放将暂停背景BGM)
-var bgm_player:AudioStreamPlayer
+var bgm_player: AudioStreamPlayer
 # 背景 BGM 播放器
-var background_bgm_player:AudioStreamPlayer
+var background_bgm_player: AudioStreamPlayer
 # 用于存放所有动态创建的音效播放器的节点
-var SFXPlayerPool
+var SFXPlayerPool: Node
 # 用于在切换背景 BGM 时临时存储原始的 AudioStream
-var swaping_backbgm:AudioStream
+var swaping_backbgm: AudioStream
 # 存储正在播放的音效及其对应的播放器实例的字典 {sfx_name: AudioStreamPlayer}
 # 用于复用特定音效的播放器
-@onready var sfx_player_playing_pair = {}
-func _ready():
+@onready var sfx_player_playing_pair: Dictionary[String, AudioStreamPlayer] = {}
+func _ready() -> void:
 	# 设置处理模式为 ALWAYS，确保即使游戏暂停，音频管理器也能继续处理。
 	# 这对于不间断的背景音乐或全局音效很重要。
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -45,7 +45,7 @@ func _ready():
 ## @param bgm_name: String - 要播放的背景 BGM 的名称（需要 PresetManager 能识别）。
 func play_background_bgm(bgm_name: String) -> void:
 	# 从 PresetManager 获取音频流
-	var stream = PresetManager.getpre(bgm_name)
+	var stream: Variant = PresetManager.getpre(bgm_name)
 	if stream:
 		background_bgm_player.stream = stream
 		background_bgm_player.play()
@@ -66,7 +66,7 @@ func play_bgm(bgm_name: String) -> void:
 	background_bgm_player.set_stream_paused(true)
 
 	# 从 PresetManager 获取音频流
-	var stream = PresetManager.getpre(bgm_name)
+	var stream: Variant = PresetManager.getpre(bgm_name)
 	if stream:
 		bgm_player.stream = stream
 		bgm_player.play()
@@ -75,12 +75,12 @@ func play_bgm(bgm_name: String) -> void:
 		background_bgm_player.set_stream_paused(false)
 		printerr("AudioManager: 未找到主 BGM 资源 '", bgm_name, "'")
 
-func play_once_loop_bgm(bgm_name_once: String,bgm_name_loop: String):
+func play_once_loop_bgm(bgm_name_once: String, bgm_name_loop: String) -> void:
 	# 暂停背景 BGM
 	background_bgm_player.set_stream_paused(true)
 
 	# 从 PresetManager 获取音频流
-	var stream = PresetManager.getpre(bgm_name_once)
+	var stream: Variant = PresetManager.getpre(bgm_name_once)
 	if stream:
 		bgm_player.stream = stream
 		bgm_player.play()
@@ -105,14 +105,14 @@ func play_once_loop_bgm(bgm_name_once: String,bgm_name_loop: String):
 
 func swap_backbgm(bgm_name: String = "") -> void:
 	# 获取当前的播放位置，以便无缝切换
-	var point = background_bgm_player.get_playback_position()
+	var point: float = background_bgm_player.get_playback_position()
 
 	if bgm_name != "":
 		# --- 切换到新的背景 BGM ---
 		# 备份当前的背景 BGM 流
 		swaping_backbgm = background_bgm_player.stream
 		# 从 PresetManager 获取新的音频流
-		var new_stream = PresetManager.getpre(bgm_name)
+		var new_stream: Variant = PresetManager.getpre(bgm_name)
 		if new_stream:
 			background_bgm_player.stream = new_stream
 			background_bgm_player.play(point) # 从之前的位置开始播放新 BGM
@@ -141,7 +141,7 @@ func bgm_over() -> void:
 ## 播放音效 (SFX)。
 ## 如果该音效已有对应的播放器，则复用该播放器；否则创建一个新的播放器。
 ## @param sfx_name: String - 要播放的音效的名称（需要 PresetManager 能识别）。
-func play_sfx(sfx_name: String,volume = 0.0,position = 0) -> void:
+func play_sfx(sfx_name: String, volume: float = 0.0, position: float = 0.0) -> void:
 	var aplayer: AudioStreamPlayer
 
 	# 检查是否已有该音效的播放器
@@ -157,7 +157,7 @@ func play_sfx(sfx_name: String,volume = 0.0,position = 0) -> void:
 		aplayer = sfx_player_playing_pair[sfx_name]
 	aplayer.volume_db = volume
 	# 从 PresetManager 获取音效音频流
-	var stream = PresetManager.getpre(sfx_name)
+	var stream: Variant = PresetManager.getpre(sfx_name)
 	if stream:
 		aplayer.stream = stream
 		aplayer.play(position) # 播放音效
@@ -168,7 +168,7 @@ func play_sfx(sfx_name: String,volume = 0.0,position = 0) -> void:
 ## 创建并配置一个新的音效播放器实例。
 ## @return: AudioStreamPlayer - 新创建并配置好的播放器实例。
 func new_sfx_player() -> AudioStreamPlayer:
-	var new_player = AudioStreamPlayer.new()
+	var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	# 将音效输出到名为 'sfx' 的音频总线
 	new_player.bus = 'sfx'
 	return new_player

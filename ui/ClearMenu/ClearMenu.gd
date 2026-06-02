@@ -1,14 +1,14 @@
 extends BaseGUIView
 
 
-func _on_back_button_pressed():
+func _on_back_button_pressed() -> void:
 
 
 	G.get_gui_view_manager().clear_to_start()
 
-func _open():
+func _open() -> void:
 	$CanvasLayer/RichTextLabel/RichTextLabel.text =String.num_int64(player_var.point)
-	var format_damage = " : %.2f \n"
+	var format_damage: String = " : %.2f \n"
 	for source in player_var.damage_sum:
 		if player_var.damage_sum[source] < 1.0:
 			continue
@@ -17,18 +17,18 @@ func _open():
 	pass
 
 
-func _close():
+func _close() -> void:
 
 	pass
 
 
-func open():
+func open() -> void:
 	_open()
 
 
-func close():
+func close() -> void:
 	_close()
 
 
-func close_self():
+func close_self() -> void:
 	G.get_gui_view_manager().close_view(viewInstanceId)

@@ -2,7 +2,7 @@ extends drop
 
 
 
-func _ready():
+func _ready() -> void:
 	experience = 0
 	score = 1
 	mana = 0
@@ -10,7 +10,7 @@ func _ready():
 
 	$".".visible = true
 
-func fly_to_player(exp_buff = 1.0,mana_buff = 1.0,score_buff = 1.0,point_ratio_buff = false):
+func fly_to_player(exp_buff: float = 1.0, mana_buff: float = 1.0, score_buff: float = 1.0, point_ratio_buff: bool = false) -> void:
 	experience *= exp_buff
 	mana *= mana_buff
 	score *= score_buff

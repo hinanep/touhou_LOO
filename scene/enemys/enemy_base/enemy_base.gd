@@ -1,37 +1,37 @@
 class_name enemy_base extends CharacterBody2D
-@onready var player_node = get_tree().get_first_node_in_group("player")
+@onready var player_node: player = get_tree().get_first_node_in_group("player") as player
 
 #var modi = player_var.time_secs /1800.0
-var mob_id :int
-var hp
-var drops_path = "drops_p"
-var target
-var invincible = false
-var multi = 1.0
-var drop_num = 1.0
-signal die(id)
-var is_inscreen:bool = false
-var mob_info :Dictionary
+var mob_id: int
+var hp: float
+var drops_path: String = "drops_p"
+var target: Node
+var invincible: bool = false
+var multi: float = 1.0
+var drop_num: float = 1.0
+signal die(id: int)
+var is_inscreen: bool = false
+var mob_info: Dictionary
 var _spawn_time_sec: float = 0.0
 var inv_time: float = 0.0
 var inv_decay: float = 0.0
-@onready var progress_bar = $AvoidanceModule
-@onready var collisionshape = $buff
-@onready var melee_damage_area = $melee_damage_area
-@onready var melee_attack_cd = $melee_damage_area/melee_attack_cd
-@onready var sprite :AnimatedSprite2D = $AnimatedSprite2D
+@onready var progress_bar: ProgressBar = $AvoidanceModule
+@onready var collisionshape: CollisionShape2D = $buff
+@onready var melee_damage_area: Area2D = $melee_damage_area
+@onready var melee_attack_cd: Timer = $melee_damage_area/melee_attack_cd
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 # 2. 获取对 C# 模块子节点的引用
-@onready var avoidance_module = $AvoidanceModule
+@onready var avoidance_module: ProgressBar = $AvoidanceModule
 
 
-var movement:Callable
-var creep_move:bool
-var atkable = true
-var moveable = true
+var movement: Callable
+var creep_move: bool
+var atkable: bool = true
+var moveable: bool = true
 
 # --- 避障参数 ---
-var scalex = 0.28
-var scaledir = 1
+var scalex: float = 0.28
+var scaledir: int = 1
 
 # 1. 定义怪物属性。C# 模块将会读取这些值。
 @export var radius: float = 80.0
@@ -39,7 +39,7 @@ var scaledir = 1
 
 
 
-func _ready():
+func _ready() -> void:
 
 	set_z_index(1)
 	set_z_as_relative(false)
@@ -52,7 +52,7 @@ func _ready():
 	collision_layer = 2
 	collision_mask = 0
 	radius = collisionshape.shape.radius / 1
-	max_speed =mob_info.speed
+	max_speed = mob_info.speed
 	if mob_info.has('type') and mob_info["type"] == 'elite':
 		drops_path = "drops_plate"
 		set_scale(Vector2(2,2))
@@ -65,7 +65,7 @@ func _ready():
 			movement = move_to_target
 		'creep':
 			movement = creep
-			var creeptimer = Timer.new()
+			var creeptimer: Timer = Timer.new()
 			creeptimer.wait_time = 0.6
 			creeptimer.timeout.connect(
 				func():
@@ -95,32 +95,32 @@ func _ready():
 
 
 #根据表选择适当的移动函数（初始化时选择
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 
 	if moveable:
 		movement.call()
 	sprite.scale.x = clampf(sprite.scale.x + 0.05 *scaledir,-scalex,scalex)
 
-func choose_default_anime():
-	var df = []
-	for anim:String in sprite.sprite_frames.get_animation_names():
+func choose_default_anime() -> void:
+	var df: Array[String] = []
+	for anim: String in sprite.sprite_frames.get_animation_names():
 		if anim.contains('default'):
 			df.push_back(anim)
 	if not df.is_empty():
 		sprite.animation = df[randi_range(0,df.size()-1)]
 
-func get_desired_velocity():
+func get_desired_velocity() -> Vector2:
 	return Vector2.ZERO.move_toward((player_node.global_position-global_position)*2,mob_info.speed)
 
-var is_turning = false
-func turn_to_right(to_right:bool):
+var is_turning: bool = false
+func turn_to_right(to_right: bool) -> void:
 	pass
 
 #移动方式：走向玩家
-func move_to_target():
-	var idea_v = get_desired_velocity()
+func move_to_target() -> void:
+	var idea_v: Vector2 = get_desired_velocity()
 
-	var safe_velocity = avoidance_module.CalculateSafeVelocity(idea_v)
+	var safe_velocity: Vector2 = avoidance_module.CalculateSafeVelocity(idea_v)
 
 	set_velocity(safe_velocity)
 
@@ -129,16 +129,16 @@ func move_to_target():
 	else:
 		scaledir = 1
 	move_and_slide()
-func stay():
+func stay() -> void:
 	pass
 
 #移动方式：蛄蛹（初始化时设置了定时反转creep_move变量）
-func creep():
+func creep() -> void:
 	if creep_move:
 		move_to_target()
 
 #伤害数字表示
-func damage_num_display(num):
+func damage_num_display(num: float) -> void:
 
 	$DamageNum.showdamage(num)
 
@@ -150,7 +150,7 @@ func damage_num_display(num):
 func _mob_info_float(key: String) -> float:
 	if not mob_info.has(key):
 		return 0.0
-	var v = mob_info[key]
+	var v: Variant = mob_info[key]
 	if typeof(v) == TYPE_FLOAT or typeof(v) == TYPE_INT:
 		return float(v)
 	return 0.0
@@ -195,7 +195,7 @@ func _disable_collision() -> void:
 
 
 #似了
-func died(disppear = false):
+func died(disppear: bool = false) -> void:
 	if(disppear):
 		_disable_collision()
 		emit_signal('die',mob_id)
@@ -215,14 +215,14 @@ func died(disppear = false):
 		sprite.play('die')
 		await sprite.animation_finished
 	else:
-		var tween = create_tween().tween_property(sprite,'skew',PI/2,0.5)
+		var tween: Tween = create_tween()
 		RunSession.underrecycle_tween.append(tween)
+		tween.tween_property(sprite, 'skew', PI / 2, 0.5)
 		await tween.finished
-		tween = null
 	queue_free()
 
 # 清理所有信号连接
-func _cleanup_connections():
+func _cleanup_connections() -> void:
 	# 断开体术攻击相关的信号连接
 	if melee_damage_area and is_instance_valid(melee_damage_area):
 		if melee_damage_area.body_entered.is_connected(melee_damage_area_body_entered):
@@ -236,12 +236,12 @@ func _cleanup_connections():
 
 
 #掉落
-func drop():
+func drop() -> void:
 	SignalBus.drop.emit(drops_path,global_position,drop_num)
 
 
 #体术攻击准备就绪，体术攻击敌人ready中调用
-func melee_battle_ready(disable = false):
+func melee_battle_ready(disable: bool = false) -> void:
 	if disable:
 		$melee_damage_area.queue_free()
 		return
@@ -257,11 +257,11 @@ func melee_battle_ready(disable = false):
 		melee_damage_area.body_exited.connect(_on_melee_damage_area_body_exited)
 
 # 延迟设置体术攻击Area2D监控状态
-func set_melee_monitoring(active: bool):
+func set_melee_monitoring(active: bool) -> void:
 	melee_damage_area.monitoring = active
 
 #疑似玩家进入体术攻击范围，开打
-func melee_damage_area_body_entered(_body):
+func melee_damage_area_body_entered(_body: Node2D) -> void:
 	if not _body is player:
 		return
 
@@ -269,19 +269,19 @@ func melee_damage_area_body_entered(_body):
 	melee_attack_cd.start()
 
 #疑似玩家离开体术攻击范围，停手
-func _on_melee_damage_area_body_exited(body):
+func _on_melee_damage_area_body_exited(body: Node2D) -> void:
 	if not body is player:
 		return
 
 	melee_attack_cd.stop()
 
 #定时打人
-func melee_attack_cd_timeout():
+func melee_attack_cd_timeout() -> void:
 	melee_attack(player_node)
 
 
 #体术攻击方法，可覆盖
-func melee_attack(body):
+func melee_attack(body: Node) -> void:
 	if not atkable:
 		return
 	if body.has_method('take_damage'):
@@ -289,7 +289,7 @@ func melee_attack(body):
 
 
 #弹幕攻击准备就绪，弹幕攻击敌人ready中调用
-func bullet_battle_ready(disable = false):
+func bullet_battle_ready(disable: bool = false) -> void:
 	if disable:
 		return
 
@@ -299,31 +299,31 @@ func bullet_battle_ready(disable = false):
 
 
 #弹幕攻击方法，待实例实现
-func bullet_attack():
+func bullet_attack() -> void:
 	if not atkable:
 		return
 
-func bullet_attack_cd_timeout():
+func bullet_attack_cd_timeout() -> void:
 	bullet_attack()
 
 #到玩家方向单位向量
-func get_diretion_to_target():
+func get_diretion_to_target() -> Vector2:
 
 	return(player_node.global_position - global_position).normalized()
 
 #到玩家距离
-func get_distance_to_player():
+func get_distance_to_player() -> float:
 	if player_node:
 		return global_position.distance_to(player_node.global_position)
-	return Vector2.ZERO
+	return 0.0
 
 #到玩家距离平方
-func get_distance_squared_to_player():
+func get_distance_squared_to_player() -> float:
 	if player_node:
 		return global_position.distance_squared_to(player_node.global_position)
-	return Vector2.ZERO
+	return 0.0
 #设置基础属性加成，读表
-func setbuff(hpm,melee_damage,danma_damage,speed):
+func setbuff(hpm: float, melee_damage: float, danma_damage: float, speed: float) -> void:
 	mob_info.health *= hpm
 	hp *= hpm
 	mob_info.physical_damage *= melee_damage
@@ -332,7 +332,7 @@ func setbuff(hpm,melee_damage,danma_damage,speed):
 	#mob_info.speed *= speed
 
 #得到了debuff
-func set_debuff(buff_name,intensity,duration,source):
+func set_debuff(buff_name: String, intensity: float, duration: float, source: Node2D) -> void:
 	$buff.add_buff(buff_name,intensity,duration,source)
 
 #进入屏幕时触发
@@ -353,5 +353,5 @@ func _on_outscreen_disppear_timeout() -> void:
 	else:
 		global_position = player_node.global_position + Vector2.from_angle(randf_range(-PI,PI)) * 1000
 		print('tp to player')
-func highlight():
+func highlight() -> void:
 	$AnimatedSprite2D.modulate = Color(0,1,1,1)

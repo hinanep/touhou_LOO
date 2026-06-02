@@ -2,14 +2,14 @@ extends BaseGUIView
 
 @onready var _warmup_overlay: Control = $WarmupLoadingLayer/WarmupLoadingOverlay
 
-func _ready():
+func _ready() -> void:
 	G.get_gui_view_manager().open_view("Hud")
 	AudioManager.play_background_bgm("music_bgm_oldworld")
 	await scene_init()
 	RunSession.tmp_scene = $"."
-var pauseing = false
-var pause_id
-var first = true
+var pauseing: bool = false
+var pause_id: int
+var first: bool = true
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -35,11 +35,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		G.get_gui_view_manager().open_view("DialogueMenu")
 
 
-func _open():
+func _open() -> void:
 	RunSession.worldenvir = $WorldEnvironment
 
 
-func _close():
+func _close() -> void:
 	AudioManager.stop_background_bgm()
 	if RunSession.SpawnManager != null:
 		RunSession.SpawnManager.clear()
@@ -48,7 +48,7 @@ func _close():
 
 
 
-func open():
+func open() -> void:
 	RunSession.air_wall_top = $air_wall/top.position.y
 	RunSession.air_wall_bottom = $air_wall/down.position.y
 	RunSession.air_wall_left = $air_wall/left.position.x
@@ -56,14 +56,14 @@ func open():
 	_open()
 
 
-func close():
+func close() -> void:
 	_close()
 
-func close_self():
+func close_self() -> void:
 
 	G.get_gui_view_manager().close_view(viewInstanceId)
 
-func scene_init():
+func scene_init() -> void:
 	player_var.new_scene()
 	SignalBus.try_add_skill.emit("ski_basemagic")
 	SignalBus.try_add_skill.emit("ski_basephysics")
@@ -87,7 +87,7 @@ func _hide_warmup_overlay() -> void:
 	_warmup_overlay.hide()
 	player_var.release_game_pause()
 
-func lock_camera():
+func lock_camera() -> void:
 	var camera:Camera2D = get_viewport().get_camera_2d()
 	#camera.position_smoothing_enabled = true
 	camera.limit_bottom = RunSession.air_wall_bottom
@@ -100,7 +100,7 @@ func _on_end_game_timeout() -> void:
 
 
 	while true:
-		var interval = get_tree().create_timer(1,false)
+		var interval: SceneTreeTimer = get_tree().create_timer(1,false)
 		await interval.timeout
 		interval = null
 		if RunSession.SpawnManager.mob_dic.is_empty():

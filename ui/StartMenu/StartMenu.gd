@@ -2,9 +2,9 @@ extends BaseGUIView
 
 @onready var _progress_layer: CanvasLayer = $progress
 @onready var _progress_bar: TextureProgressBar = $progress/PresetLoadingOverlay/TextureProgressBar
-var _preset_signals_connected := false
+var _preset_signals_connected: bool = false
 
-func _open():
+func _open() -> void:
 	get_tree().paused = false
 	# 显示并更新预设加载进度
 	if PresetManager.is_loading:
@@ -20,43 +20,43 @@ func _open():
 	pass
 
 
-func _close():
+func _close() -> void:
 	pass
 
 
 
 
-func _on_quit_button_pressed():
+func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
 
-func _on_settings_button_pressed():
+func _on_settings_button_pressed() -> void:
 	G.get_gui_view_manager().open_view("SettingsMenu")
 	close_self()
 	pass # Replace with function body.
 
 
-func _on_story_mode_button_pressed():
+func _on_story_mode_button_pressed() -> void:
 	player_var.ini()
 	G.get_gui_view_manager().open_view("StoryModeMenu")
 	close_self()
 	pass # Replace with function body.
 
 
-func _on_wiki_button_pressed():
+func _on_wiki_button_pressed() -> void:
 	G.get_gui_view_manager().open_view("WikiMenu")
 	close_self()
 	pass # Replace with function body.
 
 
-func _on_shop_button_pressed():
+func _on_shop_button_pressed() -> void:
 	G.get_gui_view_manager().open_view("ShopMenu")
 	close_self()
 	pass # Replace with function body.
 
 
-func _on_test_pressed():
+func _on_test_pressed() -> void:
 	player_var.ini()
 	G.get_gui_view_manager().open_view("TestScene")
 	close_self()

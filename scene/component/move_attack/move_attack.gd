@@ -62,11 +62,11 @@ func _reset_state_variables() -> void:
 
 # 由 Attack 节点的 _physics_process 调用
 func physics_update(delta: float) -> void:
-	var collision_info = move_type.call(delta)
+	var collision_info: Variant = move_type.call(delta)
 	rotate_type.call(delta)
 
 	if has_reflection and collision_info is KinematicCollision2D:
-		var normal = collision_info.get_normal()
+		var normal: Vector2 = collision_info.get_normal()
 		velocity = velocity.bounce(normal)
 		# 简化：方向向量直接从速度向量得出
 		if velocity.length_squared() > 0:
@@ -78,12 +78,12 @@ func physics_update(delta: float) -> void:
 
 func _set_initial_direction_and_rotation() -> void:
 	lock.find_next_target()
-	var initial_rotation = deg_to_rad(attack_info.get("ri", 0.0))
+	var initial_rotation: float = deg_to_rad(attack_info.get("ri", 0.0))
 
-	var ri_dep = attack_info.get("ri_dependence", "")
+	var ri_dep: String = attack_info.get("ri_dependence", "")
 	match ri_dep:
 		"lock":
-			var target_pos = lock.get_target_position()
+			var target_pos: Vector2 = lock.get_target_position()
 			if target_pos != Vector2.INF:
 				initial_rotation += body.global_position.angle_to_point(target_pos)
 		"character":
@@ -99,18 +99,18 @@ func _setup_movement_strategy() -> void:
 		move_type = Callable(self, "move_stay")
 		return
 
-	var rule_str = attack_info.get("moving_rule", "stay")
+	var rule_str: String = attack_info.get("moving_rule", "stay")
 	match rule_str:
 		"straight":
 			move_type = Callable(self, "move_straight")
 			_move_straight_init()
 		"trail":
 			move_type = Callable(self, "move_trace_target")
-			var speed = attack_info.get("moving_parameter", [0])[0]
+			var speed: float = attack_info.get("moving_parameter", [0])[0]
 			velocity = direction * speed
 		"sekibanki":
 			move_type = Callable(self, "move_sekibanki")
-			var speed = attack_info.get("moving_parameter", [0])[0]
+			var speed: float = attack_info.get("moving_parameter", [0])[0]
 			velocity = Vector2.from_angle(randf_range(0, TAU)) * player_var.bullet_speed_ratio * speed
 		"polar":
 			move_type = Callable(self, "move_polar")
@@ -119,7 +119,7 @@ func _setup_movement_strategy() -> void:
 			move_type = Callable(self, "move_stay")
 
 func _setup_rotation_strategy() -> void:
-	var rule_str = attack_info.get("rotation_rule", "none")
+	var rule_str: String = attack_info.get("rotation_rule", "none")
 	match rule_str:
 		"uniform":
 			rotate_type = Callable(self, "rot_uniform")
@@ -137,8 +137,8 @@ func _setup_rotation_strategy() -> void:
 func move_stay(_delta: float) -> KinematicCollision2D: return null
 
 func _move_straight_init() -> void:
-	var params = attack_info.get("moving_parameter", [0, 0, 9999])
-	var initial_speed = params[0] * attack_info.get("speed_efficiency", 1.0) * player_var.bullet_speed_ratio
+	var params: Array = attack_info.get("moving_parameter", [0, 0, 9999])
+	var initial_speed: float = params[0] * attack_info.get("speed_efficiency", 1.0) * player_var.bullet_speed_ratio
 	acceleration = params[1] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
 	match attack_info.get('diretion'):
 		'character':
@@ -155,7 +155,7 @@ func _move_straight_init() -> void:
 	velocity = direction * initial_speed
 
 func move_straight(delta: float) -> KinematicCollision2D:
-	var max_speed = attack_info.get("moving_parameter", [0, 0, 9999])[2] * attack_info.get("speed_efficiency", 1.0) * player_var.bullet_speed_ratio
+	var max_speed: float = attack_info.get("moving_parameter", [0, 0, 9999])[2] * attack_info.get("speed_efficiency", 1.0) * player_var.bullet_speed_ratio
 	velocity += direction * acceleration * delta
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
@@ -163,18 +163,18 @@ func move_straight(delta: float) -> KinematicCollision2D:
 
 # 追踪移动（寻的）
 func move_trace_target(delta: float) -> KinematicCollision2D:
-	var target = lock.get_target_node()
+	var target: Node = lock.get_target_node()
 	if not is_instance_valid(target):
 		next_found_counter -= 1
 		if next_found_counter <= 0:
 			lock.find_next_target()
 			next_found_counter = 30 # 每 30 帧索敌一次
 	else:
-		var params = attack_info.get("moving_parameter", [0, 0, 9999])
-		var acceleration_factor = params[1] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
-		var max_speed = params[2] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
+		var params: Array = attack_info.get("moving_parameter", [0, 0, 9999])
+		var acceleration_factor: float = params[1] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
+		var max_speed: float = params[2] * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
 
-		var accel_vec = body.global_position.direction_to(target.global_position) * acceleration_factor
+		var accel_vec: Vector2 = body.global_position.direction_to(target.global_position) * acceleration_factor
 		velocity += accel_vec * delta
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
@@ -185,9 +185,9 @@ func move_trace_target(delta: float) -> KinematicCollision2D:
 
 # 极坐标移动（螺旋等）
 func move_polar(delta: float) -> KinematicCollision2D:
-	var params = attack_info.get("moving_parameter", [0, 0, 0])
-	var radial_speed = params[1] * delta * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
-	var angular_speed = params[2] * delta * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
+	var params: Array = attack_info.get("moving_parameter", [0, 0, 0])
+	var radial_speed: float = params[1] * delta * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
+	var angular_speed: float = params[2] * delta * player_var.bullet_speed_ratio * attack_info.get("speed_efficiency", 1.0)
 
 	polar_len += radial_speed
 	polar_angle += angular_speed
@@ -197,10 +197,10 @@ func move_polar(delta: float) -> KinematicCollision2D:
 
 # 特殊移动：一边朝玩家加速，一边做切向运动
 func move_sekibanki(delta: float) -> KinematicCollision2D:
-	var speed = attack_info.get("moving_parameter", [0])[0]
+	var speed: float = attack_info.get("moving_parameter", [0])[0]
 	if is_instance_valid(player_var.player_node):
-		var to_player = body.global_position.direction_to(player_var.player_node.global_position)
-		var distance = body.global_position.distance_to(player_var.player_node.global_position)
+		var to_player: Vector2 = body.global_position.direction_to(player_var.player_node.global_position)
+		var distance: float = body.global_position.distance_to(player_var.player_node.global_position)
 		velocity += 0.5 * speed * to_player * delta * sqrt(distance)
 
 	velocity += velocity.rotated(PI / 2).normalized() * delta * speed
@@ -212,32 +212,36 @@ func move_sekibanki(delta: float) -> KinematicCollision2D:
 # 旋转策略实现
 #=============================================================================
 
-func rot_stay(_delta: float): pass
+func rot_stay(_delta: float) -> void:
+	pass
 
-func rot_uniform(delta: float):
+
+func rot_uniform(delta: float) -> void:
 	body.rotation_degrees += attack_info.get("omega", 0.0) * delta
 
-func rot_towards_velocity(delta: float):
+
+func rot_towards_velocity(delta: float) -> void:
 	if velocity.length_squared() > 0.01:
 		_rotate_towards(velocity.angle(), delta)
 
-func rot_locking(delta: float):
-	var target_pos = lock.get_target_position()
+
+func rot_locking(delta: float) -> void:
+	var target_pos: Vector2 = lock.get_target_position()
 	if target_pos != Vector2.INF:
-		var target_angle = body.global_position.angle_to_point(target_pos)
+		var target_angle: float = body.global_position.angle_to_point(target_pos)
 		_rotate_towards(target_angle, delta)
 
 # 【统一的旋转逻辑】
 func _rotate_towards(target_angle: float, delta: float) -> void:
-	var omega_rad = deg_to_rad(attack_info.get("omega", 360.0))
-	var max_rotation_this_frame = omega_rad * delta
+	var omega_rad: float = deg_to_rad(attack_info.get("omega", 360.0))
+	var max_rotation_this_frame: float = omega_rad * delta
 
-	var angle_delta = angle_difference(body.rotation, target_angle)
+	var angle_delta: float = angle_difference(body.rotation, target_angle)
 
-	var rotation_amount = clamp(angle_delta, -max_rotation_this_frame, max_rotation_this_frame)
+	var rotation_amount: float = clamp(angle_delta, -max_rotation_this_frame, max_rotation_this_frame)
 	body.rotate(rotation_amount)
 
 # GDScript 3 & 4 兼容的角度差函数
-func angle_difference(from, to):
-	var diff = fmod(to - from + PI, TAU) - PI
+func angle_difference(from: float, to: float) -> float:
+	var diff: float = fmod(to - from + PI, TAU) - PI
 	return diff if diff > -PI else diff + TAU

@@ -1,10 +1,10 @@
 extends Object
 class_name PassiveManagers
-var passive_num_have = 0
-var passive_num_full = false
-var passive_full = false
+var passive_num_have: int = 0
+var passive_num_full: bool = false
+var passive_full: bool = false
 
-var passive_info = {
+var passive_info: Dictionary = {
 	"id": "psv_patchouli",
 	"upgrade_group": "upg_patchouli",
 	"type": "base",
@@ -16,17 +16,23 @@ var passive_info = {
 	]
 
 }
-var passive_pool = {
-	#id : passive_info
-	locked = {},
-	unlocked = {},
-	choosed = {},
-	max = {},
-	banned = {}
+var _passive_pool_locked: Dictionary[String, Dictionary] = {}
+var _passive_pool_unlocked: Dictionary[String, Dictionary] = {}
+var _passive_pool_choosed: Dictionary[String, Dictionary] = {}
+var _passive_pool_max: Dictionary[String, Dictionary] = {}
+var _passive_pool_banned: Dictionary[String, Dictionary] = {}
+
+var passive_pool: Dictionary = {
+	# id : passive_info
+	"locked": _passive_pool_locked,
+	"unlocked": _passive_pool_unlocked,
+	"choosed": _passive_pool_choosed,
+	"max": _passive_pool_max,
+	"banned": _passive_pool_banned,
 }
 
 #id:node
-var passive_list = {}
+var passive_list: Dictionary[String, int] = {}
 
 func _init() -> void:
 	SignalBus.try_add_passive.connect(on_try_add_passive)
@@ -40,7 +46,7 @@ func _init() -> void:
 	for passives in passive_pool.unlocked:
 		passive_pool.unlocked[passives]['weight'] = 1
 
-func on_try_add_passive(id):
+func on_try_add_passive(id: String) -> void:
 	if(passive_pool.choosed.has(id)):
 		SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group,passive_list[id])
 		return
@@ -50,8 +56,8 @@ func on_try_add_passive(id):
 		on_unlock_passive(id)
 	SignalBus.add_passive.emit(passive_pool.unlocked[id])
 
-func on_add_passive(ski_info):
-	var id = ski_info.id
+func on_add_passive(ski_info: Dictionary) -> void:
+	var id: String = ski_info.id
 	player_var.damage_sum[id] = 0.0
 	passive_num_have += 1
 	if passive_num_have >= player_var.passive_num_max:
@@ -64,7 +70,7 @@ func on_add_passive(ski_info):
 
 	SignalBus.upgrade_group.emit(passive_pool.choosed[id].upgrade_group,0)
 
-func on_del_passive(id):
+func on_del_passive(id: String) -> void:
 	if(passive_pool.choosed.has(id)):
 		passive_pool.unlocked[id]=passive_pool.choosed[id]
 		passive_pool.choosed.erase(id)
@@ -81,12 +87,12 @@ func on_del_passive(id):
 	passive_num_full = false
 	passive_full = false
 
-func on_upgrade_passive(group,cur):
+func on_upgrade_passive(group: String, cur: Variant) -> void:
 	for psvi in passive_list:
 		if get_passive_by_name(psvi).upgrade_group == group:
 			passive_list[psvi] += 1
 
-func on_upgrade_passive_max(id):
+func on_upgrade_passive_max(id: String) -> void:
 	if not passive_list.has(id):
 		return
 	passive_pool.max[id] = passive_pool.choosed[id]
@@ -98,23 +104,25 @@ func on_upgrade_passive_max(id):
 
 
 
-func on_ban_passive(id):
+func on_ban_passive(id: String) -> Variant:
 	if(passive_pool.unlocked.has(id)):
 		passive_pool.banned[id]=passive_pool.unlocked[id]
 		passive_pool.unlocked.erase(id)
+		return true
 
 	elif(passive_pool.choosed.has(id)):
 		passive_pool.banned[id]=passive_pool.choosed[id]
 		passive_pool.unlocked.erase(id)
 		SignalBus.del_passive.emit(id)
+		return true
 
 	else:
 		return false
 
-func on_unlock_passive(id):
+func on_unlock_passive(id: String) -> void:
 	pass
 
-func get_passive_by_name(id):
+func get_passive_by_name(id: String) -> Variant:
 	if(passive_pool.choosed.has(id)):
 		return passive_pool.choosed[id]
 	if(passive_pool.unlocked.has(id)):
@@ -123,12 +131,12 @@ func get_passive_by_name(id):
 		return passive_pool.max[id]
 	return null
 
-func get_passive_level(id):
+func get_passive_level(id: String) -> int:
 	if passive_list.has(id):
 		return passive_list[id]
 	else:
 		return 0
-func destroy():
+func destroy() -> void:
 	SignalBus.try_add_passive.disconnect(on_try_add_passive)
 	SignalBus.add_passive.disconnect(on_add_passive)
 	SignalBus.del_passive.disconnect(on_del_passive)

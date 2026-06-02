@@ -2,14 +2,14 @@ extends BaseGUIView
 
 @onready var _properties_root: CanvasLayer = $pp
 
-func _on_back_button_pressed():
+func _on_back_button_pressed() -> void:
 
 	G.get_gui_view_manager().clear_to_start()
 
-var is_pausing = false
+var is_pausing: bool = false
 
 func _is_level_up_open() -> bool:
-	var vm = G.get_gui_view_manager()
+	var vm: GUIViewManager = G.get_gui_view_manager()
 	for view in vm.viewInstanceMap.values():
 		if view.config.id == &"LevelUp":
 			return true
@@ -21,7 +21,7 @@ func _sync_properties_visibility() -> void:
 func _process(_delta: float) -> void:
 	_sync_properties_visibility()
 
-func _open():
+func _open() -> void:
 	if get_tree().paused:
 		is_pausing = true
 	else:
@@ -36,7 +36,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 
-func _close():
+func _close() -> void:
 	if is_pausing:
 		pass
 	else:
@@ -44,16 +44,16 @@ func _close():
 	pass
 
 
-func open():
+func open() -> void:
 
 	_open()
 
 
-func close():
+func close() -> void:
 	_close()
 
 
-func close_self():
+func close_self() -> void:
 	G.get_gui_view_manager().close_view(viewInstanceId)
 
 

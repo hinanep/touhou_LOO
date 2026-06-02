@@ -1,10 +1,10 @@
 extends Node2D
 class_name card
-var card_info={
+var card_info: Dictionary = {
 
 }
 
-var damage_source :String= ''
+var damage_source: String = ''
 signal shoot
 
 func _ready() -> void:
@@ -12,13 +12,13 @@ func _ready() -> void:
 	damage_source = card_info.id
 	if card_info.has('routines'):
 		for rou in card_info.routines:
-			var r = add_routine(rou)
+			var r: Node = add_routine(rou)
 			shoot.connect(r._execute_attack_flow)
 	SignalBus.del_card.connect(destroy)
 	SignalBus.use_card.connect(on_use_card)
 
 
-func on_use_card(id,cost_rate):
+func on_use_card(id: String, cost_rate: float) -> void:
 	if id != card_info.id:
 		return
 	if player_var.mana<card_info.mana/player_var.mana_cost*cost_rate and player_var.free_card < 1:
@@ -43,7 +43,7 @@ func on_use_card(id,cost_rate):
 		match card_info.special:
 			'dash':
 
-				var tween = player_var.player_node.create_tween()
+				var tween: Tween = player_var.player_node.create_tween()
 				RunSession.underrecycle_tween.append(tween)
 				#tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 				var end_position:Vector2 = player_var.player_node.global_position + Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
@@ -58,8 +58,8 @@ func on_use_card(id,cost_rate):
 				#player_var.player_node.global_position += Vector2.from_angle(player_var.player_diretion_angle) * card_info.special_parameter[0]
 	#get buff
 
-func add_routine(id):
-	var routinepre = PresetManager.getpre('routine').instantiate()
+func add_routine(id: String) -> Node:
+	var routinepre: Node = PresetManager.getpre('routine').instantiate()
 	routinepre.position = Vector2(0,0)
 	routinepre.routine_info = table.resolve_routine(id)
 	routinepre.damage_source = damage_source
@@ -67,7 +67,7 @@ func add_routine(id):
 	add_child(routinepre)
 	return routinepre
 
-func destroy(id):
+func destroy(id: String) -> void:
 	if card_info.id != id:
 		return
 	for child in get_children():
