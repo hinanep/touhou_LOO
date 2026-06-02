@@ -30,6 +30,15 @@ func _ready() -> void:
 		player_var.point_ratio *= 1.1
 		call_deferred("close_levelup")
 	SignalBus.delete_mode.connect(_on_delete_mode_changed)
+	_update_change_buttons()
+
+
+func _update_change_buttons() -> void:
+	var no_times := player_var.change_times_remaining <= 0
+	$select_buttons2/reroll.disabled = no_times
+	$select_buttons2/ban.disabled = no_times
+
+
 func _input(event: InputEvent) -> void:
 	pass
 
@@ -75,11 +84,14 @@ func _on_delete_mode_changed(entering: bool, completed: bool = false) -> void:
 		print("else")
 
 		$select_buttons2/ban.call_deferred("grab_focus")
+		_update_change_buttons()
 
 
 
 
 func _on_reroll_button_up() -> void:
+	if not player_var.try_consume_change_time():
+		return
 	for b in $select_buttons.get_children():
 		b.free()
 	_ready()
@@ -89,6 +101,8 @@ func _on_reroll_button_up() -> void:
 
 
 func _on_ban_button_up() -> void:
+	if player_var.change_times_remaining <= 0:
+		return
 	SignalBus.delete_mode.emit(true, false)
 	#if $select_buttons.get_child_count()!=0:
 		#$select_buttons.get_child(0).grab_focus()

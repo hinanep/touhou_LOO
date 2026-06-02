@@ -54,6 +54,11 @@ func _process(delta: float) -> void:
 			set_instance_shader_parameter("progress", progress_val)
 			shake_amount = 2.5 * (1.0 + progress_val)
 			if hold_timer >= delete_time:
+				if not player_var.try_consume_change_time():
+					hold_timer = 0.0
+					is_holding = false
+					set_instance_shader_parameter("progress", 0.0)
+					return
 				SignalBus.delete_mode.emit(false, true)
 				print("execute del")
 				delete_mode = false
