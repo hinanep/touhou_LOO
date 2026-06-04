@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dxgu8to64hidt" path="res://asset/pic/drop/飞碟蓝1-sheet.png" id="3_tckt1"]
 [ext_resource type="Texture2D" uid="uid://bc0vlsld5f125" path="res://asset/pic/drop/飞碟红1-sheet.png" id="3_tjld6"]
 [ext_resource type="Texture2D" uid="uid://fevi1i3bm3r6" path="res://asset/pic/drop/飞碟绿1-sheet.png" id="4_4auvf"]
+[ext_resource type="Script" uid="uid://bmtbenaoptifs" path="res://scene/enemys/ufo/ufo_enemy_anime.gd" id="7_r6cvg"]
 [ext_resource type="Texture2D" uid="uid://nq4amlbt23q4" path="res://asset/pic/drop/飞碟彩灯1-sheet.png" id="7_u13hc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwxcg"]
@@ -194,14 +195,21 @@ skew = 0.0
 sprite_frames = SubResource("SpriteFrames_ufo")
 animation = &"blue"
 autoplay = ""
-frame_progress = 0.28198555
+script = ExtResource("7_r6cvg")
+cycle = 2.0
+a = 30
+b = 20
+theta = 5.0
 
 [node name="light" type="AnimatedSprite2D" parent="." index="1" unique_id=1611861163]
+visible = false
 modulate = Color(0.5, 0.57500005, 1, 1)
 position = Vector2(0, 2)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_7o0ad")
 animation = &"all"
+frame = 3
+frame_progress = 1.0
 
 [node name="buff" parent="." index="2"]
 shape = SubResource("CircleShape2D_ufo")
