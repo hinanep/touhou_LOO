@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://fevi1i3bm3r6" path="res://asset/pic/drop/飞碟绿1-sheet.png" id="4_4auvf"]
 [ext_resource type="Script" uid="uid://bmtbenaoptifs" path="res://scene/enemys/ufo/ufo_enemy_anime.gd" id="7_r6cvg"]
 [ext_resource type="Texture2D" uid="uid://nq4amlbt23q4" path="res://asset/pic/drop/飞碟彩灯1-sheet.png" id="7_u13hc"]
+[ext_resource type="Texture2D" uid="uid://b05y0b55k2xvr" path="res://asset/pic/drop/飞碟蓝发光.png" id="8_pf64k"]
+[ext_resource type="Texture2D" uid="uid://g3qml807igre" path="res://asset/pic/drop/飞碟绿发光.png" id="9_xdvg7"]
+[ext_resource type="Texture2D" uid="uid://c15yomtp1wbq" path="res://asset/pic/drop/飞碟红发光.png" id="10_l40h1"]
+[ext_resource type="Script" uid="uid://blubslt5bcy2i" path="res://scene/enemys/ufo/ufo_enemy_glow.gd" id="11_xdvg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwxcg"]
 atlas = ExtResource("3_4auvf")
@@ -144,6 +148,113 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o0ad"]
+atlas = ExtResource("8_pf64k")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whofb"]
+atlas = ExtResource("8_pf64k")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a8vy"]
+atlas = ExtResource("8_pf64k")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w78q"]
+atlas = ExtResource("8_pf64k")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwqkb"]
+atlas = ExtResource("9_xdvg7")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdakq"]
+atlas = ExtResource("9_xdvg7")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po2tk"]
+atlas = ExtResource("9_xdvg7")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lx8c"]
+atlas = ExtResource("9_xdvg7")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npakt"]
+atlas = ExtResource("10_l40h1")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tlei"]
+atlas = ExtResource("10_l40h1")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jduva"]
+atlas = ExtResource("10_l40h1")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv7yu"]
+atlas = ExtResource("10_l40h1")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3f14m"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"all",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o0ad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whofb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a8vy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w78q")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwqkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdakq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po2tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lx8c")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npakt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tlei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jduva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv7yu")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1l67x"]
 atlas = ExtResource("7_u13hc")
 region = Rect2(0, 0, 256, 256)
@@ -195,11 +306,25 @@ skew = 0.0
 sprite_frames = SubResource("SpriteFrames_ufo")
 animation = &"blue"
 autoplay = ""
+frame_progress = 0.725208
 script = ExtResource("7_r6cvg")
 cycle = 2.0
 a = 30
 b = 20
 theta = 5.0
+amp_scale = 0.012
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D" index="0" unique_id=1339184621]
+sprite_frames = SubResource("SpriteFrames_3f14m")
+animation = &"blue"
+autoplay = "blue"
+frame_progress = 0.6128286
+script = ExtResource("11_xdvg7")
+cycle = 1.0
+max_scale = 1.05
+min_scale = 1.0
+max_alpha = 0.9
+min_alpha = 0.3
 
 [node name="light" type="AnimatedSprite2D" parent="." index="1" unique_id=1611861163]
 visible = false
