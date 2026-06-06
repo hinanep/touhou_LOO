@@ -165,10 +165,11 @@ func _spawn_ufo(color: int, pickup_position: Vector2) -> Node:
 	var ufo: Node = _ufo_scene.instantiate()
 	if "mob_info" in ufo:
 		ufo.mob_info = _ufo_mob_info_template.duplicate(true)
-	if "ufo_color" in ufo:
-		ufo.ufo_color = color
+	ufo.set("ufo_color", color)
 	ufo.global_position = pickup_position
 	spawn_mgr.add_mob(ufo)
+	if ufo.has_method("_apply_color_visual"):
+		ufo.call_deferred("_apply_color_visual")
 	return ufo
 
 

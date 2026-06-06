@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 精灵着色器，沿顶点 X 轴采样渐变纹理并随时间滚动，结合 Y 轴亮度衰减，实现中心偏白、边缘渐变的动态色彩效果。
+ * 推荐文件名：center_gradient_white.gdshader
+ */
 shader_type canvas_item;
 varying vec2 custom_uv;
 uniform sampler2D gradient_color :source_color;

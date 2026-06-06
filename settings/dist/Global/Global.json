@@ -1,38 +1,38 @@
 {
   "red_ufo_rate": {
-    "id": "red_ufo_rate",
-    "variable": 2.0
+	"id": "red_ufo_rate",
+	"variable": 2.0
   },
   "green_ufo_rate": {
-    "id": "green_ufo_rate",
-    "variable": 2.0
+	"id": "green_ufo_rate",
+	"variable": 2.0
   },
   "blue_ufo_rate": {
-    "id": "blue_ufo_rate",
-    "variable": 2.0
+	"id": "blue_ufo_rate",
+	"variable": 2.0
   },
   "blue_ufo_pv_coefficient": {
-    "id": "blue_ufo_pv_coefficient",
-    "variable": 0.01
+	"id": "blue_ufo_pv_coefficient",
+	"variable": 0.01
   },
   "red_ufo_weight": {
-    "id": "red_ufo_weight",
-    "variable": 3.0
+	"id": "red_ufo_weight",
+	"variable": 3.0
   },
   "green_ufo_weight": {
-    "id": "green_ufo_weight",
-    "variable": 3.0
+	"id": "green_ufo_weight",
+	"variable": 3.0
   },
   "blue_ufo_weight": {
-    "id": "blue_ufo_weight",
-    "variable": 3.0
+	"id": "blue_ufo_weight",
+	"variable": 3.0
   },
   "colorful_ufo_weight": {
-    "id": "colorful_ufo_weight",
-    "variable": 1.0
+	"id": "colorful_ufo_weight",
+	"variable": 100.0
   },
   "upgrade_exp_difference": {
-    "id": "upgrade_exp_difference",
-    "variable": 15.0
+	"id": "upgrade_exp_difference",
+	"variable": 15.0
   }
 }

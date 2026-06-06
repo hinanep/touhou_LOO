@@ -1,4 +1,7 @@
-// 定义这是一个用于2D对象的着色器
+/*
+ * 作用：2D 精灵出现动画，从水平中心向两侧展开显示，progress 控制进度，feather 控制边缘羽化。
+ * 推荐文件名：center_reveal_appear.gdshader
+ */
 shader_type canvas_item;
 
 // "uniform" 变量可以在外部（如GDScript或AnimationPlayer）被访问和修改

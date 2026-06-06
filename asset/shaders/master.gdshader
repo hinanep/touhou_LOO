@@ -1,3 +1,7 @@
+/*
+ * 作用：3D 空间材质，按顶点坐标采样渐变贴图作为固有色，配合边缘光与顶点位置驱动的自发光。
+ * 推荐文件名：gradient_emissive_3d.gdshader
+ */
 shader_type spatial;
 
 uniform sampler2D gradient_color :source_color;

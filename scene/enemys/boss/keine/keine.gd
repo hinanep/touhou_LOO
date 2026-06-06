@@ -299,7 +299,7 @@ func set_cardstate(bossstate: String) -> void:
 			$hud/hp/fullcard/time_mask.visible = true
 			$hud/hp/fullcard/time_mask.size.y = 858
 
-@onready var panel: PopupPanel = $hud/card/PopupPanel
+@onready var panel: TextureRect = $hud/card/PopupPanel
 @onready var text: Label = $hud/card/RichTextLabel
 func popup() -> void:
 

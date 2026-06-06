@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 精灵水平方向 Alpha 渐变，支持从左到右或从右到左线性淡出。
+ * 推荐文件名：horizontal_alpha_fade.gdshader
+ */
 shader_type canvas_item;
 
 // uniform 变量会显示在检查器中，方便我们调整

@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 精灵综合特效：描边 + 外发光模糊 + 长按进度红色填充 + 顶点抖动 + 可选网格碎片爆炸消散。
+ * 推荐文件名：outline_bloom_effects.gdshader
+ */
 shader_type canvas_item;
 
 instance uniform float width:hint_range(0.0,30.0);

@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 精灵外发光，对周围 8 方向多圈采样并过滤低灰度像素，叠加原图产生模糊光晕。
+ * 推荐文件名：sprite_glow_blur.gdshader
+ */
 shader_type canvas_item;
 
 uniform float radius:hint_range(0.0,2.0) = 0.5;//取样半径（基于像素）

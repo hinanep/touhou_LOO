@@ -1,23 +1,52 @@
+/*
+ * 作用：2D 精灵外发光，主体内原样输出，外部按 alpha 模糊场绘制朦胧光晕。
+ * 推荐文件名：sprite_outline.gdshader
+ */
 shader_type canvas_item;
 
-uniform float width:hint_range(0.0,30.0);
-uniform vec4 outline_color : source_color;
+instance uniform float width : hint_range(0.0, 30.0);
+instance uniform vec4 outline_color : source_color;
+instance uniform float glow_alpha : hint_range(0.0, 1.0) = 1.0;
 
-void fragment(){
-    float size = width * 1.0 / float(textureSize(TEXTURE,0).x);
-    vec4 sprite_color = texture(TEXTURE,UV);
-	float alpha;
-	if( sprite_color.a > 0.0)
-    	alpha = -8.0 * 1.0;
-	else alpha = 0.0;
-    alpha += texture(TEXTURE,UV + vec2(0.0,-size)).a;
-    alpha += texture(TEXTURE,UV + vec2(size,-size)).a;
-    alpha += texture(TEXTURE,UV + vec2(size,0)).a;
-    alpha += texture(TEXTURE,UV + vec2(size,size)).a;
-    alpha += texture(TEXTURE,UV + vec2(0.0,size)).a;
-    alpha += texture(TEXTURE,UV + vec2(-size,size)).a;
-    alpha += texture(TEXTURE,UV + vec2(-size,0.0)).a;
-    alpha += texture(TEXTURE,UV + vec2(-size,-size)).a;
-    vec4 final_color = mix(sprite_color,outline_color,clamp(alpha,0.0,1.0));
-    COLOR = vec4(final_color.rgb,clamp(abs(alpha)*outline_color.a+ sprite_color.a ,0.0,1.0));
+const float ALPHA_THRESHOLD = 0.8;
+const int MAX_WIDTH = 30;
+
+// 在 radius 像素圆盘内取 alpha 加权峰值，width 同时控制范围与衰减
+float compute_glow_field(sampler2D tex, vec2 uv, float radius, vec2 pixel_size) {
+	vec2 ps = pixel_size;
+	float glow = 0.0;
+	float radius_safe = max(radius, 0.001);
+	for (int xi = -MAX_WIDTH; xi <= MAX_WIDTH; xi++) {
+		for (int yi = -MAX_WIDTH; yi <= MAX_WIDTH; yi++) {
+			float fx = float(xi);
+			float fy = float(yi);
+			float dist = length(vec2(fx, fy));
+			if (dist > radius) {
+				continue;
+			}
+			float a = texture(tex, uv + vec2(fx, fy) * ps).a;
+			float t = dist / radius_safe;
+			float weight = exp(-2.0 * t * t);
+			glow = max(glow, a * weight);
+		}
+	}
+	return glow;
+}
+
+void fragment() {
+	vec2 pixel_size = TEXTURE_PIXEL_SIZE;
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 sprite_color = tex * COLOR;
+
+	if (tex.a >= ALPHA_THRESHOLD) {
+		//COLOR = sprite_color;
+	} else {
+		float glow_field = compute_glow_field(TEXTURE, UV, width, pixel_size);
+		float final_alpha = outline_color.a * glow_field * glow_alpha;
+		if (final_alpha < 0.001) {
+			COLOR = vec4(0.0);
+		} else {
+			COLOR = vec4(outline_color.rgb, final_alpha);
+		}
+	}
 }
