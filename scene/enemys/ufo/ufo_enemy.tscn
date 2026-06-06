@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://fevi1i3bm3r6" path="res://asset/pic/drop/飞碟绿1-sheet.png" id="4_4auvf"]
 [ext_resource type="Script" uid="uid://bmtbenaoptifs" path="res://scene/enemys/ufo/ufo_enemy_anime.gd" id="7_r6cvg"]
 [ext_resource type="Texture2D" uid="uid://nq4amlbt23q4" path="res://asset/pic/drop/飞碟彩灯1-sheet.png" id="7_u13hc"]
+[ext_resource type="Texture2D" uid="uid://et7ddyff3pwi" path="res://asset/pic/drop/飞碟彩发光.png" id="8_l40h1"]
 [ext_resource type="Texture2D" uid="uid://b05y0b55k2xvr" path="res://asset/pic/drop/飞碟蓝发光.png" id="8_pf64k"]
 [ext_resource type="Texture2D" uid="uid://g3qml807igre" path="res://asset/pic/drop/飞碟绿发光.png" id="9_xdvg7"]
 [ext_resource type="Texture2D" uid="uid://c15yomtp1wbq" path="res://asset/pic/drop/飞碟红发光.png" id="10_l40h1"]
@@ -148,6 +149,22 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f14m"]
+atlas = ExtResource("8_l40h1")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx1cq"]
+atlas = ExtResource("8_l40h1")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxlf4"]
+atlas = ExtResource("8_l40h1")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cflg"]
+atlas = ExtResource("8_l40h1")
+region = Rect2(768, 0, 256, 256)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7o0ad"]
 atlas = ExtResource("8_pf64k")
 region = Rect2(0, 0, 256, 256)
@@ -198,7 +215,19 @@ region = Rect2(768, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3f14m"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f14m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx1cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxlf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cflg")
+}],
 "loop": true,
 "name": &"all",
 "speed": 5.0
@@ -306,7 +335,7 @@ skew = 0.0
 sprite_frames = SubResource("SpriteFrames_ufo")
 animation = &"blue"
 autoplay = ""
-frame_progress = 0.725208
+frame_progress = 0.022920664
 script = ExtResource("7_r6cvg")
 cycle = 2.0
 a = 30
@@ -318,7 +347,6 @@ amp_scale = 0.012
 sprite_frames = SubResource("SpriteFrames_3f14m")
 animation = &"blue"
 autoplay = "blue"
-frame_progress = 0.6128286
 script = ExtResource("11_xdvg7")
 cycle = 1.0
 max_scale = 1.05
