@@ -1,15 +1,103 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm6cf0c6htuvj"]
+[gd_scene format=3 uid="uid://bm6cf0c6htuvj"]
 
 [ext_resource type="PackedScene" uid="uid://bqqre42sbdbua" path="res://scene/enemys/enemy_base/enemy_base.tscn" id="1_ec70x"]
+[ext_resource type="Texture2D" uid="uid://qrn1rxvpkfn" path="res://asset/pic/enemy/使魔.png" id="2_t1qbq"]
+[ext_resource type="Texture2D" uid="uid://ck5ym3tq3qafi" path="res://asset/pic/enemy/使魔粒子.png" id="3_c0dvb"]
+[ext_resource type="Texture2D" uid="uid://bydk1h3xvhda6" path="res://asset/pic/enemy/法阵外圈.png" id="5_kdyjw"]
+[ext_resource type="Script" uid="uid://b6cikyxmakgsi" path="res://scene/enemys/boss/keine/enm_keine_sprite_rotate.gd" id="6_afycl"]
+[ext_resource type="Texture2D" uid="uid://b16rc0qoeoxtb" path="res://asset/pic/enemy/法阵内圈.png" id="7_w3jkt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6411r"]
 
-[node name="enemy_base" instance=ExtResource("1_ec70x")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0dvb"]
+atlas = ExtResource("2_t1qbq")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_td3a7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0dvb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_kdyjw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.35570472), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_afycl"]
+curve = SubResource("Curve_kdyjw")
+
+[sub_resource type="Curve" id="Curve_td3a7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6689038), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kdyjw"]
+curve = SubResource("Curve_td3a7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdyjw"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 9.0
+initial_velocity_min = 45.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kdyjw")
+alpha_curve = SubResource("CurveTexture_afycl")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mcs3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kdyjw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngsv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_w3jkt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy_base" unique_id=771512125 instance=ExtResource("1_ec70x")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("CanvasItemMaterial_6411r")
-position = Vector2(0, -13)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_td3a7")
 
-[node name="ProgressBar" parent="." index="3"]
-offset_top = -27.0
-offset_bottom = -7.0
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AnimatedSprite2D" index="0" unique_id=1529294538]
+self_modulate = Color(1, 1, 1, 0.49803922)
+z_index = -1
+amount = 15
+texture = ExtResource("3_c0dvb")
+lifetime = 0.9
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_kdyjw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D" index="1" unique_id=1608247271]
+self_modulate = Color(1, 1, 1, 0.49803922)
+z_index = -2
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_5mcs3")
+frame_progress = 0.12837724
+script = ExtResource("6_afycl")
+angular_velocity = 45
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D" index="2" unique_id=1671003569]
+z_index = -2
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_ngsv3")
+script = ExtResource("6_afycl")
+angular_velocity = -120
