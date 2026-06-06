@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://uulpt3u1iqau" path="res://asset/pic/ui/HUD/残机.png" id="13_tr6ke"]
 [ext_resource type="Texture2D" uid="uid://eu3ovpisce2e" path="res://asset/pic/ui/HUD/经验条填充（空）.png" id="15_jcxs0"]
 [ext_resource type="Texture2D" uid="uid://jmuli2bjhfgo" path="res://asset/pic/crystal/空结晶.png" id="20_stc0a"]
+[ext_resource type="Texture2D" uid="uid://bxuy0w1eqq10g" path="res://asset/pic/ui/HUD/残机（灰）.png" id="22_po8ro"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7u03l"]
 shader = ExtResource("10_7u03l")
@@ -384,14 +385,22 @@ texture = ExtResource("12_stodd")
 
 [node name="life" type="Node" parent="hud" unique_id=1644964110]
 
-[node name="have" type="Sprite2D" parent="hud/life" unique_id=1198950715]
+[node name="lifeBack1" type="Sprite2D" parent="hud/life" unique_id=520942924]
+position = Vector2(180, 41)
+texture = ExtResource("22_po8ro")
+
+[node name="life1" type="Sprite2D" parent="hud/life/lifeBack1" unique_id=1198950715]
 z_index = 1
-position = Vector2(181, 40)
+position = Vector2(1, -1)
 texture = ExtResource("13_tr6ke")
 
-[node name="have2" type="Sprite2D" parent="hud/life" unique_id=2012404666]
+[node name="lifeBack2" type="Sprite2D" parent="hud/life" unique_id=867627406]
+position = Vector2(229, 40)
+texture = ExtResource("22_po8ro")
+
+[node name="life2" type="Sprite2D" parent="hud/life/lifeBack2" unique_id=2012404666]
 z_index = 1
-position = Vector2(230, 40)
+position = Vector2(1, 0)
 texture = ExtResource("13_tr6ke")
 
 [node name="space" type="Node2D" parent="hud" unique_id=2145629001]
@@ -473,12 +482,12 @@ texture = ExtResource("20_stc0a")
 [node name="time" parent="." unique_id=1642149805 instance=ExtResource("4_jpst3")]
 process_mode = 1
 
-[node name="renew_timer" type="Timer" parent="." unique_id=1721210761]
+[node name="fps_timer" type="Timer" parent="." unique_id=1721210761]
 process_callback = 0
-wait_time = 0.2
+wait_time = 0.5
 autostart = true
 
 [node name="arrow" type="CanvasLayer" parent="." unique_id=1254275434]
 script = ExtResource("7_guf3d")
 
-[connection signal="timeout" from="renew_timer" to="." method="_on_renew_timer_timeout"]
+[connection signal="timeout" from="fps_timer" to="." method="_on_fps_timer_timeout"]

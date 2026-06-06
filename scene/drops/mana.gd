@@ -3,7 +3,7 @@ extends drop
 
 
 
-func _ready():
+func _ready() -> void:
 	$AnimatedSprite2D.scale = Vector2(value/20.0,value/20.0)
 	mana = value
 	experience = 0

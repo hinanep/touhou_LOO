@@ -10,7 +10,7 @@ const _COLORFUL_RAINBOW_V := 0.9
 @export var body_font_size: int = 18
 
 var _closing: bool = false
-@onready var body = $CanvasLayer/panel/margin/center/body
+@onready var body: RichTextLabel = $CanvasLayer/panel/margin/center/body
 
 
 func _ready() -> void:
@@ -32,7 +32,7 @@ func _open() -> void:
 func _close_other_settlements() -> void:
 	if G == null:
 		return
-	var vm = G.get_gui_view_manager()
+	var vm: GUIViewManager = G.get_gui_view_manager()
 	if vm == null:
 		return
 	var to_close: Array[int] = []

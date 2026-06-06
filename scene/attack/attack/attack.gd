@@ -15,16 +15,16 @@ var attack_info: Dictionary = {}
 var penetration_count: int = 0
 var is_active: bool = false
 var damage_source: String = ""
-var lock_routine
-var batch_num
+var lock_routine: Node = null
+var batch_num: int = 0
 # --- 组件引用 ---
-@onready var lock_component = $lock_component
-@onready var move_component = $move_component
+@onready var lock_component: LockComponent = $lock_component
+@onready var move_component: MoveComponent = $move_component
 @onready var damage_area: Area2D = $damage_area
 @onready var duration_timer: Timer = $duration_timer
 @export var particles: Array[Node] = [] # 示例
-@onready var texture = $lock_component
-var dot_tween:Tween
+@onready var texture: AnimatedSprite2D = $lock_component
+var dot_tween: Tween
 #=============================================================================
 # 生命周期 & 对象池接口
 #=============================================================================
@@ -42,7 +42,7 @@ func _ready() -> void:
 	SignalBus.boss_stage.connect(_set_boss_mode)
 	origin_scale = texture.scale
 # 公开的初始化接口，由对象池在每次取出节点时调用
-func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: String, p_batch_num:int) -> void:
+func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: String, p_batch_num: int) -> void:
 	self.damage_source = p_damage_source
 	self.global_transform = p_transform
 	self.penetration_count = 0
@@ -65,7 +65,7 @@ func initialize(attack_id: String, p_transform: Transform2D, p_damage_source: St
 	online.emit()
 	# 初始化子组件
 	lock_component.initialize($".", attack_info, lock_routine)
-	move_component.initialize($".",attack_info,lock_component)
+	move_component.initialize($".", attack_info, lock_component)
 
 	_restart_particles()
 	_apply_boss_modulate()
@@ -107,13 +107,13 @@ func _physics_process(delta: float) -> void:
 	# 将更新任务委托给移动组件
 	move_component.physics_update(delta)
 
-func do_dot():
+func do_dot() -> void:
 
-	var all_mon3ter = damage_area.get_overlapping_bodies()
+	var all_mon3ter: Array = damage_area.get_overlapping_bodies()
 	if all_mon3ter.is_empty():
 		return
 	_trigger_routines_on_event(attack_info.get("hitting_routine_creation", []))
-	for mon3ter in damage_area.get_overlapping_bodies():
+	for mon3ter: Node in damage_area.get_overlapping_bodies():
 		do_damage_to(mon3ter)
 
 func _on_damage_area_body_entered(body: Node) -> void:
@@ -124,11 +124,11 @@ func _on_damage_area_body_entered(body: Node) -> void:
 	do_damage_to(body)
 
 
-func do_damage_to(body):
-	var damage_amount = attack_info.get("damage", 0.0)
-	var damage_type = attack_info.get("damage_type", "danma")
+func do_damage_to(body: Node) -> void:
+	var damage_amount: float = attack_info.get("damage", 0.0)
+	var damage_type: String = attack_info.get("damage_type", "danma")
 
-	var final_damage = 0.0
+	var final_damage: float = 0.0
 	if damage_type == "danma":
 		final_damage = player_var.player_make_bullet_damage(damage_amount * attack_info.get("magical_addition_efficiency", 1.0), damage_source)
 	else:
@@ -149,15 +149,15 @@ func _apply_debuffs(body: Node) -> void:
 	if not attack_info.has("debuff") or not body.has_method("set_debuff"):
 		return
 
-	var debuffs = attack_info.get("debuff", [])
-	for i in debuffs.size():
+	var debuffs: Array = attack_info.get("debuff", [])
+	for i: int in debuffs.size():
 		body.set_debuff(debuffs[i], attack_info.debuff_intensity[i], attack_info.debuff_duration[i], self)
 
 #=============================================================================
 # 升级与状态更新
 #=============================================================================
 
-func _update_dynamic_stats(id) -> void:
+func _update_dynamic_stats(id: String) -> void:
 	if id != attack_info.get('id', ''):
 		return
 	attack_info = table.resolve_attack(id)
@@ -165,7 +165,7 @@ func _update_dynamic_stats(id) -> void:
 	_update_shape_and_size()
 
 	# 更新持续时间
-	var duration = attack_info.get("duration", 0.0)
+	var duration: float = attack_info.get("duration", 0.0)
 	if duration > 0.0:
 		if attack_info.has("duration_dependence"):
 			duration = player_var.dep.operate_dep(attack_info.duration_dependence, duration)
@@ -177,17 +177,17 @@ func _update_dynamic_stats(id) -> void:
 #=============================================================================
 # 形状与视觉
 #=============================================================================
-var origin_scale = Vector2.ZERO
-var shape_set = false
+var origin_scale: Vector2 = Vector2.ZERO
+var shape_set: bool = false
 func _update_shape_and_size() -> void:
-	var shape_type = attack_info.get("shape", "circle")
-	var shape_node = damage_area.get_node("CollisionShape2D")
+	var shape_type: String = attack_info.get("shape", "circle")
+	var shape_node: CollisionShape2D = damage_area.get_node("CollisionShape2D")
 	var new_shape: Shape2D
-	var size_add = 1.0
+	var size_add: float = 1.0
 	if attack_info.has("size_dependence"):
 		size_add = player_var.dep.operate_dep(attack_info.size_dependence, size_add)
 
-	var final_scale = Vector2.ONE * player_var.range_add_ratio * size_add
+	var final_scale: Vector2 = Vector2.ONE * player_var.range_add_ratio * size_add
 	self.scale = final_scale
 
 
@@ -195,7 +195,7 @@ func _update_shape_and_size() -> void:
 		"circle":
 			new_shape = _create_circle_shape()
 		"rectangle_center", "rectangle_edge":
-			var is_edge = (shape_type == "rectangle_edge")
+			var is_edge: bool = (shape_type == "rectangle_edge")
 			new_shape = _create_rectangle_shape(is_edge)
 
 	if new_shape:
@@ -204,36 +204,36 @@ func _update_shape_and_size() -> void:
 
 
 func _create_circle_shape() -> CircleShape2D:
-	var shape = CircleShape2D.new()
+	var shape: CircleShape2D = CircleShape2D.new()
 	shape.radius = attack_info.size[0]
 	texture.scale = origin_scale * shape.radius / 20
 
 	return shape
 
 func _create_rectangle_shape(is_edge_aligned: bool) -> RectangleShape2D:
-	var shape = RectangleShape2D.new()
+	var shape: RectangleShape2D = RectangleShape2D.new()
 	shape.size = Vector2(attack_info.size[0], attack_info.size[1])
 	texture.scale = origin_scale * shape.size / 20
 	if is_edge_aligned:
-		var shape_node = damage_area.get_node("CollisionShape2D")
+		var shape_node: CollisionShape2D = damage_area.get_node("CollisionShape2D")
 		shape_node.position = Vector2(0, -shape.size.y / 2.0)
 	return shape
 
 func _trigger_routines_on_event(routines_to_trigger: Array) -> void:
-	for routine_id in routines_to_trigger:
+	for routine_id: Variant in routines_to_trigger:
 		SignalBus.trigger_routine_by_id.emit(routine_id, true, global_position, rotation, null)
 
 func _on_enemy_killed(enemy_position: Vector2) -> void:
 	if attack_info.has('defeating_item_creation'):
-		for item in attack_info.defeating_item_creation:
-			drop_item(item,attack_info.defeating_item_creation_value,enemy_position)
+		for item: Variant in attack_info.defeating_item_creation:
+			drop_item(item, attack_info.defeating_item_creation_value, enemy_position)
 #消弹
-func _on_bullet_erase_area_body_entered(body):
+func _on_bullet_erase_area_body_entered(body: Node2D) -> void:
 	body.disable(false)
 	body.destroy.emit(body)
 	if attack_info.has('eraseing_item_creation'):
-		for item in attack_info.eraseing_item_creation:
-			drop_item(item,attack_info.eraseing_item_creation_value,body.global_position)
+		for item: Variant in attack_info.eraseing_item_creation:
+			drop_item(item, attack_info.eraseing_item_creation_value, body.global_position)
 
 
 ## 按当前 Boss 战状态设置根节点透明度（对象池取出时也会调用）
@@ -278,5 +278,5 @@ func _on_screen_exited() -> void:
 	_return_to_pool("screen_exited")
 
 #掉落
-func drop_item(item,value,dposition):
-	SignalBus.drop.emit('drops_'+item,dposition,value)
+func drop_item(item: Variant, value: Variant, dposition: Vector2) -> void:
+	SignalBus.drop.emit('drops_' + item, dposition, value)

@@ -9,11 +9,11 @@ var arrow_scene: PackedScene = preload("res://scene/drops/plate/arrow/arrow.tscn
 var active_arrows: Dictionary = {}
 var viewport_size: Vector2
 var camera: Camera2D
-var safe_rect
+var safe_rect: Rect2
 # Helper function to get or create an arrow instance for a chest
-func _ensure_arrow_exists(chest_id) -> Node2D:
+func _ensure_arrow_exists(chest_id: int) -> Node2D:
 	if active_arrows.has(chest_id):
-		var existing_arrow = active_arrows[chest_id]
+		var existing_arrow: Node2D = active_arrows[chest_id]
 		if is_instance_valid(existing_arrow):
 			return existing_arrow
 		else:
@@ -26,13 +26,13 @@ func _ensure_arrow_exists(chest_id) -> Node2D:
 		printerr("ChestIndicatorManager: Arrow Scene is not set!")
 		return null # 返回 null，调用处需要处理
 
-	var new_arrow = arrow_scene.instantiate()
+	var new_arrow: Node2D = arrow_scene.instantiate()
 	add_child(new_arrow)
 	active_arrows[chest_id] = new_arrow
 	return new_arrow
 
 
-func _ready():
+func _ready() -> void:
 	await get_tree().process_frame
 	camera = get_viewport().get_camera_2d()
 	if not camera:
@@ -42,7 +42,7 @@ func _ready():
 	_on_viewport_size_changed() # 初始化 viewport_size
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
 
-func _on_viewport_size_changed():
+func _on_viewport_size_changed() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
 var chest_screen_pos: Vector2
 	# 获取必要的摄像机信息
@@ -51,7 +51,7 @@ var cam_screen_center: Vector2
 var cam_zoom: Vector2
 var chest_world_pos: Vector2
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if not is_instance_valid(camera):
 		camera = get_viewport().get_camera_2d()
 		if not camera:
@@ -78,24 +78,24 @@ func _process(delta):
 
 	# --- 更新或创建箭头 ---
 	for chest_id in current_chests:
-		var chest = current_chests[chest_id]
+		var chest: Node2D = current_chests[chest_id]
 		chest_world_pos = chest.global_position
 
 		# 将宝箱世界坐标转换为屏幕坐标 - 使用新的计算公式
 		chest_screen_pos = cam_screen_center + (chest_world_pos - cam_global_pos) * cam_zoom
 
-		var is_visible_on_screen = Rect2(Vector2(0,60), viewport_size).has_point(chest_screen_pos)
+		var is_visible_on_screen: bool = Rect2(Vector2(0,60), viewport_size).has_point(chest_screen_pos)
 
 
-		var arrow_instance = _ensure_arrow_exists(chest_id)
+		var arrow_instance: Node2D = _ensure_arrow_exists(chest_id)
 		if not is_instance_valid(arrow_instance): continue
 
 		if is_visible_on_screen:
 			# --- 行为：宝箱在屏幕内 ---
-			var arrow_target_world_pos = chest_world_pos + Vector2(0, -on_screen_vertical_offset)
+			var arrow_target_world_pos: Vector2 = chest_world_pos + Vector2(0, -on_screen_vertical_offset)
 
 			# 将世界坐标转换为屏幕坐标 (CanvasLayer 坐标) - 使用新的计算公式
-			var arrow_screen_pos
+			var arrow_screen_pos: Vector2
 			arrow_screen_pos = (arrow_target_world_pos - cam_global_pos) * cam_zoom+viewport_size/2
 
 			arrow_instance.position = arrow_screen_pos
@@ -104,7 +104,7 @@ func _process(delta):
 
 		else:
 			# --- 行为：宝箱在屏幕外 ---
-			var direction = chest_world_pos - cam_global_pos
+			var direction: Vector2 = chest_world_pos - cam_global_pos
 			arrow_instance.rotation = direction.angle()
 
 
@@ -117,7 +117,7 @@ func _process(delta):
 	var chest_ids_to_remove: Array = []
 	for existing_chest_id in active_arrows:
 		if not current_chests.has(existing_chest_id):
-			var arrow_to_remove = active_arrows[existing_chest_id]
+			var arrow_to_remove: Node2D = active_arrows[existing_chest_id]
 			if is_instance_valid(arrow_to_remove):
 				arrow_to_remove.queue_free()
 			chest_ids_to_remove.append(existing_chest_id)
@@ -126,14 +126,14 @@ func _process(delta):
 		active_arrows.erase(id_to_remove)
 
 
-func _clear_all_arrows():
+func _clear_all_arrows() -> void:
 	for chest_id in active_arrows:
-		var arrow = active_arrows[chest_id]
+		var arrow: Node2D = active_arrows[chest_id]
 		if is_instance_valid(arrow):
 			arrow.queue_free()
 	active_arrows.clear()
 
-func _exit_tree():
+func _exit_tree() -> void:
 	_clear_all_arrows()
 
 # 计算从矩形中心出发的射线与矩形边界的交点 (基于最小 t 值)

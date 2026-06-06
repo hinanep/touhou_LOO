@@ -1,24 +1,25 @@
 extends CharacterBody2D
 class_name danma
-var d_info = {
-	type='dmk_ball',
+
+var d_info: Dictionary = {
+	type = 'dmk_ball',
 
 	danmaku_moving_rule = '',
-	danmaku_moving_parameter='',
-	danmaku_damage='',
+	danmaku_moving_parameter = '',
+	danmaku_damage = '',
 
-	danmaku_apart_rule='',
+	danmaku_apart_rule = '',
 
-	danmaku_apart_var =[],
-	danmaku_apart_point=[],
-	danmaku_apart_parameter=[],
+	danmaku_apart_var = [],
+	danmaku_apart_point = [],
+	danmaku_apart_parameter = [],
 
 
 }
-var exist_time = 0
-var move_func:Callable
-var damage = 0
-signal destroy(this_node)
+var exist_time: float = 0.0
+var move_func: Callable
+var damage: int = 0
+signal destroy(this_node: Node)
 
 const LASER_MIN_LEN := 0.001
 const LASER_THICK_PRE := 2.0
@@ -27,14 +28,15 @@ const LASER_MAX_LEN_DEFAULT := 600.0
 const LASERPRE_LIFETIME := 1.0
 const LASER_TAPER_SIZE := 0.363
 
-var laser_length := 0.0
-var laser_thickness := 1.0
-var laser_origin := Vector2.ZERO
-var laser_max_length := LASER_MAX_LEN_DEFAULT
-var laser_reached_max := false
-var laserpre_elapsed := 0.0
+var laser_length: float = 0.0
+var laser_thickness: float = 1.0
+var laser_origin: Vector2 = Vector2.ZERO
+var laser_max_length: float = LASER_MAX_LEN_DEFAULT
+var laser_reached_max: bool = false
+var laserpre_elapsed: float = 0.0
 
-func danma_init(d4c_info:Dictionary):
+
+func danma_init(d4c_info: Dictionary) -> void:
 	d_info = d4c_info
 	change_type_to(d_info.danmaku_type)
 	change_move_type_to(d_info.danmaku_moving_rule)
@@ -42,6 +44,8 @@ func danma_init(d4c_info:Dictionary):
 #另需要在创建时传入diretion
 func _init() -> void:
 	pass
+
+
 func _ready() -> void:
 	velocity = Vector2.ZERO
 
@@ -54,8 +58,9 @@ func _physics_process(delta: float) -> void:
 			return
 	move_func.call(delta)
 
-func change_type_to(type: String):
-	var cshape
+
+func change_type_to(type: String) -> void:
+	var cshape: Shape2D
 	_reset_type_runtime()
 	match type:
 		'dmk_ball':
@@ -63,7 +68,7 @@ func change_type_to(type: String):
 			cshape.radius = 1
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.rotation = 0
-			$texture.offset.y=0
+			$texture.offset.y = 0
 
 			change_size_to(20)
 
@@ -72,26 +77,26 @@ func change_type_to(type: String):
 			cshape.radius = 1
 			$texture.set_texture(PresetManager.getpre('img_rice'))
 			$texture.rotation = 0
-			$texture.offset.y=0
+			$texture.offset.y = 0
 			change_size_to(12)
 		'dmk_mentos':
 			cshape = CircleShape2D.new()
 			cshape.radius = 1
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.rotation = 0
-			$texture.offset.y=0
+			$texture.offset.y = 0
 			change_size_to(40)
 		'dmk_laserpre':
 			cshape = RectangleShape2D.new()
-			cshape.size = Vector2(1,0)
-			$colli_area.position.x=0.5
-			$damage_area/colli_da.position.x=0.5
+			cshape.size = Vector2(1, 0)
+			$colli_area.position.x = 0.5
+			$damage_area/colli_da.position.x = 0.5
 			# 使用call_deferred避免在物理查询刷新期间修改monitoring
 			call_deferred("set_damage_monitoring", false)
 			$texture.set_texture(PresetManager.getpre('img_laserpre'))
-			$texture.rotation = -PI/2
-			$texture.offset.y=16
-			$texture.scale = Vector2(0.15,0.03)
+			$texture.rotation = -PI / 2
+			$texture.offset.y = 16
+			$texture.scale = Vector2(0.15, 0.03)
 			#$texture.set_instance_shader_parameter("laser_taper", true)
 			#$texture.set_instance_shader_parameter("laser_taper_size", LASER_TAPER_SIZE)
 			laser_thickness = LASER_THICK_PRE
@@ -99,15 +104,15 @@ func change_type_to(type: String):
 			_update_laser_geometry(LASER_MIN_LEN)
 		'dmk_laser':
 			$texture.set_texture(PresetManager.getpre('img_laser'))
-			$texture.rotation = -PI/2
+			$texture.rotation = -PI / 2
 			# 使用call_deferred避免在物理查询刷新期间修改monitoring
 			call_deferred("set_damage_monitoring", true)
 			cshape = RectangleShape2D.new()
-			cshape.size = Vector2(1,1)
-			$colli_area.position.x=0.5
-			$damage_area/colli_da.position.x=0.5
-			$texture.offset.y=16
-			$texture.scale = Vector2(0.03,0.03)
+			cshape.size = Vector2(1, 1)
+			$colli_area.position.x = 0.5
+			$damage_area/colli_da.position.x = 0.5
+			$texture.offset.y = 16
+			$texture.scale = Vector2(0.03, 0.03)
 			$texture.set_instance_shader_parameter("laser_taper", true)
 			$texture.set_instance_shader_parameter("laser_taper_size", LASER_TAPER_SIZE)
 			laser_thickness = LASER_THICK
@@ -119,12 +124,13 @@ func change_type_to(type: String):
 			add_to_group('fire')
 			$texture.set_texture(PresetManager.getpre('img_tama'))
 			$texture.rotation = 0
-			$texture.offset.y=0
+			$texture.offset.y = 0
 			change_size_to(20)
 
-			$VisibleOnScreenNotifier2D.rect = Rect2(-0.5,-0.5,1,1)
+			$VisibleOnScreenNotifier2D.rect = Rect2(-0.5, -0.5, 1, 1)
 	$colli_area.shape = cshape
 	$damage_area/colli_da.shape = cshape
+
 
 func _reset_type_runtime() -> void:
 	# 对象池复用时清掉上个类型残留
@@ -142,8 +148,10 @@ func _reset_type_runtime() -> void:
 	$texture.set_instance_shader_parameter("laser_taper", false)
 	$texture.set_instance_shader_parameter("laser_taper_size", LASER_TAPER_SIZE)
 
+
 func _is_laser_type() -> bool:
 	return d_info.danmaku_type == 'dmk_laser' or d_info.danmaku_type == 'dmk_laserpre'
+
 
 func _update_laser_geometry(length_value: float) -> void:
 	laser_length = maxf(length_value, LASER_MIN_LEN)
@@ -155,24 +163,29 @@ func _update_laser_geometry(length_value: float) -> void:
 	$damage_area/colli_da.position.x = 0.5
 	$VisibleOnScreenNotifier2D.rect = Rect2(0, -0.5, 1, 1)
 
-func set_color(hsv:Vector3):
 
-	$texture.set_instance_shader_parameter("hue_shift", hsv.x/360)
+func set_color(hsv: Vector3) -> void:
 
-func change_size_to(size:float):
-	$texture.scale = Vector2(size * 0.06,size * 0.06)
-	$damage_area.scale =Vector2(size,size)
-	$colli_area.scale = Vector2(size,size)
+	$texture.set_instance_shader_parameter("hue_shift", hsv.x / 360)
+
+
+func change_size_to(size: float) -> void:
+	$texture.scale = Vector2(size * 0.06, size * 0.06)
+	$damage_area.scale = Vector2(size, size)
+	$colli_area.scale = Vector2(size, size)
+
 
 # 延迟设置伤害Area2D监控状态
-func set_damage_monitoring(active: bool):
+func set_damage_monitoring(active: bool) -> void:
 	$damage_area.monitoring = active
+
 
 func _should_enable_damage_monitoring() -> bool:
 	# 预警线只做提示，不应造成伤害
 	return d_info.danmaku_type != 'dmk_laserpre'
 
-func change_move_type_to(move:String):
+
+func change_move_type_to(move: String) -> void:
 	match move:
 		'straight':
 			move_straight_init()
@@ -180,23 +193,26 @@ func change_move_type_to(move:String):
 		_:
 			move_func = move_stay
 
-var progress_p = 0
-var next_checkpoint = -1
-func progress_check():
+var progress_p: int = 0
+var next_checkpoint: float = -1.0
+
+
+func progress_check() -> void:
 	match d_info.danmaku_apart_rule:
 		'time':
 			while exist_time > next_checkpoint:
 
 				apply_checkpoint(progress_p)
-				progress_p+=1
+				progress_p += 1
 
 				if progress_p >= d_info.danmaku_apart_point.size():
 					next_checkpoint = 9999
 					continue
 				else:
-					next_checkpoint =d_info.danmaku_apart_point[progress_p]
+					next_checkpoint = d_info.danmaku_apart_point[progress_p]
 
-func apply_checkpoint(point):
+
+func apply_checkpoint(point: int) -> void:
 	#if point >= d_info.danmaku_apart_point.size():
 			#return
 	match d_info.danmaku_apart_var[point]:
@@ -205,10 +221,12 @@ func apply_checkpoint(point):
 
 
 
-var diretion:Vector2 = Vector2.ZERO
-var acc = 0
-var velo = 0
-func move_straight_init():
+var diretion: Vector2 = Vector2.ZERO
+var acc: float = 0.0
+var velo: float = 0.0
+
+
+func move_straight_init() -> void:
 	acc = d_info.danmaku_moving_parameter[0]
 	if _is_laser_type():
 		if d_info.danmaku_moving_parameter.size() >= 3:
@@ -222,13 +240,14 @@ func move_straight_init():
 			laser_reached_max = true
 			velocity = Vector2.ZERO
 
+
 func move_laser(delta: float) -> void:
 	if d_info.danmaku_type == 'dmk_laserpre':
 		return
 	velo = min(d_info.danmaku_moving_parameter[1], velo + acc * delta)
 	if not laser_reached_max:
 		# 阶段1：从初始位置向前延伸，长度逐渐增加
-		var next_length = minf(laser_max_length, laser_length + maxf(velo, 0.0) * delta)
+		var next_length: float = minf(laser_max_length, laser_length + maxf(velo, 0.0) * delta)
 		_update_laser_geometry(next_length)
 		laser_reached_max = next_length >= laser_max_length - 0.0001
 	else:
@@ -237,29 +256,34 @@ func move_laser(delta: float) -> void:
 		move_and_slide()
 		laser_origin = global_position
 
-func move_straight(delta):
+
+func move_straight(delta: float) -> void:
 	if _is_laser_type():
 		move_laser(delta)
 		return
-	velo = min(d_info.danmaku_moving_parameter[1],velo+acc*delta)
+	velo = min(d_info.danmaku_moving_parameter[1], velo + acc * delta)
 	velocity = velo * diretion
 	move_and_slide()
-func move_stay(delta):
+
+
+func move_stay(delta: float) -> void:
 	pass
 
+
 func _on_timer_timeout() -> void:
-	exist_time+=$exist.wait_time
-	if  d_info.get('danmaku_apart_rule')=='' or d_info.get('danmaku_apart_rule')==null:
+	exist_time += $exist.wait_time
+	if d_info.get('danmaku_apart_rule') == '' or d_info.get('danmaku_apart_rule') == null:
 		$exist.stop()
 	else:
-		if next_checkpoint ==-1:
+		if next_checkpoint == -1:
 			next_checkpoint = d_info.danmaku_apart_point[0]
 		progress_check()
 
-var is_active = false
+var is_active: bool = false
 
-func disable(active):
-	if(is_active == active):
+
+func disable(active: bool) -> void:
+	if (is_active == active):
 		return
 	is_active = active
 	set_process(active)
@@ -277,6 +301,7 @@ func disable(active):
 		SignalBus.disbullet.connect(drop_from_disbullet)
 		_ready()
 
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	disable(false)
 
@@ -284,14 +309,14 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_damage_area_body_entered(body: Node2D) -> void:
 
 	if body.has_method('take_damage'):
-		body.take_damage('danma',damage)
-		if(d_info.danmaku_type != 'dmk_laser'):
+		body.take_damage('danma', damage)
+		if (d_info.danmaku_type != 'dmk_laser'):
 			disable(false)
 
 
 
-func drop_from_disbullet(is_drop:bool):
+func drop_from_disbullet(is_drop: bool) -> void:
 	if is_drop:
-		SignalBus.drop.emit('drops_point',global_position,1)
+		SignalBus.drop.emit('drops_point', global_position, 1)
 
 	disable(false)

@@ -15,7 +15,7 @@ var grid: Dictionary = {}
 # --- 初始化 ---
 
 # 构造函数，需要传入单元格大小
-func _init(p_cell_size: Vector2):
+func _init(p_cell_size: Vector2) -> void:
 	if p_cell_size.x <= 0 or p_cell_size.y <= 0:
 		printerr("SpatialGrid: Cell size must be positive.")
 		cell_size = Vector2(100, 100) # 提供一个默认值
@@ -27,12 +27,12 @@ func _init(p_cell_size: Vector2):
 # 将世界坐标转换为网格单元格坐标 (整数)
 func world_to_cell(world_position: Vector2) -> Vector2i:
 	# 使用 floor 向下取整，确保坐标对应正确的单元格
-	var cell_x = floor(world_position.x / cell_size.x)
-	var cell_y = floor(world_position.y / cell_size.y)
+	var cell_x: float = floor(world_position.x / cell_size.x)
+	var cell_y: float = floor(world_position.y / cell_size.y)
 	return Vector2i(int(cell_x), int(cell_y))
 
 # 向网格中添加一个对象 (例如敌人节点)
-func add_object(obj: Node, position: Vector2):
+func add_object(obj: Node, position: Vector2) -> void:
 	var cell_coords: Vector2i = world_to_cell(position)
 
 	# 如果该单元格在字典中不存在，则创建它
@@ -47,7 +47,7 @@ func add_object(obj: Node, position: Vector2):
 			obj.set_current_grid_cell(cell_coords)
 
 # 从网格中移除一个对象
-func remove_object(obj: Node, position: Vector2):
+func remove_object(obj: Node, position: Vector2) -> void:
 	var cell_coords: Vector2i = world_to_cell(position)
 
 	# 检查单元格是否存在以及对象是否在该单元格中
@@ -90,12 +90,12 @@ func update_object_position(obj: Node, old_position: Vector2, new_position: Vect
 # --- 查询功能 ---
 
 # 获取指定单元格内的所有对象
-func get_objects_in_cell(cell_coords: Vector2i) -> Array:
+func get_objects_in_cell(cell_coords: Vector2i) -> Array[Node]:
 	if grid.has(cell_coords):
 		# 返回数组的副本，以防外部修改影响内部数据
 		return grid[cell_coords].duplicate()
 	else:
-		return [] # 返回空数组
+		return [] as Array[Node]
 
 # 获取与给定矩形区域重叠的所有单元格内的对象
 # 注意: 这会返回所有在 *重叠单元格* 内的对象，
@@ -108,7 +108,7 @@ func get_objects_in_area(query_rect: Rect2) -> Array[Node]:
 	# 遍历所有可能重叠的单元格
 	for x in range(min_cell.x, max_cell.x + 1):
 		for y in range(min_cell.y, max_cell.y + 1):
-			var cell_coords = Vector2i(x, y)
+			var cell_coords: Vector2i = Vector2i(x, y)
 			if grid.has(cell_coords):
 				# 将该单元格的所有对象添加到结果列表
 				# 使用 extend 而不是 append，因为 grid[cell_coords] 是一个数组
@@ -125,7 +125,7 @@ func get_objects_in_area(query_rect: Rect2) -> Array[Node]:
 	# 如果一个对象只存在于一个单元格中，理论上不会重复。
 	# 但如果查询逻辑复杂，或对象可能错误地存在于多个单元格，去重是保险的。
 	# 这里用 Dictionary 实现简单去重：
-	var unique_objects_dict = {}
+	var unique_objects_dict: Dictionary = {}
 	for obj in objects_found:
 		unique_objects_dict[obj] = true # 利用字典键的唯一性
 
@@ -140,7 +140,7 @@ func get_objects_near_point(center: Vector2, radius: float) -> Array[Node]:
 	var radius_sq: float = radius * radius # 使用平方距离避免开方运算
 
 	# 计算包含查询圆形的轴对齐包围盒 (AABB)
-	var query_bounds = Rect2(center - Vector2(radius, radius), Vector2(radius, radius) * 2)
+	var query_bounds: Rect2 = Rect2(center - Vector2(radius, radius), Vector2(radius, radius) * 2)
 
 	# 获取可能包含相关对象的单元格范围
 	var min_cell: Vector2i = world_to_cell(query_bounds.position)
@@ -149,7 +149,7 @@ func get_objects_near_point(center: Vector2, radius: float) -> Array[Node]:
 	# 遍历这些单元格
 	for x in range(min_cell.x, max_cell.x + 1):
 		for y in range(min_cell.y, max_cell.y + 1):
-			var cell_coords = Vector2i(x, y)
+			var cell_coords: Vector2i = Vector2i(x, y)
 			if grid.has(cell_coords):
 				# 对单元格内的每个对象进行精确距离检查
 				for obj in grid[cell_coords]:
@@ -158,7 +158,7 @@ func get_objects_near_point(center: Vector2, radius: float) -> Array[Node]:
 						objects_found.append(obj)
 
 	# 去重 (理由同上)
-	var unique_objects_dict = {}
+	var unique_objects_dict: Dictionary = {}
 	for obj in objects_found:
 		unique_objects_dict[obj] = true
 
@@ -168,7 +168,7 @@ func get_objects_near_point(center: Vector2, radius: float) -> Array[Node]:
 # --- 清理 ---
 
 # 清空整个网格
-func clear():
+func clear() -> void:
 	grid.clear()
 
 

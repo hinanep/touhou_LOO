@@ -1,25 +1,29 @@
 extends Node2D
 class_name d4c
-var d4c_info:Dictionary
 
-var zero_diretion:Vector2
-var danma_pre :PackedScene = PresetManager.getpre('danma')
-var shoot_func:Callable=stay
-var move_func:Callable=stay
-var rot_func:Callable=stay
-var exist_time = 0
-var parent_die_signal:Signal
+var d4c_info: Dictionary = {}
+
+var zero_diretion: Vector2
+var danma_pre: PackedScene = PresetManager.getpre('danma')
+var shoot_func: Callable = stay
+var move_func: Callable = stay
+var rot_func: Callable = stay
+var exist_time: float = 0.0
+var parent_die_signal: Signal
 #todo
-signal die(id)
-var damage = 10
-var gen_position:Vector2 = Vector2.ZERO
-var danma_color = Vector3(0,0,0)
-func d4c_init(id:String,parent):
+signal die(id: StringName)
+var damage: int = 10
+var gen_position: Vector2 = Vector2.ZERO
+var danma_color: Vector3 = Vector3(0, 0, 0)
+
+
+func d4c_init(id: String, parent: Node2D) -> Variant:
 	if id == "":
-		return
+		return null
 	d4c_info = table.d4c[id].duplicate()
 	global_position = parent.global_position
 	return d4c_info.moving_system
+
 
 func _ready() -> void:
 	name = d4c_info.Id
@@ -28,7 +32,7 @@ func _ready() -> void:
 	match d4c_info.create_front:
 		'character':
 
-			zero_diretion =gen_position.direction_to(player_var.player_node.global_position)
+			zero_diretion = gen_position.direction_to(player_var.player_node.global_position)
 		'world':
 			zero_diretion = Vector2.RIGHT
 	match d4c_info.create_rule:
@@ -36,7 +40,7 @@ func _ready() -> void:
 			shoot_func = random_shoot
 		'circle':
 			shoot_func = circle_shoot
-			zero_diretion = zero_diretion.rotated(d4c_info.create_parameter[1] * PI/180)
+			zero_diretion = zero_diretion.rotated(d4c_info.create_parameter[1] * PI / 180)
 	match d4c_info.rotate_rule:
 		'static':
 			rot_func = stay
@@ -58,6 +62,8 @@ func _ready() -> void:
 	$shoot_interval.wait_time = d4c_info.create_interval
 	$shoot_interval.start()
 	_on_shoot_interval_timeout()
+
+
 func _physics_process(delta: float) -> void:
 	exist_time += delta
 
@@ -65,42 +71,52 @@ func _physics_process(delta: float) -> void:
 	rot_func.call(delta)
 	gen_position = global_position
 
-func circle_shoot():
-	var bias = 2*PI/d4c_info.create_amount
-	var danma_velo = d4c_info.create_parameter[0]
-	var danma_diretion:Vector2
-	for i in range(d4c_info.create_amount):
-		danma_diretion = zero_diretion.rotated(rotation+bias*i)
-		shoot(danma_velo,danma_diretion)
-func random_shoot():
-	var danma_velo
-	var danma_diretion
-	for i in range(d4c_info.create_amount):
-		danma_velo = randf_range(d4c_info.create_parameter[2],d4c_info.create_parameter[3])
-		danma_diretion = zero_diretion.rotated(randf_range( d4c_info.create_parameter[0],d4c_info.create_parameter[1])*PI/180)
-		shoot(danma_velo,danma_diretion)
-var survive_node = 0
-var danma_pool = []
-func add_to_pool(node):
+
+func circle_shoot() -> void:
+	var bias: float = 2 * PI / d4c_info.create_amount
+	var danma_velo: float = d4c_info.create_parameter[0]
+	var danma_diretion: Vector2
+	for i: int in range(d4c_info.create_amount):
+		danma_diretion = zero_diretion.rotated(rotation + bias * i)
+		shoot(danma_velo, danma_diretion)
+
+
+func random_shoot() -> void:
+	var danma_velo: float
+	var danma_diretion: Vector2
+	for i: int in range(d4c_info.create_amount):
+		danma_velo = randf_range(d4c_info.create_parameter[2], d4c_info.create_parameter[3])
+		danma_diretion = zero_diretion.rotated(randf_range(d4c_info.create_parameter[0], d4c_info.create_parameter[1]) * PI / 180)
+		shoot(danma_velo, danma_diretion)
+
+
+var survive_node: int = 0
+var danma_pool: Array[danma] = []
+
+
+func add_to_pool(node: danma) -> void:
 	survive_node -= 1
 	danma_pool.append(node)
 
-func get_from_pool():
-	var obj:Node2D = null
+
+func get_from_pool() -> danma:
+	var obj: danma = null
 	if not danma_pool.is_empty():
-		obj =  danma_pool.pop_back()
+		obj = danma_pool.pop_back()
 	if obj == null:
 		obj = danma_pre.instantiate()
 		obj.destroy.connect(add_to_pool)
 		add_child(obj)
 	survive_node += 1
 	return obj
-func shoot(v,d):
 
-	var newd = get_from_pool()
+
+func shoot(v: float, d: Vector2) -> void:
+
+	var newd: danma = get_from_pool()
 	newd.velo = v
 	newd.diretion = d
-	newd.rotation =Vector2.RIGHT.angle_to(d)
+	newd.rotation = Vector2.RIGHT.angle_to(d)
 
 	newd.damage = damage
 	newd.global_position = gen_position
@@ -108,22 +124,30 @@ func shoot(v,d):
 	newd.danma_init(d4c_info)
 
 
-func stay(delta):
+func stay(delta: float) -> void:
 	pass
 
-func rot_uniform(delta):
-	rotate(d4c_info.rotate_parameter[0]*PI/180*delta)
-func rot_delay_uniform(delta):
+
+func rot_uniform(delta: float) -> void:
+	rotate(d4c_info.rotate_parameter[0] * PI / 180 * delta)
+
+
+func rot_delay_uniform(delta: float) -> void:
 	if exist_time < d4c_info.rotate_parameter[0]:
 		return
-	rotate(d4c_info.rotate_parameter[1]*PI/180*delta)
+	rotate(d4c_info.rotate_parameter[1] * PI / 180 * delta)
 
-func rot_discrete_uniform(delta):
-	if rot_times*d4c_info.rotate_parameter[0]<exist_time:
-		rotate(d4c_info.rotate_parameter[1]*PI/180)
+
+func rot_discrete_uniform(delta: float) -> void:
+	if rot_times * d4c_info.rotate_parameter[0] < exist_time:
+		rotate(d4c_info.rotate_parameter[1] * PI / 180)
 		rot_times += 1
-var rot_times = 0
-var shoot_times :int= 0
+
+
+var rot_times: int = 0
+var shoot_times: int = 0
+
+
 func _on_shoot_interval_timeout() -> void:
 	if shoot_times >= d4c_info.max_create_times:
 		if survive_node == 0:
@@ -131,33 +155,38 @@ func _on_shoot_interval_timeout() -> void:
 		return
 	progress_check()
 	if d4c_info.create_front == 'character' and d4c_info.is_follow:
-		zero_diretion =global_position.direction_to(player_var.player_node.global_position)
+		zero_diretion = global_position.direction_to(player_var.player_node.global_position)
 	shoot_func.call()
-	shoot_times+=1
+	shoot_times += 1
 
 
+var progress_p: int = 0
+var progress_dc: int = 0
+var next_checkpoint: float = -1.0
 
-var progress_p = 0
-var progress_dc = 0
-var next_checkpoint = -1
-func destroy(is_drop):
-	emit_signal('die',name)
+
+func destroy(is_drop: bool) -> void:
+	emit_signal('die', name)
 	queue_free()
-func progress_check():
-	if d4c_info.get('creator_apart_rule')=='' or d4c_info.get('creator_apart_rule')==null:
+
+
+func progress_check() -> void:
+	if d4c_info.get('creator_apart_rule') == '' or d4c_info.get('creator_apart_rule') == null:
 		return
-	if next_checkpoint ==-1:
+	if next_checkpoint == -1:
 		next_checkpoint = d4c_info.creator_apart_point[0]
 	match d4c_info.creator_apart_rule:
 		'time':
 			while exist_time > next_checkpoint:
 				apply_d4c_checkpoint(progress_dc)
-				progress_dc+=1
+				progress_dc += 1
 				if progress_dc == d4c_info.creator_apart_point.size():
 					next_checkpoint = 9999
 					return
-				next_checkpoint =d4c_info.creator_apart_point[progress_dc]
-func apply_d4c_checkpoint(point):
+				next_checkpoint = d4c_info.creator_apart_point[progress_dc]
+
+
+func apply_d4c_checkpoint(point: int) -> void:
 	match d4c_info.creator_apart_var[point]:
 		'type':
 			d4c_info.danmaku_type = d4c_info.creator_apart_parameter[point]

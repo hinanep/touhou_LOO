@@ -1,4 +1,9 @@
 /*
+ * 作用：3D 空间线段/激光渲染，将 Quad 沿指定轴向拉伸并面向摄像机，支持纹理滚动与亮度调制。
+ * 推荐文件名：billboard_line_laser.gdshader
+ */
+
+/*
 
 LineRendering solution
 

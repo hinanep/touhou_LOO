@@ -1,6 +1,6 @@
 extends Node
 
-var preset_map = {
+var preset_map: Dictionary[String, Variant] = {
 
 
 
@@ -135,17 +135,17 @@ var preset_map = {
 }
 
 # --- 进度显示给 UI：暴露进度与信号，由 StartMenu 控制展示 ---
-signal loading_progress_changed(progress)
+signal loading_progress_changed(progress: float)
 signal loading_completed
 var is_loading: bool = false
 var loading_progress: float = 0.0
 
-func _ready():
+func _ready() -> void:
 	# 启动多线程加载；进度通过信号对外暴露
 	is_loading = true
-	var paths := []
+	var paths: Array[String] = []
 	for pname in preset_map:
-		var p = preset_map[pname]
+		var p: String = preset_map[pname]
 		ResourceLoader.load_threaded_request(p,'',true)
 		paths.append(p)
 	# 轮询真实进度
@@ -153,12 +153,12 @@ func _ready():
 		var total := paths.size()
 		if total == 0:
 			break
-		var sum := 0.0
-		var done := 0
+		var sum: float = 0.0
+		var done: int = 0
 		for p in paths:
-			var prog := []
-			var st = ResourceLoader.load_threaded_get_status(p, prog)
-			var v := 0.0
+			var prog: Array = []
+			var st: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(p, prog)
+			var v: float = 0.0
 			if prog.size() > 0:
 				v = float(prog[0])
 			if st == ResourceLoader.THREAD_LOAD_LOADED or st == ResourceLoader.THREAD_LOAD_FAILED:
@@ -180,12 +180,11 @@ func _ready():
 	loading_completed.emit()
 
 
-func getpre(prename : String):
+func getpre(prename: String) -> Variant:
 	if preset_map.has(prename) :
-		if preset_map[prename]==null:
-			pass
-		else:
-			return preset_map[prename]
+		if preset_map[prename] == null:
+			return null
+		return preset_map[prename]
 	if(prename.contains('img')):
 		printerr('img  '+prename+'  not found!')
 		return preset_map.img_p

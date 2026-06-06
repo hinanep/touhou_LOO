@@ -46,7 +46,7 @@ func _roll_ufo_color() -> int:
 
 
 ## 范围内玩家进入：发射生成信号并销毁，每把钥匙对应一场飞碟事件
-func _on_body_entered(_body) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	AudioManager.play_sfx("music_sfx_pickup")
 	SignalBus.ufo_spawn_requested.emit(ufo_color, global_position)
 	queue_free()

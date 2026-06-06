@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 精灵 HSV 色相/饱和度/明度偏移，低饱和度区域保持白色；可选激光端部半椭圆渐隐。
+ * 推荐文件名：hsv_hue_shift.gdshader
+ */
 shader_type canvas_item;
 
 // 色相偏移参数，范围0.0到1.0

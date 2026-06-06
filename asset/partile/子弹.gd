@@ -1,6 +1,6 @@
 extends Sprite2D
-var velo = Vector2(10,0)
-var state = 1
+var velo: Vector2 = Vector2(10,0)
+var state: int = 1
 func _physics_process(delta: float) -> void:
 
 	global_position+=velo

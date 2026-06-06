@@ -1,14 +1,14 @@
 extends Node
-var rnd
-func _ready():
+var rnd: RandomNumberGenerator
+func _ready() -> void:
 	rnd = RandomNumberGenerator.new()
 	#rnd.seed = hash("Hello world")
 
 
-func random_nselect_from_allpool(n:int):
-	var cards = []
-	var skills = []
-	var passives = []
+func random_nselect_from_allpool(n: int) -> Dictionary[String, String]:
+	var cards: Array = []
+	var skills: Array = []
+	var passives: Array = []
 	if !RunSession.SkillManager.skill_num_full:
 		for skillname in RunSession.SkillManager.skill_pool["unlocked"]:
 			skills.append([skillname,RunSession.SkillManager.skill_pool["unlocked"][skillname]["weight"]])
@@ -27,17 +27,17 @@ func random_nselect_from_allpool(n:int):
 	for passivename in RunSession.PassiveManager.passive_pool["choosed"]:
 		passives.append([passivename,RunSession.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
 
-	var pool = []
+	var pool: Array = []
 	pool.append_array(cards)
 	pool.append_array(skills)
 	pool.append_array(passives)
 
-	var nselect = selectm_from_samples(pool,n)
+	var nselect: Array = selectm_from_samples(pool,n)
 
-	var skills_ans = []
-	var cards_ans = []
-	var passives_ans = []
-	var ans = {}
+	var skills_ans: Array = []
+	var cards_ans: Array = []
+	var passives_ans: Array = []
+	var ans: Dictionary[String, String] = {}
 	for x in nselect:
 		if x in skills:
 			skills_ans.append(x[0])
@@ -51,10 +51,10 @@ func random_nselect_from_allpool(n:int):
 
 	return ans
 
-func random_nselect_from_have(n:int):
-	var cards = []
-	var skills = []
-	var passives = []
+func random_nselect_from_have(n: int) -> Dictionary[String, String]:
+	var cards: Array = []
+	var skills: Array = []
+	var passives: Array = []
 
 	for skillname in RunSession.SkillManager.skill_pool["choosed"]:
 		skills.append([skillname,RunSession.SkillManager.skill_pool["choosed"][skillname]["weight"]])
@@ -66,17 +66,17 @@ func random_nselect_from_have(n:int):
 	for passivename in RunSession.PassiveManager.passive_pool["choosed"]:
 		passives.append([passivename,RunSession.PassiveManager.passive_pool["choosed"][passivename]["weight"]])
 
-	var pool = []
+	var pool: Array = []
 	pool.append_array(cards)
 	pool.append_array(skills)
 	pool.append_array(passives)
 
-	var nselect = selectm_from_samples(pool,n)
+	var nselect: Array = selectm_from_samples(pool,n)
 
-	var skills_ans = []
-	var cards_ans = []
-	var passives_ans = []
-	var ans = {}
+	var skills_ans: Array = []
+	var cards_ans: Array = []
+	var passives_ans: Array = []
+	var ans: Dictionary[String, String] = {}
 	for x in nselect:
 		if x in skills:
 			skills_ans.append(x[0])
@@ -91,12 +91,12 @@ func random_nselect_from_have(n:int):
 	return ans
 
 
-func selectm_from_samples(samples, m):
+func selectm_from_samples(samples: Array, m: int) -> Array:
 
-	var heap = [] # [(new_weight, item), ...]
-	var wi
-	var ui
-	var ki
+	var heap: Array = [] # [(new_weight, item), ...]
+	var wi: float
+	var ui: float
+	var ki: float
 	for sample in samples:
 		if sample[1]==0:
 			continue
@@ -115,13 +115,13 @@ func selectm_from_samples(samples, m):
 
 			heap.pop_back()
 			heap.append([sample,ki])
-	var ans = []
+	var ans: Array = []
 	for h in heap:
 		ans.append(h[0])
 	return ans
 
 
-func sort_ascending(a, b):
+func sort_ascending(a: Array, b: Array) -> bool:
 	if a[1] > b[1]:
 		return true
 	return false

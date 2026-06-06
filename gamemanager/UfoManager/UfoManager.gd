@@ -10,7 +10,7 @@ const _VFX_PARTICLE_CAP := 20
 var _active_ufos: Array[Node] = []
 var _ufo_scene: PackedScene = null
 var _ufo_mob_info_template: Dictionary = {}
-var settlement_payload: Dictionary = {}
+var settlement_payload: Dictionary[String, Variant] = {}
 var _settlement_kill_position: Vector2 = Vector2.ZERO
 
 @export var ufo_enemy_preset_id: String = _UFO_ENEMY_TABLE_ID
@@ -71,6 +71,40 @@ func _unregister_active_ufo(ufo: Node) -> void:
 		_active_ufos.remove_at(idx)
 
 
+## Boss 入场等：无结算清掉所有未击破飞碟（先出活跃表再 died(true)，避免 die 回退误结算）
+func dismiss_all_active_ufos() -> void:
+	_prune_active_ufos()
+	var snapshot: Array[Node] = _active_ufos.duplicate()
+	for ufo in snapshot:
+		_unregister_active_ufo(ufo)
+		if ufo == null or not is_instance_valid(ufo):
+			continue
+		if ufo.has_method("died"):
+			ufo.died(true)
+		else:
+			ufo.queue_free()
+	_clear_hostile_danmaku()
+	settlement_payload = {}
+	_settlement_kill_position = Vector2.ZERO
+	_close_settlement_views()
+
+
+## 关闭所有 UfoSettlement 悬浮窗
+func _close_settlement_views() -> void:
+	if G == null:
+		return
+	var vm: GUIViewManager = G.get_gui_view_manager()
+	if vm == null:
+		return
+	var to_close: Array[int] = []
+	for instance_id in vm.viewInstanceMap.keys():
+		var view: BaseGUIView = vm.viewInstanceMap[instance_id]
+		if view.config.id == &"UfoSettlement":
+			to_close.append(instance_id)
+	for instance_id in to_close:
+		vm.close_view(instance_id)
+
+
 func _connect_bus_signal(signal_name: StringName, callable: Callable) -> void:
 	if not SignalBus.has_signal(signal_name):
 		push_error("[UfoManager] SignalBus 缺少信号: %s" % signal_name)
@@ -109,11 +143,11 @@ func _on_ufo_killed(ufo: Node, ledger: Dictionary, color: int, kill_global_posit
 			color = int(ufo.ufo_color)
 	_settlement_kill_position = kill_global_position
 	_clear_hostile_danmaku()
-	var display := _compute_settlement_display(ledger, color)
+	var display: Dictionary[String, Variant] = _compute_settlement_display(ledger, color)
 	var pending_ledger_exp: float = _compute_pending_ledger_exp(ledger, color)
 	var bonus_pick: bool = _has_bonus_pick(color)
 	_apply_ledger_and_legacy(ledger, color)
-	var extra: Dictionary = _apply_cp_or_upgrades()
+	var extra: Dictionary[String, Variant] = _apply_cp_or_upgrades()
 	_build_settlement_payload(ledger, color, extra, display, pending_ledger_exp, bonus_pick)
 	_show_settlement_ui()
 	_apply_kill_rewards()
@@ -131,10 +165,11 @@ func _spawn_ufo(color: int, pickup_position: Vector2) -> Node:
 	var ufo: Node = _ufo_scene.instantiate()
 	if "mob_info" in ufo:
 		ufo.mob_info = _ufo_mob_info_template.duplicate(true)
-	if "ufo_color" in ufo:
-		ufo.ufo_color = color
+	ufo.set("ufo_color", color)
 	ufo.global_position = pickup_position
 	spawn_mgr.add_mob(ufo)
+	if ufo.has_method("_apply_color_visual"):
+		ufo.call_deferred("_apply_color_visual")
 	return ufo
 
 
@@ -207,7 +242,7 @@ func _clear_danmaku_recursive(node: Node) -> void:
 
 
 ## 按颜色从 Global 表取账本倍率
-func _get_color_multipliers(color: int) -> Dictionary:
+func _get_color_multipliers(color: int) -> Dictionary[String, Variant]:
 	var red_rate: float = table.get_global_variable("red_ufo_rate", 2.0)
 	var green_rate: float = table.get_global_variable("green_ufo_rate", 2.0)
 	var blue_rate: float = table.get_global_variable("blue_ufo_rate", 2.0)
@@ -246,11 +281,11 @@ func _apply_color_legacy(color: int, fragment_count: int) -> void:
 	var blue_delta := _compute_blue_point_ratio_delta(fragment_count)
 	match color:
 		2:
-			player_var.free_card += 1.0
+			player_var.free_card += 1
 		3:
 			player_var.point_ratio += blue_delta
 		4:
-			player_var.free_card += 1.0
+			player_var.free_card += 1
 			player_var.point_ratio += blue_delta
 		_:
 			pass
@@ -288,8 +323,8 @@ func _apply_ledger_and_legacy(ledger: Dictionary, color: int) -> void:
 
 
 ## 击破一次：随机羁绊（立即激活），失败则预选三次升级
-func _apply_cp_or_upgrades() -> Dictionary:
-	var result := {"cp_id": "", "upgrade_ids": [], "upgrade_picks": []}
+func _apply_cp_or_upgrades() -> Dictionary[String, Variant]:
+	var result: Dictionary[String, Variant] = {"cp_id": "", "upgrade_ids": [], "upgrade_picks": []}
 	var actived_before: Array = []
 	if RunSession.CpManager != null:
 		actived_before = RunSession.CpManager.cp_pool.actived.keys()
@@ -311,8 +346,8 @@ func _apply_cp_or_upgrades() -> Dictionary:
 
 
 ## 随机预选一次升级，返回 { id, kind }，无可用项则返回空字典（不 emit）
-func _pick_upgrade_once() -> Dictionary:
-	var selected: Dictionary = RandomPool.random_nselect_from_have(1)
+func _pick_upgrade_once() -> Dictionary[String, Variant]:
+	var selected: Dictionary[String, String] = RandomPool.random_nselect_from_have(1)
 	if selected.is_empty():
 		return {}
 	for id in selected:
@@ -323,7 +358,7 @@ func _pick_upgrade_once() -> Dictionary:
 
 
 ## 应用单次预选升级
-func _apply_upgrade_pick(pick: Dictionary) -> void:
+func _apply_upgrade_pick(pick: Dictionary[String, Variant]) -> void:
 	var entry_id := str(pick.get("id", ""))
 	if entry_id == "":
 		return
@@ -346,7 +381,7 @@ func _apply_pending_upgrades(picks: Array) -> void:
 
 
 ## 按账本与颜色预计算面板展示数值（入账前调用）
-func _compute_settlement_display(ledger: Dictionary, color: int) -> Dictionary:
+func _compute_settlement_display(ledger: Dictionary, color: int) -> Dictionary[String, Variant]:
 	var mul := _get_color_multipliers(color)
 	var exp_mul := float(mul["exp_mul"])
 	var mana_mul := float(mul["mana_mul"])
@@ -395,7 +430,7 @@ func _build_settlement_payload(
 
 
 ## 供 UfoSettlement 读取
-func get_settlement_payload() -> Dictionary:
+func get_settlement_payload() -> Dictionary[String, Variant]:
 	return settlement_payload.duplicate(true)
 
 

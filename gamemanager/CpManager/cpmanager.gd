@@ -4,16 +4,21 @@ class_name CpManagers
 #unlocked：已解锁，但尚未在局中满足激活条件
 #ready：已满足激活条件，可以在激活羁绊时随机激活
 #actived：已激活羁绊
-var cp_pool = {
-	locked={},
-	unlocked={},
-	ready={},
-	actived={}
+var _cp_pool_locked: Dictionary[String, Dictionary] = {}
+var _cp_pool_unlocked: Dictionary[String, Dictionary] = {}
+var _cp_pool_ready: Dictionary[String, Dictionary] = {}
+var _cp_pool_actived: Dictionary[String, Dictionary] = {}
+
+var cp_pool: Dictionary = {
+	"locked": _cp_pool_locked,
+	"unlocked": _cp_pool_unlocked,
+	"ready": _cp_pool_ready,
+	"actived": _cp_pool_actived,
 }
-var max_list = []
+var max_list: Array[String] = []
 
 
-func _init():
+func _init() -> void:
 	#删除技能时，将其从（可能的）满级列表中移除
 	SignalBus.del_skill.connect(del_to_maxlist)
 	SignalBus.del_card.connect(del_to_maxlist)
@@ -24,11 +29,11 @@ func _init():
 	SignalBus.cp_del.connect(cp_del)
 	cp_pool.unlocked = table.Couple.duplicate()
 #当某个技能？升满，加入满级列表，留待羁绊解锁判断
-func add_to_maxlist(id):
+func add_to_maxlist(id: String) -> void:
 	max_list.append(id)
 	activate_cp(get_cp_unactive(id))
 #从满级列表删除某个技能？
-func del_to_maxlist(id):
+func del_to_maxlist(id: String) -> void:
 	if max_list.has(id):
 		max_list.erase(id)
 
@@ -41,7 +46,7 @@ func del_to_maxlist(id):
 		if cp_pool.actived[cps].partment.has(id):
 			SignalBus.cp_del.emit(cps)
 
-func raise_weight_to_cp(xname):
+func raise_weight_to_cp(xname: String) -> void:
 	for cps in cp_pool.unlocked:
 		if cp_pool.unlocked[cps].partment.has(xname):
 			for id in cp_pool.unlocked[cps].partment:
@@ -52,9 +57,9 @@ func raise_weight_to_cp(xname):
 				if(RunSession.PassiveManager.buff_pool.unlocked.has(id)):
 					RunSession.PassiveManager.buff_pool.unlocked[id]["weight"] *=1.1
 
-func get_cp_unactive(id):
-	var find = false
-	var cp_array = []
+func get_cp_unactive(id: String) -> Array:
+	var find: bool = false
+	var cp_array: Array = []
 
 	for cps in cp_pool.unlocked:
 		if cp_pool.unlocked[cps].partment.has(id):
@@ -70,8 +75,8 @@ func get_cp_unactive(id):
 				cp_array.append(cp_pool.unlocked[cps].id)
 
 	return cp_array
-func get_cpable_array(id):
-	var cpable_array = []
+func get_cpable_array(id: String) -> Array:
+	var cpable_array: Array = []
 
 	for cps in cp_pool.unlocked:
 		if cp_pool.unlocked[cps].partment.has(id):
@@ -83,7 +88,7 @@ func get_cpable_array(id):
 
 	return cpable_array
 
-func activate_cp(cp_array):
+func activate_cp(cp_array: Array) -> void:
 	if cp_array.is_empty():
 		return
 	for cpid in cp_array:
@@ -91,15 +96,15 @@ func activate_cp(cp_array):
 		cp_pool.unlocked.erase(cpid)
 
 
-func random_choose_cp():
+func random_choose_cp() -> bool:
 	if cp_pool.ready.is_empty():
 		return false
 
-	var cpid = cp_pool.ready.keys()[randi_range(0,cp_pool.ready.size()-1)]
+	var cpid: String = cp_pool.ready.keys()[randi_range(0,cp_pool.ready.size()-1)]
 	add_cp(cpid)
 	return true
 
-func add_cp(cpid):
+func add_cp(cpid: String) -> void:
 	# 幂等化处理：先清理可能残留的已激活状态，再进行激活
 	cp_del(cpid)
 	# 如果既不在 ready 也不在 unlocked，但表里存在该 cp，则回填到 unlocked
@@ -116,18 +121,18 @@ func add_cp(cpid):
 		cp_pool.unlocked.erase(cpid)
 	else:
 		return
-	player_var.damage_sum[cpid] = 0
+	player_var.damage_sum[cpid] = 0.0
 
 	SignalBus.cp_active.emit(cp_pool.actived[cpid])
 
 
 #如果待删除羁绊已激活，则将其打入已解锁 注：真正的删除羁绊操作在信号连接的cp实体处，这里只负责维护
-func cp_del(cpid):
+func cp_del(cpid: String) -> void:
 	if cp_pool.actived.has(cpid):
 		cp_pool.unlocked[cpid] = cp_pool.actived[cpid]
 		cp_pool.actived.erase(cpid)
 #
-func destroy():
+func destroy() -> void:
 	SignalBus.del_skill.disconnect(del_to_maxlist)
 	SignalBus.upgrade_max.disconnect(add_to_maxlist)
 	SignalBus.cp_del.disconnect(cp_del)

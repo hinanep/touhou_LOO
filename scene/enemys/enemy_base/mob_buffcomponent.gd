@@ -1,84 +1,84 @@
 extends Node
-@onready var body = $".."
-var brittle_modify = 1.0
-var airbone_diretion=Vector2(0,0)
-var buff_list={
+@onready var body: enemy_base = $".." as enemy_base
+var brittle_modify: float = 1.0
+var airbone_diretion: Vector2 = Vector2(0,0)
+var buff_list: Dictionary = {
 		'slowdown'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			body.mob_info.speed *= 1-intensity
 
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			pass
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			body.mob_info.speed /= 1-intensity
 
 				),
 		},
 		'root'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			body.moveable = false
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			pass
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			body.moveable = true
 				),
 		},
 		'freeze'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			body.moveable = false
 			body.atkable = false
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			pass
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			body.moveable = true
 			body.atkable = true
 				),
 		},
 		'airborne'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			airbone_diretion = (body.global_position-source.global_position).normalized()
 			body.moveable = false
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			body.global_position += airbone_diretion *intensity
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			body.moveable = true
 				),
 		},
 		'brittle'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			brittle_modify = intensity
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			pass
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			brittle_modify = 1.0
 				),
 		},
 		'kill'={
-			on_create=Callable(func(intensity,duration,source):
+			on_create=Callable(func(intensity: float, duration: float, source: Node2D):
 			body.mob_take_damage(9999)
 				),
-			on_update=Callable(func(intensity):
+			on_update=Callable(func(intensity: float):
 			pass
 				),
-			on_destroy=Callable(func(intensity):
+			on_destroy=Callable(func(intensity: float):
 			pass
 				),
 		}
 }
-var buff_engaging={
+var buff_engaging: Dictionary = {
 
 }
-func add_buff(buff_id,intensity,duration,source):
+func add_buff(buff_id: String, intensity: float, duration: float, source: Node2D) -> void:
 	intensity *= brittle_modify
 	if buff_engaging.has(buff_id):
 		if intensity < buff_engaging[buff_id][0]:

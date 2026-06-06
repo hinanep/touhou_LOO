@@ -1,19 +1,19 @@
 extends enemy_base
-var sumdamage = 0.0
-var dpstick = 0.2
-var damage_array = []
-func _ready():
+var sumdamage: float = 0.0
+var dpstick: float = 0.2
+var damage_array: Array = []
+func _ready() -> void:
 
 	$dps.wait_time = dpstick
 	$buff.brittle_modify = 1
 	super._ready()
 	drops_path = "drops_plate"
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	hp = mob_info.health
 	pass
 
-func mob_take_damage(damage):
+func mob_take_damage(damage: float) -> void:
 	if invincible:
 		return
 	damage_num_display(damage)
@@ -25,17 +25,17 @@ func mob_take_damage(damage):
 	$dps_reset.start()
 
 
-func died(disppear = false):
+func died(disppear: bool = false) -> void:
 	drop()
 
-var count = 0
-func _on_dps_timeout():
+var count: int = 0
+func _on_dps_timeout() -> void:
 
 
 	damage_array.push_front(sumdamage)
 	sumdamage = 0
 	damage_array.resize(25)
-	var result = damage_array.reduce(func(a,num):
+	var result: float = damage_array.reduce(func(a: float, num: Variant):
 		if num == null:
 			return a+0
 		return a + num;
@@ -45,7 +45,7 @@ func _on_dps_timeout():
 	pass # Replace with function body.
 
 
-func _on_dps_reset_timeout():
+func _on_dps_reset_timeout() -> void:
 	sumdamage = 0
 
 	pass # Replace with function body.

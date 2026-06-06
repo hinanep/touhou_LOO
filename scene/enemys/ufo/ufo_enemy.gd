@@ -8,11 +8,14 @@ const _ABSORB_SCALE_MULTIPLIER := 1.8
 const _COLORFUL_HUE_STEP := 2
 const _COLORFUL_HUE_MOD := 256
 const _COLORFUL_ANIM := &"all"
-const _COLORFUL_SPRITE_S := 0.67
-const _COLORFUL_SPRITE_V := 0.9
+const _COLORFUL_SPRITE_S := 0.60
+const _COLORFUL_SPRITE_V := 1.0
 const _COLORFUL_LIGHT_S := 0.5
 const _COLORFUL_LIGHT_V := 1.0
 const _COLORFUL_FRAME_TICKS := 10
+const _OUTLINE_COLOR_RED := Color(1.0, 0.0, 0.0, 1.0)
+const _OUTLINE_COLOR_GREEN := Color(0.51666665, 1.0, 0.0, 1.0)
+const _OUTLINE_COLOR_BLUE := Color(0.0, 0.575, 1.0, 1.0)
 
 ## 运行时状态：与表配置、吸收批次及 UfoManager 协作相关字段
 ## @ufo_color 事件颜色 1=红 2=绿 3=蓝 4=彩，由 UfoManager 生成时赋值
@@ -23,11 +26,15 @@ const _COLORFUL_FRAME_TICKS := 10
 ## @_absorb_max_duration 吸收期最长秒数（兜底结束吸收阶段）
 ## @_hp_per_fragment 按场上碎片数增加的最大生命系数
 ## @_absorb_ledger 本飞碟吸收账本 exp/mana/score/fragment_count
-var ufo_color: int = 1
+var ufo_color: int = 1:
+	set(value):
+		ufo_color = value
+		if is_node_ready():
+			call_deferred("_apply_color_visual")
 var absorb_phase: bool = true
 var _ufo_manager: Node = null
 var _absorb_visual_running: bool = false
-var _pending_destroy: Array = []
+var _pending_destroy: Array[Node] = []
 var _absorb_max_duration: float = _DEFAULT_ABSORB_MAX_DURATION
 var _hp_per_fragment: float = _DEFAULT_HP_PER_FRAGMENT
 var _absorb_ledger: Dictionary = {}
@@ -37,8 +44,7 @@ var _colorful_frame_tick: int = 0
 var _colorful_active: bool = false
 
 @onready var _absorb_duration_timer: Timer = $absorb_duration_timer
-@onready var light_layer: AnimatedSprite2D = $light
-
+@onready var light_layer: AnimatedSprite2D = $AnimatedSprite2D/light
 
 ## 节点就绪：补全 mob_info、读表调参、禁用离屏秒杀并延迟开启吸收阶段
 ## @return 无
@@ -55,6 +61,12 @@ func _ready() -> void:
 		$outscreen_disppear.stop()
 	_apply_color_visual()
 	call_deferred("_start_absorb_phase")
+
+
+## 飞碟缩放由 ufo_enemy_anime 驱动，跳过 enemy_base 对 sprite.scale.x 的摆动
+func _physics_process(_delta: float) -> void:
+	if moveable:
+		movement.call()
 
 
 ## 注入 UfoManager，供吸收入账与击破回调
@@ -121,13 +133,34 @@ func _apply_non_colorful_visual() -> void:
 	match ufo_color:
 		1:
 			sprite.play(&"red")
+			_set_outline_color(_OUTLINE_COLOR_RED)
 		2:
 			sprite.play(&"green")
+			_set_outline_color(_OUTLINE_COLOR_GREEN)
 		3:
 			sprite.play(&"blue")
+			_set_outline_color(_OUTLINE_COLOR_BLUE)
 		_:
 			pass
 	sprite.modulate = Color.WHITE
+	sprite.self_modulate = Color.WHITE
+
+
+## 设置主精灵本体染色（self_modulate 不影响子节点 light）
+## @param color 精灵 HSV 染色
+## @return 无
+func _set_sprite_tint(color: Color) -> void:
+	sprite.modulate = Color.WHITE
+	sprite.self_modulate = color
+
+
+## 设置主精灵 outline shader 实例级外发光颜色
+## @param color 外发光 RGBA
+## @return 无
+func _set_outline_color(color: Color) -> void:
+	if not is_instance_valid(sprite) or sprite.material == null:
+		return
+	sprite.set_instance_shader_parameter("outline_color", color)
 
 
 ## 彩色飞碟：显示 light、停止自动播放，启用 HSV 与手动帧
@@ -143,8 +176,9 @@ func _start_colorful_visual() -> void:
 	light_layer.stop()
 	light_layer.frame = 0
 	_colorful_active = true
-	sprite.modulate = Color.from_hsv(0.0, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V)
+	_set_sprite_tint(Color.from_hsv(0.0, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V))
 	light_layer.modulate = Color.from_hsv(0.0, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V)
+	_set_outline_color(Color.from_hsv(0.0, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V, 1.0))
 	set_process(true)
 
 
@@ -154,6 +188,7 @@ func _stop_colorful_visual() -> void:
 	set_process(false)
 	if is_instance_valid(sprite):
 		sprite.modulate = Color.WHITE
+		sprite.self_modulate = Color.WHITE
 	if is_instance_valid(light_layer):
 		light_layer.visible = false
 
@@ -168,8 +203,9 @@ func _process(_delta: float) -> void:
 func _apply_colorful_hsv_and_frame() -> void:
 	_colorful_hue = (_colorful_hue + _COLORFUL_HUE_STEP) % _COLORFUL_HUE_MOD
 	var hue := float(_colorful_hue) / 255.0
-	sprite.modulate = Color.from_hsv(hue, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V)
+	_set_sprite_tint(Color.from_hsv(hue, _COLORFUL_SPRITE_S, _COLORFUL_SPRITE_V))
 	light_layer.modulate = Color.from_hsv(hue, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V)
+	_set_outline_color(Color.from_hsv(hue, _COLORFUL_LIGHT_S, _COLORFUL_LIGHT_V, 1.0))
 	if sprite.sprite_frames == null or light_layer.sprite_frames == null:
 		return
 	var frame_count := sprite.sprite_frames.get_frame_count(_COLORFUL_ANIM)
@@ -190,7 +226,7 @@ func _apply_colorful_hsv_and_frame() -> void:
 ## @return 无
 func _start_absorb_phase() -> void:
 	absorb_phase = true
-	var candidates: Array = _collect_absorb_candidates()
+	var candidates: Array[Node] = _collect_absorb_candidates()
 	_apply_hp_from_fragment_count(candidates.size())
 	_commit_absorb_ledger(candidates)
 	_absorb_duration_timer.wait_time = _absorb_max_duration
@@ -211,8 +247,8 @@ func _apply_hp_from_fragment_count(fragment_count: int) -> void:
 
 ## 收集 SpawnManager/drops 下全部可吸收碎片
 ## @return drop 节点数组
-func _collect_absorb_candidates() -> Array:
-	var result: Array = []
+func _collect_absorb_candidates() -> Array[Node]:
+	var result: Array[Node] = []
 	var drops_root := _get_drops_root()
 	if drops_root == null:
 		return result
@@ -233,7 +269,7 @@ func _get_drops_root() -> Node:
 ## 吸收开始时一次性写入 UfoManager 账本（逻辑与动画分离）
 ## @param candidates 可吸收 drop 列表
 ## @return 无
-func _commit_absorb_ledger(candidates: Array) -> void:
+func _commit_absorb_ledger(candidates: Array[Node]) -> void:
 	for node in candidates:
 		if not is_instance_valid(node) or not node is drop:
 			continue
@@ -266,7 +302,7 @@ func _prepare_drop_for_absorb_visual(piece: drop) -> void:
 ## 并行 tween 将所有碎片拉向飞碟，结束后隐藏并进入待销毁序列
 ## @param candidates 可吸收 drop 列表
 ## @return 无
-func _run_absorb_visuals_batch(candidates: Array) -> void:
+func _run_absorb_visuals_batch(candidates: Array[Node]) -> void:
 	var valid: Array[drop] = []
 	for node in candidates:
 		if is_instance_valid(node) and node is drop:
@@ -295,7 +331,7 @@ func _run_absorb_visuals_batch(candidates: Array) -> void:
 ## 动画结束：隐藏节点并 queue_free（不再参与碰撞/融合）
 ## @return 无
 func _finalize_absorb_visuals() -> void:
-	var pending: Array = _pending_destroy.duplicate()
+	var pending: Array[Node] = _pending_destroy.duplicate()
 	_pending_destroy.clear()
 	for piece in pending:
 		if not is_instance_valid(piece):

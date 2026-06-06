@@ -1,6 +1,6 @@
 extends Node2D
-var os = Vector2(4,0.4)
-var duratime = 5
+var os: Vector2 = Vector2(4, 0.4)
+var duratime: float = 5.0
 
 func _ready() -> void:
 
@@ -15,17 +15,16 @@ func _ready() -> void:
 
 	os = scale
 
-func online(duratime) -> void:
+func online(duratime: float) -> void:
 
 		player_var.require_env_glowing(true)
 		scale.y = 0
-		var tween = create_tween()
+		var tween: Tween = create_tween()
 		tween.tween_property($".",'scale',os,0.5)
 		await get_tree().create_timer(duratime-1,false).timeout
 		tween = create_tween()
 		tween.tween_property($".",'scale',os*Vector2(1,0),0.5)
 		await tween.finished
-
 
 
 

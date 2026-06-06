@@ -1,7 +1,7 @@
 extends BaseGUIView
 
 
-func _open():
+func _open() -> void:
 
 	player_var.request_game_pause()
 	set_process_input(false)
@@ -10,20 +10,20 @@ func _open():
 
 
 
-func _close():
+func _close() -> void:
 	player_var.release_game_pause()
 
 
-func open():
+func open() -> void:
 	_open()
 
 
-func close():
+func close() -> void:
 
 	_close()
 
 
-func close_self():
+func close_self() -> void:
 
 
 	G.get_gui_view_manager().close_view(viewInstanceId)
@@ -32,6 +32,6 @@ func close_self():
 	player_var.player_exp += 0
 	player_var.call_deferred("_try_open_bonus_upgrade_select")
 
-func set_property_change(id):
+func set_property_change(id: String) -> void:
 
 	$pp/properties.set_passive_preview(id)

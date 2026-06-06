@@ -1,3 +1,7 @@
+/*
+ * 作用：2D 屏幕扭曲，用位移贴图偏移 SCREEN_UV 采样屏幕纹理，实现局部画面扰动。
+ * 推荐文件名：screen_distortion.gdshader
+ */
 shader_type canvas_item;
 uniform sampler2D mainTexture;
 varying vec2 custom_uv;

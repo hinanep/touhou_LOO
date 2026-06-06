@@ -41,14 +41,14 @@ func _connect_signals() -> void:
 # --- 初始化 ---
 func _initialize_prefabs_and_pools() -> void:
 	# 初始化攻击
-	var creating_attacks = routine_info.get("creating_attack", [])
+	var creating_attacks: Array = routine_info.get("creating_attack", [])
 	for attack_id in creating_attacks:
 		var prefab := _load_attack_packed_scene(attack_id)
 		if prefab == null:
 			continue
 		attack_prefabs.append(prefab)
 		# 为每种攻击创建一个独立的对象池
-		var pool_container
+		var pool_container: Node
 		if table.resolve_attack(attack_id).get('reference_system', 'world') == 'world':
 			pool_container = Node.new() # 创建一个节点来持有实例化的对象
 		else:
@@ -57,11 +57,11 @@ func _initialize_prefabs_and_pools() -> void:
 		attack_pools[attack_id] = (ObjectPool.new(prefab, pool_container))
 
 	# 初始化召唤物
-	var creating_summons = routine_info.get("creating_summoned", [])
+	var creating_summons: Array = routine_info.get("creating_summoned", [])
 	for summon_id in creating_summons:
-		var prefab = load("res://scene/summon/summon_ins/" + summon_id + ".tscn")
+		var prefab: PackedScene = load("res://scene/summon/summon_ins/" + summon_id + ".tscn")
 		summon_prefabs.append(prefab)
-		var pool_container = Node.new()
+		var pool_container: Node = Node.new()
 		add_child(pool_container)
 		summon_pools[summon_id] = (ObjectPool.new(prefab, pool_container))
 
@@ -120,12 +120,12 @@ func _wait_warmup_frame() -> void:
 
 
 # --- 外部调用接口 ---
-func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node) -> void:
+func on_trigger_called(routine_id: String, force_world_position: bool, input_pos: Vector2, input_rot: float, parent_node: Variant) -> void:
 	if routine_id != routine_info.id or not active:
 		return
 
 	# 如果没有指定父节点，则使用世界作为父节点 (get_tree().root)
-	var spawn_parent = parent_node if is_instance_valid(parent_node) else $"."
+	var spawn_parent: Node = parent_node if is_instance_valid(parent_node) else $"."
 
 
 
@@ -138,7 +138,7 @@ func _execute_attack_flow(force_world_pos: bool = false, input_pos: Vector2 = Ve
 		return
 	AudioManager.play_sfx("music_sfx_shoot")
 
-	var times = int(routine_info.times + player_var.danma_times * routine_info.danma_times_efficiency)
+	var times: int = int(routine_info.times + player_var.danma_times * routine_info.danma_times_efficiency)
 
 	for i in range(times):
 		match routine_info.one_creating_type:
@@ -170,7 +170,7 @@ func _spawn_all_creations(force_world_pos: bool, input_pos: Vector2, input_rot: 
 	if routine_info.has('special_creating_attack'):
 		match routine_info.special_creating_attack:
 			'probability':
-				var pool_index = _select_pool_index_by_luck()
+				var pool_index: int = _select_pool_index_by_luck()
 				if pool_index != -1:
 					_spawn_instance_from_pool(attack_pools.keys()[pool_index],attack_pools[attack_pools.keys()[pool_index]], spawn_transform, parent, batch_num)
 	else:
@@ -182,10 +182,10 @@ func _spawn_all_creations(force_world_pos: bool, input_pos: Vector2, input_rot: 
 		_spawn_instance_from_pool(sumid,summon_pools[sumid], spawn_transform, parent, batch_num)
 
 # 从指定的对象池生成一个实例
-func _spawn_instance_from_pool(id,pool:ObjectPool, transform: Transform2D, parent: Node, batch_num: int) -> void:
+func _spawn_instance_from_pool(id: String, pool: ObjectPool, transform: Transform2D, parent: Node, batch_num: int) -> void:
 	if parent == $".":
 		parent = null
-	var instance = pool.get_object(parent)
+	var instance: Node = pool.get_object(parent)
 	if not is_instance_valid(instance):
 		return
 
@@ -201,14 +201,14 @@ func _spawn_instance_from_pool(id,pool:ObjectPool, transform: Transform2D, paren
 # 根据幸运值选择池的索引
 func _select_pool_index_by_luck() -> int:
 	# (你的 select_from_luck 函数逻辑可以移到这里，保持不变)
-	var sum = 0
-	var weight_delta = []
-	var params = routine_info.special_creating_attack_parameter
+	var sum: float = 0
+	var weight_delta: Array = []
+	var params: Array = routine_info.special_creating_attack_parameter
 	for i in range(params.size() / 2):
-		var tmp = params[i*2] * pow(1 + player_var.luck, params[i*2+1])
+		var tmp: float = params[i*2] * pow(1 + player_var.luck, params[i*2+1])
 		sum += tmp
 		weight_delta.append(tmp)
-	var r = randf_range(0, sum)
+	var r: float = randf_range(0, sum)
 	for i in range(params.size() / 2):
 		r -= weight_delta[i]
 		if r < 0:

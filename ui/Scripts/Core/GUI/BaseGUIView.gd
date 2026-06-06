@@ -1,25 +1,25 @@
 extends Node
 class_name BaseGUIView
 
-var config:GUIViewConfig
-var viewInstanceId:int = -1
+var config: GUIViewConfig
+var viewInstanceId: int = -1
 
 
-func _open():
+func _open() -> void:
 	pass
 
 
-func _close():
+func _close() -> void:
 	pass
 
 
-func open():
+func open() -> void:
 	_open()
 
 
-func close():
+func close() -> void:
 	_close()
 
 
-func close_self():
+func close_self() -> void:
 	G.get_gui_view_manager().close_view(viewInstanceId)

@@ -17,11 +17,11 @@ var damage_source: String = ""
 @onready var duration_timer: Timer = $duration
 @onready var redirection_timer: Timer = $rediretion
 
-var target_location
+var target_location: Vector2 = Vector2.ZERO
 #=============================================================================
 # 生命周期 & 对象池接口
 #=============================================================================
-var move_func = move_stay
+var move_func: Callable = move_stay
 # 仅在节点首次实例化时执行一次，负责连接不依赖 summon_info 的信号
 func _ready() -> void:
 	duration_timer.timeout.connect(_on_duration_timeout)
@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 # 公开的初始化接口，由 Routine 的对象池在每次取出节点时调用
-func initialize(p_id: String, p_transform: Transform2D, p_damage_source: String,batch_num:int) -> void:
+func initialize(p_id: String, p_transform: Transform2D, p_damage_source: String, batch_num: int) -> void:
 	# --- 自我配置 ---
 	if not table.Summoned.has(p_id):
 		push_error("Summon ID not found in table: " + p_id)
@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 
 # 触发指定事件的 routine
 func _trigger_routines(event_key: String) -> void:
-	var routines_to_trigger = summon_info.get(event_key, [])
+	var routines_to_trigger: Array = summon_info.get(event_key, [])
 	if event_key == "automatic_routine":
 
 		for routine_id in routines_to_trigger:
@@ -116,15 +116,15 @@ func _trigger_routines(event_key: String) -> void:
 # 计时器与信号回调
 #=============================================================================
 
-func _setup_timers(id) -> void:
+func _setup_timers(id: String) -> void:
 	if id != summon_info.id:
 		return
-	var cd = summon_info.get("cd", 0.0)
+	var cd: float = summon_info.get("cd", 0.0)
 	if cd > 0:
 		cooldown_timer.wait_time = cd
 		cooldown_timer.start()
 
-	var duration = summon_info.get("duration", 0.0)
+	var duration: float = summon_info.get("duration", 0.0)
 	if summon_info.has("dependence"):
 		duration = player_var.dep.operate_dep(summon_info.dependence, duration)
 
@@ -132,7 +132,7 @@ func _setup_timers(id) -> void:
 	duration_timer.start()
 
 	if summon_info.get("movement") == "sandsoldier":
-		var redir_interval = summon_info.get("movement_parameter", [1.0])[0]
+		var redir_interval: float = summon_info.get("movement_parameter", [1.0])[0]
 		redirection_timer.wait_time = redir_interval
 		redirection_timer.start()
 		# 首次立即索敌
@@ -147,7 +147,7 @@ func _on_cooldown_timeout() -> void:
 # 重新索敌的回调
 func _on_redirection_timeout() -> void:
 	# 将索敌任务委托给索敌组件
-		var target = RunSession.SpawnManager.find_closest_enemies(global_position,1,1000,null)
+		var target: Array = RunSession.SpawnManager.find_closest_enemies(global_position,1,1000,null)
 
 		if not target.is_empty():
 			if is_instance_valid(target[0]):
@@ -164,7 +164,7 @@ func _on_renew_state(id: String) -> void:
 		_setup_timers(summon_id)
 
 
-func _on_upgrade_signal(group: String, cur) -> void:
+func _on_upgrade_signal(group: String, cur: int) -> void:
 	if summon_info.get('upgrade_group') != group:
 		return
 	level += 1
@@ -192,9 +192,9 @@ func _set_active(p_active: bool) -> void:
 	duration_timer.paused = not p_active
 	redirection_timer.paused = not p_active
 
-func move_sandsol(delta):
+func move_sandsol(delta: float) -> void:
 	if global_position.distance_squared_to(target_location)<10:
 		return
 	global_position += global_position.direction_to(target_location)*delta * 400 * player_var.bullet_speed_ratio
-func move_stay(delta):
+func move_stay(delta: float) -> void:
 	pass

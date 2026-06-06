@@ -1,11 +1,11 @@
 extends BaseGUIView
-var type = "none"
-var tname = ""
-@onready var spoint = $point/point
-func _ready():
+var type: String = "none"
+var tname: String = ""
+@onready var spoint: TextureRect = $point/point
+func _ready() -> void:
 	for ucskill in table.Skill:
-		var ski = table.Skill[ucskill]
-		var skill_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		var ski: Dictionary = table.Skill[ucskill]
+		var skill_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$upgrade_layer/skill/skill_container.add_child(skill_button)
 		skill_button.set_texture('img_'+ski.id)
 		skill_button.set_tooltip_text(ski.id)
@@ -13,8 +13,8 @@ func _ready():
 		skill_button.point = spoint
 
 	for uccard in table.SpellCard:
-		var cd = table.SpellCard[uccard]
-		var card_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		var cd: Dictionary = table.SpellCard[uccard]
+		var card_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$upgrade_layer/card/card_container.add_child(card_button)
 		card_button.set_texture('img_'+cd.id)
 		card_button.set_tooltip_text(cd.id)
@@ -22,8 +22,8 @@ func _ready():
 		card_button.point = spoint
 
 	for uccp in table.Couple:
-		var cps = table.Couple[uccp]
-		var cp_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		var cps: Dictionary = table.Couple[uccp]
+		var cp_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$upgrade_layer/cp/cp_container.add_child(cp_button)
 		cp_button.set_texture('img_'+cps.id)
 		cp_button.set_tooltip_text(cps.id)
@@ -31,8 +31,8 @@ func _ready():
 		cp_button.point = spoint
 
 	for psv in table.Passive:
-		var psv_info = table.Passive[psv]
-		var psv_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+		var psv_info: Dictionary = table.Passive[psv]
+		var psv_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 		$upgrade_layer/psv/psv_container.add_child(psv_button)
 		psv_button.set_texture('img_'+psv_info.id)
 		psv_button.set_tooltip_text(psv_info.id)
@@ -40,18 +40,18 @@ func _ready():
 		psv_button.point = spoint
 
 	for enm in table.Enemy:
-		var enm_info = table.Enemy[enm]
+		var enm_info: Dictionary = table.Enemy[enm]
 		match enm_info.type:
 			'zako':
 
-				var zako_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+				var zako_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 				$summon_layer/zako/zako_container.add_child(zako_button)
 				zako_button.set_texture('img_'+enm_info.id)
 				zako_button.set_tooltip_text(enm_info.id)
 				zako_button.selected.connect(on_enmbutton_select.bind(enm_info.id))
 				zako_button.point = spoint
 			'elite':
-				var elite_button = PresetManager.getpre("ui_test_skillbutton").instantiate()
+				var elite_button: Control = PresetManager.getpre("ui_test_skillbutton").instantiate()
 				$summon_layer/elite/elite_container.add_child(elite_button)
 				elite_button.set_texture('img_'+enm_info.id)
 				elite_button.set_tooltip_text(enm_info.id)
@@ -61,32 +61,32 @@ func _ready():
 		$summon_layer/boss/boss_stage.get_child(i).pressed.connect(_on_boss_stage_change_pressed.bind(i))
 
 	$summon_layer/boss/boss_container/keine.point = spoint
-func on_skillbutton_select(skillname):
+func on_skillbutton_select(skillname: String) -> void:
 	$testhud/Button.grab_focus()
 	type = "skill"
 	tname = skillname
 
 
-func on_cardbutton_select(cardname):
+func on_cardbutton_select(cardname: String) -> void:
 	$testhud/Button.grab_focus()
 	type = "card"
 	tname = cardname
 
-func on_cpbutton_select(cpname):
+func on_cpbutton_select(cpname: String) -> void:
 	$testhud/Button.grab_focus()
 	type = "cp"
 	tname = cpname
 
-func on_psvbutton_select(psvname):
+func on_psvbutton_select(psvname: String) -> void:
 	$testhud/Button.grab_focus()
 	type = "psv"
 	tname = psvname
-func on_enmbutton_select(enmid):
+func on_enmbutton_select(enmid: String) -> void:
 	$testhud/Button.grab_focus()
 	type = "enm"
 	tname = enmid
 
-func _on_update_pressed():
+func _on_update_pressed() -> void:
 	match type:
 		"skill":
 			SignalBus.try_add_skill.emit(tname)
@@ -106,7 +106,7 @@ func _on_update_pressed():
 
 
 
-func _on_delete_pressed():
+func _on_delete_pressed() -> void:
 	match type:
 		"skill":
 			SignalBus.del_skill.emit(tname)
@@ -124,17 +124,17 @@ func _on_delete_pressed():
 	$testhud/Button.grab_focus()
 
 
-func _on_levelup_pressed():
+func _on_levelup_pressed() -> void:
 	player_var.player_exp += player_var.exp_need
 
 
-func _on_moremana_pressed():
+func _on_moremana_pressed() -> void:
 	player_var.mana += (player_var.mana_max)
 	$testhud/Button.grab_focus()
 
 
-func p_o(id):
-	var obj = instance_from_id(int(id))
+func p_o(id: String) -> void:
+	var obj: Object = instance_from_id(int(id))
 	if obj:
 		prints(obj, obj.owner, obj.get_script().get_script_property_list())
 
@@ -144,12 +144,12 @@ func _on_invincible_pressed() -> void:
 
 
 
-func _on_button_2_pressed():
+func _on_button_2_pressed() -> void:
 	p_o($testhud/TextEdit.text)
 
 
 
-func _on_button_3_pressed():
+func _on_button_3_pressed() -> void:
 	print_orphan_nodes()
 
 
@@ -164,10 +164,10 @@ func _on_summon_layer_vis_pressed() -> void:
 
 func _on_summon_pressed() -> void:
 
-	var mob = PresetManager.getpre(tname)
-	if mob == null:
+	var mob_scene: PackedScene = PresetManager.getpre(tname)
+	if mob_scene == null:
 		return
-	mob = mob.instantiate()
+	var mob: Node2D = mob_scene.instantiate()
 	mob.global_position = Vector2(200,0)
 	mob.mob_info = table.Enemy[tname].duplicate()
 

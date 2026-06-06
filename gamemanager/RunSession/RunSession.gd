@@ -6,7 +6,7 @@ var CardManager: CardManagers
 var PassiveManager: PassiveManagers
 var CpManager: CpManagers
 var SpawnManager: SpawnManagers
-var MonsterAvoidanceManager
+var MonsterAvoidanceManager: Node
 
 var tmp_scene: Node
 var worldenvir: WorldEnvironment
@@ -14,7 +14,7 @@ var air_wall_top: float
 var air_wall_bottom: float
 var air_wall_left: float
 var air_wall_right: float
-var underrecycle_tween: Array = []
+var underrecycle_tween: Array[Tween] = []
 var need_glow: int = 0
 ## Boss 战进行中；供 Attack 从对象池取出时同步透明度
 var is_boss_stage: bool = false
@@ -74,6 +74,7 @@ func _destroy_managers() -> void:
 
 ## Boss 入场：镜头、空气墙、刷 Boss
 func boss_coming(id: String) -> void:
+	_dismiss_active_ufos_for_boss()
 	SignalBus.kill_all.emit()
 	var mv: Tween = player_var.player_node.create_tween()
 	underrecycle_tween.append(mv)
@@ -82,7 +83,7 @@ func boss_coming(id: String) -> void:
 	mv.set_parallel()
 	mv.tween_property(player_var.player_node, 'global_position', Vector2(-400, 0), 0.1)
 	mv.tween_property(tmpcamera, 'global_position', Vector2(0, 0), 0.1)
-	var viewport_size = Vector2(1920, 1080)
+	var viewport_size: Vector2 = Vector2(1920, 1080)
 	await mv.finished
 	air_wall_bottom = viewport_size.y / 2
 	air_wall_top = -viewport_size.y / 2
@@ -94,7 +95,7 @@ func boss_coming(id: String) -> void:
 		tmp_scene.get_node('air_wall/top').position.y = -viewport_size.y / 2
 		tmp_scene.get_node('air_wall/down').position.y = viewport_size.y / 2
 	lock_camera()
-	var boss = PresetManager.getpre(id).instantiate()
+	var boss: Node2D = PresetManager.getpre(id).instantiate() as Node2D
 	boss.boss_init(id)
 	boss.position = Vector2(2000, 1000)
 	SpawnManager.add_mob(boss)
@@ -105,6 +106,15 @@ func boss_coming(id: String) -> void:
 	boss.fight_begin()
 	is_boss_stage = true
 	SignalBus.boss_stage.emit(true)
+
+
+## Boss 入场前无结算清场未击破飞碟
+func _dismiss_active_ufos_for_boss() -> void:
+	if SpawnManager == null or not is_instance_valid(SpawnManager):
+		return
+	var ufo_mgr := SpawnManager.get_node_or_null("UfoManager")
+	if ufo_mgr != null and ufo_mgr.has_method("dismiss_all_active_ufos"):
+		ufo_mgr.dismiss_all_active_ufos()
 
 
 func lock_camera() -> void:
@@ -120,8 +130,8 @@ func lock_camera() -> void:
 func screen_black(intensity: float, in_time: float, duration_time: float, out_time: float) -> void:
 	if player_var.player_node == null:
 		return
-	var black_mo = player_var.player_node.get_node('black')
-	var blacking = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	var black_mo: CanvasItem = player_var.player_node.get_node('black') as CanvasItem
+	var blacking: Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	underrecycle_tween.append(blacking)
 	blacking.tween_property(black_mo, 'modulate', Color(1, 1, 1, intensity), in_time)
 	blacking.tween_interval(duration_time)

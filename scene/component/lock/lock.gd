@@ -17,7 +17,7 @@ var _lock_position: Vector2 = Vector2.INF # 使用 Vector2.INF 代表无效位�
 # --- 外部引用 ---
 var _body: Node2D
 var _attack_info: Dictionary
-var _spawn_manager = RunSession.SpawnManager
+var _spawn_manager: SpawnManagers = RunSession.SpawnManager
 
 #=============================================================================
 # 生命周期与 API
@@ -28,7 +28,7 @@ func initialize(p_body: Node2D, p_attack_info: Dictionary, lock_routine: Node = 
 	self._body = p_body
 	self._attack_info = p_attack_info
 
-	var locking_type_str = p_attack_info.get("locking_type", "none")
+	var locking_type_str: String = p_attack_info.get("locking_type", "none")
 
 	match locking_type_str:
 		"routine":
@@ -81,8 +81,8 @@ func _reset_target() -> void:
 # 寻找最近的敌人
 func _find_nearest_target() -> void:
 	# 从 attack_info 读取配置，提供默认值
-	var range = _attack_info.get("locking_range", 1000.0)
-	var target_array: Array = _spawn_manager.find_closest_enemies(_body.global_position, 1, range, null)
+	var lock_range: float = _attack_info.get("locking_range", 1000.0)
+	var target_array: Array = _spawn_manager.find_closest_enemies(_body.global_position, 1, lock_range, null)
 
 	if not target_array.is_empty():
 		_lock_target = target_array[0]
@@ -97,8 +97,8 @@ func _find_front_target() -> void:
 		return
 
 	# 从 attack_info 读取配置，提供默认值
-	var distance = _attack_info.get("locking_distance", 400.0)
-	var direction_vec = Vector2.from_angle(player_var.player_diretion_angle)
+	var distance: float = _attack_info.get("locking_distance", 400.0)
+	var direction_vec: Vector2 = Vector2.from_angle(player_var.player_diretion_angle)
 	_lock_position = player_var.player_node.global_position + direction_vec * distance
 
 # 不进行索敌

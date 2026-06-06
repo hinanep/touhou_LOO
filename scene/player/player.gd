@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name player
 
-var direction = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO
 
 @export var hurt_lock_seconds: float = 0.25
 
@@ -9,21 +9,21 @@ var state_lock_until: float = 0.0
 var requested_anim_state: StringName = &""
 
 
-var blend_position_paths = [
+var blend_position_paths: Array[String] = [
 	"parameters/hurt/blend_position",
 	"parameters/idle/blend_position",
 	"parameters/move/blend_position",
 	"parameters/sc/blend_position"
 
 ]
-@onready var animation_tree = $AnimationTree
-@onready var state_machine:AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var state_machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 
-func _init():
+func _init() -> void:
 	player_var.player_node = $"."
 	player_var.player_hp = player_var.player_hp_max
 
-func _ready():
+func _ready() -> void:
 	SignalBus.player_invincible.connect(on_player_invincible)
 	player_var.camera = get_viewport().get_camera_2d()
 	_request_anim_state(&"idle")
@@ -33,7 +33,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("slow_mode"):
 		$CollisionShape2D/colli_point.set_visible(!$CollisionShape2D/colli_point.is_visible())
 
-var animation_diretion =Vector2.ZERO
+var animation_diretion: Vector2 = Vector2.ZERO
 func _physics_process(_delta: float) -> void:
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
@@ -55,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 
 
 
-func take_damage(type, damage):
+func take_damage(type: String, damage: float) -> void:
 	if player_var.is_invincible:
 		return
 
@@ -72,13 +72,13 @@ func take_damage(type, damage):
 		died()
 	SignalBus.player_invincible.emit(player_var.invincible_time)
 
-func on_player_invincible(time):
+func on_player_invincible(time: float) -> void:
 	player_var.is_invincible = true
 	$invincible_time.stop()
 	$invincible_time.wait_time = time
 	$invincible_time.start()
 
-func died():
+func died() -> void:
 	state_lock_until = 99999999.0
 	AudioManager.play_sfx("music_sfx_die")
 	if player_var.player_life_addi > 0:
@@ -91,14 +91,14 @@ func died():
 
 	G.get_gui_view_manager().open_view("ClearMenu")
 
-func _on_invincible_time_timeout():
+func _on_invincible_time_timeout() -> void:
 	player_var.is_invincible = false
 
-func _on_pickup_area_body_entered(body):
+func _on_pickup_area_body_entered(body: Node2D) -> void:
 	if body.has_method("fly_to_player"):
 		body.fly_to_player()
 
-func _on_pickup_area_area_entered(area):
+func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area.has_method("fly_to_player"):
 		area.fly_to_player()
 

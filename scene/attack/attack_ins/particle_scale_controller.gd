@@ -1,4 +1,5 @@
 extends GPUParticles2D
+
 @export var particles: Array[Node] = [] # 示例
 
 

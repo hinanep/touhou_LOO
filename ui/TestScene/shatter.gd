@@ -6,14 +6,14 @@ extends CanvasLayer
 @export var explosion_force: float = 2000.0
 
 
-@onready var fragment_container = $FragmentContainer
+@onready var fragment_container: Node2D = $FragmentContainer
 
-var fragments = []
-var polys = []
-var center = []
-var diretion = []
-var viewport_size = Vector2(1920,1080)
-func _ready():
+var fragments: Array[Node2D] = []
+var polys: Array[Polygon2D] = []
+var center: Array[Vector2] = []
+var diretion: Array[Vector2] = []
+var viewport_size: Vector2 = Vector2(1920,1080)
+func _ready() -> void:
 	print("ShatterEffect 初始化完成")
 
 	SignalBus.shutter.connect(start_shatter_effect)
@@ -24,14 +24,14 @@ func _ready():
 		polys.push_back(poly2D)
 
 		viewport_size = get_viewport().get_visible_rect().size
-		var centerp = Vector2.ZERO
+		var centerp: Vector2 = Vector2.ZERO
 		for point in poly2D.polygon:
 			centerp += point
 		centerp /= poly2D.polygon.size()
 		center.push_back(centerp)
 
-		var screen_center = viewport_size/2
-		var diretionp = (centerp - screen_center).normalized()
+		var screen_center: Vector2 = viewport_size / 2
+		var diretionp: Vector2 = (centerp - screen_center).normalized()
 
 
 		diretion.push_back(diretionp* explosion_force)
@@ -39,10 +39,10 @@ func _ready():
 		viewport_size = get_viewport().get_visible_rect().size
 		#get_viewport().size_changed.connect(_on_viewport_size_changed)
 
-func _on_viewport_size_changed():
+func _on_viewport_size_changed() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
 # 主要的碎裂效果函数
-func start_shatter_effect():
+func start_shatter_effect() -> void:
 	print("=== 开始碎裂效果 ===")
 	clear_fragments()
 
@@ -63,7 +63,7 @@ func start_shatter_effect():
 	fragment_container.visible = true
 
 	$Maskalp.material.set_shader_parameter('begin',true)
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	RunSession.underrecycle_tween.append(tween)
 	#tween.tween_interval(2.0)
 	tween.set_parallel(true)
@@ -81,43 +81,43 @@ func start_shatter_effect():
 
 
 
-func set_shader_phase(p):
+func set_shader_phase(p: float) -> void:
 
 	$Maskalp.material.set_shader_parameter('phase',p)
 # 安全获取屏幕纹理的方法
 func get_screen_texture_safe() -> Texture2D:
 
 	# 获取主视口
-	var main_viewport = get_viewport()
+	var main_viewport: Viewport = get_viewport()
 	print("主视口路径: ", main_viewport.get_path())
 
 	#await RenderingServer.frame_post_draw
 	var imagetmp:Image = main_viewport.get_texture().get_image()
 	imagetmp.resize(viewport_size.x,viewport_size.y)
-	var tex = ImageTexture.create_from_image(imagetmp)
+	var tex: ImageTexture = ImageTexture.create_from_image(imagetmp)
 
 	return tex
 
 
 
 # 清理所有碎片
-func clear_fragments():
+func clear_fragments() -> void:
 	if fragment_container:
 		for child in fragment_container.get_children():
 			child.position = Vector2.ZERO
 		print("已清理之前的碎片")
 
-func tween_all_fragment():
+func tween_all_fragment() -> void:
 	for i in fragments.size():
 		tween_fragment(i)
 # 创建单个碎片
-func tween_fragment(index:int):
+func tween_fragment(index:int) -> void:
 
 	fragments[index].rotation = 0
 	fragments[index].modulate.a = 1.0
 	await get_tree().create_timer(0.8,false).timeout
 	# 创建动画来模拟爆炸效果
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	RunSession.underrecycle_tween.append(tween)
 
 
@@ -128,7 +128,7 @@ func tween_fragment(index:int):
 	tween.tween_property(fragments[index], "position", diretion[index], 2.0)
 
 	# 旋转动画
-	var rotation_amount = randf_range(-PI/4, PI/4)
+	var rotation_amount: float = randf_range(-PI/4, PI/4)
 	tween.tween_property(fragments[index], "rotation", rotation_amount, 2.0)
 
 	# 透明度动画
